@@ -63,7 +63,7 @@ Status: `sample` is placeholder data, `draft` lists the relevant laws with provi
 
 ## Scoring
 
-Scores are in [0, 1]. For now the page uses three colours: black for 0 (none), white for 0.75 and above (free), red in between (partial). Levels, branches and mechanisms with no data or that do not apply are hidden.
+Scores are in [0, 1]. The page uses four colours: black for 0 (none), dark red below 0.5 (weak), light pink from 0.5 up to 1 (good), white for 1 (full). A property marked yes is white, partly is pink, no is black. Levels, branches and mechanisms with no data or that do not apply are hidden.
 
 * **Property**: yes = 1, partial = 0.5, no = 0, unknown is ignored.
 * **Mechanism**: the average of its known properties. *Gate* properties (`exists`, `binding`, `binding_powers`, plus any listed in the mechanism's `gates`) zero the mechanism when `no` and halve it when `partial`. The mechanism's `weight` scales the result: `upper_council_seat` counts at 0.4, because a seat in someone else's council is a weak substitute for the community's own body, and it is void if that seat is not elected by this community alone (for example, a council elected from one municipality-wide list).

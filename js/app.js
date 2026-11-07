@@ -85,14 +85,15 @@ $('#search').addEventListener('submit', async e => {
 document.querySelectorAll('.examples button').forEach(b => b.addEventListener('click', () => locate(b.dataset.lat, b.dataset.lon, { zoom: 16 })));
 
 // ---------- rendering ----------
-// Three colours for now: white = free, red = partial, black = none. Nothing else is shown.
+// Four tones: black = none (0), dark red = weak (below 0.5), light pink = good (0.5 up to 1), white = full (1).
 function tone(score) {
   if (typeof score !== 'number') return null;          // not applicable / no data: hidden
   if (score <= 0) return 'black';
-  if (score >= 0.75) return 'white';
-  return 'red';
+  if (score < 0.5) return 'red';
+  if (score < 1) return 'pink';
+  return 'white';
 }
-const STATUS_TONE = { yes: 'white', partial: 'red', no: 'black', unknown: 'unknown' };
+const STATUS_TONE = { yes: 'white', partial: 'pink', no: 'black', unknown: 'unknown' };
 
 function button({ label, tone, pressed, title, onclick, href }) {
   const attrs = { class: `tb t-${tone}`, title: title || label };
