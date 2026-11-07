@@ -10,41 +10,30 @@
 </head>
 <body>
   <header class="top">
-    <div class="brand">
-      <h1>Freedom Map</h1>
-      <p class="tagline">Can the people here make and carry out decisions about their own shared interests, directly or through accountable representatives?</p>
-    </div>
+    <h1>Freedom Map</h1>
     <form id="search" class="search" role="search">
       <input id="q" type="search" placeholder="Search an address or place…" aria-label="Address or place" autocomplete="off">
       <button type="submit">Search</button>
     </form>
   </header>
 
-  <main class="layout">
-    <section class="map-wrap">
-      <div id="map" aria-label="Map. Click anywhere to assess that location."></div>
-      <div class="examples">
-        <span>Try:</span>
-        <button type="button" data-lat="42.6745" data-lon="23.3263">Lozenets, Sofia</button>
-        <button type="button" data-lat="42.5867" data-lon="23.3605">Bistritsa village</button>
-        <button type="button" data-lat="47.3779" data-lon="8.5281">Langstrasse, Zürich</button>
-        <button type="button" data-lat="53.3256" data-lon="-6.2564">Ranelagh, Dublin</button>
-      </div>
-    </section>
-
-    <section class="panel" aria-live="polite">
-      <div id="intro" class="intro">
-        <p>Search for an address or click on the map. Each rectangle below is one level at which people share interests. Its colour shows how far the law lets them govern those interests themselves. Click a rectangle to see why: first <em>direct</em> versus <em>representative</em> decision-making, then the specific mechanisms, the properties each one needs, and the articles of law behind each answer.</p>
-      </div>
-      <div id="place" class="place" hidden></div>
-      <div id="notice" class="notice" hidden></div>
-      <div id="rows"></div>
-      <div class="legend" id="legend"></div>
-    </section>
+  <main class="page">
+    <div id="map" aria-label="Map. Click anywhere to choose a location."></div>
+    <div class="examples">
+      <button type="button" data-lat="42.6745" data-lon="23.3263">Lozenets, Sofia</button>
+      <button type="button" data-lat="42.5867" data-lon="23.3605">Bistritsa</button>
+      <button type="button" data-lat="47.3779" data-lon="8.5281">Langstrasse, Zürich</button>
+      <button type="button" data-lat="53.3256" data-lon="-6.2564">Ranelagh, Dublin</button>
+    </div>
+    <div id="place" class="place" aria-live="polite"></div>
+    <p id="hint" class="hint">Search for an address or click on the map.</p>
+    <nav id="tree" class="tree" aria-label="Freedom tree"></nav>
   </main>
 
   <footer class="foot">
-    <p>Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Geocoding by <a href="https://nominatim.org/">Nominatim</a>. Assessments for Bulgaria, Ireland and Switzerland (Zürich) are <strong>drafts</strong>: relevant laws are listed, specific articles are still being worked out; see <a href="docs/DATA.md">docs/DATA.md</a> to contribute.</p>
+    <p class="legend"><span><i class="t-white"></i>Free</span><span><i class="t-red"></i>Partial</span><span><i class="t-black"></i>None</span></p>
+    <p id="status"></p>
+    <p>Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Geocoding by <a href="https://nominatim.org/">Nominatim</a> · <a href="docs/DATA.md">About the data</a></p>
   </footer>
 
   <script src="vendor/leaflet/leaflet.js"></script>

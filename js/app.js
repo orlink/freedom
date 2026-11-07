@@ -1,4 +1,4 @@
-import { resolveJurisdiction, getLevel, scoreLevel, scoreBranch, scoreMechanism, band, statusBand, levelPlaces } from './model.js';
+import { resolveJurisdiction, getLevel, scoreLevel, scoreBranch, scoreMechanism, levelPlaces } from './model.js';
 
 const NOMINATIM = 'https://nominatim.openstreetmap.org';
 const BRANCH_INFO = {
@@ -50,8 +50,7 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
   lat = +(+lat).toFixed(5); lon = +(+lon).toFixed(5);
   if (marker) marker.setLatLng([lat, lon]); else marker = L.marker([lat, lon]).addTo(map);
   if (zoom) map.setView([lat, lon], zoom);
-  $('#place').hidden = false;
-  $('#place').replaceChildren(el('p', { class: 'loading' }, 'Looking up this location…'));
+  $('#place').replaceChildren(el('span', { class: 'loading' }, 'Looking up this location…'));
   try {
     const r = result || await reverse(lat, lon);
     if (!r || r.error || !r.address) throw new Error(r?.error || 'No address found here.');
@@ -66,7 +65,7 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
     if (!keepPath) state.path = [];
     render();
   } catch (e) {
-    $('#place').replaceChildren(el('p', {}, `Could not look up this location: ${e.message}`));
+    $('#place').replaceChildren(`Could not look up this location: ${e.message}`);
   }
 }
 
@@ -77,23 +76,28 @@ $('#search').addEventListener('submit', async e => {
   if (!q) return;
   try {
     const [r] = await search(q);
-    if (!r) { $('#place').hidden = false; $('#place').replaceChildren(el('p', {}, `Nothing found for “${q}”.`)); return; }
+    if (!r) { $('#place').replaceChildren(`Nothing found for “${q}”.`); return; }
     locate(r.lat, r.lon, { zoom: 16, result: r });
   } catch (err) {
-    $('#place').hidden = false; $('#place').replaceChildren(el('p', {}, err.message));
+    $('#place').replaceChildren(err.message);
   }
 });
 document.querySelectorAll('.examples button').forEach(b => b.addEventListener('click', () => locate(b.dataset.lat, b.dataset.lon, { zoom: 16 })));
 
 // ---------- rendering ----------
-function tile({ name, place, desc, bandInfo, pressed, onclick, title }) {
-  return el('button', {
-    type: 'button', class: `tile b-${bandInfo.key}`, 'aria-pressed': String(!!pressed), title, onclick,
-  },
-  el('span', { class: 't-name' }, name),
-  place ? el('span', { class: 't-place' }, place) : null,
-  desc ? el('span', { class: 't-desc' }, desc) : null,
-  el('span', { class: 't-band' }, bandInfo.label));
+// Three colours for now: white = free, red = partial, black = none. Nothing else is shown.
+function tone(score) {
+  if (typeof score !== 'number') return null;          // not applicable / no data: hidden
+  if (score <= 0) return 'black';
+  if (score >= 0.75) return 'white';
+  return 'red';
+}
+const STATUS_TONE = { yes: 'white', partial: 'red', no: 'black', unknown: 'unknown' };
+
+function button({ label, tone, pressed, title, onclick, href }) {
+  const attrs = { class: `tb t-${tone}`, title: title || label };
+  if (href) return el('a', { ...attrs, href, target: '_blank', rel: 'noopener' }, el('span', {}, label));
+  return el('button', { ...attrs, type: 'button', 'aria-pressed': String(!!pressed), onclick }, el('span', {}, label));
 }
 
 function select(depth, value) {
@@ -101,11 +105,13 @@ function select(depth, value) {
   render();
 }
 
-function row(title, crumb, content, summary) {
-  return el('div', { class: 'row' },
-    el('div', { class: 'row-head' }, el('h3', {}, title), crumb ? el('span', { class: 'crumb' }, crumb) : null),
-    summary ? el('p', { class: 'row-summary' }, summary) : null,
-    content);
+const rowOf = buttons => buttons.length ? el('div', { class: 'tree-row' }, buttons) : null;
+const shortName = s => s.replace(/\s*\(.*?\)\s*$/, '');
+
+function renderPlace() {
+  const loc = state.loc, a = loc.address;
+  const parts = [a.country, a.city || a.town || a.village || a.hamlet, loc.places.neighbourhood?.name].filter(Boolean);
+  $('#place').replaceChildren(...parts.flatMap((p, i) => i ? [el('span', { class: 'sep' }, '·'), p] : [p]));
 }
 
 function render() {
@@ -113,122 +119,72 @@ function render() {
   const loc = state.loc;
   writeHash();
   if (!loc) return;
-  $('#intro').hidden = true;
-
-  // Place header
-  $('#place').replaceChildren(
-    el('h2', {}, loc.label),
-    el('p', { class: 'addr' }, loc.display),
-  );
-
-  // Data status notice
+  $('#hint').hidden = true;
+  renderPlace();
   const j = loc.jurisdiction;
-  const notice = $('#notice');
-  notice.hidden = false;
-  if (!j) {
-    notice.replaceChildren(el('strong', {}, 'No data yet'), ' ', `There is no assessment for ${loc.address.country || 'this country'} yet. `,
-      el('a', { href: 'docs/DATA.md' }, 'Help add it.'));
-  } else {
-    notice.replaceChildren(el('strong', {}, { reviewed: 'Reviewed data', draft: 'Draft data', sample: 'Sample data' }[j.status] || j.status), ' ',
-      j.statusNote || '', j.appliedAreas.length ? ` Local data applied: ${j.appliedAreas.join(', ')}.` : '');
-  }
+  $('#status').textContent = j
+    ? (j.statusNote || ({ draft: 'Draft data.', sample: 'Sample data.', reviewed: 'Reviewed data.' }[j.status] || ''))
+    : '';
 
   const rows = [];
-  const [levelId, branchId, mechIdx, propIdx] = state.path;
+  if (!j) {
+    rows.push(el('p', { class: 'nodata' }, `No data for ${loc.address.country || 'this country'} yet.`));
+    $('#tree').replaceChildren(...rows);
+    return;
+  }
+  let [levelId, branchId, mechIdx, propIdx] = state.path;
 
-  // Row 1: levels
-  const levelTiles = catalog.levels.map(l => {
-    const place = loc.places[l.id];
-    const lvl = j ? getLevel(j, l.id) : undefined;
-    const score = place.absent ? 'na' : scoreLevel(lvl, catalog);
-    return tile({
-      name: l.name, place: place.absent ? 'Not part of one here' : (place.name || (l.kind === 'sphere' ? '' : '—')),
-      bandInfo: band(score), pressed: levelId === l.id, title: l.description, onclick: () => select(0, l.id),
-    });
-  });
-  rows.push(row('Levels of shared interest', null, el('div', { class: 'tiles' }, levelTiles)));
+  // Levels: hide those that don't apply here or have no data.
+  const levels = catalog.levels.map(l => {
+    const lvl = loc.places[l.id].absent ? undefined : getLevel(j, l.id);
+    return { l, lvl, tone: tone(scoreLevel(lvl, catalog)) };
+  }).filter(x => x.tone);
+  rows.push(rowOf(levels.map(({ l, tone }) => button({
+    label: l.name, tone, pressed: levelId === l.id, title: [l.name, loc.places[l.id].name].filter(Boolean).join(': '),
+    onclick: () => select(0, l.id),
+  }))));
 
-  if (levelId) {
-    const ldef = catalog.levels.find(l => l.id === levelId);
-    const place = loc.places[levelId];
-    const lvl = j ? getLevel(j, levelId) : undefined;
-    const crumb = [ldef.name, place.name].filter(Boolean).join(' · ');
-    if (place.absent) {
-      rows.push(row('Direct | Representative', crumb, el('p', { class: 'empty' }, `This location is not part of a ${ldef.name.toLowerCase()}.`), ldef.description));
-    } else if (!lvl) {
-      rows.push(row('Direct | Representative', crumb, el('p', { class: 'empty' }, 'No assessment for this level yet.'), ldef.description));
-    } else if (lvl.applicable === false) {
-      rows.push(row('Direct | Representative', crumb, el('p', { class: 'empty' }, 'This level does not exist here.'), lvl.summary));
-    } else {
-      const branchTiles = ['direct', 'representative'].map(b => tile({
-        name: BRANCH_INFO[b].name, desc: BRANCH_INFO[b].desc, bandInfo: band(scoreBranch(lvl[b], catalog)),
-        pressed: branchId === b, onclick: () => select(1, b),
-      }));
-      rows.push(row('Direct | Representative', crumb, el('div', { class: 'tiles wide' }, branchTiles), lvl.summary));
+  const cur = levels.find(x => x.l.id === levelId);
+  if (cur) {
+    const branches = ['direct', 'representative'].map(b => ({ b, tone: tone(scoreBranch(cur.lvl[b], catalog)) })).filter(x => x.tone);
+    rows.push(rowOf(branches.map(({ b, tone }) => button({
+      label: BRANCH_INFO[b].name, tone, title: BRANCH_INFO[b].desc, pressed: branchId === b, onclick: () => select(1, b),
+    }))));
 
-      if (branchId) {
-        const branch = lvl[branchId];
-        const bcrumb = `${crumb} › ${BRANCH_INFO[branchId].name}`;
-        if (!branch) rows.push(row('Mechanisms', bcrumb, el('p', { class: 'empty' }, 'No assessment yet.')));
-        else if (branch.applicable === false) rows.push(row('Mechanisms', bcrumb, el('p', { class: 'empty' }, branch.note || 'Not applicable at this level.')));
-        else {
-          const mechs = branch.mechanisms || [];
-          const mechTiles = mechs.map((m, i) => {
-            const mdef = catalog.mechanisms[m.type] || {};
-            return tile({
-              name: m.name || mdef.name || m.type, desc: mdef.description, bandInfo: band(scoreMechanism(m, catalog)),
-              pressed: mechIdx === i, onclick: () => select(2, i),
-            });
+    const branch = branches.some(x => x.b === branchId) ? cur.lvl[branchId] : null;
+    if (branch) {
+      const mechs = (branch.mechanisms || []).map((m, i) => ({ m, i, tone: tone(scoreMechanism(m, catalog)) })).filter(x => x.tone);
+      const typeCount = mechs.reduce((n, { m }) => ({ ...n, [m.type]: (n[m.type] || 0) + 1 }), {});
+      rows.push(rowOf(mechs.map(({ m, i, tone }) => {
+        const mdef = catalog.mechanisms[m.type] || {};
+        // Short generic names ("Referendum", "General assembly"); local names only to tell two of a kind apart.
+        return button({
+          label: shortName(typeCount[m.type] > 1 && m.name ? m.name : (mdef.name || m.name || m.type)), tone, title: m.name || mdef.description,
+          pressed: mechIdx === i, onclick: () => select(2, i),
+        });
+      })));
+
+      const mech = mechs.find(x => x.i === mechIdx)?.m;
+      if (mech) {
+        const props = mech.properties || [];
+        rows.push(rowOf(props.map((p, i) => {
+          const pdef = catalog.properties[p.type] || {};
+          return button({
+            label: p.name || pdef.name || p.type, tone: STATUS_TONE[p.status] || 'unknown',
+            title: [pdef.description, p.explanation].filter(Boolean).join('\n\n'),
+            pressed: propIdx === i, onclick: () => select(3, i),
           });
-          rows.push(row('Mechanisms', bcrumb, el('div', { class: 'tiles wide' }, mechTiles)));
+        })));
 
-          const mech = mechs[mechIdx];
-          if (mech) {
-            const mname = mech.name || catalog.mechanisms[mech.type]?.name;
-            const mcrumb = `${bcrumb} › ${mname}`;
-            const props = mech.properties || [];
-            const propTiles = props.map((p, i) => {
-              const pdef = catalog.properties[p.type] || {};
-              return tile({
-                name: p.name || pdef.name || p.type, bandInfo: statusBand(p.status), title: pdef.description,
-                place: (p.laws || []).map(id => j.laws[id]?.short || id).join(' · '),
-                pressed: propIdx === i, onclick: () => select(3, i),
-              });
-            });
-            rows.push(row('Required properties', mcrumb, el('div', { class: 'tiles' }, propTiles), mech.note));
-
-            const prop = props[propIdx];
-            if (prop) rows.push(row('Relevant laws', `${mcrumb} › ${prop.name || catalog.properties[prop.type]?.name}`, propDetail(prop, j)));
-          }
-        }
+        const prop = props[propIdx];
+        if (prop) rows.push(rowOf((prop.laws || []).map(id => {
+          const law = j.laws[id] || { title: id };
+          return button({ label: law.short || law.title, tone: 'law', title: [law.title, law.localTitle].filter(Boolean).join('\n'), href: law.url });
+        })));
       }
     }
   }
-  $('#rows').replaceChildren(...rows);
-}
-
-function propDetail(prop, j) {
-  const pdef = state.data.catalog.properties[prop.type] || {};
-  const sb = statusBand(prop.status);
-  const laws = prop.laws || [];
-  return el('div', { class: 'detail' },
-    el('h4', {}, el('span', { class: `status b-${sb.key}` }, sb.label), prop.name || pdef.name),
-    el('p', { class: 'def' }, pdef.description, pdef.gate ? ' Essential: if this fails, the mechanism does not work.' : ''),
-    prop.explanation ? el('p', {}, prop.explanation) : el('p', { class: 'empty' }, 'No explanation recorded yet.'),
-    laws.length
-      ? el('ul', { class: 'citations' }, laws.map(id => {
-          const law = j.laws[id] || { title: id };
-          return el('li', {},
-            law.url ? el('a', { class: 'art', href: law.url, target: '_blank', rel: 'noopener' }, law.title) : el('span', { class: 'art' }, law.title),
-            law.localTitle ? el('div', { class: 'local' }, law.localTitle) : null);
-        }))
-      : el('p', { class: 'empty' }, 'No law recorded yet.'),
-    el('p', { class: 'empty' }, 'Specific articles are still being worked out.'));
-}
-
-function renderLegend() {
-  const items = [['s0', 'None'], ['s1', 'Very weak'], ['s2', 'Weak'], ['s3', 'Partial'], ['s4', 'Substantial'], ['s5', 'Full'], ['nodata', 'No data'], ['na', 'Not applicable']];
-  $('#legend').replaceChildren(...items.map(([k, l]) => el('span', {}, el('i', { class: `b-${k}` }), l)));
+  $('#tree').replaceChildren(...rows.filter(Boolean));
 }
 
 // ---------- shareable URL: #lat,lon/level/branch/mech/prop ----------
@@ -247,11 +203,10 @@ function readHash() {
 
 // ---------- boot ----------
 (async function boot() {
-  renderLegend();
   try {
     state.data = await loadData();
   } catch (e) {
-    $('#intro').replaceChildren(el('p', {}, `Could not load data (${e.message}). Serve the site over HTTP, e.g. "python3 -m http.server".`));
+    $('#hint').textContent = `Could not load data (${e.message}). Serve the site over HTTP, e.g. "python3 -m http.server".`;
     return;
   }
   const h = readHash();
