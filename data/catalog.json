@@ -1,0 +1,235 @@
+{
+  "$comment": "Shared vocabulary. Jurisdiction files reference levels, mechanism types and property types by id. See docs/DATA.md.",
+  "levels": [
+    {
+      "id": "individual",
+      "name": "Individual",
+      "kind": "sphere",
+      "description": "Decisions about one's own life, body, property and time."
+    },
+    {
+      "id": "market",
+      "name": "Market",
+      "kind": "sphere",
+      "description": "Voluntary economic exchange: starting a business, contracting, pricing."
+    },
+    {
+      "id": "cultural",
+      "name": "Cultural",
+      "kind": "sphere",
+      "description": "Language, religion, education and cultural communities governing their own affairs."
+    },
+    {
+      "id": "entrance",
+      "name": "Building entrance",
+      "kind": "territorial",
+      "addressKeys": [],
+      "description": "Residents sharing one entrance (вход) of an apartment building."
+    },
+    {
+      "id": "building",
+      "name": "Apartment building",
+      "kind": "territorial",
+      "addressKeys": [
+        "building",
+        "house_number"
+      ],
+      "description": "Owners and residents of one building: roof, facade, elevator, common areas."
+    },
+    {
+      "id": "neighbourhood",
+      "name": "Neighbourhood",
+      "kind": "territorial",
+      "addressKeys": [
+        "neighbourhood",
+        "quarter",
+        "residential",
+        "suburb"
+      ],
+      "description": "A city quarter (квартал): walkways, playgrounds, kindergartens, parking."
+    },
+    {
+      "id": "village",
+      "name": "Village",
+      "kind": "territorial",
+      "addressKeys": [
+        "village",
+        "hamlet"
+      ],
+      "description": "A village community."
+    },
+    {
+      "id": "town",
+      "name": "Town",
+      "kind": "territorial",
+      "addressKeys": [
+        "town"
+      ],
+      "description": "A town community."
+    },
+    {
+      "id": "city",
+      "name": "City",
+      "kind": "territorial",
+      "addressKeys": [
+        "city"
+      ],
+      "description": "A city as a whole."
+    },
+    {
+      "id": "municipality",
+      "name": "Municipality",
+      "kind": "territorial",
+      "addressKeys": [
+        "municipality",
+        "city_district",
+        "city"
+      ],
+      "description": "The basic unit of local self-government."
+    },
+    {
+      "id": "county",
+      "name": "County / region",
+      "kind": "territorial",
+      "addressKeys": [
+        "county",
+        "state_district"
+      ],
+      "description": "Intermediate level: county, district, oblast, province."
+    },
+    {
+      "id": "state",
+      "name": "State / canton",
+      "kind": "territorial",
+      "addressKeys": [
+        "state"
+      ],
+      "description": "Federated state, canton, Land. Not applicable in unitary countries."
+    },
+    {
+      "id": "country",
+      "name": "Country",
+      "kind": "territorial",
+      "addressKeys": [
+        "country"
+      ],
+      "description": "The nation state."
+    },
+    {
+      "id": "union",
+      "name": "Union",
+      "kind": "territorial",
+      "addressKeys": [],
+      "description": "Supranational union, e.g. the European Union."
+    }
+  ],
+  "mechanisms": {
+    "referendum": {
+      "branch": "direct",
+      "name": "Referendum",
+      "description": "A vote of all residents that decides a question."
+    },
+    "initiative": {
+      "branch": "direct",
+      "name": "Citizens' initiative",
+      "description": "Residents put their own proposal on the agenda or to a vote by collecting signatures."
+    },
+    "general_assembly": {
+      "branch": "direct",
+      "name": "General assembly",
+      "description": "A meeting of all residents or owners that takes decisions."
+    },
+    "personal_autonomy": {
+      "branch": "direct",
+      "name": "Personal autonomy",
+      "description": "The person decides alone, protected from interference."
+    },
+    "council": {
+      "branch": "representative",
+      "name": "Own elected council",
+      "description": "A council elected by this community that decides its affairs."
+    },
+    "executive": {
+      "branch": "representative",
+      "name": "Own elected executive",
+      "description": "A mayor, manager or head elected by this community."
+    },
+    "upper_council_seat": {
+      "branch": "representative",
+      "name": "Own representative in the higher council",
+      "description": "No body of its own, but does the community at least elect its own accountable member of the council above?",
+      "weight": 0.4,
+      "gates": [
+        "local_constituency"
+      ],
+      "$comment": "Fallback mechanism: weighted at 40%, and void if the representative is not elected by this community alone (e.g. one municipality-wide list)."
+    }
+  },
+  "properties": {
+    "exists": {
+      "gate": true,
+      "name": "Exists in law",
+      "description": "The law provides this mechanism at this level."
+    },
+    "binding": {
+      "gate": true,
+      "name": "Legally binding",
+      "description": "The outcome binds the authorities; it is not merely advisory."
+    },
+    "no_quorum": {
+      "gate": false,
+      "name": "No participation quorum",
+      "description": "The result counts regardless of turnout, so abstainers cannot defeat it by staying home."
+    },
+    "concrete_proposals": {
+      "gate": false,
+      "name": "Votes on concrete proposals",
+      "description": "People decide on specific, worded proposals, not only on vague questions."
+    },
+    "citizen_triggered": {
+      "gate": false,
+      "name": "Citizens can trigger it",
+      "description": "Residents themselves can start it, without permission from officials."
+    },
+    "reasonable_signatures": {
+      "gate": false,
+      "name": "Reasonable signature requirement",
+      "description": "Signature thresholds and deadlines are achievable for ordinary residents."
+    },
+    "broad_scope": {
+      "gate": false,
+      "name": "Covers the shared interests",
+      "description": "Few excluded topics; budget and local fees can be decided too."
+    },
+    "no_outside_override": {
+      "gate": false,
+      "name": "No outside override",
+      "description": "Bodies outside the community cannot veto or overturn the decision."
+    },
+    "own_means": {
+      "gate": false,
+      "name": "Means to implement",
+      "description": "The community controls a budget or resources to carry out its decisions."
+    },
+    "binding_powers": {
+      "gate": true,
+      "name": "Can make binding decisions",
+      "description": "The representatives can take decisions that bind on the community's matters."
+    },
+    "individual_vote": {
+      "gate": false,
+      "name": "Vote for individual candidates",
+      "description": "Voters choose individual people (single-member districts or fully open lists), not only party lists."
+    },
+    "local_constituency": {
+      "gate": false,
+      "name": "Elected only by this community",
+      "description": "The representative's constituency is this community, so they answer to it rather than to outsiders."
+    },
+    "recall": {
+      "gate": false,
+      "name": "Recall possible",
+      "description": "Voters can remove the representative before the end of term."
+    }
+  }
+}
