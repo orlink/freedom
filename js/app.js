@@ -147,12 +147,13 @@ function render() {
 
   const cur = levels.find(x => x.l.id === levelId);
   if (cur) {
-    const branches = ['direct', 'representative'].map(b => ({ b, tone: tone(scoreBranch(cur.lvl[b], catalog)) })).filter(x => x.tone);
+    // Direct and Representative are always shown under every level; a path that doesn't exist counts as none (black).
+    const branches = ['direct', 'representative'].map(b => ({ b, tone: tone(scoreBranch(cur.lvl[b], catalog)) || 'black' }));
     rows.push(rowOf(branches.map(({ b, tone }) => button({
       label: BRANCH_INFO[b].name, tone, title: BRANCH_INFO[b].desc, pressed: branchId === b, onclick: () => select(1, b),
     }))));
 
-    const branch = branches.some(x => x.b === branchId) ? cur.lvl[branchId] : null;
+    const branch = branches.some(x => x.b === branchId) && cur.lvl[branchId]?.applicable !== false ? cur.lvl[branchId] : null;
     if (branch) {
       const mechs = (branch.mechanisms || []).map((m, i) => ({ m, i, tone: tone(scoreMechanism(m, catalog)) })).filter(x => x.tone);
       const typeCount = mechs.reduce((n, { m }) => ({ ...n, [m.type]: (n[m.type] || 0) + 1 }), {});
