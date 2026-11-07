@@ -45,6 +45,11 @@
       "title": "Municipalities Act of the Canton of Zürich",
       "localTitle": "Gemeindegesetz (GG, LS 131.1)",
       "short": "GG (ZH)"
+    },
+    "or": {
+      "title": "Swiss Code of Obligations",
+      "localTitle": "Obligationenrecht (OR, SR 220)",
+      "short": "Code of Obligations (OR)"
     }
   },
   "levels": {
@@ -80,17 +85,18 @@
         "note": "Individuals decide for themselves."
       }
     },
-    "market": {
-      "summary": "Economic freedom is guaranteed.",
+    "business": {
+      "summary": "People can start a business and govern it themselves through the owners' meeting and the managers they elect.",
       "direct": {
         "mechanisms": [
           {
             "type": "personal_autonomy",
+            "name": "Free enterprise",
             "properties": [
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "Economic freedom, including free choice of occupation.",
+                "explanation": "Anyone may start and run a business.",
                 "laws": [
                   "bv"
                 ]
@@ -98,8 +104,48 @@
               {
                 "type": "no_outside_override",
                 "status": "partial",
+                "explanation": "Licensing and permit regimes restrict entry into many activities.",
                 "laws": [
-                  "bv"
+                  "bv",
+                  "or"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "general_assembly",
+            "name": "General meeting of owners",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Owners (shareholders, partners) decide in a general meeting.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Owners decide the company's statutes, profits and leadership.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The company controls its own capital and income.",
+                "laws": [
+                  "or"
                 ]
               }
             ]
@@ -107,30 +153,116 @@
         ]
       },
       "representative": {
-        "applicable": false,
-        "note": "Market participants decide for themselves."
-      }
-    },
-    "cultural": {
-      "summary": "Freedom of religion and language are guaranteed; recognised churches are self-governing public bodies in many cantons.",
-      "direct": {
         "mechanisms": [
           {
-            "type": "personal_autonomy",
+            "type": "executive",
+            "name": "Board / managers",
             "properties": [
               {
                 "type": "exists",
                 "status": "yes",
+                "explanation": "Owners elect the managers or board.",
                 "laws": [
-                  "bv"
+                  "or"
+                ]
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "Managers and board members are elected individually.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "local_constituency",
+                "status": "yes",
+                "explanation": "Only the owners elect them.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The owners can dismiss them.",
+                "laws": [
+                  "or"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "nonprofit": {
+      "summary": "People can form non-profit associations and foundations and govern them through a members' assembly and an elected board.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "personal_autonomy",
+            "name": "Freedom of association",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "People may freely form associations and foundations.",
+                "laws": [
+                  "bv",
+                  "zgb"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Registration and, for public-benefit status, supervision by the state.",
+                "laws": [
+                  "zgb"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "general_assembly",
+            "name": "General assembly of members",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Members decide in a general assembly.",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its decisions bind the organisation.",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Members adopt the statutes and elect the board.",
+                "laws": [
+                  "zgb"
                 ]
               },
               {
                 "type": "own_means",
                 "status": "partial",
-                "explanation": "Recognised churches in many cantons are public-law bodies with taxing powers.",
+                "explanation": "Funded by members, donors and grants; tax relief depends on public-benefit status.",
                 "laws": [
-                  "bv"
+                  "zgb"
                 ]
               }
             ]
@@ -140,15 +272,45 @@
       "representative": {
         "mechanisms": [
           {
-            "type": "council",
-            "name": "Church synods (cantonal)",
+            "type": "executive",
+            "name": "Board",
             "properties": [
               {
                 "type": "exists",
-                "status": "partial",
-                "explanation": "Church synods exist only for recognised religious communities and vary by canton.",
+                "status": "yes",
+                "explanation": "The members elect a board.",
                 "laws": [
-                  "bv"
+                  "zgb"
+                ]
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "local_constituency",
+                "status": "yes",
+                "explanation": "Only the members elect it.",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The members can dismiss the board.",
+                "laws": [
+                  "zgb"
                 ]
               }
             ]

@@ -8,16 +8,16 @@
       "description": "Decisions about one's own life, body, property and time."
     },
     {
-      "id": "market",
-      "name": "Market",
+      "id": "business",
+      "name": "Business",
       "kind": "sphere",
-      "description": "Voluntary economic exchange: starting a business, contracting, pricing."
+      "description": "Owners and partners governing their own company: capital, profits, leadership."
     },
     {
-      "id": "cultural",
-      "name": "Cultural",
+      "id": "nonprofit",
+      "name": "Non-profit",
       "kind": "sphere",
-      "description": "Language, religion, education and cultural communities governing their own affairs."
+      "description": "Members governing their own association, foundation or other non-profit organisation."
     },
     {
       "id": "entrance",

@@ -6,7 +6,7 @@ An interactive map that shows, for any location, how far the people there can go
 
 Pick a place (search an address or click on the map) and you get a row of rectangles, one per level:
 
-individual · market · cultural · building entrance · apartment building · neighbourhood (квартал) · village · town · city · municipality · county · state · country · union
+individual · business · non-profit · building entrance · apartment building · neighbourhood (квартал) · village · town · city · municipality · county · state · country · union
 
 Each button is white (full), light grey (good), dark grey (weak) or black (no ability to govern that level's interests); levels that don't apply to the place are hidden. Click to drill down:
 
