@@ -25,7 +25,10 @@ Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism �
   "statusNote": "…",
   "addressKeys": { "county": ["state"] },   // optional: which OSM address fields name each level in this country
   "laws": {
-    "dcpa": { "title": "Direct Citizen Participation…Act", "localTitle": "Закон за прякото участие…", "url": "https://…" }
+    "dcpa": {
+      "title": "Direct Citizen Participation…Act", "localTitle": "Закон за прякото участие…", "url": "https://…",
+      "checkedAgainst": { "title": "CEC English translation", "url": "https://…", "version": "as amended to SG No. 15/2022" }
+    }
   },
   "levels": {
     "neighbourhood": {
@@ -59,7 +62,9 @@ Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism �
 }
 ```
 
-A level that is missing shows as **No data**. Set `"checked": true` on a citation only after reading the article in an official or authoritative source; otherwise the UI labels it *unverified*.
+A level that is missing shows as **No data**. Set `"checked": true` on a citation only after reading the article in the text named by the law's `checkedAgainst`; otherwise the UI labels it *unverified*. A citation may carry a `note`. Secondary sources (e.g. an election observation report) can be listed under `laws` too, with a title that says so.
+
+Status: `sample` is placeholder data, `draft` is based on the legal texts but not reviewed by a lawyer, `reviewed` has been checked by someone qualified.
 
 ## Scoring
 

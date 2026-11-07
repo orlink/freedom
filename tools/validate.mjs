@@ -46,6 +46,8 @@ for (const j of jurisdictions) {
 const samples = {
   'Sofia, Lozenets': { country_code: 'bg', city: 'Sofia', suburb: 'Lozenets' },
   'Zürich': { country_code: 'ch', city: 'Zürich', state: 'Zürich' },
+  'Dublin': { country_code: 'ie', city: 'Dublin', county: 'County Dublin', suburb: 'Ranelagh' },
+  'Limerick': { country_code: 'ie', city: 'Limerick', county: 'County Limerick' },
 };
 for (const [name, addr] of Object.entries(samples)) {
   const j = resolveJurisdiction(jurisdictions, addr);

@@ -18,9 +18,15 @@ Each rectangle is coloured from black (no ability to govern that level's interes
 
 The drill-down path is kept in the URL, so any view can be shared.
 
-## Status: sample data
+## Status: draft data
 
-Only **Bulgaria** and **Switzerland** (with extra canton and city data for Zürich) have assessments, and they are **sample data**, flagged as such in the UI. In the Bulgarian data, articles of the Direct Citizen Participation Act were checked against the Central Election Commission's English translation; every other citation is marked *unverified* in the UI. Other countries show "No data".
+**Bulgaria**, **Ireland** and **Switzerland** (with canton and city data for Zürich) have assessments based on the texts of their laws. They are marked *draft* in the UI because no lawyer has reviewed them yet. Each citation is labelled *checked*, with a link to the text it was checked against, or *unverified*. Other countries show "No data".
+
+Covered so far:
+
+* **Bulgaria:** Constitution; Direct Citizen Participation Act; Local Self-Government and Local Administration Act; Condominium Management Act; Electoral Code (preference vote and seat allocation). Local tax powers are covered through the Constitution; the remaining public-law and tax acts are not yet.
+* **Ireland:** Constitution; Local Government Reform Act 2014; Multi-Unit Developments Act 2011; Finance (Local Property Tax) Act 2012; Limerick directly elected mayor (2024).
+* **Switzerland:** Federal Constitution; Civil Code (condominium ownership); Constitution of the Canton of Zürich; Municipal Code of the City of Zürich.
 
 ## Running it
 

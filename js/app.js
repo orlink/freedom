@@ -129,7 +129,7 @@ function render() {
     notice.replaceChildren(el('strong', {}, 'No data yet'), ' ', `There is no assessment for ${loc.address.country || 'this country'} yet. `,
       el('a', { href: 'docs/DATA.md' }, 'Help add it.'));
   } else {
-    notice.replaceChildren(el('strong', {}, j.status === 'reviewed' ? 'Reviewed' : `${j.status} data`), ' ',
+    notice.replaceChildren(el('strong', {}, { reviewed: 'Reviewed data', draft: 'Draft data', sample: 'Sample data' }[j.status] || j.status), ' ',
       j.statusNote || '', j.appliedAreas.length ? ` Local data applied: ${j.appliedAreas.join(', ')}.` : '');
   }
 
@@ -222,8 +222,12 @@ function propDetail(prop, j) {
           return el('li', {},
             el('span', { class: 'art' }, c.article), ', ',
             href ? el('a', { href, target: '_blank', rel: 'noopener' }, law.title) : law.title,
-            c.checked ? el('span', { class: 'flag ok' }, 'checked against source') : el('span', { class: 'flag unv' }, 'unverified'),
+            c.checked ? el('span', { class: 'flag ok' }, 'checked') : el('span', { class: 'flag unv' }, 'unverified'),
             law.localTitle ? el('div', { class: 'local' }, law.localTitle) : null,
+            c.note ? el('div', { class: 'local' }, c.note) : null,
+            c.checked && law.checkedAgainst ? el('div', { class: 'local' }, 'Checked against: ',
+              law.checkedAgainst.url ? el('a', { href: law.checkedAgainst.url, target: '_blank', rel: 'noopener' }, law.checkedAgainst.title) : law.checkedAgainst.title,
+              law.checkedAgainst.version ? ` (${law.checkedAgainst.version})` : '') : null,
             c.excerpt ? el('blockquote', {}, c.excerpt) : null);
         }))
       : el('p', { class: 'empty' }, 'No legal citation recorded yet.'));
