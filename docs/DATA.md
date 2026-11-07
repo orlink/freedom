@@ -5,14 +5,14 @@ All assessments live in `data/`. There is no database. Each country is one JSON 
 ## The model
 
 ```
-Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism ─▶ Property ─▶ Citations (law articles)
+Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism ─▶ Property ─▶ Relevant laws  (─▶ articles, next step)
 ```
 
 * **Level**: a community of shared interest (`data/catalog.json` → `levels`). *Spheres* (individual, market, cultural) apply everywhere. *Territorial* levels are named from the geocoded address.
 * **Branch**: `direct` (the people decide) or `representative` (elected representatives decide).
 * **Mechanism**: a concrete way of deciding, such as `referendum`, `initiative`, `general_assembly`, `council`, `executive`, or `upper_council_seat` (the community's own member of the council one level up, used as a fallback when it has no body of its own).
 * **Property**: a condition the mechanism needs to give real self-government, such as `binding`, `no_quorum`, `reasonable_signatures`, `individual_vote`, or `local_constituency`. Each has a `status` of `yes`, `partial`, `no` or `unknown`.
-* **Citation**: the article of law behind a status.
+* **Relevant laws**: the leaves of the tree. Each property lists the laws (`laws`, ids into the file's `laws` map) that govern it. Specific articles are the next step and are being worked out separately, starting from the notes in `docs/research/`.
 
 ## Jurisdiction file
 
@@ -25,10 +25,7 @@ Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism �
   "statusNote": "…",
   "addressKeys": { "county": ["state"] },   // optional: which OSM address fields name each level in this country
   "laws": {
-    "dcpa": {
-      "title": "Direct Citizen Participation…Act", "localTitle": "Закон за прякото участие…", "url": "https://…",
-      "checkedAgainst": { "title": "CEC English translation", "url": "https://…", "version": "as amended to SG No. 15/2022" }
-    }
+    "dcpa": { "title": "Direct Citizen Participation…Act", "localTitle": "Закон за прякото участие…", "short": "ЗПУГДВМС", "url": "https://…" }
   },
   "levels": {
     "neighbourhood": {
@@ -43,9 +40,7 @@ Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism �
                 "type": "no_quorum",                 // key in catalog.properties
                 "status": "no",                      // yes | partial | no | unknown
                 "explanation": "One quarter of voters must attend…",
-                "citations": [
-                  { "law": "dcpa", "article": "Art. 60(1), (3)", "checked": true, "url": "optional deep link", "excerpt": "optional quote" }
-                ]
+                "laws": ["const", "dcpa"]                  // the leaves: laws that govern this property
               }
             ]
           }
@@ -62,9 +57,9 @@ Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism �
 }
 ```
 
-A level that is missing shows as **No data**. Set `"checked": true` on a citation only after reading the article in the text named by the law's `checkedAgainst`; otherwise the UI labels it *unverified*. A citation may carry a `note`. Secondary sources (e.g. an election observation report) can be listed under `laws` too, with a title that says so.
+A level that is missing shows as **No data**. Every property must list at least one law (`node tools/validate.mjs` checks this).
 
-Status: `sample` is placeholder data, `draft` is based on the legal texts but not reviewed by a lawyer, `reviewed` has been checked by someone qualified.
+Status: `sample` is placeholder data, `draft` lists the relevant laws with provisional assessments, articles not yet confirmed, `reviewed` has been checked by someone qualified.
 
 ## Scoring
 

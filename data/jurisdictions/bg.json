@@ -5,7 +5,7 @@
     "country_code": "bg"
   },
   "status": "draft",
-  "statusNote": "Draft based on the laws' texts, not yet reviewed by a lawyer. Citations marked 'checked' were read in the source named next to them; those marked 'unverified' still need checking against the official consolidated text. Other public-law acts (tax, administrative-territorial division, etc.) are not yet covered.",
+  "statusNote": "Draft. For each property the page lists the laws that govern it; the specific articles will be worked out next. The yes/partly/no assessments are provisional until the articles are confirmed.",
   "addressKeys": {
     "county": [
       "state",
@@ -18,65 +18,60 @@
       "title": "Constitution of the Republic of Bulgaria",
       "localTitle": "Конституция на Република България",
       "url": "https://text.president.bg/en/cat115/Cons0",
-      "checkedAgainst": {
-        "title": "Presidency of Bulgaria, English text",
-        "url": "https://text.president.bg/en/cat115/Cons0",
-        "version": "as amended to SG No. 12/2007"
-      }
+      "short": "Constitution"
     },
     "dcpa": {
       "title": "Direct Citizen Participation in State and Local Government Act",
       "localTitle": "Закон за прякото участие на гражданите в държавната власт и местното самоуправление (ЗПУГДВМС)",
       "url": "https://www.cik.bg/upload/248887/3.+Direct+Citizen+Participation+in+State+and+Local+Government+Act.pdf",
-      "checkedAgainst": {
-        "title": "Central Election Commission, English translation",
-        "url": "https://www.cik.bg/upload/248887/3.+Direct+Citizen+Participation+in+State+and+Local+Government+Act.pdf",
-        "version": "as amended to SG No. 15/2022"
-      }
+      "short": "ЗПУГДВМС"
     },
     "cma": {
       "title": "Condominium Management Act",
       "localTitle": "Закон за управление на етажната собственост (ЗУЕС)",
       "url": "https://trudipravo.bg/znanie-za-vas/zakon-za-upravlenie-na-etazhnata-sobstvenost/",
-      "checkedAgainst": {
-        "title": "Труд и право, consolidated text",
-        "url": "https://trudipravo.bg/znanie-za-vas/zakon-za-upravlenie-na-etazhnata-sobstvenost/",
-        "version": "as amended to SG No. 81/2024"
-      }
+      "short": "ЗУЕС"
     },
     "lsga": {
       "title": "Local Self-Government and Local Administration Act",
       "localTitle": "Закон за местното самоуправление и местната администрация (ЗМСМА)",
       "url": "https://www.cik.bg/upload/272338/4.+ZAKON_za_mestnoto_samoupravlenie_i_mestnata_administraciq.pdf",
-      "checkedAgainst": {
-        "title": "Central Election Commission, consolidated text",
-        "url": "https://www.cik.bg/upload/272338/4.+ZAKON_za_mestnoto_samoupravlenie_i_mestnata_administraciq.pdf",
-        "version": "as amended to SG No. 16/2026"
-      }
+      "short": "ЗМСМА"
     },
     "ec": {
       "title": "Electoral Code",
-      "localTitle": "Изборен кодекс"
+      "localTitle": "Изборен кодекс",
+      "short": "Изборен кодекс"
     },
     "ltfa": {
       "title": "Local Taxes and Fees Act",
-      "localTitle": "Закон за местните данъци и такси (ЗМДТ)"
-    },
-    "odihr": {
-      "title": "OSCE/ODIHR Needs Assessment Mission Report, Bulgaria, early parliamentary elections 2026 (secondary source)",
-      "url": "https://odihr.osce.org/sites/default/files/documents/official_documents/2026/03/Bulgaria%202026%20early%20parliamentary_%20NAM%20report_03.03.2026.pdf"
-    },
-    "oik": {
-      "title": "Municipal Election Commission Silistra, decision 169-MI of 30.10.2023 (applies the Electoral Code)",
-      "url": "https://oik1931.cik.bg/mi2023/decisions/169/2023-10-30"
+      "localTitle": "Закон за местните данъци и такси (ЗМДТ)",
+      "short": "ЗМДТ"
     },
     "teu": {
       "title": "Treaty on European Union",
-      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12012M/TXT"
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12012M/TXT",
+      "short": "TEU"
     },
     "eci": {
       "title": "Regulation (EU) 2019/788 on the European citizens' initiative",
-      "url": "https://eur-lex.europa.eu/eli/reg/2019/788/oj"
+      "url": "https://eur-lex.europa.eu/eli/reg/2019/788/oj",
+      "short": "ECI Regulation"
+    },
+    "admin": {
+      "title": "Administration Act",
+      "localTitle": "Закон за администрацията",
+      "short": "ЗА"
+    },
+    "pfa": {
+      "title": "Public Finance Act",
+      "localTitle": "Закон за публичните финанси",
+      "short": "ЗПФ"
+    },
+    "atda": {
+      "title": "Administrative-Territorial Division of the Republic of Bulgaria Act",
+      "localTitle": "Закон за административно-териториалното устройство на Република България",
+      "short": "ЗАТУРБ"
     }
   },
   "levels": {
@@ -91,28 +86,17 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Property is guaranteed and private property is inviolable; privacy and the home are inviolable.",
-                "citations": [
-                  {
-                    "law": "const",
-                    "article": "Art. 17(1), (3)",
-                    "checked": true
-                  },
-                  {
-                    "law": "const",
-                    "article": "Art. 32(1)",
-                    "checked": true
-                  },
-                  {
-                    "law": "const",
-                    "article": "Art. 33(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "const"
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
-                "explanation": "These rights can be restricted by statute on the grounds the Constitution allows, e.g. entry into a home with consent or by court order."
+                "explanation": "These rights can be restricted by statute on the grounds the Constitution allows, e.g. entry into a home with consent or by court order.",
+                "laws": [
+                  "const"
+                ]
               }
             ]
           }
@@ -134,18 +118,17 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "The economy is based on free economic initiative.",
-                "citations": [
-                  {
-                    "law": "const",
-                    "article": "Art. 19(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "const"
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
-                "explanation": "Licensing and permit regimes restrict entry into many activities."
+                "explanation": "Licensing and permit regimes restrict entry into many activities.",
+                "laws": [
+                  "const"
+                ]
               }
             ]
           }
@@ -167,23 +150,17 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Freedom of conscience and religion; everyone may develop their own culture in line with their ethnic self-identification.",
-                "citations": [
-                  {
-                    "law": "const",
-                    "article": "Art. 37(1)",
-                    "checked": true
-                  },
-                  {
-                    "law": "const",
-                    "article": "Art. 54(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "const"
                 ]
               },
               {
                 "type": "own_means",
                 "status": "no",
-                "explanation": "Cultural communities have no public budget or self-government powers of their own."
+                "explanation": "Cultural communities have no public budget or self-government powers of their own.",
+                "laws": [
+                  "const"
+                ]
               }
             ]
           }
@@ -197,7 +174,12 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "No elected cultural self-government bodies with public powers."
+                "explanation": "No elected cultural self-government bodies with public powers.",
+                "laws": [
+                  "const",
+                  "lsga",
+                  "atda"
+                ]
               }
             ]
           }
@@ -216,72 +198,48 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Where a building has more than one entrance, it can be managed separately for each entrance.",
-                "citations": [
-                  {
-                    "law": "cma",
-                    "article": "Art. 8(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "cma"
                 ]
               },
               {
                 "type": "binding",
                 "status": "yes",
                 "explanation": "Decisions of the general assembly bind owners, users and occupants, including new ones.",
-                "citations": [
-                  {
-                    "law": "cma",
-                    "article": "Art. 11(4)",
-                    "checked": true
-                  }
+                "laws": [
+                  "cma"
                 ]
               },
               {
                 "type": "no_quorum",
                 "status": "partial",
                 "explanation": "51% of ideal shares must be present; after one hour 26% suffice; if still not, the meeting is held the next day with whoever attends.",
-                "citations": [
-                  {
-                    "law": "cma",
-                    "article": "Art. 15(1)-(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "cma"
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "yes",
                 "explanation": "Owners holding at least 20% of the ideal shares can require the meeting to be convened.",
-                "citations": [
-                  {
-                    "law": "cma",
-                    "article": "Art. 12(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "cma"
                 ]
               },
               {
                 "type": "broad_scope",
                 "status": "yes",
                 "explanation": "The assembly adopts the house rules, budget, contributions, the repair plan, loans and the use of common areas.",
-                "citations": [
-                  {
-                    "law": "cma",
-                    "article": "Art. 11(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "cma"
                 ]
               },
               {
                 "type": "own_means",
                 "status": "yes",
                 "explanation": "The assembly sets the contributions to the repair and renovation fund.",
-                "citations": [
-                  {
-                    "law": "cma",
-                    "article": "Art. 11(1)(7)",
-                    "checked": true
-                  }
+                "laws": [
+                  "cma"
                 ]
               }
             ]
@@ -298,46 +256,40 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "The executive body is a management board or a single manager.",
-                "citations": [
-                  {
-                    "law": "cma",
-                    "article": "Art. 19(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "cma"
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "yes",
-                "explanation": "The board implements the assembly's decisions and manages the common parts."
+                "explanation": "The board implements the assembly's decisions and manages the common parts.",
+                "laws": [
+                  "cma"
+                ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
                 "explanation": "Board members are elected individually by the general assembly.",
-                "citations": [
-                  {
-                    "law": "cma",
-                    "article": "Art. 11(1)(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "cma"
                 ]
               },
               {
                 "type": "local_constituency",
                 "status": "yes",
-                "explanation": "Only the owners of this entrance (or building) elect them."
+                "explanation": "Only the owners of this entrance (or building) elect them.",
+                "laws": [
+                  "cma"
+                ]
               },
               {
                 "type": "recall",
                 "status": "yes",
                 "explanation": "The term is up to two years, and the general assembly can end it early for failure to perform.",
-                "citations": [
-                  {
-                    "law": "cma",
-                    "article": "Art. 19(2), (6)",
-                    "checked": true
-                  }
+                "laws": [
+                  "cma"
                 ]
               }
             ]
@@ -360,12 +312,8 @@
                 "type": "exists",
                 "status": "no",
                 "explanation": "Local referendums can be held only for a municipality, a district (район) or a кметство. Quarters are not on the list.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 26(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               }
             ]
@@ -378,65 +326,41 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Can be held for a municipality, district, кметство, settlement or quarter, including residential areas (квартали) of up to 10,000 inhabitants.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 55(1)",
-                    "checked": true
-                  },
-                  {
-                    "law": "const",
-                    "article": "Art. 136(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa",
+                  "const"
                 ]
               },
               {
                 "type": "binding",
                 "status": "partial",
                 "explanation": "Not directly binding: the municipal council or mayor must issue the acts that implement it within one month.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 54(2)-(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "no_quorum",
                 "status": "no",
                 "explanation": "One quarter of eligible voters must attend (one third in places of up to 150 inhabitants). If not, after one hour it may proceed only with one tenth. In a quarter of 10,000 that is 1,000 people in one room.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 60(1)-(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "yes",
                 "explanation": "The mayor must convene it on request of 1/50 of eligible voters, at least 20 people.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 57(1)(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "reasonable_signatures",
                 "status": "yes",
                 "explanation": "1/50 of voters, at least 20 people.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 57(1)(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               }
             ]
@@ -453,12 +377,8 @@
                 "type": "exists",
                 "status": "no",
                 "explanation": "The only constituent units of a municipality are кметства and districts (райони). The law provides no body for a quarter.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 2(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               }
             ]
@@ -471,74 +391,41 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Every municipality has a directly elected council.",
-                "citations": [
-                  {
-                    "law": "const",
-                    "article": "Art. 138",
-                    "checked": true
-                  },
-                  {
-                    "law": "lsga",
-                    "article": "Art. 18(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "const",
+                  "lsga"
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "yes",
                 "explanation": "The council decides local matters, including the quarter's, and adopts the budget.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 21(1)(6)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               },
               {
                 "type": "individual_vote",
                 "status": "partial",
                 "explanation": "Party lists with one optional preference vote. A preference changes the list order only if it reaches 7% of the votes cast for that list.",
-                "citations": [
-                  {
-                    "law": "ec",
-                    "article": "Art. 437(4)-(5)",
-                    "note": "cited as legal basis in the OIK decision"
-                  },
-                  {
-                    "law": "oik",
-                    "article": "Decision 169-MI/2023",
-                    "checked": true
-                  }
+                "laws": [
+                  "ec"
                 ]
               },
               {
                 "type": "local_constituency",
                 "status": "no",
                 "explanation": "Seats are allocated across the whole municipality (Hare-Niemeyer), so no councillor is elected by, or answers to, a particular quarter.",
-                "citations": [
-                  {
-                    "law": "ec",
-                    "article": "Art. 453-454"
-                  },
-                  {
-                    "law": "oik",
-                    "article": "Decision 169-MI/2023",
-                    "checked": true
-                  }
+                "laws": [
+                  "ec"
                 ]
               },
               {
                 "type": "recall",
                 "status": "no",
                 "explanation": "The law lists the grounds for early termination of a mandate (resignation, incapacity, absences, etc.); recall by voters is not among them.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 30(4), 42(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               }
             ]
@@ -558,82 +445,57 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "A local referendum can be held for a кметство.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 26(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "binding",
                 "status": "yes",
                 "explanation": "The decision needs no later approval by the municipal council; it takes effect when announced and the mayor organises its implementation.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 26(4)",
-                    "checked": true
-                  },
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 43(2)-(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "no_quorum",
                 "status": "no",
                 "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 41(2)-(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "yes",
                 "explanation": "An initiative committee can propose it with signatures.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 27(1)(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "reasonable_signatures",
                 "status": "partial",
                 "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 27(1)(3), 27(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "broad_scope",
                 "status": "partial",
                 "explanation": "The municipal budget, the amount of local taxes and fees, and the council's own rules are excluded.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 26(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "concrete_proposals",
-                "status": "unknown"
+                "status": "unknown",
+                "laws": [
+                  "const",
+                  "dcpa"
+                ]
               }
             ]
           },
@@ -645,65 +507,41 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Can be held for a settlement or кметство, including residential areas (квартали) of up to 10,000 inhabitants.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 55(1)",
-                    "checked": true
-                  },
-                  {
-                    "law": "const",
-                    "article": "Art. 136(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa",
+                  "const"
                 ]
               },
               {
                 "type": "binding",
                 "status": "partial",
                 "explanation": "Not directly binding: the municipal council or mayor must issue the acts that implement it within one month.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 54(2)-(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "no_quorum",
                 "status": "no",
                 "explanation": "One quarter of eligible voters must attend (one third in places of up to 150 inhabitants). If not, after one hour it may proceed only with one tenth. In a quarter of 10,000 that is 1,000 people in one room.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 60(1)-(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "yes",
                 "explanation": "The mayor must convene it on request of 1/50 of eligible voters, at least 20 people.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 57(1)(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "reasonable_signatures",
                 "status": "yes",
                 "explanation": "1/50 of voters, at least 20 people.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 57(1)(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               }
             ]
@@ -720,17 +558,8 @@
                 "type": "exists",
                 "status": "no",
                 "explanation": "Кметства have an elected mayor but no council; the municipal council decides.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 2(2)",
-                    "checked": true
-                  },
-                  {
-                    "law": "lsga",
-                    "article": "Art. 38(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               }
             ]
@@ -743,70 +572,48 @@
                 "type": "exists",
                 "status": "partial",
                 "explanation": "Mayors of кметства are directly elected for four years. Villages that are not кметства get a кметски наместник appointed by the municipal mayor.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 38(2)",
-                    "checked": true
-                  },
-                  {
-                    "law": "lsga",
-                    "article": "Art. 44(1)(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "partial",
                 "explanation": "The municipal council sets the кметство mayor's powers.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 21(1)(8)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Elected individually, by majority vote."
+                "explanation": "Elected individually, by majority vote.",
+                "laws": [
+                  "ec"
+                ]
               },
               {
                 "type": "local_constituency",
                 "status": "yes",
                 "explanation": "Elected only by the кметство's voters.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 38(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               },
               {
                 "type": "recall",
                 "status": "no",
                 "explanation": "The law lists the grounds for early termination of a mandate (resignation, incapacity, absences, etc.); recall by voters is not among them.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 30(4), 42(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               },
               {
                 "type": "own_means",
                 "status": "no",
                 "explanation": "No own budget: the municipal council sets the кметство's budget figures.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 21(1)(6)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               }
             ]
@@ -834,82 +641,57 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "A local referendum can be held for a municipality.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 26(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "binding",
                 "status": "yes",
                 "explanation": "The decision needs no later approval by the municipal council; it takes effect when announced and the mayor organises its implementation.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 26(4)",
-                    "checked": true
-                  },
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 43(2)-(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "no_quorum",
                 "status": "no",
                 "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 41(2)-(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "yes",
                 "explanation": "An initiative committee can propose it with signatures.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 27(1)(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "reasonable_signatures",
                 "status": "partial",
                 "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 27(1)(3), 27(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "broad_scope",
                 "status": "partial",
                 "explanation": "The municipal budget, the amount of local taxes and fees, and the council's own rules are excluded.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 26(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "concrete_proposals",
-                "status": "unknown"
+                "status": "unknown",
+                "laws": [
+                  "const",
+                  "dcpa"
+                ]
               }
             ]
           },
@@ -921,24 +703,16 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Citizens can address proposals to the council or mayor through a local civic initiative.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 46(1)-(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "binding",
                 "status": "no",
                 "explanation": "The authority must only decide on it and publish its decision within one month.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 52(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               }
             ]
@@ -955,79 +729,50 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Elected directly by the population for four years.",
-                "citations": [
-                  {
-                    "law": "const",
-                    "article": "Art. 138",
-                    "checked": true
-                  },
-                  {
-                    "law": "lsga",
-                    "article": "Art. 18(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "const",
+                  "lsga"
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "yes",
                 "explanation": "Adopts the budget and sets local fees.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 21(1)(6)-(7)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               },
               {
                 "type": "individual_vote",
                 "status": "partial",
                 "explanation": "Party lists with one optional preference vote. A preference changes the list order only if it reaches 7% of the votes cast for that list.",
-                "citations": [
-                  {
-                    "law": "ec",
-                    "article": "Art. 437(4)-(5)",
-                    "note": "cited as legal basis in the OIK decision"
-                  },
-                  {
-                    "law": "oik",
-                    "article": "Decision 169-MI/2023",
-                    "checked": true
-                  }
+                "laws": [
+                  "ec"
                 ]
               },
               {
                 "type": "local_constituency",
                 "status": "yes",
-                "explanation": "Elected by the municipality's voters only."
+                "explanation": "Elected by the municipality's voters only.",
+                "laws": [
+                  "ec"
+                ]
               },
               {
                 "type": "recall",
                 "status": "no",
                 "explanation": "The law lists the grounds for early termination of a mandate (resignation, incapacity, absences, etc.); recall by voters is not among them.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 30(4), 42(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               },
               {
                 "type": "own_means",
                 "status": "partial",
                 "explanation": "The council sets local tax rates only within the limits fixed by national law.",
-                "citations": [
-                  {
-                    "law": "const",
-                    "article": "Art. 141(3)",
-                    "checked": true
-                  },
-                  {
-                    "law": "ltfa",
-                    "article": "Art. 1(2)"
-                  }
+                "laws": [
+                  "const",
+                  "ltfa"
                 ]
               }
             ]
@@ -1040,37 +785,38 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "The mayor is the executive body of the municipality.",
-                "citations": [
-                  {
-                    "law": "const",
-                    "article": "Art. 139(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "const"
                 ]
               },
               {
                 "type": "binding_powers",
-                "status": "yes"
+                "status": "yes",
+                "laws": [
+                  "lsga"
+                ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Elected individually, by majority vote, with a run-off."
+                "explanation": "Elected individually, by majority vote, with a run-off.",
+                "laws": [
+                  "ec"
+                ]
               },
               {
                 "type": "local_constituency",
-                "status": "yes"
+                "status": "yes",
+                "laws": [
+                  "ec"
+                ]
               },
               {
                 "type": "recall",
                 "status": "no",
                 "explanation": "The law lists the grounds for early termination of a mandate (resignation, incapacity, absences, etc.); recall by voters is not among them.",
-                "citations": [
-                  {
-                    "law": "lsga",
-                    "article": "Art. 30(4), 42(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lsga"
                 ]
               }
             ]
@@ -1089,12 +835,8 @@
                 "type": "exists",
                 "status": "no",
                 "explanation": "Local referendums are limited to municipalities, districts and кметства.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 26(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               }
             ]
@@ -1110,12 +852,8 @@
                 "type": "exists",
                 "status": "no",
                 "explanation": "No elected regional council.",
-                "citations": [
-                  {
-                    "law": "const",
-                    "article": "Art. 142-143",
-                    "checked": true
-                  }
+                "laws": [
+                  "const"
                 ]
               }
             ]
@@ -1128,12 +866,8 @@
                 "type": "exists",
                 "status": "no",
                 "explanation": "The regional governor is appointed by the Council of Ministers.",
-                "citations": [
-                  {
-                    "law": "const",
-                    "article": "Art. 143(1)-(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "const"
                 ]
               }
             ]
@@ -1157,82 +891,58 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "The National Assembly decides to hold a national referendum.",
-                "citations": [
-                  {
-                    "law": "const",
-                    "article": "Art. 84(5)",
-                    "checked": true
-                  },
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 9",
-                    "checked": true
-                  }
+                "laws": [
+                  "const",
+                  "dcpa"
                 ]
               },
               {
                 "type": "binding",
                 "status": "yes",
                 "explanation": "No later approval by parliament is needed; conflicting acts stop applying after three months.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 9(6)-(7)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "no_quorum",
                 "status": "no",
                 "explanation": "Adopted only if turnout is at least that of the last parliamentary election. With over 20% turnout it is merely sent to parliament.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 23(1), (3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "yes",
                 "explanation": "200,000 signatures to propose; 400,000 oblige parliament to call it.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 10(1)(5), 10(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "reasonable_signatures",
                 "status": "partial",
-                "explanation": "400,000 is roughly 6–7% of registered voters."
+                "explanation": "400,000 is roughly 6–7% of registered voters.",
+                "laws": [
+                  "const",
+                  "dcpa"
+                ]
               },
               {
                 "type": "broad_scope",
                 "status": "partial",
                 "explanation": "Taxes, the budget and some constitutional matters are excluded.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 9(2)-(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               },
               {
                 "type": "concrete_proposals",
                 "status": "partial",
                 "explanation": "Codes that regulate a whole field cannot be put to a vote as a whole.",
-                "citations": [
-                  {
-                    "law": "dcpa",
-                    "article": "Art. 9(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "dcpa"
                 ]
               }
             ]
@@ -1247,37 +957,45 @@
             "properties": [
               {
                 "type": "exists",
-                "status": "yes"
+                "status": "yes",
+                "laws": [
+                  "const",
+                  "ec"
+                ]
               },
               {
                 "type": "binding_powers",
-                "status": "yes"
+                "status": "yes",
+                "laws": [
+                  "const",
+                  "ec"
+                ]
               },
               {
                 "type": "individual_vote",
                 "status": "partial",
                 "explanation": "Proportional party lists in 31 multi-member districts; one preference counts only if it reaches 7% of the list's votes in the district.",
-                "citations": [
-                  {
-                    "law": "odihr",
-                    "article": "Section III.B"
-                  }
+                "laws": [
+                  "const",
+                  "ec"
                 ]
               },
               {
                 "type": "local_constituency",
                 "status": "partial",
                 "explanation": "31 multi-member districts matching the regions (Sofia split in three, Plovdiv in two).",
-                "citations": [
-                  {
-                    "law": "odihr",
-                    "article": "Section III.B"
-                  }
+                "laws": [
+                  "const",
+                  "ec"
                 ]
               },
               {
                 "type": "recall",
-                "status": "no"
+                "status": "no",
+                "laws": [
+                  "const",
+                  "ec"
+                ]
               }
             ]
           }
@@ -1294,7 +1012,11 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "There is no EU-wide referendum."
+                "explanation": "There is no EU-wide referendum.",
+                "laws": [
+                  "teu",
+                  "eci"
+                ]
               }
             ]
           },
@@ -1305,22 +1027,16 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "citations": [
-                  {
-                    "law": "teu",
-                    "article": "Art. 11(4)"
-                  }
+                "laws": [
+                  "teu"
                 ]
               },
               {
                 "type": "binding",
                 "status": "no",
                 "explanation": "One million signatures only invite the Commission to consider a proposal.",
-                "citations": [
-                  {
-                    "law": "eci",
-                    "article": "Art. 15"
-                  }
+                "laws": [
+                  "eci"
                 ]
               }
             ]
@@ -1336,31 +1052,44 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "citations": [
-                  {
-                    "law": "teu",
-                    "article": "Art. 14"
-                  }
+                "laws": [
+                  "teu"
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "partial",
-                "explanation": "Co-legislator, but cannot initiate legislation."
+                "explanation": "Co-legislator, but cannot initiate legislation.",
+                "laws": [
+                  "teu",
+                  "ec"
+                ]
               },
               {
                 "type": "individual_vote",
                 "status": "partial",
-                "explanation": "National party lists with a preferential vote."
+                "explanation": "National party lists with a preferential vote.",
+                "laws": [
+                  "teu",
+                  "ec"
+                ]
               },
               {
                 "type": "local_constituency",
                 "status": "no",
-                "explanation": "Bulgaria is a single constituency."
+                "explanation": "Bulgaria is a single constituency.",
+                "laws": [
+                  "teu",
+                  "ec"
+                ]
               },
               {
                 "type": "recall",
-                "status": "no"
+                "status": "no",
+                "laws": [
+                  "teu",
+                  "ec"
+                ]
               }
             ]
           }

@@ -5,7 +5,7 @@
     "country_code": "ie"
   },
   "status": "draft",
-  "statusNote": "Draft based on the laws' texts, not yet reviewed by a lawyer. Citations marked 'checked' were read in the source named next to them; those marked 'unverified' still need checking against the official text.",
+  "statusNote": "Draft. For each property the page lists the laws that govern it; the specific articles will be worked out next. The yes/partly/no assessments are provisional until the articles are confirmed.",
   "addressKeys": {
     "municipality": [
       "municipality",
@@ -16,57 +16,62 @@
     "bunreacht": {
       "title": "Constitution of Ireland (Bunreacht na hÉireann)",
       "url": "https://www.irishstatutebook.ie/eli/cons/en/html",
-      "checkedAgainst": {
-        "title": "Constitute Project text (2019) and irish-constitution.pages.dev",
-        "url": "https://www.constituteproject.org/constitution/Ireland_2019.pdf",
-        "version": "as amended to 2019"
-      }
+      "short": "Constitution"
     },
     "lga2001": {
       "title": "Local Government Act 2001",
-      "url": "https://revisedacts.lawreform.ie/eli/2001/act/37/front/revised/en/html"
+      "url": "https://revisedacts.lawreform.ie/eli/2001/act/37/front/revised/en/html",
+      "short": "Local Government Act 2001"
     },
     "lgra2014": {
       "title": "Local Government Reform Act 2014",
       "url": "https://revisedacts.lawreform.ie/eli/2014/act/1/section/21/revised/en/html",
-      "checkedAgainst": {
-        "title": "Law Reform Commission, Revised Acts",
-        "url": "https://revisedacts.lawreform.ie/eli/2014/act/1/section/21/revised/en/html"
-      }
+      "short": "Local Government Reform Act 2014"
     },
     "limerick2024": {
       "title": "Local Government (Mayor of Limerick) and Miscellaneous Provisions Act 2024",
-      "url": "https://www.irishstatutebook.ie/eli/2024/act/7/section/46"
+      "url": "https://www.irishstatutebook.ie/eli/2024/act/7/section/46",
+      "short": "Mayor of Limerick Act 2024"
     },
     "mud2011": {
       "title": "Multi-Unit Developments Act 2011",
       "url": "https://revisedacts.lawreform.ie/eli/2011/act/2/section/19/revised/en/html",
-      "checkedAgainst": {
-        "title": "Law Reform Commission, Revised Acts",
-        "url": "https://revisedacts.lawreform.ie/eli/2011/act/2/section/19/revised/en/html"
-      }
+      "short": "Multi-Unit Developments Act 2011"
     },
     "ca2014": {
-      "title": "Companies Act 2014"
+      "title": "Companies Act 2014",
+      "short": "Companies Act 2014"
     },
     "lpt2012": {
       "title": "Finance (Local Property Tax) Act 2012",
       "url": "https://www.irishstatutebook.ie/eli/2012/act/52/section/20",
-      "checkedAgainst": {
-        "title": "Irish Statute Book",
-        "url": "https://www.irishstatutebook.ie/eli/2012/act/52/section/20"
-      }
+      "short": "Local Property Tax Act 2012"
     },
     "epea1997": {
-      "title": "European Parliament Elections Act 1997"
+      "title": "European Parliament Elections Act 1997",
+      "short": "European Parliament Elections Act 1997"
     },
     "teu": {
       "title": "Treaty on European Union",
-      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12012M/TXT"
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12012M/TXT",
+      "short": "TEU"
     },
     "eci": {
       "title": "Regulation (EU) 2019/788 on the European citizens' initiative",
-      "url": "https://eur-lex.europa.eu/eli/reg/2019/788/oj"
+      "url": "https://eur-lex.europa.eu/eli/reg/2019/788/oj",
+      "short": "ECI Regulation"
+    },
+    "ref1994": {
+      "title": "Referendum Act 1994",
+      "short": "Referendum Act 1994"
+    },
+    "ea1992": {
+      "title": "Electoral Act 1992",
+      "short": "Electoral Act 1992"
+    },
+    "ler1995": {
+      "title": "Local Elections Regulations 1995 (S.I. No. 297 of 1995)",
+      "short": "Local Elections Regulations 1995"
     }
   },
   "levels": {
@@ -81,29 +86,16 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "The State guarantees to defend and vindicate personal rights, including property; the dwelling is inviolable.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 40.3",
-                    "checked": true
-                  },
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 40.5",
-                    "checked": true
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
                 "explanation": "Rights may be regulated by law; the dwelling can be entered 'in accordance with law'.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 40.5",
-                    "checked": true
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               }
             ]
@@ -126,22 +118,16 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "The State protects the right to private property.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 43"
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
                 "explanation": "Property rights may be regulated by law for the common good.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 43.2"
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               }
             ]
@@ -164,16 +150,16 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Freedom of conscience and the free practice of religion are guaranteed.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 44.2"
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "own_means",
-                "status": "no"
+                "status": "no",
+                "laws": [
+                  "bunreacht"
+                ]
               }
             ]
           }
@@ -187,7 +173,11 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "No elected cultural self-government bodies with public powers."
+                "explanation": "No elected cultural self-government bodies with public powers.",
+                "laws": [
+                  "bunreacht",
+                  "lga2001"
+                ]
               }
             ]
           }
@@ -206,56 +196,40 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Each multi-unit development has an owners' management company whose members are the unit owners.",
-                "citations": [
-                  {
-                    "law": "mud2011",
-                    "article": "s. 2–3"
-                  }
+                "laws": [
+                  "mud2011"
                 ]
               },
               {
                 "type": "binding",
                 "status": "yes",
                 "explanation": "Resolutions bind the company and the owners under company law and the house rules.",
-                "citations": [
-                  {
-                    "law": "mud2011",
-                    "article": "s. 23"
-                  }
+                "laws": [
+                  "mud2011"
                 ]
               },
               {
                 "type": "no_quorum",
                 "status": "unknown",
                 "explanation": "Meeting quorum follows the company's constitution and company law; not yet checked.",
-                "citations": [
-                  {
-                    "law": "ca2014",
-                    "article": "s. 181"
-                  }
+                "laws": [
+                  "ca2014"
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "yes",
                 "explanation": "Members holding at least 10% of voting rights can requisition a general meeting.",
-                "citations": [
-                  {
-                    "law": "ca2014",
-                    "article": "s. 178(3)"
-                  }
+                "laws": [
+                  "ca2014"
                 ]
               },
               {
                 "type": "own_means",
                 "status": "yes",
                 "explanation": "Each owner pays into a sinking fund; the default is €200 per unit a year, or another amount agreed by a members' meeting.",
-                "citations": [
-                  {
-                    "law": "mud2011",
-                    "article": "s. 19(3), (5)",
-                    "checked": true
-                  }
+                "laws": [
+                  "mud2011"
                 ]
               }
             ]
@@ -272,38 +246,42 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "The company is run by directors.",
-                "citations": [
-                  {
-                    "law": "mud2011",
-                    "article": "s. 19(2)",
-                    "checked": true,
-                    "note": "refers to directors certifying works"
-                  }
+                "laws": [
+                  "mud2011"
                 ]
               },
               {
                 "type": "binding_powers",
-                "status": "yes"
+                "status": "yes",
+                "laws": [
+                  "mud2011",
+                  "ca2014"
+                ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Directors are elected individually by the members."
+                "explanation": "Directors are elected individually by the members.",
+                "laws": [
+                  "mud2011",
+                  "ca2014"
+                ]
               },
               {
                 "type": "local_constituency",
                 "status": "yes",
-                "explanation": "Only the owners in the development elect them."
+                "explanation": "Only the owners in the development elect them.",
+                "laws": [
+                  "mud2011",
+                  "ca2014"
+                ]
               },
               {
                 "type": "recall",
                 "status": "yes",
                 "explanation": "Members can remove a director by ordinary resolution.",
-                "citations": [
-                  {
-                    "law": "ca2014",
-                    "article": "s. 146"
-                  }
+                "laws": [
+                  "ca2014"
                 ]
               }
             ]
@@ -325,7 +303,10 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government."
+                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government.",
+                "laws": [
+                  "lga2001"
+                ]
               }
             ]
           }
@@ -340,7 +321,11 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "No statutory body below the municipal district. Residents' associations are private."
+                "explanation": "No statutory body below the municipal district. Residents' associations are private.",
+                "laws": [
+                  "bunreacht",
+                  "lga2001"
+                ]
               }
             ]
           },
@@ -352,39 +337,44 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Every area elects members of its city or county council.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 28A.2",
-                    "checked": true
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "yes",
-                "explanation": "The council decides local matters, including the neighbourhood's."
+                "explanation": "The council decides local matters, including the neighbourhood's.",
+                "laws": [
+                  "bunreacht",
+                  "lga2001"
+                ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates."
+                "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
+                "laws": [
+                  "lga2001",
+                  "ler1995"
+                ]
               },
               {
                 "type": "local_constituency",
                 "status": "partial",
                 "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
-                "citations": [
-                  {
-                    "law": "lga2001",
-                    "article": "s. 23"
-                  }
+                "laws": [
+                  "lga2001"
                 ]
               },
               {
                 "type": "recall",
                 "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law."
+                "explanation": "There is no recall of elected representatives in Irish law.",
+                "laws": [
+                  "bunreacht",
+                  "lga2001"
+                ]
               }
             ]
           }
@@ -405,7 +395,10 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government."
+                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government.",
+                "laws": [
+                  "lga2001"
+                ]
               }
             ]
           }
@@ -421,11 +414,8 @@
                 "type": "exists",
                 "status": "no",
                 "explanation": "Town and borough councils were dissolved by the 2014 reform.",
-                "citations": [
-                  {
-                    "law": "lgra2014",
-                    "article": "s. 24"
-                  }
+                "laws": [
+                  "lgra2014"
                 ]
               }
             ]
@@ -438,39 +428,44 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Every area elects members of its city or county council.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 28A.2",
-                    "checked": true
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "yes",
-                "explanation": "The council decides local matters, including the neighbourhood's."
+                "explanation": "The council decides local matters, including the neighbourhood's.",
+                "laws": [
+                  "bunreacht",
+                  "lga2001"
+                ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates."
+                "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
+                "laws": [
+                  "lga2001",
+                  "ler1995"
+                ]
               },
               {
                 "type": "local_constituency",
                 "status": "partial",
                 "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
-                "citations": [
-                  {
-                    "law": "lga2001",
-                    "article": "s. 23"
-                  }
+                "laws": [
+                  "lga2001"
                 ]
               },
               {
                 "type": "recall",
                 "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law."
+                "explanation": "There is no recall of elected representatives in Irish law.",
+                "laws": [
+                  "bunreacht",
+                  "lga2001"
+                ]
               }
             ]
           }
@@ -487,7 +482,10 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government."
+                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government.",
+                "laws": [
+                  "lga2001"
+                ]
               }
             ]
           }
@@ -503,45 +501,53 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Municipal district members perform reserved functions for their district.",
-                "citations": [
-                  {
-                    "law": "lgra2014",
-                    "article": "s. 21 (inserting LGA 2001 s. 131A(1))",
-                    "checked": true
-                  }
+                "laws": [
+                  "lgra2014"
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "partial",
                 "explanation": "Only the functions listed in Schedules 14 and 14A, plus any the county council chooses to delegate (and can take back).",
-                "citations": [
-                  {
-                    "law": "lgra2014",
-                    "article": "s. 21 (LGA 2001 s. 131A(1)-(2))",
-                    "checked": true
-                  }
+                "laws": [
+                  "lgra2014"
                 ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Members are elected by proportional representation with the single transferable vote: voters rank individual candidates."
+                "explanation": "Members are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
+                "laws": [
+                  "lga2001",
+                  "ler1995"
+                ]
               },
               {
                 "type": "local_constituency",
                 "status": "yes",
-                "explanation": "Members are the councillors elected in the district's local electoral areas."
+                "explanation": "Members are the councillors elected in the district's local electoral areas.",
+                "laws": [
+                  "lga2001",
+                  "ler1995"
+                ]
               },
               {
                 "type": "recall",
                 "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law."
+                "explanation": "There is no recall of elected representatives in Irish law.",
+                "laws": [
+                  "lgra2014",
+                  "lga2001"
+                ]
               },
               {
                 "type": "own_means",
                 "status": "partial",
-                "explanation": "The district depends on allocations from the county council's budget."
+                "explanation": "The district depends on allocations from the county council's budget.",
+                "laws": [
+                  "lga2001",
+                  "lpt2012"
+                ]
               }
             ]
           }
@@ -558,7 +564,10 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government."
+                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government.",
+                "laws": [
+                  "lga2001"
+                ]
               }
             ]
           }
@@ -574,50 +583,51 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "The Constitution provides for directly elected local authorities.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 28A.2",
-                    "checked": true
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "yes",
                 "explanation": "The council's reserved functions include adopting the budget and development plan.",
-                "citations": [
-                  {
-                    "law": "lga2001",
-                    "article": "s. 131"
-                  }
+                "laws": [
+                  "lga2001"
                 ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates."
+                "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
+                "laws": [
+                  "lga2001",
+                  "ler1995"
+                ]
               },
               {
                 "type": "local_constituency",
                 "status": "yes",
-                "explanation": "Elected only by the county's or city's voters."
+                "explanation": "Elected only by the county's or city's voters.",
+                "laws": [
+                  "lga2001",
+                  "ler1995"
+                ]
               },
               {
                 "type": "recall",
                 "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law."
+                "explanation": "There is no recall of elected representatives in Irish law.",
+                "laws": [
+                  "bunreacht",
+                  "lga2001"
+                ]
               },
               {
                 "type": "own_means",
                 "status": "partial",
                 "explanation": "The council can vary the local property tax rate by up to 15% either way; most funding comes from central government.",
-                "citations": [
-                  {
-                    "law": "lpt2012",
-                    "article": "s. 20(2), (5)",
-                    "checked": true
-                  }
+                "laws": [
+                  "lpt2012"
                 ]
               }
             ]
@@ -630,11 +640,8 @@
                 "type": "exists",
                 "status": "no",
                 "explanation": "The executive is a chief executive appointed, not elected. (Limerick is the exception: it elects its mayor directly since 2024.)",
-                "citations": [
-                  {
-                    "law": "limerick2024",
-                    "article": "Part 2"
-                  }
+                "laws": [
+                  "limerick2024"
                 ]
               }
             ]
@@ -662,74 +669,49 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Every constitutional amendment is submitted to the people.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 46.2",
-                    "checked": true
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "binding",
                 "status": "yes",
                 "explanation": "An approved amendment is signed into law; a vetoed ordinary proposal cannot be enacted.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 46.5"
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "no_quorum",
                 "status": "yes",
                 "explanation": "Constitutional amendments pass with a majority of votes cast. Ordinary-bill referendums are vetoed only if a majority votes no and that majority is at least a third of the register.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 47.1",
-                    "checked": true
-                  },
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 47.2.1°",
-                    "checked": true
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "no",
                 "explanation": "Amendments are initiated only in the Dáil as a Bill. A referendum on an ordinary bill requires a petition by a Seanad majority and a third of the Dáil.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 46.2",
-                    "checked": true
-                  },
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 27",
-                    "checked": true
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "concrete_proposals",
                 "status": "yes",
-                "explanation": "Voters decide on the worded amendment bill."
+                "explanation": "Voters decide on the worded amendment bill.",
+                "laws": [
+                  "bunreacht",
+                  "ref1994"
+                ]
               },
               {
                 "type": "broad_scope",
                 "status": "partial",
-                "explanation": "Only constitutional amendments and bills referred under Art. 27; ordinary laws are not subject to referendum.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 27",
-                    "checked": true
-                  }
+                "explanation": "Only constitutional amendments and bills referred to the people at the request of parliament; ordinary laws are not subject to referendum.",
+                "laws": [
+                  "bunreacht"
                 ]
               }
             ]
@@ -740,7 +722,11 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "The Constitution has no citizens' initiative."
+                "explanation": "The Constitution has no citizens' initiative.",
+                "laws": [
+                  "bunreacht",
+                  "ref1994"
+                ]
               }
             ]
           }
@@ -754,40 +740,44 @@
             "properties": [
               {
                 "type": "exists",
-                "status": "yes"
+                "status": "yes",
+                "laws": [
+                  "bunreacht",
+                  "ea1992"
+                ]
               },
               {
                 "type": "binding_powers",
-                "status": "yes"
+                "status": "yes",
+                "laws": [
+                  "bunreacht",
+                  "ea1992"
+                ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
                 "explanation": "Members are elected by proportional representation with the single transferable vote.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 16.2.5°",
-                    "checked": true
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "local_constituency",
                 "status": "partial",
                 "explanation": "Multi-seat constituencies; no law may provide fewer than three seats per constituency.",
-                "citations": [
-                  {
-                    "law": "bunreacht",
-                    "article": "Art. 16.2.6°",
-                    "checked": true
-                  }
+                "laws": [
+                  "bunreacht"
                 ]
               },
               {
                 "type": "recall",
                 "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law."
+                "explanation": "There is no recall of elected representatives in Irish law.",
+                "laws": [
+                  "bunreacht",
+                  "ea1992"
+                ]
               }
             ]
           }
@@ -804,7 +794,11 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "There is no EU-wide referendum."
+                "explanation": "There is no EU-wide referendum.",
+                "laws": [
+                  "teu",
+                  "eci"
+                ]
               }
             ]
           },
@@ -815,22 +809,16 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "citations": [
-                  {
-                    "law": "teu",
-                    "article": "Art. 11(4)"
-                  }
+                "laws": [
+                  "teu"
                 ]
               },
               {
                 "type": "binding",
                 "status": "no",
                 "explanation": "One million signatures only invite the Commission to consider a proposal.",
-                "citations": [
-                  {
-                    "law": "eci",
-                    "article": "Art. 15"
-                  }
+                "laws": [
+                  "eci"
                 ]
               }
             ]
@@ -846,38 +834,44 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "citations": [
-                  {
-                    "law": "teu",
-                    "article": "Art. 14"
-                  }
+                "laws": [
+                  "teu"
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "partial",
-                "explanation": "Co-legislator, but cannot initiate legislation."
+                "explanation": "Co-legislator, but cannot initiate legislation.",
+                "laws": [
+                  "teu",
+                  "epea1997"
+                ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Irish MEPs are elected by proportional representation with the single transferable vote: voters rank individual candidates."
+                "explanation": "Irish MEPs are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
+                "laws": [
+                  "teu",
+                  "epea1997"
+                ]
               },
               {
                 "type": "local_constituency",
                 "status": "partial",
                 "explanation": "Ireland elects its MEPs in a few multi-seat constituencies.",
-                "citations": [
-                  {
-                    "law": "epea1997",
-                    "article": "Sch. 1"
-                  }
+                "laws": [
+                  "epea1997"
                 ]
               },
               {
                 "type": "recall",
                 "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law."
+                "explanation": "There is no recall of elected representatives in Irish law.",
+                "laws": [
+                  "teu",
+                  "epea1997"
+                ]
               }
             ]
           }
@@ -905,7 +899,10 @@
                   {
                     "type": "exists",
                     "status": "no",
-                    "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government."
+                    "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government.",
+                    "laws": [
+                      "lga2001"
+                    ]
                   }
                 ]
               }
@@ -921,50 +918,50 @@
                     "type": "exists",
                     "status": "yes",
                     "explanation": "The Constitution provides for directly elected local authorities.",
-                    "citations": [
-                      {
-                        "law": "bunreacht",
-                        "article": "Art. 28A.2",
-                        "checked": true
-                      }
+                    "laws": [
+                      "bunreacht"
                     ]
                   },
                   {
                     "type": "binding_powers",
                     "status": "yes",
                     "explanation": "The council's reserved functions include adopting the budget and development plan.",
-                    "citations": [
-                      {
-                        "law": "lga2001",
-                        "article": "s. 131"
-                      }
+                    "laws": [
+                      "lga2001"
                     ]
                   },
                   {
                     "type": "individual_vote",
                     "status": "yes",
-                    "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates."
+                    "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
+                    "laws": [
+                      "lga2001",
+                      "ler1995"
+                    ]
                   },
                   {
                     "type": "local_constituency",
                     "status": "yes",
-                    "explanation": "Elected only by the county's or city's voters."
+                    "explanation": "Elected only by the county's or city's voters.",
+                    "laws": [
+                      "lga2001",
+                      "ler1995"
+                    ]
                   },
                   {
                     "type": "recall",
                     "status": "no",
-                    "explanation": "There is no recall of elected representatives in Irish law."
+                    "explanation": "There is no recall of elected representatives in Irish law.",
+                    "laws": [
+                      "limerick2024"
+                    ]
                   },
                   {
                     "type": "own_means",
                     "status": "partial",
                     "explanation": "The council can vary the local property tax rate by up to 15% either way; most funding comes from central government.",
-                    "citations": [
-                      {
-                        "law": "lpt2012",
-                        "article": "s. 20(2), (5)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "lpt2012"
                     ]
                   }
                 ]
@@ -977,30 +974,41 @@
                     "type": "exists",
                     "status": "yes",
                     "explanation": "The Mayor of Limerick is directly elected.",
-                    "citations": [
-                      {
-                        "law": "limerick2024",
-                        "article": "Part 2"
-                      }
+                    "laws": [
+                      "limerick2024"
                     ]
                   },
                   {
                     "type": "binding_powers",
                     "status": "partial",
-                    "explanation": "Takes over executive functions from the chief executive, within the limits of the Act."
+                    "explanation": "Takes over executive functions from the chief executive, within the limits of the Act.",
+                    "laws": [
+                      "limerick2024"
+                    ]
                   },
                   {
                     "type": "individual_vote",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "lga2001",
+                      "ler1995"
+                    ]
                   },
                   {
                     "type": "local_constituency",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "lga2001",
+                      "ler1995"
+                    ]
                   },
                   {
                     "type": "recall",
                     "status": "no",
-                    "explanation": "There is no recall of elected representatives in Irish law."
+                    "explanation": "There is no recall of elected representatives in Irish law.",
+                    "laws": [
+                      "limerick2024"
+                    ]
                   }
                 ]
               }

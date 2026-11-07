@@ -24,7 +24,8 @@ function checkLevel(where, lvl, j) {
       for (const p of m.properties || []) {
         if (!catalog.properties[p.type]) errors.push(`${where}.${b}.${m.type}: unknown property "${p.type}"`);
         if (!STATUSES.includes(p.status)) errors.push(`${where}.${b}.${m.type}.${p.type}: bad status "${p.status}"`);
-        for (const c of p.citations || []) if (!j.laws?.[c.law]) errors.push(`${where}.${b}.${m.type}.${p.type}: unknown law "${c.law}"`);
+        if (!(p.laws || []).length) errors.push(`${where}.${b}.${m.type}.${p.type}: no relevant laws listed`);
+        for (const id of p.laws || []) if (!j.laws?.[id]) errors.push(`${where}.${b}.${m.type}.${p.type}: unknown law "${id}"`);
       }
     }
   }

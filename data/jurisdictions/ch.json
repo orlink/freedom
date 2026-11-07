@@ -5,46 +5,46 @@
     "country_code": "ch"
   },
   "status": "draft",
-  "statusNote": "Draft based on the laws' texts, not yet reviewed by a lawyer. Federal and building-level data apply everywhere; canton- and city-level data exists only for Zürich. Citations marked 'unverified' still need checking against fedlex.admin.ch.",
+  "statusNote": "Draft. For each property the page lists the laws that govern it; the specific articles will be worked out next. The yes/partly/no assessments are provisional until the articles are confirmed.",
   "laws": {
     "bv": {
       "title": "Federal Constitution of the Swiss Confederation",
       "localTitle": "Bundesverfassung (BV, SR 101)",
       "url": "https://www.fedlex.admin.ch/eli/cc/1999/404/en",
-      "checkedAgainst": {
-        "title": "droit-bilingue.ch, IDEA and Legislationline excerpts of the official English text",
-        "url": "https://www.droit-bilingue.ch/en-rm/1/10/101-141-174.html"
-      }
+      "short": "Federal Constitution"
     },
     "zgb": {
       "title": "Swiss Civil Code",
       "localTitle": "Zivilgesetzbuch (ZGB, SR 210)",
       "url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/en",
-      "checkedAgainst": {
-        "title": "lawbrary.ch (unofficial English translation)",
-        "url": "https://lawbrary.ch/law/art/ZGB-v2025.01-en-art-712p/print",
-        "version": "2025"
-      }
+      "short": "Civil Code (ZGB)"
     },
     "kv": {
       "title": "Constitution of the Canton of Zürich",
       "localTitle": "Verfassung des Kantons Zürich (KV, LS 101)",
       "url": "https://res.cloudinary.com/adminch/image/private/s--VBJOORnk--/v1742874348/Bundespublikationen/131-211d.pdf",
-      "checkedAgainst": {
-        "title": "Federal publication SR 131.211",
-        "url": "https://res.cloudinary.com/adminch/image/private/s--VBJOORnk--/v1742874348/Bundespublikationen/131-211d.pdf",
-        "version": "as of 1 July 2024"
-      }
+      "short": "Cantonal Constitution (ZH)"
     },
     "go": {
       "title": "Municipal Code of the City of Zürich",
       "localTitle": "Gemeindeordnung der Stadt Zürich (AS 101.100)",
       "url": "https://www.zh.ch/bin/zhweb/publish/regierungsratsbeschluss-unterlagen./2021/1168/GO_PG_Zuerich.pdf",
-      "checkedAgainst": {
-        "title": "Text approved by the cantonal government (RRB 1168/2021)",
-        "url": "https://www.zh.ch/bin/zhweb/publish/regierungsratsbeschluss-unterlagen./2021/1168/GO_PG_Zuerich.pdf",
-        "version": "adopted 13 June 2021"
-      }
+      "short": "Municipal Code (Zürich)"
+    },
+    "bpr": {
+      "title": "Federal Act on Political Rights",
+      "localTitle": "Bundesgesetz über die politischen Rechte (BPR, SR 161.1)",
+      "short": "BPR"
+    },
+    "gpr": {
+      "title": "Political Rights Act of the Canton of Zürich",
+      "localTitle": "Gesetz über die politischen Rechte (GPR, LS 161)",
+      "short": "GPR (ZH)"
+    },
+    "gg": {
+      "title": "Municipalities Act of the Canton of Zürich",
+      "localTitle": "Gemeindegesetz (GG, LS 131.1)",
+      "short": "GG (ZH)"
     }
   },
   "levels": {
@@ -59,22 +59,16 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Right to personal freedom, privacy and property.",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 10, 13, 26"
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
                 "explanation": "Restrictions need a legal basis, a public interest and proportionality.",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 36"
-                  }
+                "laws": [
+                  "bv"
                 ]
               }
             ]
@@ -97,21 +91,15 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "Economic freedom, including free choice of occupation.",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 27"
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 94"
-                  }
+                "laws": [
+                  "bv"
                 ]
               }
             ]
@@ -133,17 +121,17 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 15, 18"
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "own_means",
                 "status": "partial",
-                "explanation": "Recognised churches in many cantons are public-law bodies with taxing powers."
+                "explanation": "Recognised churches in many cantons are public-law bodies with taxing powers.",
+                "laws": [
+                  "bv"
+                ]
               }
             ]
           }
@@ -158,7 +146,10 @@
               {
                 "type": "exists",
                 "status": "partial",
-                "explanation": "Church synods exist only for recognised religious communities and vary by canton."
+                "explanation": "Church synods exist only for recognised religious communities and vary by canton.",
+                "laws": [
+                  "bv"
+                ]
               }
             ]
           }
@@ -177,55 +168,39 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "The assembly of condominium owners decides on joint administration.",
-                "citations": [
-                  {
-                    "law": "zgb",
-                    "article": "Art. 712m"
-                  }
+                "laws": [
+                  "zgb"
                 ]
               },
               {
                 "type": "binding",
                 "status": "yes",
-                "citations": [
-                  {
-                    "law": "zgb",
-                    "article": "Art. 712m"
-                  }
+                "laws": [
+                  "zgb"
                 ]
               },
               {
                 "type": "no_quorum",
                 "status": "partial",
                 "explanation": "Half of the owners holding half of the shares (and at least two) must attend; a second meeting, at least ten days later, needs one third.",
-                "citations": [
-                  {
-                    "law": "zgb",
-                    "article": "Art. 712p(1)-(3)",
-                    "checked": true
-                  }
+                "laws": [
+                  "zgb"
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "yes",
                 "explanation": "Owners representing one fifth can demand a meeting (association law applies by reference).",
-                "citations": [
-                  {
-                    "law": "zgb",
-                    "article": "Art. 712m(2) with Art. 64(3)"
-                  }
+                "laws": [
+                  "zgb"
                 ]
               },
               {
                 "type": "own_means",
                 "status": "yes",
                 "explanation": "Owners decide on contributions and the renewal fund.",
-                "citations": [
-                  {
-                    "law": "zgb",
-                    "article": "Art. 712l, 712m(1)"
-                  }
+                "laws": [
+                  "zgb"
                 ]
               }
             ]
@@ -242,39 +217,37 @@
                 "type": "exists",
                 "status": "yes",
                 "explanation": "The assembly appoints an administrator, who normally convenes and chairs it.",
-                "citations": [
-                  {
-                    "law": "zgb",
-                    "article": "Art. 712q"
-                  },
-                  {
-                    "law": "zgb",
-                    "article": "Art. 712n(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "zgb"
                 ]
               },
               {
                 "type": "binding_powers",
-                "status": "partial"
+                "status": "partial",
+                "laws": [
+                  "zgb"
+                ]
               },
               {
                 "type": "individual_vote",
-                "status": "yes"
+                "status": "yes",
+                "laws": [
+                  "zgb"
+                ]
               },
               {
                 "type": "local_constituency",
-                "status": "yes"
+                "status": "yes",
+                "laws": [
+                  "zgb"
+                ]
               },
               {
                 "type": "recall",
                 "status": "yes",
                 "explanation": "The assembly can dismiss the administrator.",
-                "citations": [
-                  {
-                    "law": "zgb",
-                    "article": "Art. 712r"
-                  }
+                "laws": [
+                  "zgb"
                 ]
               }
             ]
@@ -301,63 +274,59 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 140-141",
-                    "checked": true
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "binding",
-                "status": "yes"
+                "status": "yes",
+                "laws": [
+                  "bv",
+                  "bpr"
+                ]
               },
               {
                 "type": "no_quorum",
                 "status": "yes",
                 "explanation": "A majority of those voting decides (plus a majority of cantons for constitutional changes).",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 142(1)-(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "yes",
                 "explanation": "50,000 voters (or eight cantons) can demand a vote on federal acts.",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 141(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "reasonable_signatures",
                 "status": "yes",
                 "explanation": "50,000 signatures within 100 days, about 1% of voters.",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 141(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "concrete_proposals",
                 "status": "yes",
-                "explanation": "Voters decide on the adopted text of the act."
+                "explanation": "Voters decide on the adopted text of the act.",
+                "laws": [
+                  "bv",
+                  "bpr"
+                ]
               },
               {
                 "type": "broad_scope",
                 "status": "partial",
-                "explanation": "There is no financial referendum on federal spending."
+                "explanation": "There is no financial referendum on federal spending.",
+                "laws": [
+                  "bv",
+                  "bpr"
+                ]
               }
             ]
           },
@@ -368,70 +337,46 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 138-139",
-                    "checked": true
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "binding",
                 "status": "yes",
                 "explanation": "If accepted by people and cantons, it becomes part of the Constitution.",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 142(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "no_quorum",
                 "status": "yes",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 142",
-                    "checked": true
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "yes",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 139(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "reasonable_signatures",
                 "status": "yes",
                 "explanation": "100,000 signatures within 18 months.",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 139(1)",
-                    "checked": true
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "concrete_proposals",
                 "status": "yes",
                 "explanation": "It may be a general proposal or a fully worded draft.",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 139(2)",
-                    "checked": true
-                  }
+                "laws": [
+                  "bv"
                 ]
               }
             ]
@@ -447,37 +392,43 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 149"
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "binding_powers",
-                "status": "yes"
+                "status": "yes",
+                "laws": [
+                  "bv",
+                  "bpr"
+                ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Open lists: voters can strike, add and cumulate individual candidates."
+                "explanation": "Open lists: voters can strike, add and cumulate individual candidates.",
+                "laws": [
+                  "bv",
+                  "bpr"
+                ]
               },
               {
                 "type": "local_constituency",
                 "status": "partial",
                 "explanation": "Each canton is a constituency.",
-                "citations": [
-                  {
-                    "law": "bv",
-                    "article": "Art. 149(3)"
-                  }
+                "laws": [
+                  "bv"
                 ]
               },
               {
                 "type": "recall",
                 "status": "no",
-                "explanation": "No recall of elected officials at this level."
+                "explanation": "No recall of elected officials at this level.",
+                "laws": [
+                  "bv",
+                  "bpr"
+                ]
               }
             ]
           }
@@ -506,44 +457,40 @@
                   {
                     "type": "exists",
                     "status": "yes",
-                    "citations": [
-                      {
-                        "law": "kv",
-                        "article": "Art. 23-24",
-                        "checked": true
-                      }
+                    "laws": [
+                      "kv"
                     ]
                   },
                   {
                     "type": "binding",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "no_quorum",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "reasonable_signatures",
                     "status": "yes",
                     "explanation": "6,000 signatures.",
-                    "citations": [
-                      {
-                        "law": "kv",
-                        "article": "Art. 24",
-                        "checked": true
-                      }
+                    "laws": [
+                      "kv"
                     ]
                   },
                   {
                     "type": "concrete_proposals",
                     "status": "yes",
                     "explanation": "As a general suggestion or a fully worded draft.",
-                    "citations": [
-                      {
-                        "law": "kv",
-                        "article": "Art. 25",
-                        "checked": true
-                      }
+                    "laws": [
+                      "kv"
                     ]
                   }
                 ]
@@ -555,55 +502,47 @@
                   {
                     "type": "exists",
                     "status": "yes",
-                    "citations": [
-                      {
-                        "law": "kv",
-                        "article": "Art. 32-33",
-                        "checked": true
-                      }
+                    "laws": [
+                      "kv"
                     ]
                   },
                   {
                     "type": "binding",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "no_quorum",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "citizen_triggered",
                     "status": "yes",
-                    "citations": [
-                      {
-                        "law": "kv",
-                        "article": "Art. 33",
-                        "checked": true
-                      }
+                    "laws": [
+                      "kv"
                     ]
                   },
                   {
                     "type": "reasonable_signatures",
                     "status": "yes",
                     "explanation": "3,000 signatures within 60 days.",
-                    "citations": [
-                      {
-                        "law": "kv",
-                        "article": "Art. 33(2)-(3)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "kv"
                     ]
                   },
                   {
                     "type": "broad_scope",
                     "status": "yes",
                     "explanation": "Includes new one-off spending over CHF 4 million or recurring spending over CHF 400,000 a year; new taxes go to a mandatory vote.",
-                    "citations": [
-                      {
-                        "law": "kv",
-                        "article": "Art. 32, 33(1)(d)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "kv"
                     ]
                   }
                 ]
@@ -620,47 +559,43 @@
                     "type": "exists",
                     "status": "yes",
                     "explanation": "180 members.",
-                    "citations": [
-                      {
-                        "law": "kv",
-                        "article": "Art. 50",
-                        "checked": true
-                      }
+                    "laws": [
+                      "kv"
                     ]
                   },
                   {
                     "type": "binding_powers",
                     "status": "yes",
                     "explanation": "Including the cantonal tax rate.",
-                    "citations": [
-                      {
-                        "law": "kv",
-                        "article": "Art. 56(1)(b)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "kv"
                     ]
                   },
                   {
                     "type": "individual_vote",
                     "status": "yes",
-                    "explanation": "Proportional representation with open lists."
+                    "explanation": "Proportional representation with open lists.",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "local_constituency",
                     "status": "partial",
                     "explanation": "The districts (Bezirke) are the constituencies.",
-                    "citations": [
-                      {
-                        "law": "kv",
-                        "article": "Art. 51",
-                        "checked": true
-                      }
+                    "laws": [
+                      "kv"
                     ]
                   },
                   {
                     "type": "recall",
                     "status": "no",
-                    "explanation": "No recall of elected officials at this level."
+                    "explanation": "No recall of elected officials at this level.",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   }
                 ]
               },
@@ -672,30 +607,42 @@
                     "type": "exists",
                     "status": "yes",
                     "explanation": "Seven members elected by the people by majority vote.",
-                    "citations": [
-                      {
-                        "law": "kv",
-                        "article": "Art. 61-62",
-                        "checked": true
-                      }
+                    "laws": [
+                      "kv"
                     ]
                   },
                   {
                     "type": "binding_powers",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "individual_vote",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "local_constituency",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "recall",
                     "status": "no",
-                    "explanation": "No recall of elected officials at this level."
+                    "explanation": "No recall of elected officials at this level.",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   }
                 ]
               }
@@ -711,7 +658,11 @@
                 "properties": [
                   {
                     "type": "exists",
-                    "status": "no"
+                    "status": "no",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   }
                 ]
               }
@@ -725,25 +676,45 @@
                 "properties": [
                   {
                     "type": "exists",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "binding_powers",
                     "status": "partial",
-                    "explanation": "Mostly supervisory and administrative powers."
+                    "explanation": "Mostly supervisory and administrative powers.",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "individual_vote",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "local_constituency",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "recall",
                     "status": "no",
-                    "explanation": "No recall of elected officials at this level."
+                    "explanation": "No recall of elected officials at this level.",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
                   }
                 ]
               }
@@ -772,37 +743,44 @@
                   {
                     "type": "exists",
                     "status": "yes",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 32(1)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "binding",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "no_quorum",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "reasonable_signatures",
                     "status": "yes",
                     "explanation": "3,000 signatures.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 32(1)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "concrete_proposals",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   }
                 ]
               },
@@ -814,61 +792,50 @@
                     "type": "exists",
                     "status": "yes",
                     "explanation": "Optional referendum on council decisions; mandatory votes on the charter and on big spending.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 34-36, 38",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "binding",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "no_quorum",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "citizen_triggered",
                     "status": "yes",
                     "explanation": "2,000 voters within 60 days.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 38(a)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "reasonable_signatures",
                     "status": "yes",
                     "explanation": "2,000 signatures within 60 days.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 38(a)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "broad_scope",
                     "status": "partial",
                     "explanation": "New one-off spending over CHF 20 million and recurring spending over CHF 2 million a year go to a mandatory vote, but the tax rate cannot be challenged by referendum.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 35(1)",
-                        "checked": true
-                      },
-                      {
-                        "law": "go",
-                        "article": "Art. 37(b)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   }
                 ]
@@ -885,65 +852,50 @@
                     "type": "exists",
                     "status": "yes",
                     "explanation": "125 members.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 40(2)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "binding_powers",
                     "status": "yes",
                     "explanation": "Including setting the annual tax rate.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 58(d)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "individual_vote",
                     "status": "yes",
                     "explanation": "Proportional representation with open lists.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 41(1)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "local_constituency",
                     "status": "yes",
                     "explanation": "Elected by the city's voters, in nine districts.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 8(1)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "recall",
                     "status": "no",
-                    "explanation": "No recall of elected officials at this level."
+                    "explanation": "No recall of elected officials at this level.",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "own_means",
                     "status": "yes",
                     "explanation": "The city sets its own tax rate (Steuerfuss).",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 58(d)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   }
                 ]
@@ -956,35 +908,46 @@
                     "type": "exists",
                     "status": "yes",
                     "explanation": "Nine members including the mayor, elected by the whole city.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 71",
-                        "checked": true
-                      },
-                      {
-                        "law": "go",
-                        "article": "Art. 8(2)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "binding_powers",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "individual_vote",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "local_constituency",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "recall",
                     "status": "no",
-                    "explanation": "No recall of elected officials at this level."
+                    "explanation": "No recall of elected officials at this level.",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   }
                 ]
               }
@@ -1005,12 +968,8 @@
                     "type": "exists",
                     "status": "no",
                     "explanation": "No votes at quarter level; the city's twelve Kreise are administrative units only.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 4",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   }
                 ]
@@ -1027,12 +986,8 @@
                     "type": "exists",
                     "status": "no",
                     "explanation": "The charter provides no elected quarter or Kreis council.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 4",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   }
                 ]
@@ -1045,52 +1000,45 @@
                     "type": "exists",
                     "status": "yes",
                     "explanation": "Each of the seven school districts elects a school board (president plus 24 members).",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 7",
-                        "checked": true
-                      },
-                      {
-                        "law": "go",
-                        "article": "Art. 104",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "binding_powers",
                     "status": "partial",
-                    "explanation": "Only for public schools and kindergartens in the district."
+                    "explanation": "Only for public schools and kindergartens in the district.",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "individual_vote",
                     "status": "yes",
                     "explanation": "Members and president are elected by the district's voters.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 28(c)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "local_constituency",
                     "status": "partial",
                     "explanation": "The school district is the constituency; it spans several quarters.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 8(3)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "recall",
                     "status": "no",
-                    "explanation": "No recall of elected officials at this level."
+                    "explanation": "No recall of elected officials at this level.",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   }
                 ]
               },
@@ -1100,40 +1048,47 @@
                 "properties": [
                   {
                     "type": "exists",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "binding_powers",
-                    "status": "yes"
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   },
                   {
                     "type": "individual_vote",
                     "status": "yes",
                     "explanation": "Open lists: voters choose individual candidates.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 41(1)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "local_constituency",
                     "status": "partial",
                     "explanation": "Elected per electoral district (Wahlkreis), which is larger than one quarter.",
-                    "citations": [
-                      {
-                        "law": "go",
-                        "article": "Art. 8(1)",
-                        "checked": true
-                      }
+                    "laws": [
+                      "go"
                     ]
                   },
                   {
                     "type": "recall",
                     "status": "no",
-                    "explanation": "No recall of elected officials at this level."
+                    "explanation": "No recall of elected officials at this level.",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
                   }
                 ]
               }

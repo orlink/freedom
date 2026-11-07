@@ -191,14 +191,14 @@ function render() {
               const pdef = catalog.properties[p.type] || {};
               return tile({
                 name: p.name || pdef.name || p.type, bandInfo: statusBand(p.status), title: pdef.description,
-                place: (p.citations || []).map(c => c.article).join('; '),
+                place: (p.laws || []).map(id => j.laws[id]?.short || id).join(' · '),
                 pressed: propIdx === i, onclick: () => select(3, i),
               });
             });
             rows.push(row('Required properties', mcrumb, el('div', { class: 'tiles' }, propTiles), mech.note));
 
             const prop = props[propIdx];
-            if (prop) rows.push(row('Law', `${mcrumb} › ${prop.name || catalog.properties[prop.type]?.name}`, propDetail(prop, j)));
+            if (prop) rows.push(row('Relevant laws', `${mcrumb} › ${prop.name || catalog.properties[prop.type]?.name}`, propDetail(prop, j)));
           }
         }
       }
@@ -210,27 +210,20 @@ function render() {
 function propDetail(prop, j) {
   const pdef = state.data.catalog.properties[prop.type] || {};
   const sb = statusBand(prop.status);
-  const cites = prop.citations || [];
+  const laws = prop.laws || [];
   return el('div', { class: 'detail' },
     el('h4', {}, el('span', { class: `status b-${sb.key}` }, sb.label), prop.name || pdef.name),
     el('p', { class: 'def' }, pdef.description, pdef.gate ? ' Essential: if this fails, the mechanism does not work.' : ''),
     prop.explanation ? el('p', {}, prop.explanation) : el('p', { class: 'empty' }, 'No explanation recorded yet.'),
-    cites.length
-      ? el('ul', { class: 'citations' }, cites.map(c => {
-          const law = j.laws[c.law] || { title: c.law };
-          const href = c.url || law.url;
+    laws.length
+      ? el('ul', { class: 'citations' }, laws.map(id => {
+          const law = j.laws[id] || { title: id };
           return el('li', {},
-            el('span', { class: 'art' }, c.article), ', ',
-            href ? el('a', { href, target: '_blank', rel: 'noopener' }, law.title) : law.title,
-            c.checked ? el('span', { class: 'flag ok' }, 'checked') : el('span', { class: 'flag unv' }, 'unverified'),
-            law.localTitle ? el('div', { class: 'local' }, law.localTitle) : null,
-            c.note ? el('div', { class: 'local' }, c.note) : null,
-            c.checked && law.checkedAgainst ? el('div', { class: 'local' }, 'Checked against: ',
-              law.checkedAgainst.url ? el('a', { href: law.checkedAgainst.url, target: '_blank', rel: 'noopener' }, law.checkedAgainst.title) : law.checkedAgainst.title,
-              law.checkedAgainst.version ? ` (${law.checkedAgainst.version})` : '') : null,
-            c.excerpt ? el('blockquote', {}, c.excerpt) : null);
+            law.url ? el('a', { class: 'art', href: law.url, target: '_blank', rel: 'noopener' }, law.title) : el('span', { class: 'art' }, law.title),
+            law.localTitle ? el('div', { class: 'local' }, law.localTitle) : null);
         }))
-      : el('p', { class: 'empty' }, 'No legal citation recorded yet.'));
+      : el('p', { class: 'empty' }, 'No law recorded yet.'),
+    el('p', { class: 'empty' }, 'Specific articles are still being worked out.'));
 }
 
 function renderLegend() {
