@@ -1008,6 +1008,21 @@
           }
         }
       }
+    },
+    {
+      "name": "County Dublin (no municipal districts)",
+      "match": {
+        "county": [
+          "County Dublin",
+          "Dublin"
+        ]
+      },
+      "levels": {
+        "municipality": {
+          "applicable": false,
+          "summary": "The four Dublin local authorities are not divided into municipal districts."
+        }
+      }
     }
   ]
 }
