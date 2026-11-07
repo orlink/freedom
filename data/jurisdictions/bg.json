@@ -1,0 +1,238 @@
+{
+  "id": "bg",
+  "name": "Bulgaria",
+  "match": { "country_code": "bg" },
+  "status": "sample",
+  "addressKeys": { "county": ["state", "county"], "state": [] },
+  "statusNote": "Assessments are a first draft to demonstrate the structure. Articles of the Direct Citizen Participation Act were checked against the English translation published by the Central Election Commission, which may predate later amendments. All other citations are unverified and must be checked against the current consolidated text.",
+  "laws": {
+    "const": { "title": "Constitution of the Republic of Bulgaria", "localTitle": "Конституция на Република България", "url": "https://www.parliament.bg/en/const" },
+    "dcpa":  { "title": "Direct Citizen Participation in State and Local Government Act", "localTitle": "Закон за прякото участие на гражданите в държавната власт и местното самоуправление", "url": "https://www.cik.bg/upload/248887/3.+Direct+Citizen+Participation+in+State+and+Local+Government+Act.pdf" },
+    "cma":   { "title": "Condominium Management Act", "localTitle": "Закон за управление на етажната собственост (ЗУЕС)" },
+    "lsga":  { "title": "Local Self-Government and Local Administration Act", "localTitle": "Закон за местното самоуправление и местната администрация (ЗМСМА)" },
+    "ec":    { "title": "Electoral Code", "localTitle": "Изборен кодекс" },
+    "teu":   { "title": "Treaty on European Union", "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12012M/TXT" },
+    "eci":   { "title": "Regulation (EU) 2019/788 on the European citizens' initiative", "url": "https://eur-lex.europa.eu/eli/reg/2019/788/oj" }
+  },
+  "levels": {
+    "individual": {
+      "summary": "Personal autonomy is protected by the Constitution, subject to general laws.",
+      "direct": { "mechanisms": [
+        { "type": "personal_autonomy", "properties": [
+          { "type": "exists", "status": "yes", "explanation": "Privacy, inviolability of the person, home and property are constitutional rights.",
+            "citations": [ { "law": "const", "article": "Art. 17, 30, 32, 33" } ] },
+          { "type": "no_outside_override", "status": "partial", "explanation": "Rights may be limited by statute on grounds such as public order and health.",
+            "citations": [ { "law": "const", "article": "Art. 57" } ] }
+        ] }
+      ] },
+      "representative": { "applicable": false, "note": "Individuals decide for themselves; representation does not apply." }
+    },
+    "market": {
+      "summary": "Free economic initiative is constitutional; many activities need licences.",
+      "direct": { "mechanisms": [
+        { "type": "personal_autonomy", "properties": [
+          { "type": "exists", "status": "yes", "explanation": "The economy is based on free economic initiative.",
+            "citations": [ { "law": "const", "article": "Art. 19(1)" } ] },
+          { "type": "no_outside_override", "status": "partial", "explanation": "Licensing and permit regimes restrict entry into many activities." }
+        ] }
+      ] },
+      "representative": { "applicable": false, "note": "Market participants decide for themselves." }
+    },
+    "cultural": {
+      "summary": "Freedom of religion and cultural life are constitutional; communities have no self-governing bodies with public powers.",
+      "direct": { "mechanisms": [
+        { "type": "personal_autonomy", "properties": [
+          { "type": "exists", "status": "yes", "explanation": "Freedom of conscience and religion; right to develop one's own culture.",
+            "citations": [ { "law": "const", "article": "Art. 37, 54" } ] },
+          { "type": "own_means", "status": "no", "explanation": "Cultural communities have no public budget or self-government powers of their own." }
+        ] }
+      ] },
+      "representative": { "mechanisms": [
+        { "type": "council", "properties": [
+          { "type": "exists", "status": "no", "explanation": "No elected cultural self-government bodies with public powers." }
+        ] }
+      ] }
+    },
+    "entrance": {
+      "summary": "A condominium can be organised per entrance, with a general assembly of owners and an elected manager or board.",
+      "direct": { "mechanisms": [
+        { "type": "general_assembly", "name": "General assembly of owners", "properties": [
+          { "type": "exists", "status": "yes", "explanation": "The Condominium Management Act applies to a building or a separate entrance.", "citations": [ { "law": "cma", "article": "Art. 2 (unverified)" } ] },
+          { "type": "binding", "status": "yes", "explanation": "Decisions bind all owners and occupants.", "citations": [ { "law": "cma", "article": "Art. 17 (unverified)" } ] },
+          { "type": "no_quorum", "status": "partial", "explanation": "A quorum of ideal shares is required; a lower quorum applies when a meeting is adjourned. Thresholds to be verified.", "citations": [ { "law": "cma", "article": "Art. 15 (unverified)" } ] },
+          { "type": "citizen_triggered", "status": "yes", "explanation": "Owners holding a minority of shares can require the manager to convene a meeting.", "citations": [ { "law": "cma", "article": "Art. 12 (unverified)" } ] },
+          { "type": "own_means", "status": "yes", "explanation": "Owners decide on contributions to the repair and renovation fund.", "citations": [ { "law": "cma", "article": "Art. 50 (unverified)" } ] }
+        ] }
+      ] },
+      "representative": { "mechanisms": [
+        { "type": "executive", "name": "Manager / management board", "properties": [
+          { "type": "exists", "status": "yes", "explanation": "The general assembly elects a manager or a management board.", "citations": [ { "law": "cma", "article": "Art. 19 (unverified)" } ] },
+          { "type": "binding_powers", "status": "yes", "explanation": "The board implements the assembly's decisions and manages common parts." },
+          { "type": "individual_vote", "status": "yes", "explanation": "Board members are elected individually by the owners." },
+          { "type": "local_constituency", "status": "yes", "explanation": "Only the owners of this entrance elect them." },
+          { "type": "recall", "status": "yes", "explanation": "The general assembly can replace the board at any time." }
+        ] }
+      ] }
+    },
+    "building": { "sameAs": "entrance", "summary": "Same regime as for an entrance: the Condominium Management Act covers a whole building or a separate entrance." },
+    "neighbourhood": {
+      "summary": "A quarter (квартал) has no elected body and cannot hold a referendum. A general assembly is possible but needs a high quorum and is not directly binding. Municipal councillors are elected from municipality-wide party lists.",
+      "direct": { "mechanisms": [
+        { "type": "referendum", "properties": [
+          { "type": "exists", "status": "no", "explanation": "Local referendums may be held only for a municipality, a district or a sub-municipal unit (кметство). Quarters are not listed.",
+            "citations": [ { "law": "dcpa", "article": "Art. 26(1)", "checked": true } ] }
+        ] },
+        { "type": "general_assembly", "name": "General assembly of the population", "properties": [
+          { "type": "exists", "status": "yes", "explanation": "May be convened in residential areas (квартали) of up to 10,000 citizens.",
+            "citations": [ { "law": "dcpa", "article": "Art. 55(1)", "checked": true } ] },
+          { "type": "binding", "status": "partial", "explanation": "Not directly binding: the municipal council or mayor must issue the corresponding acts within one month.",
+            "citations": [ { "law": "dcpa", "article": "Art. 54(2)-(3)", "checked": true }, { "law": "dcpa", "article": "Art. 63(3)", "checked": true } ] },
+          { "type": "no_quorum", "status": "no", "explanation": "One quarter of eligible voters must attend; if not, after one hour the meeting may proceed with one tenth. In a quarter of 10,000 that is 1,000 people in one room.",
+            "citations": [ { "law": "dcpa", "article": "Art. 60(1), (3)", "checked": true } ] },
+          { "type": "citizen_triggered", "status": "yes", "explanation": "The mayor must convene it on request of 1/50 of eligible voters (at least 20).",
+            "citations": [ { "law": "dcpa", "article": "Art. 57(1)(3)", "checked": true } ] },
+          { "type": "reasonable_signatures", "status": "yes", "explanation": "1/50 of voters, at least 20 people.", "citations": [ { "law": "dcpa", "article": "Art. 57(1)(3)", "checked": true } ] },
+          { "type": "own_means", "status": "no", "explanation": "A quarter has no budget of its own; implementation depends on the municipality." }
+        ] }
+      ] },
+      "representative": { "mechanisms": [
+        { "type": "council", "name": "Neighbourhood council", "properties": [
+          { "type": "exists", "status": "no", "explanation": "The law provides no elected body for a quarter. (Sofia's districts, районы, are much larger and have only an elected district mayor.)", "citations": [ { "law": "lsga", "article": "Art. 18 (unverified)" } ] }
+        ] },
+        { "type": "upper_council_seat", "name": "Own member of the municipal council", "properties": [
+          { "type": "exists", "status": "yes", "explanation": "There is a municipal council." },
+          { "type": "binding_powers", "status": "yes", "explanation": "The council decides local matters, including the neighbourhood's." },
+          { "type": "individual_vote", "status": "partial", "explanation": "Proportional party lists with a preferential vote; a preference counts only above a threshold of the list's votes.", "citations": [ { "law": "ec", "article": "Art. 453 (unverified)" } ] },
+          { "type": "local_constituency", "status": "no", "explanation": "The whole municipality is one electoral district, so no councillor is elected by or answers to a particular quarter.", "citations": [ { "law": "ec", "article": "Art. 450 (unverified)" } ] },
+          { "type": "recall", "status": "no", "explanation": "No recall of councillors by voters." }
+        ] }
+      ] }
+    },
+    "village": {
+      "summary": "A village that is a sub-municipal unit (кметство) elects its own mayor and can hold a local referendum, but has no council and no own budget powers.",
+      "direct": { "mechanisms": [
+        { "type": "referendum", "name": "Local referendum", "properties": [
+          { "type": "exists", "status": "yes", "explanation": "Can be held for a sub-municipal unit (кметство).", "citations": [ { "law": "dcpa", "article": "Art. 26(1)", "checked": true } ] },
+          { "type": "binding", "status": "yes", "explanation": "No subsequent council approval is needed; the mayor organises enforcement.", "citations": [ { "law": "dcpa", "article": "Art. 26(4)", "checked": true }, { "law": "dcpa", "article": "Art. 43(3)", "checked": true } ] },
+          { "type": "no_quorum", "status": "no", "explanation": "A turnout threshold applies (40% of eligible voters in the CEC translation; later amendments tie it to local election turnout, to be verified).", "citations": [ { "law": "dcpa", "article": "Art. 41(2)", "checked": true } ] },
+          { "type": "citizen_triggered", "status": "yes", "explanation": "An initiative committee can propose it with signatures.", "citations": [ { "law": "dcpa", "article": "Art. 27(1)(3)", "checked": true } ] },
+          { "type": "reasonable_signatures", "status": "partial", "explanation": "1/20 of voters to propose; the council is obliged to call it only with 1/10.", "citations": [ { "law": "dcpa", "article": "Art. 27(1)-(2)", "checked": true } ] },
+          { "type": "broad_scope", "status": "partial", "explanation": "Budget, local taxes and fees are excluded.", "citations": [ { "law": "dcpa", "article": "Art. 26(2)", "checked": true } ] },
+          { "type": "concrete_proposals", "status": "unknown" }
+        ] },
+        { "type": "general_assembly", "name": "General assembly of the population", "properties": [
+          { "type": "exists", "status": "yes", "citations": [ { "law": "dcpa", "article": "Art. 55(1)", "checked": true } ] },
+          { "type": "binding", "status": "partial", "explanation": "The council or mayor must act on it within one month.", "citations": [ { "law": "dcpa", "article": "Art. 54(2)-(3)", "checked": true } ] },
+          { "type": "no_quorum", "status": "no", "explanation": "1/4 quorum (1/3 in villages up to 150 residents); 1/10 after an hour's adjournment.", "citations": [ { "law": "dcpa", "article": "Art. 60", "checked": true } ] },
+          { "type": "citizen_triggered", "status": "yes", "citations": [ { "law": "dcpa", "article": "Art. 57(1)(3)", "checked": true } ] }
+        ] }
+      ] },
+      "representative": { "mechanisms": [
+        { "type": "council", "name": "Village council", "properties": [
+          { "type": "exists", "status": "no", "explanation": "Villages have no elected council; the municipal council decides." }
+        ] },
+        { "type": "executive", "name": "Mayor of the кметство", "properties": [
+          { "type": "exists", "status": "yes", "explanation": "Mayors of sub-municipal units are directly elected.", "citations": [ { "law": "const", "article": "Art. 139 (unverified)" }, { "law": "lsga", "article": "Art. 46 (unverified)" } ] },
+          { "type": "binding_powers", "status": "partial", "explanation": "Powers are limited and delegated by the municipal mayor and council." },
+          { "type": "individual_vote", "status": "yes", "explanation": "Elected individually by majority vote." },
+          { "type": "local_constituency", "status": "yes" },
+          { "type": "recall", "status": "no" },
+          { "type": "own_means", "status": "no", "explanation": "No own budget; funds are allocated by the municipality." }
+        ] }
+      ] }
+    },
+    "town": { "sameAs": "municipality", "summary": "Towns are governed at municipality level." },
+    "city": { "sameAs": "municipality", "summary": "Cities are governed at municipality level." },
+    "municipality": {
+      "summary": "Municipalities have an elected council and mayor and can hold binding referendums, but a turnout threshold applies and budget and taxes are excluded.",
+      "direct": { "mechanisms": [
+        { "type": "referendum", "name": "Local referendum", "properties": [
+          { "type": "exists", "status": "yes", "citations": [ { "law": "dcpa", "article": "Art. 26(1)", "checked": true } ] },
+          { "type": "binding", "status": "yes", "citations": [ { "law": "dcpa", "article": "Art. 26(4)", "checked": true }, { "law": "dcpa", "article": "Art. 43(2)-(3)", "checked": true } ] },
+          { "type": "no_quorum", "status": "no", "explanation": "Turnout threshold (40% in the CEC translation; to be verified against the current text).", "citations": [ { "law": "dcpa", "article": "Art. 41(2)", "checked": true } ] },
+          { "type": "citizen_triggered", "status": "yes", "citations": [ { "law": "dcpa", "article": "Art. 27(1)(3)", "checked": true } ] },
+          { "type": "reasonable_signatures", "status": "partial", "explanation": "1/10 of voters to oblige the council; in Sofia that is well over 100,000 signatures.", "citations": [ { "law": "dcpa", "article": "Art. 27(2)", "checked": true } ] },
+          { "type": "broad_scope", "status": "partial", "explanation": "Budget, local taxes and fees are excluded.", "citations": [ { "law": "dcpa", "article": "Art. 26(2)", "checked": true } ] },
+          { "type": "concrete_proposals", "status": "unknown" }
+        ] },
+        { "type": "initiative", "name": "Local citizens' initiative", "properties": [
+          { "type": "exists", "status": "yes", "citations": [ { "law": "dcpa", "article": "Art. 46(1)", "checked": true } ] },
+          { "type": "binding", "status": "no", "explanation": "The authority must only consider it and publish a decision within one month.", "citations": [ { "law": "dcpa", "article": "Art. 52(2)", "checked": true } ] }
+        ] }
+      ] },
+      "representative": { "mechanisms": [
+        { "type": "council", "name": "Municipal council", "properties": [
+          { "type": "exists", "status": "yes", "citations": [ { "law": "const", "article": "Art. 138 (unverified)" } ] },
+          { "type": "binding_powers", "status": "yes", "citations": [ { "law": "lsga", "article": "Art. 21 (unverified)" } ] },
+          { "type": "individual_vote", "status": "partial", "explanation": "Closed-ish party lists with a thresholded preferential vote.", "citations": [ { "law": "ec", "article": "Art. 453 (unverified)" } ] },
+          { "type": "local_constituency", "status": "yes", "explanation": "Elected by the municipality's voters only." },
+          { "type": "recall", "status": "no" },
+          { "type": "own_means", "status": "partial", "explanation": "Local tax rates can be set only within ranges fixed by national law; large share of revenue is state transfers." }
+        ] },
+        { "type": "executive", "name": "Mayor", "properties": [
+          { "type": "exists", "status": "yes", "citations": [ { "law": "const", "article": "Art. 139 (unverified)" } ] },
+          { "type": "binding_powers", "status": "yes" },
+          { "type": "individual_vote", "status": "yes", "explanation": "Elected individually, two-round majority." },
+          { "type": "local_constituency", "status": "yes" },
+          { "type": "recall", "status": "no" }
+        ] }
+      ] }
+    },
+    "county": {
+      "summary": "Regions (области) are run by a governor appointed by the national government. Residents have no direct or representative means.",
+      "direct": { "mechanisms": [
+        { "type": "referendum", "properties": [ { "type": "exists", "status": "no", "explanation": "No regional referendum.", "citations": [ { "law": "dcpa", "article": "Art. 26(1)", "checked": true } ] } ] }
+      ] },
+      "representative": { "mechanisms": [
+        { "type": "council", "properties": [ { "type": "exists", "status": "no", "explanation": "No elected regional council." } ] },
+        { "type": "executive", "name": "Regional governor", "properties": [
+          { "type": "exists", "status": "no", "explanation": "The governor is appointed by the Council of Ministers, not elected.", "citations": [ { "law": "const", "article": "Art. 143 (unverified)" } ] }
+        ] }
+      ] }
+    },
+    "state": { "applicable": false, "summary": "Bulgaria is a unitary state; there is no state level." },
+    "country": {
+      "summary": "National referendums are binding and can be forced by 400,000 signatures, but a high turnout threshold applies. Parliament is elected from party lists in 31 districts with a preferential vote.",
+      "direct": { "mechanisms": [
+        { "type": "referendum", "name": "National referendum", "properties": [
+          { "type": "exists", "status": "yes", "citations": [ { "law": "dcpa", "article": "Art. 9", "checked": true }, { "law": "const", "article": "Art. 84(5) (unverified)" } ] },
+          { "type": "binding", "status": "yes", "explanation": "No further approval by parliament is needed; conflicting acts stop applying after three months.", "citations": [ { "law": "dcpa", "article": "Art. 9(6)-(7)", "checked": true } ] },
+          { "type": "no_quorum", "status": "no", "explanation": "Adopted only if turnout is at least that of the last parliamentary election. Otherwise, with over 20% turnout, it is merely sent to parliament.", "citations": [ { "law": "dcpa", "article": "Art. 23(1), (3)", "checked": true } ] },
+          { "type": "citizen_triggered", "status": "yes", "explanation": "200,000 signatures to propose; 400,000 oblige parliament to call it.", "citations": [ { "law": "dcpa", "article": "Art. 10(1)(5), 10(2)", "checked": true } ] },
+          { "type": "reasonable_signatures", "status": "partial", "explanation": "400,000 is about 6–7% of registered voters." },
+          { "type": "broad_scope", "status": "partial", "explanation": "Taxes, the budget and some constitutional matters are excluded.", "citations": [ { "law": "dcpa", "article": "Art. 9(2)-(3)", "checked": true } ] },
+          { "type": "concrete_proposals", "status": "partial", "explanation": "Questions are put as yes/no questions; whole codes cannot be voted on.", "citations": [ { "law": "dcpa", "article": "Art. 9(3)", "checked": true } ] }
+        ] }
+      ] },
+      "representative": { "mechanisms": [
+        { "type": "council", "name": "National Assembly", "properties": [
+          { "type": "exists", "status": "yes" },
+          { "type": "binding_powers", "status": "yes" },
+          { "type": "individual_vote", "status": "partial", "explanation": "Party lists with a thresholded preferential vote.", "citations": [ { "law": "ec", "article": "Art. 350 (unverified)" } ] },
+          { "type": "local_constituency", "status": "partial", "explanation": "31 multi-member districts." },
+          { "type": "recall", "status": "no" }
+        ] }
+      ] }
+    },
+    "union": {
+      "summary": "The European citizens' initiative is not binding. MEPs from Bulgaria are elected from one national list.",
+      "direct": { "mechanisms": [
+        { "type": "referendum", "properties": [ { "type": "exists", "status": "no", "explanation": "There is no EU-wide referendum." } ] },
+        { "type": "initiative", "name": "European citizens' initiative", "properties": [
+          { "type": "exists", "status": "yes", "citations": [ { "law": "teu", "article": "Art. 11(4)" } ] },
+          { "type": "binding", "status": "no", "explanation": "One million signatures only invite the Commission to consider a proposal.", "citations": [ { "law": "eci", "article": "Art. 15" } ] }
+        ] }
+      ] },
+      "representative": { "mechanisms": [
+        { "type": "council", "name": "European Parliament", "properties": [
+          { "type": "exists", "status": "yes", "citations": [ { "law": "teu", "article": "Art. 14" } ] },
+          { "type": "binding_powers", "status": "partial", "explanation": "Co-legislator, but cannot initiate legislation." },
+          { "type": "individual_vote", "status": "partial", "explanation": "National party lists with a preferential vote." },
+          { "type": "local_constituency", "status": "no", "explanation": "Bulgaria is a single constituency." },
+          { "type": "recall", "status": "no" }
+        ] }
+      ] }
+    }
+  },
+  "areas": []
+}

@@ -1,0 +1,7 @@
+{
+  "$comment": "List of jurisdiction files. Add a new country by creating data/jurisdictions/<code>.json and listing it here.",
+  "jurisdictions": ["jurisdictions/bg.json", "jurisdictions/ch.json"],
+  "unions": {
+    "eu": { "name": "European Union", "members": ["at","be","bg","hr","cy","cz","dk","ee","fi","fr","de","gr","hu","ie","it","lv","lt","lu","mt","nl","pl","pt","ro","sk","si","es","se"] }
+  }
+}
