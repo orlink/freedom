@@ -11,21 +11,21 @@
     {
       "id": "business",
       "name": "Business",
-      "longName": "Business shared interests",
+      "longName": "Business interests",
       "kind": "sphere",
       "description": "Owners and partners governing their own company: capital, profits, leadership."
     },
     {
       "id": "nonprofit",
       "name": "Non-profit",
-      "longName": "Non-profit shared interests",
+      "longName": "Non-profit interests",
       "kind": "sphere",
       "description": "Members governing their own association, foundation or other non-profit organisation."
     },
     {
       "id": "home",
       "name": "Home",
-      "longName": "Home shared interests",
+      "longName": "Home interests",
       "kind": "territorial",
       "addressKeys": [],
       "description": "The people living together in one home: a house or a flat."
@@ -33,7 +33,7 @@
     {
       "id": "entrance",
       "name": "Apartment building section",
-      "longName": "Apartment building section shared interests",
+      "longName": "Apartment building section interests",
       "kind": "territorial",
       "addressKeys": [],
       "description": "Residents sharing one section (entrance, вход) of an apartment building."
@@ -41,7 +41,7 @@
     {
       "id": "building",
       "name": "Apartment building",
-      "longName": "Apartment building shared interests",
+      "longName": "Apartment building interests",
       "kind": "territorial",
       "addressKeys": [
         "building",
@@ -52,7 +52,7 @@
     {
       "id": "neighbourhood",
       "name": "Neighbourhood",
-      "longName": "Neighbourhood shared interests",
+      "longName": "Neighbourhood interests",
       "kind": "territorial",
       "addressKeys": [
         "neighbourhood",
@@ -65,7 +65,7 @@
     {
       "id": "village",
       "name": "Village",
-      "longName": "Village shared interests",
+      "longName": "Village interests",
       "kind": "territorial",
       "addressKeys": [
         "village",
@@ -76,7 +76,7 @@
     {
       "id": "town",
       "name": "Town",
-      "longName": "Town shared interests",
+      "longName": "Town interests",
       "kind": "territorial",
       "addressKeys": [
         "town"
@@ -86,7 +86,7 @@
     {
       "id": "city",
       "name": "City",
-      "longName": "City shared interests",
+      "longName": "City interests",
       "kind": "territorial",
       "addressKeys": [
         "city"
@@ -96,7 +96,7 @@
     {
       "id": "municipality",
       "name": "Municipality",
-      "longName": "Municipality shared interests",
+      "longName": "Municipality interests",
       "kind": "territorial",
       "addressKeys": [
         "municipality",
@@ -108,7 +108,7 @@
     {
       "id": "county",
       "name": "County / region",
-      "longName": "County / region shared interests",
+      "longName": "County / region interests",
       "kind": "territorial",
       "addressKeys": [
         "county",
@@ -119,7 +119,7 @@
     {
       "id": "state",
       "name": "State / canton",
-      "longName": "State / canton shared interests",
+      "longName": "State / canton interests",
       "kind": "territorial",
       "addressKeys": [
         "state"
@@ -129,7 +129,7 @@
     {
       "id": "country",
       "name": "Country",
-      "longName": "Country shared interests",
+      "longName": "Country interests",
       "kind": "territorial",
       "addressKeys": [
         "country"
@@ -139,7 +139,7 @@
     {
       "id": "union",
       "name": "Union",
-      "longName": "Union shared interests",
+      "longName": "Union interests",
       "kind": "territorial",
       "addressKeys": [],
       "description": "Supranational union, e.g. the European Union."
@@ -150,13 +150,25 @@
       "branch": "direct",
       "name": "Referendum",
       "longName": "Referendums",
-      "description": "A vote of all residents that decides a question."
+      "description": "A vote of all residents that decides a question.",
+      "kinds": [
+        "citizen_initiative",
+        "veto_referendum",
+        "mandatory_referendum"
+      ],
+      "kindProperties": [
+        "exists",
+        "binding",
+        "no_quorum",
+        "concrete_proposals",
+        "reasonable_signatures"
+      ]
     },
     "initiative": {
       "branch": "direct",
-      "name": "Citizens' initiative",
-      "longName": "Citizens' initiatives",
-      "description": "Residents put their own proposal on the agenda or to a vote by collecting signatures."
+      "name": "Agenda initiative",
+      "longName": "Agenda initiatives (proposals the council must consider)",
+      "description": "Residents collect signatures to put a proposal on the agenda of a council; the council decides."
     },
     "general_assembly": {
       "branch": "direct",
@@ -215,13 +227,13 @@
     },
     "no_quorum": {
       "gate": false,
-      "name": "No participation quorum",
+      "name": "No participation quorum requirement",
       "longName": "No minimum turnout is required",
       "description": "The result counts regardless of turnout, so abstainers cannot defeat it by staying home."
     },
     "concrete_proposals": {
       "gate": false,
-      "name": "Votes on concrete proposals",
+      "name": "Concrete proposals available",
       "longName": "People vote on concrete proposals",
       "description": "People decide on specific, worded proposals, not only on vague questions."
     },
@@ -233,13 +245,13 @@
     },
     "reasonable_signatures": {
       "gate": false,
-      "name": "Reasonable signature requirement",
-      "longName": "A reasonable number of signatures is enough",
+      "name": "Reasonable petition requirements",
+      "longName": "Reasonable petition (signature) requirements",
       "description": "Signature thresholds and deadlines are achievable for ordinary residents."
     },
     "broad_scope": {
       "gate": false,
-      "name": "Covers the shared interests",
+      "name": "Covers the interests",
       "longName": "It covers the shared interests of the level",
       "description": "Few excluded topics; budget and local fees can be decided too."
     },
@@ -278,6 +290,23 @@
       "name": "Recall possible",
       "longName": "Voters can recall their representative",
       "description": "Voters can remove the representative before the end of term."
+    }
+  },
+  "referendumKinds": {
+    "citizen_initiative": {
+      "name": "Citizen initiative",
+      "longName": "Citizen initiative referendums",
+      "description": "Citizens collect signatures to put their own proposal to a vote of all."
+    },
+    "veto_referendum": {
+      "name": "Veto referendum",
+      "longName": "Veto referendums",
+      "description": "Citizens collect signatures to put a decision already adopted by the council or parliament to a vote, which can overturn it."
+    },
+    "mandatory_referendum": {
+      "name": "Mandatory referendum",
+      "longName": "Mandatory referendums",
+      "description": "Certain decisions, such as constitutional changes, automatically go to a vote of all."
     }
   }
 }

@@ -21,7 +21,12 @@ function checkLevel(where, lvl, j) {
       const mdef = catalog.mechanisms[m.type];
       if (!mdef) errors.push(`${where}.${b}[${mi}]: unknown mechanism type "${m.type}"`);
       else if (mdef.branch !== b) errors.push(`${where}.${b}[${mi}]: mechanism "${m.type}" belongs to ${mdef.branch}`);
-      for (const p of m.properties || []) {
+      if (m.kinds) {
+        const allowed = mdef?.kinds || [];
+        if (!allowed.length) errors.push(`${where}.${b}.${m.type}: this mechanism has no kinds`);
+        for (const k of m.kinds) if (!allowed.includes(k.type)) errors.push(`${where}.${b}.${m.type}: unknown kind "${k.type}"`);
+      }
+      for (const p of [...(m.properties || []), ...(m.kinds || []).flatMap(k => k.properties || [])]) {
         if (!catalog.properties[p.type]) errors.push(`${where}.${b}.${m.type}: unknown property "${p.type}"`);
         if (!STATUSES.includes(p.status)) errors.push(`${where}.${b}.${m.type}.${p.type}: bad status "${p.status}"`);
         if (!(p.laws || []).length) errors.push(`${where}.${b}.${m.type}.${p.type}: no relevant laws listed`);

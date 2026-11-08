@@ -45,6 +45,8 @@ button { font: inherit; cursor: pointer; }
 .t-black { background: var(--none); color: #fff; }
 .t-unknown { background: transparent; color: var(--text); border: 2px dashed var(--full); }
 .t-law { background: transparent; color: var(--text); border: 2px dashed var(--text); font-weight: 500; }
+.t-disabled { background: transparent; color: var(--muted); border: 2px solid var(--line); opacity: .75; cursor: not-allowed; }
+.t-disabled:hover { transform: none; }
 .t-law:hover { border-color: var(--accent); }
 
 .foot { max-width: 1200px; margin: 0 auto; padding: 8px 20px 24px; color: var(--muted); font-size: 12px; text-align: center; }

@@ -70,3 +70,11 @@ Article-level notes gathered while drafting. They are **not shown on the page**:
 - **zgb** (Swiss Civil Code): checked against [lawbrary.ch (unofficial English translation)](https://lawbrary.ch/law/art/ZGB-v2025.01-en-art-712p/print) — 2025
 - **kv** (Constitution of the Canton of Zürich): checked against [Federal publication SR 131.211](https://res.cloudinary.com/adminch/image/private/s--VBJOORnk--/v1742874348/Bundespublikationen/131-211d.pdf) — as of 1 July 2024
 - **go** (Municipal Code of the City of Zürich): checked against [Text approved by the cantonal government (RRB 1168/2021)](https://www.zh.ch/bin/zhweb/publish/regierungsratsbeschluss-unterlagen./2021/1168/GO_PG_Zuerich.pdf) — adopted 13 June 2021
+
+## Referendum kinds (added 2026-11-08, to be checked)
+
+| Level | Kind | Law | Note | Checked |
+|---|---|---|---|---|
+| country | mandatory referendum | BV | Art. 140: constitutional amendments, joining collective-security organisations or supranational communities, urgent federal acts without constitutional basis. |  |
+| Canton of Zürich | mandatory referendum | KV | Art. 32: constitutional amendments and some other acts. Article to confirm. |  |
+| City of Zürich | mandatory referendum | GO | Changes to the Gemeindeordnung and large new expenditures. Article to confirm. |  |

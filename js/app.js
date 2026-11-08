@@ -1,4 +1,4 @@
-import { resolveJurisdiction, getLevel, scoreLevel, scoreBranch, scoreMechanism, levelPlaces } from './model.js';
+import { resolveJurisdiction, getLevel, scoreLevel, scoreBranch, scoreMechanism, kindProperties, levelPlaces } from './model.js';
 
 const NOMINATIM = 'https://nominatim.openstreetmap.org';
 const BRANCH_INFO = {
@@ -167,8 +167,9 @@ function tone(score) {
 }
 const STATUS_TONE = { yes: 'white', partial: 'lightgrey', no: 'black', unknown: 'unknown' };
 
-function chip({ label, tone, title, onclick, href }) {
+function chip({ label, tone, title, onclick, href, disabled }) {
   const attrs = { class: `tb t-${tone}`, title: title || label };
+  if (disabled) attrs.disabled = '';
   if (href) return el('a', { ...attrs, href, target: '_blank', rel: 'noopener' }, el('span', {}, label));
   return el('button', { ...attrs, type: 'button', onclick }, el('span', {}, label));
 }
@@ -216,7 +217,7 @@ function render() {
   }
 
   // Resolve the path as far as it is valid.
-  const [levelId, branchId, mechIdx, propIdx] = state.path;
+  const [levelId, branchId, mechIdx, step4, step5] = state.path;
   const levels = catalog.levels.map(l => {
     const lvl = loc.places[l.id].absent ? undefined : getLevel(j, l.id);
     return { l, lvl, tone: tone(scoreLevel(lvl, catalog)) };
@@ -225,7 +226,14 @@ function render() {
   const branch = cur && ['direct', 'representative'].includes(branchId) ? cur.lvl[branchId] : undefined;
   const mechs = branch?.applicable !== false ? (branch?.mechanisms || []) : [];
   const mech = mechs[mechIdx];
-  const prop = mech?.properties?.[propIdx];
+  // A mechanism with kinds (referendum) has one more screen: the kinds, then each kind's properties.
+  const kindIdx = mech?.kinds ? step4 : undefined;
+  const kind = mech?.kinds?.[kindIdx];
+  const kindDefs = catalog.referendumKinds || {};
+  const props = kind ? kindProperties(kind, mech.type, catalog) : (mech?.kinds ? [] : mech?.properties || []);
+  const propIdx = mech?.kinds ? step5 : step4;
+  const prop = props[propIdx]?.disabled ? undefined : props[propIdx];
+  const propPath = i => (mech.kinds ? [levelId, branchId, mechIdx, kindIdx, i] : [levelId, branchId, mechIdx, i]);
 
   // Trail: where you are in the tree; each step is clickable.
   // Trail uses each chip's long name.
@@ -233,7 +241,8 @@ function render() {
   if (cur) steps.push([cur.l.longName || cur.l.name, [levelId]]);
   if (cur && branchId && BRANCH_INFO[branchId]) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
   if (mech) steps.push([mechLongName(mech, mechs, catalog), [levelId, branchId, mechIdx]]);
-  if (prop) steps.push([prop.name || catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name, [levelId, branchId, mechIdx, propIdx]]);
+  if (kind) steps.push([kind.name || kindDefs[kind.type]?.longName || kind.type, [levelId, branchId, mechIdx, kindIdx]]);
+  if (prop) steps.push([prop.name || catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name, propPath(propIdx)]);
   $('#trail').replaceChildren(...(steps.length > 1 ? steps.flatMap(([name, path], i) => [
     i ? el('span', { class: 'sep' }, '›') : null,
     i < steps.length - 1 ? el('button', { type: 'button', onclick: () => go(path) }, name) : el('span', { class: 'here' }, name),
@@ -261,13 +270,25 @@ function render() {
     screen.push(rowOf(shown.length ? shown.map(({ m, i, tone }) => chip({
       label: mechLabel(m, mechs, catalog), tone, title: m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, branchId, i]),
     })) : [chip({ label: 'None', tone: 'black', title: branch?.note || 'No such mechanism at this level.' })]));
+  } else if (mech.kinds && !kind) {
+    // Screen 4a: kinds of referendum (citizen initiative, veto, mandatory). Each is always shown; missing ones are black.
+    screen.push(rowOf((catalog.mechanisms[mech.type]?.kinds || []).map(t => {
+      const i = mech.kinds.findIndex(k => k.type === t);
+      const k = mech.kinds[i], def = kindDefs[t] || {};
+      const score = k ? scoreMechanism({ type: mech.type, properties: k.properties }, catalog) : 0;
+      return chip({
+        label: def.name || t, tone: tone(score) || 'unknown', title: [k?.name, def.description].filter(Boolean).join('\n\n'),
+        onclick: i >= 0 ? () => go([levelId, branchId, mechIdx, i]) : undefined,
+      });
+    })));
   } else if (!prop) {
-    // Screen 4: the properties the mechanism needs.
-    screen.push(rowOf(mech.properties.map((p, i) => {
+    // Screen 4: the properties the mechanism needs. If it does not exist in law, the rest are disabled.
+    screen.push(rowOf(props.map((p, i) => {
       const pdef = catalog.properties[p.type] || {};
       return chip({
-        label: p.name || pdef.name || p.type, tone: STATUS_TONE[p.status] || 'unknown',
-        title: [pdef.description, p.explanation].filter(Boolean).join('\n\n'), onclick: () => go([levelId, branchId, mechIdx, i]),
+        label: p.name || pdef.name || p.type, tone: p.disabled ? 'disabled' : (STATUS_TONE[p.status] || 'unknown'),
+        title: p.disabled ? 'Does not apply: the mechanism does not exist in law.' : [pdef.description, p.explanation].filter(Boolean).join('\n\n'),
+        onclick: p.disabled ? undefined : () => go(propPath(i)), disabled: p.disabled,
       });
     })));
   } else {

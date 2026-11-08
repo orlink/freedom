@@ -100,3 +100,12 @@ Article-level notes gathered while drafting. They are **not shown on the page**:
 - **lsga** (Local Self-Government and Local Administration Act): checked against [Central Election Commission, consolidated text](https://www.cik.bg/upload/272338/4.+ZAKON_za_mestnoto_samoupravlenie_i_mestnata_administraciq.pdf) — as amended to SG No. 16/2026
 - **odihr**: OSCE/ODIHR Needs Assessment Mission Report, Bulgaria, early parliamentary elections 2026 (secondary source) https://odihr.osce.org/sites/default/files/documents/official_documents/2026/03/Bulgaria%202026%20early%20parliamentary_%20NAM%20report_03.03.2026.pdf
 - **oik**: Municipal Election Commission Silistra, decision 169-MI of 30.10.2023 (applies the Electoral Code) https://oik1931.cik.bg/mi2023/decisions/169/2023-10-30
+
+## Referendum kinds (added 2026-11-08, to be checked)
+
+| Level | Kind | Status | Law | Note | Checked |
+|---|---|---|---|---|---|
+| village, municipality | citizen initiative | as the local referendum above | ЗПУГДВМС | Citizens can trigger a local referendum by signatures. |  |
+| village, municipality | veto referendum | no | ЗПУГДВМС | No procedure to suspend and overturn an adopted council decision by a vote. |  |
+| village, municipality | mandatory referendum | partial | ЗАТУРБ, ЗПУГДВМС | A local referendum is required for some territorial changes, e.g. creating a municipality. Article to confirm. |  |
+| country | veto / mandatory | no | Constitution, ЗПУГДВМС | Constitutional amendments are adopted by the National Assembly or Grand National Assembly, without a referendum. |  |

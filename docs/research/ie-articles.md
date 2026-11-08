@@ -53,3 +53,10 @@ Article-level notes gathered while drafting. They are **not shown on the page**:
 - **lgra2014** (Local Government Reform Act 2014): checked against [Law Reform Commission, Revised Acts](https://revisedacts.lawreform.ie/eli/2014/act/1/section/21/revised/en/html)
 - **mud2011** (Multi-Unit Developments Act 2011): checked against [Law Reform Commission, Revised Acts](https://revisedacts.lawreform.ie/eli/2011/act/2/section/19/revised/en/html)
 - **lpt2012** (Finance (Local Property Tax) Act 2012): checked against [Irish Statute Book](https://www.irishstatutebook.ie/eli/2012/act/52/section/20)
+
+## Referendum kinds (added 2026-11-08)
+
+| Level | Kind | Law | Note | Checked |
+|---|---|---|---|---|
+| country | mandatory referendum | Constitution | Arts. 46–47: every constitutional amendment goes to the people; no turnout quorum. | yes |
+| country | veto referendum | Constitution | Art. 27: only the President, on a joint petition of a Seanad majority and a third of the Dáil, can refer a bill; not a citizens' right. | yes |

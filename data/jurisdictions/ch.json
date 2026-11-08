@@ -463,114 +463,137 @@
         "mechanisms": [
           {
             "type": "referendum",
-            "name": "Optional referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "yes",
-                "laws": [
-                  "bv"
+                "type": "citizen_initiative",
+                "name": "Popular initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "If accepted by people and cantons, it becomes part of the Constitution.",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "yes",
+                    "explanation": "It may be a general proposal or a fully worded draft.",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "yes",
+                    "explanation": "100,000 signatures within 18 months.",
+                    "laws": [
+                      "bv"
+                    ]
+                  }
                 ]
               },
               {
-                "type": "binding",
-                "status": "yes",
-                "laws": [
-                  "bv",
-                  "bpr"
+                "type": "veto_referendum",
+                "name": "Optional referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "laws": [
+                      "bv",
+                      "bpr"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "yes",
+                    "explanation": "A majority of those voting decides (plus a majority of cantons for constitutional changes).",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "yes",
+                    "explanation": "Voters decide on the adopted text of the act.",
+                    "laws": [
+                      "bv",
+                      "bpr"
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "yes",
+                    "explanation": "50,000 signatures within 100 days, about 1% of voters.",
+                    "laws": [
+                      "bv"
+                    ]
+                  }
                 ]
               },
               {
-                "type": "no_quorum",
-                "status": "yes",
-                "explanation": "A majority of those voting decides (plus a majority of cantons for constitutional changes).",
-                "laws": [
-                  "bv"
-                ]
-              },
-              {
-                "type": "citizen_triggered",
-                "status": "yes",
-                "explanation": "50,000 voters (or eight cantons) can demand a vote on federal acts.",
-                "laws": [
-                  "bv"
-                ]
-              },
-              {
-                "type": "reasonable_signatures",
-                "status": "yes",
-                "explanation": "50,000 signatures within 100 days, about 1% of voters.",
-                "laws": [
-                  "bv"
-                ]
-              },
-              {
-                "type": "concrete_proposals",
-                "status": "yes",
-                "explanation": "Voters decide on the adopted text of the act.",
-                "laws": [
-                  "bv",
-                  "bpr"
-                ]
-              },
-              {
-                "type": "broad_scope",
-                "status": "partial",
-                "explanation": "There is no financial referendum on federal spending.",
-                "laws": [
-                  "bv",
-                  "bpr"
-                ]
-              }
-            ]
-          },
-          {
-            "type": "initiative",
-            "name": "Popular initiative",
-            "properties": [
-              {
-                "type": "exists",
-                "status": "yes",
-                "laws": [
-                  "bv"
-                ]
-              },
-              {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "If accepted by people and cantons, it becomes part of the Constitution.",
-                "laws": [
-                  "bv"
-                ]
-              },
-              {
-                "type": "no_quorum",
-                "status": "yes",
-                "laws": [
-                  "bv"
-                ]
-              },
-              {
-                "type": "citizen_triggered",
-                "status": "yes",
-                "laws": [
-                  "bv"
-                ]
-              },
-              {
-                "type": "reasonable_signatures",
-                "status": "yes",
-                "explanation": "100,000 signatures within 18 months.",
-                "laws": [
-                  "bv"
-                ]
-              },
-              {
-                "type": "concrete_proposals",
-                "status": "yes",
-                "explanation": "It may be a general proposal or a fully worded draft.",
-                "laws": [
-                  "bv"
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "explanation": "Amendments to the Federal Constitution and joining supranational communities go to a vote automatically (Art. 140).",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "yes",
+                    "explanation": "No petition is needed: constitutional amendments go to a vote automatically.",
+                    "laws": [
+                      "bv"
+                    ]
+                  }
                 ]
               }
             ]
@@ -645,98 +668,138 @@
           "direct": {
             "mechanisms": [
               {
-                "type": "initiative",
-                "name": "Cantonal popular initiative",
-                "properties": [
-                  {
-                    "type": "exists",
-                    "status": "yes",
-                    "laws": [
-                      "kv"
-                    ]
-                  },
-                  {
-                    "type": "binding",
-                    "status": "yes",
-                    "laws": [
-                      "kv",
-                      "gpr"
-                    ]
-                  },
-                  {
-                    "type": "no_quorum",
-                    "status": "yes",
-                    "laws": [
-                      "kv",
-                      "gpr"
-                    ]
-                  },
-                  {
-                    "type": "reasonable_signatures",
-                    "status": "yes",
-                    "explanation": "6,000 signatures.",
-                    "laws": [
-                      "kv"
-                    ]
-                  },
-                  {
-                    "type": "concrete_proposals",
-                    "status": "yes",
-                    "explanation": "As a general suggestion or a fully worded draft.",
-                    "laws": [
-                      "kv"
-                    ]
-                  }
-                ]
-              },
-              {
                 "type": "referendum",
-                "name": "Cantonal referendum",
-                "properties": [
+                "kinds": [
                   {
-                    "type": "exists",
-                    "status": "yes",
-                    "laws": [
-                      "kv"
+                    "type": "citizen_initiative",
+                    "name": "Cantonal popular initiative",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "explanation": "As a general suggestion or a fully worded draft.",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "reasonable_signatures",
+                        "status": "yes",
+                        "explanation": "6,000 signatures.",
+                        "laws": [
+                          "kv"
+                        ]
+                      }
                     ]
                   },
                   {
-                    "type": "binding",
-                    "status": "yes",
-                    "laws": [
-                      "kv",
-                      "gpr"
+                    "type": "veto_referendum",
+                    "name": "Cantonal referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "explanation": "The vote is on the adopted act itself.",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "reasonable_signatures",
+                        "status": "yes",
+                        "explanation": "3,000 signatures within 60 days.",
+                        "laws": [
+                          "kv"
+                        ]
+                      }
                     ]
                   },
                   {
-                    "type": "no_quorum",
-                    "status": "yes",
-                    "laws": [
-                      "kv",
-                      "gpr"
-                    ]
-                  },
-                  {
-                    "type": "citizen_triggered",
-                    "status": "yes",
-                    "laws": [
-                      "kv"
-                    ]
-                  },
-                  {
-                    "type": "reasonable_signatures",
-                    "status": "yes",
-                    "explanation": "3,000 signatures within 60 days.",
-                    "laws": [
-                      "kv"
-                    ]
-                  },
-                  {
-                    "type": "broad_scope",
-                    "status": "yes",
-                    "explanation": "Includes new one-off spending over CHF 4 million or recurring spending over CHF 400,000 a year; new taxes go to a mandatory vote.",
-                    "laws": [
-                      "kv"
+                    "type": "mandatory_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "explanation": "Amendments to the cantonal constitution, among others, go to a vote automatically.",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "reasonable_signatures",
+                        "status": "yes",
+                        "explanation": "No petition is needed: constitutional amendments go to a vote automatically.",
+                        "laws": [
+                          "kv"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -849,13 +912,47 @@
             "mechanisms": [
               {
                 "type": "referendum",
-                "properties": [
+                "kinds": [
                   {
-                    "type": "exists",
-                    "status": "no",
-                    "laws": [
-                      "kv",
-                      "gpr"
+                    "type": "citizen_initiative",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A district (Bezirk) has no referendum.",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "veto_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A district (Bezirk) has no referendum.",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "mandatory_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A district (Bezirk) has no referendum.",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -931,105 +1028,144 @@
           "direct": {
             "mechanisms": [
               {
-                "type": "initiative",
-                "name": "City popular initiative",
-                "properties": [
-                  {
-                    "type": "exists",
-                    "status": "yes",
-                    "laws": [
-                      "go"
-                    ]
-                  },
-                  {
-                    "type": "binding",
-                    "status": "yes",
-                    "laws": [
-                      "go",
-                      "gg",
-                      "gpr"
-                    ]
-                  },
-                  {
-                    "type": "no_quorum",
-                    "status": "yes",
-                    "laws": [
-                      "go",
-                      "gg",
-                      "gpr"
-                    ]
-                  },
-                  {
-                    "type": "reasonable_signatures",
-                    "status": "yes",
-                    "explanation": "3,000 signatures.",
-                    "laws": [
-                      "go"
-                    ]
-                  },
-                  {
-                    "type": "concrete_proposals",
-                    "status": "yes",
-                    "laws": [
-                      "go",
-                      "gg",
-                      "gpr"
-                    ]
-                  }
-                ]
-              },
-              {
                 "type": "referendum",
-                "name": "City referendum",
-                "properties": [
+                "kinds": [
                   {
-                    "type": "exists",
-                    "status": "yes",
-                    "explanation": "Optional referendum on council decisions; mandatory votes on the charter and on big spending.",
-                    "laws": [
-                      "go"
+                    "type": "citizen_initiative",
+                    "name": "City popular initiative",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "go",
+                          "gg",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "go",
+                          "gg",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "laws": [
+                          "go",
+                          "gg",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "reasonable_signatures",
+                        "status": "yes",
+                        "explanation": "3,000 signatures.",
+                        "laws": [
+                          "go"
+                        ]
+                      }
                     ]
                   },
                   {
-                    "type": "binding",
-                    "status": "yes",
-                    "laws": [
-                      "go",
-                      "gg",
-                      "gpr"
+                    "type": "veto_referendum",
+                    "name": "City referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "explanation": "Optional referendum on council decisions; mandatory votes on the charter and on big spending.",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "go",
+                          "gg",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "go",
+                          "gg",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "explanation": "The vote is on the adopted act itself.",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "reasonable_signatures",
+                        "status": "yes",
+                        "explanation": "2,000 signatures within 60 days.",
+                        "laws": [
+                          "go"
+                        ]
+                      }
                     ]
                   },
                   {
-                    "type": "no_quorum",
-                    "status": "yes",
-                    "laws": [
-                      "go",
-                      "gg",
-                      "gpr"
-                    ]
-                  },
-                  {
-                    "type": "citizen_triggered",
-                    "status": "yes",
-                    "explanation": "2,000 voters within 60 days.",
-                    "laws": [
-                      "go"
-                    ]
-                  },
-                  {
-                    "type": "reasonable_signatures",
-                    "status": "yes",
-                    "explanation": "2,000 signatures within 60 days.",
-                    "laws": [
-                      "go"
-                    ]
-                  },
-                  {
-                    "type": "broad_scope",
-                    "status": "partial",
-                    "explanation": "New one-off spending over CHF 20 million and recurring spending over CHF 2 million a year go to a mandatory vote, but the tax rate cannot be challenged by referendum.",
-                    "laws": [
-                      "go"
+                    "type": "mandatory_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "explanation": "Changes to the municipal charter and large expenditures go to a vote automatically.",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "reasonable_signatures",
+                        "status": "yes",
+                        "explanation": "No petition is needed: such decisions go to a vote automatically.",
+                        "laws": [
+                          "go"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1157,13 +1293,44 @@
             "mechanisms": [
               {
                 "type": "referendum",
-                "properties": [
+                "kinds": [
                   {
-                    "type": "exists",
-                    "status": "no",
-                    "explanation": "No votes at quarter level; the city's twelve Kreise are administrative units only.",
-                    "laws": [
-                      "go"
+                    "type": "citizen_initiative",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A city district (Kreis) has no referendum of its own.",
+                        "laws": [
+                          "go"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "veto_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A city district (Kreis) has no referendum of its own.",
+                        "laws": [
+                          "go"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "mandatory_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A city district (Kreis) has no referendum of its own.",
+                        "laws": [
+                          "go"
+                        ]
+                      }
                     ]
                   }
                 ]

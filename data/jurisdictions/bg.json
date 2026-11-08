@@ -503,13 +503,44 @@
         "mechanisms": [
           {
             "type": "referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "no",
-                "explanation": "Local referendums can be held only for a municipality, a district (район) or a кметство. Quarters are not on the list.",
-                "laws": [
-                  "dcpa"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "There is no referendum for a part of a municipality such as a квартал.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "There is no referendum for a part of a municipality such as a квартал.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "There is no referendum for a part of a municipality such as a квартал.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  }
                 ]
               }
             ]
@@ -636,61 +667,107 @@
           {
             "type": "referendum",
             "name": "Local referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "A local referendum can be held for a кметство.",
-                "laws": [
-                  "dcpa"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "explanation": "A local referendum can be held for a кметство.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "The decision needs no later approval by the municipal council; it takes effect when announced and the mayor organises its implementation.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "no",
+                    "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "unknown",
+                    "laws": [
+                      "const",
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "partial",
+                    "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  }
                 ]
               },
               {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "The decision needs no later approval by the municipal council; it takes effect when announced and the mayor organises its implementation.",
-                "laws": [
-                  "dcpa"
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Citizens cannot call a vote to overturn a decision once it has been adopted.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  }
                 ]
               },
               {
-                "type": "no_quorum",
-                "status": "no",
-                "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
-                "laws": [
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "citizen_triggered",
-                "status": "yes",
-                "explanation": "An initiative committee can propose it with signatures.",
-                "laws": [
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "reasonable_signatures",
-                "status": "partial",
-                "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
-                "laws": [
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "broad_scope",
-                "status": "partial",
-                "explanation": "The municipal budget, the amount of local taxes and fees, and the council's own rules are excluded.",
-                "laws": [
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "concrete_proposals",
-                "status": "unknown",
-                "laws": [
-                  "const",
-                  "dcpa"
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "partial",
+                    "explanation": "Only for some territorial changes, such as creating a new municipality.",
+                    "laws": [
+                      "atda",
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "no",
+                    "explanation": "The same turnout requirement as for other local referendums applies.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "yes",
+                    "laws": [
+                      "atda"
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "yes",
+                    "explanation": "No petition is needed: such territorial changes go to a vote automatically.",
+                    "laws": [
+                      "atda"
+                    ]
+                  }
                 ]
               }
             ]
@@ -832,61 +909,107 @@
           {
             "type": "referendum",
             "name": "Local referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "A local referendum can be held for a municipality.",
-                "laws": [
-                  "dcpa"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "explanation": "A local referendum can be held for a municipality.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "The decision needs no later approval by the municipal council; it takes effect when announced and the mayor organises its implementation.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "no",
+                    "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "unknown",
+                    "laws": [
+                      "const",
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "partial",
+                    "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  }
                 ]
               },
               {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "The decision needs no later approval by the municipal council; it takes effect when announced and the mayor organises its implementation.",
-                "laws": [
-                  "dcpa"
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Citizens cannot call a vote to overturn a decision once it has been adopted.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  }
                 ]
               },
               {
-                "type": "no_quorum",
-                "status": "no",
-                "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
-                "laws": [
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "citizen_triggered",
-                "status": "yes",
-                "explanation": "An initiative committee can propose it with signatures.",
-                "laws": [
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "reasonable_signatures",
-                "status": "partial",
-                "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
-                "laws": [
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "broad_scope",
-                "status": "partial",
-                "explanation": "The municipal budget, the amount of local taxes and fees, and the council's own rules are excluded.",
-                "laws": [
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "concrete_proposals",
-                "status": "unknown",
-                "laws": [
-                  "const",
-                  "dcpa"
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "partial",
+                    "explanation": "Only for some territorial changes, such as creating a new municipality.",
+                    "laws": [
+                      "atda",
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "no",
+                    "explanation": "The same turnout requirement as for other local referendums applies.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "yes",
+                    "laws": [
+                      "atda"
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "yes",
+                    "explanation": "No petition is needed: such territorial changes go to a vote automatically.",
+                    "laws": [
+                      "atda"
+                    ]
+                  }
                 ]
               }
             ]
@@ -1026,13 +1149,44 @@
         "mechanisms": [
           {
             "type": "referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "no",
-                "explanation": "Local referendums are limited to municipalities, districts and кметства.",
-                "laws": [
-                  "dcpa"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "There is no referendum at the level of an oblast.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "There is no referendum at the level of an oblast.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "There is no referendum at the level of an oblast.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  }
                 ]
               }
             ]
@@ -1082,63 +1236,80 @@
           {
             "type": "referendum",
             "name": "National referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "The National Assembly decides to hold a national referendum.",
-                "laws": [
-                  "const",
-                  "dcpa"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "explanation": "The National Assembly decides to hold a national referendum.",
+                    "laws": [
+                      "const",
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "No later approval by parliament is needed; conflicting acts stop applying after three months.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "no",
+                    "explanation": "Adopted only if turnout is at least that of the last parliamentary election. With over 20% turnout it is merely sent to parliament.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "partial",
+                    "explanation": "Codes that regulate a whole field cannot be put to a vote as a whole.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "partial",
+                    "explanation": "400,000 is roughly 6–7% of registered voters.",
+                    "laws": [
+                      "const",
+                      "dcpa"
+                    ]
+                  }
                 ]
               },
               {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "No later approval by parliament is needed; conflicting acts stop applying after three months.",
-                "laws": [
-                  "dcpa"
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Citizens cannot call a vote to overturn a decision once it has been adopted.",
+                    "laws": [
+                      "const",
+                      "dcpa"
+                    ]
+                  }
                 ]
               },
               {
-                "type": "no_quorum",
-                "status": "no",
-                "explanation": "Adopted only if turnout is at least that of the last parliamentary election. With over 20% turnout it is merely sent to parliament.",
-                "laws": [
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "citizen_triggered",
-                "status": "yes",
-                "explanation": "200,000 signatures to propose; 400,000 oblige parliament to call it.",
-                "laws": [
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "reasonable_signatures",
-                "status": "partial",
-                "explanation": "400,000 is roughly 6–7% of registered voters.",
-                "laws": [
-                  "const",
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "broad_scope",
-                "status": "partial",
-                "explanation": "Taxes, the budget and some constitutional matters are excluded.",
-                "laws": [
-                  "dcpa"
-                ]
-              },
-              {
-                "type": "concrete_proposals",
-                "status": "partial",
-                "explanation": "Codes that regulate a whole field cannot be put to a vote as a whole.",
-                "laws": [
-                  "dcpa"
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "No decision has to go to a national vote; constitutional amendments are adopted by parliament.",
+                    "laws": [
+                      "const",
+                      "dcpa"
+                    ]
+                  }
                 ]
               }
             ]
@@ -1204,14 +1375,47 @@
         "mechanisms": [
           {
             "type": "referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "no",
-                "explanation": "There is no EU-wide referendum.",
-                "laws": [
-                  "teu",
-                  "eci"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "The EU has no referendum.",
+                    "laws": [
+                      "teu",
+                      "eci"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "The EU has no referendum.",
+                    "laws": [
+                      "teu",
+                      "eci"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "The EU has no referendum.",
+                    "laws": [
+                      "teu",
+                      "eci"
+                    ]
+                  }
                 ]
               }
             ]

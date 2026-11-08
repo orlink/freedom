@@ -493,13 +493,44 @@
         "mechanisms": [
           {
             "type": "referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "no",
-                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government.",
-                "laws": [
-                  "lga2001"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
                 ]
               }
             ]
@@ -585,13 +616,44 @@
         "mechanisms": [
           {
             "type": "referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "no",
-                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government.",
-                "laws": [
-                  "lga2001"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
                 ]
               }
             ]
@@ -672,13 +734,44 @@
         "mechanisms": [
           {
             "type": "referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "no",
-                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government.",
-                "laws": [
-                  "lga2001"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
                 ]
               }
             ]
@@ -754,13 +847,44 @@
         "mechanisms": [
           {
             "type": "referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "no",
-                "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government.",
-                "laws": [
-                  "lga2001"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ]
+                  }
                 ]
               }
             ]
@@ -857,69 +981,79 @@
         "mechanisms": [
           {
             "type": "referendum",
-            "name": "Constitutional referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "Every constitutional amendment is submitted to the people.",
-                "laws": [
-                  "bunreacht"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Citizens cannot put their own proposal to a vote.",
+                    "laws": [
+                      "bunreacht",
+                      "ref1994"
+                    ]
+                  }
                 ]
               },
               {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "An approved amendment is signed into law; a vetoed ordinary proposal cannot be enacted.",
-                "laws": [
-                  "bunreacht"
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Only the President, on a petition of a Senate majority and a third of the Dáil, can refer a bill to the people (Art. 27); citizens cannot.",
+                    "laws": [
+                      "bunreacht"
+                    ]
+                  }
                 ]
               },
               {
-                "type": "no_quorum",
-                "status": "yes",
-                "explanation": "Constitutional amendments pass with a majority of votes cast. Ordinary-bill referendums are vetoed only if a majority votes no and that majority is at least a third of the register.",
-                "laws": [
-                  "bunreacht"
-                ]
-              },
-              {
-                "type": "citizen_triggered",
-                "status": "no",
-                "explanation": "Amendments are initiated only in the Dáil as a Bill. A referendum on an ordinary bill requires a petition by a Seanad majority and a third of the Dáil.",
-                "laws": [
-                  "bunreacht"
-                ]
-              },
-              {
-                "type": "concrete_proposals",
-                "status": "yes",
-                "explanation": "Voters decide on the worded amendment bill.",
-                "laws": [
-                  "bunreacht",
-                  "ref1994"
-                ]
-              },
-              {
-                "type": "broad_scope",
-                "status": "partial",
-                "explanation": "Only constitutional amendments and bills referred to the people at the request of parliament; ordinary laws are not subject to referendum.",
-                "laws": [
-                  "bunreacht"
-                ]
-              }
-            ]
-          },
-          {
-            "type": "initiative",
-            "properties": [
-              {
-                "type": "exists",
-                "status": "no",
-                "explanation": "The Constitution has no citizens' initiative.",
-                "laws": [
-                  "bunreacht",
-                  "ref1994"
+                "type": "mandatory_referendum",
+                "name": "Constitutional referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "explanation": "Every constitutional amendment is submitted to the people.",
+                    "laws": [
+                      "bunreacht"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "An approved amendment is signed into law; a vetoed ordinary proposal cannot be enacted.",
+                    "laws": [
+                      "bunreacht"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "yes",
+                    "explanation": "Constitutional amendments pass with a majority of votes cast. Ordinary-bill referendums are vetoed only if a majority votes no and that majority is at least a third of the register.",
+                    "laws": [
+                      "bunreacht"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "yes",
+                    "explanation": "Voters decide on the worded amendment bill.",
+                    "laws": [
+                      "bunreacht",
+                      "ref1994"
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "yes",
+                    "explanation": "No petition is needed: all constitutional amendments go to a vote automatically.",
+                    "laws": [
+                      "bunreacht"
+                    ]
+                  }
                 ]
               }
             ]
@@ -984,14 +1118,47 @@
         "mechanisms": [
           {
             "type": "referendum",
-            "properties": [
+            "kinds": [
               {
-                "type": "exists",
-                "status": "no",
-                "explanation": "There is no EU-wide referendum.",
-                "laws": [
-                  "teu",
-                  "eci"
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "The EU has no referendum.",
+                    "laws": [
+                      "teu",
+                      "eci"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "The EU has no referendum.",
+                    "laws": [
+                      "teu",
+                      "eci"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "The EU has no referendum.",
+                    "laws": [
+                      "teu",
+                      "eci"
+                    ]
+                  }
                 ]
               }
             ]
@@ -1089,13 +1256,44 @@
             "mechanisms": [
               {
                 "type": "referendum",
-                "properties": [
+                "kinds": [
                   {
-                    "type": "exists",
-                    "status": "no",
-                    "explanation": "Irish law provides no citizen-initiated local referendum. The only local plebiscites (2019, on directly elected mayors) were called by the government.",
-                    "laws": [
-                      "lga2001"
+                    "type": "citizen_initiative",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "Local government law provides no local referendum.",
+                        "laws": [
+                          "lga2001"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "veto_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "Local government law provides no local referendum.",
+                        "laws": [
+                          "lga2001"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "mandatory_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "Local government law provides no local referendum.",
+                        "laws": [
+                          "lga2001"
+                        ]
+                      }
                     ]
                   }
                 ]

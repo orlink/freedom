@@ -55,6 +55,11 @@ function withoutKeys(obj, keys) {
  * A mechanism's `weight` (default 1) scales the result, e.g. for fallback mechanisms.
  */
 export function scoreMechanism(mech, catalog) {
+  // A mechanism with kinds (e.g. referendum: citizen initiative, veto, mandatory) is as good as its best kind.
+  if (mech.kinds) {
+    const scores = mech.kinds.map(k => scoreMechanism({ type: mech.type, properties: k.properties }, catalog)).filter(x => x != null);
+    return scores.length ? Math.max(...scores) : null;
+  }
   const props = mech.properties || [];
   let gateFactor = 1;
   const values = [];
@@ -132,4 +137,18 @@ export function levelPlaces(address, catalog, unions, jurisdiction) {
     out[lvl.id] = { name, absent: absent || (lvl.id === 'union' && !name) };
   }
   return out;
+}
+
+/**
+ * The property chips of a referendum kind, in the catalog's order. Properties the data leaves out appear as
+ * "unknown"; when the kind does not exist in law, every other property is marked `disabled`.
+ */
+export function kindProperties(kind, mechType, catalog) {
+  const order = catalog.mechanisms[mechType]?.kindProperties || [];
+  const byType = Object.fromEntries((kind.properties || []).map(p => [p.type, p]));
+  const missing = byType.exists?.status === 'no';
+  return order.map(t => {
+    const p = byType[t] || { type: t, status: 'unknown', laws: [] };
+    return t !== 'exists' && missing ? { ...p, disabled: true } : p;
+  });
 }

@@ -9,6 +9,7 @@ Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism �
 ```
 
 * **Level**: a community of shared interest (`data/catalog.json` → `levels`). *Spheres* (individual, business, non-profit) apply everywhere. *Territorial* levels are named from the geocoded address.
+* A **referendum** lists `kinds` instead of `properties`: `citizen_initiative`, `veto_referendum` and `mandatory_referendum` (catalog `referendumKinds`). Each kind has its own `properties`; the page always shows the five in `kindProperties` (exists, binding, no quorum, concrete proposals, reasonable petition requirements). A kind that does not exist only needs `exists: no`, and the other four appear disabled.
 * Every level, mechanism type and property type in the catalog has a short `name` (shown on its chip) and a `longName` (shown in the breadcrumb trail).
 * **Branch**: `direct` (the people decide) or `representative` (elected representatives decide).
 * **Mechanism**: a concrete way of deciding, such as `referendum`, `initiative`, `general_assembly`, `council`, `executive`, or `upper_council_seat` (the community's own member of the council one level up, used as a fallback when it has no body of its own).
