@@ -561,8 +561,8 @@
                   },
                   {
                     "type": "no_quorum",
-                    "status": "no",
-                    "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
+                    "status": "weak",
+                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a participation quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the municipal council, which sets the date.",
                     "laws": [
                       "dcpa"
                     ],
@@ -573,6 +573,18 @@
                           {
                             "ref": "Article 41(2)",
                             "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”."
+                          },
+                          {
+                            "ref": "Article 41(3)",
+                            "text": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the valid votes cast in the respective municipality in the elections for municipal councillors have answered “yes”."
+                          },
+                          {
+                            "ref": "Article 30(4)",
+                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum."
+                          },
+                          {
+                            "ref": "Article 30(5)",
+                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum."
                           }
                         ]
                       }
@@ -826,8 +838,8 @@
                   },
                   {
                     "type": "no_quorum",
-                    "status": "no",
-                    "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
+                    "status": "weak",
+                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a participation quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the municipal council, which sets the date.",
                     "laws": [
                       "dcpa"
                     ],
@@ -838,6 +850,18 @@
                           {
                             "ref": "Article 41(2)",
                             "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”."
+                          },
+                          {
+                            "ref": "Article 41(3)",
+                            "text": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the valid votes cast in the respective municipality in the elections for municipal councillors have answered “yes”."
+                          },
+                          {
+                            "ref": "Article 30(4)",
+                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum."
+                          },
+                          {
+                            "ref": "Article 30(5)",
+                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum."
                           }
                         ]
                       }
@@ -1107,8 +1131,8 @@
                   },
                   {
                     "type": "no_quorum",
-                    "status": "no",
-                    "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
+                    "status": "weak",
+                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a participation quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the municipal council, which sets the date.",
                     "laws": [
                       "dcpa"
                     ],
@@ -1119,6 +1143,18 @@
                           {
                             "ref": "Article 41(2)",
                             "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”."
+                          },
+                          {
+                            "ref": "Article 41(3)",
+                            "text": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the valid votes cast in the respective municipality in the elections for municipal councillors have answered “yes”."
+                          },
+                          {
+                            "ref": "Article 30(4)",
+                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum."
+                          },
+                          {
+                            "ref": "Article 30(5)",
+                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum."
                           }
                         ]
                       }
@@ -1211,8 +1247,8 @@
                   },
                   {
                     "type": "no_quorum",
-                    "status": "no",
-                    "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
+                    "status": "weak",
+                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a participation quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the mayor, who sets the date within two months of the request.",
                     "laws": [
                       "dcpa"
                     ],
@@ -1223,6 +1259,14 @@
                           {
                             "ref": "Article 41(2)",
                             "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”."
+                          },
+                          {
+                            "ref": "Article 41(3)",
+                            "text": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the valid votes cast in the respective municipality in the elections for municipal councillors have answered “yes”."
+                          },
+                          {
+                            "ref": "Article 27(3)",
+                            "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request."
                           }
                         ]
                       }

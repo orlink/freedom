@@ -50,8 +50,8 @@ function withoutKeys(obj, keys) {
 
 /**
  * Score a mechanism in [0,1], or null if nothing is known.
- * Average of the known property values; a "gate" property that is "no" zeroes the mechanism and one that is
- * "partial" halves it. Gates are set per property in the catalog, or per mechanism via `gates`.
+ * Average of the known property values; a "gate" property that is "no" zeroes the mechanism, one that is
+ * "partial" halves it, and one that is "weak" caps it at 0.25 (dark grey). Gates are set per property in the catalog, or per mechanism via `gates`.
  * A mechanism's `weight` (default 1) scales the result, e.g. for fallback mechanisms.
  */
 export function scoreMechanism(mech, catalog) {
@@ -61,7 +61,7 @@ export function scoreMechanism(mech, catalog) {
     return scores.length ? Math.max(...scores) : null;
   }
   const props = mech.properties || [];
-  let gateFactor = 1;
+  let gateFactor = 1, cap = 1;
   const values = [];
   for (const p of props) {
     const v = STATUS_VALUE[p.status];
@@ -69,12 +69,13 @@ export function scoreMechanism(mech, catalog) {
     const gate = def.gate || (catalog.mechanisms[mech.type]?.gates || []).includes(p.type);
     if (gate && v === 0) return 0;
     if (gate && v === 0.5) gateFactor *= 0.5;
+    if (gate && v === 0.25) cap = Math.min(cap, 0.25);
     if (v != null) values.push(v);
   }
   if (!values.length) return null;
   const avg = values.reduce((a, b) => a + b, 0) / values.length;
   const weight = catalog.mechanisms[mech.type]?.weight ?? 1;
-  return avg * gateFactor * weight;
+  return Math.min(avg * gateFactor, cap) * weight;
 }
 
 /** Score a branch ("direct" | "representative"): the best mechanism counts. 'na' if not applicable. */
