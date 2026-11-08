@@ -236,10 +236,12 @@ function render() {
   if (!cur) {
     // Screen 1: levels of shared interest. Geographical, from home to union; then non-geographical.
     const levelChip = ({ l, tone }) => chip({ label: l.name, tone, title: [l.name, loc.places[l.id].name].filter(Boolean).join(': '), onclick: () => go([l.id]) });
+    screen.push(el('h2', { class: 'group-title' }, 'Shared interest levels'));
     screen.push(rowOf(levels.filter(x => x.l.kind === 'territorial').map(levelChip)));
     screen.push(rowOf(levels.filter(x => x.l.kind !== 'territorial').map(levelChip)));
   } else if (!branch && branchId !== 'direct' && branchId !== 'representative') {
     // Screen 2: the level's shared interests, then the two ways of deciding.
+    screen.push(el('h2', { class: 'group-title' }, 'Shared interest types'));
     screen.push(rowOf(interestChips(levelId), 'interests'));
     screen.push(rowOf(['direct', 'representative'].map(b => chip({
       label: BRANCH_INFO[b].name, tone: tone(scoreBranch(cur.lvl[b], catalog)) || 'black', title: BRANCH_INFO[b].desc,

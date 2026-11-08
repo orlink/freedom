@@ -31,6 +31,7 @@ button { font: inherit; cursor: pointer; }
 .tree { display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .tree-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; animation: fadein .15s ease-out; }
 .tree-row + .tree-row { padding-top: 14px; border-top: 1px solid var(--line); width: 100%; }
+.group-title { width: 100%; margin: 0 0 10px; text-align: center; font-size: .95rem; font-weight: 600; letter-spacing: .02em; color: var(--text); }
 @keyframes fadein { from { opacity: 0; } }
 
 .tb { width: var(--btn-w); height: var(--btn-h); display: flex; align-items: center; justify-content: center; text-align: center;
