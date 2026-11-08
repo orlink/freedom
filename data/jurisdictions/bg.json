@@ -592,6 +592,28 @@
                     "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 27(1)",
+                            "text": [
+                              "A local referendum shall be held on the proposal of:",
+                              "3. an initiative committee with the signatures of no fewer than one twentieth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
+                            ]
+                          },
+                          {
+                            "ref": "Article 27(2)",
+                            "text": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality, district or mayoralty, and it does not contravene the restriction under Article 26(2)."
+                          },
+                          {
+                            "ref": "Article 28(8)",
+                            "text": "If the petition is not submitted to the municipal council within three months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -835,6 +857,28 @@
                     "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 27(1)",
+                            "text": [
+                              "A local referendum shall be held on the proposal of:",
+                              "3. an initiative committee with the signatures of no fewer than one twentieth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
+                            ]
+                          },
+                          {
+                            "ref": "Article 27(2)",
+                            "text": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality, district or mayoralty, and it does not contravene the restriction under Article 26(2)."
+                          },
+                          {
+                            "ref": "Article 28(8)",
+                            "text": "If the petition is not submitted to the municipal council within three months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1094,6 +1138,28 @@
                     "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 27(1)",
+                            "text": [
+                              "A local referendum shall be held on the proposal of:",
+                              "3. an initiative committee with the signatures of no fewer than one twentieth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
+                            ]
+                          },
+                          {
+                            "ref": "Article 27(2)",
+                            "text": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality, district or mayoralty, and it does not contravene the restriction under Article 26(2)."
+                          },
+                          {
+                            "ref": "Article 28(8)",
+                            "text": "If the petition is not submitted to the municipal council within three months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1410,6 +1476,28 @@
                     "laws": [
                       "const",
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 10(1)",
+                            "text": [
+                              "A proposal to the National Assembly to hold a national referendum may be made by:",
+                              "5. an initiative committee of citizens with voting rights that has collected no fewer than 200,000 signatures of citizens with voting rights."
+                            ]
+                          },
+                          {
+                            "ref": "Article 10(2)",
+                            "text": "The National Assembly shall adopt a decision to hold a national referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than 400,000 Bulgarian citizens with voting rights, and it does not contravene the restrictions under Article 9(2), (3) and (4)."
+                          },
+                          {
+                            "ref": "Article 12(8)",
+                            "text": "If the petition is not submitted to the National Assembly within three months of the notification under paragraph 2, item 3, the procedure for submitting a proposal for a referendum shall be terminated by the Chairperson of the National Assembly, and this shall be entered in the register under Article 10(3)."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
