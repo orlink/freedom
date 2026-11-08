@@ -35,13 +35,14 @@
     "lsga": {
       "title": "Local Self-Government and Local Administration Act",
       "localTitle": "Закон за местното самоуправление и местната администрация (ЗМСМА)",
-      "url": "https://www.cik.bg/upload/272338/4.+ZAKON_za_mestnoto_samoupravlenie_i_mestnata_administraciq.pdf",
+      "url": "https://lex.bg/laws/ldoc/2132580865",
       "short": "ЗМСМА"
     },
     "ec": {
       "title": "Electoral Code",
       "localTitle": "Изборен кодекс",
-      "short": "Изборен кодекс"
+      "short": "Изборен кодекс",
+      "url": "https://lex.bg/bg/laws/ldoc/2136112596"
     },
     "ltfa": {
       "title": "Local Taxes and Fees Act",
@@ -703,11 +704,36 @@
             "properties": [
               {
                 "type": "exists",
-                "status": "yes",
-                "explanation": "Can be held for a municipality, district, кметство, settlement or quarter, including residential areas (квартали) of up to 10,000 inhabitants.",
+                "status": "partial",
+                "explanation": "Only quarters (квартали) and districts of up to 10,000 inhabitants can hold one, which rules out most city neighbourhoods.",
                 "laws": [
                   "dcpa",
                   "const"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 3(1)",
+                        "text": [
+                          "Direct participation shall be exercised through:",
+                          "4. a general assembly of the population."
+                        ]
+                      },
+                      {
+                        "ref": "Chapter IV – General assembly of the population"
+                      },
+                      {
+                        "ref": "Article 54(1)",
+                        "text": "A general assembly of the population shall be held to decide matters of local importance which, on grounds of expediency, fall within the competence of the respective municipal council or mayor."
+                      },
+                      {
+                        "ref": "Article 55(1)",
+                        "text": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters with a population of up to 10,000 inhabitants."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -716,6 +742,25 @@
                 "explanation": "Not directly binding: the municipal council or mayor must issue the acts that implement it within one month.",
                 "laws": [
                   "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 54(2)",
+                        "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period."
+                      },
+                      {
+                        "ref": "Article 54(3)",
+                        "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter."
+                      },
+                      {
+                        "ref": "Article 63(3)",
+                        "text": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit a proposal to the municipal council for the preparation and adoption of a relevant decision, rules or ordinance."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -724,6 +769,25 @@
                 "explanation": "One quarter of eligible voters must attend (one third in places of up to 150 inhabitants). If not, after one hour it may proceed only with one tenth. In a quarter of 10,000 that is 1,000 people in one room.",
                 "laws": [
                   "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 60(1)",
+                        "text": "The general assembly of the population shall be deemed quorate if no fewer than one quarter of the citizens with voting rights in the municipality, district, mayoralty, settlement or quarter are present."
+                      },
+                      {
+                        "ref": "Article 60(2)",
+                        "text": "In settlements with up to 150 inhabitants, at least one third of the citizens with voting rights in the settlement must be present for a general assembly of the population to be held."
+                      },
+                      {
+                        "ref": "Article 60(3)",
+                        "text": "If the required number of citizens has not appeared at the set time, the assembly shall be postponed by one hour, after which it shall be held with those present. Their number, however, may not be less than one tenth of all citizens with voting rights."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -732,6 +796,28 @@
                 "explanation": "The mayor must convene it on request of 1/50 of eligible voters, at least 20 people.",
                 "laws": [
                   "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 57(1)",
+                        "text": [
+                          "The general assembly of the population shall be convened by the mayor of the municipality, district or mayoralty on:",
+                          "3. the request of at least one fiftieth, but no fewer than 20, citizens with voting rights with a permanent or current address in the municipality, district, mayoralty, settlement or quarter at the time the request is made."
+                        ]
+                      },
+                      {
+                        "ref": "Article 57(5)",
+                        "text": "The initiative committee shall submit the petition to the mayor, who shall be obliged to convene the general assembly of the population within the period stated in it."
+                      },
+                      {
+                        "ref": "Article 58(1)",
+                        "text": "The general assembly shall be held no earlier than 15 days and no later than one month after it has been announced."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -740,6 +826,20 @@
                 "explanation": "1/50 of voters, at least 20 people.",
                 "laws": [
                   "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 57(1)",
+                        "text": [
+                          "The general assembly of the population shall be convened by the mayor of the municipality, district or mayoralty on:",
+                          "3. the request of at least one fiftieth, but no fewer than 20, citizens with voting rights with a permanent or current address in the municipality, district, mayoralty, settlement or quarter at the time the request is made."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -755,9 +855,35 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "The only constituent units of a municipality are кметства and districts (райони). The law provides no body for a quarter.",
+                "explanation": "The law provides no elected body for a neighbourhood (квартал). Districts (райони) of Sofia, Plovdiv and Varna elect only a district mayor, who carries out municipal decisions; there are no district councils.",
                 "laws": [
                   "lsga"
+                ],
+                "provisions": [
+                  {
+                    "law": "lsga",
+                    "items": [
+                      {
+                        "ref": "Article 2(2)",
+                        "text": "The constituent administrative-territorial units within municipalities are mayoralties (кметства) and districts (райони). They are created under conditions and by a procedure laid down by law."
+                      },
+                      {
+                        "ref": "Article 2(5)",
+                        "text": "Mayors of districts are elected in the districts of Sofia Municipality and of cities divided into districts."
+                      },
+                      {
+                        "ref": "Article 46(1)",
+                        "text": [
+                          "The mayor of a district or mayoralty:",
+                          "1. implements the municipal budget in its part for the district or mayoralty;",
+                          "2. organises improvement, communal and other activities;",
+                          "3. is responsible for managing municipal property sites designated by the municipal council;",
+                          "11. organises the implementation of the acts of the municipal council and of the mayor of the municipality relating to the territory and citizens of the district or mayoralty;",
+                          "12. performs functions assigned by the mayor of the municipality."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -785,18 +911,52 @@
               },
               {
                 "type": "individual_vote",
-                "status": "partial",
+                "status": "weak",
                 "explanation": "Party lists with one optional preference vote. A preference changes the list order only if it reaches 7% of the votes cast for that list.",
                 "laws": [
                   "ec"
+                ],
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 399(1)",
+                        "text": "Elections for municipal councillors are held under a proportional electoral system, with candidate lists of parties and coalitions, or of initiative committees, registered in multi-member constituencies."
+                      },
+                      {
+                        "ref": "Article 399(2)",
+                        "text": "When voting for the candidate list of a party or coalition, the voter may mark one preference for a candidate on the list, thereby expressing a preference as to the order of the candidates on the list voted for."
+                      },
+                      {
+                        "ref": "Article 454(2)",
+                        "text": "Preferences for individual candidates are valid if the number of votes received for the candidate is no less than 7 per cent of the votes cast for the candidate list."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "local_constituency",
                 "status": "no",
-                "explanation": "Seats are allocated across the whole municipality (Hare-Niemeyer), so no councillor is elected by, or answers to, a particular quarter.",
+                "explanation": "The whole municipality is one constituency, so no councillor is elected by, or answers to, the neighbourhood.",
                 "laws": [
                   "ec"
+                ],
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 404(1)",
+                        "text": "For elections for municipal councillors, the territory of the municipality constitutes one multi-member constituency."
+                      },
+                      {
+                        "ref": "Article 453(2)",
+                        "text": "The results of the voting for municipal councillors under the proportional system are determined by the Hare-Niemeyer method."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1025,6 +1185,31 @@
                 "laws": [
                   "dcpa",
                   "const"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 3(1)",
+                        "text": [
+                          "Direct participation shall be exercised through:",
+                          "4. a general assembly of the population."
+                        ]
+                      },
+                      {
+                        "ref": "Chapter IV – General assembly of the population"
+                      },
+                      {
+                        "ref": "Article 54(1)",
+                        "text": "A general assembly of the population shall be held to decide matters of local importance which, on grounds of expediency, fall within the competence of the respective municipal council or mayor."
+                      },
+                      {
+                        "ref": "Article 55(1)",
+                        "text": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters with a population of up to 10,000 inhabitants."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1033,6 +1218,25 @@
                 "explanation": "Not directly binding: the municipal council or mayor must issue the acts that implement it within one month.",
                 "laws": [
                   "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 54(2)",
+                        "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period."
+                      },
+                      {
+                        "ref": "Article 54(3)",
+                        "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter."
+                      },
+                      {
+                        "ref": "Article 63(3)",
+                        "text": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit a proposal to the municipal council for the preparation and adoption of a relevant decision, rules or ordinance."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1041,6 +1245,25 @@
                 "explanation": "One quarter of eligible voters must attend (one third in places of up to 150 inhabitants). If not, after one hour it may proceed only with one tenth. In a quarter of 10,000 that is 1,000 people in one room.",
                 "laws": [
                   "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 60(1)",
+                        "text": "The general assembly of the population shall be deemed quorate if no fewer than one quarter of the citizens with voting rights in the municipality, district, mayoralty, settlement or quarter are present."
+                      },
+                      {
+                        "ref": "Article 60(2)",
+                        "text": "In settlements with up to 150 inhabitants, at least one third of the citizens with voting rights in the settlement must be present for a general assembly of the population to be held."
+                      },
+                      {
+                        "ref": "Article 60(3)",
+                        "text": "If the required number of citizens has not appeared at the set time, the assembly shall be postponed by one hour, after which it shall be held with those present. Their number, however, may not be less than one tenth of all citizens with voting rights."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1049,6 +1272,28 @@
                 "explanation": "The mayor must convene it on request of 1/50 of eligible voters, at least 20 people.",
                 "laws": [
                   "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 57(1)",
+                        "text": [
+                          "The general assembly of the population shall be convened by the mayor of the municipality, district or mayoralty on:",
+                          "3. the request of at least one fiftieth, but no fewer than 20, citizens with voting rights with a permanent or current address in the municipality, district, mayoralty, settlement or quarter at the time the request is made."
+                        ]
+                      },
+                      {
+                        "ref": "Article 57(5)",
+                        "text": "The initiative committee shall submit the petition to the mayor, who shall be obliged to convene the general assembly of the population within the period stated in it."
+                      },
+                      {
+                        "ref": "Article 58(1)",
+                        "text": "The general assembly shall be held no earlier than 15 days and no later than one month after it has been announced."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1057,6 +1302,20 @@
                 "explanation": "1/50 of voters, at least 20 people.",
                 "laws": [
                   "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 57(1)",
+                        "text": [
+                          "The general assembly of the population shall be convened by the mayor of the municipality, district or mayoralty on:",
+                          "3. the request of at least one fiftieth, but no fewer than 20, citizens with voting rights with a permanent or current address in the municipality, district, mayoralty, settlement or quarter at the time the request is made."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -1072,9 +1331,24 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "Кметства have an elected mayor but no council; the municipal council decides.",
+                "explanation": "Кметства elect only a mayor. There is no village council; the municipal council decides.",
                 "laws": [
                   "lsga"
+                ],
+                "provisions": [
+                  {
+                    "law": "lsga",
+                    "items": [
+                      {
+                        "ref": "Article 2(3)",
+                        "text": "Municipal councils and mayors of municipalities are elected in municipalities."
+                      },
+                      {
+                        "ref": "Article 2(4)",
+                        "text": "Mayors of mayoralties are elected in mayoralties."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -1086,33 +1360,120 @@
               {
                 "type": "exists",
                 "status": "partial",
-                "explanation": "Mayors of кметства are directly elected for four years. Villages that are not кметства get a кметски наместник appointed by the municipal mayor.",
+                "explanation": "Settlements of more than 100 residents are кметства and elect a mayor. Smaller ones get a кметски наместник appointed, and dismissible at will, by the municipal mayor.",
                 "laws": [
                   "lsga"
+                ],
+                "provisions": [
+                  {
+                    "law": "lsga",
+                    "items": [
+                      {
+                        "ref": "Article 2(4)",
+                        "text": "Mayors of mayoralties are elected in mayoralties."
+                      },
+                      {
+                        "ref": "Article 38(2)",
+                        "text": "The mayor of the municipality, as well as the mayors of districts and mayoralties, are elected directly by the population for a term of 4 years under conditions and by a procedure laid down in the Electoral Code."
+                      },
+                      {
+                        "ref": "Article 46a(1), (3)",
+                        "text": [
+                          "In settlements that are not the administrative centre of a mayoralty, the mayor of the municipality may appoint mayoral deputies (кметски наместници) for the term of office.",
+                          "Mayoral deputies are bodies of executive power in the settlement. They may be dismissed early without notice by the mayor of the municipality."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "binding_powers",
-                "status": "partial",
-                "explanation": "The municipal council sets the кметство mayor's powers.",
+                "status": "weak",
+                "explanation": "The кметство mayor only carries out the municipal budget and the council’s and municipal mayor’s acts for the village, with an advisory vote in the council. The municipal council sets the mayor’s powers and decides the budget, fees, property and plans, so the village cannot govern most of its own interests.",
                 "laws": [
                   "lsga"
+                ],
+                "provisions": [
+                  {
+                    "law": "lsga",
+                    "items": [
+                      {
+                        "ref": "Article 46(1)",
+                        "text": [
+                          "The mayor of a district or mayoralty:",
+                          "1. implements the municipal budget in its part for the district or mayoralty;",
+                          "2. organises improvement, communal and other activities;",
+                          "3. is responsible for managing municipal property sites designated by the municipal council;",
+                          "11. organises the implementation of the acts of the municipal council and of the mayor of the municipality relating to the territory and citizens of the district or mayoralty;",
+                          "12. performs functions assigned by the mayor of the municipality."
+                        ]
+                      },
+                      {
+                        "ref": "Article 46(3)",
+                        "text": "The mayor of a district and the mayor of a mayoralty may take part in the sessions of the municipal council in an advisory capacity. They must be heard when matters concerning the mayoralty or district are discussed."
+                      },
+                      {
+                        "ref": "Article 21(1)",
+                        "text": [
+                          "The municipal council:",
+                          "6. adopts and amends the annual budget of the municipality, including the figures for the districts, mayoralties and settlements with mayoral deputies, monitors its implementation and adopts the report on it;",
+                          "7. sets the amount of local fees;",
+                          "8. adopts decisions on the acquisition, management and disposal of municipal property and determines the specific powers of the mayor of the municipality and of the mayors of districts and mayoralties;",
+                          "11. adopts decisions on the creation and approval of spatial development plans and their amendments for the territory of the municipality or parts of it;",
+                          "23. decides other matters of local importance that are not within the exclusive competence of other bodies."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Elected individually, by majority vote.",
+                "explanation": "Elected individually by a two-round majority vote.",
                 "laws": [
                   "ec"
+                ],
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 400",
+                        "text": "Elections for mayors are held under a majoritarian electoral system, with candidate lists of parties and coalitions, or of initiative committees, registered in single-member constituencies."
+                      },
+                      {
+                        "ref": "Article 452(3)–(6)",
+                        "text": [
+                          "The candidate who has received more than half of the valid votes is elected mayor.",
+                          "If no candidate for mayor is elected in the first round, a second round is held no later than 7 days after the first, on a non-working day.",
+                          "If more than two candidates were registered and none was elected, only the two who received the most valid votes may take part in the second round.",
+                          "In the second round, the candidate who received the most valid votes is elected."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "local_constituency",
                 "status": "yes",
-                "explanation": "Elected only by the кметство's voters.",
+                "explanation": "The кметство is one single-member constituency for its mayor.",
                 "laws": [
+                  "ec",
                   "lsga"
+                ],
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 404(2)",
+                        "text": "For elections for mayor of a municipality, district or mayoralty, the territory of the municipality, district or mayoralty constitutes one single-member constituency."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1129,6 +1490,24 @@
                 "explanation": "No own budget: the municipal council sets the кметство's budget figures.",
                 "laws": [
                   "lsga"
+                ],
+                "provisions": [
+                  {
+                    "law": "lsga",
+                    "items": [
+                      {
+                        "ref": "Article 21(1)",
+                        "text": [
+                          "The municipal council:",
+                          "6. adopts and amends the annual budget of the municipality, including the figures for the districts, mayoralties and settlements with mayoral deputies, monitors its implementation and adopts the report on it;",
+                          "7. sets the amount of local fees;",
+                          "8. adopts decisions on the acquisition, management and disposal of municipal property and determines the specific powers of the mayor of the municipality and of the mayors of districts and mayoralties;",
+                          "11. adopts decisions on the creation and approval of spatial development plans and their amendments for the territory of the municipality or parts of it;",
+                          "23. decides other matters of local importance that are not within the exclusive competence of other bodies."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -1472,6 +1851,152 @@
                 ]
               }
             ]
+          },
+          {
+            "type": "general_assembly",
+            "name": "General assembly of the population (общо събрание на населението)",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "partial",
+                "explanation": "Only municipalities of up to 10,000 inhabitants can hold one.",
+                "laws": [
+                  "dcpa",
+                  "const"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 3(1)",
+                        "text": [
+                          "Direct participation shall be exercised through:",
+                          "4. a general assembly of the population."
+                        ]
+                      },
+                      {
+                        "ref": "Chapter IV – General assembly of the population"
+                      },
+                      {
+                        "ref": "Article 54(1)",
+                        "text": "A general assembly of the population shall be held to decide matters of local importance which, on grounds of expediency, fall within the competence of the respective municipal council or mayor."
+                      },
+                      {
+                        "ref": "Article 55(1)",
+                        "text": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters with a population of up to 10,000 inhabitants."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "partial",
+                "explanation": "Not directly binding: the municipal council or mayor must issue the acts that implement it within one month.",
+                "laws": [
+                  "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 54(2)",
+                        "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period."
+                      },
+                      {
+                        "ref": "Article 54(3)",
+                        "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter."
+                      },
+                      {
+                        "ref": "Article 63(3)",
+                        "text": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit a proposal to the municipal council for the preparation and adoption of a relevant decision, rules or ordinance."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "no_quorum",
+                "status": "no",
+                "explanation": "One quarter of eligible voters must attend (one third in places of up to 150 inhabitants). If not, after one hour it may proceed only with one tenth. In a quarter of 10,000 that is 1,000 people in one room.",
+                "laws": [
+                  "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 60(1)",
+                        "text": "The general assembly of the population shall be deemed quorate if no fewer than one quarter of the citizens with voting rights in the municipality, district, mayoralty, settlement or quarter are present."
+                      },
+                      {
+                        "ref": "Article 60(2)",
+                        "text": "In settlements with up to 150 inhabitants, at least one third of the citizens with voting rights in the settlement must be present for a general assembly of the population to be held."
+                      },
+                      {
+                        "ref": "Article 60(3)",
+                        "text": "If the required number of citizens has not appeared at the set time, the assembly shall be postponed by one hour, after which it shall be held with those present. Their number, however, may not be less than one tenth of all citizens with voting rights."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "citizen_triggered",
+                "status": "yes",
+                "explanation": "The mayor must convene it on request of 1/50 of eligible voters, at least 20 people.",
+                "laws": [
+                  "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 57(1)",
+                        "text": [
+                          "The general assembly of the population shall be convened by the mayor of the municipality, district or mayoralty on:",
+                          "3. the request of at least one fiftieth, but no fewer than 20, citizens with voting rights with a permanent or current address in the municipality, district, mayoralty, settlement or quarter at the time the request is made."
+                        ]
+                      },
+                      {
+                        "ref": "Article 57(5)",
+                        "text": "The initiative committee shall submit the petition to the mayor, who shall be obliged to convene the general assembly of the population within the period stated in it."
+                      },
+                      {
+                        "ref": "Article 58(1)",
+                        "text": "The general assembly shall be held no earlier than 15 days and no later than one month after it has been announced."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "reasonable_signatures",
+                "status": "yes",
+                "explanation": "1/50 of voters, at least 20 people.",
+                "laws": [
+                  "dcpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "dcpa",
+                    "items": [
+                      {
+                        "ref": "Article 57(1)",
+                        "text": [
+                          "The general assembly of the population shall be convened by the mayor of the municipality, district or mayoralty on:",
+                          "3. the request of at least one fiftieth, but no fewer than 20, citizens with voting rights with a permanent or current address in the municipality, district, mayoralty, settlement or quarter at the time the request is made."
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -1488,6 +2013,21 @@
                 "laws": [
                   "const",
                   "lsga"
+                ],
+                "provisions": [
+                  {
+                    "law": "lsga",
+                    "items": [
+                      {
+                        "ref": "Article 2(3)",
+                        "text": "Municipal councils and mayors of municipalities are elected in municipalities."
+                      },
+                      {
+                        "ref": "Article 38(2)",
+                        "text": "The mayor of the municipality, as well as the mayors of districts and mayoralties, are elected directly by the population for a term of 4 years under conditions and by a procedure laid down in the Electoral Code."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1496,14 +2036,51 @@
                 "explanation": "Adopts the budget and sets local fees.",
                 "laws": [
                   "lsga"
+                ],
+                "provisions": [
+                  {
+                    "law": "lsga",
+                    "items": [
+                      {
+                        "ref": "Article 21(1)",
+                        "text": [
+                          "The municipal council:",
+                          "6. adopts and amends the annual budget of the municipality, including the figures for the districts, mayoralties and settlements with mayoral deputies, monitors its implementation and adopts the report on it;",
+                          "7. sets the amount of local fees;",
+                          "8. adopts decisions on the acquisition, management and disposal of municipal property and determines the specific powers of the mayor of the municipality and of the mayors of districts and mayoralties;",
+                          "11. adopts decisions on the creation and approval of spatial development plans and their amendments for the territory of the municipality or parts of it;",
+                          "23. decides other matters of local importance that are not within the exclusive competence of other bodies."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "individual_vote",
-                "status": "partial",
-                "explanation": "Party lists with one optional preference vote. A preference changes the list order only if it reaches 7% of the votes cast for that list.",
+                "status": "weak",
+                "explanation": "Voters choose a party list. They can mark one preference, but it changes the list order only if the candidate gets at least 7% of the list’s votes. Councillors answer to their party more than to voters.",
                 "laws": [
                   "ec"
+                ],
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 399(1)",
+                        "text": "Elections for municipal councillors are held under a proportional electoral system, with candidate lists of parties and coalitions, or of initiative committees, registered in multi-member constituencies."
+                      },
+                      {
+                        "ref": "Article 399(2)",
+                        "text": "When voting for the candidate list of a party or coalition, the voter may mark one preference for a candidate on the list, thereby expressing a preference as to the order of the candidates on the list voted for."
+                      },
+                      {
+                        "ref": "Article 454(2)",
+                        "text": "Preferences for individual candidates are valid if the number of votes received for the candidate is no less than 7 per cent of the votes cast for the candidate list."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1530,6 +2107,29 @@
                   "const",
                   "ltfa"
                 ]
+              },
+              {
+                "type": "local_districts",
+                "status": "no",
+                "explanation": "The whole municipality is one constituency, so no councillor is elected by, or answers to, a particular part of it.",
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 404(1)",
+                        "text": "For elections for municipal councillors, the territory of the municipality constitutes one multi-member constituency."
+                      },
+                      {
+                        "ref": "Article 453(2)",
+                        "text": "The results of the voting for municipal councillors under the proportional system are determined by the Hare-Niemeyer method."
+                      }
+                    ]
+                  }
+                ],
+                "laws": [
+                  "ec"
+                ]
               }
             ]
           },
@@ -1542,7 +2142,23 @@
                 "status": "yes",
                 "explanation": "The mayor is the executive body of the municipality.",
                 "laws": [
-                  "const"
+                  "const",
+                  "lsga"
+                ],
+                "provisions": [
+                  {
+                    "law": "lsga",
+                    "items": [
+                      {
+                        "ref": "Article 2(3)",
+                        "text": "Municipal councils and mayors of municipalities are elected in municipalities."
+                      },
+                      {
+                        "ref": "Article 38(2)",
+                        "text": "The mayor of the municipality, as well as the mayors of districts and mayoralties, are elected directly by the population for a term of 4 years under conditions and by a procedure laid down in the Electoral Code."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1550,14 +2166,51 @@
                 "status": "yes",
                 "laws": [
                   "lsga"
+                ],
+                "explanation": "The mayor directs all executive activity of the municipality and carries out the budget.",
+                "provisions": [
+                  {
+                    "law": "lsga",
+                    "items": [
+                      {
+                        "ref": "Article 44(1)",
+                        "text": [
+                          "The mayor of the municipality:",
+                          "1. directs all executive activity of the municipality;",
+                          "5. organises the implementation of the municipal budget;",
+                          "7. organises the implementation of the acts of the municipal council and reports on their implementation to the council twice a year."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Elected individually, by majority vote, with a run-off.",
+                "explanation": "Elected individually by a two-round majority vote: more than half of the votes in the first round, or a run-off between the top two.",
                 "laws": [
                   "ec"
+                ],
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 400",
+                        "text": "Elections for mayors are held under a majoritarian electoral system, with candidate lists of parties and coalitions, or of initiative committees, registered in single-member constituencies."
+                      },
+                      {
+                        "ref": "Article 452(3)–(6)",
+                        "text": [
+                          "The candidate who has received more than half of the valid votes is elected mayor.",
+                          "If no candidate for mayor is elected in the first round, a second round is held no later than 7 days after the first, on a non-working day.",
+                          "If more than two candidates were registered and none was elected, only the two who received the most valid votes may take part in the second round.",
+                          "In the second round, the candidate who received the most valid votes is elected."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1565,6 +2218,18 @@
                 "status": "yes",
                 "laws": [
                   "ec"
+                ],
+                "explanation": "The municipality is one single-member constituency for its mayor.",
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 404(2)",
+                        "text": "For elections for mayor of a municipality, district or mayoralty, the territory of the municipality, district or mayoralty constitutes one single-member constituency."
+                      }
+                    ]
+                  }
                 ]
               },
               {

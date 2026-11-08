@@ -192,13 +192,23 @@
       "branch": "representative",
       "name": "Own elected council",
       "longName": "Own elected council of the community",
-      "description": "A council elected by this community that decides its affairs."
+      "description": "A council elected by this community that decides its affairs.",
+      "gates": [
+        "exists",
+        "binding_powers",
+        "individual_vote"
+      ]
     },
     "executive": {
       "branch": "representative",
       "name": "Own elected executive",
       "longName": "Own elected executive (mayor or head)",
-      "description": "A mayor, manager or head elected by this community."
+      "description": "A mayor, manager or head elected by this community.",
+      "gates": [
+        "exists",
+        "binding_powers",
+        "individual_vote"
+      ]
     },
     "upper_council_seat": {
       "branch": "representative",
@@ -308,6 +318,12 @@
       "name": "No topic restrictions",
       "longName": "No topics are excluded from the referendum",
       "description": "Any matter within the competence of the level can be put to a vote, including the budget and taxes."
+    },
+    "local_districts": {
+      "gate": false,
+      "name": "Elected in local districts",
+      "longName": "Members are elected in districts within the community",
+      "description": "Each part of the community elects its own representative, who answers to it, instead of one list for the whole area."
     }
   },
   "referendumKinds": {
