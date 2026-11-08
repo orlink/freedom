@@ -213,6 +213,19 @@ function mechLongName(m, all, catalog) {
   return twins && m.name ? m.name : (mdef.longName || mdef.name || m.name || m.type);
 }
 
+// The legal text behind a requirement: per law, a linked title and the quoted provisions (translated).
+function provisionsPanel(provisions, laws) {
+  return el('div', { class: 'provisions' }, provisions.map(p => {
+    const law = laws[p.law] || { title: p.law };
+    const title = law.url ? el('a', { href: law.url, target: '_blank', rel: 'noopener' }, law.title) : law.title;
+    return el('section', {},
+      el('h3', {}, title),
+      ...(p.items || []).map(it => el('div', { class: 'provision' },
+        it.ref ? el('p', { class: 'ref' }, it.ref) : null,
+        ...[].concat(it.text || []).map(t => el('p', {}, t)))));
+  }));
+}
+
 function render() {
   const { catalog } = state.data;
   const loc = state.loc;
@@ -310,7 +323,8 @@ function render() {
   } else {
     // Screen 5: the relevant laws.
     setLegend(null);
-    screen.push(rowOf((prop.laws || []).map(id => {
+    if (prop.provisions?.length) screen.push(provisionsPanel(prop.provisions, j.laws));
+    else screen.push(rowOf((prop.laws || []).map(id => {
       const law = j.laws[id] || { title: id };
       return chip({ label: law.short || law.title, tone: 'law', title: [law.title, law.localTitle].filter(Boolean).join('\n'), href: law.url });
     })));

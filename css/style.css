@@ -115,3 +115,13 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 
 @media (max-width: 600px) { .tree { padding-left: 10px; padding-right: 10px; border-radius: 18px; } }
 @media (max-width: 600px) { .search { flex: 0 0 auto; width: 100%; max-width: none; } .top { padding-block: 10px; } }
+
+/* Requirement page: the provisions of law, quoted. */
+.provisions { width: 100%; max-width: 720px; background: var(--surface); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); line-height: 1.55; animation: fadein .15s ease-out; }
+.provisions section + section { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.provisions h3 { margin: 0 0 10px; font-size: 17px; }
+.provisions h3 a { color: var(--coral-ink); }
+.provisions .provision + .provision { margin-top: 12px; }
+.provisions p { margin: 0 0 6px; }
+.provisions .ref { font-weight: 700; margin-bottom: 2px; }
+@media (max-width: 600px) { .provisions { padding: 16px; } }

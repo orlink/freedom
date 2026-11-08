@@ -31,6 +31,7 @@ function checkLevel(where, lvl, j) {
         if (!STATUSES.includes(p.status)) errors.push(`${where}.${b}.${m.type}.${p.type}: bad status "${p.status}"`);
         if (!(p.laws || []).length) errors.push(`${where}.${b}.${m.type}.${p.type}: no relevant laws listed`);
         for (const id of p.laws || []) if (!j.laws?.[id]) errors.push(`${where}.${b}.${m.type}.${p.type}: unknown law "${id}"`);
+        for (const q of p.provisions || []) if (!j.laws?.[q.law]) errors.push(`${where}.${b}.${m.type}.${p.type}: provisions cite unknown law "${q.law}"`);
       }
     }
   }

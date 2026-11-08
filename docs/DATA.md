@@ -16,6 +16,7 @@ Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism �
   Agenda initiatives (a petition the council only has to consider) are deliberately left out: they are not a decision-making mechanism, because no representative is accountable for the proposal.
 * **Property**: a condition the mechanism needs to give real self-government, such as `binding`, `no_quorum`, `reasonable_signatures`, `individual_vote`, or `local_constituency`. Each has a `status` of `yes` (white), `partial` (light grey), `weak` (dark grey), `no` (black) or `unknown`.
 * **Relevant laws**: the leaves of the tree. Each property lists the laws (`laws`, ids into the file's `laws` map) that govern it. Specific articles are the next step and are being worked out separately, starting from the notes in `docs/research/`.
+* **Provisions** (optional): `provisions: [{ "law": "<law id>", "items": [{ "ref": "Article 9(6)", "text": "…" | ["…", "…"] }] }]` quotes the legal text (in English translation) behind a property. When present, the requirement page shows it in place of the law chips; an item with only `ref` is a heading such as a chapter.
 
 ## Jurisdiction file
 

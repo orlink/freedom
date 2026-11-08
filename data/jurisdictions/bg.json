@@ -21,9 +21,9 @@
       "short": "Constitution"
     },
     "dcpa": {
-      "title": "Direct Citizen Participation in State and Local Government Act",
+      "title": "Act on the Direct Participation of Citizens in State Power and Local Self-Government",
       "localTitle": "Закон за прякото участие на гражданите в държавната власт и местното самоуправление (ЗПУГДВМС)",
-      "url": "https://www.cik.bg/upload/248887/3.+Direct+Citizen+Participation+in+State+and+Local+Government+Act.pdf",
+      "url": "https://www.lex.bg/laws/ldoc/2135636485",
       "short": "ЗПУГДВМС"
     },
     "cma": {
@@ -513,6 +513,27 @@
                     "explanation": "A local referendum can be held for a district (район) of Sofia, Plovdiv or Varna, as well as for a municipality or кметство.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 3(1)",
+                            "text": [
+                              "Direct participation shall be exercised through:",
+                              "1. a referendum;"
+                            ]
+                          },
+                          {
+                            "ref": "Chapter II – Referendum, Section III – Local referendum"
+                          },
+                          {
+                            "ref": "Article 26(1)",
+                            "text": "A local referendum shall be held in a municipality, district (район) or mayoralty (кметство) to decide directly on matters of local importance that the law has placed within the competence of the bodies of local self-government or of the bodies of the district or mayoralty."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -521,6 +542,21 @@
                     "explanation": "The decision needs no later approval by the municipal council; it takes effect when announced and the mayor organises its implementation.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 43(2)",
+                            "text": "A decision adopted by local referendum shall enter into force immediately upon its announcement."
+                          },
+                          {
+                            "ref": "Article 43(3)",
+                            "text": "The implementation of a decision adopted by local referendum shall be organised by the mayor of the municipality, district or mayoralty."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -529,6 +565,17 @@
                     "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 41(2)",
+                            "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -709,6 +756,27 @@
                     "explanation": "A local referendum can be held for a кметство.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 3(1)",
+                            "text": [
+                              "Direct participation shall be exercised through:",
+                              "1. a referendum;"
+                            ]
+                          },
+                          {
+                            "ref": "Chapter II – Referendum, Section III – Local referendum"
+                          },
+                          {
+                            "ref": "Article 26(1)",
+                            "text": "A local referendum shall be held in a municipality, district (район) or mayoralty (кметство) to decide directly on matters of local importance that the law has placed within the competence of the bodies of local self-government or of the bodies of the district or mayoralty."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -717,6 +785,21 @@
                     "explanation": "The decision needs no later approval by the municipal council; it takes effect when announced and the mayor organises its implementation.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 43(2)",
+                            "text": "A decision adopted by local referendum shall enter into force immediately upon its announcement."
+                          },
+                          {
+                            "ref": "Article 43(3)",
+                            "text": "The implementation of a decision adopted by local referendum shall be organised by the mayor of the municipality, district or mayoralty."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -725,6 +808,17 @@
                     "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 41(2)",
+                            "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -921,6 +1015,27 @@
                     "explanation": "A local referendum can be held for a municipality.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 3(1)",
+                            "text": [
+                              "Direct participation shall be exercised through:",
+                              "1. a referendum;"
+                            ]
+                          },
+                          {
+                            "ref": "Chapter II – Referendum, Section III – Local referendum"
+                          },
+                          {
+                            "ref": "Article 26(1)",
+                            "text": "A local referendum shall be held in a municipality, district (район) or mayoralty (кметство) to decide directly on matters of local importance that the law has placed within the competence of the bodies of local self-government or of the bodies of the district or mayoralty."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -929,6 +1044,21 @@
                     "explanation": "The decision needs no later approval by the municipal council; it takes effect when announced and the mayor organises its implementation.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 43(2)",
+                            "text": "A decision adopted by local referendum shall enter into force immediately upon its announcement."
+                          },
+                          {
+                            "ref": "Article 43(3)",
+                            "text": "The implementation of a decision adopted by local referendum shall be organised by the mayor of the municipality, district or mayoralty."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -937,6 +1067,17 @@
                     "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 41(2)",
+                            "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -1197,6 +1338,23 @@
                     "laws": [
                       "const",
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 3(1)",
+                            "text": [
+                              "Direct participation shall be exercised through:",
+                              "1. a referendum;"
+                            ]
+                          },
+                          {
+                            "ref": "Chapter II – Referendum"
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -1205,6 +1363,17 @@
                     "explanation": "No later approval by parliament is needed; conflicting acts stop applying after three months.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 9(6)",
+                            "text": "A decision adopted by national referendum shall not be subject to subsequent approval by the National Assembly. The National Assembly shall adopt an act where necessary to implement the decision."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -1213,6 +1382,17 @@
                     "explanation": "Adopted only if turnout is at least that of the last parliamentary election. With over 20% turnout it is merely sent to parliament.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 23(1)",
+                            "text": "The proposal submitted to referendum shall be deemed adopted if the number of voters participating is no lower than the number who participated in the most recent National Assembly elections and if more than half of the voters participating in the referendum have voted “yes”."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
