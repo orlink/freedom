@@ -125,3 +125,7 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .provisions p { margin: 0 0 6px; }
 .provisions .ref { font-weight: 700; margin-bottom: 2px; }
 @media (max-width: 600px) { .provisions { padding: 16px; } }
+.provisions blockquote { margin: 0; padding: 2px 0 2px 14px; border-left: 3px solid var(--coral-soft); color: var(--text); }
+.provisions blockquote p { margin: 0 0 8px; }
+.provisions .source { font-size: 13px; color: var(--muted); margin-top: 6px; }
+.provisions .source a { color: var(--coral-ink); }

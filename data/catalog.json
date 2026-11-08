@@ -228,7 +228,19 @@
       "gate": false,
       "name": "No participation quorum requirement",
       "longName": "No minimum turnout is required",
-      "description": "The result counts regardless of turnout, so abstainers cannot defeat it by staying home."
+      "description": "The result counts regardless of turnout, so abstainers cannot defeat it by staying home.",
+      "explainer": {
+        "title": "Effects of a participation quorum",
+        "quote": [
+          "Participation quorum - the additional requirement that a certain minimum number of votes must be cast in order for a referendum to be legally valid - means that it is in the interests of a proposal’s opponents to abstain rather than to vote against it, so that the quorum is not met. The opponents need only desert the ballot box in order to impose their viewpoint, even when they are very much in the minority. All others who are not voting for other reasons, including those with no opinion, are effectively also voting against the referendum.",
+          "The participation quorum requirement encourages a host of controversial election practices such as falsifying the turn-out rate, voter suppression and manipulating the date of the referendum to reduce turnout. It has been shown both empirically and mathematically that a participation quorum requirement reduces turnout to below the quorum threshold, which is known as the \"quorum paradox\" (a form of the no-show paradox).",
+          "The \"quorum paradox\" arises from the fact that, unlike in deliberative bodies such as parliaments—where a vote can be postponed to a later meeting if a quorum is not reached—referendums cannot be rescheduled.",
+          "An example of the participation quorum phenomenon is the 2005 Italian fertility laws referendum, in which the opposition to the proposed loosening of laws on research on embryos and on allowing in-vitro fertilization, campaigned for people to abstain from voting to drive down turnout. Although a majority of people voted yes for the changes in the law, the results were invalid because participation was low.",
+          "The European Commission for Democracy through Law (Venice Commission) recommends against any quorum requirements in its Code for Good Practice on Referendums."
+        ],
+        "source": "Wikipedia, “Referendum”, section Participation quorum (CC BY-SA 4.0)",
+        "url": "https://en.wikipedia.org/wiki/Referendum#Participation_quorum"
+      }
     },
     "concrete_proposals": {
       "gate": false,

@@ -214,7 +214,7 @@ function mechLongName(m, all, catalog) {
 }
 
 // The legal text behind a requirement: per law, a linked title and the quoted provisions (translated).
-function provisionsPanel(provisions, laws) {
+function provisionsPanel(provisions, laws, explainer) {
   return el('div', { class: 'provisions' }, provisions.map(p => {
     const law = laws[p.law] || { title: p.law };
     const title = law.url ? el('a', { href: law.url, target: '_blank', rel: 'noopener' }, law.title) : law.title;
@@ -223,7 +223,10 @@ function provisionsPanel(provisions, laws) {
       ...(p.items || []).map(it => el('div', { class: 'provision' },
         it.ref ? el('p', { class: 'ref' }, it.ref) : null,
         ...[].concat(it.text || []).map(t => el('p', {}, t)))));
-  }));
+  }), explainer ? el('section', { class: 'explainer' },
+    el('h3', {}, explainer.title),
+    el('blockquote', {}, explainer.quote.map(t => el('p', {}, t))),
+    el('p', { class: 'source' }, 'Source: ', el('a', { href: explainer.url, target: '_blank', rel: 'noopener' }, explainer.source))) : null);
 }
 
 function render() {
@@ -323,7 +326,8 @@ function render() {
   } else {
     // Screen 5: the relevant laws.
     setLegend(null);
-    if (prop.provisions?.length) screen.push(provisionsPanel(prop.provisions, j.laws));
+    const explainer = catalog.properties[prop.type]?.explainer;
+    if (prop.provisions?.length) screen.push(provisionsPanel(prop.provisions, j.laws, explainer));
     else screen.push(rowOf((prop.laws || []).map(id => {
       const law = j.laws[id] || { title: id };
       return chip({ label: law.short || law.title, tone: 'law', title: [law.title, law.localTitle].filter(Boolean).join('\n'), href: law.url });
