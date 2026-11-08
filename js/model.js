@@ -1,6 +1,6 @@
 // Pure data logic: no DOM, no network. Usable from the browser and from Node (tools/validate.mjs).
 
-export const STATUS_VALUE = { yes: 1, partial: 0.5, no: 0, unknown: null };
+export const STATUS_VALUE = { yes: 1, partial: 0.5, weak: 0.25, no: 0, unknown: null };
 export const STATUSES = Object.keys(STATUS_VALUE);
 export const BRANCHES = ['direct', 'representative'];
 

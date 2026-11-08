@@ -697,15 +697,15 @@
                   },
                   {
                     "type": "concrete_proposals",
-                    "status": "unknown",
+                    "status": "no",
                     "laws": [
-                      "const",
                       "dcpa"
-                    ]
+                    ],
+                    "explanation": "Voters answer a question with yes or no; they do not vote on a drafted text such as an ordinance or a law."
                   },
                   {
                     "type": "reasonable_signatures",
-                    "status": "partial",
+                    "status": "weak",
                     "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
                     "laws": [
                       "dcpa"
@@ -731,40 +731,10 @@
                 "properties": [
                   {
                     "type": "exists",
-                    "status": "partial",
-                    "explanation": "Only for some territorial changes, such as creating a new municipality.",
-                    "laws": [
-                      "atda",
-                      "dcpa"
-                    ]
-                  },
-                  {
-                    "type": "binding",
-                    "status": "yes",
-                    "laws": [
-                      "dcpa"
-                    ]
-                  },
-                  {
-                    "type": "no_quorum",
                     "status": "no",
-                    "explanation": "The same turnout requirement as for other local referendums applies.",
+                    "explanation": "The law does not require any decision to go to a vote automatically.",
                     "laws": [
-                      "dcpa"
-                    ]
-                  },
-                  {
-                    "type": "concrete_proposals",
-                    "status": "yes",
-                    "laws": [
-                      "atda"
-                    ]
-                  },
-                  {
-                    "type": "reasonable_signatures",
-                    "status": "yes",
-                    "explanation": "No petition is needed: such territorial changes go to a vote automatically.",
-                    "laws": [
+                      "dcpa",
                       "atda"
                     ]
                   }
@@ -939,15 +909,15 @@
                   },
                   {
                     "type": "concrete_proposals",
-                    "status": "unknown",
+                    "status": "no",
                     "laws": [
-                      "const",
                       "dcpa"
-                    ]
+                    ],
+                    "explanation": "Voters answer a question with yes or no; they do not vote on a drafted text such as an ordinance or a law."
                   },
                   {
                     "type": "reasonable_signatures",
-                    "status": "partial",
+                    "status": "weak",
                     "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
                     "laws": [
                       "dcpa"
@@ -973,40 +943,10 @@
                 "properties": [
                   {
                     "type": "exists",
-                    "status": "partial",
-                    "explanation": "Only for some territorial changes, such as creating a new municipality.",
-                    "laws": [
-                      "atda",
-                      "dcpa"
-                    ]
-                  },
-                  {
-                    "type": "binding",
-                    "status": "yes",
-                    "laws": [
-                      "dcpa"
-                    ]
-                  },
-                  {
-                    "type": "no_quorum",
                     "status": "no",
-                    "explanation": "The same turnout requirement as for other local referendums applies.",
+                    "explanation": "The law does not require any decision to go to a vote automatically.",
                     "laws": [
-                      "dcpa"
-                    ]
-                  },
-                  {
-                    "type": "concrete_proposals",
-                    "status": "yes",
-                    "laws": [
-                      "atda"
-                    ]
-                  },
-                  {
-                    "type": "reasonable_signatures",
-                    "status": "yes",
-                    "explanation": "No petition is needed: such territorial changes go to a vote automatically.",
-                    "laws": [
+                      "dcpa",
                       "atda"
                     ]
                   }
@@ -1245,15 +1185,15 @@
                   },
                   {
                     "type": "concrete_proposals",
-                    "status": "partial",
-                    "explanation": "Codes that regulate a whole field cannot be put to a vote as a whole.",
+                    "status": "no",
+                    "explanation": "Voters answer a question with yes or no; they do not vote on a drafted text such as an ordinance or a law.",
                     "laws": [
                       "dcpa"
                     ]
                   },
                   {
                     "type": "reasonable_signatures",
-                    "status": "partial",
+                    "status": "weak",
                     "explanation": "400,000 is roughly 6–7% of registered voters.",
                     "laws": [
                       "const",
@@ -1282,7 +1222,7 @@
                   {
                     "type": "exists",
                     "status": "no",
-                    "explanation": "No decision has to go to a national vote; constitutional amendments are adopted by parliament.",
+                    "explanation": "The law does not require any decision to go to a vote automatically.",
                     "laws": [
                       "const",
                       "dcpa"

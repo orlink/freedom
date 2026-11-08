@@ -165,7 +165,7 @@ function tone(score) {
   if (score < 1) return 'lightgrey';
   return 'white';
 }
-const STATUS_TONE = { yes: 'white', partial: 'lightgrey', no: 'black', unknown: 'unknown' };
+const STATUS_TONE = { yes: 'white', partial: 'lightgrey', weak: 'darkgrey', no: 'black', unknown: 'unknown' };
 
 function chip({ label, tone, title, onclick, href, disabled }) {
   const attrs = { class: `tb t-${tone}`, title: title || label };
