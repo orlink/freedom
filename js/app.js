@@ -165,6 +165,17 @@ function tone(score) {
   if (score < 1) return 'lightgrey';
   return 'white';
 }
+// The legend's labels depend on what the chips on the screen stand for.
+const LEGENDS = {
+  levels: [['white', 'Free'], ['lightgrey', 'Mostly free'], ['darkgrey', 'Barely free'], ['black', 'Not free']],
+  mechanisms: [['white', 'Effective'], ['lightgrey', 'Limited'], ['darkgrey', 'Weak'], ['black', 'Ineffective or absent']],
+  requirements: [['white', 'Met'], ['lightgrey', 'Partly met'], ['darkgrey', 'Barely met'], ['black', 'Not met'], ['disabled', 'Does not apply']],
+};
+function setLegend(kind) {
+  const items = LEGENDS[kind] || [];
+  $('#legend').hidden = !items.length;
+  $('#legend').replaceChildren(...items.map(([t, label]) => el('span', {}, el('i', { class: `t-${t}` }), label)));
+}
 const STATUS_TONE = { yes: 'white', partial: 'lightgrey', weak: 'darkgrey', no: 'black', unknown: 'unknown' };
 
 function chip({ label, tone, title, onclick, href, disabled }) {
@@ -252,11 +263,13 @@ function render() {
   if (!cur) {
     // Screen 1: levels of shared interest. Geographical, from home to union; then non-geographical.
     const levelChip = ({ l, tone }) => chip({ label: l.name, tone, title: [l.name, loc.places[l.id].name].filter(Boolean).join(': '), onclick: () => go([l.id]) });
+    setLegend('levels');
     screen.push(el('h2', { class: 'group-title' }, 'Shared interest levels'));
     screen.push(rowOf(levels.filter(x => x.l.kind === 'territorial').map(levelChip)));
     screen.push(rowOf(levels.filter(x => x.l.kind !== 'territorial').map(levelChip)));
   } else if (!branch && branchId !== 'direct' && branchId !== 'representative') {
     // Screen 2: the level's shared interests, then the two ways of deciding.
+    setLegend('levels');
     screen.push(el('h2', { class: 'group-title' }, 'Shared interest types'));
     screen.push(rowOf(interestChips(levelId), 'interests'));
     screen.push(el('h2', { class: 'group-title' }, 'Decision making mechanism types'));
@@ -267,11 +280,13 @@ function render() {
   } else if (!mech) {
     // Screen 3: mechanisms (e.g. referendum, general assembly). None at all: one black chip saying so.
     const shown = mechs.map((m, i) => ({ m, i, tone: tone(scoreMechanism(m, catalog)) })).filter(x => x.tone);
+    setLegend('mechanisms');
     screen.push(rowOf(shown.length ? shown.map(({ m, i, tone }) => chip({
       label: mechLabel(m, mechs, catalog), tone, title: m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, branchId, i]),
     })) : [chip({ label: 'None', tone: 'black', title: branch?.note || 'No such mechanism at this level.' })]));
   } else if (mech.kinds && !kind) {
     // Screen 4a: kinds of referendum (citizen initiative, veto, mandatory). Each is always shown; missing ones are black.
+    setLegend('mechanisms');
     screen.push(rowOf((catalog.mechanisms[mech.type]?.kinds || []).map(t => {
       const i = mech.kinds.findIndex(k => k.type === t);
       const k = mech.kinds[i], def = kindDefs[t] || {};
@@ -283,6 +298,7 @@ function render() {
     })));
   } else if (!prop) {
     // Screen 4: the properties the mechanism needs. If it does not exist in law, the rest are disabled.
+    setLegend('requirements');
     screen.push(rowOf(props.map((p, i) => {
       const pdef = catalog.properties[p.type] || {};
       return chip({
@@ -293,6 +309,7 @@ function render() {
     })));
   } else {
     // Screen 5: the relevant laws.
+    setLegend(null);
     screen.push(rowOf((prop.laws || []).map(id => {
       const law = j.laws[id] || { title: id };
       return chip({ label: law.short || law.title, tone: 'law', title: [law.title, law.localTitle].filter(Boolean).join('\n'), href: law.url });
