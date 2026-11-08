@@ -2,7 +2,7 @@ import { resolveJurisdiction, getLevel, scoreLevel, scoreBranch, scoreMechanism,
 
 const NOMINATIM = 'https://nominatim.openstreetmap.org';
 const BRANCH_INFO = {
-  direct: { name: 'Direct', longName: 'Direct decision making mechanisms', desc: 'The people decide themselves: referendums, initiatives, assemblies.' },
+  direct: { name: 'Direct', longName: 'Direct decision making mechanisms', desc: 'The people decide themselves: referendums and general assemblies.' },
   representative: { name: 'Representative', longName: 'Representative decision making mechanisms', desc: 'Elected, individually accountable representatives decide.' },
 };
 

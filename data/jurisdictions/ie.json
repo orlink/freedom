@@ -1162,27 +1162,6 @@
                 ]
               }
             ]
-          },
-          {
-            "type": "initiative",
-            "name": "European citizens' initiative",
-            "properties": [
-              {
-                "type": "exists",
-                "status": "yes",
-                "laws": [
-                  "teu"
-                ]
-              },
-              {
-                "type": "binding",
-                "status": "no",
-                "explanation": "One million signatures only invite the Commission to consider a proposal.",
-                "laws": [
-                  "eci"
-                ]
-              }
-            ]
           }
         ]
       },

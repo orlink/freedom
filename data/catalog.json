@@ -164,12 +164,6 @@
         "reasonable_signatures"
       ]
     },
-    "initiative": {
-      "branch": "direct",
-      "name": "Agenda initiative",
-      "longName": "Agenda initiatives (proposals the council must consider)",
-      "description": "Residents collect signatures to put a proposal on the agenda of a council; the council decides."
-    },
     "general_assembly": {
       "branch": "direct",
       "name": "General assembly",
