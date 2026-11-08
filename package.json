@@ -2,5 +2,5 @@
   "name": "freedom-map",
   "private": true,
   "type": "module",
-  "scripts": { "validate": "node tools/validate.mjs", "start": "python3 -m http.server 8000" }
+  "scripts": { "validate": "node tools/validate.mjs", "start": "python3 server.py" }
 }

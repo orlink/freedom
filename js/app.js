@@ -23,9 +23,9 @@ const el = (tag, attrs = {}, ...children) => {
 // ---------- data ----------
 async function loadData() {
   const get = p => fetch(`data/${p}`).then(r => { if (!r.ok) throw new Error(`${p}: ${r.status}`); return r.json(); });
-  const [catalog, index] = await Promise.all([get('catalog.json'), get('index.json')]);
+  const [catalog, index, interests] = await Promise.all([get('catalog.json'), get('index.json'), get('interests.json')]);
   const jurisdictions = await Promise.all(index.jurisdictions.map(get));
-  return { catalog, unions: index.unions, jurisdictions };
+  return { catalog, unions: index.unions, jurisdictions, interests };
 }
 
 // ---------- geocoding ----------
@@ -63,6 +63,7 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
     state.loc.jurisdiction = resolveJurisdiction(state.data.jurisdictions, address);
     state.loc.places = levelPlaces(address, state.data.catalog, state.data.unions, state.loc.jurisdiction);
     if (!keepPath) state.path = [];
+    writeHash(!keepPath);
     render();
   } catch (e) {
     $('#place').replaceChildren(`Could not look up this location: ${e.message}`);
@@ -84,6 +85,77 @@ $('#search').addEventListener('submit', async e => {
 });
 document.querySelectorAll('.examples button').forEach(b => b.addEventListener('click', () => locate(b.dataset.lat, b.dataset.lon, { zoom: 16 })));
 
+// ---------- shared interests (wiki-style) ----------
+// Added chips and "not applicable here" marks are shared through server.py. If the site is served without it
+// (plain static hosting), they fall back to this browser only.
+const slug = s => s.toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '');
+function interestKey(levelId) {
+  const cc = state.loc.address.country_code || 'xx';
+  const place = state.loc.places[levelId]?.name || '';
+  return [cc, levelId, place].join('|').toLowerCase().replace(/[^\w\- .,'()/|À-ɏЀ-ӿ]/g, '').slice(0, 200);
+}
+const interestCache = new Map();
+let sharedApi = true;
+function localStore(key, value) {
+  try {
+    const all = JSON.parse(localStorage.getItem('freedom-interests') || '{}');
+    if (value === undefined) return all[key] || { added: [], hidden: [] };
+    all[key] = value; localStorage.setItem('freedom-interests', JSON.stringify(all));
+  } catch { /* storage unavailable */ }
+  return value || { added: [], hidden: [] };
+}
+async function api(method, path, body) {
+  const r = await fetch(path, method === 'GET' ? {} : { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  if (!r.ok || !(r.headers.get('content-type') || '').includes('json')) throw new Error(r.status);
+  return r.json();
+}
+async function loadInterests(key) {
+  let e;
+  if (sharedApi) {
+    try { e = await api('GET', `api/interests?key=${encodeURIComponent(key)}`); }
+    catch { sharedApi = false; }
+  }
+  if (!e) e = localStore(key);
+  interestCache.set(key, e);
+  return e;
+}
+async function changeInterests(key, path, body, apply) {
+  let e;
+  if (sharedApi) { try { e = await api('POST', path, { key, ...body }); } catch { sharedApi = false; } }
+  if (!e) { e = structuredClone(interestCache.get(key) || { added: [], hidden: [] }); apply(e); localStore(key, e); }
+  interestCache.set(key, e);
+  render();
+}
+const addInterest = (key, label) => changeInterests(key, 'api/interests', { label }, e => {
+  if (!e.added.some(a => a.label.toLowerCase() === label.toLowerCase())) e.added.push({ id: 'u:' + Date.now().toString(36), label });
+});
+const hideInterest = (key, id) => changeInterests(key, 'api/interests/hide', { id }, e => { if (!e.hidden.includes(id)) e.hidden.push(id); });
+
+function interestChips(levelId) {
+  const key = interestKey(levelId);
+  const e = interestCache.get(key);
+  if (!e) { loadInterests(key).then(render); return [el('span', { class: 'loading' }, '…')]; }
+  const defaults = (state.data.interests[levelId] || []).map(label => ({ id: 'd:' + slug(label), label }));
+  const chips = [...defaults, ...e.added].filter(c => !e.hidden.includes(c.id));
+  const out = chips.map(c => el('div', { class: 'tb t-interest', title: c.label },
+    el('span', {}, c.label),
+    el('button', { type: 'button', class: 'x', title: `Not applicable here: ${c.label}`, 'aria-label': `Mark “${c.label}” as not applicable here`, onclick: () => hideInterest(key, c.id) }, '×')));
+  out.push(addChip(key));
+  return out;
+}
+function addChip(key) {
+  const wrap = el('div', { class: 'tb t-add' });
+  const start = () => {
+    const input = el('input', { type: 'text', maxlength: '60', placeholder: 'New interest', 'aria-label': 'New shared interest' });
+    const done = save => { const v = input.value.trim(); if (save && v) addInterest(key, v); else render(); };
+    input.addEventListener('keydown', ev => { if (ev.key === 'Enter') done(true); if (ev.key === 'Escape') done(false); });
+    input.addEventListener('blur', () => done(true));
+    wrap.replaceChildren(input); input.focus();
+  };
+  wrap.append(el('button', { type: 'button', class: 'add', onclick: start }, '+ Add'));
+  return wrap;
+}
+
 // ---------- rendering ----------
 // Four tones: black = none (0), dark grey = weak (below 0.5), light grey = good (0.5 up to 1), white = full (1).
 function tone(score) {
@@ -95,18 +167,20 @@ function tone(score) {
 }
 const STATUS_TONE = { yes: 'white', partial: 'lightgrey', no: 'black', unknown: 'unknown' };
 
-function button({ label, tone, pressed, title, onclick, href }) {
+function chip({ label, tone, title, onclick, href }) {
   const attrs = { class: `tb t-${tone}`, title: title || label };
   if (href) return el('a', { ...attrs, href, target: '_blank', rel: 'noopener' }, el('span', {}, label));
-  return el('button', { ...attrs, type: 'button', 'aria-pressed': String(!!pressed), onclick }, el('span', {}, label));
+  return el('button', { ...attrs, type: 'button', onclick }, el('span', {}, label));
 }
 
-function select(depth, value) {
-  state.path = state.path[depth] === value ? state.path.slice(0, depth) : [...state.path.slice(0, depth), value];
+// Each click opens the next screen; the browser's Back button goes back up the tree.
+function go(path) {
+  state.path = path;
+  writeHash(true);
   render();
 }
 
-const rowOf = buttons => buttons.length ? el('div', { class: 'tree-row' }, buttons) : null;
+const rowOf = (chips, cls = '') => chips.length ? el('div', { class: `tree-row ${cls}` }, chips) : null;
 const shortName = s => s.replace(/\s*\(.*?\)\s*$/, '');
 
 function renderPlace() {
@@ -115,85 +189,93 @@ function renderPlace() {
   $('#place').replaceChildren(...parts.flatMap((p, i) => i ? [el('span', { class: 'sep' }, '·'), p] : [p]));
 }
 
+function mechLabel(m, all, catalog) {
+  const mdef = catalog.mechanisms[m.type] || {};
+  const twins = all.filter(x => x.type === m.type).length > 1;
+  return shortName(twins && m.name ? m.name : (mdef.name || m.name || m.type));
+}
+
 function render() {
   const { catalog } = state.data;
   const loc = state.loc;
-  writeHash();
   if (!loc) return;
   $('#hint').hidden = true;
   renderPlace();
   const j = loc.jurisdiction;
-  $('#status').textContent = j
-    ? (j.statusNote || ({ draft: 'Draft data.', sample: 'Sample data.', reviewed: 'Reviewed data.' }[j.status] || ''))
-    : '';
-
-  const rows = [];
+  $('#status').textContent = j ? (j.statusNote || '') : '';
   if (!j) {
-    rows.push(el('p', { class: 'nodata' }, `No data for ${loc.address.country || 'this country'} yet.`));
-    $('#tree').replaceChildren(...rows);
+    $('#trail').replaceChildren();
+    $('#tree').replaceChildren(el('p', { class: 'nodata' }, `No data for ${loc.address.country || 'this country'} yet.`));
     return;
   }
-  let [levelId, branchId, mechIdx, propIdx] = state.path;
 
-  // Levels: hide those that don't apply here or have no data.
+  // Resolve the path as far as it is valid.
+  const [levelId, branchId, mechIdx, propIdx] = state.path;
   const levels = catalog.levels.map(l => {
     const lvl = loc.places[l.id].absent ? undefined : getLevel(j, l.id);
     return { l, lvl, tone: tone(scoreLevel(lvl, catalog)) };
   }).filter(x => x.tone);
-  rows.push(rowOf(levels.map(({ l, tone }) => button({
-    label: l.name, tone, pressed: levelId === l.id, title: [l.name, loc.places[l.id].name].filter(Boolean).join(': '),
-    onclick: () => select(0, l.id),
-  }))));
-
   const cur = levels.find(x => x.l.id === levelId);
-  if (cur) {
-    // Direct and Representative are always shown under every level; a path that doesn't exist counts as none (black).
-    const branches = ['direct', 'representative'].map(b => ({ b, tone: tone(scoreBranch(cur.lvl[b], catalog)) || 'black' }));
-    rows.push(rowOf(branches.map(({ b, tone }) => button({
-      label: BRANCH_INFO[b].name, tone, title: BRANCH_INFO[b].desc, pressed: branchId === b, onclick: () => select(1, b),
+  const branch = cur && ['direct', 'representative'].includes(branchId) ? cur.lvl[branchId] : undefined;
+  const mechs = branch?.applicable !== false ? (branch?.mechanisms || []) : [];
+  const mech = mechs[mechIdx];
+  const prop = mech?.properties?.[propIdx];
+
+  // Trail: where you are in the tree; each step is clickable.
+  const steps = [['Levels', []]];
+  if (cur) steps.push([cur.l.name, [levelId]]);
+  if (cur && branchId && BRANCH_INFO[branchId]) steps.push([BRANCH_INFO[branchId].name, [levelId, branchId]]);
+  if (mech) steps.push([mechLabel(mech, mechs, catalog), [levelId, branchId, mechIdx]]);
+  if (prop) steps.push([prop.name || catalog.properties[prop.type]?.name, [levelId, branchId, mechIdx, propIdx]]);
+  $('#trail').replaceChildren(...(steps.length > 1 ? steps.flatMap(([name, path], i) => [
+    i ? el('span', { class: 'sep' }, '›') : null,
+    i < steps.length - 1 ? el('button', { type: 'button', onclick: () => go(path) }, name) : el('span', { class: 'here' }, name),
+  ]).filter(Boolean) : []));
+
+  const screen = [];
+  if (!cur) {
+    // Screen 1: levels of shared interest. Geographical, from home to union; then non-geographical.
+    const levelChip = ({ l, tone }) => chip({ label: l.name, tone, title: [l.name, loc.places[l.id].name].filter(Boolean).join(': '), onclick: () => go([l.id]) });
+    screen.push(rowOf(levels.filter(x => x.l.kind === 'territorial').map(levelChip)));
+    screen.push(rowOf(levels.filter(x => x.l.kind !== 'territorial').map(levelChip)));
+  } else if (!branch && branchId !== 'direct' && branchId !== 'representative') {
+    // Screen 2: the level's shared interests, then the two ways of deciding.
+    screen.push(rowOf(interestChips(levelId), 'interests'));
+    screen.push(rowOf(['direct', 'representative'].map(b => chip({
+      label: BRANCH_INFO[b].name, tone: tone(scoreBranch(cur.lvl[b], catalog)) || 'black', title: BRANCH_INFO[b].desc,
+      onclick: () => go([levelId, b]),
     }))));
-
-    const branch = branches.some(x => x.b === branchId) && cur.lvl[branchId]?.applicable !== false ? cur.lvl[branchId] : null;
-    if (branch) {
-      const mechs = (branch.mechanisms || []).map((m, i) => ({ m, i, tone: tone(scoreMechanism(m, catalog)) })).filter(x => x.tone);
-      const typeCount = mechs.reduce((n, { m }) => ({ ...n, [m.type]: (n[m.type] || 0) + 1 }), {});
-      rows.push(rowOf(mechs.map(({ m, i, tone }) => {
-        const mdef = catalog.mechanisms[m.type] || {};
-        // Short generic names ("Referendum", "General assembly"); local names only to tell two of a kind apart.
-        return button({
-          label: shortName(typeCount[m.type] > 1 && m.name ? m.name : (mdef.name || m.name || m.type)), tone, title: m.name || mdef.description,
-          pressed: mechIdx === i, onclick: () => select(2, i),
-        });
-      })));
-
-      const mech = mechs.find(x => x.i === mechIdx)?.m;
-      if (mech) {
-        const props = mech.properties || [];
-        rows.push(rowOf(props.map((p, i) => {
-          const pdef = catalog.properties[p.type] || {};
-          return button({
-            label: p.name || pdef.name || p.type, tone: STATUS_TONE[p.status] || 'unknown',
-            title: [pdef.description, p.explanation].filter(Boolean).join('\n\n'),
-            pressed: propIdx === i, onclick: () => select(3, i),
-          });
-        })));
-
-        const prop = props[propIdx];
-        if (prop) rows.push(rowOf((prop.laws || []).map(id => {
-          const law = j.laws[id] || { title: id };
-          return button({ label: law.short || law.title, tone: 'law', title: [law.title, law.localTitle].filter(Boolean).join('\n'), href: law.url });
-        })));
-      }
-    }
+  } else if (!mech) {
+    // Screen 3: mechanisms (e.g. referendum, general assembly). None at all: one black chip saying so.
+    const shown = mechs.map((m, i) => ({ m, i, tone: tone(scoreMechanism(m, catalog)) })).filter(x => x.tone);
+    screen.push(rowOf(shown.length ? shown.map(({ m, i, tone }) => chip({
+      label: mechLabel(m, mechs, catalog), tone, title: m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, branchId, i]),
+    })) : [chip({ label: 'None', tone: 'black', title: branch?.note || 'No such mechanism at this level.' })]));
+  } else if (!prop) {
+    // Screen 4: the properties the mechanism needs.
+    screen.push(rowOf(mech.properties.map((p, i) => {
+      const pdef = catalog.properties[p.type] || {};
+      return chip({
+        label: p.name || pdef.name || p.type, tone: STATUS_TONE[p.status] || 'unknown',
+        title: [pdef.description, p.explanation].filter(Boolean).join('\n\n'), onclick: () => go([levelId, branchId, mechIdx, i]),
+      });
+    })));
+  } else {
+    // Screen 5: the relevant laws.
+    screen.push(rowOf((prop.laws || []).map(id => {
+      const law = j.laws[id] || { title: id };
+      return chip({ label: law.short || law.title, tone: 'law', title: [law.title, law.localTitle].filter(Boolean).join('\n'), href: law.url });
+    })));
   }
-  $('#tree').replaceChildren(...rows.filter(Boolean));
+  $('#tree').replaceChildren(...screen.filter(Boolean));
 }
 
 // ---------- shareable URL: #lat,lon/level/branch/mech/prop ----------
-function writeHash() {
+function writeHash(push) {
   if (!state.loc) return;
   const h = `#${state.loc.lat},${state.loc.lon}` + state.path.map(p => `/${p}`).join('');
-  if (location.hash !== h) history.replaceState(null, '', h);
+  if (location.hash === h) return;
+  if (push) history.pushState(null, '', h); else history.replaceState(null, '', h);
 }
 function readHash() {
   const m = location.hash.slice(1).split('/');
@@ -202,13 +284,19 @@ function readHash() {
   const path = m.slice(1).map((v, i) => (i >= 2 ? Number(v) : v));
   return { lat, lon, path };
 }
+window.addEventListener('popstate', () => {
+  const h = readHash();
+  if (!h) return;
+  if (state.loc && h.lat === state.loc.lat && h.lon === state.loc.lon) { state.path = h.path; render(); }
+  else { state.path = h.path; locate(h.lat, h.lon, { zoom: 15, keepPath: true }); }
+});
 
 // ---------- boot ----------
 (async function boot() {
   try {
     state.data = await loadData();
   } catch (e) {
-    $('#hint').textContent = `Could not load data (${e.message}). Serve the site over HTTP, e.g. "python3 -m http.server".`;
+    $('#hint').textContent = `Could not load data (${e.message}). Start the site with "python3 server.py".`;
     return;
   }
   const h = readHash();

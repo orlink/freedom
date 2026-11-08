@@ -24,14 +24,14 @@ The drill-down path is kept in the URL, so any view can be shared.
 
 ## Running it
 
-It is a static site with no build step. Serve the folder over HTTP (the data is loaded with `fetch`, so opening `index.html` as a file will not work):
+There is no build step. Run the small Python server (standard library only), which serves the site and stores the shared interest chips in `data/state/interests.json`:
 
 ```sh
-python3 -m http.server 8000
-# open http://localhost:8000
+python3 server.py            # open http://localhost:8000
+python3 server.py --host 0.0.0.0 --port 8000   # let others on your network use it
 ```
 
-To publish, enable GitHub Pages for the repository (Settings → Pages → deploy from branch `main`, folder `/`).
+Interest chips that anyone adds, or marks ✕ as not applicable, are shared with everyone using the same server. On a plain static host (for example GitHub Pages) the page still works, but added chips are kept only in that browser.
 
 Maps use [Leaflet](https://leafletjs.com/) (vendored in `vendor/leaflet`) with OpenStreetMap tiles, and addresses are looked up with [Nominatim](https://nominatim.org/). Both are free. Nominatim's [usage policy](https://operations.osmfoundation.org/policies/nominatim/) allows about one request per second, which is fine for a demo. For heavy traffic, switch to a hosted geocoder.
 

@@ -9,7 +9,10 @@ a { color: var(--accent); }
 button { font: inherit; cursor: pointer; }
 
 .top { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between; padding: 12px 20px; }
+.brand { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
 .top h1 { margin: 0; font-size: 20px; }
+.top h1 a { color: var(--text); text-decoration: none; }
+.menu a { color: var(--text); font-weight: 500; }
 .search { display: flex; gap: 8px; flex: 1 1 300px; max-width: 520px; }
 .search input { flex: 1; min-width: 0; padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--input); color: var(--text); font: inherit; }
 .search button { padding: 8px 16px; border: 0; border-radius: 6px; background: var(--text); color: #fff; }
@@ -49,3 +52,27 @@ button { font: inherit; cursor: pointer; }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
 .legend i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--none); }
 .legend i { border-color: transparent; }
+
+/* Where-you-are trail */
+.trail { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px; margin: 0 0 14px; font-size: 14px; }
+.trail:empty { display: none; }
+.trail button { background: none; border: 0; padding: 2px 4px; color: var(--accent); text-decoration: underline; }
+.trail .sep { color: var(--muted); }
+.trail .here { font-weight: 600; padding: 2px 4px; }
+
+/* Shared-interest chips: neutral, with a small x to mark "not applicable here" */
+.tb { position: relative; }
+.t-interest { background: rgba(255,255,255,.35); color: var(--text); border: 2px solid var(--text); font-weight: 500; }
+.t-interest .x { position: absolute; top: 2px; right: 4px; width: 20px; height: 20px; padding: 0; border: 0; border-radius: 50%;
+                 background: transparent; color: var(--text); font-size: 16px; line-height: 18px; }
+.t-interest .x:hover, .t-interest .x:focus-visible { background: var(--text); color: #fff; }
+.t-add { background: transparent; border: 2px dashed var(--text); padding: 0; }
+.t-add .add { width: 100%; height: 100%; background: none; border: 0; color: var(--text); font-weight: 600; }
+.t-add input { width: calc(100% - 12px); padding: 6px; border: 1px solid var(--line); border-radius: 4px; font: inherit; background: var(--input); color: var(--text); }
+.tree-row.interests + .tree-row { border-top: 2px solid var(--text); }
+
+/* What is freedom page */
+.prose { max-width: 720px; margin: 8px auto 40px; padding: 0 20px; font-size: 17px; line-height: 1.6; }
+.prose h2 { font-size: 26px; margin: 8px 0 12px; }
+.prose h3 { font-size: 19px; margin: 28px 0 8px; }
+.prose blockquote { margin: 16px 0; padding: 12px 18px; background: rgba(255,255,255,.45); border-left: 4px solid var(--text); font-size: 19px; }

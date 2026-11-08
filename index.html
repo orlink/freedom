@@ -10,7 +10,7 @@
 </head>
 <body>
   <header class="top">
-    <h1>Freedom Map</h1>
+    <div class="brand"><h1><a href="./">Freedom Map</a></h1><nav class="menu"><a href="what-is-freedom.html">What is freedom</a></nav></div>
     <form id="search" class="search" role="search">
       <input id="q" type="search" placeholder="Search an address or place…" aria-label="Address or place" autocomplete="off">
       <button type="submit">Search</button>
@@ -27,6 +27,7 @@
     </div>
     <div id="place" class="place" aria-live="polite"></div>
     <p id="hint" class="hint">Search for an address or click on the map.</p>
+    <nav id="trail" class="trail" aria-label="Where you are"></nav>
     <nav id="tree" class="tree" aria-label="Freedom tree"></nav>
   </main>
 
