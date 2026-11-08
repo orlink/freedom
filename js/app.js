@@ -169,14 +169,15 @@ function tone(score) {
 const LEGENDS = {
   levels: [['white', 'Free'], ['lightgrey', 'Mostly free'], ['darkgrey', 'Barely free'], ['black', 'Not free']],
   mechanisms: [['white', 'Effective'], ['lightgrey', 'Limited'], ['darkgrey', 'Weak'], ['black', 'Ineffective or absent']],
-  requirements: [['white', 'Met'], ['lightgrey', 'Partly met'], ['darkgrey', 'Barely met'], ['black', 'Not met'], ['disabled', 'Does not apply']],
+  requirements: [['white', 'Met'], ['darkgrey', 'Partly met'], ['black', 'Not met'], ['disabled', 'Does not apply']],
 };
 function setLegend(kind) {
   const items = LEGENDS[kind] || [];
   $('#legend').hidden = !items.length;
   $('#legend').replaceChildren(...items.map(([t, label]) => el('span', {}, el('i', { class: `t-${t}` }), label)));
 }
-const STATUS_TONE = { yes: 'white', partial: 'lightgrey', weak: 'darkgrey', no: 'black', unknown: 'unknown' };
+// Requirements use three colours (Orlin): met white, partly met dark grey (partial or weak), not met black.
+const STATUS_TONE = { yes: 'white', partial: 'darkgrey', weak: 'darkgrey', no: 'black', unknown: 'unknown' };
 
 function chip({ label, tone, title, onclick, href, disabled }) {
   const attrs = { class: `tb t-${tone}`, title: title || label };
