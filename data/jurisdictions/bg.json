@@ -85,6 +85,38 @@
     }
   },
   "levels": {
+    "home": {
+      "summary": "The home is inviolable and private property is guaranteed by the Constitution.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "household",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The home is inviolable and private property is guaranteed by the Constitution.",
+                "laws": [
+                  "const"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Entry into a home is allowed only with consent, by court order, or in the urgent cases the law lists.",
+                "laws": [
+                  "const"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "representative": {
+        "applicable": false,
+        "note": "The people in a home decide for themselves; representation does not apply."
+      }
+    },
     "individual": {
       "summary": "Personal autonomy is protected by the Constitution.",
       "direct": {

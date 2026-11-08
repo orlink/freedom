@@ -20,11 +20,18 @@
       "description": "Members governing their own association, foundation or other non-profit organisation."
     },
     {
-      "id": "entrance",
-      "name": "Building entrance",
+      "id": "home",
+      "name": "Home",
       "kind": "territorial",
       "addressKeys": [],
-      "description": "Residents sharing one entrance (вход) of an apartment building."
+      "description": "The people living together in one home: a house or a flat."
+    },
+    {
+      "id": "entrance",
+      "name": "Apartment building section",
+      "kind": "territorial",
+      "addressKeys": [],
+      "description": "Residents sharing one section (entrance, вход) of an apartment building."
     },
     {
       "id": "building",
@@ -143,6 +150,11 @@
       "branch": "direct",
       "name": "Personal autonomy",
       "description": "The person decides alone, protected from interference."
+    },
+    "household": {
+      "branch": "direct",
+      "name": "Household decision",
+      "description": "The people living in a home decide about it together, protected from outside interference."
     },
     "council": {
       "branch": "representative",

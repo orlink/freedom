@@ -79,6 +79,38 @@
     }
   },
   "levels": {
+    "home": {
+      "summary": "The dwelling of every citizen is inviolable, and property rights are protected by the Constitution.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "household",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The dwelling of every citizen is inviolable, and property rights are protected by the Constitution.",
+                "laws": [
+                  "bunreacht"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "The dwelling can be entered 'in accordance with law'.",
+                "laws": [
+                  "bunreacht"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "representative": {
+        "applicable": false,
+        "note": "The people in a home decide for themselves; representation does not apply."
+      }
+    },
     "individual": {
       "summary": "Personal rights, including property and the inviolability of the dwelling, are protected by the Constitution.",
       "direct": {

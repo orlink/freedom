@@ -3,6 +3,7 @@
   "individual": ["Health", "Privacy", "Property", "Education", "Work"],
   "business": ["Products and pricing", "Hiring", "Investment", "Profits", "Contracts"],
   "nonprofit": ["Statutes", "Activities", "Membership", "Funding", "Property"],
+  "home": ["Rooms", "Furnishing", "Repairs", "Guests", "Pets", "Household budget"],
   "entrance": ["Elevator", "Stairwell cleaning", "Entrance door", "Lighting", "Mailboxes"],
   "building": ["Roof", "Facade", "Heating", "Repairs fund", "Common areas", "Elevator"],
   "neighbourhood": ["Walkways", "Playgrounds", "Kindergartens", "Parking", "Green spaces", "Street lighting"],

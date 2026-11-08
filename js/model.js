@@ -122,7 +122,8 @@ export function levelPlaces(address, catalog, unions, jurisdiction) {
     const keys = overrides[lvl.id] || lvl.addressKeys || [];
     for (const k of keys) if (address[k]) { name = address[k]; break; }
     if (lvl.id === 'building') name = street || address.building || null;
-    if (lvl.id === 'entrance') name = street ? `Entrance at ${street}` : null;
+    if (lvl.id === 'home') name = street || null;
+    if (lvl.id === 'entrance') name = street ? `Section at ${street}` : null;
     if (lvl.id === 'union') {
       const u = Object.values(unions || {}).find(u => u.members.includes(address.country_code));
       name = u ? u.name : null;

@@ -53,6 +53,38 @@
     }
   },
   "levels": {
+    "home": {
+      "summary": "Privacy of the home and property are guaranteed by the Federal Constitution.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "household",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Privacy of the home and property are guaranteed by the Federal Constitution.",
+                "laws": [
+                  "bv"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Restrictions need a legal basis, a public interest and proportionality.",
+                "laws": [
+                  "bv"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "representative": {
+        "applicable": false,
+        "note": "The people in a home decide for themselves; representation does not apply."
+      }
+    },
     "individual": {
       "summary": "Personal liberty, privacy and property are guaranteed by the Federal Constitution.",
       "direct": {
