@@ -161,7 +161,8 @@
         "binding",
         "no_quorum",
         "concrete_proposals",
-        "reasonable_signatures"
+        "reasonable_signatures",
+        "no_topic_restrictions"
       ],
       "gates": [
         "exists",
@@ -301,6 +302,12 @@
       "name": "Recall possible",
       "longName": "Voters can recall their representative",
       "description": "Voters can remove the representative before the end of term."
+    },
+    "no_topic_restrictions": {
+      "gate": false,
+      "name": "No topic restrictions",
+      "longName": "No topics are excluded from the referendum",
+      "description": "Any matter within the competence of the level can be put to a vote, including the budget and taxes."
     }
   },
   "referendumKinds": {

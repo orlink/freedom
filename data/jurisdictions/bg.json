@@ -642,6 +642,30 @@
                         ]
                       }
                     ]
+                  },
+                  {
+                    "type": "no_topic_restrictions",
+                    "status": "partial",
+                    "explanation": "The municipal budget, the size of local taxes and fees, and the council’s internal rules cannot be put to a local referendum.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 26(2)",
+                            "text": [
+                              "The following questions may not be decided by local referendum:",
+                              "1. the municipal budget;",
+                              "2. the size of local taxes and fees;",
+                              "3. the rules of the internal organisation and activity of the municipal council."
+                            ]
+                          }
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -930,6 +954,30 @@
                           {
                             "ref": "Article 28(8)",
                             "text": "If the petition is not submitted to the municipal council within three months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "no_topic_restrictions",
+                    "status": "partial",
+                    "explanation": "The municipal budget, the size of local taxes and fees, and the council’s internal rules cannot be put to a local referendum.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 26(2)",
+                            "text": [
+                              "The following questions may not be decided by local referendum:",
+                              "1. the municipal budget;",
+                              "2. the size of local taxes and fees;",
+                              "3. the rules of the internal organisation and activity of the municipal council."
+                            ]
                           }
                         ]
                       }
@@ -1242,6 +1290,30 @@
                         ]
                       }
                     ]
+                  },
+                  {
+                    "type": "no_topic_restrictions",
+                    "status": "partial",
+                    "explanation": "The municipal budget, the size of local taxes and fees, and the council’s internal rules cannot be put to a local referendum.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 26(2)",
+                            "text": [
+                              "The following questions may not be decided by local referendum:",
+                              "1. the municipal budget;",
+                              "2. the size of local taxes and fees;",
+                              "3. the rules of the internal organisation and activity of the municipal council."
+                            ]
+                          }
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -1354,6 +1426,30 @@
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "no_topic_restrictions",
+                    "status": "partial",
+                    "explanation": "The municipal budget, the size of local taxes and fees, and the council’s internal rules cannot be put to a local referendum.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 26(2)",
+                            "text": [
+                              "The following questions may not be decided by local referendum:",
+                              "1. the municipal budget;",
+                              "2. the size of local taxes and fees;",
+                              "3. the rules of the internal organisation and activity of the municipal council."
+                            ]
                           }
                         ]
                       }
@@ -1679,6 +1775,37 @@
                           {
                             "ref": "Article 12(8)",
                             "text": "If the petition is not submitted to the National Assembly within three months of the notification under paragraph 2, item 3, the procedure for submitting a proposal for a referendum shall be terminated by the Chairperson of the National Assembly, and this shall be entered in the register under Article 10(3)."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "no_topic_restrictions",
+                    "status": "partial",
+                    "explanation": "The state budget, the size of taxes, fees and social security contributions, the National Assembly’s internal rules, a list of constitutional powers, and whole codes cannot be put to a national referendum.",
+                    "laws": [
+                      "dcpa",
+                      "const"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 9(2)",
+                            "text": [
+                              "The following questions may not be decided by national referendum:",
+                              "1. (repealed)",
+                              "2. those under Article 84, items 4, 6, 7, 8, 10, 12, 16 and 17, Articles 91 and 91a, Article 103(2), Article 130(3), Article 132a and Article 147(1) of the Constitution;",
+                              "3. the size of taxes, fees, and labour and social security payments and contributions;",
+                              "4. the state budget;",
+                              "5. the rules of the internal organisation and procedure of the National Assembly."
+                            ]
+                          },
+                          {
+                            "ref": "Article 9(3)",
+                            "text": "Codes and laws that comprehensively regulate a given field may not be put to referendum in their entirety."
                           }
                         ]
                       }
