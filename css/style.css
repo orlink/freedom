@@ -57,6 +57,19 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .t-lightgrey { background: var(--good); color: #111; border-color: var(--good); }
 .t-darkgrey { background: var(--weak); color: #fff; border-color: var(--weak); }
 .t-black { background: var(--none); color: #fff; }
+
+/* Alternative chip scale: dark red = free, lighter = less free. */
+:root[data-scale="red"] { --full: #7d1424; --good: #c2414c; --weak: #ef9c9c; --none: #ffffff; }
+:root[data-scale="red"] .t-white { color: #fff; }
+:root[data-scale="red"] .t-lightgrey { color: #fff; }
+:root[data-scale="red"] .t-darkgrey { color: #3a1519; }
+:root[data-scale="red"] .t-black { color: #3a1519; border-color: #e3c4be; }
+:root[data-scale="red"] .legend i.t-black { border: 1px solid #d9b7b1; }
+
+.scale { display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px; background: var(--coral-soft); }
+.scale button { border: 0; background: transparent; color: var(--coral-ink); font-weight: 600; font-size: 13px; padding: 4px 12px; border-radius: 999px; }
+.scale button[aria-pressed="true"] { background: #fff; color: var(--text); box-shadow: 0 1px 3px rgba(46, 21, 24, .15); }
+.scale button:focus-visible { outline: 2px solid var(--coral); outline-offset: 1px; }
 .t-unknown { background: transparent; color: var(--text); border: 2px dashed var(--muted); box-shadow: none; }
 .t-law { background: var(--surface); color: var(--text); border: 2px dashed var(--coral); font-weight: 600; }
 .t-disabled { background: transparent; color: var(--muted); border: 2px solid var(--line); opacity: .8; cursor: not-allowed; box-shadow: none; }

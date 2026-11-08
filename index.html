@@ -7,10 +7,12 @@
   <meta name="description" content="How free are people at each level of community, from the individual to the union, to govern their own shared interests?">
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/scale.js"></script>
 </head>
 <body>
   <header class="top">
-    <div class="brand"><h1><a href="./">Freedom Map</a></h1><nav class="menu"><a href="what-is-freedom.html">What is freedom</a></nav></div>
+    <div class="brand"><h1><a href="./">Freedom Map</a></h1><nav class="menu"><a href="what-is-freedom.html">What is freedom</a></nav>
+      <div class="scale" id="scale" role="group" aria-label="Chip colours"><button type="button" data-scale="grey" aria-pressed="true">Grey</button><button type="button" data-scale="red" aria-pressed="false">Red</button></div></div>
     <form id="search" class="search" role="search">
       <input id="q" type="search" placeholder="Search an address or place…" aria-label="Address or place" autocomplete="off">
       <button type="submit">Search</button>
