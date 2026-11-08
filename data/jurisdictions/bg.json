@@ -645,7 +645,7 @@
                   },
                   {
                     "type": "no_topic_restrictions",
-                    "status": "partial",
+                    "status": "no",
                     "explanation": "The municipal budget, the size of local taxes and fees, and the council’s internal rules cannot be put to a local referendum.",
                     "laws": [
                       "dcpa"
@@ -961,7 +961,7 @@
                   },
                   {
                     "type": "no_topic_restrictions",
-                    "status": "partial",
+                    "status": "no",
                     "explanation": "The municipal budget, the size of local taxes and fees, and the council’s internal rules cannot be put to a local referendum.",
                     "laws": [
                       "dcpa"
@@ -1293,7 +1293,7 @@
                   },
                   {
                     "type": "no_topic_restrictions",
-                    "status": "partial",
+                    "status": "no",
                     "explanation": "The municipal budget, the size of local taxes and fees, and the council’s internal rules cannot be put to a local referendum.",
                     "laws": [
                       "dcpa"
@@ -1433,7 +1433,7 @@
                   },
                   {
                     "type": "no_topic_restrictions",
-                    "status": "partial",
+                    "status": "no",
                     "explanation": "The municipal budget, the size of local taxes and fees, and the council’s internal rules cannot be put to a local referendum.",
                     "laws": [
                       "dcpa"
@@ -1782,7 +1782,7 @@
                   },
                   {
                     "type": "no_topic_restrictions",
-                    "status": "partial",
+                    "status": "no",
                     "explanation": "The state budget, the size of taxes, fees and social security contributions, the National Assembly’s internal rules, a list of constitutional powers, and whole codes cannot be put to a national referendum.",
                     "laws": [
                       "dcpa",
