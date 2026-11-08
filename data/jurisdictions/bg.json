@@ -1169,10 +1169,101 @@
                 "properties": [
                   {
                     "type": "exists",
-                    "status": "no",
-                    "explanation": "Citizens cannot call a vote to overturn a decision once it has been adopted.",
+                    "status": "yes",
+                    "explanation": "Within one month of a council decision, 1/10 of the municipality's voters can demand a referendum to approve it; the mayor must hold it within two months. Municipality level only, not districts or кметства.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 27(3)",
+                            "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "The decision needs no later approval by the municipal council; it takes effect when announced and the mayor organises its implementation.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 43(2)",
+                            "text": "A decision adopted by local referendum shall enter into force immediately upon its announcement."
+                          },
+                          {
+                            "ref": "Article 43(3)",
+                            "text": "The implementation of a decision adopted by local referendum shall be organised by the mayor of the municipality, district or mayoralty."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "no",
+                    "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 41(2)",
+                            "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "yes",
+                    "explanation": "Voters approve or reject a specific decision the council has adopted.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 27(3)",
+                            "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "weak",
+                    "explanation": "1/10 of the municipality's voters within one month of the decision.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 27(3)",
+                            "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]

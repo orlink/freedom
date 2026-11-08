@@ -115,3 +115,4 @@ Article-level notes gathered while drafting. They are **not shown on the page**:
 ## To check with Orlin (2026-11-08)
 
 ЗПУГДВМС Art. 27(3) (lex.bg, as amended to ДВ 55/2026): within one month of a municipal council decision, an initiative committee with signatures of at least 1/10 of the municipality's voters can demand a referendum to approve the decision; the mayor must set a date and it must be held within two months. This looks like a municipal veto referendum, while the map currently says the veto referendum does not exist.
+Orlin decided 2026-11-08: this counts as a veto referendum at municipality level (not районs or кметства); entered in bg.json.
