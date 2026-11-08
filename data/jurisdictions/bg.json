@@ -498,7 +498,7 @@
       "summary": "Same regime as for an entrance: the Condominium Management Act applies to the building, or separately to each entrance."
     },
     "neighbourhood": {
-      "summary": "A quarter (квартал) has no elected body and cannot hold a referendum. A general assembly is possible but needs one quarter of residents to attend and is not directly binding. Municipal councillors are elected from municipality-wide party lists, so no councillor answers to the quarter.",
+      "summary": "A district (район) can hold a citizen-initiated local referendum; a smaller quarter (квартал) that is not a district or кметство cannot. A general assembly is possible but needs one quarter of residents to attend and is not directly binding. Municipal councillors are elected from municipality-wide party lists, so no councillor answers to the quarter.",
       "direct": {
         "mechanisms": [
           {
@@ -509,8 +509,40 @@
                 "properties": [
                   {
                     "type": "exists",
+                    "status": "yes",
+                    "explanation": "A local referendum can be held for a district (район) of Sofia, Plovdiv or Varna, as well as for a municipality or кметство.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "The decision needs no later approval by the municipal council; it takes effect when announced and the mayor organises its implementation.",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
                     "status": "no",
-                    "explanation": "There is no referendum for a part of a municipality such as a квартал.",
+                    "explanation": "The proposal passes only if at least 40% of eligible voters take part and more than half vote yes (or, when held with local elections, if yes-votes exceed half of the valid votes in the council election).",
+                    "laws": [
+                      "dcpa"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "no",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "explanation": "Voters answer a question with yes or no; they do not vote on a drafted text such as an ordinance or a law."
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "weak",
+                    "explanation": "1/20 of voters to propose. The council is obliged to call it only with 1/10 of voters, which in Sofia means well over 100,000 signatures.",
                     "laws": [
                       "dcpa"
                     ]
@@ -523,7 +555,7 @@
                   {
                     "type": "exists",
                     "status": "no",
-                    "explanation": "There is no referendum for a part of a municipality such as a квартал.",
+                    "explanation": "The law does not provide this kind of referendum.",
                     "laws": [
                       "dcpa"
                     ]
@@ -536,7 +568,7 @@
                   {
                     "type": "exists",
                     "status": "no",
-                    "explanation": "There is no referendum for a part of a municipality such as a квартал.",
+                    "explanation": "The law does not provide this kind of referendum.",
                     "laws": [
                       "dcpa"
                     ]

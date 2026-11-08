@@ -43,6 +43,11 @@ def entry(state, key):
 
 
 class Handler(SimpleHTTPRequestHandler):
+    def end_headers(self):
+        # Always revalidate, so a reload shows the latest data and scripts after a git pull.
+        self.send_header('Cache-Control', 'no-cache')
+        super().end_headers()
+
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=ROOT, **kw)
 

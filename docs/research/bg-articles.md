@@ -110,3 +110,4 @@ Article-level notes gathered while drafting. They are **not shown on the page**:
 | village, municipality | mandatory referendum | no | ЗПУГДВМС, ЗАТУРБ | Set to no by Orlin (2026-11-08): not provided by law. |  |
 | all | citizen initiative | exists yes, binding yes, no quorum no, concrete proposals no, petition weak | ЗПУГДВМС | Colours set by Orlin (2026-11-08). |  |
 | country | veto / mandatory | no | Constitution, ЗПУГДВМС | Constitutional amendments are adopted by the National Assembly or Grand National Assembly, without a referendum. |  |
+| neighbourhood (район) | citizen initiative | as municipality | ЗПУГДВМС | Local referendum can be held for a район (Sofia, Plovdiv, Varna) as well as a municipality or кметство. Article to confirm. |  |
