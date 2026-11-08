@@ -548,6 +548,10 @@
                         "law": "dcpa",
                         "items": [
                           {
+                            "ref": "Article 26(4)",
+                            "text": "A decision adopted by local referendum shall not be subject to subsequent approval by the municipal council. The council shall adopt an act where necessary for its implementation."
+                          },
+                          {
                             "ref": "Article 43(2)",
                             "text": "A decision adopted by local referendum shall enter into force immediately upon its announcement."
                           },
@@ -596,7 +600,18 @@
                     "laws": [
                       "dcpa"
                     ],
-                    "explanation": "Voters answer a question with yes or no; they do not vote on a drafted text such as an ordinance or a law."
+                    "explanation": "Voters answer a question with yes or no; they do not vote on a drafted text such as an ordinance or a law.",
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 26(3)",
+                            "text": "When a local referendum is held, voting may be on one or on several questions."
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "type": "reasonable_signatures",
@@ -825,6 +840,10 @@
                         "law": "dcpa",
                         "items": [
                           {
+                            "ref": "Article 26(4)",
+                            "text": "A decision adopted by local referendum shall not be subject to subsequent approval by the municipal council. The council shall adopt an act where necessary for its implementation."
+                          },
+                          {
                             "ref": "Article 43(2)",
                             "text": "A decision adopted by local referendum shall enter into force immediately upon its announcement."
                           },
@@ -873,7 +892,18 @@
                     "laws": [
                       "dcpa"
                     ],
-                    "explanation": "Voters answer a question with yes or no; they do not vote on a drafted text such as an ordinance or a law."
+                    "explanation": "Voters answer a question with yes or no; they do not vote on a drafted text such as an ordinance or a law.",
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 26(3)",
+                            "text": "When a local referendum is held, voting may be on one or on several questions."
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "type": "reasonable_signatures",
@@ -1118,6 +1148,10 @@
                         "law": "dcpa",
                         "items": [
                           {
+                            "ref": "Article 26(4)",
+                            "text": "A decision adopted by local referendum shall not be subject to subsequent approval by the municipal council. The council shall adopt an act where necessary for its implementation."
+                          },
+                          {
                             "ref": "Article 43(2)",
                             "text": "A decision adopted by local referendum shall enter into force immediately upon its announcement."
                           },
@@ -1166,7 +1200,18 @@
                     "laws": [
                       "dcpa"
                     ],
-                    "explanation": "Voters answer a question with yes or no; they do not vote on a drafted text such as an ordinance or a law."
+                    "explanation": "Voters answer a question with yes or no; they do not vote on a drafted text such as an ordinance or a law.",
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 26(3)",
+                            "text": "When a local referendum is held, voting may be on one or on several questions."
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "type": "reasonable_signatures",
@@ -1233,6 +1278,10 @@
                       {
                         "law": "dcpa",
                         "items": [
+                          {
+                            "ref": "Article 26(4)",
+                            "text": "A decision adopted by local referendum shall not be subject to subsequent approval by the municipal council. The council shall adopt an act where necessary for its implementation."
+                          },
                           {
                             "ref": "Article 43(2)",
                             "text": "A decision adopted by local referendum shall enter into force immediately upon its announcement."
