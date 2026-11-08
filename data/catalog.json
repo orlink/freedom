@@ -4,24 +4,28 @@
     {
       "id": "individual",
       "name": "Individual",
+      "longName": "Individual interests",
       "kind": "sphere",
       "description": "Decisions about one's own life, body, property and time."
     },
     {
       "id": "business",
       "name": "Business",
+      "longName": "Business shared interests",
       "kind": "sphere",
       "description": "Owners and partners governing their own company: capital, profits, leadership."
     },
     {
       "id": "nonprofit",
       "name": "Non-profit",
+      "longName": "Non-profit shared interests",
       "kind": "sphere",
       "description": "Members governing their own association, foundation or other non-profit organisation."
     },
     {
       "id": "home",
       "name": "Home",
+      "longName": "Home shared interests",
       "kind": "territorial",
       "addressKeys": [],
       "description": "The people living together in one home: a house or a flat."
@@ -29,6 +33,7 @@
     {
       "id": "entrance",
       "name": "Apartment building section",
+      "longName": "Apartment building section shared interests",
       "kind": "territorial",
       "addressKeys": [],
       "description": "Residents sharing one section (entrance, вход) of an apartment building."
@@ -36,6 +41,7 @@
     {
       "id": "building",
       "name": "Apartment building",
+      "longName": "Apartment building shared interests",
       "kind": "territorial",
       "addressKeys": [
         "building",
@@ -46,6 +52,7 @@
     {
       "id": "neighbourhood",
       "name": "Neighbourhood",
+      "longName": "Neighbourhood shared interests",
       "kind": "territorial",
       "addressKeys": [
         "neighbourhood",
@@ -58,6 +65,7 @@
     {
       "id": "village",
       "name": "Village",
+      "longName": "Village shared interests",
       "kind": "territorial",
       "addressKeys": [
         "village",
@@ -68,6 +76,7 @@
     {
       "id": "town",
       "name": "Town",
+      "longName": "Town shared interests",
       "kind": "territorial",
       "addressKeys": [
         "town"
@@ -77,6 +86,7 @@
     {
       "id": "city",
       "name": "City",
+      "longName": "City shared interests",
       "kind": "territorial",
       "addressKeys": [
         "city"
@@ -86,6 +96,7 @@
     {
       "id": "municipality",
       "name": "Municipality",
+      "longName": "Municipality shared interests",
       "kind": "territorial",
       "addressKeys": [
         "municipality",
@@ -97,6 +108,7 @@
     {
       "id": "county",
       "name": "County / region",
+      "longName": "County / region shared interests",
       "kind": "territorial",
       "addressKeys": [
         "county",
@@ -107,6 +119,7 @@
     {
       "id": "state",
       "name": "State / canton",
+      "longName": "State / canton shared interests",
       "kind": "territorial",
       "addressKeys": [
         "state"
@@ -116,6 +129,7 @@
     {
       "id": "country",
       "name": "Country",
+      "longName": "Country shared interests",
       "kind": "territorial",
       "addressKeys": [
         "country"
@@ -125,6 +139,7 @@
     {
       "id": "union",
       "name": "Union",
+      "longName": "Union shared interests",
       "kind": "territorial",
       "addressKeys": [],
       "description": "Supranational union, e.g. the European Union."
@@ -134,41 +149,49 @@
     "referendum": {
       "branch": "direct",
       "name": "Referendum",
+      "longName": "Referendums",
       "description": "A vote of all residents that decides a question."
     },
     "initiative": {
       "branch": "direct",
       "name": "Citizens' initiative",
+      "longName": "Citizens' initiatives",
       "description": "Residents put their own proposal on the agenda or to a vote by collecting signatures."
     },
     "general_assembly": {
       "branch": "direct",
       "name": "General assembly",
+      "longName": "General assemblies of the community",
       "description": "A meeting of all residents or owners that takes decisions."
     },
     "personal_autonomy": {
       "branch": "direct",
       "name": "Personal autonomy",
+      "longName": "Personal autonomy over one's own affairs",
       "description": "The person decides alone, protected from interference."
     },
     "household": {
       "branch": "direct",
       "name": "Household decision",
+      "longName": "Decisions by the household itself",
       "description": "The people living in a home decide about it together, protected from outside interference."
     },
     "council": {
       "branch": "representative",
       "name": "Own elected council",
+      "longName": "Own elected council of the community",
       "description": "A council elected by this community that decides its affairs."
     },
     "executive": {
       "branch": "representative",
       "name": "Own elected executive",
+      "longName": "Own elected executive (mayor or head)",
       "description": "A mayor, manager or head elected by this community."
     },
     "upper_council_seat": {
       "branch": "representative",
       "name": "Own representative in the higher council",
+      "longName": "Own representative in the higher-level council",
       "description": "No body of its own, but does the community at least elect its own accountable member of the council above?",
       "weight": 0.4,
       "gates": [
@@ -181,66 +204,79 @@
     "exists": {
       "gate": true,
       "name": "Exists in law",
+      "longName": "The mechanism exists in law",
       "description": "The law provides this mechanism at this level."
     },
     "binding": {
       "gate": true,
       "name": "Legally binding",
+      "longName": "The result is legally binding",
       "description": "The outcome binds the authorities; it is not merely advisory."
     },
     "no_quorum": {
       "gate": false,
       "name": "No participation quorum",
+      "longName": "No minimum turnout is required",
       "description": "The result counts regardless of turnout, so abstainers cannot defeat it by staying home."
     },
     "concrete_proposals": {
       "gate": false,
       "name": "Votes on concrete proposals",
+      "longName": "People vote on concrete proposals",
       "description": "People decide on specific, worded proposals, not only on vague questions."
     },
     "citizen_triggered": {
       "gate": false,
       "name": "Citizens can trigger it",
+      "longName": "Citizens can trigger it themselves",
       "description": "Residents themselves can start it, without permission from officials."
     },
     "reasonable_signatures": {
       "gate": false,
       "name": "Reasonable signature requirement",
+      "longName": "A reasonable number of signatures is enough",
       "description": "Signature thresholds and deadlines are achievable for ordinary residents."
     },
     "broad_scope": {
       "gate": false,
       "name": "Covers the shared interests",
+      "longName": "It covers the shared interests of the level",
       "description": "Few excluded topics; budget and local fees can be decided too."
     },
     "no_outside_override": {
       "gate": false,
       "name": "No outside override",
+      "longName": "No outside authority can override it",
       "description": "Bodies outside the community cannot veto or overturn the decision."
     },
     "own_means": {
       "gate": false,
       "name": "Means to implement",
+      "longName": "The community has its own means to implement decisions",
       "description": "The community controls a budget or resources to carry out its decisions."
     },
     "binding_powers": {
       "gate": true,
       "name": "Can make binding decisions",
+      "longName": "The body can make binding decisions",
       "description": "The representatives can take decisions that bind on the community's matters."
     },
     "individual_vote": {
       "gate": false,
       "name": "Vote for individual candidates",
+      "longName": "Voters choose individual candidates, not party lists",
       "description": "Voters choose individual people (single-member districts or fully open lists), not only party lists."
     },
     "local_constituency": {
       "gate": false,
       "name": "Elected only by this community",
+      "longName": "Elected only by this community",
       "description": "The representative's constituency is this community, so they answer to it rather than to outsiders."
     },
     "recall": {
       "gate": false,
       "name": "Recall possible",
+      "longName": "Voters can recall their representative",
       "description": "Voters can remove the representative before the end of term."
     }
   }

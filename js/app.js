@@ -2,8 +2,8 @@ import { resolveJurisdiction, getLevel, scoreLevel, scoreBranch, scoreMechanism,
 
 const NOMINATIM = 'https://nominatim.openstreetmap.org';
 const BRANCH_INFO = {
-  direct: { name: 'Direct', desc: 'The people decide themselves: referendums, initiatives, assemblies.' },
-  representative: { name: 'Representative', desc: 'Elected, individually accountable representatives decide.' },
+  direct: { name: 'Direct', longName: 'Direct decision making mechanisms', desc: 'The people decide themselves: referendums, initiatives, assemblies.' },
+  representative: { name: 'Representative', longName: 'Representative decision making mechanisms', desc: 'Elected, individually accountable representatives decide.' },
 };
 
 const state = { data: null, loc: null, path: [] }; // path: [levelId, branch, mechIndex, propIndex]
@@ -195,6 +195,12 @@ function mechLabel(m, all, catalog) {
   return shortName(twins && m.name ? m.name : (mdef.name || m.name || m.type));
 }
 
+function mechLongName(m, all, catalog) {
+  const mdef = catalog.mechanisms[m.type] || {};
+  const twins = all.filter(x => x.type === m.type).length > 1;
+  return twins && m.name ? m.name : (mdef.longName || mdef.name || m.name || m.type);
+}
+
 function render() {
   const { catalog } = state.data;
   const loc = state.loc;
@@ -222,11 +228,12 @@ function render() {
   const prop = mech?.properties?.[propIdx];
 
   // Trail: where you are in the tree; each step is clickable.
-  const steps = [['Levels', []]];
-  if (cur) steps.push([cur.l.name, [levelId]]);
-  if (cur && branchId && BRANCH_INFO[branchId]) steps.push([BRANCH_INFO[branchId].name, [levelId, branchId]]);
-  if (mech) steps.push([mechLabel(mech, mechs, catalog), [levelId, branchId, mechIdx]]);
-  if (prop) steps.push([prop.name || catalog.properties[prop.type]?.name, [levelId, branchId, mechIdx, propIdx]]);
+  // Trail uses each chip's long name.
+  const steps = [['Shared interest levels', []]];
+  if (cur) steps.push([cur.l.longName || cur.l.name, [levelId]]);
+  if (cur && branchId && BRANCH_INFO[branchId]) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
+  if (mech) steps.push([mechLongName(mech, mechs, catalog), [levelId, branchId, mechIdx]]);
+  if (prop) steps.push([prop.name || catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name, [levelId, branchId, mechIdx, propIdx]]);
   $('#trail').replaceChildren(...(steps.length > 1 ? steps.flatMap(([name, path], i) => [
     i ? el('span', { class: 'sep' }, '›') : null,
     i < steps.length - 1 ? el('button', { type: 'button', onclick: () => go(path) }, name) : el('span', { class: 'here' }, name),
