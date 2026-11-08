@@ -15,8 +15,7 @@ button { font: inherit; cursor: pointer; }
 .brand { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 .top h1 { margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.01em; }
 .top h1 a { color: var(--text); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
-.top h1 a::before { content: ""; width: 26px; height: 26px; border-radius: 9px; background: linear-gradient(135deg, #f2555a, #d6334f);
-  -webkit-mask: radial-gradient(circle at 50% 42%, transparent 4px, #000 4.5px); mask: radial-gradient(circle at 50% 42%, transparent 4px, #000 4.5px); }
+.top h1 .logo { width: 30px; height: 30px; flex: none; }
 .menu a { color: var(--muted); font-weight: 600; text-decoration: none; padding: 6px 12px; border-radius: 999px; }
 .menu a:hover { color: var(--coral-ink); background: var(--coral-soft); }
 .menu a[aria-current="page"] { color: var(--coral-ink); background: var(--coral-soft); }
