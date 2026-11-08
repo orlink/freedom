@@ -129,3 +129,13 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .provisions blockquote p { margin: 0 0 8px; }
 .provisions .source { font-size: 13px; color: var(--muted); margin-top: 6px; }
 .provisions .source a { color: var(--coral-ink); }
+/* Verdict band: the requirement's colour on top of the law panel, with a matching border. */
+.provisions { overflow: hidden; border: 3px solid transparent; }
+.provisions.v-black { border-color: var(--none); }
+.provisions.v-darkgrey { border-color: var(--weak); }
+.provisions.v-lightgrey { border-color: var(--good); }
+.provisions.v-white { border-color: var(--line); }
+.provisions .verdict { margin: -20px -24px 18px; padding: 12px 24px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; border-radius: 0; box-shadow: none; font-size: 15px; }
+.provisions .verdict strong { font-size: 16px; text-transform: uppercase; letter-spacing: .05em; }
+.provisions .verdict.t-white { border-bottom: 1px solid var(--line); }
+@media (max-width: 600px) { .provisions .verdict { margin: -16px -16px 16px; padding: 12px 16px; } }
