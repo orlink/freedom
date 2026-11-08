@@ -1,4 +1,4 @@
-// Chip colour scheme: "grey" (white = free … black = not free) or "red" (dark red = free … palest = not free).
+// Chip colour scheme: "grey" (white = free … black = not free) or "red" (white = free … dark red = not free).
 // Kept per browser so the two can be compared by switching back and forth.
 (function () {
   let scale = 'grey';

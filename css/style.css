@@ -58,13 +58,13 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .t-darkgrey { background: var(--weak); color: #fff; border-color: var(--weak); }
 .t-black { background: var(--none); color: #fff; }
 
-/* Alternative chip scale: dark red = free, lighter = less free. */
-:root[data-scale="red"] { --full: #7d1424; --good: #c2414c; --weak: #ef9c9c; --none: #ffffff; }
-:root[data-scale="red"] .t-white { color: #fff; }
-:root[data-scale="red"] .t-lightgrey { color: #fff; }
-:root[data-scale="red"] .t-darkgrey { color: #3a1519; }
-:root[data-scale="red"] .t-black { color: #3a1519; border-color: #e3c4be; }
-:root[data-scale="red"] .legend i.t-black { border: 1px solid #d9b7b1; }
+/* Alternative chip scale: white = free, darker red = less free. */
+:root[data-scale="red"] { --full: #ffffff; --good: #ef9c9c; --weak: #c2414c; --none: #7d1424; }
+:root[data-scale="red"] .t-white { color: #3a1519; border-color: #e3c4be; }
+:root[data-scale="red"] .t-lightgrey { color: #3a1519; }
+:root[data-scale="red"] .t-darkgrey { color: #fff; }
+:root[data-scale="red"] .t-black { color: #fff; }
+:root[data-scale="red"] .legend i.t-white { border: 1px solid #d9b7b1; }
 
 .scale { display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px; background: var(--coral-soft); }
 .scale button { border: 0; background: transparent; color: var(--coral-ink); font-weight: 600; font-size: 13px; padding: 4px 12px; border-radius: 999px; }
