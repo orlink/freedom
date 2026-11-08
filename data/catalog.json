@@ -162,6 +162,11 @@
         "no_quorum",
         "concrete_proposals",
         "reasonable_signatures"
+      ],
+      "gates": [
+        "exists",
+        "binding",
+        "no_quorum"
       ]
     },
     "general_assembly": {
