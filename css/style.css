@@ -70,7 +70,7 @@ button { font: inherit; cursor: pointer; }
 .t-add { background: transparent; border: 2px dashed var(--text); padding: 0; }
 .t-add .add { width: 100%; height: 100%; background: none; border: 0; color: var(--text); font-weight: 600; }
 .t-add input { width: calc(100% - 12px); padding: 6px; border: 1px solid var(--line); border-radius: 4px; font: inherit; background: var(--input); color: var(--text); }
-.tree-row.interests + .tree-row { border-top: 2px solid var(--text); }
+.tree-row.interests + .group-title { margin-top: 14px; padding-top: 14px; border-top: 2px solid var(--text); }
 
 /* What is freedom page */
 .prose { max-width: 720px; margin: 8px auto 40px; padding: 0 20px; font-size: 17px; line-height: 1.6; }

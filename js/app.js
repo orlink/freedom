@@ -243,6 +243,7 @@ function render() {
     // Screen 2: the level's shared interests, then the two ways of deciding.
     screen.push(el('h2', { class: 'group-title' }, 'Shared interest types'));
     screen.push(rowOf(interestChips(levelId), 'interests'));
+    screen.push(el('h2', { class: 'group-title' }, 'Decision making mechanism types'));
     screen.push(rowOf(['direct', 'representative'].map(b => chip({
       label: BRANCH_INFO[b].name, tone: tone(scoreBranch(cur.lvl[b], catalog)) || 'black', title: BRANCH_INFO[b].desc,
       onclick: () => go([levelId, b]),
