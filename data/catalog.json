@@ -107,8 +107,8 @@
     },
     {
       "id": "county",
-      "name": "County / region",
-      "longName": "County / region interests",
+      "name": "County",
+      "longName": "County interests",
       "kind": "territorial",
       "addressKeys": [
         "county",
