@@ -168,7 +168,7 @@ function tone(score) {
 // The legend's labels depend on what the chips on the screen stand for.
 const LEGENDS = {
   levels: [['white', 'Free'], ['lightgrey', 'Mostly free'], ['darkgrey', 'Barely free'], ['black', 'Not free']],
-  mechanisms: [['white', 'Effective'], ['lightgrey', 'Partially effective'], ['darkgrey', 'Weak'], ['black', 'Ineffective or absent']],
+  mechanisms: [['white', 'Effective'], ['lightgrey', 'Limited'], ['darkgrey', 'Weak'], ['black', 'Ineffective or absent']],
   requirements: [['white', 'Met'], ['darkgrey', 'Partly met'], ['black', 'Not met'], ['disabled', 'Does not apply']],
 };
 function setLegend(kind) {
