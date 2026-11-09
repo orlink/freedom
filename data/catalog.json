@@ -190,16 +190,16 @@
     },
     "council": {
       "branch": "representative",
-      "name": "Own elected council",
-      "longName": "Own elected council of the community",
+      "name": "Council",
+      "longName": "Council of the community",
       "levelNames": {
         "country": {
           "name": "Parliament",
-          "longName": "Own elected parliament of the country"
+          "longName": "Parliament of the country"
         },
         "union": {
           "name": "Parliament",
-          "longName": "Own elected parliament of the union"
+          "longName": "Parliament of the union"
         }
       },
       "description": "A council elected by this community that decides its affairs.",
@@ -213,8 +213,8 @@
     },
     "executive": {
       "branch": "representative",
-      "name": "Own elected executive",
-      "longName": "Own elected executive (mayor or head)",
+      "name": "Executive",
+      "longName": "Executive (mayor or head)",
       "description": "A mayor, manager or head elected by this community.",
       "gates": [
         "exists",
