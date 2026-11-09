@@ -191,18 +191,18 @@
     "council": {
       "branch": "representative",
       "name": "Council",
-      "longName": "Council of the community",
+      "longName": "Council",
       "levelNames": {
         "country": {
           "name": "Parliament",
-          "longName": "Parliament of the country"
+          "longName": "Parliament"
         },
         "union": {
           "name": "Parliament",
-          "longName": "Parliament of the union"
+          "longName": "Parliament"
         }
       },
-      "description": "A council elected by this community that decides its affairs.",
+      "description": "The council of this community, which decides its affairs.",
       "gates": [
         "exists",
         "binding_powers"
@@ -214,8 +214,8 @@
     "executive": {
       "branch": "representative",
       "name": "Executive",
-      "longName": "Executive (mayor or head)",
-      "description": "A mayor, manager or head elected by this community.",
+      "longName": "Executive",
+      "description": "The mayor, manager or head of this community.",
       "gates": [
         "exists",
         "binding_powers"
@@ -226,8 +226,8 @@
     },
     "upper_council_seat": {
       "branch": "representative",
-      "name": "Own representative in the higher council",
-      "longName": "Own representative in the higher-level council",
+      "name": "Representative in the higher council",
+      "longName": "Representative in the higher-level council",
       "description": "No body of its own, but does the community at least elect its own accountable member of the council above?",
       "weight": 0.4,
       "gates": [
@@ -312,7 +312,7 @@
     "individual_vote": {
       "gate": false,
       "name": "Vote for individual candidates",
-      "longName": "Voters choose individual candidates, not party lists",
+      "longName": "Voters choose between individual candidates, not party lists",
       "description": "Voters choose individual people (single-member districts or fully open lists), not only party lists."
     },
     "local_constituency": {

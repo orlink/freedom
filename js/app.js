@@ -233,25 +233,72 @@ function mechLongName(m, all, catalog, levelId) {
   return twins && m.name ? m.name : (levelName(mdef, levelId, 'longName') || mdef.longName || mdef.name || m.name || m.type);
 }
 
+// Word-level diff (longest common subsequence), for showing a proposed amendment against the current text.
+function wordDiff(a, b) {
+  const A = a.split(/\s+/).filter(Boolean), B = b.split(/\s+/).filter(Boolean);
+  const L = Array.from({ length: A.length + 1 }, () => new Uint16Array(B.length + 1));
+  for (let i = A.length - 1; i >= 0; i--) for (let j = B.length - 1; j >= 0; j--)
+    L[i][j] = A[i] === B[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  // Mostly rewritten: show the old text struck through, then the new one, instead of a confetti of small changes.
+  if (L[0][0] < 0.5 * Math.max(A.length, B.length)) return [A.length ? el('del', {}, a) : '', A.length && B.length ? ' ' : '', B.length ? el('ins', {}, b) : ''];
+  const out = [];
+  const push = (kind, w) => { const last = out[out.length - 1]; if (last && last.kind === kind) last.words.push(w); else out.push({ kind, words: [w] }); };
+  let i = 0, j = 0;
+  while (i < A.length || j < B.length) {
+    if (i < A.length && j < B.length && A[i] === B[j]) { push('same', A[i]); i++; j++; }
+    else if (j < B.length && (i >= A.length || L[i][j + 1] > L[i + 1][j])) push('ins', B[j++]);
+    else push('del', A[i++]);
+  }
+  return out.flatMap((r, k) => [k ? ' ' : '', r.kind === 'same' ? r.words.join(' ') : el(r.kind, {}, r.words.join(' '))]);
+}
+// One provision's lines, as in the law or, when fixed, as a diff against the proposed amendment.
+function provisionLines(it, fixed) {
+  const cur = [].concat(it.text || []);
+  if (!fixed || it.fix == null) return cur.map(t => el('p', {}, t));
+  const fix = [].concat(it.fix);
+  if (cur.length <= 1 && fix.length <= 1) return [el('p', {}, ...wordDiff(cur[0] || '', fix[0] || ''))];
+  // Lists: pair lines by their item number ("6." with "6."), else by position; unpaired lines are added or removed.
+  const num = t => (t.match(/^(\d+[a-z]?)\./) || [])[1];
+  const rest = [...fix], out = [];
+  cur.forEach((t, k) => {
+    let m = num(t) ? rest.findIndex(f => num(f) === num(t)) : -1;
+    if (m < 0 && !num(t) && rest.length && !num(rest[0])) m = 0;
+    if (m < 0 && fix.length === 1 && k === 0) m = 0;
+    out.push(el('p', {}, ...(m >= 0 ? wordDiff(t, rest.splice(m, 1)[0]) : [el('del', {}, t)])));
+  });
+  rest.forEach(f => out.push(el('p', {}, el('ins', {}, f))));
+  return out;
+}
+
 // The legal text behind a requirement: per law, a linked title and the quoted provisions (translated).
+// When the data proposes amendments (`fix` on a provision), a Fix button shows them as tracked changes.
 function provisionsPanel(provisions, laws, explainer, prop) {
-  // A band on top, in the requirement's own colour, says at a glance whether the law meets it.
-  const t = STATUS_TONE[prop?.status];
-  const verdictLabel = t && Object.fromEntries(LEGENDS.requirements)[t];
-  const verdict = verdictLabel ? el('div', { class: `verdict t-${t}` },
-    el('strong', {}, verdictLabel), prop.explanation ? el('span', {}, prop.explanation) : null) : null;
-  return el('div', { class: `provisions${t ? ` v-${t}` : ''}` }, verdict, provisions.map(p => {
-    const law = laws[p.law] || { title: p.law };
-    const title = law.url ? el('a', { href: law.url, target: '_blank', rel: 'noopener' }, law.title) : law.title;
-    return el('section', {},
-      el('h3', {}, title),
-      ...(p.items || []).map(it => el('div', { class: 'provision' },
-        it.ref ? el('p', { class: 'ref' }, it.ref) : null,
-        ...[].concat(it.text || []).map(t => el('p', {}, t)))));
-  }), explainer ? el('section', { class: 'explainer' },
-    el('h3', {}, explainer.title),
-    el('blockquote', {}, explainer.quote.map(t => el('p', {}, t))),
-    el('p', { class: 'source' }, 'Source: ', el('a', { href: explainer.url, target: '_blank', rel: 'noopener' }, explainer.source))) : null);
+  const fixable = provisions.some(p => (p.items || []).some(it => it.fix != null));
+  const panel = el('div', {});
+  const draw = fixed => {
+    // A band on top, in the requirement's own colour, says at a glance whether the law meets it.
+    const t = fixed ? 'white' : STATUS_TONE[prop?.status];
+    const verdictLabel = t && Object.fromEntries(LEGENDS.requirements)[t];
+    const btn = fixable ? el('button', { type: 'button', class: 'fix-btn', 'aria-pressed': String(fixed), onclick: () => draw(!fixed) }, fixed ? 'Show current law' : 'Fix') : null;
+    const note = fixed ? 'With these amendments (proposed by Freedom Map, not law).' : prop?.explanation;
+    const verdict = verdictLabel ? el('div', { class: `verdict t-${t}` },
+      el('strong', {}, verdictLabel), note ? el('span', {}, note) : null, btn) : btn;
+    panel.className = `provisions${t ? ` v-${t}` : ''}${fixed ? ' fixed' : ''}`;
+    panel.replaceChildren(...[verdict, ...provisions.map(p => {
+      const law = laws[p.law] || { title: p.law };
+      const title = law.url ? el('a', { href: law.url, target: '_blank', rel: 'noopener' }, law.title) : law.title;
+      return el('section', {},
+        el('h3', {}, title),
+        ...(p.items || []).map(it => el('div', { class: 'provision' },
+          it.ref ? el('p', { class: 'ref' }, it.ref) : null,
+          ...provisionLines(it, fixed))));
+    }), explainer && !fixed ? el('section', { class: 'explainer' },
+      el('h3', {}, explainer.title),
+      el('blockquote', {}, explainer.quote.map(t => el('p', {}, t))),
+      el('p', { class: 'source' }, 'Source: ', el('a', { href: explainer.url, target: '_blank', rel: 'noopener' }, explainer.source))) : null].filter(Boolean));
+  };
+  draw(false);
+  return panel;
 }
 
 function render() {

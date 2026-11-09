@@ -145,3 +145,14 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .provisions.v-darkgrey { border-width: 10px; }
 .provisions.v-black { border-width: 15px; }
 @media (max-width: 600px) { .provisions.v-black { border-width: 10px; } .provisions.v-darkgrey { border-width: 7px; } }
+
+/* Fix: proposed amendments shown as tracked changes (same colours as the text reviews). */
+:root { --del-bg: #fbe3e1; --del-fg: #9b2c22; --ins-bg: #dcf1e2; --ins-fg: #1d6a37; }
+.provisions .verdict { position: relative; }
+.provisions .verdict:has(.fix-btn) { padding-right: 190px; min-height: 52px; }
+.provisions .fix-btn { position: absolute; top: 10px; right: 14px; font: inherit; font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 999px; border: 0; cursor: pointer;
+  background: linear-gradient(135deg, #f2555a, #d6334f); color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.provisions .fix-btn[aria-pressed="true"] { background: var(--surface); color: var(--coral-ink); border: 1px solid var(--line); box-shadow: none; }
+.provisions > .fix-btn { position: static; float: right; margin: -6px -8px 8px 8px; }
+.provisions del { background: var(--del-bg); color: var(--del-fg); text-decoration: line-through; text-decoration-thickness: 1px; border-radius: 2px; }
+.provisions ins { background: var(--ins-bg); color: var(--ins-fg); text-decoration: none; border-radius: 2px; }
