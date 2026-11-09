@@ -339,7 +339,7 @@ function render() {
 
   // Trail: where you are in the tree; each step is clickable.
   // Trail uses each chip's long name.
-  const steps = [['Shared interest levels', []]];
+  const steps = [['Common interest levels', []]];
   if (cur) steps.push([cur.l.longName || cur.l.name, [levelId]]);
   if (cur && branchId && BRANCH_INFO[branchId]) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
   if (mech) steps.push([mechLongName(mech, mechs, catalog, levelId), [levelId, branchId, mechIdx]]);
@@ -355,7 +355,7 @@ function render() {
     // Screen 1: levels of shared interest. Geographical, from home to union; then non-geographical.
     const levelChip = ({ l, tone }) => chip({ label: l.name, tone, title: [l.name, loc.places[l.id].name].filter(Boolean).join(': '), onclick: () => go([l.id]) });
     setLegend('levels');
-    screen.push(el('h2', { class: 'group-title' }, 'Shared interest levels'));
+    screen.push(el('h2', { class: 'group-title' }, 'Common interest levels'));
     screen.push(rowOf(levels.filter(x => x.l.kind === 'territorial').map(levelChip)));
     screen.push(rowOf(levels.filter(x => x.l.kind !== 'territorial').map(levelChip)));
   } else if (!branch && branchId !== 'direct' && branchId !== 'representative') {
