@@ -311,7 +311,7 @@
     },
     "individual_vote": {
       "gate": false,
-      "name": "Vote for individual candidates",
+      "name": "Voting for individual candidates",
       "longName": "Voters choose between individual candidates, not party lists",
       "description": "Voters choose individual people (single-member districts or fully open lists), not only party lists."
     },
