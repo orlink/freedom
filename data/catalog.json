@@ -10,8 +10,8 @@
     },
     {
       "id": "business",
-      "name": "Business",
-      "longName": "Business interests",
+      "name": "Economic",
+      "longName": "Economic interests",
       "kind": "sphere",
       "description": "Owners and partners governing their own company: capital, profits, leadership."
     },
