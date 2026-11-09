@@ -1,4 +1,4 @@
-import { resolveJurisdiction, getLevel, scoreLevel, scoreBranch, scoreMechanism, kindProperties, levelPlaces } from './model.js';
+import { resolveJurisdiction, applyPopulation, getLevel, scoreLevel, scoreBranch, scoreMechanism, kindProperties, levelPlaces } from './model.js';
 
 const NOMINATIM = 'https://nominatim.openstreetmap.org';
 const BRANCH_INFO = {
@@ -37,6 +37,12 @@ async function nominatim(path, params) {
 }
 const reverse = (lat, lon) => nominatim('reverse', { lat, lon, zoom: 18 });
 const search = q => nominatim('search', { q, limit: 1 });
+// The settlement (city, town or village) around a point, with its population from OpenStreetMap when tagged.
+async function settlementAt(lat, lon) {
+  const r = await nominatim('reverse', { lat, lon, zoom: 10, extratags: 1 });
+  const pop = parseInt(String(r?.extratags?.population || '').replace(/[\s,.]/g, ''), 10);
+  return r && !r.error ? { name: r.name, type: r.addresstype, population: Number.isFinite(pop) ? pop : null } : null;
+}
 
 // ---------- map ----------
 const map = L.map('map', { worldCopyJump: true }).setView([46, 15], 4);
@@ -65,6 +71,15 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
     if (!keepPath) state.path = [];
     writeHash(!keepPath);
     render();
+    // Some requirements depend on population (e.g. BG general assemblies: up to 10,000 inhabitants). Fetched after
+    // the first render so the page doesn't wait for it; ignored if the pin has moved on meanwhile.
+    const loc = state.loc;
+    settlementAt(lat, lon).then(settlement => {
+      if (state.loc !== loc || !settlement) return;
+      loc.settlement = settlement;
+      loc.jurisdiction = applyPopulation(loc.jurisdiction, settlement);
+      render();
+    }).catch(() => { /* no population: keep the data's own statuses */ });
   } catch (e) {
     $('#place').replaceChildren(`Could not look up this location: ${e.message}`);
   }

@@ -705,6 +705,10 @@
               {
                 "type": "exists",
                 "status": "partial",
+                "populationRule": {
+                  "max": 10000,
+                  "use": "part"
+                },
                 "explanation": "Only quarters (квартали) and districts of up to 10,000 inhabitants can hold one, which rules out most city neighbourhoods.",
                 "laws": [
                   "dcpa",
@@ -1185,6 +1189,12 @@
               {
                 "type": "exists",
                 "status": "yes",
+                "populationRule": {
+                  "max": 10000,
+                  "use": "self",
+                  "ifUnknown": "yes",
+                  "unknownNote": "Villages in Bulgaria have well under 10,000 inhabitants, so a general assembly can be held."
+                },
                 "explanation": "Can be held for a settlement or кметство, including residential areas (квартали) of up to 10,000 inhabitants.",
                 "laws": [
                   "dcpa",
@@ -1863,6 +1873,10 @@
               {
                 "type": "exists",
                 "status": "partial",
+                "populationRule": {
+                  "max": 10000,
+                  "use": "contains"
+                },
                 "explanation": "Only municipalities of up to 10,000 inhabitants can hold one.",
                 "laws": [
                   "dcpa",

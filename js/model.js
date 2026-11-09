@@ -155,3 +155,44 @@ export function kindProperties(kind, mechType, catalog) {
     return t !== 'exists' && missing ? { ...p, disabled: true } : p;
   });
 }
+
+/**
+ * Apply population thresholds from the law to a resolved jurisdiction (e.g. BG Art. 55(1): a general assembly of the
+ * population only where there are up to 10,000 inhabitants). A property with `populationRule` gets its status from
+ * the population of the settlement under the pin (`settlement` = { name, population }), as follows:
+ *  - use "self"     (the level is the settlement, e.g. a village): population ≤ max → yes, else no; unknown → `ifUnknown`.
+ *  - use "part"     (the level lies inside the settlement, e.g. a quarter): settlement ≤ max → yes (a part is smaller);
+ *                   otherwise `ifLarger` (default "no": a quarter of a larger city is taken to exceed the limit).
+ *  - use "contains" (the level contains the settlement, e.g. a municipality): settlement > max → no; otherwise unchanged.
+ * Returns a new jurisdiction; the input is not changed. Each changed property gets an `explanation` saying why.
+ */
+export function applyPopulation(jurisdiction, settlement) {
+  if (!jurisdiction) return jurisdiction;
+  const pop = Number.isFinite(settlement?.population) ? settlement.population : null;
+  const fmt = n => n.toLocaleString('en-GB');
+  const where = settlement?.name || 'This place';
+  const ruled = p => {
+    const r = p.populationRule;
+    if (!r) return p;
+    const max = r.max, lim = `the limit of ${fmt(max)} inhabitants`;
+    let status = null, why = null;
+    if (r.use === 'self') {
+      if (pop != null) { status = pop <= max ? 'yes' : 'no'; why = `${where} has about ${fmt(pop)} inhabitants (OpenStreetMap), ${pop <= max ? 'within' : 'over'} ${lim}.`; }
+      else if (r.ifUnknown) { status = r.ifUnknown; why = r.unknownNote || null; }
+    } else if (r.use === 'part') {
+      if (pop != null && pop <= max) { status = 'yes'; why = `${where} has about ${fmt(pop)} inhabitants (OpenStreetMap), so any part of it is within ${lim}.`; }
+      else if (pop != null) { status = r.ifLarger || 'no'; why = `${where} has about ${fmt(pop)} inhabitants (OpenStreetMap). Its quarters are taken to be over ${lim}, since their own populations are not recorded.`; }
+    } else if (r.use === 'contains') {
+      if (pop != null && pop > max) { status = 'no'; why = `It includes ${where}, which alone has about ${fmt(pop)} inhabitants (OpenStreetMap), over ${lim}.`; }
+    }
+    return status ? { ...p, status, explanation: why || p.explanation } : p;
+  };
+  const mech = m => ({ ...m, properties: (m.properties || []).map(ruled), ...(m.kinds ? { kinds: m.kinds.map(k => ({ ...k, properties: (k.properties || []).map(ruled) })) } : {}) });
+  const levels = {};
+  for (const [id, lvl] of Object.entries(jurisdiction.levels || {})) {
+    const out = { ...lvl };
+    for (const b of BRANCHES) if (lvl[b]?.mechanisms) out[b] = { ...lvl[b], mechanisms: lvl[b].mechanisms.map(mech) };
+    levels[id] = out;
+  }
+  return { ...jurisdiction, levels };
+}
