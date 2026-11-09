@@ -912,7 +912,7 @@
               {
                 "type": "individual_vote",
                 "status": "no",
-                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate. In practice, only about 3% of members of parliament have been elected thanks to preference votes.",
+                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate.",
                 "laws": [
                   "ec"
                 ],
@@ -2063,7 +2063,7 @@
               {
                 "type": "individual_vote",
                 "status": "no",
-                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate. In practice, only about 3% of members of parliament have been elected thanks to preference votes.",
+                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate.",
                 "laws": [
                   "ec"
                 ],
@@ -2542,11 +2542,41 @@
               },
               {
                 "type": "individual_vote",
-                "status": "partial",
-                "explanation": "Proportional party lists in 31 multi-member districts; one preference counts only if it reaches 7% of the list's votes in the district.",
+                "status": "no",
+                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote; a ballot with more than one counts for the list only. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate. In practice, only about 3% of members of parliament have been elected thanks to preference votes.",
                 "laws": [
                   "const",
                   "ec"
+                ],
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 246(1)",
+                        "text": "Elections for members of parliament are held under a proportional electoral system, with candidate lists of parties and coalitions, or of initiative committees, registered in multi-member constituencies."
+                      },
+                      {
+                        "ref": "Article 246(2)",
+                        "text": "When voting for the candidate list of a party or coalition, the voter may mark one preference for a candidate on the list, thereby expressing a preference as to the order of the candidates on the list voted for."
+                      },
+                      {
+                        "ref": "Article 278(2), items 4 and 5",
+                        "text": [
+                          "The vote is valid for the candidate list even if no preference has been marked for a candidate from the list of the party or coalition voted for.",
+                          "If more than one preference has been marked, the ballot is taken to contain no preference, and the vote counts only for the chosen candidate list."
+                        ]
+                      },
+                      {
+                        "ref": "Article 278(5)",
+                        "text": "Where the voter has not marked a preference for a candidate on the chosen candidate list, a preference is counted for the candidate placed first on the list."
+                      },
+                      {
+                        "ref": "Article 298(2)",
+                        "text": "Preferences for individual candidates are valid if the number of votes received for the candidate is no less than 7 per cent of the votes cast for the candidate list."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -2556,6 +2586,17 @@
                 "laws": [
                   "const",
                   "ec"
+                ],
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 249(1)",
+                        "text": "For the elections, the territory of the country is divided into 31 multi-member constituencies, including three in Sofia City and two in Plovdiv region. The other constituencies coincide with the boundaries of the regions of the country."
+                      }
+                    ]
+                  }
                 ]
               },
               {
