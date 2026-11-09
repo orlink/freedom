@@ -165,10 +165,12 @@ function tone(score) {
   if (score < 1) return 'lightgrey';
   return 'white';
 }
+// Mechanisms and referendum kinds use three colours (Orlin): no "Limited", so anything short of effective is flawed.
+const mechTone = score => { const t = tone(score); return t === 'lightgrey' ? 'darkgrey' : t; };
 // The legend's labels depend on what the chips on the screen stand for.
 const LEGENDS = {
   levels: [['white', 'Free'], ['lightgrey', 'Mostly free'], ['darkgrey', 'Barely free'], ['black', 'Not free']],
-  mechanisms: [['white', 'Effective'], ['lightgrey', 'Limited'], ['darkgrey', 'Flawed'], ['black', 'Ineffective or absent']],
+  mechanisms: [['white', 'Effective'], ['darkgrey', 'Flawed'], ['black', 'Ineffective or absent']],
   requirements: [['white', 'Met'], ['darkgrey', 'Partly met'], ['black', 'Not met'], ['disabled', 'Does not apply']],
 };
 function setLegend(kind) {
@@ -301,7 +303,7 @@ function render() {
     }))));
   } else if (!mech) {
     // Screen 3: mechanisms (e.g. referendum, general assembly). None at all: one black chip saying so.
-    const shown = mechs.map((m, i) => ({ m, i, tone: tone(scoreMechanism(m, catalog)) })).filter(x => x.tone);
+    const shown = mechs.map((m, i) => ({ m, i, tone: mechTone(scoreMechanism(m, catalog)) })).filter(x => x.tone);
     setLegend('mechanisms');
     screen.push(rowOf(shown.length ? shown.map(({ m, i, tone }) => chip({
       label: mechLabel(m, mechs, catalog), tone, title: m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, branchId, i]),
@@ -314,7 +316,7 @@ function render() {
       const k = mech.kinds[i], def = kindDefs[t] || {};
       const score = k ? scoreMechanism({ type: mech.type, properties: k.properties }, catalog) : 0;
       return chip({
-        label: def.name || t, tone: tone(score) || 'unknown', title: [k?.name, def.description].filter(Boolean).join('\n\n'),
+        label: def.name || t, tone: mechTone(score) || 'unknown', title: [k?.name, def.description].filter(Boolean).join('\n\n'),
         onclick: i >= 0 ? () => go([levelId, branchId, mechIdx, i]) : undefined,
       });
     })));

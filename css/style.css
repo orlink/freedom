@@ -2,7 +2,7 @@
   /* Coral red theme (from the Speak! warm logo study). Chip greys stay neutral: they carry meaning. */
   --coral: #d63845; --coral-deep: #b82a39; --coral-ink: #b82a39; --coral-soft: #fde4e1;
   --bg: #f6e9e5; --surface: #fffaf8; --text: #2e1518; --muted: #74575a; --line: #e8cfc9; --accent: var(--coral-ink); --input: #ffffff;
-  --full: #ffffff; --good: #c4c4c4; --weak: #5c5c5c; --none: #111111;
+  --full: #ffffff; --good: #c4c4c4; --weak: #3d3d3d; --none: #111111;
   --shadow: 0 1px 2px rgba(46, 21, 24, .10), 0 4px 14px rgba(46, 21, 24, .07);
   --btn-w: 168px; --btn-h: 64px;
 }
@@ -58,7 +58,7 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .t-black { background: var(--none); color: #fff; }
 
 /* Alternative chip scale: white = free, darker red = less free. */
-:root[data-scale="red"] { --full: #ffffff; --good: #ef9c9c; --weak: #c2414c; --none: #7d1424; }
+:root[data-scale="red"] { --full: #ffffff; --good: #ef9c9c; --weak: #9e2433; --none: #7d1424; }
 :root[data-scale="red"] .t-white { color: #3a1519; border-color: #e3c4be; }
 :root[data-scale="red"] .t-lightgrey { color: #3a1519; }
 :root[data-scale="red"] .t-darkgrey { color: #fff; }
