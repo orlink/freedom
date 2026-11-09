@@ -534,45 +534,10 @@
             "name": "Own members of the city/county council",
             "properties": [
               {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "Every area elects members of its city or county council.",
-                "laws": [
-                  "bunreacht"
-                ]
-              },
-              {
-                "type": "binding_powers",
-                "status": "yes",
-                "explanation": "The council decides local matters, including the neighbourhood's.",
-                "laws": [
-                  "bunreacht",
-                  "lga2001"
-                ]
-              },
-              {
-                "type": "individual_vote",
-                "status": "yes",
-                "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
-                "laws": [
-                  "lga2001",
-                  "ler1995"
-                ]
-              },
-              {
                 "type": "local_districts",
                 "status": "partial",
                 "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
                 "laws": [
-                  "lga2001"
-                ]
-              },
-              {
-                "type": "recall",
-                "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law.",
-                "laws": [
-                  "bunreacht",
                   "lga2001"
                 ]
               }
@@ -656,45 +621,10 @@
             "name": "Own members of the city/county council",
             "properties": [
               {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "Every area elects members of its city or county council.",
-                "laws": [
-                  "bunreacht"
-                ]
-              },
-              {
-                "type": "binding_powers",
-                "status": "yes",
-                "explanation": "The council decides local matters, including the neighbourhood's.",
-                "laws": [
-                  "bunreacht",
-                  "lga2001"
-                ]
-              },
-              {
-                "type": "individual_vote",
-                "status": "yes",
-                "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
-                "laws": [
-                  "lga2001",
-                  "ler1995"
-                ]
-              },
-              {
                 "type": "local_districts",
                 "status": "partial",
                 "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
                 "laws": [
-                  "lga2001"
-                ]
-              },
-              {
-                "type": "recall",
-                "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law.",
-                "laws": [
-                  "bunreacht",
                   "lga2001"
                 ]
               }

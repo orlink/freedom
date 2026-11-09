@@ -330,7 +330,10 @@ function render() {
   const kind = mech?.kinds?.[kindIdx];
   const kindDefs = catalog.referendumKinds || {};
   const props = kind ? kindProperties(kind, mech.type, catalog) : (mech?.kinds ? [] : mech?.properties || []);
-  const propIdx = mech?.kinds ? step5 : step4;
+  // A mechanism that hinges on a single requirement (e.g. a neighbourhood's representatives in the municipal council:
+  // elected in local districts) skips the requirements screen: its chip opens that requirement's page directly.
+  const single = mech && !mech.kinds && props.length === 1;
+  const propIdx = mech?.kinds ? step5 : (single ? 0 : step4);
   const prop = props[propIdx]?.disabled ? undefined : props[propIdx];
   const propPath = i => (mech.kinds ? [levelId, branchId, mechIdx, kindIdx, i] : [levelId, branchId, mechIdx, i]);
 
@@ -341,7 +344,7 @@ function render() {
   if (cur && branchId && BRANCH_INFO[branchId]) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
   if (mech) steps.push([mechLongName(mech, mechs, catalog, levelId), [levelId, branchId, mechIdx]]);
   if (kind) steps.push([kind.name || kindDefs[kind.type]?.longName || kind.type, [levelId, branchId, mechIdx, kindIdx]]);
-  if (prop) steps.push([prop.name || catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name, propPath(propIdx)]);
+  if (prop && !single) steps.push([prop.name || catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name, propPath(propIdx)]);
   $('#trail').replaceChildren(...(steps.length > 1 ? steps.flatMap(([name, path], i) => [
     i ? el('span', { class: 'sep' }, '›') : null,
     i < steps.length - 1 ? el('button', { type: 'button', onclick: () => go(path) }, name) : el('span', { class: 'here' }, name),

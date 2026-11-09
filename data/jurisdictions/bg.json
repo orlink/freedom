@@ -901,58 +901,6 @@
             "name": "Own member of the municipal council",
             "properties": [
               {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "Every municipality has a directly elected council.",
-                "laws": [
-                  "const",
-                  "lsga"
-                ]
-              },
-              {
-                "type": "binding_powers",
-                "status": "yes",
-                "explanation": "The council decides local matters, including the quarter's, and adopts the budget.",
-                "laws": [
-                  "lsga"
-                ]
-              },
-              {
-                "type": "individual_vote",
-                "status": "no",
-                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate.",
-                "laws": [
-                  "ec"
-                ],
-                "provisions": [
-                  {
-                    "law": "ec",
-                    "items": [
-                      {
-                        "ref": "Article 399(2)",
-                        "text": "When voting for the candidate list of a party or coalition, the voter may mark one preference for a candidate on the list, thereby expressing a preference as to the order of the candidates on the list voted for.",
-                        "fix": "When voting, the voter may rank as many candidates as they wish in order of preference, by marking 1, 2, 3 and so on beside their names, regardless of the party, coalition or committee that nominated them."
-                      },
-                      {
-                        "ref": "Article 437(2), item 4",
-                        "text": "The vote is valid for the candidate list even if no preference has been marked for a candidate from the list of the party or coalition voted for.",
-                        "fix": "The vote is valid if at least one candidate has been marked with the number 1."
-                      },
-                      {
-                        "ref": "Article 437(5)",
-                        "text": "Where the voter has not marked a preference for a candidate on the chosen candidate list, a preference is counted for the candidate placed first on the list.",
-                        "fix": "(repealed)"
-                      },
-                      {
-                        "ref": "Article 454(2)",
-                        "text": "Preferences for individual candidates are valid if the number of votes received for the candidate is no less than 7 per cent of the votes cast for the candidate list.",
-                        "fix": "Candidates are elected by the single transferable vote: each ballot counts for the voter's highest-ranked candidate who can still use it, and surplus and eliminated candidates' votes are transferred by the voters' next preferences until all seats are filled."
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
                 "type": "local_districts",
                 "status": "no",
                 "explanation": "The whole municipality is one constituency, so no councillor is elected by, or answers to, the neighbourhood.",
@@ -975,14 +923,6 @@
                       }
                     ]
                   }
-                ]
-              },
-              {
-                "type": "recall",
-                "status": "no",
-                "explanation": "The law lists the grounds for early termination of a mandate (resignation, incapacity, absences, etc.); recall by voters is not among them.",
-                "laws": [
-                  "lsga"
                 ]
               }
             ]
