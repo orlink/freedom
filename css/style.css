@@ -58,7 +58,7 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .t-black { background: var(--none); color: #fff; }
 
 /* Alternative chip scale: white = free, darker red = less free. */
-:root[data-scale="red"] { --full: #ffffff; --good: #ef9c9c; --weak: #9e2433; --none: #7d1424; }
+:root[data-scale="red"] { --full: #ffffff; --good: #ef9c9c; --weak: #9e2433; --none: #4f0b15; }
 :root[data-scale="red"] .t-white { color: #3a1519; border-color: #e3c4be; }
 :root[data-scale="red"] .t-lightgrey { color: #3a1519; }
 :root[data-scale="red"] .t-darkgrey { color: #fff; }
