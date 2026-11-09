@@ -214,14 +214,6 @@
                 ]
               },
               {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "Only the owners elect them.",
-                "laws": [
-                  "or"
-                ]
-              },
-              {
                 "type": "recall",
                 "status": "yes",
                 "explanation": "The owners can dismiss them.",
@@ -330,14 +322,6 @@
                 ]
               },
               {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "Only the members elect it.",
-                "laws": [
-                  "zgb"
-                ]
-              },
-              {
                 "type": "recall",
                 "status": "yes",
                 "explanation": "The members can dismiss the board.",
@@ -424,13 +408,6 @@
               },
               {
                 "type": "individual_vote",
-                "status": "yes",
-                "laws": [
-                  "zgb"
-                ]
-              },
-              {
-                "type": "local_constituency",
                 "status": "yes",
                 "laws": [
                   "zgb"
@@ -631,7 +608,7 @@
                 ]
               },
               {
-                "type": "local_constituency",
+                "type": "local_districts",
                 "status": "partial",
                 "explanation": "Each canton is a constituency.",
                 "laws": [
@@ -838,7 +815,7 @@
                     ]
                   },
                   {
-                    "type": "local_constituency",
+                    "type": "local_districts",
                     "status": "partial",
                     "explanation": "The districts (Bezirke) are the constituencies.",
                     "laws": [
@@ -878,14 +855,6 @@
                   },
                   {
                     "type": "individual_vote",
-                    "status": "yes",
-                    "laws": [
-                      "kv",
-                      "gpr"
-                    ]
-                  },
-                  {
-                    "type": "local_constituency",
                     "status": "yes",
                     "laws": [
                       "kv",
@@ -984,14 +953,6 @@
                   },
                   {
                     "type": "individual_vote",
-                    "status": "yes",
-                    "laws": [
-                      "kv",
-                      "gpr"
-                    ]
-                  },
-                  {
-                    "type": "local_constituency",
                     "status": "yes",
                     "laws": [
                       "kv",
@@ -1203,14 +1164,6 @@
                     ]
                   },
                   {
-                    "type": "local_constituency",
-                    "status": "yes",
-                    "explanation": "Elected by the city's voters, in nine districts.",
-                    "laws": [
-                      "go"
-                    ]
-                  },
-                  {
                     "type": "recall",
                     "status": "no",
                     "explanation": "No recall of elected officials at this level.",
@@ -1253,15 +1206,6 @@
                   },
                   {
                     "type": "individual_vote",
-                    "status": "yes",
-                    "laws": [
-                      "go",
-                      "gg",
-                      "gpr"
-                    ]
-                  },
-                  {
-                    "type": "local_constituency",
                     "status": "yes",
                     "laws": [
                       "go",
@@ -1384,7 +1328,7 @@
                     ]
                   },
                   {
-                    "type": "local_constituency",
+                    "type": "local_districts",
                     "status": "partial",
                     "explanation": "The school district is the constituency; it spans several quarters.",
                     "laws": [
@@ -1434,7 +1378,7 @@
                     ]
                   },
                   {
-                    "type": "local_constituency",
+                    "type": "local_districts",
                     "status": "partial",
                     "explanation": "Elected per electoral district (Wahlkreis), which is larger than one quarter.",
                     "laws": [

@@ -231,9 +231,9 @@
       "description": "No body of its own, but does the community at least elect its own accountable member of the council above?",
       "weight": 0.4,
       "gates": [
-        "local_constituency"
+        "local_districts"
       ],
-      "$comment": "Fallback mechanism: weighted at 40%, and void if the representative is not elected by this community alone (e.g. one municipality-wide list)."
+      "$comment": "Fallback mechanism: weighted at 40%, and void unless the higher council is elected in local districts, so this community has its own representative."
     }
   },
   "properties": {
@@ -314,12 +314,6 @@
       "name": "Vote for individual candidates",
       "longName": "Voters choose between individual candidates, not party lists",
       "description": "Voters choose individual people (single-member districts or fully open lists), not only party lists."
-    },
-    "local_constituency": {
-      "gate": false,
-      "name": "Elected only by this community",
-      "longName": "Elected only by this community",
-      "description": "The representative's constituency is this community, so they answer to it rather than to outsiders."
     },
     "recall": {
       "gate": false,

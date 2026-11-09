@@ -247,14 +247,6 @@
                 ]
               },
               {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "Only the owners elect them.",
-                "laws": [
-                  "ta"
-                ]
-              },
-              {
                 "type": "recall",
                 "status": "yes",
                 "explanation": "The owners can dismiss them.",
@@ -363,14 +355,6 @@
                 ]
               },
               {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "Only the members elect it.",
-                "laws": [
-                  "npla"
-                ]
-              },
-              {
                 "type": "recall",
                 "status": "yes",
                 "explanation": "The members can dismiss the board.",
@@ -469,14 +453,6 @@
                 "type": "individual_vote",
                 "status": "yes",
                 "explanation": "Board members are elected individually by the general assembly.",
-                "laws": [
-                  "cma"
-                ]
-              },
-              {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "Only the owners of this entrance (or building) elect them.",
                 "laws": [
                   "cma"
                 ]
@@ -977,7 +953,7 @@
                 ]
               },
               {
-                "type": "local_constituency",
+                "type": "local_districts",
                 "status": "no",
                 "explanation": "The whole municipality is one constituency, so no councillor is elected by, or answers to, the neighbourhood.",
                 "laws": [
@@ -1539,26 +1515,6 @@
                           "If more than two candidates were registered and none was elected, only the two who received the most valid votes may take part in the second round.",
                           "In the second round, the candidate who received the most valid votes is elected."
                         ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "The кметство is one single-member constituency for its mayor.",
-                "laws": [
-                  "ec",
-                  "lsga"
-                ],
-                "provisions": [
-                  {
-                    "law": "ec",
-                    "items": [
-                      {
-                        "ref": "Article 404(2)",
-                        "text": "For elections for mayor of a municipality, district or mayoralty, the territory of the municipality, district or mayoralty constitutes one single-member constituency."
                       }
                     ]
                   }
@@ -2227,14 +2183,6 @@
                 ]
               },
               {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "Elected by the municipality's voters only.",
-                "laws": [
-                  "ec"
-                ]
-              },
-              {
                 "type": "recall",
                 "status": "no",
                 "explanation": "The law lists the grounds for early termination of a mandate (resignation, incapacity, absences, etc.); recall by voters is not among them.",
@@ -2353,25 +2301,6 @@
                           "If more than two candidates were registered and none was elected, only the two who received the most valid votes may take part in the second round.",
                           "In the second round, the candidate who received the most valid votes is elected."
                         ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "local_constituency",
-                "status": "yes",
-                "laws": [
-                  "ec"
-                ],
-                "explanation": "The municipality is one single-member constituency for its mayor.",
-                "provisions": [
-                  {
-                    "law": "ec",
-                    "items": [
-                      {
-                        "ref": "Article 404(2)",
-                        "text": "For elections for mayor of a municipality, district or mayoralty, the territory of the municipality, district or mayoralty constitutes one single-member constituency."
                       }
                     ]
                   }
@@ -2736,7 +2665,7 @@
                 ]
               },
               {
-                "type": "local_constituency",
+                "type": "local_districts",
                 "status": "partial",
                 "explanation": "31 multi-member districts matching the regions (Sofia split in three, Plovdiv in two).",
                 "laws": [
@@ -2854,7 +2783,7 @@
                 ]
               },
               {
-                "type": "local_constituency",
+                "type": "local_districts",
                 "status": "no",
                 "explanation": "Bulgaria is a single constituency.",
                 "laws": [

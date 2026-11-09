@@ -240,14 +240,6 @@
                 ]
               },
               {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "Only the owners elect them.",
-                "laws": [
-                  "ca2014"
-                ]
-              },
-              {
                 "type": "recall",
                 "status": "yes",
                 "explanation": "The owners can dismiss them.",
@@ -358,14 +350,6 @@
                 ]
               },
               {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "Only the members elect it.",
-                "laws": [
-                  "ca2014"
-                ]
-              },
-              {
                 "type": "recall",
                 "status": "yes",
                 "explanation": "The members can dismiss the board.",
@@ -456,15 +440,6 @@
                 "type": "individual_vote",
                 "status": "yes",
                 "explanation": "Directors are elected individually by the members.",
-                "laws": [
-                  "mud2011",
-                  "ca2014"
-                ]
-              },
-              {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "Only the owners in the development elect them.",
                 "laws": [
                   "mud2011",
                   "ca2014"
@@ -585,7 +560,7 @@
                 ]
               },
               {
-                "type": "local_constituency",
+                "type": "local_districts",
                 "status": "partial",
                 "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
                 "laws": [
@@ -707,7 +682,7 @@
                 ]
               },
               {
-                "type": "local_constituency",
+                "type": "local_districts",
                 "status": "partial",
                 "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
                 "laws": [
@@ -804,15 +779,6 @@
                 "type": "individual_vote",
                 "status": "yes",
                 "explanation": "Members are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
-                "laws": [
-                  "lga2001",
-                  "ler1995"
-                ]
-              },
-              {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "Members are the councillors elected in the district's local electoral areas.",
                 "laws": [
                   "lga2001",
                   "ler1995"
@@ -917,15 +883,6 @@
                 "type": "individual_vote",
                 "status": "yes",
                 "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
-                "laws": [
-                  "lga2001",
-                  "ler1995"
-                ]
-              },
-              {
-                "type": "local_constituency",
-                "status": "yes",
-                "explanation": "Elected only by the county's or city's voters.",
                 "laws": [
                   "lga2001",
                   "ler1995"
@@ -1091,7 +1048,7 @@
                 ]
               },
               {
-                "type": "local_constituency",
+                "type": "local_districts",
                 "status": "partial",
                 "explanation": "Multi-seat constituencies; no law may provide fewer than three seats per constituency.",
                 "laws": [
@@ -1197,7 +1154,7 @@
                 ]
               },
               {
-                "type": "local_constituency",
+                "type": "local_districts",
                 "status": "partial",
                 "explanation": "Ireland elects its MEPs in a few multi-seat constituencies.",
                 "laws": [
@@ -1311,15 +1268,6 @@
                     ]
                   },
                   {
-                    "type": "local_constituency",
-                    "status": "yes",
-                    "explanation": "Elected only by the county's or city's voters.",
-                    "laws": [
-                      "lga2001",
-                      "ler1995"
-                    ]
-                  },
-                  {
                     "type": "recall",
                     "status": "no",
                     "explanation": "There is no recall of elected representatives in Irish law.",
@@ -1359,14 +1307,6 @@
                   },
                   {
                     "type": "individual_vote",
-                    "status": "yes",
-                    "laws": [
-                      "lga2001",
-                      "ler1995"
-                    ]
-                  },
-                  {
-                    "type": "local_constituency",
                     "status": "yes",
                     "laws": [
                       "lga2001",
