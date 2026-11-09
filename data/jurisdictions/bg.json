@@ -911,8 +911,8 @@
               },
               {
                 "type": "individual_vote",
-                "status": "weak",
-                "explanation": "Party lists with one optional preference vote. A preference changes the list order only if it reaches 7% of the votes cast for that list.",
+                "status": "no",
+                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate.",
                 "laws": [
                   "ec"
                 ],
@@ -921,12 +921,16 @@
                     "law": "ec",
                     "items": [
                       {
-                        "ref": "Article 399(1)",
-                        "text": "Elections for municipal councillors are held under a proportional electoral system, with candidate lists of parties and coalitions, or of initiative committees, registered in multi-member constituencies."
-                      },
-                      {
                         "ref": "Article 399(2)",
                         "text": "When voting for the candidate list of a party or coalition, the voter may mark one preference for a candidate on the list, thereby expressing a preference as to the order of the candidates on the list voted for."
+                      },
+                      {
+                        "ref": "Article 437(2), item 4",
+                        "text": "The vote is valid for the candidate list even if no preference has been marked for a candidate from the list of the party or coalition voted for."
+                      },
+                      {
+                        "ref": "Article 437(5)",
+                        "text": "Where the voter has not marked a preference for a candidate on the chosen candidate list, a preference is counted for the candidate placed first on the list."
                       },
                       {
                         "ref": "Article 454(2)",
@@ -2058,8 +2062,8 @@
               },
               {
                 "type": "individual_vote",
-                "status": "weak",
-                "explanation": "Voters choose a party list. They can mark one preference, but it changes the list order only if the candidate gets at least 7% of the list’s votes. Councillors answer to their party more than to voters.",
+                "status": "no",
+                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate.",
                 "laws": [
                   "ec"
                 ],
@@ -2068,12 +2072,16 @@
                     "law": "ec",
                     "items": [
                       {
-                        "ref": "Article 399(1)",
-                        "text": "Elections for municipal councillors are held under a proportional electoral system, with candidate lists of parties and coalitions, or of initiative committees, registered in multi-member constituencies."
-                      },
-                      {
                         "ref": "Article 399(2)",
                         "text": "When voting for the candidate list of a party or coalition, the voter may mark one preference for a candidate on the list, thereby expressing a preference as to the order of the candidates on the list voted for."
+                      },
+                      {
+                        "ref": "Article 437(2), item 4",
+                        "text": "The vote is valid for the candidate list even if no preference has been marked for a candidate from the list of the party or coalition voted for."
+                      },
+                      {
+                        "ref": "Article 437(5)",
+                        "text": "Where the voter has not marked a preference for a candidate on the chosen candidate list, a preference is counted for the candidate placed first on the list."
                       },
                       {
                         "ref": "Article 454(2)",

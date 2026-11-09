@@ -195,7 +195,9 @@
       "description": "A council elected by this community that decides its affairs.",
       "gates": [
         "exists",
-        "binding_powers",
+        "binding_powers"
+      ],
+      "caps": [
         "individual_vote"
       ]
     },
@@ -206,7 +208,9 @@
       "description": "A mayor, manager or head elected by this community.",
       "gates": [
         "exists",
-        "binding_powers",
+        "binding_powers"
+      ],
+      "caps": [
         "individual_vote"
       ]
     },

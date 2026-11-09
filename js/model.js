@@ -70,6 +70,8 @@ export function scoreMechanism(mech, catalog) {
     if (gate && v === 0) return 0;
     if (gate && v === 0.5) gateFactor *= 0.5;
     if (gate && v === 0.25) cap = Math.min(cap, 0.25);
+    // A "cap" property (e.g. individual vote for a council) that is not fully met limits the mechanism to dark grey.
+    if ((catalog.mechanisms[mech.type]?.caps || []).includes(p.type) && v != null && v <= 0.25) cap = Math.min(cap, 0.25);
     if (v != null) values.push(v);
   }
   if (!values.length) return null;
