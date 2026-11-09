@@ -273,7 +273,7 @@ function provisionLines(it, fixed) {
 // The legal text behind a requirement: per law, a linked title and the quoted provisions (translated).
 // When the data proposes amendments (`fix` on a provision), a Fix button shows them as tracked changes.
 function provisionsPanel(provisions, laws, explainer, prop) {
-  const fixable = provisions.some(p => (p.items || []).some(it => it.fix != null));
+  const fixable = ['no', 'partial', 'weak'].includes(prop?.status) && provisions.some(p => (p.items || []).some(it => it.fix != null));
   const panel = el('div', {});
   const draw = fixed => {
     // A band on top, in the requirement's own colour, says at a glance whether the law meets it.
