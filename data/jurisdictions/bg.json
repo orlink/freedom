@@ -1378,7 +1378,7 @@
               {
                 "type": "binding_powers",
                 "status": "weak",
-                "explanation": "The кметство mayor only carries out the municipal budget and the council’s and municipal mayor’s acts for the village, with an advisory vote in the council. The municipal council sets the mayor’s powers and decides the budget, fees, property and plans, so the village cannot govern most of its own interests.",
+                "explanation": "The кметство mayor only carries out the municipal budget and the council’s and municipal mayor’s acts for the village, with an advisory vote in the council. The municipal council sets the mayor’s powers and decides the budget, fees, property and plans, so the village cannot govern most of its own interests. No own budget: the municipal council sets the кметство's budget figures.",
                 "laws": [
                   "lsga"
                 ],
@@ -1466,40 +1466,6 @@
                 "explanation": "The law lists the grounds for early termination of a mandate (resignation, incapacity, absences, etc.); recall by voters is not among them.",
                 "laws": [
                   "lsga"
-                ]
-              },
-              {
-                "type": "own_means",
-                "status": "no",
-                "explanation": "No own budget: the municipal council sets the кметство's budget figures.",
-                "laws": [
-                  "lsga"
-                ],
-                "provisions": [
-                  {
-                    "law": "lsga",
-                    "items": [
-                      {
-                        "ref": "Article 21(1)",
-                        "text": [
-                          "The municipal council:",
-                          "6. adopts and amends the annual budget of the municipality, including the figures for the districts, mayoralties and settlements with mayoral deputies, monitors its implementation and adopts the report on it;",
-                          "7. sets the amount of local fees;",
-                          "8. adopts decisions on the acquisition, management and disposal of municipal property and determines the specific powers of the mayor of the municipality and of the mayors of districts and mayoralties;",
-                          "11. adopts decisions on the creation and approval of spatial development plans and their amendments for the territory of the municipality or parts of it;",
-                          "23. decides other matters of local importance that are not within the exclusive competence of other bodies."
-                        ],
-                        "fix": [
-                          "The municipal council:",
-                          "6. adopts and amends the annual budget of the municipality, monitors its implementation and adopts the report on it; the districts and mayoralties adopt their own budgets from the revenues assigned to them by law;",
-                          "7. sets the amount of local fees;",
-                          "8. adopts decisions on the acquisition, management and disposal of municipal property, except property located in a district or mayoralty and serving its residents, which is managed by that district or mayoralty;",
-                          "11. adopts decisions on the creation and approval of spatial development plans and their amendments for the territory of the municipality or parts of it;",
-                          "23. decides other matters of local importance that are not within the competence of districts, mayoralties or other bodies."
-                        ]
-                      }
-                    ]
-                  }
                 ]
               }
             ]
@@ -2055,10 +2021,12 @@
               },
               {
                 "type": "binding_powers",
-                "status": "yes",
-                "explanation": "Adopts the budget and sets local fees.",
+                "status": "partial",
+                "explanation": "Limited powers over many local interests. It adopts the budget and sets local fees, but it can set local tax rates only within the limits fixed by national law, and it does not appoint school principals, for example.",
                 "laws": [
-                  "lsga"
+                  "lsga",
+                  "const",
+                  "ltfa"
                 ],
                 "provisions": [
                   {
@@ -2128,15 +2096,6 @@
                 "explanation": "The law lists the grounds for early termination of a mandate (resignation, incapacity, absences, etc.); recall by voters is not among them.",
                 "laws": [
                   "lsga"
-                ]
-              },
-              {
-                "type": "own_means",
-                "status": "partial",
-                "explanation": "The council sets local tax rates only within the limits fixed by national law.",
-                "laws": [
-                  "const",
-                  "ltfa"
                 ]
               },
               {

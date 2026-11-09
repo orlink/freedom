@@ -722,15 +722,6 @@
                   "lgra2014",
                   "lga2001"
                 ]
-              },
-              {
-                "type": "own_means",
-                "status": "partial",
-                "explanation": "The district depends on allocations from the county council's budget.",
-                "laws": [
-                  "lga2001",
-                  "lpt2012"
-                ]
               }
             ]
           }
@@ -803,10 +794,11 @@
               },
               {
                 "type": "binding_powers",
-                "status": "yes",
-                "explanation": "The council's reserved functions include adopting the budget and development plan.",
+                "status": "partial",
+                "explanation": "The council's reserved functions include adopting the budget and development plan. The council can vary the local property tax rate by up to 15% either way; most funding comes from central government.",
                 "laws": [
-                  "lga2001"
+                  "lga2001",
+                  "lpt2012"
                 ]
               },
               {
@@ -825,14 +817,6 @@
                 "laws": [
                   "bunreacht",
                   "lga2001"
-                ]
-              },
-              {
-                "type": "own_means",
-                "status": "partial",
-                "explanation": "The council can vary the local property tax rate by up to 15% either way; most funding comes from central government.",
-                "laws": [
-                  "lpt2012"
                 ]
               }
             ]

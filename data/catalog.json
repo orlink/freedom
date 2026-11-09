@@ -307,13 +307,14 @@
       "gate": false,
       "name": "Means to implement",
       "longName": "The community has its own means to implement decisions",
-      "description": "The community controls a budget or resources to carry out its decisions."
+      "description": "The community controls a budget or resources to carry out its decisions.",
+      "$comment": "Used for direct mechanisms (general meetings). For representative bodies it is part of Powers (binding_powers)."
     },
     "binding_powers": {
       "gate": true,
-      "name": "Can make binding decisions",
-      "longName": "The body can make binding decisions",
-      "description": "The representatives can take decisions that bind on the community's matters."
+      "name": "Powers",
+      "longName": "The body has the powers to govern the community's interests",
+      "description": "It can take binding decisions on the community's shared interests and has the means to carry them out: its own budget, taxes and fees, and control of local services."
     },
     "individual_vote": {
       "gate": false,
