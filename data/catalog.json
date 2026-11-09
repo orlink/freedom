@@ -228,6 +228,12 @@
       "branch": "representative",
       "name": "Representative in the higher council",
       "longName": "Representative in the higher-level council",
+      "levelNames": {
+        "neighbourhood": {
+          "name": "Representatives in municipal council",
+          "longName": "Representatives in the municipal council"
+        }
+      },
       "description": "No body of its own, but does the community at least elect its own accountable member of the council above?",
       "weight": 0.4,
       "gates": [
