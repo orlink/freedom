@@ -184,7 +184,7 @@ function tone(score) {
 const mechTone = score => { const t = tone(score); return t === 'lightgrey' ? 'darkgrey' : t; };
 // The legend's labels depend on what the chips on the screen stand for.
 const LEGENDS = {
-  levels: [['white', 'Free'], ['lightgrey', 'Mostly free'], ['darkgrey', 'Barely free'], ['black', 'Not free']],
+  levels: [['white', 'Free'], ['lightgrey', 'Mostly free'], ['darkgrey', 'Mostly not free'], ['black', 'Not free']],
   mechanisms: [['white', 'Effective'], ['darkgrey', 'Flawed'], ['black', 'Ineffective or absent']],
   requirements: [['white', 'Met'], ['darkgrey', 'Partly met'], ['black', 'Not met'], ['disabled', 'Does not apply']],
 };
