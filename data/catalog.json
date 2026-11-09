@@ -192,6 +192,16 @@
       "branch": "representative",
       "name": "Own elected council",
       "longName": "Own elected council of the community",
+      "levelNames": {
+        "country": {
+          "name": "Parliament",
+          "longName": "Own elected parliament of the country"
+        },
+        "union": {
+          "name": "Parliament",
+          "longName": "Own elected parliament of the union"
+        }
+      },
       "description": "A council elected by this community that decides its affairs.",
       "gates": [
         "exists",

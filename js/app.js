@@ -219,16 +219,18 @@ function renderPlace() {
   $('#place').replaceChildren(...parts.flatMap((p, i) => i ? [el('span', { class: 'sep' }, '·'), p] : [p]));
 }
 
-function mechLabel(m, all, catalog) {
+// A mechanism may be named differently at some levels (catalog `levelNames`), e.g. the council of a country is its parliament.
+const levelName = (mdef, levelId, key) => mdef.levelNames?.[levelId]?.[key];
+function mechLabel(m, all, catalog, levelId) {
   const mdef = catalog.mechanisms[m.type] || {};
   const twins = all.filter(x => x.type === m.type).length > 1;
-  return shortName(twins && m.name ? m.name : (mdef.name || m.name || m.type));
+  return shortName(twins && m.name ? m.name : (levelName(mdef, levelId, 'name') || mdef.name || m.name || m.type));
 }
 
-function mechLongName(m, all, catalog) {
+function mechLongName(m, all, catalog, levelId) {
   const mdef = catalog.mechanisms[m.type] || {};
   const twins = all.filter(x => x.type === m.type).length > 1;
-  return twins && m.name ? m.name : (mdef.longName || mdef.name || m.name || m.type);
+  return twins && m.name ? m.name : (levelName(mdef, levelId, 'longName') || mdef.longName || mdef.name || m.name || m.type);
 }
 
 // The legal text behind a requirement: per law, a linked title and the quoted provisions (translated).
@@ -290,7 +292,7 @@ function render() {
   const steps = [['Shared interest levels', []]];
   if (cur) steps.push([cur.l.longName || cur.l.name, [levelId]]);
   if (cur && branchId && BRANCH_INFO[branchId]) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
-  if (mech) steps.push([mechLongName(mech, mechs, catalog), [levelId, branchId, mechIdx]]);
+  if (mech) steps.push([mechLongName(mech, mechs, catalog, levelId), [levelId, branchId, mechIdx]]);
   if (kind) steps.push([kind.name || kindDefs[kind.type]?.longName || kind.type, [levelId, branchId, mechIdx, kindIdx]]);
   if (prop) steps.push([prop.name || catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name, propPath(propIdx)]);
   $('#trail').replaceChildren(...(steps.length > 1 ? steps.flatMap(([name, path], i) => [
@@ -321,7 +323,7 @@ function render() {
     const shown = mechs.map((m, i) => ({ m, i, tone: mechTone(scoreMechanism(m, catalog)) })).filter(x => x.tone);
     setLegend('mechanisms');
     screen.push(rowOf(shown.length ? shown.map(({ m, i, tone }) => chip({
-      label: mechLabel(m, mechs, catalog), tone, title: m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, branchId, i]),
+      label: mechLabel(m, mechs, catalog, levelId), tone, title: m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, branchId, i]),
     })) : [chip({ label: 'None', tone: 'black', title: branch?.note || 'No such mechanism at this level.' })]));
   } else if (mech.kinds && !kind) {
     // Screen 4a: kinds of referendum (citizen initiative, veto, mandatory). Each is always shown; missing ones are black.
