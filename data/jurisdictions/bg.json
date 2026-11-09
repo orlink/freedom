@@ -765,7 +765,7 @@
               },
               {
                 "type": "no_quorum",
-                "status": "no",
+                "status": "partial",
                 "explanation": "One quarter of eligible voters must attend (one third in places of up to 150 inhabitants). If not, after one hour it may proceed only with one tenth. In a quarter of 10,000 that is 1,000 people in one room.",
                 "laws": [
                   "dcpa"
@@ -1245,7 +1245,7 @@
               },
               {
                 "type": "no_quorum",
-                "status": "no",
+                "status": "partial",
                 "explanation": "One quarter of eligible voters must attend (one third in places of up to 150 inhabitants). If not, after one hour it may proceed only with one tenth. In a quarter of 10,000 that is 1,000 people in one room.",
                 "laws": [
                   "dcpa"
@@ -1923,7 +1923,7 @@
               },
               {
                 "type": "no_quorum",
-                "status": "no",
+                "status": "partial",
                 "explanation": "One quarter of eligible voters must attend (one third in places of up to 150 inhabitants). If not, after one hour it may proceed only with one tenth. In a quarter of 10,000 that is 1,000 people in one room.",
                 "laws": [
                   "dcpa"
