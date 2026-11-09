@@ -912,7 +912,7 @@
               {
                 "type": "individual_vote",
                 "status": "no",
-                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate.",
+                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate. In practice, only about 3% of members of parliament have been elected thanks to preference votes.",
                 "laws": [
                   "ec"
                 ],
@@ -2063,7 +2063,7 @@
               {
                 "type": "individual_vote",
                 "status": "no",
-                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate.",
+                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate. In practice, only about 3% of members of parliament have been elected thanks to preference votes.",
                 "laws": [
                   "ec"
                 ],
