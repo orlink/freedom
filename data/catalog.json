@@ -416,7 +416,7 @@
     "chosen_by_represented": {
       "gate": false,
       "name": "Chosen by the represented",
-      "longName": "The people represented choose them",
+      "longName": "Chosen by the represented",
       "description": "The people whose interests are represented should choose the agent or trustee themselves."
     },
     "revocable": {
