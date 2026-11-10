@@ -808,15 +808,6 @@
                 "laws": [
                   "bv"
                 ]
-              },
-              {
-                "type": "recall",
-                "status": "no",
-                "explanation": "No recall of elected officials at this level.",
-                "laws": [
-                  "bv",
-                  "bpr"
-                ]
               }
             ]
           }
@@ -1014,15 +1005,6 @@
                     "explanation": "The districts (Bezirke) are the constituencies.",
                     "laws": [
                       "kv"
-                    ]
-                  },
-                  {
-                    "type": "recall",
-                    "status": "no",
-                    "explanation": "No recall of elected officials at this level.",
-                    "laws": [
-                      "kv",
-                      "gpr"
                     ]
                   }
                 ]
@@ -1358,16 +1340,6 @@
                     ]
                   },
                   {
-                    "type": "recall",
-                    "status": "no",
-                    "explanation": "No recall of elected officials at this level.",
-                    "laws": [
-                      "go",
-                      "gg",
-                      "gpr"
-                    ]
-                  },
-                  {
                     "type": "own_means",
                     "status": "yes",
                     "explanation": "The city sets its own tax rate (Steuerfuss).",
@@ -1524,16 +1496,6 @@
                     "explanation": "The school district is the constituency; it spans several quarters.",
                     "laws": [
                       "go"
-                    ]
-                  },
-                  {
-                    "type": "recall",
-                    "status": "no",
-                    "explanation": "No recall of elected officials at this level.",
-                    "laws": [
-                      "go",
-                      "gg",
-                      "gpr"
                     ]
                   }
                 ]

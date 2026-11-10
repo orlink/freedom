@@ -922,15 +922,6 @@
                   "lga2001",
                   "ler1995"
                 ]
-              },
-              {
-                "type": "recall",
-                "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law.",
-                "laws": [
-                  "lgra2014",
-                  "lga2001"
-                ]
               }
             ]
           }
@@ -1017,15 +1008,6 @@
                 "laws": [
                   "lga2001",
                   "ler1995"
-                ]
-              },
-              {
-                "type": "recall",
-                "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law.",
-                "laws": [
-                  "bunreacht",
-                  "lga2001"
                 ]
               }
             ]
@@ -1174,15 +1156,6 @@
                 "laws": [
                   "bunreacht"
                 ]
-              },
-              {
-                "type": "recall",
-                "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law.",
-                "laws": [
-                  "bunreacht",
-                  "ea1992"
-                ]
               }
             ]
           }
@@ -1278,15 +1251,6 @@
                 "status": "partial",
                 "explanation": "Ireland elects its MEPs in a few multi-seat constituencies.",
                 "laws": [
-                  "epea1997"
-                ]
-              },
-              {
-                "type": "recall",
-                "status": "no",
-                "explanation": "There is no recall of elected representatives in Irish law.",
-                "laws": [
-                  "teu",
                   "epea1997"
                 ]
               }
@@ -1385,14 +1349,6 @@
                     "laws": [
                       "lga2001",
                       "ler1995"
-                    ]
-                  },
-                  {
-                    "type": "recall",
-                    "status": "no",
-                    "explanation": "There is no recall of elected representatives in Irish law.",
-                    "laws": [
-                      "limerick2024"
                     ]
                   },
                   {
