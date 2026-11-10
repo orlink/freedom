@@ -75,7 +75,8 @@
     },
     "ler1995": {
       "title": "Local Elections Regulations 1995 (S.I. No. 297 of 1995)",
-      "short": "Local Elections Regulations 1995"
+      "short": "Local Elections Regulations 1995",
+      "url": "https://www.irishstatutebook.ie/eli/1995/si/297/made/en/print"
     },
     "charities2009": {
       "title": "Charities Act 2009",
@@ -141,6 +142,11 @@
       "title": "Electoral Reform Act 2022",
       "short": "Electoral Reform Act 2022",
       "url": "https://revisedacts.lawreform.ie/eli/2022/act/30/revised/en/html"
+    },
+    "lea2018": {
+      "title": "Local Electoral Area Boundary Committee No. 1 Report 2018, Terms of Reference",
+      "short": "LEA Boundary Committee 2018",
+      "url": "https://www.electoralcommission.ie/app/uploads/2026/07/local-electoral-area-boundary-committee-no1-report-2018.pdf"
     }
   },
   "levels": {
@@ -1605,11 +1611,38 @@
               {
                 "type": "local_districts",
                 "status": "yes",
-                "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                "explanation": "Each council has a number of members fixed by law (Fingal, for example, has 40). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
+                  "lga2001",
+                  "lea2018",
                   "lga1991"
                 ],
                 "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 21(1)",
+                        "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                      },
+                      {
+                        "ref": "Section 23(1)",
+                        "text": "Subject to and without prejudice to Part V of the Local Government Act 1991 (as amended by the Local Government Act 1994), the Minister may by order— (a) divide each county, city or city and county referred to in section 10(2) into local electoral areas, (b) fix the number of members to be elected for each local electoral area, and (c) determine the municipal districts within a county or a city and county for the purposes of section 22A, each of which shall consist of one or more than one local electoral area."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "lea2018",
+                    "items": [
+                      {
+                        "ref": "Terms of Reference, paragraphs 2 and 3",
+                        "text": [
+                          "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
+                          "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
+                        ]
+                      }
+                    ]
+                  },
                   {
                     "law": "lga1991",
                     "items": [
@@ -1848,11 +1881,38 @@
               {
                 "type": "local_districts",
                 "status": "yes",
-                "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                "explanation": "Each council has a number of members fixed by law (Fingal, for example, has 40). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
+                  "lga2001",
+                  "lea2018",
                   "lga1991"
                 ],
                 "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 21(1)",
+                        "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                      },
+                      {
+                        "ref": "Section 23(1)",
+                        "text": "Subject to and without prejudice to Part V of the Local Government Act 1991 (as amended by the Local Government Act 1994), the Minister may by order— (a) divide each county, city or city and county referred to in section 10(2) into local electoral areas, (b) fix the number of members to be elected for each local electoral area, and (c) determine the municipal districts within a county or a city and county for the purposes of section 22A, each of which shall consist of one or more than one local electoral area."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "lea2018",
+                    "items": [
+                      {
+                        "ref": "Terms of Reference, paragraphs 2 and 3",
+                        "text": [
+                          "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
+                          "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
+                        ]
+                      }
+                    ]
+                  },
                   {
                     "law": "lga1991",
                     "items": [
@@ -2090,11 +2150,38 @@
               {
                 "type": "local_districts",
                 "status": "yes",
-                "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                "explanation": "Each council has a number of members fixed by law (Fingal, for example, has 40). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
+                  "lga2001",
+                  "lea2018",
                   "lga1991"
                 ],
                 "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 21(1)",
+                        "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                      },
+                      {
+                        "ref": "Section 23(1)",
+                        "text": "Subject to and without prejudice to Part V of the Local Government Act 1991 (as amended by the Local Government Act 1994), the Minister may by order— (a) divide each county, city or city and county referred to in section 10(2) into local electoral areas, (b) fix the number of members to be elected for each local electoral area, and (c) determine the municipal districts within a county or a city and county for the purposes of section 22A, each of which shall consist of one or more than one local electoral area."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "lea2018",
+                    "items": [
+                      {
+                        "ref": "Terms of Reference, paragraphs 2 and 3",
+                        "text": [
+                          "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
+                          "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
+                        ]
+                      }
+                    ]
+                  },
                   {
                     "law": "lga1991",
                     "items": [
@@ -2313,17 +2400,68 @@
                 "explanation": "Members are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
                 "laws": [
                   "lga2001",
-                  "ler1995"
+                  "ea1992"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 27(1)",
+                        "text": [
+                          "(a) Local elections shall be held in accordance with regulations made by the Minister under this section.",
+                          "(b) If an election is contested, the poll shall be taken according to the system of proportional representation, each local government elector having one transferable vote.",
+                          "(c) In this subsection \"transferable vote\" has the meaning given to it by section 37 of the Electoral Act, 1992."
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "ea1992",
+                    "items": [
+                      {
+                        "ref": "Section 37(2)",
+                        "text": "In this section \"transferable vote\" means a vote which is— (a) capable of being given so as to indicate the voter's preference for the candidates in order, and (b) capable of being transferred to the next choice when the vote is not required to give a prior choice the necessary quota of votes, or when, owing to the deficiency in the number of the votes given for a prior choice, that choice is excluded from the list of candidates."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "local_districts",
                 "status": "yes",
-                "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                "explanation": "Each council has a number of members fixed by law (Fingal, for example, has 40). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
+                  "lga2001",
+                  "lea2018",
                   "lga1991"
                 ],
                 "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 21(1)",
+                        "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                      },
+                      {
+                        "ref": "Section 23(1)",
+                        "text": "Subject to and without prejudice to Part V of the Local Government Act 1991 (as amended by the Local Government Act 1994), the Minister may by order— (a) divide each county, city or city and county referred to in section 10(2) into local electoral areas, (b) fix the number of members to be elected for each local electoral area, and (c) determine the municipal districts within a county or a city and county for the purposes of section 22A, each of which shall consist of one or more than one local electoral area."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "lea2018",
+                    "items": [
+                      {
+                        "ref": "Terms of Reference, paragraphs 2 and 3",
+                        "text": [
+                          "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
+                          "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
+                        ]
+                      }
+                    ]
+                  },
                   {
                     "law": "lga1991",
                     "items": [
@@ -2340,7 +2478,32 @@
                 "status": "yes",
                 "explanation": "Members are elected by proportional representation with the single transferable vote.",
                 "laws": [
+                  "lga2001",
                   "ler1995"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 27(1)",
+                        "text": [
+                          "(a) Local elections shall be held in accordance with regulations made by the Minister under this section.",
+                          "(b) If an election is contested, the poll shall be taken according to the system of proportional representation, each local government elector having one transferable vote.",
+                          "(c) In this subsection \"transferable vote\" has the meaning given to it by section 37 of the Electoral Act, 1992."
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "ler1995",
+                    "items": [
+                      {
+                        "ref": "Article 82(1)",
+                        "text": "The returning officer shall then divide the number of all valid papers by a number exceeding by one the number of members to be elected; the result increased by one, any fractional remainder being disregarded, shall be the number of votes sufficient to secure the election of a candidate and this number is referred to in these Regulations as \"the quota\"."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -2561,17 +2724,68 @@
                 "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
                 "laws": [
                   "lga2001",
-                  "ler1995"
+                  "ea1992"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 27(1)",
+                        "text": [
+                          "(a) Local elections shall be held in accordance with regulations made by the Minister under this section.",
+                          "(b) If an election is contested, the poll shall be taken according to the system of proportional representation, each local government elector having one transferable vote.",
+                          "(c) In this subsection \"transferable vote\" has the meaning given to it by section 37 of the Electoral Act, 1992."
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "ea1992",
+                    "items": [
+                      {
+                        "ref": "Section 37(2)",
+                        "text": "In this section \"transferable vote\" means a vote which is— (a) capable of being given so as to indicate the voter's preference for the candidates in order, and (b) capable of being transferred to the next choice when the vote is not required to give a prior choice the necessary quota of votes, or when, owing to the deficiency in the number of the votes given for a prior choice, that choice is excluded from the list of candidates."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "local_districts",
                 "status": "yes",
-                "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                "explanation": "Each council has a number of members fixed by law (Fingal, for example, has 40). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
+                  "lga2001",
+                  "lea2018",
                   "lga1991"
                 ],
                 "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 21(1)",
+                        "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                      },
+                      {
+                        "ref": "Section 23(1)",
+                        "text": "Subject to and without prejudice to Part V of the Local Government Act 1991 (as amended by the Local Government Act 1994), the Minister may by order— (a) divide each county, city or city and county referred to in section 10(2) into local electoral areas, (b) fix the number of members to be elected for each local electoral area, and (c) determine the municipal districts within a county or a city and county for the purposes of section 22A, each of which shall consist of one or more than one local electoral area."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "lea2018",
+                    "items": [
+                      {
+                        "ref": "Terms of Reference, paragraphs 2 and 3",
+                        "text": [
+                          "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
+                          "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
+                        ]
+                      }
+                    ]
+                  },
                   {
                     "law": "lga1991",
                     "items": [
@@ -2588,7 +2802,32 @@
                 "status": "yes",
                 "explanation": "Members are elected by proportional representation with the single transferable vote.",
                 "laws": [
+                  "lga2001",
                   "ler1995"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 27(1)",
+                        "text": [
+                          "(a) Local elections shall be held in accordance with regulations made by the Minister under this section.",
+                          "(b) If an election is contested, the poll shall be taken according to the system of proportional representation, each local government elector having one transferable vote.",
+                          "(c) In this subsection \"transferable vote\" has the meaning given to it by section 37 of the Electoral Act, 1992."
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "ler1995",
+                    "items": [
+                      {
+                        "ref": "Article 82(1)",
+                        "text": "The returning officer shall then divide the number of all valid papers by a number exceeding by one the number of members to be elected; the result increased by one, any fractional remainder being disregarded, shall be the number of votes sufficient to secure the election of a candidate and this number is referred to in these Regulations as \"the quota\"."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -3336,17 +3575,68 @@
                     "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
                     "laws": [
                       "lga2001",
-                      "ler1995"
+                      "ea1992"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 27(1)",
+                            "text": [
+                              "(a) Local elections shall be held in accordance with regulations made by the Minister under this section.",
+                              "(b) If an election is contested, the poll shall be taken according to the system of proportional representation, each local government elector having one transferable vote.",
+                              "(c) In this subsection \"transferable vote\" has the meaning given to it by section 37 of the Electoral Act, 1992."
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "law": "ea1992",
+                        "items": [
+                          {
+                            "ref": "Section 37(2)",
+                            "text": "In this section \"transferable vote\" means a vote which is— (a) capable of being given so as to indicate the voter's preference for the candidates in order, and (b) capable of being transferred to the next choice when the vote is not required to give a prior choice the necessary quota of votes, or when, owing to the deficiency in the number of the votes given for a prior choice, that choice is excluded from the list of candidates."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
                     "type": "local_districts",
                     "status": "yes",
-                    "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                    "explanation": "Each council has a number of members fixed by law (Fingal, for example, has 40). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                     "laws": [
+                      "lga2001",
+                      "lea2018",
                       "lga1991"
                     ],
                     "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 21(1)",
+                            "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                          },
+                          {
+                            "ref": "Section 23(1)",
+                            "text": "Subject to and without prejudice to Part V of the Local Government Act 1991 (as amended by the Local Government Act 1994), the Minister may by order— (a) divide each county, city or city and county referred to in section 10(2) into local electoral areas, (b) fix the number of members to be elected for each local electoral area, and (c) determine the municipal districts within a county or a city and county for the purposes of section 22A, each of which shall consist of one or more than one local electoral area."
+                          }
+                        ]
+                      },
+                      {
+                        "law": "lea2018",
+                        "items": [
+                          {
+                            "ref": "Terms of Reference, paragraphs 2 and 3",
+                            "text": [
+                              "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
+                              "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
+                            ]
+                          }
+                        ]
+                      },
                       {
                         "law": "lga1991",
                         "items": [
@@ -3363,7 +3653,32 @@
                     "status": "yes",
                     "explanation": "Members are elected by proportional representation with the single transferable vote.",
                     "laws": [
+                      "lga2001",
                       "ler1995"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 27(1)",
+                            "text": [
+                              "(a) Local elections shall be held in accordance with regulations made by the Minister under this section.",
+                              "(b) If an election is contested, the poll shall be taken according to the system of proportional representation, each local government elector having one transferable vote.",
+                              "(c) In this subsection \"transferable vote\" has the meaning given to it by section 37 of the Electoral Act, 1992."
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "law": "ler1995",
+                        "items": [
+                          {
+                            "ref": "Article 82(1)",
+                            "text": "The returning officer shall then divide the number of all valid papers by a number exceeding by one the number of members to be elected; the result increased by one, any fractional remainder being disregarded, shall be the number of votes sufficient to secure the election of a candidate and this number is referred to in these Regulations as \"the quota\"."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
