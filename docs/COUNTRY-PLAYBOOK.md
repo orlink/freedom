@@ -21,7 +21,7 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
    * Individual: personal autonomy. Business: Free enterprise and Freedom of contract (personal_autonomy with
      `label`), partners / shareholders / cooperative general meetings, Board / managers, Agents, Trustees.
      Non-economic: freedom of association, general assembly of members, board.
-   * Building/entrance: the owners' meeting and its manager or directors, at whichever level the country's
+   * Building/entrance: the owners' meeting and its management council (a Council chip, not Executive; owner 2026-11-10), at whichever level the country's
      apartment law works (BG per entrance, IE per development).
    **An institution the law does not provide still appears**, as `exists: no` (black chip) with a Fix. Never leave
    it out. Exception (owner 2026-11-10): a sub-division served by its county's executive, such as an Irish municipal
