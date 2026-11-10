@@ -1209,8 +1209,107 @@
       }
     },
     "building": {
-      "sameAs": "entrance",
-      "summary": "Same regime as for an entrance: the Condominium Management Act applies to the building, or separately to each entrance."
+      "summary": "Owners usually organise per entrance, so a building with several entrances is often left without any body that decides for the whole building.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "general_assembly",
+            "name": "General assembly of owners (whole building)",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "weak",
+                "explanation": "The Condominium Management Act lets owners organise either for the whole building or separately for each entrance. In buildings with several entrances they usually choose each entrance, which leaves the whole building, with its shared roof, foundations, facade and installations, without a body of its own. Entrances can associate freely, but none of the Act's tools, such as binding decisions and collecting contributions, apply to such an association.",
+                "laws": [
+                  "cma"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Decisions of the general assembly bind owners, users and occupants, including new ones.",
+                "laws": [
+                  "cma"
+                ]
+              },
+              {
+                "type": "no_quorum",
+                "status": "partial",
+                "explanation": "51% of ideal shares must be present; after one hour 26% suffice; if still not, the meeting is held the next day with whoever attends.",
+                "laws": [
+                  "cma"
+                ]
+              },
+              {
+                "type": "citizen_triggered",
+                "status": "yes",
+                "explanation": "Owners holding at least 20% of the ideal shares can require the meeting to be convened.",
+                "laws": [
+                  "cma"
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "The assembly adopts the house rules, budget, contributions, the repair plan, loans and the use of common areas.",
+                "laws": [
+                  "cma"
+                ]
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The assembly sets the contributions to the repair and renovation fund.",
+                "laws": [
+                  "cma"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "executive",
+            "name": "Management board / manager (whole building)",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "weak",
+                "explanation": "Where the owners organised per entrance, the building as a whole has no management board or manager; each entrance has its own.",
+                "laws": [
+                  "cma"
+                ]
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "explanation": "The board implements the assembly's decisions and manages the common parts.",
+                "laws": [
+                  "cma"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "Board members are elected individually by the general assembly.",
+                "laws": [
+                  "cma"
+                ]
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The term is up to two years, and the general assembly can end it early for failure to perform.",
+                "laws": [
+                  "cma"
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "neighbourhood": {
       "summary": "A district (район) can hold a citizen-initiated local referendum; a smaller quarter (квартал) that is not a district or кметство cannot. A general assembly is possible but needs one quarter of residents to attend and is not directly binding. Municipal councillors are elected from municipality-wide party lists, so no councillor answers to the quarter.",
