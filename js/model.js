@@ -88,12 +88,22 @@ export function scoreMechanism(mech, catalog) {
   return Math.min(avg * gateFactor, cap) * weight;
 }
 
-/** Score a branch ("direct" | "representative"): the best mechanism counts. 'na' if not applicable. */
+/** Score a branch ("direct" | "representative"): the best mechanism counts, except as below. 'na' if not applicable. */
 export function scoreBranch(branch, catalog) {
   if (!branch) return null;
   if (branch.applicable === false) return 'na';
-  const scores = (branch.mechanisms || []).map(m => scoreMechanism(m, catalog)).filter(s => s != null);
-  return scores.length ? Math.max(...scores) : null;
+  const mechs = branch.mechanisms || [];
+  const scores = mechs.map(m => scoreMechanism(m, catalog)).filter(s => s != null);
+  if (!scores.length) return null;
+  // The council is the legislature: if every council that exists fails a "cap" requirement (individual
+  // accountability), the whole branch is capped at dark grey; a good mayor cannot make up for it.
+  const councils = mechs.filter(m => m.type === 'council' && m.properties?.find(p => p.type === 'exists')?.status !== 'no');
+  const capped = m => (catalog.mechanisms.council?.caps || []).some(t => {
+    const v = STATUS_VALUE[m.properties?.find(p => p.type === t)?.status];
+    return v != null && v <= 0.25;
+  });
+  const best = Math.max(...scores);
+  return councils.length && councils.every(capped) ? Math.min(best, 0.25) : best;
 }
 
 /** Score a level: people are as free as their best path (direct or representative). */

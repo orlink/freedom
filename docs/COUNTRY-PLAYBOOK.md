@@ -60,6 +60,9 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
 **Colours and scoring**
 * Requirement: Met (yes) / Partly met (partial or weak) / Not met (no) / Does not apply.
 * Mechanism: below 1 = Flawed; black if a gate is `no`. Level and branch take their best mechanism.
+* The council is the legislature (owner 2026-11-10): if every council of a level fails Individual accountability,
+  the whole Representative branch is capped at dark grey (Mostly not free), however good the mayor is (Bulgaria's
+  municipalities).
 * Referendum gates: exists, binding, no quorum. A `weak` gate caps the mechanism at dark grey.
 * Council and executive gates: exists, Powers (`binding_powers`); Individual accountability is a cap (no/weak →
   at most dark grey).
