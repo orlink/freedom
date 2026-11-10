@@ -226,7 +226,8 @@ const shortName = s => s.replace(/\s*\(.*?\)\s*$/, '');
 
 function renderPlace() {
   const loc = state.loc, a = loc.address;
-  const parts = [a.country, a.city || a.town || a.village || a.hamlet, loc.places.neighbourhood?.name].filter(Boolean);
+  const street = [a.road || a.pedestrian || a.footway, a.house_number].filter(Boolean).join(' ');
+  const parts = [a.country, a.city || a.town || a.village || a.hamlet, loc.places.neighbourhood?.name, street].filter(Boolean);
   $('#place').replaceChildren(...parts.flatMap((p, i) => i ? [el('span', { class: 'sep' }, '·'), p] : [p]));
 }
 
