@@ -1429,7 +1429,7 @@
               {
                 "type": "binding_powers",
                 "status": "yes",
-                "explanation": "The council carries out the assembly's decisions and manages the common parts, and may hire a management company to do so.",
+                "explanation": "The council carries out the assembly's decisions and manages the common parts.",
                 "laws": [
                   "cma"
                 ]
