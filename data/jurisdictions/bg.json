@@ -4178,7 +4178,7 @@
               {
                 "type": "proportional_representation",
                 "status": "partial",
-                "explanation": "Not quite proportional. Only parties with at least 4% of the national vote win seats, so the votes for the others are lost, and the parties above the threshold get up to 20% more of the seats than their share of the vote. This has led to frequent minority rule: a governing party or coalition with less than half of the votes. The party also sets the order of candidates and the preference vote rarely changes it, so a member is primarily accountable to the party leadership and not to constituents. The system delivers party proportionality, above the threshold, but not proportional representation.",
+                "explanation": "Proportional representation is meant to give non-territorial communities of interest a share of the seats that matches their share of the electorate. Seats are allocated to party lists using a List-PR electoral system, but only parties with at least 4% of the national vote win seats, so the votes for the others are lost, and the parties above the threshold get up to 20% more of the seats than their share of the vote. This has led to frequent minority rule: a governing party or coalition with less than half of the votes. The party also sets the order of candidates and the preference vote rarely changes it, so a member is primarily accountable to the party leadership and not to constituents. The system does not deliver even party proportionality, let alone proportional representation.",
                 "laws": [
                   "ec"
                 ],
