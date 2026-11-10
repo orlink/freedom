@@ -2118,7 +2118,7 @@
               {
                 "type": "binding_powers",
                 "status": "partial",
-                "explanation": "Only the functions listed in Schedules 14 and 14A, plus any the county council chooses to delegate (and can take back).",
+                "explanation": "District members decide only the reserved functions listed in Schedule 14A, such as parking and other bye-laws, declaring or abandoning public roads, local area plans and placenames, plus any functions the county council delegates and can take back. They amend the district's budgetary plan, which the chief executive drafts and need only take account of, and adopt the yearly schedule of road and maintenance works within the money the county budget allows.",
                 "laws": [
                   "lga2001"
                 ],
@@ -2127,8 +2127,16 @@
                     "law": "lga2001",
                     "items": [
                       {
-                        "ref": "Section 22A(1)",
-                        "text": "Subject to subsection (4), every county and city and county set out in Part 1 and Part 3, respectively, of Schedule 5 shall have 2 or more districts (each consisting of one or more than one local electoral area) to be known as a municipal district and collectively as municipal districts, as the Minister shall determine by order made under section 23(1)(c)."
+                        "ref": "Section 131A(1), (2)(a), (2)(b)",
+                        "text": "(1) Subject to subsection (4), in respect of the elected council of a local authority that is the council of a county (other than the council of a county to which section 22A(4) relates) or of a city and county, a reserved function which is specified in— (a) paragraphs 1 and 3 (other than in respect of a joint body) of Schedule 14 and Part 1 of Schedule 14A shall be performed in respect of each municipal district within the administrative area of the local authority by the municipal district members concerned, and (b) paragraphs 5, 6 or 7 of Schedule 14 and Part 2 of Schedule 14A, may be performed in respect of a municipal district within the administrative area of the local authority by— (i) the municipal district members, or (ii) the local authority. (2)(a) In addition to the functions referred to in subsection (1), a local authority that is the council of a county or a city and county may, subject to paragraph (e), by resolution delegate with or without restrictions to the municipal district members for any municipal district in the area of the local authority any of its functions that may be performed by resolution … (b) A local authority may, following consultation with the municipal district members concerned, by resolution, revoke the delegation …"
+                      },
+                      {
+                        "ref": "Section 102(4A)(a), (c), (e)",
+                        "text": "(a) In the case of a county council or a city and county council, the chief executive shall consult the municipal district members for each municipal district in the council's functional area in the preparation of a draft local authority budget and, for that purpose, a draft budgetary plan for the municipal district shall be prepared under the direction of the chief executive and submitted for consideration by the municipal district members for each municipal district in the manner and in the format that may be prescribed by regulations made by the Minister. … (c) Following consideration of a draft budgetary plan under paragraph (a), the municipal district members shall by resolution adopt the draft budgetary plan with or without amendment. … (e) The chief executive shall take account of any budgetary plan adopted by the municipal district members in preparing the draft local authority budget (in accordance with subsection (2))."
+                      },
+                      {
+                        "ref": "Section 103A(1), (2)",
+                        "text": "(1) As soon as may be following the adoption of the local authority budget, a schedule of proposed works of maintenance and repair to be carried out during the financial year in each municipal district shall be prepared under the direction of the chief executive, having regard to the availability of resources, … (2) A schedule prepared for the purposes of subsection (1) shall be considered by the municipal district members concerned and be adopted by resolution, with or without amendment by it, within such time limit and in accordance with such conditions and requirements as may be prescribed by the regulations made by the Minister."
                       },
                       {
                         "ref": "Section 22AA (new)",
