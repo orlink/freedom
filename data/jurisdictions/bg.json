@@ -133,6 +133,11 @@
       "localTitle": "Закон за предучилищното и училищното образование",
       "short": "ЗПУО",
       "url": "https://lex.bg/bg/laws/ldoc/2136641509"
+    },
+    "coop": {
+      "title": "Cooperatives Act",
+      "localTitle": "Закон за кооперациите",
+      "short": "Закон за кооперациите"
     }
   },
   "levels": {
@@ -519,12 +524,50 @@
           },
           {
             "type": "general_assembly",
-            "name": "General meeting of owners",
+            "name": "Partners general meeting",
             "properties": [
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "Owners (shareholders, partners) decide in a general meeting.",
+                "explanation": "Partners in a general or limited partnership (СД, КД) or a limited liability company (ООД) decide in a general meeting.",
+                "laws": [
+                  "ta"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
+                "laws": [
+                  "ta"
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Owners decide the company's statutes, profits and leadership.",
+                "laws": [
+                  "ta"
+                ]
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The partnership or company controls its own capital and income.",
+                "laws": [
+                  "ta"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "general_assembly",
+            "name": "Shareholders general meeting",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Shareholders of a joint-stock company (АД) or partnership limited by shares (КДА) decide in a general meeting.",
                 "laws": [
                   "ta"
                 ]
@@ -551,6 +594,44 @@
                 "explanation": "The company controls its own capital and income.",
                 "laws": [
                   "ta"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "general_assembly",
+            "name": "Cooperative general meeting",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Members of a cooperative decide in its general meeting, one member one vote.",
+                "laws": [
+                  "coop"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
+                "laws": [
+                  "coop"
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Members decide the statutes, the use of any surplus and the board.",
+                "laws": [
+                  "coop"
+                ]
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The cooperative controls its own capital and income.",
+                "laws": [
+                  "coop"
                 ]
               }
             ]

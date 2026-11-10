@@ -76,6 +76,14 @@
     "charities2009": {
       "title": "Charities Act 2009",
       "short": "Charities Act 2009"
+    },
+    "pa1890": {
+      "title": "Partnership Act 1890",
+      "short": "Partnership Act 1890"
+    },
+    "ips": {
+      "title": "Industrial and Provident Societies Acts 1893–2021",
+      "short": "Industrial and Provident Societies Acts"
     }
   },
   "levels": {
@@ -172,12 +180,50 @@
           },
           {
             "type": "general_assembly",
-            "name": "General meeting of owners",
+            "name": "Partners general meeting",
             "properties": [
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "Owners (shareholders, partners) decide in a general meeting.",
+                "explanation": "Partners in a partnership decide together, by majority on ordinary matters and unanimously on changing the business.",
+                "laws": [
+                  "pa1890"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
+                "laws": [
+                  "pa1890"
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Owners decide the company's statutes, profits and leadership.",
+                "laws": [
+                  "pa1890"
+                ]
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The partnership or company controls its own capital and income.",
+                "laws": [
+                  "pa1890"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "general_assembly",
+            "name": "Shareholders general meeting",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Shareholders of a company decide in a general meeting.",
                 "laws": [
                   "ca2014"
                 ]
@@ -204,6 +250,44 @@
                 "explanation": "The company controls its own capital and income.",
                 "laws": [
                   "ca2014"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "general_assembly",
+            "name": "Cooperative general meeting",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Members of a co-operative society decide in its general meeting, usually one member one vote.",
+                "laws": [
+                  "ips"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
+                "laws": [
+                  "ips"
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Members decide the statutes, the use of any surplus and the board.",
+                "laws": [
+                  "ips"
+                ]
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The cooperative controls its own capital and income.",
+                "laws": [
+                  "ips"
                 ]
               }
             ]
