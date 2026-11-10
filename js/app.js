@@ -136,6 +136,18 @@ async function shapeAtZoom(loc, levelId) {
   const ok = r?.osm_type === 'relation' && /Polygon/.test(r.geojson?.type || '') && names.some(n => n === place || bareName(n) === want);
   return ok ? r.geojson : null;
 }
+// Some boundaries are never returned by reverse lookup (Sofia's Stolichna municipality): search for the place by name.
+async function shapeBySearch(loc, levelId) {
+  const place = loc.places[levelId]?.name;
+  if (!place) return null;
+  const rs = await nominatim('search', { q: `${place}, ${loc.address.country || ''}`, limit: 5, polygon_geojson: 1, polygon_threshold: 0.001, namedetails: 1 });
+  const want = bareName(place);
+  const r = (rs || []).find(r => r.osm_type === 'relation' && /Polygon/.test(r.geojson?.type || '')
+    && [r.name, ...Object.values(r.namedetails || {})].some(n => n === place || bareName(n) === want)
+    && pointIn(r.boundingbox, loc));
+  return r ? r.geojson : null;
+}
+const pointIn = (bb, { lat, lon }) => bb && lat >= +bb[0] && lat <= +bb[1] && lon >= +bb[2] && lon <= +bb[3];
 async function areasAround(lat, lon) {
   const key = `${lat},${lon}`;
   if (!areasCache.has(key)) {
@@ -174,6 +186,7 @@ async function showArea(levelId) {
     // First ask Nominatim for the boundary at this level's zoom (one quick request); if its name is not the level's
     // place, fall back to matching the boundaries Overpass lists around the point.
     let shape = await shapeAtZoom(loc, levelId).catch(() => null);
+    if (!shape) shape = await shapeBySearch(loc, levelId).catch(() => null);
     if (!shape) {
       const area = pickArea(await areasAround(loc.lat, loc.lon), loc.places, levelId);
       shape = area && await areaShape(area.id);

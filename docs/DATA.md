@@ -84,5 +84,5 @@ These rules are in `js/model.js` and are deliberately simple so they can be deba
 
 1. Copy `data/jurisdictions/bg.json` to `data/jurisdictions/<country code>.json` and edit it.
 2. Add it to `data/index.json`.
-3. If OSM uses different admin levels in that country, set `addressKeys`. Check what Nominatim returns with `https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&lat=…&lon=…`.
+3. If OSM uses different admin levels in that country, set `addressKeys`. Check what Nominatim returns with `https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&lat=…&lon=…`. An area can override `addressKeys` too (e.g. County Dublin: the council is Fingal, Dún Laoghaire-Rathdown, South Dublin or Dublin City, given by OSM `municipality` or `city`).
 4. Run `node tools/validate.mjs`.

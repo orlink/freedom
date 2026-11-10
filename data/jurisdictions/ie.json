@@ -3704,6 +3704,13 @@
           "applicable": false,
           "summary": "The four Dublin local authorities are not divided into municipal districts."
         }
+      },
+      "addressKeys": {
+        "county": [
+          "municipality",
+          "city",
+          "county"
+        ]
       }
     },
     {
