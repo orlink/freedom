@@ -9,6 +9,7 @@ Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism �
 ```
 
 * **Level**: a community of shared interest (`data/catalog.json` → `levels`). *Spheres* (individual, business, non-profit) apply everywhere. *Territorial* levels are named from the geocoded address.
+* `mapZoom` (optional): Nominatim reverse zoom per level for the map outline, when the defaults (country 3, state 5, county 8, municipality 10, settlements 12) pick the wrong boundary.
 * A **referendum** lists `kinds` instead of `properties`: `citizen_initiative`, `veto_referendum` and `mandatory_referendum` (catalog `referendumKinds`). Each kind has its own `properties`; the page always shows the five in `kindProperties` (exists, binding, no quorum, concrete proposals, reasonable petition requirements). A kind that does not exist only needs `exists: no`, and the other four appear disabled. A kind can skip properties that do not apply to it (catalog `referendumKinds.<kind>.skipProperties`): a mandatory referendum has no petition, so it shows no "reasonable petition requirements". If any of the first three (exists, binding, no quorum) is `no`, the whole kind is black.
 * Every level, mechanism type and property type in the catalog has a short `name` (shown on its chip) and a `longName` (shown in the breadcrumb trail).
 * **Branch**: `direct` (the people decide) or `representative` (elected representatives decide).

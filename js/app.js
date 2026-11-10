@@ -124,11 +124,23 @@ function pickArea(areas, places, levelId) {
   }
   return null;
 }
+// Nominatim reverse zoom per level (3 country, 5 state, 8 county, 10 city …); a jurisdiction can override (`mapZoom`).
+const MAP_ZOOM = { country: 3, state: 5, county: 8, municipality: 10, town: 12, village: 12, neighbourhood: 12 };
+async function shapeAtZoom(loc, levelId) {
+  const zoom = loc.jurisdiction?.mapZoom?.[levelId] ?? MAP_ZOOM[levelId];
+  const place = loc.places[levelId]?.name;
+  if (!zoom || !place) return null;
+  const r = await nominatim('reverse', { lat: loc.lat, lon: loc.lon, zoom, polygon_geojson: 1, polygon_threshold: 0.001, namedetails: 1 });
+  const names = [r?.name, ...Object.values(r?.namedetails || {})].filter(Boolean);
+  const want = bareName(place);
+  const ok = r?.osm_type === 'relation' && /Polygon/.test(r.geojson?.type || '') && names.some(n => n === place || bareName(n) === want);
+  return ok ? r.geojson : null;
+}
 async function areasAround(lat, lon) {
   const key = `${lat},${lon}`;
   if (!areasCache.has(key)) {
     const q = `[out:json][timeout:20];is_in(${lat},${lon})->.a;rel(pivot.a)[boundary=administrative];out tags;`;
-    const ask = url => fetch(url, { method: 'POST', body: new URLSearchParams({ data: q }) })
+    const ask = url => fetch(url, { method: 'POST', body: new URLSearchParams({ data: q }), signal: AbortSignal.timeout(15000) })
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
     areasCache.set(key, ask(OVERPASS[0]).catch(() => ask(OVERPASS[1])) // the main server is often busy
       .then(r => r.elements.map(e => ({ id: e.id, level: +e.tags.admin_level || 99, names: Object.entries(e.tags).filter(([k]) => k === 'name' || k.startsWith('name:') || k === 'official_name').map(([, v]) => v) })))
@@ -159,8 +171,13 @@ async function showArea(levelId) {
   areaKey = key;
   if (areaLayer) { areaLayer.remove(); areaLayer = null; }
   try {
-    const area = pickArea(await areasAround(loc.lat, loc.lon), loc.places, levelId);
-    const shape = area && await areaShape(area.id);
+    // First ask Nominatim for the boundary at this level's zoom (one quick request); if its name is not the level's
+    // place, fall back to matching the boundaries Overpass lists around the point.
+    let shape = await shapeAtZoom(loc, levelId).catch(() => null);
+    if (!shape) {
+      const area = pickArea(await areasAround(loc.lat, loc.lon), loc.places, levelId);
+      shape = area && await areaShape(area.id);
+    }
     if (!shape || areaKey !== key) return;
     if (!viewBeforeArea) viewBeforeArea = { center: map.getCenter(), zoom: map.getZoom() };
     areaLayer = L.geoJSON(shape, { interactive: false, style: { color: '#1f7a6d', weight: 2, fillColor: '#1f7a6d', fillOpacity: 0.08 } }).addTo(map);
