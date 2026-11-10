@@ -28,7 +28,7 @@ echo "Uploading ${#files} files ($(git rev-parse --short HEAD))…"
 scp -q "${SSH_OPTS[@]}" "$tmp/site.tar" "$HOST:C:/MigrationTools/freedom-site.tar"
 
 # Extract over C:\freedom\app, restart the service and wait until it answers locally.
-ps='$ErrorActionPreference = "Stop"
+ps='$ErrorActionPreference = "Stop"; $ProgressPreference = "SilentlyContinue"
 tar -xf C:\MigrationTools\freedom-site.tar -C C:\freedom\app
 Remove-Item C:\MigrationTools\freedom-site.tar
 Restart-Service freedom
