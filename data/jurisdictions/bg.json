@@ -554,12 +554,14 @@
                           {
                             "ref": "Article 41(2)",
                             "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”.",
-                            "fix": "The proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”."
+                            "fix": "The proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”.",
+                            "why": "Removes the 40% turnout quorum: the majority of those who vote decides."
                           },
                           {
                             "ref": "Article 41(3)",
                             "text": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the valid votes cast in the respective municipality in the elections for municipal councillors have answered “yes”.",
-                            "fix": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”."
+                            "fix": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”.",
+                            "why": "Removes the approval quorum tied to the number of election voters."
                           },
                           {
                             "ref": "Article 30(4)",
@@ -587,7 +589,8 @@
                           {
                             "ref": "Article 26(3)",
                             "text": "When a local referendum is held, voting may be on one or on several questions.",
-                            "fix": "When a local referendum is held, voting may be on one or on several questions, or on a draft decision, ordinance or other act within the competence of the municipal council, which, if approved, takes effect as worded."
+                            "fix": "When a local referendum is held, voting may be on one or on several questions, or on a draft decision, ordinance or other act within the competence of the municipal council, which, if approved, takes effect as worded.",
+                            "why": "Lets voters approve a drafted decision or ordinance, which then takes effect as worded."
                           }
                         ]
                       }
@@ -613,17 +616,20 @@
                             "fix": [
                               "A local referendum shall be held on the proposal of:",
                               "3. an initiative committee with the signatures of no fewer than one hundredth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
-                            ]
+                            ],
+                            "why": "Lowers the signatures needed to propose a local referendum from 1/20 to 1/100 of voters."
                           },
                           {
                             "ref": "Article 27(2)",
                             "text": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality, district or mayoralty, and it does not contravene the restriction under Article 26(2).",
-                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality, district or mayoralty."
+                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality, district or mayoralty.",
+                            "why": "Lowers the signatures that oblige the council to call it from 1/10 to 1/50 of voters, and drops the topic restriction."
                           },
                           {
                             "ref": "Article 28(8)",
                             "text": "If the petition is not submitted to the municipal council within three months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council.",
-                            "fix": "If the petition is not submitted to the municipal council within six months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council."
+                            "fix": "If the petition is not submitted to the municipal council within six months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council.",
+                            "why": "Gives the initiative committee six months instead of three to collect signatures."
                           }
                         ]
                       }
@@ -650,7 +656,28 @@
                             ],
                             "fix": [
                               "(repealed)"
-                            ]
+                            ],
+                            "why": "Lifts the ban on local referendums about the budget, local taxes and fees, and the council's rules."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "no_roadblocks",
+                    "status": "partial",
+                    "explanation": "If the council's term ends before it decides on a petition, the law does not say the procedure continues before the next council, so the petition can lapse.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 28a (new)",
+                            "fix": "If the term of office of the municipal council ends before it has decided on a petition submitted under Article 27(2), the procedure shall continue before the newly elected council, which shall decide on the petition within one month of its first session.",
+                            "why": "A petition no longer lapses when the council's term ends."
                           }
                         ]
                       }
@@ -664,9 +691,21 @@
                   {
                     "type": "exists",
                     "status": "no",
-                    "explanation": "The law does not provide this kind of referendum.",
+                    "explanation": "A veto referendum exists only for the whole municipality (Art. 27(3)); a village or quarter cannot veto a decision that concerns only it.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 27(3a) (new)",
+                            "fix": "When a decision of the municipal council concerns only one district, mayoralty or quarter, the procedure under paragraph 3 may be initiated with the signatures of one fiftieth of the citizens with voting rights there, and the referendum shall be held in that district, mayoralty or quarter.",
+                            "why": "Lets a district, village or quarter veto a council decision that concerns only it."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -680,6 +719,18 @@
                     "explanation": "The law does not provide this kind of referendum.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 26(5) (new)",
+                            "fix": "Decisions of the municipal council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term municipal debt, and on the disposal of municipal property of public importance shall take effect only after their approval by local referendum. When such a decision concerns only one district, mayoralty or quarter, the referendum shall be held there.",
+                            "why": "Sends large spending, debt and sales of public property to the voters automatically."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -723,7 +774,8 @@
                       {
                         "ref": "Article 55(1)",
                         "text": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters with a population of up to 10,000 inhabitants.",
-                        "fix": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters."
+                        "fix": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters.",
+                        "why": "Removes the 10,000-inhabitant limit on general assemblies."
                       }
                     ]
                   }
@@ -743,12 +795,14 @@
                       {
                         "ref": "Article 54(2)",
                         "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period.",
-                        "fix": "The decision of the general assembly of the population in the municipality, district or mayoralty shall be binding. The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to implement it within one month of its adoption, unless the general assembly itself has set a longer period."
+                        "fix": "The decision of the general assembly of the population in the municipality, district or mayoralty shall be binding. The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to implement it within one month of its adoption, unless the general assembly itself has set a longer period.",
+                        "why": "Makes the assembly's decision binding; the council and mayor only implement it."
                       },
                       {
                         "ref": "Article 54(3)",
                         "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter.",
-                        "fix": "The decision of the general assembly of the population in the settlement or quarter shall be binding. The municipal council shall issue the relevant acts to implement it within one month of its adoption."
+                        "fix": "The decision of the general assembly of the population in the settlement or quarter shall be binding. The municipal council shall issue the relevant acts to implement it within one month of its adoption.",
+                        "why": "Makes the assembly's decision binding in settlements and quarters too."
                       },
                       {
                         "ref": "Article 63(3)",
@@ -772,17 +826,20 @@
                       {
                         "ref": "Article 60(1)",
                         "text": "The general assembly of the population shall be deemed quorate if no fewer than one quarter of the citizens with voting rights in the municipality, district, mayoralty, settlement or quarter are present.",
-                        "fix": "The general assembly of the population shall be deemed quorate whatever the number of citizens with voting rights present, provided it has been convened and announced as this Act requires."
+                        "fix": "The general assembly of the population shall be deemed quorate whatever the number of citizens with voting rights present, provided it has been convened and announced as this Act requires.",
+                        "why": "Removes the attendance quorum: those who come decide."
                       },
                       {
                         "ref": "Article 60(2)",
                         "text": "In settlements with up to 150 inhabitants, at least one third of the citizens with voting rights in the settlement must be present for a general assembly of the population to be held.",
-                        "fix": "(repealed)"
+                        "fix": "(repealed)",
+                        "why": "Removes the stricter quorum for small settlements."
                       },
                       {
                         "ref": "Article 60(3)",
                         "text": "If the required number of citizens has not appeared at the set time, the assembly shall be postponed by one hour, after which it shall be held with those present. Their number, however, may not be less than one tenth of all citizens with voting rights.",
-                        "fix": "(repealed)"
+                        "fix": "(repealed)",
+                        "why": "Removes the fallback quorum of one tenth."
                       }
                     ]
                   }
@@ -864,12 +921,14 @@
                       {
                         "ref": "Article 2(2)",
                         "text": "The constituent administrative-territorial units within municipalities are mayoralties (кметства) and districts (райони). They are created under conditions and by a procedure laid down by law.",
-                        "fix": "The constituent administrative-territorial units within municipalities are mayoralties (кметства), districts (райони) and quarters (квартали). They are created under conditions and by a procedure laid down by law."
+                        "fix": "The constituent administrative-territorial units within municipalities are mayoralties (кметства), districts (райони) and quarters (квартали). They are created under conditions and by a procedure laid down by law.",
+                        "why": "Makes quarters units of local self-government."
                       },
                       {
                         "ref": "Article 2(5)",
                         "text": "Mayors of districts are elected in the districts of Sofia Municipality and of cities divided into districts.",
-                        "fix": "Mayors and councils of districts are elected in the districts of Sofia Municipality and of cities divided into districts. Quarter councils are elected in quarters."
+                        "fix": "Mayors and councils of districts are elected in the districts of Sofia Municipality and of cities divided into districts. Quarter councils are elected in quarters.",
+                        "why": "Gives districts and quarters elected councils of their own."
                       },
                       {
                         "ref": "Article 46(1)",
@@ -888,7 +947,8 @@
                           "3. manages the municipal property located in the district or mayoralty and serving its residents;",
                           "11. organises the implementation of the acts of the council of the district or mayoralty, and of the acts of the municipal council and of the mayor of the municipality on matters of municipal importance;",
                           "12. (repealed)"
-                        ]
+                        ],
+                        "why": "The district or mayoralty mayor implements its own council's decisions and budget."
                       }
                     ]
                   }
@@ -914,12 +974,14 @@
                       {
                         "ref": "Article 404(1)",
                         "text": "For elections for municipal councillors, the territory of the municipality constitutes one multi-member constituency.",
-                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each, which follow the boundaries of its districts, mayoralties and quarters."
+                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each, which follow the boundaries of its districts, mayoralties and quarters.",
+                        "why": "Splits the municipality into districts of 3 to 5 seats along districts, mayoralties and quarters."
                       },
                       {
                         "ref": "Article 453(2)",
                         "text": "The results of the voting for municipal councillors under the proportional system are determined by the Hare-Niemeyer method.",
-                        "fix": "The results of the voting for municipal councillors are determined by the single transferable vote."
+                        "fix": "The results of the voting for municipal councillors are determined by the single transferable vote.",
+                        "why": "Replaces the Hare-Niemeyer list count with STV."
                       }
                     ]
                   }
@@ -1011,12 +1073,14 @@
                           {
                             "ref": "Article 41(2)",
                             "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”.",
-                            "fix": "The proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”."
+                            "fix": "The proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”.",
+                            "why": "Removes the 40% turnout quorum: the majority of those who vote decides."
                           },
                           {
                             "ref": "Article 41(3)",
                             "text": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the valid votes cast in the respective municipality in the elections for municipal councillors have answered “yes”.",
-                            "fix": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”."
+                            "fix": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”.",
+                            "why": "Removes the approval quorum tied to the number of election voters."
                           },
                           {
                             "ref": "Article 30(4)",
@@ -1044,7 +1108,8 @@
                           {
                             "ref": "Article 26(3)",
                             "text": "When a local referendum is held, voting may be on one or on several questions.",
-                            "fix": "When a local referendum is held, voting may be on one or on several questions, or on a draft decision, ordinance or other act within the competence of the municipal council, which, if approved, takes effect as worded."
+                            "fix": "When a local referendum is held, voting may be on one or on several questions, or on a draft decision, ordinance or other act within the competence of the municipal council, which, if approved, takes effect as worded.",
+                            "why": "Lets voters approve a drafted decision or ordinance, which then takes effect as worded."
                           }
                         ]
                       }
@@ -1070,17 +1135,20 @@
                             "fix": [
                               "A local referendum shall be held on the proposal of:",
                               "3. an initiative committee with the signatures of no fewer than one hundredth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
-                            ]
+                            ],
+                            "why": "Lowers the signatures needed to propose a local referendum from 1/20 to 1/100 of voters."
                           },
                           {
                             "ref": "Article 27(2)",
                             "text": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality, district or mayoralty, and it does not contravene the restriction under Article 26(2).",
-                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality, district or mayoralty."
+                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality, district or mayoralty.",
+                            "why": "Lowers the signatures that oblige the council to call it from 1/10 to 1/50 of voters, and drops the topic restriction."
                           },
                           {
                             "ref": "Article 28(8)",
                             "text": "If the petition is not submitted to the municipal council within three months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council.",
-                            "fix": "If the petition is not submitted to the municipal council within six months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council."
+                            "fix": "If the petition is not submitted to the municipal council within six months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council.",
+                            "why": "Gives the initiative committee six months instead of three to collect signatures."
                           }
                         ]
                       }
@@ -1107,7 +1175,28 @@
                             ],
                             "fix": [
                               "(repealed)"
-                            ]
+                            ],
+                            "why": "Lifts the ban on local referendums about the budget, local taxes and fees, and the council's rules."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "no_roadblocks",
+                    "status": "partial",
+                    "explanation": "If the council's term ends before it decides on a petition, the law does not say the procedure continues before the next council, so the petition can lapse.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 28a (new)",
+                            "fix": "If the term of office of the municipal council ends before it has decided on a petition submitted under Article 27(2), the procedure shall continue before the newly elected council, which shall decide on the petition within one month of its first session.",
+                            "why": "A petition no longer lapses when the council's term ends."
                           }
                         ]
                       }
@@ -1121,9 +1210,21 @@
                   {
                     "type": "exists",
                     "status": "no",
-                    "explanation": "Citizens cannot call a vote to overturn a decision once it has been adopted.",
+                    "explanation": "A veto referendum exists only for the whole municipality (Art. 27(3)); a village or quarter cannot veto a decision that concerns only it.",
                     "laws": [
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 27(3a) (new)",
+                            "fix": "When a decision of the municipal council concerns only one district, mayoralty or quarter, the procedure under paragraph 3 may be initiated with the signatures of one fiftieth of the citizens with voting rights there, and the referendum shall be held in that district, mayoralty or quarter.",
+                            "why": "Lets a district, village or quarter veto a council decision that concerns only it."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1138,6 +1239,18 @@
                     "laws": [
                       "dcpa",
                       "atda"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 26(5) (new)",
+                            "fix": "Decisions of the municipal council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term municipal debt, and on the disposal of municipal property of public importance shall take effect only after their approval by local referendum. When such a decision concerns only one district, mayoralty or quarter, the referendum shall be held there.",
+                            "why": "Sends large spending, debt and sales of public property to the voters automatically."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1183,7 +1296,8 @@
                       {
                         "ref": "Article 55(1)",
                         "text": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters with a population of up to 10,000 inhabitants.",
-                        "fix": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters."
+                        "fix": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters.",
+                        "why": "Removes the 10,000-inhabitant limit on general assemblies."
                       }
                     ]
                   }
@@ -1203,12 +1317,14 @@
                       {
                         "ref": "Article 54(2)",
                         "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period.",
-                        "fix": "The decision of the general assembly of the population in the municipality, district or mayoralty shall be binding. The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to implement it within one month of its adoption, unless the general assembly itself has set a longer period."
+                        "fix": "The decision of the general assembly of the population in the municipality, district or mayoralty shall be binding. The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to implement it within one month of its adoption, unless the general assembly itself has set a longer period.",
+                        "why": "Makes the assembly's decision binding; the council and mayor only implement it."
                       },
                       {
                         "ref": "Article 54(3)",
                         "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter.",
-                        "fix": "The decision of the general assembly of the population in the settlement or quarter shall be binding. The municipal council shall issue the relevant acts to implement it within one month of its adoption."
+                        "fix": "The decision of the general assembly of the population in the settlement or quarter shall be binding. The municipal council shall issue the relevant acts to implement it within one month of its adoption.",
+                        "why": "Makes the assembly's decision binding in settlements and quarters too."
                       },
                       {
                         "ref": "Article 63(3)",
@@ -1232,17 +1348,20 @@
                       {
                         "ref": "Article 60(1)",
                         "text": "The general assembly of the population shall be deemed quorate if no fewer than one quarter of the citizens with voting rights in the municipality, district, mayoralty, settlement or quarter are present.",
-                        "fix": "The general assembly of the population shall be deemed quorate whatever the number of citizens with voting rights present, provided it has been convened and announced as this Act requires."
+                        "fix": "The general assembly of the population shall be deemed quorate whatever the number of citizens with voting rights present, provided it has been convened and announced as this Act requires.",
+                        "why": "Removes the attendance quorum: those who come decide."
                       },
                       {
                         "ref": "Article 60(2)",
                         "text": "In settlements with up to 150 inhabitants, at least one third of the citizens with voting rights in the settlement must be present for a general assembly of the population to be held.",
-                        "fix": "(repealed)"
+                        "fix": "(repealed)",
+                        "why": "Removes the stricter quorum for small settlements."
                       },
                       {
                         "ref": "Article 60(3)",
                         "text": "If the required number of citizens has not appeared at the set time, the assembly shall be postponed by one hour, after which it shall be held with those present. Their number, however, may not be less than one tenth of all citizens with voting rights.",
-                        "fix": "(repealed)"
+                        "fix": "(repealed)",
+                        "why": "Removes the fallback quorum of one tenth."
                       }
                     ]
                   }
@@ -1328,7 +1447,8 @@
                       {
                         "ref": "Article 2(4)",
                         "text": "Mayors of mayoralties are elected in mayoralties.",
-                        "fix": "Mayors and councils of mayoralties are elected in mayoralties."
+                        "fix": "Mayors and councils of mayoralties are elected in mayoralties.",
+                        "why": "Gives mayoralties an elected council of their own."
                       }
                     ]
                   }
@@ -1355,7 +1475,8 @@
                       {
                         "ref": "Article 2(4)",
                         "text": "Mayors of mayoralties are elected in mayoralties.",
-                        "fix": "Mayors and councils of mayoralties are elected in mayoralties."
+                        "fix": "Mayors and councils of mayoralties are elected in mayoralties.",
+                        "why": "Gives mayoralties an elected council of their own."
                       },
                       {
                         "ref": "Article 38(2)",
@@ -1370,7 +1491,8 @@
                         "fix": [
                           "In settlements that are not the administrative centre of a mayoralty, the residents elect mayoral deputies (кметски наместници) for the term of office.",
                           "Mayoral deputies are bodies of executive power in the settlement. They may be dismissed early only on the grounds laid down by law."
-                        ]
+                        ],
+                        "why": "Residents elect their mayoral deputy, who can no longer be dismissed at will."
                       }
                     ]
                   }
@@ -1404,7 +1526,8 @@
                           "3. manages the municipal property located in the district or mayoralty and serving its residents;",
                           "11. organises the implementation of the acts of the council of the district or mayoralty, and of the acts of the municipal council and of the mayor of the municipality on matters of municipal importance;",
                           "12. (repealed)"
-                        ]
+                        ],
+                        "why": "The district or mayoralty mayor implements its own council's decisions and budget."
                       },
                       {
                         "ref": "Article 46(3)",
@@ -1427,7 +1550,8 @@
                           "8. adopts decisions on the acquisition, management and disposal of municipal property, except property located in a district or mayoralty and serving its residents, which is managed by that district or mayoralty;",
                           "11. adopts decisions on the creation and approval of spatial development plans and their amendments for the territory of the municipality or parts of it;",
                           "23. decides other matters of local importance that are not within the competence of districts, mayoralties or other bodies."
-                        ]
+                        ],
+                        "why": "Leaves district and mayoralty budgets and property to their own bodies."
                       }
                     ]
                   }
@@ -1563,12 +1687,14 @@
                           {
                             "ref": "Article 41(2)",
                             "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”.",
-                            "fix": "The proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”."
+                            "fix": "The proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”.",
+                            "why": "Removes the 40% turnout quorum: the majority of those who vote decides."
                           },
                           {
                             "ref": "Article 41(3)",
                             "text": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the valid votes cast in the respective municipality in the elections for municipal councillors have answered “yes”.",
-                            "fix": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”."
+                            "fix": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”.",
+                            "why": "Removes the approval quorum tied to the number of election voters."
                           },
                           {
                             "ref": "Article 30(4)",
@@ -1596,7 +1722,8 @@
                           {
                             "ref": "Article 26(3)",
                             "text": "When a local referendum is held, voting may be on one or on several questions.",
-                            "fix": "When a local referendum is held, voting may be on one or on several questions, or on a draft decision, ordinance or other act within the competence of the municipal council, which, if approved, takes effect as worded."
+                            "fix": "When a local referendum is held, voting may be on one or on several questions, or on a draft decision, ordinance or other act within the competence of the municipal council, which, if approved, takes effect as worded.",
+                            "why": "Lets voters approve a drafted decision or ordinance, which then takes effect as worded."
                           }
                         ]
                       }
@@ -1622,17 +1749,20 @@
                             "fix": [
                               "A local referendum shall be held on the proposal of:",
                               "3. an initiative committee with the signatures of no fewer than one hundredth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
-                            ]
+                            ],
+                            "why": "Lowers the signatures needed to propose a local referendum from 1/20 to 1/100 of voters."
                           },
                           {
                             "ref": "Article 27(2)",
                             "text": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality, district or mayoralty, and it does not contravene the restriction under Article 26(2).",
-                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality, district or mayoralty."
+                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality, district or mayoralty.",
+                            "why": "Lowers the signatures that oblige the council to call it from 1/10 to 1/50 of voters, and drops the topic restriction."
                           },
                           {
                             "ref": "Article 28(8)",
                             "text": "If the petition is not submitted to the municipal council within three months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council.",
-                            "fix": "If the petition is not submitted to the municipal council within six months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council."
+                            "fix": "If the petition is not submitted to the municipal council within six months of notifying it, the procedure for submitting a proposal for a referendum shall be terminated by the chairperson of the municipal council.",
+                            "why": "Gives the initiative committee six months instead of three to collect signatures."
                           }
                         ]
                       }
@@ -1659,7 +1789,28 @@
                             ],
                             "fix": [
                               "(repealed)"
-                            ]
+                            ],
+                            "why": "Lifts the ban on local referendums about the budget, local taxes and fees, and the council's rules."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "no_roadblocks",
+                    "status": "partial",
+                    "explanation": "If the council's term ends before it decides on a petition, the law does not say the procedure continues before the next council, so the petition can lapse.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 28a (new)",
+                            "fix": "If the term of office of the municipal council ends before it has decided on a petition submitted under Article 27(2), the procedure shall continue before the newly elected council, which shall decide on the petition within one month of its first session.",
+                            "why": "A petition no longer lapses when the council's term ends."
                           }
                         ]
                       }
@@ -1684,7 +1835,8 @@
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request."
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
+                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, and suspends the decision until the vote."
                           }
                         ]
                       }
@@ -1731,17 +1883,20 @@
                           {
                             "ref": "Article 41(2)",
                             "text": "The proposal submitted to referendum shall be deemed adopted if no fewer than 40 per cent of the citizens with voting rights in the respective municipality have taken part in it and more than half of the voters taking part in the referendum have answered “yes”.",
-                            "fix": "The proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”."
+                            "fix": "The proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”.",
+                            "why": "Removes the 40% turnout quorum: the majority of those who vote decides."
                           },
                           {
                             "ref": "Article 41(3)",
                             "text": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the valid votes cast in the respective municipality in the elections for municipal councillors have answered “yes”.",
-                            "fix": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”."
+                            "fix": "When the referendum is held at the same time as general elections for municipal councillors and mayors, the proposal submitted to referendum shall be deemed adopted if more than half of the voters taking part in the referendum have answered “yes”.",
+                            "why": "Removes the approval quorum tied to the number of election voters."
                           },
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request."
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
+                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, and suspends the decision until the vote."
                           }
                         ]
                       }
@@ -1761,7 +1916,8 @@
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request."
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
+                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, and suspends the decision until the vote."
                           }
                         ]
                       }
@@ -1781,7 +1937,8 @@
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request."
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
+                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, and suspends the decision until the vote."
                           }
                         ]
                       }
@@ -1808,7 +1965,8 @@
                             ],
                             "fix": [
                               "(repealed)"
-                            ]
+                            ],
+                            "why": "Lifts the ban on local referendums about the budget, local taxes and fees, and the council's rules."
                           }
                         ]
                       }
@@ -1826,6 +1984,18 @@
                     "laws": [
                       "dcpa",
                       "atda"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 26(5) (new)",
+                            "fix": "Decisions of the municipal council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term municipal debt, and on the disposal of municipal property of public importance shall take effect only after their approval by local referendum. When such a decision concerns only one district, mayoralty or quarter, the referendum shall be held there.",
+                            "why": "Sends large spending, debt and sales of public property to the voters automatically."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1869,7 +2039,8 @@
                       {
                         "ref": "Article 55(1)",
                         "text": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters with a population of up to 10,000 inhabitants.",
-                        "fix": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters."
+                        "fix": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters.",
+                        "why": "Removes the 10,000-inhabitant limit on general assemblies."
                       }
                     ]
                   }
@@ -1889,12 +2060,14 @@
                       {
                         "ref": "Article 54(2)",
                         "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period.",
-                        "fix": "The decision of the general assembly of the population in the municipality, district or mayoralty shall be binding. The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to implement it within one month of its adoption, unless the general assembly itself has set a longer period."
+                        "fix": "The decision of the general assembly of the population in the municipality, district or mayoralty shall be binding. The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to implement it within one month of its adoption, unless the general assembly itself has set a longer period.",
+                        "why": "Makes the assembly's decision binding; the council and mayor only implement it."
                       },
                       {
                         "ref": "Article 54(3)",
                         "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter.",
-                        "fix": "The decision of the general assembly of the population in the settlement or quarter shall be binding. The municipal council shall issue the relevant acts to implement it within one month of its adoption."
+                        "fix": "The decision of the general assembly of the population in the settlement or quarter shall be binding. The municipal council shall issue the relevant acts to implement it within one month of its adoption.",
+                        "why": "Makes the assembly's decision binding in settlements and quarters too."
                       },
                       {
                         "ref": "Article 63(3)",
@@ -1918,17 +2091,20 @@
                       {
                         "ref": "Article 60(1)",
                         "text": "The general assembly of the population shall be deemed quorate if no fewer than one quarter of the citizens with voting rights in the municipality, district, mayoralty, settlement or quarter are present.",
-                        "fix": "The general assembly of the population shall be deemed quorate whatever the number of citizens with voting rights present, provided it has been convened and announced as this Act requires."
+                        "fix": "The general assembly of the population shall be deemed quorate whatever the number of citizens with voting rights present, provided it has been convened and announced as this Act requires.",
+                        "why": "Removes the attendance quorum: those who come decide."
                       },
                       {
                         "ref": "Article 60(2)",
                         "text": "In settlements with up to 150 inhabitants, at least one third of the citizens with voting rights in the settlement must be present for a general assembly of the population to be held.",
-                        "fix": "(repealed)"
+                        "fix": "(repealed)",
+                        "why": "Removes the stricter quorum for small settlements."
                       },
                       {
                         "ref": "Article 60(3)",
                         "text": "If the required number of citizens has not appeared at the set time, the assembly shall be postponed by one hour, after which it shall be held with those present. Their number, however, may not be less than one tenth of all citizens with voting rights.",
-                        "fix": "(repealed)"
+                        "fix": "(repealed)",
+                        "why": "Removes the fallback quorum of one tenth."
                       }
                     ]
                   }
@@ -2050,7 +2226,8 @@
                           "8. adopts decisions on the acquisition, management and disposal of municipal property, except property located in a district or mayoralty and serving its residents, which is managed by that district or mayoralty;",
                           "11. adopts decisions on the creation and approval of spatial development plans and their amendments for the territory of the municipality or parts of it;",
                           "23. decides other matters of local importance that are not within the competence of districts, mayoralties or other bodies."
-                        ]
+                        ],
+                        "why": "Leaves district and mayoralty budgets and property to their own bodies."
                       }
                     ]
                   }
@@ -2070,22 +2247,26 @@
                       {
                         "ref": "Article 399(2)",
                         "text": "When voting for the candidate list of a party or coalition, the voter may mark one preference for a candidate on the list, thereby expressing a preference as to the order of the candidates on the list voted for.",
-                        "fix": "When voting, the voter may rank as many candidates as they wish in order of preference, by marking 1, 2, 3 and so on beside their names, regardless of the party, coalition or committee that nominated them."
+                        "fix": "When voting, the voter may rank as many candidates as they wish in order of preference, by marking 1, 2, 3 and so on beside their names, regardless of the party, coalition or committee that nominated them.",
+                        "why": "Lets voters rank council candidates of any party, instead of one preference within a list."
                       },
                       {
                         "ref": "Article 437(2), item 4",
                         "text": "The vote is valid for the candidate list even if no preference has been marked for a candidate from the list of the party or coalition voted for.",
-                        "fix": "The vote is valid if at least one candidate has been marked with the number 1."
+                        "fix": "The vote is valid if at least one candidate has been marked with the number 1.",
+                        "why": "A vote counts for a person, not for a list."
                       },
                       {
                         "ref": "Article 437(5)",
                         "text": "Where the voter has not marked a preference for a candidate on the chosen candidate list, a preference is counted for the candidate placed first on the list.",
-                        "fix": "(repealed)"
+                        "fix": "(repealed)",
+                        "why": "Ends the rule that gives unmarked preferences to the list's first candidate."
                       },
                       {
                         "ref": "Article 454(2)",
                         "text": "Preferences for individual candidates are valid if the number of votes received for the candidate is no less than 7 per cent of the votes cast for the candidate list.",
-                        "fix": "Candidates are elected by the single transferable vote: each ballot counts for the voter's highest-ranked candidate who can still use it, and surplus and eliminated candidates' votes are transferred by the voters' next preferences until all seats are filled."
+                        "fix": "Candidates are elected by the single transferable vote: each ballot counts for the voter's highest-ranked candidate who can still use it, and surplus and eliminated candidates' votes are transferred by the voters' next preferences until all seats are filled.",
+                        "why": "Replaces the 7% preference threshold with STV counting."
                       }
                     ]
                   }
@@ -2110,12 +2291,14 @@
                       {
                         "ref": "Article 404(1)",
                         "text": "For elections for municipal councillors, the territory of the municipality constitutes one multi-member constituency.",
-                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each, which follow the boundaries of its districts, mayoralties and quarters."
+                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each, which follow the boundaries of its districts, mayoralties and quarters.",
+                        "why": "Splits the municipality into districts of 3 to 5 seats along districts, mayoralties and quarters."
                       },
                       {
                         "ref": "Article 453(2)",
                         "text": "The results of the voting for municipal councillors under the proportional system are determined by the Hare-Niemeyer method.",
-                        "fix": "The results of the voting for municipal councillors are determined by the single transferable vote."
+                        "fix": "The results of the voting for municipal councillors are determined by the single transferable vote.",
+                        "why": "Replaces the Hare-Niemeyer list count with STV."
                       }
                     ]
                   }
@@ -2376,7 +2559,8 @@
                           {
                             "ref": "Article 23(1)",
                             "text": "The proposal submitted to referendum shall be deemed adopted if the number of voters participating is no lower than the number who participated in the most recent National Assembly elections and if more than half of the voters participating in the referendum have voted “yes”.",
-                            "fix": "The proposal submitted to referendum shall be deemed adopted if more than half of the voters participating in the referendum have voted “yes”."
+                            "fix": "The proposal submitted to referendum shall be deemed adopted if more than half of the voters participating in the referendum have voted “yes”.",
+                            "why": "Removes the turnout quorum: the majority of those who vote decides."
                           }
                         ]
                       }
@@ -2411,17 +2595,20 @@
                             "fix": [
                               "A proposal to the National Assembly to hold a national referendum may be made by:",
                               "5. an initiative committee of citizens with voting rights that has collected no fewer than 50,000 signatures of citizens with voting rights."
-                            ]
+                            ],
+                            "why": "Lowers the signatures needed to propose a national referendum from 200,000 to 50,000."
                           },
                           {
                             "ref": "Article 10(2)",
                             "text": "The National Assembly shall adopt a decision to hold a national referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than 400,000 Bulgarian citizens with voting rights, and it does not contravene the restrictions under Article 9(2), (3) and (4).",
-                            "fix": "The National Assembly shall adopt a decision to hold a national referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than 100,000 Bulgarian citizens with voting rights."
+                            "fix": "The National Assembly shall adopt a decision to hold a national referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than 100,000 Bulgarian citizens with voting rights.",
+                            "why": "Lowers the signatures that oblige parliament to call a referendum from 400,000 to 100,000, and drops the topic restrictions."
                           },
                           {
                             "ref": "Article 12(8)",
                             "text": "If the petition is not submitted to the National Assembly within three months of the notification under paragraph 2, item 3, the procedure for submitting a proposal for a referendum shall be terminated by the Chairperson of the National Assembly, and this shall be entered in the register under Article 10(3).",
-                            "fix": "If the petition is not submitted to the National Assembly within six months of the notification under paragraph 2, item 3, the procedure for submitting a proposal for a referendum shall be terminated by the Chairperson of the National Assembly, and this shall be entered in the register under Article 10(3)."
+                            "fix": "If the petition is not submitted to the National Assembly within six months of the notification under paragraph 2, item 3, the procedure for submitting a proposal for a referendum shall be terminated by the Chairperson of the National Assembly, and this shall be entered in the register under Article 10(3).",
+                            "why": "Gives the initiative committee six months instead of three to collect signatures."
                           }
                         ]
                       }
@@ -2451,12 +2638,34 @@
                             ],
                             "fix": [
                               "(repealed)"
-                            ]
+                            ],
+                            "why": "Lifts the ban on referendums about taxes, the budget, parliament's rules and listed constitutional matters."
                           },
                           {
                             "ref": "Article 9(3)",
                             "text": "Codes and laws that comprehensively regulate a given field may not be put to referendum in their entirety.",
-                            "fix": "(repealed)"
+                            "fix": "(repealed)",
+                            "why": "Allows whole codes and comprehensive laws to be put to a referendum."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "no_roadblocks",
+                    "status": "partial",
+                    "explanation": "If parliament is dissolved or its term ends before it decides on a petition, the petition lapses: the law does not say the procedure continues before the next parliament.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 12a (new)",
+                            "fix": "If the term of office of the National Assembly ends, or it is dissolved, before it has decided on a petition submitted under Article 10(2), the procedure shall continue before the newly elected National Assembly, which shall decide on the petition within three months of its first sitting.",
+                            "why": "A petition no longer lapses when parliament dissolves or its term ends."
                           }
                         ]
                       }
@@ -2474,6 +2683,21 @@
                     "laws": [
                       "const",
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 10a (new)",
+                            "fix": [
+                              "(1) If, within 100 days of the promulgation of a law, an initiative committee submits a petition containing the signatures of no fewer than 50,000 citizens with voting rights, the law shall be put to a national referendum.",
+                              "(2) The law shall not enter into force before the referendum. It shall be deemed rejected if more than half of the voters taking part in the referendum have voted “no”."
+                            ],
+                            "why": "Lets citizens call a vote on any new law before it takes effect."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -2488,6 +2712,18 @@
                     "laws": [
                       "const",
                       "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 9a (new)",
+                            "fix": "Laws amending the Constitution, and decisions to ratify international treaties that transfer powers of the State, shall enter into force only after their approval by national referendum.",
+                            "why": "Sends the most fundamental decisions to the voters automatically."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -2533,12 +2769,14 @@
                       {
                         "ref": "Article 246(1)",
                         "text": "Elections for members of parliament are held under a proportional electoral system, with candidate lists of parties and coalitions, or of initiative committees, registered in multi-member constituencies.",
-                        "fix": "Elections for members of parliament are held under the single transferable vote, in multi-member constituencies of three to five seats."
+                        "fix": "Elections for members of parliament are held under the single transferable vote, in multi-member constituencies of three to five seats.",
+                        "why": "Replaces party lists with the single transferable vote in districts of 3 to 5 seats."
                       },
                       {
                         "ref": "Article 246(2)",
                         "text": "When voting for the candidate list of a party or coalition, the voter may mark one preference for a candidate on the list, thereby expressing a preference as to the order of the candidates on the list voted for.",
-                        "fix": "When voting, the voter may rank as many candidates as they wish in order of preference, by marking 1, 2, 3 and so on beside their names, regardless of the party, coalition or committee that nominated them."
+                        "fix": "When voting, the voter may rank as many candidates as they wish in order of preference, by marking 1, 2, 3 and so on beside their names, regardless of the party, coalition or committee that nominated them.",
+                        "why": "Lets voters rank candidates of any party, instead of one preference within a list."
                       },
                       {
                         "ref": "Article 278(2), items 4 and 5",
@@ -2549,17 +2787,20 @@
                         "fix": [
                           "The vote is valid if at least one candidate has been marked with the number 1.",
                           "(repealed)"
-                        ]
+                        ],
+                        "why": "A vote counts for a person, not for a list."
                       },
                       {
                         "ref": "Article 278(5)",
                         "text": "Where the voter has not marked a preference for a candidate on the chosen candidate list, a preference is counted for the candidate placed first on the list.",
-                        "fix": "(repealed)"
+                        "fix": "(repealed)",
+                        "why": "Ends the rule that gives unmarked preferences to the list's first candidate."
                       },
                       {
                         "ref": "Article 298(2)",
                         "text": "Preferences for individual candidates are valid if the number of votes received for the candidate is no less than 7 per cent of the votes cast for the candidate list.",
-                        "fix": "Candidates are elected by the single transferable vote: each ballot counts for the voter's highest-ranked candidate who can still use it, and surplus and eliminated candidates' votes are transferred by the voters' next preferences until all seats are filled."
+                        "fix": "Candidates are elected by the single transferable vote: each ballot counts for the voter's highest-ranked candidate who can still use it, and surplus and eliminated candidates' votes are transferred by the voters' next preferences until all seats are filled.",
+                        "why": "Replaces the 7% preference threshold with STV counting."
                       }
                     ]
                   }
@@ -2580,7 +2821,8 @@
                       {
                         "ref": "Article 249(1)",
                         "text": "For the elections, the territory of the country is divided into 31 multi-member constituencies, including three in Sofia City and two in Plovdiv region. The other constituencies coincide with the boundaries of the regions of the country.",
-                        "fix": "For the elections, the territory of the country is divided into constituencies of three to five seats each, with about the same number of voters per seat, following the boundaries of municipalities and regions where possible."
+                        "fix": "For the elections, the territory of the country is divided into constituencies of three to five seats each, with about the same number of voters per seat, following the boundaries of municipalities and regions where possible.",
+                        "why": "Draws smaller districts of 3 to 5 seats, so each area has its own representatives."
                       }
                     ]
                   }

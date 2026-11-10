@@ -270,10 +270,74 @@ function provisionLines(it, fixed) {
   return out;
 }
 
+// Reader feedback on a proposed amendment: approvals and alternative wordings, shared through server.py
+// (/api/fixes) like the interest chips, or kept in this browser when the site is served without it.
+const fixKey = (law, ref) => [state.loc?.address?.country_code || 'xx', law, ref].join('|').replace(/[^\w\- .,'()/|À-ɏЀ-ӿ]/g, '').slice(0, 200);
+function localFix(key, value) {
+  try {
+    const all = JSON.parse(localStorage.getItem('freedom-fixes') || '{}');
+    if (value === undefined) return all[key] || { approvals: 0, suggestions: [] };
+    all[key] = value; localStorage.setItem('freedom-fixes', JSON.stringify(all));
+  } catch { /* storage unavailable */ }
+  return value || { approvals: 0, suggestions: [] };
+}
+async function fixFeedback(key, action, body) {
+  if (sharedApi) {
+    try { return action ? await api('POST', `api/fixes/${action}`, { key, ...body }) : await api('GET', `api/fixes?key=${encodeURIComponent(key)}`); }
+    catch { sharedApi = false; }
+  }
+  const e = localFix(key);
+  if (action === 'approve') e.approvals++;
+  if (action === 'suggest') e.suggestions.push({ text: body.text, at: Math.floor(Date.now() / 1000) });
+  return action ? localFix(key, e) : e;
+}
+const approvedHere = key => { try { return JSON.parse(localStorage.getItem('freedom-fix-approved') || '[]').includes(key); } catch { return false; } };
+const markApproved = key => { try { const a = JSON.parse(localStorage.getItem('freedom-fix-approved') || '[]'); a.push(key); localStorage.setItem('freedom-fix-approved', JSON.stringify(a)); } catch { /* ignore */ } };
+function fixReview(law, it) {
+  const key = fixKey(law, it.ref);
+  const box = el('div', { class: 'fix-review' });
+  const paint = e => {
+    const done = approvedHere(key);
+    const approve = el('button', { type: 'button', class: 'fr-btn', disabled: done, onclick: async () => { markApproved(key); paint(await fixFeedback(key, 'approve')); } },
+      done ? 'Approved' : 'Approve', e.approvals ? el('span', { class: 'count' }, ` · ${e.approvals}`) : null);
+    const write = el('button', { type: 'button', class: 'fr-btn', onclick: () => {
+      const ta = el('textarea', { rows: 4, 'aria-label': `Your wording for ${it.ref}` });
+      ta.value = [].concat(it.fix).join('\n');
+      const send = el('button', { type: 'button', class: 'fr-btn primary', onclick: async () => {
+        const text = ta.value.trim();
+        if (text) paint(await fixFeedback(key, 'suggest', { text }));
+      } }, 'Submit');
+      const cancel = el('button', { type: 'button', class: 'fr-btn', onclick: () => paint(e) }, 'Cancel');
+      box.replaceChildren(ta, el('div', { class: 'fr-row' }, send, cancel));
+      ta.focus();
+    } }, 'Write my own');
+    const sugg = (e.suggestions || []).map(x => el('div', { class: 'suggestion' }, el('span', { class: 'who' }, 'Suggested by a reader'), ...String(x.text).split('\n').map(t => el('p', {}, t))));
+    box.replaceChildren(el('div', { class: 'fr-row' }, approve, write), ...sugg);
+  };
+  paint({ approvals: 0, suggestions: [] });
+  fixFeedback(key).then(paint).catch(() => {});
+  return box;
+}
+
+// A short excerpt from the explainer (e.g. on the participation quorum) under the verdict, expandable to the full quote.
+function explainerMini(explainer) {
+  const [first, ...rest] = explainer.quote;
+  const more = el('div', { class: 'xm-more', hidden: true },
+    ...rest.map(t => el('p', {}, t)),
+    el('p', { class: 'source' }, 'Source: ', el('a', { href: explainer.url, target: '_blank', rel: 'noopener' }, explainer.source)));
+  const toggle = el('button', { type: 'button', class: 'xm-toggle', onclick: () => {
+    more.hidden = !more.hidden; toggle.textContent = more.hidden ? 'Read more' : 'Show less';
+  } }, 'Read more');
+  return el('div', { class: 'xm' }, el('p', { class: 'xm-title' }, explainer.title), el('p', {}, first), more, toggle);
+}
+
 // The legal text behind a requirement: per law, a linked title and the quoted provisions (translated).
-// When the data proposes amendments (`fix` on a provision), a Fix button shows them as tracked changes.
+// When the data proposes amendments (`fix` on a provision), a Fix button shows them as tracked changes, each
+// with a short "why" and buttons for readers to approve it or suggest their own wording. A provision with a
+// `fix` but no `text` is a new article: hidden until Fix is pressed, so the act is shown as lacking it.
 function provisionsPanel(provisions, laws, explainer, prop) {
-  const fixable = ['no', 'partial', 'weak'].includes(prop?.status) && provisions.some(p => (p.items || []).some(it => it.fix != null));
+  const unmet = ['no', 'partial', 'weak'].includes(prop?.status);
+  const fixable = unmet && provisions.some(p => (p.items || []).some(it => it.fix != null));
   const panel = el('div', {});
   const draw = fixed => {
     // A band on top, in the requirement's own colour, says at a glance whether the law meets it.
@@ -281,21 +345,23 @@ function provisionsPanel(provisions, laws, explainer, prop) {
     const verdictLabel = t && Object.fromEntries(LEGENDS.requirements)[t];
     const btn = fixable ? el('button', { type: 'button', class: 'fix-btn', 'aria-pressed': String(fixed), onclick: () => draw(!fixed) }, fixed ? 'Show current law' : 'Fix') : null;
     const note = fixed ? 'With these amendments (proposed by Freedom Map, not law).' : prop?.explanation;
+    const mini = explainer && unmet && !fixed ? explainerMini(explainer) : null;
     const verdict = verdictLabel ? el('div', { class: `verdict t-${t}` },
-      el('strong', {}, verdictLabel), note ? el('span', {}, note) : null, btn) : btn;
+      el('div', { class: 'vtext' }, el('strong', {}, verdictLabel), note ? el('span', {}, note) : null), mini, btn) : btn;
     panel.className = `provisions${t ? ` v-${t}` : ''}${fixed ? ' fixed' : ''}`;
     panel.replaceChildren(...[verdict, ...provisions.map(p => {
       const law = laws[p.law] || { title: p.law };
       const title = law.url ? el('a', { href: law.url, target: '_blank', rel: 'noopener' }, law.title) : law.title;
+      const items = (p.items || []).filter(it => fixed || it.text != null || it.fix == null);
       return el('section', {},
         el('h3', {}, title),
-        ...(p.items || []).map(it => el('div', { class: 'provision' },
+        items.length ? null : el('p', { class: 'absent' }, fixable ? 'The act has no provision for this. Press Fix to see the articles that would provide it.' : 'The act has no provision for this.'),
+        ...items.map(it => el('div', { class: 'provision' },
           it.ref ? el('p', { class: 'ref' }, it.ref) : null,
-          ...provisionLines(it, fixed))));
-    }), explainer && !fixed ? el('section', { class: 'explainer' },
-      el('h3', {}, explainer.title),
-      el('blockquote', {}, explainer.quote.map(t => el('p', {}, t))),
-      el('p', { class: 'source' }, 'Source: ', el('a', { href: explainer.url, target: '_blank', rel: 'noopener' }, explainer.source))) : null].filter(Boolean));
+          ...provisionLines(it, fixed),
+          fixed && it.fix != null && it.why ? el('p', { class: 'why' }, it.why) : null,
+          fixed && it.fix != null ? fixReview(p.law, it) : null)));
+    })].filter(Boolean));
   };
   draw(false);
   return panel;

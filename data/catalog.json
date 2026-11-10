@@ -162,7 +162,8 @@
         "no_quorum",
         "concrete_proposals",
         "reasonable_signatures",
-        "no_topic_restrictions"
+        "no_topic_restrictions",
+        "no_roadblocks"
       ],
       "gates": [
         "exists",
@@ -339,6 +340,12 @@
       "name": "Elected in local districts",
       "longName": "Members are elected in districts within the community",
       "description": "Each part of the community elects its own representative, who answers to it, instead of one list for the whole area."
+    },
+    "no_roadblocks": {
+      "gate": false,
+      "name": "No roadblocks",
+      "longName": "No other roadblocks in the procedure",
+      "description": "No smaller procedural obstacles that can stop or stall the mechanism, such as a petition lapsing when parliament or the council changes."
     }
   },
   "referendumKinds": {

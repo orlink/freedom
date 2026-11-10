@@ -8,7 +8,8 @@ using the same server. Standard library only.
     python3 server.py              # http://localhost:8000
     python3 server.py --port 8080 --host 0.0.0.0   # share on your network
 
-State is kept in data/state/interests.json (git-ignored).
+State is kept in data/state/interests.json and data/state/fixes.json (git-ignored).
+The fixes API collects readers' approvals of, and alternative wordings for, proposed legal amendments.
 """
 import argparse, json, os, re, threading, time, uuid
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
@@ -18,24 +19,31 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 STATE_FILE = os.path.join(ROOT, "data", "state", "interests.json")
 LOCK = threading.Lock()
 KEY_RE = re.compile(r"^[\w\- .,'()/|À-ɏЀ-ӿ]{1,200}$")
+FIXES_FILE = os.path.join(ROOT, "data", "state", "fixes.json")
 MAX_LABEL = 60
-MAX_BODY = 4096
+MAX_SUGGESTION = 2000
+MAX_SUGGESTIONS = 50
+MAX_BODY = 16384
 
 
-def load_state():
+def load_state(path=STATE_FILE):
     try:
-        with open(STATE_FILE, encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
 
 
-def save_state(state):
-    os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
-    tmp = STATE_FILE + ".tmp"
+def save_state(state, path=STATE_FILE):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    tmp = path + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(state, f, ensure_ascii=False, indent=1)
-    os.replace(tmp, STATE_FILE)
+    os.replace(tmp, path)
+
+
+def fix_entry(state, key):
+    return state.setdefault(key, {"approvals": 0, "suggestions": []})
 
 
 def entry(state, key):
@@ -75,6 +83,13 @@ class Handler(SimpleHTTPRequestHandler):
                 return self.send_json(400, {"error": "bad key"})
             with LOCK:
                 e = load_state().get(key, {"added": [], "hidden": []})
+            return self.send_json(200, e)
+        if u.path == "/api/fixes":
+            key = (parse_qs(u.query).get("key") or [""])[0]
+            if not KEY_RE.match(key):
+                return self.send_json(400, {"error": "bad key"})
+            with LOCK:
+                e = load_state(FIXES_FILE).get(key, {"approvals": 0, "suggestions": []})
             return self.send_json(200, e)
         return super().do_GET()
 
@@ -116,6 +131,24 @@ class Handler(SimpleHTTPRequestHandler):
                 if cid not in e["hidden"]:
                     e["hidden"].append(cid)
                 save_state(state)
+            return self.send_json(200, e)
+        if u.path == "/api/fixes/approve":
+            with LOCK:
+                state = load_state(FIXES_FILE)
+                e = fix_entry(state, key)
+                e["approvals"] += 1
+                save_state(state, FIXES_FILE)
+            return self.send_json(200, e)
+        if u.path == "/api/fixes/suggest":
+            text = str(body.get("text", "")).strip()[:MAX_SUGGESTION]
+            if not text:
+                return self.send_json(400, {"error": "empty text"})
+            with LOCK:
+                state = load_state(FIXES_FILE)
+                e = fix_entry(state, key)
+                if len(e["suggestions"]) < MAX_SUGGESTIONS and not any(x["text"] == text for x in e["suggestions"]):
+                    e["suggestions"].append({"text": text, "at": int(time.time())})
+                save_state(state, FIXES_FILE)
             return self.send_json(200, e)
         return self.send_json(404, {"error": "not found"})
 
