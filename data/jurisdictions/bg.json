@@ -3531,7 +3531,7 @@
               {
                 "type": "proportional_representation",
                 "status": "partial",
-                "explanation": "Proportional representation is meant to give non-territorial communities of interest a share of the seats that matches their share of the electorate. Council seats are allocated to party lists in proportion to their votes using a List-PR electoral system, so the outcome is proportional between parties. But the party sets the order of candidates and the preference vote rarely changes it, so a councillor is primarily accountable to the party leadership and not to constituents and consequently he or she is not really their representative. The system delivers party proportionality but not proportional representation.",
+                "explanation": "Proportional representation is meant to give non-territorial communities of interest a share of the seats that matches their share of the electorate. Council seats are allocated to party lists in proportion to their votes using a List-PR electoral system, so the outcome is proportional between parties. But the party sets the order of candidates and the preference vote rarely changes it, so a councillor is primarily accountable to the party leadership and not to constituents and consequently he or she is not really their representative. The system delivers party proportionality but weak proportional representation.",
                 "laws": [
                   "ec"
                 ],
