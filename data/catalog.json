@@ -244,7 +244,7 @@
     "binding": {
       "gate": true,
       "name": "Legally binding",
-      "longName": "The result is legally binding",
+      "longName": "Legally binding",
       "description": "The outcome binds the authorities; it is not merely advisory."
     },
     "no_quorum": {
