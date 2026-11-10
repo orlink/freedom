@@ -1,8 +1,9 @@
-// Chip colour scheme: "grey" (white = free … black = not free) or "red" (white = free … dark red = not free).
+// Chip colour scheme: "teal" (default: teal = free … dark red = not free), "red" (white = free … dark red = not free)
+// or "grey" (white = free … black = not free).
 // Kept per browser so the two can be compared by switching back and forth.
 (function () {
-  let scale = 'red';
-  try { scale = localStorage.getItem('freedom-scale-2') || 'red'; } catch (e) {}
+  let scale = 'teal';
+  try { scale = localStorage.getItem('freedom-scale-3') || 'teal'; } catch (e) {}
   document.documentElement.dataset.scale = scale;
   document.addEventListener('DOMContentLoaded', () => {
     const box = document.getElementById('scale');
@@ -12,7 +13,7 @@
       const b = e.target.closest('button[data-scale]');
       if (!b) return;
       document.documentElement.dataset.scale = b.dataset.scale;
-      try { localStorage.setItem('freedom-scale-2', b.dataset.scale); } catch (err) {}
+      try { localStorage.setItem('freedom-scale-3', b.dataset.scale); } catch (err) {}
       paint();
     });
     paint();
