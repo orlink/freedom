@@ -138,6 +138,21 @@
       "title": "Cooperatives Act",
       "localTitle": "Закон за кооперациите",
       "short": "Закон за кооперациите"
+    },
+    "zzd": {
+      "title": "Obligations and Contracts Act",
+      "localTitle": "Закон за задълженията и договорите",
+      "short": "Закон за задълженията и договорите"
+    },
+    "zpfi": {
+      "title": "Markets in Financial Instruments Act",
+      "localTitle": "Закон за пазарите на финансови инструменти",
+      "short": "ЗПФИ"
+    },
+    "zdkis": {
+      "title": "Collective Investment Schemes Act",
+      "localTitle": "Закон за дейността на колективните инвестиционни схеми и на други предприятия за колективно инвестиране",
+      "short": "ЗДКИСДПКИ"
     }
   },
   "levels": {
@@ -673,6 +688,108 @@
                 "explanation": "The owners can dismiss them.",
                 "laws": [
                   "ta"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "agent",
+            "name": "Agents",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Anyone may authorise another person to act for them by a power of attorney or a mandate contract; a merchant may appoint a procurator (прокурист) or a commercial agent.",
+                "laws": [
+                  "zzd",
+                  "ta"
+                ]
+              },
+              {
+                "type": "chosen_by_represented",
+                "status": "yes",
+                "explanation": "The principal chooses the agent.",
+                "laws": [
+                  "zzd",
+                  "ta"
+                ]
+              },
+              {
+                "type": "revocable",
+                "status": "yes",
+                "explanation": "The principal may revoke the power of attorney or the mandate at any time.",
+                "laws": [
+                  "zzd",
+                  "ta"
+                ]
+              },
+              {
+                "type": "must_account",
+                "status": "yes",
+                "explanation": "The agent must report and hand over everything received for the principal.",
+                "laws": [
+                  "zzd",
+                  "ta"
+                ]
+              },
+              {
+                "type": "duty_of_loyalty",
+                "status": "yes",
+                "explanation": "The agent must act in the principal's interest; a procurator may not compete with the merchant.",
+                "laws": [
+                  "zzd",
+                  "ta"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "trustee",
+            "name": "Trustees",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "partial",
+                "explanation": "Bulgaria has no trusts. Only licensed investment firms and fund management companies may manage assets for others.",
+                "laws": [
+                  "zpfi",
+                  "zdkis"
+                ]
+              },
+              {
+                "type": "chosen_by_represented",
+                "status": "partial",
+                "explanation": "A client chooses their portfolio manager, but a fund's investors do not choose its management company.",
+                "laws": [
+                  "zpfi",
+                  "zdkis"
+                ]
+              },
+              {
+                "type": "revocable",
+                "status": "partial",
+                "explanation": "A client can end a portfolio management contract; a fund's investors can only leave by redeeming their units.",
+                "laws": [
+                  "zpfi",
+                  "zdkis"
+                ]
+              },
+              {
+                "type": "must_account",
+                "status": "yes",
+                "explanation": "Managers must report regularly to clients and investors.",
+                "laws": [
+                  "zpfi",
+                  "zdkis"
+                ]
+              },
+              {
+                "type": "duty_of_loyalty",
+                "status": "yes",
+                "explanation": "Managers must act in the clients' best interest and manage conflicts of interest.",
+                "laws": [
+                  "zpfi",
+                  "zdkis"
                 ]
               }
             ]

@@ -232,6 +232,26 @@
         "local_districts"
       ],
       "$comment": "Fallback mechanism: weighted at 40%, and void unless the higher council is elected in local districts, so this community has its own representative."
+    },
+    "agent": {
+      "branch": "representative",
+      "name": "Agents",
+      "longName": "Agents",
+      "description": "People authorised to decide or sign on someone else's behalf: holders of a power of attorney, commercial agents, brokers, procurators.",
+      "gates": [
+        "exists",
+        "chosen_by_represented"
+      ]
+    },
+    "trustee": {
+      "branch": "representative",
+      "name": "Trustees",
+      "longName": "Trustees",
+      "description": "People who hold and manage property for others (the beneficiaries): trustees of a trust, portfolio and fund managers.",
+      "gates": [
+        "exists",
+        "chosen_by_represented"
+      ]
     }
   },
   "properties": {
@@ -385,6 +405,30 @@
       "name": "Education choice",
       "longName": "Parents choose how their children are educated",
       "description": "Parents can choose the form of education, including at home, without needing an authority's approval."
+    },
+    "chosen_by_represented": {
+      "gate": false,
+      "name": "Chosen by the represented",
+      "longName": "The people represented choose them",
+      "description": "The people whose interests are represented choose the agent or trustee themselves."
+    },
+    "revocable": {
+      "gate": false,
+      "name": "Revocable",
+      "longName": "The people represented can remove them",
+      "description": "The people represented can withdraw the authority or replace the agent or trustee."
+    },
+    "must_account": {
+      "gate": false,
+      "name": "Must account",
+      "longName": "They must report and show the books",
+      "description": "The agent or trustee must report to the people represented and account for what they did with their affairs and property."
+    },
+    "duty_of_loyalty": {
+      "gate": false,
+      "name": "Duty of loyalty",
+      "longName": "They may not act for their own benefit against the represented",
+      "description": "The agent or trustee must act in the interest of the people represented, avoid conflicts of interest and not profit at their expense."
     }
   },
   "referendumKinds": {

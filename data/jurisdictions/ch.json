@@ -298,6 +298,98 @@
                 ]
               }
             ]
+          },
+          {
+            "type": "agent",
+            "name": "Agents",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Anyone may authorise another to act for them (agency and mandate); a business may appoint a Prokurist.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "chosen_by_represented",
+                "status": "yes",
+                "explanation": "The principal chooses the agent.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "revocable",
+                "status": "yes",
+                "explanation": "A mandate may be revoked at any time.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "must_account",
+                "status": "yes",
+                "explanation": "The agent must account for their conduct and hand over what they received.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "duty_of_loyalty",
+                "status": "yes",
+                "explanation": "The agent must carry out the mandate faithfully and with care.",
+                "laws": [
+                  "or"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "trustee",
+            "name": "Trustees",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "partial",
+                "explanation": "Swiss law has no trusts of its own; foreign trusts are recognised, and fiduciary management is done under a mandate.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "chosen_by_represented",
+                "status": "yes",
+                "explanation": "Under a fiduciary mandate the client chooses the fiduciary.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "revocable",
+                "status": "yes",
+                "explanation": "A fiduciary mandate may be revoked at any time.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "must_account",
+                "status": "yes",
+                "explanation": "The fiduciary must account to the client.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "duty_of_loyalty",
+                "status": "yes",
+                "explanation": "The fiduciary must act faithfully in the client's interest.",
+                "laws": [
+                  "or"
+                ]
+              }
+            ]
           }
         ]
       }

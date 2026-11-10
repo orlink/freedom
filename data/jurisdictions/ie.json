@@ -84,6 +84,14 @@
     "ips": {
       "title": "Industrial and Provident Societies Acts 1893–2021",
       "short": "Industrial and Provident Societies Acts"
+    },
+    "poa1996": {
+      "title": "Powers of Attorney Act 1996",
+      "short": "Powers of Attorney Act 1996"
+    },
+    "trustee1893": {
+      "title": "Trustee Act 1893",
+      "short": "Trustee Act 1893"
     }
   },
   "levels": {
@@ -329,6 +337,98 @@
                 "explanation": "The owners can dismiss them.",
                 "laws": [
                   "ca2014"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "agent",
+            "name": "Agents",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Anyone may appoint an agent or give a power of attorney; agency is governed mainly by common law.",
+                "laws": [
+                  "poa1996"
+                ]
+              },
+              {
+                "type": "chosen_by_represented",
+                "status": "yes",
+                "explanation": "The principal chooses the agent.",
+                "laws": [
+                  "poa1996"
+                ]
+              },
+              {
+                "type": "revocable",
+                "status": "yes",
+                "explanation": "The principal may revoke the authority.",
+                "laws": [
+                  "poa1996"
+                ]
+              },
+              {
+                "type": "must_account",
+                "status": "yes",
+                "explanation": "An agent must account to the principal.",
+                "laws": [
+                  "poa1996"
+                ]
+              },
+              {
+                "type": "duty_of_loyalty",
+                "status": "yes",
+                "explanation": "An agent owes fiduciary duties: no conflicts of interest and no secret profits.",
+                "laws": [
+                  "poa1996"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "trustee",
+            "name": "Trustees",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Trusts are fully recognised under common law.",
+                "laws": [
+                  "trustee1893"
+                ]
+              },
+              {
+                "type": "chosen_by_represented",
+                "status": "partial",
+                "explanation": "The settlor chooses the trustees, usually not the beneficiaries.",
+                "laws": [
+                  "trustee1893"
+                ]
+              },
+              {
+                "type": "revocable",
+                "status": "partial",
+                "explanation": "Beneficiaries generally cannot remove trustees without the court, unless the trust deed allows it or all adult beneficiaries together end the trust.",
+                "laws": [
+                  "trustee1893"
+                ]
+              },
+              {
+                "type": "must_account",
+                "status": "yes",
+                "explanation": "Trustees must keep accounts and inform the beneficiaries.",
+                "laws": [
+                  "trustee1893"
+                ]
+              },
+              {
+                "type": "duty_of_loyalty",
+                "status": "yes",
+                "explanation": "Trustees owe strict fiduciary duties to the beneficiaries.",
+                "laws": [
+                  "trustee1893"
                 ]
               }
             ]
