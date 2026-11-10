@@ -3046,33 +3046,6 @@
                     ]
                   },
                   {
-                    "type": "no_topic_restrictions",
-                    "status": "partial",
-                    "explanation": "Only amendments of the Constitution go to the people automatically. Ordinary laws, the budget, taxes and treaties that need no amendment are never put to a vote unless the Oireachtas chooses to.",
-                    "laws": [
-                      "bunreacht"
-                    ],
-                    "provisions": [
-                      {
-                        "law": "bunreacht",
-                        "items": [
-                          {
-                            "ref": "Article 46.2",
-                            "text": "Every proposal for an amendment of this Constitution shall be initiated in Dáil Éireann as a Bill, and shall upon having been passed or deemed to have been passed by both Houses of the Oireachtas, be submitted by Referendum to the decision of the people in accordance with the law for the time being in force relating to the Referendum."
-                          },
-                          {
-                            "ref": "Article 46A (new)",
-                            "fix": [
-                              "1 A Bill providing for the State to join an international organisation or community, or to transfer to one any power of the State, shall not be signed by the President until it has been approved by the people at a Referendum, whether or not it contains a proposal for the amendment of this Constitution.",
-                              "2 Such a proposal shall be held to have been approved by the people if a majority of the votes cast at the Referendum are in its favour."
-                            ],
-                            "why": "Sends every transfer of powers abroad to the people automatically, as Switzerland does for joining supranational communities. Ordinary laws can be put to a vote by citizens through the proposed Articles 27A and 47A."
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
                     "type": "no_roadblocks",
                     "status": "yes",
                     "explanation": "Once both Houses pass an amendment, the Minister must set a polling day 30 to 90 days later.",
