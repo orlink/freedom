@@ -429,9 +429,11 @@ function render() {
     setLegend('levels');
     screen.push(el('h2', { class: 'group-title' }, 'Shared interest types'));
     screen.push(rowOf(interestChips(levelId), 'interests'));
-    // Some levels (e.g. Home) have no decision-making institutions to show (catalog `noInstitutions`).
-    if (!cur.l.noInstitutions) {
-      screen.push(el('h2', { class: 'group-title' }, 'Decision making institutions'));
+    screen.push(el('h2', { class: 'group-title' }, 'Decision making institutions'));
+    // Some levels (e.g. Home) decide informally, without formal institutions (catalog `informal`): one plain chip.
+    if (cur.l.informal) {
+      screen.push(rowOf([chip({ label: 'Informal', tone: tone(scoreLevel(cur.lvl, catalog)) || 'white', title: cur.l.informal })]));
+    } else {
       screen.push(rowOf(['direct', 'representative'].map(b => chip({
         label: BRANCH_INFO[b].name, tone: tone(scoreBranch(cur.lvl[b], catalog)) || 'black', title: BRANCH_INFO[b].desc,
         onclick: () => go([levelId, b]),

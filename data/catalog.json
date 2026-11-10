@@ -27,7 +27,7 @@
       "name": "Home",
       "longName": "Home interests",
       "kind": "territorial",
-      "noInstitutions": true,
+      "informal": "The people living in the home decide among themselves, informally, without formal institutions.",
       "addressKeys": [],
       "description": "The people living together in one home: a house or a flat."
     },
