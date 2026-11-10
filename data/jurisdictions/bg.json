@@ -1185,21 +1185,39 @@
       "representative": {
         "mechanisms": [
           {
-            "type": "executive",
-            "name": "Management board / manager",
+            "type": "council",
+            "name": "Management council",
             "properties": [
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "The executive body is a management board or a single manager.",
+                "explanation": "The owners elect a management council of at least three members, who choose a chair, or a single manager instead. The general assembly also elects a treasurer, and may entrust the council's work to a professional management company.",
                 "laws": [
                   "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 19",
+                        "text": [
+                          "(1) The executive body of the condominium is the management board (manager).",
+                          "(2) The management board (manager) is elected for a term of up to two years.",
+                          "(3) The management board consists of an odd number of members, set by decision of the general assembly, but not fewer than three.",
+                          "(4) The members of the management board elect a chair from among themselves.",
+                          "…",
+                          "(8) By decision of the general assembly, taken by a majority of more than 50 per cent of the shares in the common parts, the powers of the management board (manager), or part of them, may be entrusted to a professional manager-trader entered in the register under Art. 47a(1)(1)."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "yes",
-                "explanation": "The board implements the assembly's decisions and manages the common parts.",
+                "explanation": "The council carries out the assembly's decisions and manages the common parts.",
                 "laws": [
                   "cma"
                 ]
@@ -1207,9 +1225,20 @@
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Board members are elected individually by the general assembly.",
+                "explanation": "Council members are elected and dismissed individually by the general assembly.",
                 "laws": [
                   "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 11(1)(2)",
+                        "text": "[The general assembly] elects and dismisses members of the management board (manager), as well as a treasurer;"
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1362,13 +1391,13 @@
       "representative": {
         "mechanisms": [
           {
-            "type": "executive",
-            "name": "Management board / manager (whole building)",
+            "type": "council",
+            "name": "Management council (whole building)",
             "properties": [
               {
                 "type": "exists",
                 "status": "weak",
-                "explanation": "Where the owners manage each entrance separately, each entrance has its own management board or manager and the building as a whole has none. A joint assembly of the entrances is called by the manager of one of them.",
+                "explanation": "Where the owners manage each entrance separately, each entrance has its own management council or manager and the building as a whole has none. A joint assembly of the entrances is called by the council or manager of one of them.",
                 "laws": [
                   "cma"
                 ],
@@ -1400,7 +1429,7 @@
               {
                 "type": "binding_powers",
                 "status": "yes",
-                "explanation": "The board implements the assembly's decisions and manages the common parts.",
+                "explanation": "The council carries out the assembly's decisions and manages the common parts, and may hire a management company to do so.",
                 "laws": [
                   "cma"
                 ]
@@ -1408,7 +1437,7 @@
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Board members are elected individually by the general assembly.",
+                "explanation": "Council members are elected individually by the general assembly.",
                 "laws": [
                   "cma"
                 ]
