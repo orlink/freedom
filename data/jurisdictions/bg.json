@@ -1704,14 +1704,23 @@
                       {
                         "ref": "Article 404(1)",
                         "text": "For elections for municipal councillors, the territory of the municipality constitutes one multi-member constituency.",
-                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each, which follow the boundaries of its districts, mayoralties and quarters.",
-                        "why": "Splits the municipality into districts of 3 to 5 seats along districts, mayoralties and quarters."
+                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each. The ratio between the number of seats and the population of each constituency, according to the last census, is, as far as practicable, the same throughout the municipality. Each constituency is made up of adjoining areas and follows, as far as practicable, the boundaries of the municipality's districts, mayoralties, settlements and quarters. The constituencies are set on the basis of the report of the Constituency Commission under Article 249a.",
+                        "why": "Splits the municipality into districts of 3 to 5 seats along its own communities, with equal population per seat, as Ireland does for its local electoral areas."
                       },
                       {
                         "ref": "Article 453(2)",
                         "text": "The results of the voting for municipal councillors under the proportional system are determined by the Hare-Niemeyer method.",
                         "fix": "The results of the voting for municipal councillors are determined by the single transferable vote.",
                         "why": "Replaces the Hare-Niemeyer list count with STV."
+                      },
+                      {
+                        "ref": "Article 249a (new)",
+                        "fix": [
+                          "(1) An independent Constituency Commission reviews the constituencies for elections for the National Assembly and for municipal councils after the National Statistical Institute publishes the preliminary results of each census, and presents its report to the National Assembly no later than three months after the final results are published.",
+                          "(2) The Commission has seven members. Its chair is a serving or former judge of the Supreme Court of Cassation or the Supreme Administrative Court, nominated by the general meeting of judges of that court; the Ombudsman is a member ex officio; the other members are appointed by the President after an open public competition. Members of parliament, members of the European Parliament, municipal councillors, mayors and members of the governing bodies of political parties may not be members.",
+                          "(3) Before making its report, the Commission publishes, for each proposed constituency, the number of seats, the population, the population per seat and its deviation from the national or municipal average, and considers and publishes all submissions made during a public consultation of at least three months."
+                        ],
+                        "why": "An independent commission redraws the districts after every census, in public, as Ireland's Electoral Commission does (Electoral Reform Act 2022, ss. 9–12, 56–59)."
                       }
                     ]
                   }
@@ -3032,14 +3041,23 @@
                       {
                         "ref": "Article 404(1)",
                         "text": "For elections for municipal councillors, the territory of the municipality constitutes one multi-member constituency.",
-                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each, which follow the boundaries of its districts, mayoralties and quarters.",
-                        "why": "Splits the municipality into districts of 3 to 5 seats along districts, mayoralties and quarters."
+                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each. The ratio between the number of seats and the population of each constituency, according to the last census, is, as far as practicable, the same throughout the municipality. Each constituency is made up of adjoining areas and follows, as far as practicable, the boundaries of the municipality's districts, mayoralties, settlements and quarters. The constituencies are set on the basis of the report of the Constituency Commission under Article 249a.",
+                        "why": "Splits the municipality into districts of 3 to 5 seats along its own communities, with equal population per seat, as Ireland does for its local electoral areas."
                       },
                       {
                         "ref": "Article 453(2)",
                         "text": "The results of the voting for municipal councillors under the proportional system are determined by the Hare-Niemeyer method.",
                         "fix": "The results of the voting for municipal councillors are determined by the single transferable vote.",
                         "why": "Replaces the Hare-Niemeyer list count with STV."
+                      },
+                      {
+                        "ref": "Article 249a (new)",
+                        "fix": [
+                          "(1) An independent Constituency Commission reviews the constituencies for elections for the National Assembly and for municipal councils after the National Statistical Institute publishes the preliminary results of each census, and presents its report to the National Assembly no later than three months after the final results are published.",
+                          "(2) The Commission has seven members. Its chair is a serving or former judge of the Supreme Court of Cassation or the Supreme Administrative Court, nominated by the general meeting of judges of that court; the Ombudsman is a member ex officio; the other members are appointed by the President after an open public competition. Members of parliament, members of the European Parliament, municipal councillors, mayors and members of the governing bodies of political parties may not be members.",
+                          "(3) Before making its report, the Commission publishes, for each proposed constituency, the number of seats, the population, the population per seat and its deviation from the national or municipal average, and considers and publishes all submissions made during a public consultation of at least three months."
+                        ],
+                        "why": "An independent commission redraws the districts after every census, in public, as Ireland's Electoral Commission does (Electoral Reform Act 2022, ss. 9–12, 56–59)."
                       }
                     ]
                   }
@@ -3570,8 +3588,29 @@
                       {
                         "ref": "Article 249(1)",
                         "text": "For the elections, the territory of the country is divided into 31 multi-member constituencies, including three in Sofia City and two in Plovdiv region. The other constituencies coincide with the boundaries of the regions of the country.",
-                        "fix": "For the elections, the territory of the country is divided into multi-member constituencies of three to five seats each. The number of voters per seat is, as far as practicable, the same in all constituencies. Each constituency is made up of adjoining areas and follows, as far as practicable, the boundaries of local communities: neighbourhoods, municipalities and regions.",
-                        "why": "Smaller districts of 3 to 5 seats that follow the boundaries of local communities, so each community has its own representatives. Modelled on Ireland: Constitution Art. 16.2 and Electoral Reform Act 2022 s. 57(2)."
+                        "fix": "For the elections, the territory of the country is divided into multi-member constituencies. The ratio between the number of seats and the population of each constituency, according to the last census, is, as far as practicable, the same throughout the country. Each constituency is made up of adjoining areas and follows, as far as practicable, the boundaries of local communities: neighbourhoods, settlements, municipalities and regions.",
+                        "why": "Districts follow local communities and have the same population per seat, as in Ireland (Constitution Art. 16.2.3; Electoral Reform Act 2022, s. 57(2))."
+                      },
+                      {
+                        "ref": "Article 249(2)",
+                        "text": "The names, boundaries and numbering of the constituencies are determined by the President of the Republic no later than 56 days before election day.",
+                        "fix": "The names, boundaries and numbering of the constituencies are set by law, on the basis of the report of the Constituency Commission under Article 249a. A change of constituencies does not apply to elections held during the term of the National Assembly that adopted it, except early elections held after its dissolution.",
+                        "why": "The boundaries follow the independent commission's report, as Ireland's Oireachtas enacts the Electoral Commission's recommendations (Constitution Art. 16.2.4)."
+                      },
+                      {
+                        "ref": "Article 250(2)",
+                        "text": "The number of seats in a multi-member constituency may not be less than 4.",
+                        "fix": "Each multi-member constituency elects not fewer than three and not more than five members.",
+                        "why": "Districts of 3 to 5 seats, small enough for voters to know their representatives, as in Ireland (Constitution Art. 16.2.6; Electoral Reform Act 2022, s. 57(2)(b))."
+                      },
+                      {
+                        "ref": "Article 249a (new)",
+                        "fix": [
+                          "(1) An independent Constituency Commission reviews the constituencies for elections for the National Assembly and for municipal councils after the National Statistical Institute publishes the preliminary results of each census, and presents its report to the National Assembly no later than three months after the final results are published.",
+                          "(2) The Commission has seven members. Its chair is a serving or former judge of the Supreme Court of Cassation or the Supreme Administrative Court, nominated by the general meeting of judges of that court; the Ombudsman is a member ex officio; the other members are appointed by the President after an open public competition. Members of parliament, members of the European Parliament, municipal councillors, mayors and members of the governing bodies of political parties may not be members.",
+                          "(3) Before making its report, the Commission publishes, for each proposed constituency, the number of seats, the population, the population per seat and its deviation from the national or municipal average, and considers and publishes all submissions made during a public consultation of at least three months."
+                        ],
+                        "why": "An independent commission redraws the districts after every census, in public, as Ireland's Electoral Commission does (Electoral Reform Act 2022, ss. 9–12, 56–59)."
                       }
                     ]
                   }
@@ -3583,6 +3622,19 @@
                 "explanation": "Not quite proportional. Only parties with at least 4% of the national vote win seats, so the votes for the others are lost, and the parties above the threshold get up to 20% more of the seats than their share of the vote. This often leads to minority rule: a governing party or coalition with a majority of seats but less than half of the votes.",
                 "laws": [
                   "ec"
+                ],
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 297(2)",
+                        "text": "Parties and coalitions that have received at least 4 per cent of the valid votes in the country and abroad, excluding the votes under Article 279(1), item 6, are entitled to take part in the allocation of seats at national level.",
+                        "fix": "(repealed)",
+                        "why": "With the single transferable vote in districts of 3 to 5 seats (see Individual accountability), seats are won in each district by reaching its quota, with votes transferred instead of lost, so no national threshold is needed. Ireland has none."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
