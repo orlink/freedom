@@ -171,7 +171,7 @@
     "personal_autonomy": {
       "branch": "direct",
       "name": "Personal autonomy",
-      "longName": "Personal autonomy over one's own affairs",
+      "longName": "Personal autonomy",
       "description": "The person decides alone, protected from interference."
     },
     "household": {
@@ -219,11 +219,11 @@
     "upper_council_seat": {
       "branch": "representative",
       "name": "Representative in the higher council",
-      "longName": "Representative in the higher-level council",
+      "longName": "Representative in the higher council",
       "levelNames": {
         "neighbourhood": {
           "name": "Representatives in municipal council",
-          "longName": "Representatives in the municipal council"
+          "longName": "Representatives in municipal council"
         }
       },
       "description": "No body of its own, but does the community at least elect its own accountable member of the council above?",
@@ -294,19 +294,19 @@
     "citizen_triggered": {
       "gate": false,
       "name": "Citizens can trigger it",
-      "longName": "Citizens can trigger it themselves",
+      "longName": "Citizens can trigger it",
       "description": "Residents should be able to start it themselves, without permission from officials."
     },
     "reasonable_signatures": {
       "gate": false,
       "name": "Reasonable petition requirements",
-      "longName": "Reasonable petition (signature) requirements",
+      "longName": "Reasonable petition requirements",
       "description": "Signature thresholds and deadlines should be achievable for ordinary residents."
     },
     "broad_scope": {
       "gate": false,
       "name": "Covers the interests",
-      "longName": "Covers the interests of the level",
+      "longName": "Covers the interests",
       "description": "It should cover the level's shared interests, with few excluded topics; budget and local fees should be decidable too."
     },
     "no_outside_override": {
@@ -318,14 +318,14 @@
     "own_means": {
       "gate": false,
       "name": "Means to implement",
-      "longName": "Means to implement decisions",
+      "longName": "Means to implement",
       "description": "The community should control a budget or resources to carry out its decisions.",
       "$comment": "Used for direct mechanisms (general meetings). For representative bodies it is part of Powers (binding_powers)."
     },
     "binding_powers": {
       "gate": true,
       "name": "Powers",
-      "longName": "Powers over the community's interests",
+      "longName": "Powers",
       "description": "It should be able to take binding decisions on the community's shared interests and have the means to carry them out: its own budget, taxes and fees, and control of local services."
     },
     "individual_vote": {
@@ -362,7 +362,7 @@
     "no_roadblocks": {
       "gate": false,
       "name": "No roadblocks",
-      "longName": "No roadblocks in the procedure",
+      "longName": "No roadblocks",
       "description": "There should be no smaller procedural obstacles that can stop or stall the mechanism, such as a petition lapsing when parliament or the council changes."
     },
     "home_inviolable": {
@@ -374,13 +374,13 @@
     "family_privacy": {
       "gate": false,
       "name": "Privacy",
-      "longName": "Privacy of family life",
+      "longName": "Privacy",
       "description": "There should be no unlawful interference in private and family life or in correspondence."
     },
     "home_property": {
       "gate": false,
       "name": "Property",
-      "longName": "Property of the home",
+      "longName": "Property",
       "description": "Private property, including the home, should be inviolable."
     },
     "parental_rights": {
@@ -422,13 +422,13 @@
     "revocable": {
       "gate": false,
       "name": "Revocable",
-      "longName": "Revocable by the represented",
+      "longName": "Revocable",
       "description": "The people represented should be able to withdraw the authority or replace the agent or trustee."
     },
     "must_account": {
       "gate": false,
       "name": "Must account",
-      "longName": "Must account to the represented",
+      "longName": "Must account",
       "description": "The agent or trustee should report to the people represented and account for what they did with their affairs and property."
     },
     "duty_of_loyalty": {
@@ -453,7 +453,10 @@
       "name": "Mandatory referendum",
       "longName": "Mandatory referendums",
       "description": "Certain decisions, such as constitutional changes, automatically go to a vote of all.",
-  "skipProperties": ["reasonable_signatures", "no_topic_restrictions"]
+      "skipProperties": [
+        "reasonable_signatures",
+        "no_topic_restrictions"
+      ]
     }
   }
 }

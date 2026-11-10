@@ -123,8 +123,9 @@ within days (Ireland: 3 days = met; Bulgaria: a month = partly met); poverty or 
 ## 4. Wording
 
 * Chip names come from the catalog; a mechanism `label` overrides it when two mechanisms share a type.
-* Breadcrumb names must not deviate from the chip name: the same words, or a slightly longer form that contains
-  them ("Veto referendum" → "Veto referendums"). A country's own term (e.g. "Constitutional referendum") may go in
-  an explanation, not in the breadcrumb.
+* Breadcrumb names are the chip names (owner 2026-11-10): catalog `longName` equals `name` for mechanisms and
+  requirements. The only additions are "interests" after a level and the plural of a referendum kind ("Veto
+  referendums"). A country's own term (e.g. "Constitutional referendum") may go in an explanation, not in the
+  breadcrumb.
 * Requirement descriptions (tooltips) are normative: "Voters should …".
 * Plain English, full sentences, concrete numbers, and cite the article in the provisions, not in the sentence.
