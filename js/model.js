@@ -157,6 +157,13 @@ export function levelPlaces(address, catalog, unions, jurisdiction) {
     const p = out[id];
     if (p && !p.absent && p.name && muni && bare(p.name) === muni) p.centre = true;
   }
+  // A town that is its municipality's centre is governed by the municipality itself and is divided into quarters
+  // (e.g. Svishtov): where the address names a quarter, show the neighbourhood instead of the town.
+  const nb = out.neighbourhood;
+  if (out.town?.centre && nb?.name && !hiddenLevels.includes('neighbourhood')) {
+    out.town.absent = true;
+    nb.absent = false;
+  }
   return out;
 }
 
