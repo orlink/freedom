@@ -3530,10 +3530,41 @@
               },
               {
                 "type": "proportional_representation",
-                "status": "yes",
-                "explanation": "Seats are shared out among the lists in proportion to their votes.",
+                "status": "partial",
+                "explanation": "Seats are shared out among the party lists in proportion to their votes, but voters can hardly choose which candidates fill them, so the council is proportional between parties rather than between the people voters want.",
                 "laws": [
                   "ec"
+                ],
+                "provisions": [
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 399(2)",
+                        "text": "When voting for the candidate list of a party or coalition, the voter may mark one preference for a candidate on the list, thereby expressing a preference as to the order of the candidates on the list voted for.",
+                        "fix": "When voting, the voter may rank as many candidates as they wish in order of preference, by marking 1, 2, 3 and so on beside their names, regardless of the party, coalition or committee that nominated them.",
+                        "why": "Lets voters rank council candidates of any party, instead of one preference within a list."
+                      },
+                      {
+                        "ref": "Article 437(2), item 4",
+                        "text": "The vote is valid for the candidate list even if no preference has been marked for a candidate from the list of the party or coalition voted for.",
+                        "fix": "The vote is valid if at least one candidate has been marked with the number 1.",
+                        "why": "A vote counts for a person, not for a list."
+                      },
+                      {
+                        "ref": "Article 437(5)",
+                        "text": "Where the voter has not marked a preference for a candidate on the chosen candidate list, a preference is counted for the candidate placed first on the list.",
+                        "fix": "(repealed)",
+                        "why": "Ends the rule that gives unmarked preferences to the list's first candidate."
+                      },
+                      {
+                        "ref": "Article 454(2)",
+                        "text": "Preferences for individual candidates are valid if the number of votes received for the candidate is no less than 7 per cent of the votes cast for the candidate list.",
+                        "fix": "Candidates are elected by the single transferable vote: each ballot counts for the voter's highest-ranked candidate who can still use it, and surplus and eliminated candidates' votes are transferred by the voters' next preferences until all seats are filled.",
+                        "why": "Replaces the 7% preference threshold with STV counting."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -4127,7 +4158,7 @@
               {
                 "type": "proportional_representation",
                 "status": "partial",
-                "explanation": "Not quite proportional. Only parties with at least 4% of the national vote win seats, so the votes for the others are lost, and the parties above the threshold get up to 20% more of the seats than their share of the vote. This has led to frequent minority rule: a governing party or coalition with less than half of the votes.",
+                "explanation": "Not quite proportional. Only parties with at least 4% of the national vote win seats, so the votes for the others are lost, and the parties above the threshold get up to 20% more of the seats than their share of the vote. This has led to frequent minority rule: a governing party or coalition with less than half of the votes. Voters also can hardly choose which candidates fill the seats, so it is proportional between parties rather than between the people voters want.",
                 "laws": [
                   "ec"
                 ],
