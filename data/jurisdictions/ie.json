@@ -147,6 +147,11 @@
       "title": "Local Electoral Area Boundary Committee No. 1 Report 2018, Terms of Reference",
       "short": "LEA Boundary Committee 2018",
       "url": "https://www.electoralcommission.ie/app/uploads/2026/07/local-electoral-area-boundary-committee-no1-report-2018.pdf"
+    },
+    "si635_2018": {
+      "title": "City and County of Waterford Local Electoral Areas and Municipal Districts Order 2018 (S.I. No. 635 of 2018)",
+      "short": "Waterford LEA Order 2018",
+      "url": "https://www.irishstatutebook.ie/eli/2018/si/635/made/en/print"
     }
   },
   "levels": {
@@ -1611,10 +1616,11 @@
               {
                 "type": "local_districts",
                 "status": "yes",
-                "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32, elected in six areas of 3 to 6 seats). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
                   "lga2001",
                   "lea2018",
+                  "si635_2018",
                   "lga1991"
                 ],
                 "provisions": [
@@ -1624,6 +1630,13 @@
                       {
                         "ref": "Section 21(1)",
                         "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                      },
+                      {
+                        "ref": "Schedule 7, Part 3",
+                        "text": [
+                          "Limerick 41 (including the Mayor of Limerick)",
+                          "Waterford 32"
+                        ]
                       },
                       {
                         "ref": "Section 23(1)",
@@ -1640,6 +1653,30 @@
                           "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
                           "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "si635_2018",
+                    "items": [
+                      {
+                        "ref": "Article 2(1), (3)",
+                        "text": "(1) The City and County of Waterford shall be divided into the local electoral areas which are named in the first column of the Schedule to this Order. … (3) The number of members of Waterford City and County Council to be elected for each such local electoral area shall be the number set out in the third column of the Schedule to this Order opposite the name of that local electoral area."
+                      },
+                      {
+                        "ref": "Schedule (local electoral area: members)",
+                        "text": [
+                          "Dungarvan: 6",
+                          "Lismore: 3",
+                          "Portlaw — Kilmacthomas: 5",
+                          "Tramore — Waterford City West: 6",
+                          "Waterford City East: 6",
+                          "Waterford City South: 6"
+                        ]
+                      },
+                      {
+                        "ref": "Article 4",
+                        "text": "(a) The Metropolitan District of Waterford City consisting of the Local Electoral Area of Tramore — Waterford City West, the Local Electoral Area of Waterford City East and the Local Electoral Area of Waterford City South; (b) The Municipal District of Dungarvan — Lismore consisting of the Local Electoral Area of Dungarvan and the Local Electoral Area of Lismore; (c) The Municipal District of Comeragh consisting of the Local Electoral Area of Portlaw — Kilmacthomas;"
                       }
                     ]
                   },
@@ -1881,10 +1918,11 @@
               {
                 "type": "local_districts",
                 "status": "yes",
-                "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32, elected in six areas of 3 to 6 seats). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
                   "lga2001",
                   "lea2018",
+                  "si635_2018",
                   "lga1991"
                 ],
                 "provisions": [
@@ -1894,6 +1932,13 @@
                       {
                         "ref": "Section 21(1)",
                         "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                      },
+                      {
+                        "ref": "Schedule 7, Part 3",
+                        "text": [
+                          "Limerick 41 (including the Mayor of Limerick)",
+                          "Waterford 32"
+                        ]
                       },
                       {
                         "ref": "Section 23(1)",
@@ -1910,6 +1955,30 @@
                           "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
                           "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "si635_2018",
+                    "items": [
+                      {
+                        "ref": "Article 2(1), (3)",
+                        "text": "(1) The City and County of Waterford shall be divided into the local electoral areas which are named in the first column of the Schedule to this Order. … (3) The number of members of Waterford City and County Council to be elected for each such local electoral area shall be the number set out in the third column of the Schedule to this Order opposite the name of that local electoral area."
+                      },
+                      {
+                        "ref": "Schedule (local electoral area: members)",
+                        "text": [
+                          "Dungarvan: 6",
+                          "Lismore: 3",
+                          "Portlaw — Kilmacthomas: 5",
+                          "Tramore — Waterford City West: 6",
+                          "Waterford City East: 6",
+                          "Waterford City South: 6"
+                        ]
+                      },
+                      {
+                        "ref": "Article 4",
+                        "text": "(a) The Metropolitan District of Waterford City consisting of the Local Electoral Area of Tramore — Waterford City West, the Local Electoral Area of Waterford City East and the Local Electoral Area of Waterford City South; (b) The Municipal District of Dungarvan — Lismore consisting of the Local Electoral Area of Dungarvan and the Local Electoral Area of Lismore; (c) The Municipal District of Comeragh consisting of the Local Electoral Area of Portlaw — Kilmacthomas;"
                       }
                     ]
                   },
@@ -2150,10 +2219,11 @@
               {
                 "type": "local_districts",
                 "status": "yes",
-                "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32, elected in six areas of 3 to 6 seats). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
                   "lga2001",
                   "lea2018",
+                  "si635_2018",
                   "lga1991"
                 ],
                 "provisions": [
@@ -2163,6 +2233,13 @@
                       {
                         "ref": "Section 21(1)",
                         "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                      },
+                      {
+                        "ref": "Schedule 7, Part 3",
+                        "text": [
+                          "Limerick 41 (including the Mayor of Limerick)",
+                          "Waterford 32"
+                        ]
                       },
                       {
                         "ref": "Section 23(1)",
@@ -2179,6 +2256,30 @@
                           "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
                           "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "si635_2018",
+                    "items": [
+                      {
+                        "ref": "Article 2(1), (3)",
+                        "text": "(1) The City and County of Waterford shall be divided into the local electoral areas which are named in the first column of the Schedule to this Order. … (3) The number of members of Waterford City and County Council to be elected for each such local electoral area shall be the number set out in the third column of the Schedule to this Order opposite the name of that local electoral area."
+                      },
+                      {
+                        "ref": "Schedule (local electoral area: members)",
+                        "text": [
+                          "Dungarvan: 6",
+                          "Lismore: 3",
+                          "Portlaw — Kilmacthomas: 5",
+                          "Tramore — Waterford City West: 6",
+                          "Waterford City East: 6",
+                          "Waterford City South: 6"
+                        ]
+                      },
+                      {
+                        "ref": "Article 4",
+                        "text": "(a) The Metropolitan District of Waterford City consisting of the Local Electoral Area of Tramore — Waterford City West, the Local Electoral Area of Waterford City East and the Local Electoral Area of Waterford City South; (b) The Municipal District of Dungarvan — Lismore consisting of the Local Electoral Area of Dungarvan and the Local Electoral Area of Lismore; (c) The Municipal District of Comeragh consisting of the Local Electoral Area of Portlaw — Kilmacthomas;"
                       }
                     ]
                   },
@@ -2430,10 +2531,11 @@
               {
                 "type": "local_districts",
                 "status": "yes",
-                "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32, elected in six areas of 3 to 6 seats). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
                   "lga2001",
                   "lea2018",
+                  "si635_2018",
                   "lga1991"
                 ],
                 "provisions": [
@@ -2443,6 +2545,13 @@
                       {
                         "ref": "Section 21(1)",
                         "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                      },
+                      {
+                        "ref": "Schedule 7, Part 3",
+                        "text": [
+                          "Limerick 41 (including the Mayor of Limerick)",
+                          "Waterford 32"
+                        ]
                       },
                       {
                         "ref": "Section 23(1)",
@@ -2459,6 +2568,30 @@
                           "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
                           "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "si635_2018",
+                    "items": [
+                      {
+                        "ref": "Article 2(1), (3)",
+                        "text": "(1) The City and County of Waterford shall be divided into the local electoral areas which are named in the first column of the Schedule to this Order. … (3) The number of members of Waterford City and County Council to be elected for each such local electoral area shall be the number set out in the third column of the Schedule to this Order opposite the name of that local electoral area."
+                      },
+                      {
+                        "ref": "Schedule (local electoral area: members)",
+                        "text": [
+                          "Dungarvan: 6",
+                          "Lismore: 3",
+                          "Portlaw — Kilmacthomas: 5",
+                          "Tramore — Waterford City West: 6",
+                          "Waterford City East: 6",
+                          "Waterford City South: 6"
+                        ]
+                      },
+                      {
+                        "ref": "Article 4",
+                        "text": "(a) The Metropolitan District of Waterford City consisting of the Local Electoral Area of Tramore — Waterford City West, the Local Electoral Area of Waterford City East and the Local Electoral Area of Waterford City South; (b) The Municipal District of Dungarvan — Lismore consisting of the Local Electoral Area of Dungarvan and the Local Electoral Area of Lismore; (c) The Municipal District of Comeragh consisting of the Local Electoral Area of Portlaw — Kilmacthomas;"
                       }
                     ]
                   },
@@ -2754,10 +2887,11 @@
               {
                 "type": "local_districts",
                 "status": "yes",
-                "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32, elected in six areas of 3 to 6 seats). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
                   "lga2001",
                   "lea2018",
+                  "si635_2018",
                   "lga1991"
                 ],
                 "provisions": [
@@ -2767,6 +2901,13 @@
                       {
                         "ref": "Section 21(1)",
                         "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                      },
+                      {
+                        "ref": "Schedule 7, Part 3",
+                        "text": [
+                          "Limerick 41 (including the Mayor of Limerick)",
+                          "Waterford 32"
+                        ]
                       },
                       {
                         "ref": "Section 23(1)",
@@ -2783,6 +2924,30 @@
                           "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
                           "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "si635_2018",
+                    "items": [
+                      {
+                        "ref": "Article 2(1), (3)",
+                        "text": "(1) The City and County of Waterford shall be divided into the local electoral areas which are named in the first column of the Schedule to this Order. … (3) The number of members of Waterford City and County Council to be elected for each such local electoral area shall be the number set out in the third column of the Schedule to this Order opposite the name of that local electoral area."
+                      },
+                      {
+                        "ref": "Schedule (local electoral area: members)",
+                        "text": [
+                          "Dungarvan: 6",
+                          "Lismore: 3",
+                          "Portlaw — Kilmacthomas: 5",
+                          "Tramore — Waterford City West: 6",
+                          "Waterford City East: 6",
+                          "Waterford City South: 6"
+                        ]
+                      },
+                      {
+                        "ref": "Article 4",
+                        "text": "(a) The Metropolitan District of Waterford City consisting of the Local Electoral Area of Tramore — Waterford City West, the Local Electoral Area of Waterford City East and the Local Electoral Area of Waterford City South; (b) The Municipal District of Dungarvan — Lismore consisting of the Local Electoral Area of Dungarvan and the Local Electoral Area of Lismore; (c) The Municipal District of Comeragh consisting of the Local Electoral Area of Portlaw — Kilmacthomas;"
                       }
                     ]
                   },
@@ -3559,10 +3724,11 @@
                   {
                     "type": "local_districts",
                     "status": "yes",
-                    "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
+                    "explanation": "Each council has a number of members fixed by law (Waterford City and County, for example, has 32, elected in six areas of 3 to 6 seats). The Minister divides its area into local electoral areas by order, after an independent review whose terms of reference ask for 5 to 7 seats per area (outside Dublin, 3 or 4 in large rural areas) and a population per councillor within 10% of the council's average. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                     "laws": [
                       "lga2001",
                       "lea2018",
+                      "si635_2018",
                       "lga1991"
                     ],
                     "provisions": [
@@ -3572,6 +3738,13 @@
                           {
                             "ref": "Section 21(1)",
                             "text": "Subject to section 22, each county council, city council and city and county council consists of the number of members specified in Parts 1, 2 and 3, respectively, of Schedule 7 opposite the reference to the county council, city council or city and county council concerned."
+                          },
+                          {
+                            "ref": "Schedule 7, Part 3",
+                            "text": [
+                              "Limerick 41 (including the Mayor of Limerick)",
+                              "Waterford 32"
+                            ]
                           },
                           {
                             "ref": "Section 23(1)",
@@ -3588,6 +3761,30 @@
                               "2. For the purpose of the review, the Committee should have regard to the population as ascertained at Census 2016, should assume no change in the total membership of each local authority specified in the Local Government Act 2001 as amended by the Local Government Reform Act 2014 and should endeavour, as far as practicable and subject to the other requirements of these terms of reference, to achieve variance from individual average local authority representation within the range of plus or minus 10%.",
                               "3. The number of councillors assigned to a local electoral area shall be not less than 5 and not more than 7 provided that in particular compelling circumstances 3 or 4 seat local electoral areas may be recommended, where otherwise the geographic size of the area would be disproportionately large."
                             ]
+                          }
+                        ]
+                      },
+                      {
+                        "law": "si635_2018",
+                        "items": [
+                          {
+                            "ref": "Article 2(1), (3)",
+                            "text": "(1) The City and County of Waterford shall be divided into the local electoral areas which are named in the first column of the Schedule to this Order. … (3) The number of members of Waterford City and County Council to be elected for each such local electoral area shall be the number set out in the third column of the Schedule to this Order opposite the name of that local electoral area."
+                          },
+                          {
+                            "ref": "Schedule (local electoral area: members)",
+                            "text": [
+                              "Dungarvan: 6",
+                              "Lismore: 3",
+                              "Portlaw — Kilmacthomas: 5",
+                              "Tramore — Waterford City West: 6",
+                              "Waterford City East: 6",
+                              "Waterford City South: 6"
+                            ]
+                          },
+                          {
+                            "ref": "Article 4",
+                            "text": "(a) The Metropolitan District of Waterford City consisting of the Local Electoral Area of Tramore — Waterford City West, the Local Electoral Area of Waterford City East and the Local Electoral Area of Waterford City South; (b) The Municipal District of Dungarvan — Lismore consisting of the Local Electoral Area of Dungarvan and the Local Electoral Area of Lismore; (c) The Municipal District of Comeragh consisting of the Local Electoral Area of Portlaw — Kilmacthomas;"
                           }
                         ]
                       },
