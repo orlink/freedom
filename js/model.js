@@ -158,9 +158,9 @@ export function levelPlaces(address, catalog, unions, jurisdiction) {
     if (p && !p.absent && p.name && muni && bare(p.name) === muni) p.centre = true;
   }
   // A town that is its municipality's centre is governed by the municipality itself and is divided into quarters
-  // (e.g. Svishtov): where the address names a quarter, show the neighbourhood instead of the town.
+  // (e.g. Svishtov): show the neighbourhood instead of the town, even where OpenStreetMap does not name the quarter.
   const nb = out.neighbourhood;
-  if (out.town?.centre && nb?.name && !hiddenLevels.includes('neighbourhood')) {
+  if (out.town?.centre && nb && !hiddenLevels.includes('neighbourhood')) {
     out.town.absent = true;
     nb.absent = false;
   }
