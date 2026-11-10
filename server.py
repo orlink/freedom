@@ -325,7 +325,10 @@ class Handler(SimpleHTTPRequestHandler):
             return self.send_json(400, {"error": "the last message must be the reader's"})
         title = context.splitlines()[0][:200] if context else key
         save_comment(key, cid, msgs, title)
-        if not chat_allowed(self.client_address[0]):
+        ip = self.client_address[0]
+        if ip in ("127.0.0.1", "::1") and self.headers.get("X-Forwarded-For"):
+            ip = self.headers["X-Forwarded-For"].split(",")[-1].strip()  # behind a local reverse proxy: the visitor's address
+        if not chat_allowed(ip):
             return self.send_json(200, {"reply": None, "error": "Too many messages in a short time. Your message is saved; please wait a few minutes before asking more."})
         text, err = chat_reply(context, msgs)
         if text:
