@@ -3531,7 +3531,7 @@
               {
                 "type": "proportional_representation",
                 "status": "partial",
-                "explanation": "Proportional representation gives non-territorial communities of interest a share of the seats that matches their share of the electorate, as districting does for territorial communities. Council seats are allocated to party lists in proportion to their votes, so the outcome is proportional between parties. But the mandate is held through the list: the party sets the order of candidates and the preference vote rarely changes it, so councillors are accountable to the party leadership and not to an identifiable body of voters. The system delivers party proportionality without the representative link, which the single transferable vote secures by electing individual candidates.",
+                "explanation": "Proportional representation gives non-territorial communities of interest a share of the seats that matches their share of the electorate, as districting does for territorial communities. Council seats are allocated to party lists by the Hare–Niemeyer method, among the lists that reach the Hare quota (the valid votes divided by the number of seats: about 2% in a 51-seat council, 9% in an 11-seat one), so the outcome is proportional between parties. But the mandate is held through the list: the party sets the order of candidates, and a preference vote counts only if it reaches 7% of the list's vote, so councillors are accountable to the party leadership and not to an identifiable body of voters. The system delivers party proportionality without the representative link, which the single transferable vote secures by electing individual candidates.",
                 "laws": [
                   "ec"
                 ],
@@ -3539,6 +3539,26 @@
                   {
                     "law": "ec",
                     "items": [
+                      {
+                        "ref": "Article 453(2)",
+                        "text": "The results of the vote for municipal councillors in elections under the proportional system are determined by the Hare–Niemeyer method.",
+                        "fix": "The results of the vote for municipal councillors are determined by the single transferable vote.",
+                        "why": "Reaches proportional outcomes through votes for individual candidates, as in Ireland."
+                      },
+                      {
+                        "ref": "Article 453(3)",
+                        "text": "Parties and coalitions that have received votes not fewer than the municipal electoral quota are entitled to take part in the allocation of seats.",
+                        "fix": "(repealed)",
+                        "why": "Under the single transferable vote seats go to candidates, so no list threshold is needed."
+                      },
+                      {
+                        "ref": "Annex 5, item 2.1",
+                        "text": "An independent candidate is elected if he has received a number of votes not less than the number of valid votes in the municipality, excluding those under Art. 438(1)(7), divided by the number of municipal councillors on the council."
+                      },
+                      {
+                        "ref": "Annex 5, item 3.1",
+                        "text": "Parties and coalitions that have received votes not fewer than the votes needed to elect an independent candidate under section II take part in the allocation of seats."
+                      },
                       {
                         "ref": "Article 399(2)",
                         "text": "When voting for the candidate list of a party or coalition, the voter may mark one preference for a candidate on the list, thereby expressing a preference as to the order of the candidates on the list voted for.",
