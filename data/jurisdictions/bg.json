@@ -3558,7 +3558,7 @@
               {
                 "type": "local_districts",
                 "status": "partial",
-                "explanation": "The districts are far too large to give each area its own representatives: up to 19 seats, in Sofia's 23rd district, all elected from party lists.",
+                "explanation": "Many districts are far too large and don't correspond to local communities: up to 19 seats, in Sofia's 23rd district.",
                 "laws": [
                   "const",
                   "ec"
