@@ -17,7 +17,8 @@
   "union": ["Single market", "Trade", "Environment", "Currency", "Borders"],
   "countries": {
     "bg": {
-      "municipality": ["Local taxes and fees", "Schools", "Waste collection", "Urban planning", "Social services", "Village roads", "Stadium"]
+      "municipality": ["Municipal roads", "Public transportation", "Air quality", "Schools", "Waste collection", "Parks", "Local taxes and fees", "Urban planning", "Social services"],
+      "country": ["Defence", "Foreign policy", "National road network", "Pensions", "Healthcare", "Justice", "National parks", "Taxes"]
     }
   }
 }
