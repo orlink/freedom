@@ -3580,7 +3580,7 @@
               {
                 "type": "proportional_representation",
                 "status": "partial",
-                "explanation": "Seats are shared out in proportion to the votes, but only among parties that won at least 4% nationally.",
+                "explanation": "Not quite proportional. Only parties with at least 4% of the national vote win seats, so the votes for the others are lost, and the parties above the threshold get up to 20% more of the seats than their share of the vote.",
                 "laws": [
                   "ec"
                 ]
