@@ -3558,7 +3558,7 @@
               {
                 "type": "local_districts",
                 "status": "partial",
-                "explanation": "31 multi-member districts matching the regions (Sofia split in three, Plovdiv in two).",
+                "explanation": "The districts are far too large to give each area its own representatives: up to 19 seats, in Sofia's 23rd district, all elected from party lists.",
                 "laws": [
                   "const",
                   "ec"
