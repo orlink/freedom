@@ -1299,6 +1299,20 @@
                     ]
                   }
                 ]
+              },
+              {
+                "type": "general_assembly",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "The City of Zürich has an elected parliament (Gemeinderat) instead of a municipal assembly: the canton's municipal law lets a municipality replace the assembly of its voters with a parliament.",
+                    "laws": [
+                      "kv",
+                      "gg"
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -1440,6 +1454,19 @@
                           "go"
                         ]
                       }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "general_assembly",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "City districts (Kreise) have no assembly of their residents that takes binding decisions.",
+                    "laws": [
+                      "go"
                     ]
                   }
                 ]
