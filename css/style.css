@@ -162,7 +162,10 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 :root { --del-bg: #fbe3e1; --del-fg: #9b2c22; --ins-bg: #dcf1e2; --ins-fg: #1d6a37; }
 .provisions .verdict { position: relative; }
 .provisions .verdict:has(.fix-btn) { min-height: 52px; }
-.provisions .verdict:has(.fix-btn) .vtext { padding-right: 170px; }
+/* Only the verdict label's own line makes room for the buttons; the explanation below runs the full width. */
+.provisions .verdict .vtext strong { display: block; min-height: 28px; margin-bottom: 6px; }
+.provisions .verdict:has(.fix-btn) .vtext strong { padding-right: 170px; }
+.req.has-chat .provisions .verdict:has(.fix-btn) .vtext strong { padding-right: 170px; }
 .provisions .fix-btn { position: absolute; top: 10px; right: 14px; font: inherit; font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 999px; border: 0; cursor: pointer;
   background: linear-gradient(135deg, #f2555a, #d6334f); color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
 .provisions .fix-btn[aria-pressed="true"] { background: var(--surface); color: var(--coral-ink); border: 1px solid var(--line); box-shadow: none; }
@@ -172,7 +175,7 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 
 /* Verdict band: text, then the explainer excerpt (e.g. why a quorum harms), with the Fix button top right. */
 .provisions .verdict { display: block; }
-.provisions .verdict .vtext { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.provisions .verdict .vtext { display: block; }
 .provisions .verdict .xm { margin-top: 12px; padding: 10px 0 0 14px; border-left: 3px solid currentColor; opacity: .92; font-size: 14px; }
 .provisions .verdict .xm p { margin: 0 0 8px; }
 .provisions .verdict .xm .xm-title { font-weight: 700; margin-bottom: 4px; }
@@ -197,7 +200,7 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .req-head { width: 100%; display: flex; justify-content: flex-end; margin: -10px 0 -6px; }
 .req { position: relative; width: 100%; max-width: 720px; }
 .req > .chat-wrap { position: absolute; top: 10px; right: 10px; z-index: 5; }
-.req.has-chat .provisions .verdict { padding-right: 64px; }
+.req.has-chat .provisions .verdict .vtext strong { padding-right: 44px; min-height: 34px; }
 .chat-wrap { position: relative; }
 .chat-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--coral-ink);
   display: inline-flex; align-items: center; justify-content: center; box-shadow: var(--shadow); }
@@ -222,7 +225,7 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .req.has-chat .provisions .verdict .fix-btn { right: 60px; }
 .req.has-chat .provisions > .fix-btn { margin-right: 44px; }
 @media (max-width: 600px) {
-  .provisions .verdict:has(.fix-btn) .vtext, .req.has-chat .provisions .verdict { padding-right: 24px; }
+  .provisions .verdict .vtext strong, .req.has-chat .provisions .verdict .vtext strong, .req.has-chat .provisions .verdict:has(.fix-btn) .vtext strong { padding-right: 0; min-height: 0; }
   .req.has-chat .provisions .verdict, .provisions .verdict:has(.fix-btn) { padding-top: 54px; }
   .chat-pop { position: fixed; top: auto; left: 16px; right: 16px; bottom: max(16px, env(safe-area-inset-bottom, 0px)); width: auto; max-height: 75vh; }
 }
