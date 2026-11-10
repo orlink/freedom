@@ -1,5 +1,5 @@
 {
-  "$comment": "Default shared interests suggested for each level. People can add more or mark one as not applicable for a specific place; those changes are stored by server.py, not here.",
+  "$comment": "Default shared interests suggested for each level; \"countries\" holds a country's own list for a level, which replaces the default there. The owner edits these on the local copy (server.py --edit). Visitors' additions and 'not applicable' marks for one place are stored by server.py in data/state, not here.",
   "individual": ["Health", "Privacy", "Property", "Education", "Work"],
   "business": ["Products and pricing", "Hiring", "Investment", "Profits", "Contracts"],
   "nonprofit": ["Statutes", "Activities", "Membership", "Funding", "Property"],
@@ -14,5 +14,10 @@
   "county": ["Regional roads", "Hospitals", "Regional development"],
   "state": ["Police", "Education", "Healthcare", "State taxes"],
   "country": ["Defence", "Foreign policy", "Taxes", "Pensions", "Healthcare", "Justice"],
-  "union": ["Single market", "Trade", "Environment", "Currency", "Borders"]
+  "union": ["Single market", "Trade", "Environment", "Currency", "Borders"],
+  "countries": {
+    "bg": {
+      "municipality": ["Local taxes and fees", "Schools", "Waste collection", "Urban planning", "Social services", "Village roads", "Stadium"]
+    }
+  }
 }

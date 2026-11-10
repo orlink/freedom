@@ -8,6 +8,9 @@ using the same server. Standard library only.
     python3 server.py              # http://localhost:8000
     python3 server.py --port 8080 --host 0.0.0.0   # share on your network
 
+    python3 server.py --edit       # the owner's local copy: adding, removing and dragging interest chips
+                                   # changes the site's own lists in data/interests.json (per country), to commit
+
 State is kept in data/state/interests.json and data/state/fixes.json (git-ignored).
 The fixes API collects readers' approvals of, and alternative wordings for, proposed legal amendments.
 
@@ -31,6 +34,9 @@ STATE_FILE = os.path.join(ROOT, "data", "state", "interests.json")
 LOCK = threading.Lock()
 KEY_RE = re.compile(r"^[\w\- .,'()/|À-ɏЀ-ӿ]{1,200}$")
 FIXES_FILE = os.path.join(ROOT, "data", "state", "fixes.json")
+SITE_INTERESTS = os.path.join(ROOT, "data", "interests.json")
+EDITOR = False  # set by --edit: the site owner's local copy, where interest edits change data/interests.json
+MAX_INTERESTS = 40
 MAX_LABEL = 60
 MAX_SUGGESTION = 2000
 MAX_SUGGESTIONS = 50
@@ -86,6 +92,19 @@ def fix_entry(state, key):
 
 def entry(state, key):
     return state.setdefault(key, {"added": [], "hidden": []})
+
+
+def write_site_interests(data):
+    """Save data/interests.json in its hand-written layout: one line per list, so git diffs stay small."""
+    def block(d, indent):
+        pad = " " * indent
+        rows = [f'{pad}{json.dumps(k, ensure_ascii=False)}: ' + (block(v, indent + 2) if isinstance(v, dict) else json.dumps(v, ensure_ascii=False))
+                for k, v in d.items()]
+        return "{\n" + ",\n".join(rows) + "\n" + " " * (indent - 2) + "}"
+    tmp = SITE_INTERESTS + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        f.write(block(data, 2) + "\n")
+    os.replace(tmp, SITE_INTERESTS)
 
 
 def html_text(path):
@@ -226,8 +245,14 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def is_editor(self):
+        """Editing the site's own interest lists: only with --edit, and only from this computer (not through a proxy)."""
+        return EDITOR and self.client_address[0] in ("127.0.0.1", "::1") and not self.headers.get("X-Forwarded-For")
+
     def do_GET(self):
         u = urlparse(self.path)
+        if u.path == "/api/editor":
+            return self.send_json(200, {"editor": self.is_editor()})
         if u.path == "/api/interests":
             key = (parse_qs(u.query).get("key") or [""])[0]
             if not KEY_RE.match(key):
@@ -257,6 +282,8 @@ class Handler(SimpleHTTPRequestHandler):
         u = urlparse(self.path)
         if u.path == "/api/chat":
             return self.chat()
+        if u.path == "/api/site-interests":
+            return self.site_interests()
         body = self.read_body()
         if not isinstance(body, dict):
             return self.send_json(400, {"error": "bad body"})
@@ -305,6 +332,29 @@ class Handler(SimpleHTTPRequestHandler):
             return self.send_json(200, e)
         return self.send_json(404, {"error": "not found"})
 
+    def site_interests(self):
+        """Editor mode: replace one country's list of interests for one level in data/interests.json (order kept)."""
+        if not self.is_editor():
+            return self.send_json(403, {"error": "editing is only possible on the owner's local copy (server.py --edit)"})
+        body = self.read_body()
+        if not isinstance(body, dict):
+            return self.send_json(400, {"error": "bad body"})
+        cc, level, labels = str(body.get("country", "")), str(body.get("level", "")), body.get("labels")
+        if not re.match(r"^[a-z]{2}$", cc) or not re.match(r"^[a-z_]{1,40}$", level) or not isinstance(labels, list):
+            return self.send_json(400, {"error": "bad country, level or labels"})
+        clean = []
+        for x in labels[:MAX_INTERESTS]:
+            t = " ".join(str(x).split())[:MAX_LABEL]
+            if t and t.lower() not in (c.lower() for c in clean):
+                clean.append(t)
+        with LOCK:
+            data = load_state(SITE_INTERESTS)
+            if not data:
+                return self.send_json(500, {"error": "data/interests.json is missing or unreadable"})
+            data.setdefault("countries", {}).setdefault(cc, {})[level] = clean
+            write_site_interests(data)
+        return self.send_json(200, {"labels": clean})
+
     def chat(self):
         """One turn of the requirement-page chat: save the conversation, ask Claude, save the reply."""
         body = self.read_body(CHAT_MAX_BODY)
@@ -342,7 +392,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8000)
+    ap.add_argument("--edit", action="store_true", help="owner's local copy: interest edits made in the browser change data/interests.json")
     a = ap.parse_args()
+    global EDITOR
+    EDITOR = a.edit
     load_env()
     srv = ThreadingHTTPServer((a.host, a.port), Handler)
     print(f"Freedom Map on http://{'localhost' if a.host in ('127.0.0.1', '0.0.0.0') else a.host}:{a.port}/  (Ctrl+C to stop)")

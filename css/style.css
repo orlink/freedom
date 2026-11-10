@@ -236,3 +236,8 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .req > .chat-wrap { top: 6px; right: 6px; }
 .req > .chat-wrap .chat-btn { width: 40px; height: 40px; opacity: 1; }
 .req > .chat-wrap .chat-btn svg { width: 27px; height: 27px; }
+/* Editor mode (owner's local copy): interest chips can be dragged into a new order. */
+.t-interest.editable { cursor: grab; }
+.t-interest.editable.dragging { opacity: .4; }
+.t-interest.editable.drop { box-shadow: -5px 0 0 var(--coral-deep); }
+.t-interest.editable:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }

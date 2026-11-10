@@ -29,7 +29,10 @@ There is no build step. Run the small Python server (standard library only), whi
 ```sh
 python3 server.py            # open http://localhost:8000
 python3 server.py --host 0.0.0.0 --port 8000   # let others on your network use it
+python3 server.py --edit     # the owner's copy: edit the site's own interest lists
 ```
+
+With `--edit`, opened from the same computer, the interest chips change the site itself: **+ Add**, **×** and dragging a chip (or ← → on a focused chip) rewrite that country's list for the level in `data/interests.json`, which is committed and uploaded like any other file. Without it, and always on the public server, readers' additions and "not applicable" marks apply only to one place and stay in `data/state`.
 
 Each requirement page has a chat button (top right) where readers comment, suggest edits or ask Claude about the requirement. It needs the `anthropic` package and an API key on the server; the key never reaches the browser:
 

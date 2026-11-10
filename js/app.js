@@ -192,23 +192,67 @@ const addInterest = (key, label) => changeInterests(key, 'api/interests', { labe
 });
 const hideInterest = (key, id) => changeInterests(key, 'api/interests/hide', { id }, e => { if (!e.hidden.includes(id)) e.hidden.push(id); });
 
+// The site's own list for a level: the country's list if it has one (data/interests.json "countries"), else the default.
+const siteInterests = (cc, levelId) => state.data.interests.countries?.[cc]?.[levelId] ?? state.data.interests[levelId] ?? [];
+// Editor mode (the owner's local copy, server.py --edit): adding, removing and dragging chips changes that list itself.
+let editor = false;
+let refocus = null;
+async function saveSiteInterests(cc, levelId, labels) {
+  try {
+    const r = await api('POST', 'api/site-interests', { country: cc, level: levelId, labels });
+    ((state.data.interests.countries ??= {})[cc] ??= {})[levelId] = r.labels;
+    $('#status').textContent = '';
+  } catch (err) { $('#status').textContent = `Could not save the list of interests (${err.message}).`; }
+  render();
+  if (refocus) { [...document.querySelectorAll('.t-interest')].find(n => n.dataset.label === refocus)?.focus(); refocus = null; }
+}
+function editorChips(levelId) {
+  const cc = state.loc.address.country_code || 'xx';
+  const labels = siteInterests(cc, levelId);
+  const where = state.loc.address.country || cc.toUpperCase();
+  const save = next => saveSiteInterests(cc, levelId, next);
+  const move = (from, to) => { if (to < 0 || to >= labels.length || to === from) return; const next = [...labels]; next.splice(to, 0, ...next.splice(from, 1)); save(next); };
+  let dragFrom = null;
+  const out = labels.map((label, i) => {
+    const c = el('div', { class: 'tb t-interest editable', title: `${label}. Drag, or press ← →, to reorder.`, tabindex: '0', draggable: 'true', 'data-label': label,
+      ondragstart: ev => { dragFrom = i; ev.dataTransfer.effectAllowed = 'move'; ev.dataTransfer.setData('text/plain', label); c.classList.add('dragging'); },
+      ondragend: () => c.classList.remove('dragging'),
+      ondragover: ev => { if (dragFrom !== null) { ev.preventDefault(); c.classList.add('drop'); } },
+      ondragleave: () => c.classList.remove('drop'),
+      ondrop: ev => { ev.preventDefault(); c.classList.remove('drop'); const f = dragFrom; dragFrom = null; if (f !== null) move(f, i); },
+      onkeydown: ev => {
+        if (ev.target !== c) return;
+        const d = ev.key === 'ArrowLeft' ? -1 : ev.key === 'ArrowRight' ? 1 : 0;
+        if (d) { ev.preventDefault(); refocus = label; move(i, i + d); }
+      } },
+      el('span', {}, label),
+      el('button', { type: 'button', class: 'x', title: `Remove “${label}” from the list for ${where}`, 'aria-label': `Remove “${label}” from the list for ${where}`,
+        onclick: () => save(labels.filter((_, j) => j !== i)) }, '×'));
+    return c;
+  });
+  out.push(addChip(null, v => save([...labels, v])));
+  return out;
+}
+
 function interestChips(levelId) {
+  if (editor) return editorChips(levelId);
   const key = interestKey(levelId);
   const e = interestCache.get(key);
   if (!e) { loadInterests(key).then(render); return [el('span', { class: 'loading' }, '…')]; }
-  const defaults = (state.data.interests[levelId] || []).map(label => ({ id: 'd:' + slug(label), label }));
-  const chips = [...defaults, ...e.added].filter(c => !e.hidden.includes(c.id));
+  const defaults = siteInterests(state.loc.address.country_code, levelId).map(label => ({ id: 'd:' + slug(label), label }));
+  const seen = new Set();
+  const chips = [...defaults, ...e.added].filter(c => !e.hidden.includes(c.id) && !seen.has(c.label.toLowerCase()) && seen.add(c.label.toLowerCase()));
   const out = chips.map(c => el('div', { class: 'tb t-interest', title: c.label },
     el('span', {}, c.label),
     el('button', { type: 'button', class: 'x', title: `Not applicable here: ${c.label}`, 'aria-label': `Mark “${c.label}” as not applicable here`, onclick: () => hideInterest(key, c.id) }, '×')));
   out.push(addChip(key));
   return out;
 }
-function addChip(key) {
+function addChip(key, onAdd = v => addInterest(key, v)) {
   const wrap = el('div', { class: 'tb t-add' });
   const start = () => {
     const input = el('input', { type: 'text', maxlength: '60', placeholder: 'New interest', 'aria-label': 'New shared interest' });
-    const done = save => { const v = input.value.trim(); if (save && v) addInterest(key, v); else render(); };
+    const done = save => { const v = input.value.trim(); if (save && v) onAdd(v); else render(); };
     input.addEventListener('keydown', ev => { if (ev.key === 'Enter') done(true); if (ev.key === 'Escape') done(false); });
     input.addEventListener('blur', () => done(true));
     wrap.replaceChildren(input); input.focus();
@@ -633,7 +677,7 @@ window.addEventListener('popstate', () => {
 // ---------- boot ----------
 (async function boot() {
   try {
-    state.data = await loadData();
+    [state.data, editor] = await Promise.all([loadData(), api('GET', 'api/editor').then(r => r.editor === true, () => false)]);
   } catch (e) {
     $('#hint').textContent = `Could not load data (${e.message}). Start the site with "python3 server.py".`;
     return;
