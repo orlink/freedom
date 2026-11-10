@@ -228,12 +228,19 @@ map.on('click', e => { showAlternatives([]); locate(e.latlng.lat, e.latlng.lng);
 function showAlternatives(rs, chosen) {
   let box = document.getElementById('alts');
   if (!box) { box = el('div', { id: 'alts', class: 'alts' }); $('#place').after(box); }
-  const short = r => r.display_name.split(', ').slice(0, 3).join(', ');
+  const short = r => {
+    const a = r.address || {};
+    const town = a.city || a.town || a.village || a.hamlet || a.suburb || a.municipality;
+    const region = a.county || a.state_district || a.state;
+    const parts = [a.road || r.name, town, region && region !== town ? region : null].filter(Boolean);
+    return parts.length > 1 ? parts.join(', ') : r.display_name.split(', ').slice(0, 3).join(', ');
+  };
   const seen = new Set(chosen ? [short(chosen)] : []);
   const items = rs.map(r => ({ r, label: short(r) }))
     .filter(x => !seen.has(x.label) && seen.add(x.label)).slice(0, 4);
   box.replaceChildren(...(items.length ? ['Other matches: ', ...items.flatMap((x, i) => [i ? ' · ' : '',
-    el('button', { type: 'button', onclick: () => { showAlternatives([]); locate(x.r.lat, x.r.lon, { zoom: 16 }); } }, x.label)])] : []));
+    el('button', { type: 'button', onclick: () => { showAlternatives([]); locate(x.r.lat, x.r.lon, { zoom: 16 }); } }, x.label)]),
+    el('span', { class: 'alts-hint' }, ' Not the right place? Try the street\u2019s full name.')] : []));
 }
 $('#search').addEventListener('submit', async e => {
   e.preventDefault();
