@@ -55,6 +55,8 @@ let marker = null;
 async function locate(lat, lon, { zoom, result, keepPath } = {}) {
   lat = +(+lat).toFixed(5); lon = +(+lon).toFixed(5);
   if (marker) marker.setLatLng([lat, lon]); else marker = L.marker([lat, lon]).addTo(map);
+  if (areaLayer) { areaLayer.remove(); areaLayer = null; }
+  areaKey = null; viewBeforeArea = null;
   if (zoom) map.setView([lat, lon], zoom);
   $('#place').replaceChildren(el('span', { class: 'loading' }, 'Looking up this location…'));
   // The settlement's population (a second lookup) is fetched alongside the address, not after it.
@@ -95,6 +97,62 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
   } catch (e) {
     $('#place').replaceChildren(`Could not look up this location: ${e.message}`);
   }
+}
+
+// ---------- area outline ----------
+// When a territorial level is open (country, county, municipality, …), outline its area on the map. Overpass lists
+// the administrative boundaries around the point; the one whose name matches the level's place name is drawn, with
+// its simplified shape from Nominatim. Levels without a matching boundary (home, building, union) show no outline.
+const OVERPASS = 'https://overpass-api.de/api/interpreter';
+const COARSE = ['country', 'state', 'county', 'municipality'];
+let areaLayer = null, areaKey = null, viewBeforeArea = null;
+const areasCache = new Map(), shapeCache = new Map();
+const bareName = n => String(n || '').toLocaleLowerCase()
+  .replace(/^(община|област|municipality of|county|kanton|bezirk)\s+/, '').replace(/\s+(municipality|county|municipal district)$/, '').trim();
+async function areasAround(lat, lon) {
+  const key = `${lat},${lon}`;
+  if (!areasCache.has(key)) {
+    const q = `[out:json][timeout:20];is_in(${lat},${lon})->.a;rel(pivot.a)[boundary=administrative];out tags;`;
+    areasCache.set(key, fetch(OVERPASS, { method: 'POST', body: new URLSearchParams({ data: q }) })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(r => r.elements.map(e => ({ id: e.id, level: +e.tags.admin_level || 99, names: Object.entries(e.tags).filter(([k]) => k === 'name' || k.startsWith('name:') || k === 'official_name').map(([, v]) => v) })))
+      .catch(e => { areasCache.delete(key); throw e; }));
+  }
+  return areasCache.get(key);
+}
+async function areaShape(id) {
+  if (!shapeCache.has(id)) {
+    shapeCache.set(id, nominatim('lookup', { osm_ids: `R${id}`, polygon_geojson: 1, polygon_threshold: 0.001 })
+      .then(([r]) => r?.geojson && /Polygon/.test(r.geojson.type) ? r.geojson : null)
+      .catch(e => { shapeCache.delete(id); throw e; }));
+  }
+  return shapeCache.get(id);
+}
+function clearArea() {
+  if (areaLayer) { areaLayer.remove(); areaLayer = null; }
+  if (viewBeforeArea) { map.setView(viewBeforeArea.center, viewBeforeArea.zoom); viewBeforeArea = null; }
+  areaKey = null;
+}
+async function showArea(levelId) {
+  const loc = state.loc;
+  const place = levelId && loc?.places?.[levelId];
+  const lvl = state.data.catalog.levels.find(l => l.id === levelId);
+  if (!place?.name || lvl?.kind !== 'territorial' || ['home', 'entrance', 'building', 'union'].includes(levelId)) { clearArea(); return; }
+  const key = `${loc.lat},${loc.lon}|${levelId}`;
+  if (key === areaKey) return;
+  areaKey = key;
+  if (areaLayer) { areaLayer.remove(); areaLayer = null; }
+  try {
+    const want = [place.name, bareName(place.name)];
+    const areas = (await areasAround(loc.lat, loc.lon)).filter(a => a.names.some(n => want.includes(n) || bareName(n) === want[1]));
+    areas.sort((a, b) => a.level - b.level);
+    const area = COARSE.includes(levelId) ? areas[0] : areas[areas.length - 1];
+    const shape = area && await areaShape(area.id);
+    if (!shape || areaKey !== key) return;
+    if (!viewBeforeArea) viewBeforeArea = { center: map.getCenter(), zoom: map.getZoom() };
+    areaLayer = L.geoJSON(shape, { interactive: false, style: { color: '#1f7a6d', weight: 2, fillColor: '#1f7a6d', fillOpacity: 0.08 } }).addTo(map);
+    map.fitBounds(areaLayer.getBounds(), { padding: [12, 12] });
+  } catch { /* no outline: the page works without it */ }
 }
 
 map.on('click', e => locate(e.latlng.lat, e.latlng.lng));
@@ -539,6 +597,7 @@ function render() {
   if (!loc) return;
   $('#hint').hidden = true;
   renderPlace();
+  showArea(state.path[0]);
   const j = loc.jurisdiction;
   $('#status').textContent = j ? (j.statusNote || '') : '';
   if (!j) {
