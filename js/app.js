@@ -406,7 +406,7 @@ function render() {
   // Trail: where you are in the tree; each step is clickable.
   // Trail uses each chip's long name.
   const steps = [['Common interest levels', []]];
-  if (cur) steps.push([cur.l.longName || cur.l.name, [levelId]]);
+  if (cur) steps.push([cur.l.name, [levelId]]);
   if (cur && branchId && BRANCH_INFO[branchId]) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
   if (mech) steps.push([mechLongName(mech, mechs, catalog, levelId), [levelId, branchId, mechIdx]]);
   if (kind) steps.push([kind.name || kindDefs[kind.type]?.longName || kind.type, [levelId, branchId, mechIdx, kindIdx]]);
