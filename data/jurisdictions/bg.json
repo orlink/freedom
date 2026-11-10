@@ -6,7 +6,10 @@
   },
   "status": "draft",
   "statusNote": "Draft. For each property the page lists the laws that govern it; the specific articles will be worked out next. The yes/partly/no assessments are provisional until the articles are confirmed.",
-  "mapZoom": {"county": 5, "municipality": 8},
+  "mapZoom": {
+    "county": 5,
+    "municipality": 8
+  },
   "addressKeys": {
     "county": [
       "state",
@@ -3003,11 +3006,12 @@
               {
                 "type": "binding_powers",
                 "status": "partial",
-                "explanation": "Limited powers over many local interests. It adopts the budget and sets local fees, but it can set local tax rates only within the limits fixed by national law, and it does not appoint school principals, for example.",
+                "explanation": "Limited powers over many local interests. It adopts the budget and sets local fees, but it can set local tax rates only within the limits fixed by national law. Even for municipal schools, the Ministry's regional education office hires and dismisses the principals and approves the secondary-school admission places; the municipality is only consulted.",
                 "laws": [
                   "lsga",
                   "const",
-                  "ltfa"
+                  "ltfa",
+                  "psea"
                 ],
                 "provisions": [
                   {
@@ -3032,6 +3036,19 @@
                           "23. decides other matters of local importance that are not within the competence of districts, mayoralties or other bodies."
                         ],
                         "why": "Leaves district and mayoralty budgets and property to their own bodies."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "psea",
+                    "items": [
+                      {
+                        "ref": "Article 217(2)",
+                        "text": "The head of the regional education office concludes and terminates the employment contracts of the directors of municipal schools, non-specialised state schools, …"
+                      },
+                      {
+                        "ref": "Article 143(2), (4)",
+                        "text": "(2) The state admission plan is approved for each school year by order of: 1. the head of the regional education office, for the schools under Art. 142(3), items 1 and 5; … (4) … are approved after agreement with the funding body."
                       }
                     ]
                   }
