@@ -103,18 +103,34 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
 // When a territorial level is open (country, county, municipality, …), outline its area on the map. Overpass lists
 // the administrative boundaries around the point; the one whose name matches the level's place name is drawn, with
 // its simplified shape from Nominatim. Levels without a matching boundary (home, building, union) show no outline.
-const OVERPASS = 'https://overpass-api.de/api/interpreter';
-const COARSE = ['country', 'state', 'county', 'municipality'];
+const OVERPASS = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
 let areaLayer = null, areaKey = null, viewBeforeArea = null;
 const areasCache = new Map(), shapeCache = new Map();
 const bareName = n => String(n || '').toLocaleLowerCase()
   .replace(/^(община|област|municipality of|county|kanton|bezirk)\s+/, '').replace(/\s+(municipality|county|municipal district)$/, '').trim();
+// Match boundaries to levels from the broadest down, each one finer than the last: a city and its region often share
+// a name (Sofia, Zürich), and this keeps the region for the county or state and the city for the municipality.
+const BROAD_TO_FINE = ['country', 'state', 'county', 'municipality', 'town', 'village', 'neighbourhood'];
+function pickArea(areas, places, levelId) {
+  let floor = 0;
+  for (const id of BROAD_TO_FINE) {
+    const name = places[id]?.absent ? null : places[id]?.name;
+    if (!name) { if (id === levelId) return null; continue; }
+    const want = bareName(name);
+    const found = areas.filter(a => a.level > floor && a.names.some(n => n === name || bareName(n) === want))
+      .sort((a, b) => a.level - b.level)[0];
+    if (id === levelId) return found || null;
+    if (found) floor = found.level;
+  }
+  return null;
+}
 async function areasAround(lat, lon) {
   const key = `${lat},${lon}`;
   if (!areasCache.has(key)) {
     const q = `[out:json][timeout:20];is_in(${lat},${lon})->.a;rel(pivot.a)[boundary=administrative];out tags;`;
-    areasCache.set(key, fetch(OVERPASS, { method: 'POST', body: new URLSearchParams({ data: q }) })
-      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    const ask = url => fetch(url, { method: 'POST', body: new URLSearchParams({ data: q }) })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
+    areasCache.set(key, ask(OVERPASS[0]).catch(() => ask(OVERPASS[1])) // the main server is often busy
       .then(r => r.elements.map(e => ({ id: e.id, level: +e.tags.admin_level || 99, names: Object.entries(e.tags).filter(([k]) => k === 'name' || k.startsWith('name:') || k === 'official_name').map(([, v]) => v) })))
       .catch(e => { areasCache.delete(key); throw e; }));
   }
@@ -143,16 +159,13 @@ async function showArea(levelId) {
   areaKey = key;
   if (areaLayer) { areaLayer.remove(); areaLayer = null; }
   try {
-    const want = [place.name, bareName(place.name)];
-    const areas = (await areasAround(loc.lat, loc.lon)).filter(a => a.names.some(n => want.includes(n) || bareName(n) === want[1]));
-    areas.sort((a, b) => a.level - b.level);
-    const area = COARSE.includes(levelId) ? areas[0] : areas[areas.length - 1];
+    const area = pickArea(await areasAround(loc.lat, loc.lon), loc.places, levelId);
     const shape = area && await areaShape(area.id);
     if (!shape || areaKey !== key) return;
     if (!viewBeforeArea) viewBeforeArea = { center: map.getCenter(), zoom: map.getZoom() };
     areaLayer = L.geoJSON(shape, { interactive: false, style: { color: '#1f7a6d', weight: 2, fillColor: '#1f7a6d', fillOpacity: 0.08 } }).addTo(map);
     map.fitBounds(areaLayer.getBounds(), { padding: [12, 12] });
-  } catch { /* no outline: the page works without it */ }
+  } catch { if (areaKey === key) areaKey = null; /* no outline (a retry is allowed): the page works without it */ }
 }
 
 map.on('click', e => locate(e.latlng.lat, e.latlng.lng));
