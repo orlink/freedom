@@ -634,6 +634,24 @@ function chatButton(key, context) {
   return wrap;
 }
 
+// A referendum's kinds become separate mechanisms, in the catalog's order; a kind the data lacks does not exist in law.
+// `scored` keeps the data's own properties for scoring; `properties` are the chips shown (with disabled ones).
+function flattenKinds(mechs, catalog) {
+  return mechs.flatMap(m => {
+    if (!m.kinds) return [m];
+    const defs = catalog.referendumKinds || {};
+    return (catalog.mechanisms[m.type]?.kinds || []).map(t => {
+      const k = m.kinds.find(k => k.type === t) || { type: t, properties: [{ type: 'exists', status: 'no', laws: [] }] };
+      const skip = defs[t]?.skipProperties || [];
+      return {
+        type: m.type, kindType: t, label: defs[t]?.name || t, title: [k.name, defs[t]?.description].filter(Boolean).join('\n\n'),
+        properties: kindProperties(k, m.type, catalog),
+        scored: { type: m.type, properties: (k.properties || []).filter(p => !skip.includes(p.type)) },
+      };
+    });
+  });
+}
+
 function render() {
   const { catalog } = state.data;
   const loc = state.loc;
@@ -650,26 +668,24 @@ function render() {
   }
 
   // Resolve the path as far as it is valid.
-  const [levelId, branchId, mechIdx, step4, step5] = state.path;
+  const [levelId, branchId, mechIdx, step4] = state.path;
   const levels = catalog.levels.map(l => {
     const lvl = loc.places[l.id].absent ? undefined : getLevel(j, l.id);
     return { l, lvl, tone: tone(scoreLevel(lvl, catalog)) };
   }).filter(x => x.tone);
   const cur = levels.find(x => x.l.id === levelId);
   const branch = cur && ['direct', 'representative'].includes(branchId) ? cur.lvl[branchId] : undefined;
-  const mechs = branch?.applicable !== false ? (branch?.mechanisms || []) : [];
-  const mech = mechs[mechIdx];
-  // A mechanism with kinds (referendum) has one more screen: the kinds, then each kind's properties.
-  const kindIdx = mech?.kinds ? step4 : undefined;
-  const kind = mech?.kinds?.[kindIdx];
   const kindDefs = catalog.referendumKinds || {};
-  const props = kind ? kindProperties(kind, mech.type, catalog) : (mech?.kinds ? [] : mech?.properties || []);
+  // Each kind of referendum (citizen initiative, veto, mandatory) is its own chip, next to the general assembly.
+  const mechs = flattenKinds(branch?.applicable !== false ? (branch?.mechanisms || []) : [], catalog);
+  const mech = mechs[mechIdx];
+  const props = mech?.properties || [];
   // A mechanism that hinges on a single requirement (e.g. a neighbourhood's representatives in the municipal council:
   // elected in local districts) skips the requirements screen: its chip opens that requirement's page directly.
-  const single = mech && !mech.kinds && props.length === 1;
-  const propIdx = mech?.kinds ? step5 : (single ? 0 : step4);
+  const single = mech && props.length === 1;
+  const propIdx = single ? 0 : step4;
   const prop = props[propIdx]?.disabled ? undefined : props[propIdx];
-  const propPath = i => (mech.kinds ? [levelId, branchId, mechIdx, kindIdx, i] : [levelId, branchId, mechIdx, i]);
+  const propPath = i => [levelId, branchId, mechIdx, i];
 
   // Trail: where you are in the tree; each step is clickable.
   // Trail uses each chip's long name.
@@ -677,8 +693,6 @@ function render() {
   if (cur) steps.push([cur.l.name, [levelId]]);
   if (cur && branchId && BRANCH_INFO[branchId] && !cur.l.informal) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
   if (mech) steps.push([mechLongName(mech, mechs, catalog, levelId), [levelId, branchId, mechIdx]]);
-  // The trail repeats the chip's own name (catalog longName); a jurisdiction's local term (`kind.name`) is not used here.
-  if (kind) steps.push([kindDefs[kind.type]?.longName || kindDefs[kind.type]?.name || kind.type, [levelId, branchId, mechIdx, kindIdx]]);
   if (prop && !single) steps.push([catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name || prop.name, propPath(propIdx)]);
   $('#trail').replaceChildren(...(steps.length > 1 ? steps.flatMap(([name, path], i) => [
     i ? el('span', { class: 'sep' }, '›') : null,
@@ -712,23 +726,11 @@ function render() {
     }
   } else if (!mech) {
     // Screen 3: mechanisms (e.g. referendum, general assembly). None at all: one black chip saying so.
-    const shown = mechs.map((m, i) => ({ m, i, tone: mechTone(scoreMechanism(m, catalog)) })).filter(x => x.tone);
+    const shown = mechs.map((m, i) => ({ m, i, tone: mechTone(scoreMechanism(m.scored || m, catalog)) })).filter(x => x.tone);
     setLegend('mechanisms');
     screen.push(rowOf(shown.length ? shown.map(({ m, i, tone }) => chip({
-      label: mechLabel(m, mechs, catalog, levelId), tone, title: m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, branchId, i]),
+      label: mechLabel(m, mechs, catalog, levelId), tone, title: m.title || m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, branchId, i]),
     })) : [chip({ label: 'None', tone: 'black', title: branch?.note || 'No such mechanism at this level.' })]));
-  } else if (mech.kinds && !kind) {
-    // Screen 4a: kinds of referendum (citizen initiative, veto, mandatory). Each is always shown; missing ones are black.
-    setLegend('mechanisms');
-    screen.push(rowOf((catalog.mechanisms[mech.type]?.kinds || []).map(t => {
-      const i = mech.kinds.findIndex(k => k.type === t);
-      const k = mech.kinds[i], def = kindDefs[t] || {};
-      const score = k ? scoreMechanism({ type: mech.type, properties: k.properties }, catalog) : 0;
-      return chip({
-        label: def.name || t, tone: mechTone(score) || 'unknown', title: [k?.name, def.description].filter(Boolean).join('\n\n'),
-        onclick: i >= 0 ? () => go([levelId, branchId, mechIdx, i]) : undefined,
-      });
-    })));
   } else if (!prop) {
     // Screen 4: the properties the mechanism needs. If it does not exist in law, the rest are disabled.
     setLegend('requirements');
