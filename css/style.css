@@ -84,7 +84,7 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 
 .foot { max-width: 1200px; margin: 0 auto; padding: 8px 20px 24px; color: var(--muted); font-size: 12px; text-align: center; }
 .foot p { margin: 4px 0; }
-.legend { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 14px; margin: 8px 6px 0; color: var(--muted); font-size: 12px; }
+.legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; margin: 10px 6px 0; color: var(--muted); font-size: 12px; }
 .legend[hidden] { display: none; }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
 .legend i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--none); }
