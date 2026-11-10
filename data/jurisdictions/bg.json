@@ -214,11 +214,12 @@
               },
               {
                 "type": "parental_rights",
-                "status": "yes",
-                "explanation": "Raising children is the parents' right and duty. Only a court can restrict or remove parental rights, and only on grounds set by law.",
+                "status": "partial",
+                "explanation": "Raising children is the parents' right and duty, and only a court can restrict or remove parental rights. But social services can take a child from the family by administrative order and have a month before they must go to court.",
                 "laws": [
                   "const",
-                  "fc"
+                  "fc",
+                  "chpa"
                 ],
                 "provisions": [
                   {
@@ -255,6 +256,21 @@
                           "1. in particularly serious cases under Article 131;",
                           "2. when, without good reason, the parent persistently fails to care for and support the child."
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "chpa",
+                    "items": [
+                      {
+                        "ref": "Article 26(1)",
+                        "text": "Placement of a child with relatives or friends, in a foster family, or in a residential social or integrated health-social service is ordered by the court. Until the court rules, the Social Assistance Directorate at the child's current address makes a temporary placement by administrative order."
+                      },
+                      {
+                        "ref": "Article 27(2)",
+                        "text": "Within one month of the order under paragraph 1, the Social Assistance Directorate applies to the district court.",
+                        "fix": "Within three days of the order under paragraph 1, the Social Assistance Directorate applies to the district court, which rules within seven days. If the court does not confirm the placement, the order lapses and the child returns to the family.",
+                        "why": "No child stays away from the parents for more than a few days without a judge's decision."
                       }
                     ]
                   }
