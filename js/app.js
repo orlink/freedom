@@ -86,6 +86,7 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
     const early = await Promise.race([withPopulation.then(() => true), new Promise(res => setTimeout(() => res(false), 1500))]);
     if (state.loc !== loc) return;
     render();
+    recordVisit(loc);
     if (!early && await withPopulation && state.loc === loc) {
       document.body.classList.add('quiet');
       render();
@@ -109,7 +110,41 @@ $('#search').addEventListener('submit', async e => {
     $('#place').replaceChildren(err.message);
   }
 });
-document.querySelectorAll('.examples button').forEach(b => b.addEventListener('click', () => locate(b.dataset.lat, b.dataset.lon, { zoom: 16 })));
+// ---------- recent places (the chips under the map) ----------
+// Three most recently viewed places, then the most viewed one, kept in this browser. Until there are enough,
+// the built-in examples fill the gaps.
+const DEFAULT_PLACES = [...document.querySelectorAll('.examples button')].map(b => ({ label: b.textContent, lat: +b.dataset.lat, lon: +b.dataset.lon }));
+function placeHistory(value) {
+  try {
+    if (value === undefined) return JSON.parse(localStorage.getItem('freedom-places') || '[]');
+    localStorage.setItem('freedom-places', JSON.stringify(value));
+  } catch { /* storage unavailable */ }
+  return value || [];
+}
+function recordVisit(loc) {
+  const a = loc.address;
+  const label = [loc.places.neighbourhood?.name, a.city || a.town || a.village || a.hamlet].filter(Boolean).join(', ');
+  if (!label) return;
+  const hist = placeHistory();
+  const prev = hist.find(p => p.label === label);
+  const next = [{ label, lat: loc.lat, lon: loc.lon, n: (prev?.n || 0) + 1, t: Date.now() }, ...hist.filter(p => p.label !== label)];
+  placeHistory(next.slice(0, 50));
+  renderPlaces();
+}
+function renderPlaces() {
+  const hist = placeHistory();
+  // Most viewed; on a tie, the more recent one.
+  const top = hist.reduce((best, p) => (!best || p.n > best.n || (p.n === best.n && p.t > best.t) ? p : best), null);
+  const shown = [...hist].sort((x, y) => y.t - x.t).filter(p => p !== top).slice(0, 3);
+  const unused = DEFAULT_PLACES.filter(d => d.label !== top?.label && !shown.some(p => p.label === d.label));
+  while (shown.length < 3 && unused.length) shown.push(unused.shift());
+  const last = top || unused.shift();
+  $('.examples').replaceChildren(...[...shown, last].filter(Boolean).map(p => el('button', {
+    type: 'button', title: p === top ? `Your most viewed place (${p.n} views)` : (p.t ? 'Recently viewed' : 'Example'),
+    onclick: () => locate(p.lat, p.lon, { zoom: 16 }),
+  }, p.label)));
+}
+renderPlaces();
 
 // ---------- shared interests (wiki-style) ----------
 // Added chips and "not applicable here" marks are shared through server.py. If the site is served without it
