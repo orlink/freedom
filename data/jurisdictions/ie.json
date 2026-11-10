@@ -1604,8 +1604,8 @@
             "properties": [
               {
                 "type": "local_districts",
-                "status": "partial",
-                "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
+                "status": "yes",
+                "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
                   "lga1991"
                 ],
@@ -1616,16 +1616,6 @@
                       {
                         "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
                         "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
-                      },
-                      {
-                        "ref": "Section 32(2A) (new)",
-                        "fix": [
-                          "(a) Each local electoral area shall return not fewer than three and not more than five members.",
-                          "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
-                          "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
-                          "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
-                        ],
-                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
                       }
                     ]
                   }
@@ -1857,8 +1847,8 @@
             "properties": [
               {
                 "type": "local_districts",
-                "status": "partial",
-                "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
+                "status": "yes",
+                "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
                   "lga1991"
                 ],
@@ -1869,16 +1859,6 @@
                       {
                         "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
                         "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
-                      },
-                      {
-                        "ref": "Section 32(2A) (new)",
-                        "fix": [
-                          "(a) Each local electoral area shall return not fewer than three and not more than five members.",
-                          "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
-                          "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
-                          "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
-                        ],
-                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
                       }
                     ]
                   }
@@ -2109,8 +2089,8 @@
             "properties": [
               {
                 "type": "local_districts",
-                "status": "partial",
-                "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
+                "status": "yes",
+                "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
                   "lga1991"
                 ],
@@ -2121,16 +2101,6 @@
                       {
                         "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
                         "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
-                      },
-                      {
-                        "ref": "Section 32(2A) (new)",
-                        "fix": [
-                          "(a) Each local electoral area shall return not fewer than three and not more than five members.",
-                          "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
-                          "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
-                          "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
-                        ],
-                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
                       }
                     ]
                   }
@@ -2348,8 +2318,8 @@
               },
               {
                 "type": "local_districts",
-                "status": "partial",
-                "explanation": "Councillors are elected in local electoral areas, but their sizes are set by the Minister rather than by law, and many areas elect six or seven councillors, too many to answer to a local community.",
+                "status": "yes",
+                "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
                   "lga1991"
                 ],
@@ -2360,16 +2330,6 @@
                       {
                         "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
                         "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
-                      },
-                      {
-                        "ref": "Section 32(2A) (new)",
-                        "fix": [
-                          "(a) Each local electoral area shall return not fewer than three and not more than five members.",
-                          "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
-                          "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
-                          "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
-                        ],
-                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
                       }
                     ]
                   }
@@ -2603,8 +2563,8 @@
               },
               {
                 "type": "local_districts",
-                "status": "partial",
-                "explanation": "Councillors are elected in local electoral areas, but their sizes are set by the Minister rather than by law, and many areas elect six or seven councillors, too many to answer to a local community.",
+                "status": "yes",
+                "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                 "laws": [
                   "lga1991"
                 ],
@@ -2615,16 +2575,6 @@
                       {
                         "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
                         "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
-                      },
-                      {
-                        "ref": "Section 32(2A) (new)",
-                        "fix": [
-                          "(a) Each local electoral area shall return not fewer than three and not more than five members.",
-                          "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
-                          "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
-                          "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
-                        ],
-                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
                       }
                     ]
                   }
@@ -3373,8 +3323,8 @@
                   },
                   {
                     "type": "local_districts",
-                    "status": "partial",
-                    "explanation": "Councillors are elected in local electoral areas, but their sizes are set by the Minister rather than by law, and many areas elect six or seven councillors, too many to answer to a local community.",
+                    "status": "yes",
+                    "explanation": "Councillors are elected in local electoral areas of three to seven seats, drawn up after an independent Electoral Commission review. With the single transferable vote, candidates tend to focus on their own part of the area, so each councillor answers to particular voters.",
                     "laws": [
                       "lga1991"
                     ],
@@ -3385,16 +3335,6 @@
                           {
                             "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
                             "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
-                          },
-                          {
-                            "ref": "Section 32(2A) (new)",
-                            "fix": [
-                              "(a) Each local electoral area shall return not fewer than three and not more than five members.",
-                              "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
-                              "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
-                              "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
-                            ],
-                            "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
                           }
                         ]
                       }
