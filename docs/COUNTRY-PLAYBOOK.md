@@ -89,7 +89,10 @@ a `populationRule` applies a legal ceiling to the actual place.
   large list districts (Bulgaria's 19 seats) are not.
 * **Proportional representation**: no legal threshold; seats in proportion to votes. A national threshold such as
   4%, and the minority rule it produces, is partly met.
-* Executive: directly elected, with real powers; a chief executive appointed by a national body = not met.
+* Executive/Mayor: a directly elected mayor, or an executive appointed by the elected council (Individual
+  accountability then runs through the council, as in the American council-manager system). Partly met where the
+  council can only accept or refuse a national body's candidate, or cannot dismiss by majority (Ireland). Not met
+  where the state appoints the executive (Bulgaria's regional governor).
 
 **Personal autonomy and "No outside interference"**: outsiders to the interest stepping into the decision (a censor
 between author and publisher). Licences, state-set wages, prices or rents count. Rules that protect consent (fraud,

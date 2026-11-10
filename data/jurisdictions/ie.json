@@ -3000,42 +3000,86 @@
           {
             "type": "executive",
             "label": "Mayor",
-            "name": "Directly elected mayor",
+            "name": "Chief executive",
             "properties": [
               {
                 "type": "exists",
-                "status": "no",
-                "explanation": "The executive is a chief executive who is appointed, not elected. (Limerick is the exception: it elects its mayor directly since 2024.)",
+                "status": "yes",
+                "explanation": "Every county and city council has a chief executive, whom the council formally appoints.",
                 "laws": [
-                  "limerick2024",
                   "lga2001"
                 ],
                 "provisions": [
                   {
-                    "law": "limerick2024",
+                    "law": "lga2001",
                     "items": [
                       {
-                        "ref": "Section 9(1), (3)",
-                        "text": "(1) There shall be a mayor in respect of the administrative area of Limerick City and County Council, who— (a) shall be known … as Méara Luimnigh and, in the English language, as the Mayor of Limerick … (3) Subject to section 13, the Mayor shall be elected in accordance with Schedule 2."
+                        "ref": "Section 144(1)",
+                        "text": "For every county, city and city and county there shall be a chief executive to be known as \"the Chief Executive of....…\" (followed by the name of the city council, county council or city and county council, as the case may be) who shall hold employment under the council concerned."
                       },
                       {
-                        "ref": "Section 9A (new)",
-                        "fix": "Every city council, county council and city and county council shall have a directly elected mayor, elected at each local election by the local government electors of its area, to whom the functions of the chief executive and of the Cathaoirleach are transferred as provided for the Mayor of Limerick in sections 9 and 10.",
-                        "why": "Extends Limerick's directly elected mayor to every county and city."
+                        "ref": "Section 145(1)",
+                        "text": "The following are reserved functions— (a) the appointment by a county council, city council or a city and county council of a chief executive under section 6 of the Local Authorities (Officers and Employees) Act 1926 (in this section referred to as the \"Act of 1926\") by virtue of a recommendation of the Chief Executive of the Public Appointments Service, and (b) the suspension or removal from employment of a chief executive in accordance with section 146."
                       }
                     ]
-                  },
+                  }
+                ]
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "explanation": "Every function that is not reserved to the councillors is the chief executive's: staff, contracts, planning decisions, housing allocations and the day-to-day running of services.",
+                "laws": [
+                  "lga2001"
+                ],
+                "provisions": [
                   {
                     "law": "lga2001",
                     "items": [
                       {
                         "ref": "Section 149(4)",
                         "text": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "partial",
+                "explanation": "The executive answers to voters through the council that appoints it, but the council can only accept or refuse the one candidate the Public Appointments Service recommends, and it can remove the chief executive only with three-quarters of all its members and the Minister's sanction.",
+                "laws": [
+                  "lga2001"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 145(1)",
+                        "text": "The following are reserved functions— (a) the appointment by a county council, city council or a city and county council of a chief executive under section 6 of the Local Authorities (Officers and Employees) Act 1926 (in this section referred to as the \"Act of 1926\") by virtue of a recommendation of the Chief Executive of the Public Appointments Service, and (b) the suspension or removal from employment of a chief executive in accordance with section 146.",
+                        "fix": "The following are reserved functions— (a) the appointment by a county council, city council or a city and county council of a chief executive, chosen by the elected council from among the candidates found qualified in an open competition held for it by the Public Appointments Service, and (b) the suspension or removal from employment of a chief executive in accordance with section 146.",
+                        "why": "Lets the elected council choose its chief executive among qualified candidates, instead of accepting or refusing the one person a national body recommends."
                       },
                       {
-                        "ref": "Section 149(4)",
-                        "fix": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority, to be exercised by the directly elected mayor provided for in section 9A of the Local Government (Mayor of Limerick) and Miscellaneous Provisions Act 2024.",
-                        "why": "Puts the executive under an elected mayor instead of an appointed chief executive. Goes together with the new section 9A of the Mayor of Limerick Act."
+                        "ref": "Section 145(3)",
+                        "text": "… such council shall— (a) within 3 months of the date of the recommendation meet and decide to appoint or not appoint as chief executive the person so recommended, and (b) in the event of deciding not to approve the appointment, furnish to the recommended person the reasons for such decision."
+                      },
+                      {
+                        "ref": "Section 146(1)(a)",
+                        "text": "Subject to this section, the elected council of a local authority may by resolution suspend or remove from employment the chief executive for such local authority for stated misbehaviour or if his or her suspension or removal appears to them to be necessary for the effective performance by the local authority of its functions."
+                      },
+                      {
+                        "ref": "Section 146(5)",
+                        "text": "It is necessary for the passing of a resolution under this section that— (a) at least three-quarters of the total number of members of the local authority concerned vote in favour of the resolution, and (b) the members of the council concerned shall have considered any statement prepared by the chief executive under subsection (4).",
+                        "fix": "It is necessary for the passing of a resolution under this section that— (a) a majority of the total number of members of the local authority concerned vote in favour of the resolution, and (b) the members of the council concerned shall have considered any statement prepared by the chief executive under subsection (4).",
+                        "why": "Lets a majority of the council dismiss the chief executive, as in the American council-manager system."
+                      },
+                      {
+                        "ref": "Section 146(7)(a)",
+                        "text": "A chief executive shall not be removed under this section without the sanction of the Minister given under this subsection.",
+                        "fix": "(deleted)",
+                        "why": "Removes the Minister's veto over the council's decision."
                       }
                     ]
                   }
