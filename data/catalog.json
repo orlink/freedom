@@ -348,8 +348,8 @@
     },
     "local_districts": {
       "gate": false,
-      "name": "Elected in local districts",
-      "longName": "Members are elected in districts within the community",
+      "name": "Local representation",
+      "longName": "Local representation",
       "description": "Each part of the community should elect its own representative, who answers to it, instead of one list for the whole area."
     },
     "no_roadblocks": {
