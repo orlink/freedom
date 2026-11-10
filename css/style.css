@@ -221,3 +221,14 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
   .req.has-chat .provisions .verdict, .provisions .verdict:has(.fix-btn) { padding-top: 54px; }
   .chat-pop { position: fixed; top: auto; left: 16px; right: 16px; bottom: max(16px, env(safe-area-inset-bottom, 0px)); width: auto; max-height: 75vh; }
 }
+
+/* The chat button is just the bubble icon, in the verdict band's own text colour. */
+.req > .chat-wrap .chat-btn { background: transparent; border: 0; box-shadow: none; width: 34px; height: 34px; border-radius: 8px; opacity: .85; }
+.req > .chat-wrap .chat-btn:hover, .req > .chat-wrap .chat-btn[aria-expanded="true"] { background: rgba(255, 255, 255, .16); opacity: 1; }
+.req > .chat-wrap { top: 13px; right: 13px; }
+.req:has(.verdict.t-white) .chat-btn, .req:has(.verdict.t-lightgrey) .chat-btn { color: #111; }
+.req:has(.verdict.t-darkgrey) .chat-btn, .req:has(.verdict.t-black) .chat-btn { color: #fff; }
+:root[data-scale="red"] .req:has(.verdict.t-white) .chat-btn, :root[data-scale="red"] .req:has(.verdict.t-lightgrey) .chat-btn { color: #3a1519; }
+:root[data-scale="teal"] .req:has(.verdict.t-white) .chat-btn { color: #fff; }
+:root[data-scale="teal"] .req:has(.verdict.t-lightgrey) .chat-btn { color: #0f3a34; }
+.req-head .chat-btn { background: transparent; border: 0; box-shadow: none; }

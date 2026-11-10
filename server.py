@@ -328,6 +328,8 @@ class Handler(SimpleHTTPRequestHandler):
         ip = self.client_address[0]
         if ip in ("127.0.0.1", "::1") and self.headers.get("X-Forwarded-For"):
             ip = self.headers["X-Forwarded-For"].split(",")[-1].strip()  # behind a local reverse proxy: the visitor's address
+            if ip.count(":") == 1:
+                ip = ip.split(":")[0]  # IIS ARR appends the port to an IPv4 address
         if not chat_allowed(ip):
             return self.send_json(200, {"reply": None, "error": "Too many messages in a short time. Your message is saved; please wait a few minutes before asking more."})
         text, err = chat_reply(context, msgs)
