@@ -125,7 +125,7 @@
     "nmwa2000": {
       "title": "National Minimum Wage Act 2000",
       "short": "National Minimum Wage Act 2000",
-      "url": "https://www.irishstatutebook.ie/eli/2000/act/5/enacted/en/html"
+      "url": "https://revisedacts.lawreform.ie/eli/2000/act/5/revised/en/html"
     },
     "rta2004": {
       "title": "Residential Tenancies Act 2004",
@@ -135,7 +135,12 @@
     "lga1991": {
       "title": "Local Government Act 1991",
       "short": "LGA 1991",
-      "url": "https://revisedacts.lawreform.ie/eli/1991/act/11/revised/en/html"
+      "url": "https://www.irishstatutebook.ie/eli/1991/act/11/enacted/en/html"
+    },
+    "era2022": {
+      "title": "Electoral Reform Act 2022",
+      "short": "Electoral Reform Act 2022",
+      "url": "https://revisedacts.lawreform.ie/eli/2022/act/30/revised/en/html"
     }
   },
   "levels": {
@@ -223,7 +228,7 @@
               {
                 "type": "parental_rights",
                 "status": "yes",
-                "explanation": "Parents are the primary educators and carers, and the State steps in only in exceptional cases, by proportionate means. A child can be taken without a court order only when there is an immediate and serious risk, and then a judge must decide within three days; an emergency care order lasts at most eight days, and longer care needs a court's finding of actual or likely harm.",
+                "explanation": "Parents are the primary educators and carers, and the State steps in only in exceptional cases, by proportionate means. A child can be taken without a court order only when there is an immediate and serious risk, and then the Agency must bring the case to a judge within three days; an emergency care order lasts at most eight days, and longer care needs a court's finding of actual or likely harm.",
                 "laws": [
                   "bunreacht",
                   "cca1991"
@@ -264,7 +269,7 @@
               {
                 "type": "joint_decisions",
                 "status": "yes",
-                "explanation": "Both parents are joint guardians of their child, and a guardian can ask a court to settle a question only when they disagree.",
+                "explanation": "Married parents are joint guardians of their child, and so is an unmarried father who has lived with the mother for 12 consecutive months, including 3 after the birth; other fathers become guardians by agreement or court order. A guardian can ask a court to settle a question only when they disagree.",
                 "laws": [
                   "gia1964"
                 ],
@@ -531,7 +536,7 @@
               {
                 "type": "no_outside_override",
                 "status": "partial",
-                "explanation": "The State fixes some terms whatever both parties want: the minimum wage, set by the Minister, and since March 2026 a nationwide cap on rent increases, tied to inflation, with an exemption for new apartments. Rules against fraud and coercion protect consent and are not counted.",
+                "explanation": "The State fixes some terms whatever both parties want: the minimum wage, set by the Minister, and since March 2026 a nationwide cap on rent increases, tied to inflation, which also applies to new apartments; they are exempt only from the extra fixed-percentage limit. Rules against fraud and coercion protect consent and are not counted.",
                 "laws": [
                   "nmwa2000",
                   "rta2004"
@@ -542,7 +547,7 @@
                     "items": [
                       {
                         "ref": "Section 14",
-                        "text": "Subject to sections 17 and 18— (a) an employee who has attained the age of 18 years shall … be remunerated by his or her employer in respect of the employee's working hours in any pay reference period, at an hourly rate of pay that on average is not less than the national minimum hourly rate of pay, and (b) an employee who has not attained the age of 18 years shall be remunerated … at an hourly rate of pay that on average is not less than 70 per cent of the national minimum hourly rate of pay."
+                        "text": "14.— Subject to sections 15, 17, 18 and 41, an employee shall be remunerated by his or her employer in respect of the employee's working hours in any pay reference period, at an hourly rate of pay that on average is not less than the national minimum hourly rate of pay."
                       }
                     ]
                   },
@@ -673,7 +678,7 @@
                     "items": [
                       {
                         "ref": "Section 178(3)",
-                        "text": "The directors of a company shall, on the requisition of one or more members holding, or together holding, at the date of the deposit of the requisition, not less than 10 per cent of the paid up share capital … carrying … the right of voting at general meetings …, forthwith proceed duly to convene an extraordinary general meeting …"
+                        "text": "(3) The directors of a company shall, on the requisition of one or more members holding, or together holding, at the date of the deposit of the requisition, not less than 10 per cent of the paid up share capital of the company, as at the date of the deposit carries the right of voting at general meetings of the company, forthwith proceed duly to convene an extraordinary general meeting of the company."
                       },
                       {
                         "ref": "Section 186",
@@ -690,17 +695,7 @@
                 "laws": [
                   "ca2014"
                 ],
-                "provisions": [
-                  {
-                    "law": "ca2014",
-                    "items": [
-                      {
-                        "ref": "Section 186",
-                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …"
-                      }
-                    ]
-                  }
-                ]
+                "provisions": []
               },
               {
                 "type": "broad_scope",
@@ -728,17 +723,7 @@
                 "laws": [
                   "ca2014"
                 ],
-                "provisions": [
-                  {
-                    "law": "ca2014",
-                    "items": [
-                      {
-                        "ref": "Section 186",
-                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …"
-                      }
-                    ]
-                  }
-                ]
+                "provisions": []
               }
             ]
           },
@@ -787,7 +772,7 @@
               {
                 "type": "broad_scope",
                 "status": "yes",
-                "explanation": "Members decide the statutes, the use of any surplus and the board.",
+                "explanation": "Members decide the rules, the use of any surplus and the board.",
                 "laws": [
                   "ips"
                 ],
@@ -918,7 +903,7 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "Anyone may appoint an agent or give a power of attorney; agency is governed mainly by common law.",
+                "explanation": "Anyone can appoint an agent by contract under the common law; the Powers of Attorney Act sets the formalities for a formal power of attorney.",
                 "laws": [
                   "poa1996"
                 ],
@@ -1114,7 +1099,7 @@
                     "items": [
                       {
                         "ref": "Section 178(3)",
-                        "text": "The directors of a company shall, on the requisition of one or more members holding, or together holding, at the date of the deposit of the requisition, not less than 10 per cent of the paid up share capital … carrying … the right of voting at general meetings …, forthwith proceed duly to convene an extraordinary general meeting …"
+                        "text": "(3) The directors of a company shall, on the requisition of one or more members holding, or together holding, at the date of the deposit of the requisition, not less than 10 per cent of the paid up share capital of the company, as at the date of the deposit carries the right of voting at general meetings of the company, forthwith proceed duly to convene an extraordinary general meeting of the company."
                       }
                     ]
                   }
@@ -1127,36 +1112,16 @@
                 "laws": [
                   "ca2014"
                 ],
-                "provisions": [
-                  {
-                    "law": "ca2014",
-                    "items": [
-                      {
-                        "ref": "Section 186",
-                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …"
-                      }
-                    ]
-                  }
-                ]
+                "provisions": []
               },
               {
                 "type": "broad_scope",
                 "status": "yes",
-                "explanation": "Members adopt the statutes and elect the board.",
+                "explanation": "Members adopt the constitution and elect the board.",
                 "laws": [
                   "ca2014"
                 ],
-                "provisions": [
-                  {
-                    "law": "ca2014",
-                    "items": [
-                      {
-                        "ref": "Section 186",
-                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …"
-                      }
-                    ]
-                  }
-                ]
+                "provisions": []
               },
               {
                 "type": "own_means",
@@ -1299,16 +1264,27 @@
               },
               {
                 "type": "no_quorum",
-                "status": "unknown",
-                "explanation": "Meeting quorum follows the company's constitution and company law; not yet checked.",
+                "status": "yes",
+                "explanation": "Two members present in person or by proxy form a quorum, unless the company's constitution provides otherwise.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 182(2)",
+                        "text": "Save to the extent that its constitution provides otherwise or in a case falling within subsection (3), 2 members of a company present in person or by proxy at a general meeting of it shall be a quorum."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "citizen_triggered",
                 "status": "yes",
-                "explanation": "Members holding at least 10% of voting rights can requisition a general meeting.",
+                "explanation": "Members can requisition a general meeting, which the directors must then convene; in a company with share capital, holders of 10% of the voting capital can.",
                 "laws": [
                   "ca2014"
                 ],
@@ -1318,7 +1294,7 @@
                     "items": [
                       {
                         "ref": "Section 178(3)",
-                        "text": "The directors of a company shall, on the requisition of one or more members holding, or together holding, at the date of the deposit of the requisition, not less than 10 per cent of the paid up share capital … carrying … the right of voting at general meetings …, forthwith proceed duly to convene an extraordinary general meeting …"
+                        "text": "(3) The directors of a company shall, on the requisition of one or more members holding, or together holding, at the date of the deposit of the requisition, not less than 10 per cent of the paid up share capital of the company, as at the date of the deposit carries the right of voting at general meetings of the company, forthwith proceed duly to convene an extraordinary general meeting of the company."
                       }
                     ]
                   }
@@ -1327,7 +1303,7 @@
               {
                 "type": "broad_scope",
                 "status": "yes",
-                "explanation": "The members decide the annual service charge and the budget for insurance, maintenance, repairs and cleaning of the common areas, and the company makes house rules binding on owners and tenants.",
+                "explanation": "The annual service charge and the budget for insurance, maintenance, repairs and cleaning of the common areas must be considered by a general meeting of the members before it is levied, and the company makes house rules binding on owners and tenants.",
                 "laws": [
                   "mud2011"
                 ],
@@ -1359,8 +1335,8 @@
                     "law": "mud2011",
                     "items": [
                       {
-                        "ref": "Section 18(2)",
-                        "text": "The annual service charge in respect of a multi-unit development relating to a particular period shall not be levied unless it has been considered by a general meeting of the members concerned called for purposes which include the consideration of an estimate of the expenditure it is anticipated will be incurred by the company in that period and the meeting shall take place within reasonable proximity to the multi-unit development and at a reasonable time (unless otherwise agreed in writing by 75 per cent of the members)."
+                        "ref": "Section 19(5)",
+                        "text": "Subject to subsection (6) the amount of the contribution to be paid as respects a unit by each unit owner of such a unit to the sinking fund in respect of a particular year shall be the amount of €200 or such other amount as may be agreed by a meeting of the members as the contribution in respect of the year concerned."
                       }
                     ]
                   }
@@ -1401,7 +1377,8 @@
                 "laws": [
                   "mud2011",
                   "ca2014"
-                ]
+                ],
+                "explanation": "The directors manage the company's business and exercise its powers, subject to the Act and the company's constitution."
               },
               {
                 "type": "individual_vote",
@@ -1466,10 +1443,10 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66A (new)",
+                            "ref": "Section 66I (new)",
                             "fix": [
-                              "(1) A local referendum shall be held in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, on the proposal of an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
-                              "(2) The elected council shall decide to hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months.",
+                              "(1) A local referendum in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, may be proposed by an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
+                              "(2) The elected council shall hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months, and may decide to hold it on a proposal supported by fewer.",
                               "(3) A referendum may be held on any matter within the functions of the local authority, including its budget and the local adjustment factor of the local property tax, and voters may decide on a draft resolution, bye-law or plan, which, if approved, takes effect as worded.",
                               "(4) The proposal shall be held to be approved if a majority of the votes cast are in its favour, regardless of turnout.",
                               "(5) A petition shall not lapse because the term of the elected council ends; the newly elected council shall decide on it within one month of its first meeting."
@@ -1501,7 +1478,7 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66B (new)",
+                            "ref": "Section 66J (new)",
                             "fix": [
                               "(1) Where, within two months after a resolution of the elected council is published, an initiative committee submits a petition signed by not less than one fiftieth of the local government electors in the area of the local authority, the resolution shall not take effect until it has been approved at a local referendum.",
                               "(2) Where the resolution concerns only one municipal district, local electoral area, town, village or neighbourhood, the petition may be signed by one fiftieth of the electors there and the referendum shall be held there.",
@@ -1534,7 +1511,7 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66C (new)",
+                            "ref": "Section 66K (new)",
                             "fix": "A resolution of the elected council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term borrowing, or on the disposal of land or property of public importance shall take effect only after its approval at a local referendum. Where such a resolution concerns only one municipal district, town, village or neighbourhood, the referendum shall be held there.",
                             "why": "Sends large spending, borrowing and sales of public property to the voters automatically."
                           }
@@ -1606,7 +1583,7 @@
                     "law": "lga1991",
                     "items": [
                       {
-                        "ref": "Section 32(2)(a)",
+                        "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
                         "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
                       },
                       {
@@ -1617,7 +1594,7 @@
                           "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
                           "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
                         ],
-                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil, instead of leaving it to the Minister's terms of reference."
+                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
                       }
                     ]
                   }
@@ -1655,10 +1632,10 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66A (new)",
+                            "ref": "Section 66I (new)",
                             "fix": [
-                              "(1) A local referendum shall be held in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, on the proposal of an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
-                              "(2) The elected council shall decide to hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months.",
+                              "(1) A local referendum in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, may be proposed by an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
+                              "(2) The elected council shall hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months, and may decide to hold it on a proposal supported by fewer.",
                               "(3) A referendum may be held on any matter within the functions of the local authority, including its budget and the local adjustment factor of the local property tax, and voters may decide on a draft resolution, bye-law or plan, which, if approved, takes effect as worded.",
                               "(4) The proposal shall be held to be approved if a majority of the votes cast are in its favour, regardless of turnout.",
                               "(5) A petition shall not lapse because the term of the elected council ends; the newly elected council shall decide on it within one month of its first meeting."
@@ -1690,7 +1667,7 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66B (new)",
+                            "ref": "Section 66J (new)",
                             "fix": [
                               "(1) Where, within two months after a resolution of the elected council is published, an initiative committee submits a petition signed by not less than one fiftieth of the local government electors in the area of the local authority, the resolution shall not take effect until it has been approved at a local referendum.",
                               "(2) Where the resolution concerns only one municipal district, local electoral area, town, village or neighbourhood, the petition may be signed by one fiftieth of the electors there and the referendum shall be held there.",
@@ -1723,7 +1700,7 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66C (new)",
+                            "ref": "Section 66K (new)",
                             "fix": "A resolution of the elected council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term borrowing, or on the disposal of land or property of public importance shall take effect only after its approval at a local referendum. Where such a resolution concerns only one municipal district, town, village or neighbourhood, the referendum shall be held there.",
                             "why": "Sends large spending, borrowing and sales of public property to the voters automatically."
                           }
@@ -1795,7 +1772,7 @@
                     "law": "lga1991",
                     "items": [
                       {
-                        "ref": "Section 32(2)(a)",
+                        "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
                         "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
                       },
                       {
@@ -1806,7 +1783,7 @@
                           "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
                           "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
                         ],
-                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil, instead of leaving it to the Minister's terms of reference."
+                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
                       }
                     ]
                   }
@@ -1843,10 +1820,10 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66A (new)",
+                            "ref": "Section 66I (new)",
                             "fix": [
-                              "(1) A local referendum shall be held in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, on the proposal of an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
-                              "(2) The elected council shall decide to hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months.",
+                              "(1) A local referendum in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, may be proposed by an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
+                              "(2) The elected council shall hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months, and may decide to hold it on a proposal supported by fewer.",
                               "(3) A referendum may be held on any matter within the functions of the local authority, including its budget and the local adjustment factor of the local property tax, and voters may decide on a draft resolution, bye-law or plan, which, if approved, takes effect as worded.",
                               "(4) The proposal shall be held to be approved if a majority of the votes cast are in its favour, regardless of turnout.",
                               "(5) A petition shall not lapse because the term of the elected council ends; the newly elected council shall decide on it within one month of its first meeting."
@@ -1878,7 +1855,7 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66B (new)",
+                            "ref": "Section 66J (new)",
                             "fix": [
                               "(1) Where, within two months after a resolution of the elected council is published, an initiative committee submits a petition signed by not less than one fiftieth of the local government electors in the area of the local authority, the resolution shall not take effect until it has been approved at a local referendum.",
                               "(2) Where the resolution concerns only one municipal district, local electoral area, town, village or neighbourhood, the petition may be signed by one fiftieth of the electors there and the referendum shall be held there.",
@@ -1911,7 +1888,7 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66C (new)",
+                            "ref": "Section 66K (new)",
                             "fix": "A resolution of the elected council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term borrowing, or on the disposal of land or property of public importance shall take effect only after its approval at a local referendum. Where such a resolution concerns only one municipal district, town, village or neighbourhood, the referendum shall be held there.",
                             "why": "Sends large spending, borrowing and sales of public property to the voters automatically."
                           }
@@ -1946,11 +1923,6 @@
                       {
                         "ref": "Section 24(2)",
                         "text": "On the transfer date each town council stands dissolved and ceases to exist and— (a) the local authority for a county or a city and county in which a town whose town council is so dissolved is situated shall, for all purposes, become and be the successor to the town council on that date, …"
-                      },
-                      {
-                        "ref": "Section 24(2)",
-                        "fix": "(repealed)",
-                        "why": "Restores elected town councils."
                       }
                     ]
                   },
@@ -1988,7 +1960,7 @@
                     "law": "lga1991",
                     "items": [
                       {
-                        "ref": "Section 32(2)(a)",
+                        "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
                         "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
                       },
                       {
@@ -1999,7 +1971,7 @@
                           "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
                           "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
                         ],
-                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil, instead of leaving it to the Minister's terms of reference."
+                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
                       }
                     ]
                   }
@@ -2011,7 +1983,7 @@
       }
     },
     "municipality": {
-      "summary": "Outside Dublin, counties are divided into municipal districts. Their members are the county councillors elected in the district, with a limited set of reserved functions.",
+      "summary": "Most counties are divided into municipal districts; Dublin, Cork City and Galway City are not. Their members are the county councillors elected in the district, with a limited set of reserved functions.",
       "direct": {
         "mechanisms": [
           {
@@ -2036,10 +2008,10 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66A (new)",
+                            "ref": "Section 66I (new)",
                             "fix": [
-                              "(1) A local referendum shall be held in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, on the proposal of an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
-                              "(2) The elected council shall decide to hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months.",
+                              "(1) A local referendum in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, may be proposed by an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
+                              "(2) The elected council shall hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months, and may decide to hold it on a proposal supported by fewer.",
                               "(3) A referendum may be held on any matter within the functions of the local authority, including its budget and the local adjustment factor of the local property tax, and voters may decide on a draft resolution, bye-law or plan, which, if approved, takes effect as worded.",
                               "(4) The proposal shall be held to be approved if a majority of the votes cast are in its favour, regardless of turnout.",
                               "(5) A petition shall not lapse because the term of the elected council ends; the newly elected council shall decide on it within one month of its first meeting."
@@ -2071,7 +2043,7 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66B (new)",
+                            "ref": "Section 66J (new)",
                             "fix": [
                               "(1) Where, within two months after a resolution of the elected council is published, an initiative committee submits a petition signed by not less than one fiftieth of the local government electors in the area of the local authority, the resolution shall not take effect until it has been approved at a local referendum.",
                               "(2) Where the resolution concerns only one municipal district, local electoral area, town, village or neighbourhood, the petition may be signed by one fiftieth of the electors there and the referendum shall be held there.",
@@ -2104,7 +2076,7 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66C (new)",
+                            "ref": "Section 66K (new)",
                             "fix": "A resolution of the elected council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term borrowing, or on the disposal of land or property of public importance shall take effect only after its approval at a local referendum. Where such a resolution concerns only one municipal district, town, village or neighbourhood, the referendum shall be held there.",
                             "why": "Sends large spending, borrowing and sales of public property to the voters automatically."
                           }
@@ -2159,7 +2131,7 @@
                         "text": "Subject to subsection (4), every county and city and county set out in Part 1 and Part 3, respectively, of Schedule 5 shall have 2 or more districts (each consisting of one or more than one local electoral area) to be known as a municipal district and collectively as municipal districts, as the Minister shall determine by order made under section 23(1)(c)."
                       },
                       {
-                        "ref": "Section 22A (new subsection)",
+                        "ref": "Section 22AA (new)",
                         "fix": "The members of each municipal district shall adopt, each year, a budget for the district, allocated from the local authority's income in proportion to the district's population, and shall exercise as reserved functions all functions of the local authority that concern only the district.",
                         "why": "Gives municipal districts their own budget and every function that concerns only them, which the county council can no longer withhold or take back."
                       }
@@ -2174,6 +2146,35 @@
                 "laws": [
                   "lga2001",
                   "ler1995"
+                ]
+              },
+              {
+                "type": "local_districts",
+                "status": "partial",
+                "explanation": "Councillors are elected in local electoral areas, but their sizes are set by the Minister rather than by law, and many areas elect six or seven councillors, too many to answer to a local community.",
+                "laws": [
+                  "lga1991"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga1991",
+                    "items": [
+                      {
+                        "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
+                        "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
+                      },
+                      {
+                        "ref": "Section 32(2A) (new)",
+                        "fix": [
+                          "(a) Each local electoral area shall return not fewer than three and not more than five members.",
+                          "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
+                          "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
+                          "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
+                        ],
+                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -2215,10 +2216,10 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66A (new)",
+                            "ref": "Section 66I (new)",
                             "fix": [
-                              "(1) A local referendum shall be held in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, on the proposal of an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
-                              "(2) The elected council shall decide to hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months.",
+                              "(1) A local referendum in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, may be proposed by an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
+                              "(2) The elected council shall hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months, and may decide to hold it on a proposal supported by fewer.",
                               "(3) A referendum may be held on any matter within the functions of the local authority, including its budget and the local adjustment factor of the local property tax, and voters may decide on a draft resolution, bye-law or plan, which, if approved, takes effect as worded.",
                               "(4) The proposal shall be held to be approved if a majority of the votes cast are in its favour, regardless of turnout.",
                               "(5) A petition shall not lapse because the term of the elected council ends; the newly elected council shall decide on it within one month of its first meeting."
@@ -2250,7 +2251,7 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66B (new)",
+                            "ref": "Section 66J (new)",
                             "fix": [
                               "(1) Where, within two months after a resolution of the elected council is published, an initiative committee submits a petition signed by not less than one fiftieth of the local government electors in the area of the local authority, the resolution shall not take effect until it has been approved at a local referendum.",
                               "(2) Where the resolution concerns only one municipal district, local electoral area, town, village or neighbourhood, the petition may be signed by one fiftieth of the electors there and the referendum shall be held there.",
@@ -2283,7 +2284,7 @@
                             "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
                           },
                           {
-                            "ref": "Section 66C (new)",
+                            "ref": "Section 66K (new)",
                             "fix": "A resolution of the elected council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term borrowing, or on the disposal of land or property of public importance shall take effect only after its approval at a local referendum. Where such a resolution concerns only one municipal district, town, village or neighbourhood, the referendum shall be held there.",
                             "why": "Sends large spending, borrowing and sales of public property to the voters automatically."
                           }
@@ -2344,8 +2345,8 @@
                       },
                       {
                         "ref": "Section 149(4)",
-                        "fix": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority, to be exercised by the directly elected mayor under the direction of the elected council.",
-                        "why": "Puts the executive under elected people instead of an appointed chief executive."
+                        "fix": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority, to be exercised by the directly elected mayor provided for in section 9A of the Local Government (Mayor of Limerick) and Miscellaneous Provisions Act 2024.",
+                        "why": "Puts the executive under an elected mayor instead of an appointed chief executive. Goes together with the new section 9A of the Mayor of Limerick Act."
                       }
                     ]
                   },
@@ -2370,6 +2371,35 @@
                 ]
               },
               {
+                "type": "local_districts",
+                "status": "partial",
+                "explanation": "Councillors are elected in local electoral areas, but their sizes are set by the Minister rather than by law, and many areas elect six or seven councillors, too many to answer to a local community.",
+                "laws": [
+                  "lga1991"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga1991",
+                    "items": [
+                      {
+                        "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
+                        "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
+                      },
+                      {
+                        "ref": "Section 32(2A) (new)",
+                        "fix": [
+                          "(a) Each local electoral area shall return not fewer than three and not more than five members.",
+                          "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
+                          "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
+                          "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
+                        ],
+                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
                 "type": "proportional_representation",
                 "status": "yes",
                 "explanation": "Members are elected by proportional representation with the single transferable vote.",
@@ -2387,7 +2417,7 @@
               {
                 "type": "exists",
                 "status": "no",
-                "explanation": "The executive is a chief executive appointed, not elected. (Limerick is the exception: it elects its mayor directly since 2024.)",
+                "explanation": "The executive is a chief executive who is appointed, not elected. (Limerick is the exception: it elects its mayor directly since 2024.)",
                 "laws": [
                   "limerick2024"
                 ],
@@ -2445,7 +2475,7 @@
                           {
                             "ref": "Article 47A (new)",
                             "fix": [
-                              "1 A proposal for a law, or for an amendment of this Constitution, may be initiated by not less than 50,000 citizens who have the right to vote at a Referendum, by a petition addressed to the Ceann Comhairle.",
+                              "1 Notwithstanding Articles 15.2.1°, 46.2 and 47, a proposal for a law, or for an amendment of this Constitution, may be initiated by not less than 50,000 citizens who have the right to vote at a Referendum, by a petition addressed to the Ceann Comhairle.",
                               "2 Where the petition is signed by not less than 100,000 such citizens within six months, the proposal shall, unless enacted by the Oireachtas without change within six months, be submitted by Referendum to the decision of the people; the Oireachtas may submit an alternative proposal at the same Referendum.",
                               "3 A proposal so submitted shall be held to have been approved by the people if a majority of the votes cast at the Referendum are in its favour, and shall be signed and promulgated as a law, or as an amendment of this Constitution, accordingly.",
                               "4 A petition shall not lapse on a dissolution of Dáil Éireann."
@@ -2479,8 +2509,9 @@
                           {
                             "ref": "Article 27A (new)",
                             "fix": [
-                              "1 Where, within 100 days after a Bill has been signed by the President, a petition signed by not less than 50,000 citizens who have the right to vote at a Referendum is presented to the President, the law shall be submitted by Referendum to the decision of the people.",
-                              "2 The law shall not come into operation before the Referendum, and shall stand repealed if it is vetoed by the people."
+                              "1 Notwithstanding Article 25.4, a law shall not come into operation until 100 days after it has been signed by the President.",
+                              "2 Where, within those 100 days, a petition signed by not less than 50,000 citizens who have the right to vote at a Referendum is presented to the President, the law shall be submitted by Referendum to the decision of the people and shall not come into operation unless it is approved.",
+                              "3 The law shall be held to have been vetoed if a majority of the votes cast at the Referendum are against it, and shall then stand repealed."
                             ],
                             "why": "Lets 50,000 citizens call a vote on any new law before it takes effect. Today only a Senate majority and a third of the Dáil can ask for one, and it has never been used."
                           },
@@ -2522,7 +2553,7 @@
                   {
                     "type": "binding",
                     "status": "yes",
-                    "explanation": "An approved amendment is signed into law; a vetoed ordinary proposal cannot be enacted.",
+                    "explanation": "An amendment approved by the people must be signed by the President and promulgated as part of the Constitution.",
                     "laws": [
                       "bunreacht"
                     ],
@@ -2531,8 +2562,8 @@
                         "law": "bunreacht",
                         "items": [
                           {
-                            "ref": "Article 46.2",
-                            "text": "Every proposal for an amendment of this Constitution shall be initiated in Dáil Éireann as a Bill, and shall upon having been passed or deemed to have been passed by both Houses of the Oireachtas, be submitted by Referendum to the decision of the people in accordance with the law for the time being in force relating to the Referendum."
+                            "ref": "Article 46.5",
+                            "text": "A Bill containing a proposal for the amendment of this Constitution shall be signed by the President forthwith upon his being satisfied that the provisions of this Article have been complied with in respect thereof and that such proposal has been duly approved by the people in accordance with the provisions of section 1 of Article 47 of this Constitution and shall be duly promulgated by the President as a law."
                           }
                         ]
                       }
@@ -2590,6 +2621,52 @@
                           {
                             "ref": "Article 46.2",
                             "text": "Every proposal for an amendment of this Constitution shall be initiated in Dáil Éireann as a Bill, and shall upon having been passed or deemed to have been passed by both Houses of the Oireachtas, be submitted by Referendum to the decision of the people in accordance with the law for the time being in force relating to the Referendum."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "no_topic_restrictions",
+                    "status": "partial",
+                    "explanation": "Only amendments of the Constitution go to the people automatically. Ordinary laws, the budget, taxes and treaties that need no amendment are never put to a vote unless the Oireachtas chooses to.",
+                    "laws": [
+                      "bunreacht"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bunreacht",
+                        "items": [
+                          {
+                            "ref": "Article 46.2",
+                            "text": "Every proposal for an amendment of this Constitution shall be initiated in Dáil Éireann as a Bill, and shall upon having been passed or deemed to have been passed by both Houses of the Oireachtas, be submitted by Referendum to the decision of the people in accordance with the law for the time being in force relating to the Referendum."
+                          },
+                          {
+                            "ref": "Article 46A (new)",
+                            "fix": [
+                              "1 A Bill providing for the State to join an international organisation or community, or to transfer to one any power of the State, shall not be signed by the President until it has been approved by the people at a Referendum, whether or not it contains a proposal for the amendment of this Constitution.",
+                              "2 Such a proposal shall be held to have been approved by the people if a majority of the votes cast at the Referendum are in its favour."
+                            ],
+                            "why": "Sends every transfer of powers abroad to the people automatically, as Switzerland does for joining supranational communities. Ordinary laws can be put to a vote by citizens through the proposed Articles 27A and 47A."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "no_roadblocks",
+                    "status": "yes",
+                    "explanation": "Once both Houses pass an amendment, the Minister must set a polling day 30 to 90 days later.",
+                    "laws": [
+                      "ref1994"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "ref1994",
+                        "items": [
+                          {
+                            "ref": "Section 10(1), (2)",
+                            "text": "(1) Whenever a Bill containing a proposal for the amendment of the Constitution shall have been passed or deemed to have been passed by both Houses of the Oireachtas the Minister shall by order appoint the day (in this Act referred to as \"the polling day\") upon which and the period during which the poll at the referendum on such proposal shall be taken. (2) Subject to section 11, the polling day shall be not less than thirty days and not more than ninety days after the date of the order."
                           }
                         ]
                       }
@@ -2679,9 +2756,10 @@
               {
                 "type": "local_districts",
                 "status": "yes",
-                "explanation": "Every constituency elects three to five members, with the same population per member as far as practicable, and an independent Electoral Commission redraws them after every census, avoiding county boundaries where it can.",
+                "explanation": "Every constituency elects three to five members, with the same population per member as far as practicable, and an independent Electoral Commission redraws them after every census, avoiding breaching county boundaries as far as practicable.",
                 "laws": [
-                  "bunreacht"
+                  "bunreacht",
+                  "era2022"
                 ],
                 "provisions": [
                   {
@@ -2697,13 +2775,22 @@
                         ]
                       }
                     ]
+                  },
+                  {
+                    "law": "era2022",
+                    "items": [
+                      {
+                        "ref": "Section 57(2)(b), (c)",
+                        "text": "(b) each constituency shall return 3, 4 or 5 members; (c) the breaching of county boundaries shall be avoided as far as practicable;"
+                      }
+                    ]
                   }
                 ]
               },
               {
                 "type": "proportional_representation",
                 "status": "yes",
-                "explanation": "Seats are shared by the single transferable vote with no legal threshold: a candidate needs a quota of 1/(seats+1) of the votes in the constituency, and transfers carry votes on to the voter's next choice, so few votes are wasted.",
+                "explanation": "Seats are shared by the single transferable vote with no legal threshold. With three to five seats per constituency, a candidate needs a quota of 25% of the local vote in a 3-seater and about 17% in a 5-seater, so small parties win fewer seats than their national share; but because transfers carry votes on to the voter's next choice, most votes still help elect someone.",
                 "laws": [
                   "bunreacht",
                   "ea1992"
@@ -2813,7 +2900,8 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "explanation": "Irish citizens and EU residents in Ireland elect Ireland's 14 Members of the European Parliament."
               },
               {
                 "type": "binding_powers",
@@ -2831,17 +2919,7 @@
                 "laws": [
                   "epea1997"
                 ],
-                "provisions": [
-                  {
-                    "law": "epea1997",
-                    "items": [
-                      {
-                        "ref": "Section 15(1)",
-                        "text": "The constituencies for which candidates shall be elected under this Act to be representatives in the Parliament shall be those specified in the Third Schedule and the number of representatives to be so elected for such a constituency shall be the number specified in respect thereof in the third column of that Schedule."
-                      }
-                    ]
-                  }
-                ]
+                "provisions": []
               },
               {
                 "type": "local_districts",
@@ -2864,22 +2942,12 @@
               },
               {
                 "type": "proportional_representation",
-                "status": "yes",
-                "explanation": "Ireland's MEPs are elected by proportional representation with the single transferable vote, in three constituencies; seats per country are allocated degressively.",
+                "status": "partial",
+                "explanation": "Ireland's 14 MEPs are elected by single transferable vote in three constituencies of four or five seats, so a candidate needs about 17–20% of the local vote; and seats per country are allocated degressively, so smaller countries get more seats per voter.",
                 "laws": [
                   "epea1997"
                 ],
-                "provisions": [
-                  {
-                    "law": "epea1997",
-                    "items": [
-                      {
-                        "ref": "Section 15(1)",
-                        "text": "The constituencies for which candidates shall be elected under this Act to be representatives in the Parliament shall be those specified in the Third Schedule and the number of representatives to be so elected for such a constituency shall be the number specified in respect thereof in the third column of that Schedule."
-                      }
-                    ]
-                  }
-                ]
+                "provisions": []
               }
             ]
           }
@@ -2913,6 +2981,28 @@
                         "explanation": "Local government law provides no local referendum.",
                         "laws": [
                           "lga2001"
+                        ],
+                        "provisions": [
+                          {
+                            "law": "lga2001",
+                            "items": [
+                              {
+                                "ref": "Section 63(1)",
+                                "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                              },
+                              {
+                                "ref": "Section 66I (new)",
+                                "fix": [
+                                  "(1) A local referendum in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, may be proposed by an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
+                                  "(2) The elected council shall hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months, and may decide to hold it on a proposal supported by fewer.",
+                                  "(3) A referendum may be held on any matter within the functions of the local authority, including its budget and the local adjustment factor of the local property tax, and voters may decide on a draft resolution, bye-law or plan, which, if approved, takes effect as worded.",
+                                  "(4) The proposal shall be held to be approved if a majority of the votes cast are in its favour, regardless of turnout.",
+                                  "(5) A petition shall not lapse because the term of the elected council ends; the newly elected council shall decide on it within one month of its first meeting."
+                                ],
+                                "why": "Lets residents propose a local referendum with 1/100 of electors and oblige the council to hold it with 1/50, on any local matter, decided by the majority of those who vote. The same thresholds as proposed for Bulgaria."
+                              }
+                            ]
+                          }
                         ]
                       }
                     ]
@@ -2926,6 +3016,26 @@
                         "explanation": "Local government law provides no local referendum.",
                         "laws": [
                           "lga2001"
+                        ],
+                        "provisions": [
+                          {
+                            "law": "lga2001",
+                            "items": [
+                              {
+                                "ref": "Section 63(1)",
+                                "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                              },
+                              {
+                                "ref": "Section 66J (new)",
+                                "fix": [
+                                  "(1) Where, within two months after a resolution of the elected council is published, an initiative committee submits a petition signed by not less than one fiftieth of the local government electors in the area of the local authority, the resolution shall not take effect until it has been approved at a local referendum.",
+                                  "(2) Where the resolution concerns only one municipal district, local electoral area, town, village or neighbourhood, the petition may be signed by one fiftieth of the electors there and the referendum shall be held there.",
+                                  "(3) The resolution shall be held to be rejected if a majority of the votes cast are against it, regardless of turnout."
+                                ],
+                                "why": "Lets residents suspend a council resolution and put it to a vote, also in just the part of the county it concerns."
+                              }
+                            ]
+                          }
                         ]
                       }
                     ]
@@ -2939,6 +3049,22 @@
                         "explanation": "Local government law provides no local referendum.",
                         "laws": [
                           "lga2001"
+                        ],
+                        "provisions": [
+                          {
+                            "law": "lga2001",
+                            "items": [
+                              {
+                                "ref": "Section 63(1)",
+                                "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                              },
+                              {
+                                "ref": "Section 66K (new)",
+                                "fix": "A resolution of the elected council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term borrowing, or on the disposal of land or property of public importance shall take effect only after its approval at a local referendum. Where such a resolution concerns only one municipal district, town, village or neighbourhood, the referendum shall be held there.",
+                                "why": "Sends large spending, borrowing and sales of public property to the voters automatically."
+                              }
+                            ]
+                          }
                         ]
                       }
                     ]
@@ -2959,14 +3085,55 @@
                     "explanation": "The Constitution provides for directly elected local authorities.",
                     "laws": [
                       "bunreacht"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bunreacht",
+                        "items": [
+                          {
+                            "ref": "Article 28A.2",
+                            "text": "There shall be such directly elected local authorities as may be determined by law and their powers and functions shall, subject to the provisions of this Constitution, be so determined and shall be exercised and performed in accordance with law."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
                     "type": "binding_powers",
-                    "status": "yes",
-                    "explanation": "The council's reserved functions include adopting the budget and development plan.",
+                    "status": "partial",
+                    "explanation": "The elected council decides only its reserved functions, such as the budget, the development plan and bye-laws, and can vary the local property tax rate by a limited percentage. Every other function belongs to the chief executive, an appointed official, and most funding comes from central government.",
                     "laws": [
-                      "lga2001"
+                      "lga2001",
+                      "lpt2012"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 131(1)(a)",
+                            "text": "Subject to section 131A, the elected council of a local authority or the members of a joint body shall directly exercise and perform by resolution at a meeting of the local authority or body every function to which this section applies."
+                          },
+                          {
+                            "ref": "Section 149(4)",
+                            "text": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority."
+                          },
+                          {
+                            "ref": "Section 149(4)",
+                            "fix": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority, to be exercised by the directly elected mayor provided for in section 9A of the Local Government (Mayor of Limerick) and Miscellaneous Provisions Act 2024.",
+                            "why": "Puts the executive under an elected mayor instead of an appointed chief executive. Goes together with the new section 9A of the Mayor of Limerick Act."
+                          }
+                        ]
+                      },
+                      {
+                        "law": "lpt2012",
+                        "items": [
+                          {
+                            "ref": "Section 20(2)",
+                            "text": "Where the passing of such a resolution is a reserved function … of a local authority, a local authority may pass a resolution that the basic rate should, for a period specified in the resolution …, stand varied (either upwards or downwards) by a specified percentage in respect of relevant residential properties situated in the local authority's functional area."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -2979,19 +3146,40 @@
                     ]
                   },
                   {
+                    "type": "local_districts",
+                    "status": "partial",
+                    "explanation": "Councillors are elected in local electoral areas, but their sizes are set by the Minister rather than by law, and many areas elect six or seven councillors, too many to answer to a local community.",
+                    "laws": [
+                      "lga1991"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga1991",
+                        "items": [
+                          {
+                            "ref": "Section 32(2)(a), as substituted by Electoral Reform Act 2022 s.60",
+                            "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
+                          },
+                          {
+                            "ref": "Section 32(2A) (new)",
+                            "fix": [
+                              "(a) Each local electoral area shall return not fewer than three and not more than five members.",
+                              "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
+                              "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
+                              "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
+                            ],
+                            "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil. Today the Minister sets the sizes in the Commission's terms of reference, and many areas elect six or seven councillors."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
                     "type": "proportional_representation",
                     "status": "yes",
                     "explanation": "Members are elected by proportional representation with the single transferable vote.",
                     "laws": [
                       "ler1995"
-                    ]
-                  },
-                  {
-                    "type": "own_means",
-                    "status": "partial",
-                    "explanation": "The council can vary the local property tax rate by up to 15% either way; most funding comes from central government.",
-                    "laws": [
-                      "lpt2012"
                     ]
                   }
                 ]
@@ -3003,9 +3191,20 @@
                   {
                     "type": "exists",
                     "status": "yes",
-                    "explanation": "The Mayor of Limerick is directly elected.",
+                    "explanation": "Since 2024 the Mayor of Limerick is elected directly by the voters of the city and county.",
                     "laws": [
                       "limerick2024"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "limerick2024",
+                        "items": [
+                          {
+                            "ref": "Section 9(1), (3)",
+                            "text": "(1) There shall be a mayor in respect of the administrative area of Limerick City and County Council, who— (a) shall be known … as Méara Luimnigh and, in the English language, as the Mayor of Limerick … (3) Subject to section 13, the Mayor shall be elected in accordance with Schedule 2."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -3051,6 +3250,21 @@
         "municipality": {
           "applicable": false,
           "summary": "The four Dublin local authorities are not divided into municipal districts."
+        }
+      }
+    },
+    {
+      "name": "Cork City and Galway City (no municipal districts)",
+      "match": {
+        "city": [
+          "Cork",
+          "Galway"
+        ]
+      },
+      "levels": {
+        "municipality": {
+          "applicable": false,
+          "summary": "Cork City and Galway City, like the Dublin authorities, are not divided into municipal districts."
         }
       }
     }
