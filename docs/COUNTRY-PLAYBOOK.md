@@ -24,7 +24,8 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
    * Building/entrance: the owners' meeting and its manager or directors, at whichever level the country's
      apartment law works (BG per entrance, IE per development).
    **An institution the law does not provide still appears**, as `exists: no` (black chip) with a Fix. Never leave
-   it out.
+   it out. Exception (owner 2026-11-10): a sub-division served by its county's executive, such as an Irish municipal
+   district, shows no Executive/Mayor chip of its own.
 3. **Fetch the law verbatim.** Every property gets `provisions` quoting the article(s) it rests on, word for word,
    from the official consolidated text (revised acts, not as-enacted, unless only the enacted text exists; note
    "as substituted by …" when quoting an amended provision). Use the official English translation if there is one,
