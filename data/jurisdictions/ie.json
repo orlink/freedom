@@ -3908,6 +3908,9 @@
           "city",
           "county"
         ]
+      },
+      "mapZoom": {
+        "county": 10
       }
     },
     {

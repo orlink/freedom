@@ -19,16 +19,17 @@ export function resolveJurisdiction(jurisdictions, address) {
   const base = jurisdictions.find(j => matches(j.match, address));
   if (!base) return null;
   const levels = { ...base.levels };
-  let addressKeys = base.addressKeys;
+  let addressKeys = base.addressKeys, mapZoom = base.mapZoom;
   const appliedAreas = [];
   for (const area of base.areas || []) {
     if (matches(area.match, address)) {
       Object.assign(levels, area.levels);
       if (area.addressKeys) addressKeys = { ...addressKeys, ...area.addressKeys };
+      if (area.mapZoom) mapZoom = { ...mapZoom, ...area.mapZoom };
       appliedAreas.push(area.name);
     }
   }
-  return { ...base, levels, addressKeys, appliedAreas };
+  return { ...base, levels, addressKeys, mapZoom, appliedAreas };
 }
 
 /** Get the assessment for a level, following `sameAs` links. Returns undefined if there is no data. */
