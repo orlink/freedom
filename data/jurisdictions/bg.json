@@ -75,7 +75,8 @@
     "atda": {
       "title": "Administrative-Territorial Division of the Republic of Bulgaria Act",
       "localTitle": "Закон за административно-териториалното устройство на Република България",
-      "short": "ЗАТУРБ"
+      "short": "ЗАТУРБ",
+      "url": "https://lex.bg/bg/laws/ldoc/2133622784"
     },
     "ta": {
       "title": "Commerce Act",
@@ -1467,11 +1468,26 @@
               {
                 "type": "exists",
                 "status": "partial",
-                "explanation": "Settlements of more than 100 residents are кметства and elect a mayor. Smaller ones get a кметски наместник appointed, and dismissible at will, by the municipal mayor.",
+                "explanation": "A village of over 100 permanent residents is a mayoralty (кметство) and elects its own mayor. In smaller villages the municipal mayor may appoint a mayoral deputy (кметски наместник), who is not elected and can be dismissed without notice.",
                 "laws": [
-                  "lsga"
+                  "atda",
+                  "lsga",
+                  "ec"
                 ],
                 "provisions": [
+                  {
+                    "law": "atda",
+                    "items": [
+                      {
+                        "ref": "Article 14",
+                        "text": "A mayoralty (кметство) is a settlement with a population of over 100 persons with a permanent address."
+                      },
+                      {
+                        "ref": "Article 15(1)",
+                        "text": "The territory of the mayoralty is the territory of the settlement."
+                      }
+                    ]
+                  },
                   {
                     "law": "lsga",
                     "items": [
@@ -1488,7 +1504,7 @@
                       {
                         "ref": "Article 46a(1), (3)",
                         "text": [
-                          "In settlements that are not the administrative centre of a mayoralty, the mayor of the municipality may appoint mayoral deputies (кметски наместници) for the term of office.",
+                          "In settlements that are not the administrative centre of a mayoralty, the mayor of the municipality may appoint mayoral deputies (кметски наместници) for the term of office, in line with the approved staffing and structure of the municipal administration.",
                           "Mayoral deputies are bodies of executive power in the settlement. They may be dismissed early without notice by the mayor of the municipality."
                         ],
                         "fix": [
@@ -1498,8 +1514,24 @@
                         "why": "Residents elect their mayoral deputy, who can no longer be dismissed at will."
                       }
                     ]
+                  },
+                  {
+                    "law": "ec",
+                    "items": [
+                      {
+                        "ref": "Article 401(3)",
+                        "text": "In mayoralties, voters also have one vote for mayor of the mayoralty, if such an election is held."
+                      }
+                    ]
                   }
-                ]
+                ],
+                "populationRule": {
+                  "min": 100,
+                  "use": "self",
+                  "ifUnder": "no",
+                  "overNote": "It is a mayoralty (кметство) and elects its own mayor.",
+                  "underNote": "It is not a mayoralty: the municipal mayor may appoint a mayoral deputy (кметски наместник), who is not elected and can be dismissed without notice."
+                }
               },
               {
                 "type": "binding_powers",

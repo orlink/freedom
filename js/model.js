@@ -178,9 +178,13 @@ export function applyPopulation(jurisdiction, settlement) {
   const ruled = p => {
     const r = p.populationRule;
     if (!r) return p;
-    const max = r.max, lim = `the limit of ${fmt(max)} inhabitants`;
+    const max = r.max, lim = max != null ? `the limit of ${fmt(max)} inhabitants` : '';
     let status = null, why = null;
-    if (r.use === 'self') {
+    if (r.use === 'self' && r.min != null) {
+      // A floor instead of a ceiling (e.g. BG: only settlements of over 100 residents elect their own mayor).
+      if (pop != null) { status = pop > r.min ? 'yes' : (r.ifUnder || 'no'); why = `${where} has about ${fmt(pop)} inhabitants (OpenStreetMap), ${pop > r.min ? 'over' : 'not over'} the threshold of ${fmt(r.min)}. ${pop > r.min ? (r.overNote || '') : (r.underNote || '')}`.trim(); }
+      else if (r.ifUnknown) { status = r.ifUnknown; why = r.unknownNote || null; }
+    } else if (r.use === 'self') {
       if (pop != null) { status = pop <= max ? 'yes' : 'no'; why = `${where} has about ${fmt(pop)} inhabitants (OpenStreetMap), ${pop <= max ? 'within' : 'over'} ${lim}.`; }
       else if (r.ifUnknown) { status = r.ifUnknown; why = r.unknownNote || null; }
     } else if (r.use === 'part') {
