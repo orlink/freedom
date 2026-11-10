@@ -311,9 +311,9 @@
     },
     "no_outside_override": {
       "gate": false,
-      "name": "No outside override",
-      "longName": "No outside authority can override it",
-      "description": "Bodies outside the community cannot veto or overturn the decision."
+      "name": "No outside interference",
+      "longName": "No outside interference",
+      "description": "People who do not share the interests cannot interfere in the decision: they cannot forbid, require permission for, veto or overturn it (as a censor does between author and publisher)."
     },
     "own_means": {
       "gate": false,
