@@ -40,5 +40,10 @@ foreach ($i in 1..20) {
 enc=$(print -rn -- "$ps" | iconv -t UTF-16LE | base64 | tr -d '\n')
 ssh "${SSH_OPTS[@]}" "$HOST" "powershell -NoProfile -NonInteractive -EncodedCommand $enc"
 
-code=$(curl -s -o /dev/null -w '%{http_code}' "$URL")
+code=$(curl -s -o /dev/null -w '%{http_code}' "$URL" || true)
+if [[ "$code" != 200 ]]; then
+  # The Mac may still cache an old DNS answer for the name: ask the server directly.
+  name=${${URL#https://}%%/*}
+  code=$(curl -s -o /dev/null -w '%{http_code}' --resolve "$name:443:${HOST#*@}" "$URL" || true)
+fi
 if [[ "$code" == 200 ]]; then echo "Live: $URL"; else echo "Uploaded, but $URL returned $code" >&2; exit 1; fi
