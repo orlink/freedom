@@ -3570,8 +3570,8 @@
                       {
                         "ref": "Article 249(1)",
                         "text": "For the elections, the territory of the country is divided into 31 multi-member constituencies, including three in Sofia City and two in Plovdiv region. The other constituencies coincide with the boundaries of the regions of the country.",
-                        "fix": "For the elections, the territory of the country is divided into constituencies of three to five seats each, with about the same number of voters per seat, following the boundaries of municipalities and regions where possible.",
-                        "why": "Draws smaller districts of 3 to 5 seats, so each area has its own representatives."
+                        "fix": "For the elections, the territory of the country is divided into multi-member constituencies of three to five seats each. The number of voters per seat is, as far as practicable, the same in all constituencies. Each constituency is made up of adjoining areas and follows, as far as practicable, the boundaries of local communities: neighbourhoods, municipalities and regions.",
+                        "why": "Smaller districts of 3 to 5 seats that follow the boundaries of local communities, so each community has its own representatives. Modelled on Ireland: Constitution Art. 16.2 and Electoral Reform Act 2022 s. 57(2)."
                       }
                     ]
                   }
