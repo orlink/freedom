@@ -429,7 +429,7 @@ function render() {
     setLegend('levels');
     screen.push(el('h2', { class: 'group-title' }, 'Shared interest types'));
     screen.push(rowOf(interestChips(levelId), 'interests'));
-    screen.push(el('h2', { class: 'group-title' }, 'Decision making mechanism types'));
+    screen.push(el('h2', { class: 'group-title' }, 'Decision making institutions'));
     screen.push(rowOf(['direct', 'representative'].map(b => chip({
       label: BRANCH_INFO[b].name, tone: tone(scoreBranch(cur.lvl[b], catalog)) || 'black', title: BRANCH_INFO[b].desc,
       onclick: () => go([levelId, b]),
