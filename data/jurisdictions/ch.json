@@ -808,6 +808,15 @@
                 "laws": [
                   "bv"
                 ]
+              },
+              {
+                "type": "proportional_representation",
+                "status": "partial",
+                "explanation": "Seats are shared out proportionally within each canton, but cantons with one seat elect by majority, and small cantons need a high share of the vote for a seat.",
+                "laws": [
+                  "bv",
+                  "bpr"
+                ]
               }
             ]
           }
@@ -1005,6 +1014,14 @@
                     "explanation": "The districts (Bezirke) are the constituencies.",
                     "laws": [
                       "kv"
+                    ]
+                  },
+                  {
+                    "type": "proportional_representation",
+                    "status": "partial",
+                    "explanation": "The double proportional method (\"doppelter Pukelsheim\") shares out seats in proportion to the votes across the canton, but a party needs 5% in at least one district.",
+                    "laws": [
+                      "gpr"
                     ]
                   }
                 ]
@@ -1340,6 +1357,15 @@
                     ]
                   },
                   {
+                    "type": "proportional_representation",
+                    "status": "partial",
+                    "explanation": "The double proportional method shares out seats in proportion to the votes across the city, but a party needs 5% in at least one district.",
+                    "laws": [
+                      "gpr",
+                      "go"
+                    ]
+                  },
+                  {
                     "type": "own_means",
                     "status": "yes",
                     "explanation": "The city sets its own tax rate (Steuerfuss).",
@@ -1496,6 +1522,14 @@
                     "explanation": "The school district is the constituency; it spans several quarters.",
                     "laws": [
                       "go"
+                    ]
+                  },
+                  {
+                    "type": "proportional_representation",
+                    "status": "no",
+                    "explanation": "Members are elected by majority vote, not proportionally.",
+                    "laws": [
+                      "gpr"
                     ]
                   }
                 ]

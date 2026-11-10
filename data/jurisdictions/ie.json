@@ -922,6 +922,14 @@
                   "lga2001",
                   "ler1995"
                 ]
+              },
+              {
+                "type": "proportional_representation",
+                "status": "yes",
+                "explanation": "Members are elected by proportional representation with the single transferable vote.",
+                "laws": [
+                  "ler1995"
+                ]
               }
             ]
           }
@@ -1007,6 +1015,14 @@
                 "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
                 "laws": [
                   "lga2001",
+                  "ler1995"
+                ]
+              },
+              {
+                "type": "proportional_representation",
+                "status": "yes",
+                "explanation": "Members are elected by proportional representation with the single transferable vote.",
+                "laws": [
                   "ler1995"
                 ]
               }
@@ -1156,6 +1172,15 @@
                 "laws": [
                   "bunreacht"
                 ]
+              },
+              {
+                "type": "proportional_representation",
+                "status": "yes",
+                "explanation": "The Constitution requires proportional representation by the single transferable vote, in constituencies of three to five seats.",
+                "laws": [
+                  "bunreacht",
+                  "ea1992"
+                ]
               }
             ]
           }
@@ -1253,6 +1278,15 @@
                 "laws": [
                   "epea1997"
                 ]
+              },
+              {
+                "type": "proportional_representation",
+                "status": "yes",
+                "explanation": "Ireland's MEPs are elected by proportional representation with the single transferable vote, in three constituencies; seats per country are allocated degressively.",
+                "laws": [
+                  "epea1997",
+                  "teu"
+                ]
               }
             ]
           }
@@ -1348,6 +1382,14 @@
                     "explanation": "Councillors are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
                     "laws": [
                       "lga2001",
+                      "ler1995"
+                    ]
+                  },
+                  {
+                    "type": "proportional_representation",
+                    "status": "yes",
+                    "explanation": "Members are elected by proportional representation with the single transferable vote.",
+                    "laws": [
                       "ler1995"
                     ]
                   },

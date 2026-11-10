@@ -352,6 +352,12 @@
       "longName": "Local representation",
       "description": "Each part of the community should elect its own representative, who answers to it, instead of one list for the whole area."
     },
+    "proportional_representation": {
+      "gate": false,
+      "name": "Proportional representation",
+      "longName": "Proportional representation",
+      "description": "Each group of voters should win a share of the seats close to its share of the votes, without high thresholds or seats won by a plurality alone."
+    },
     "no_roadblocks": {
       "gate": false,
       "name": "No roadblocks",

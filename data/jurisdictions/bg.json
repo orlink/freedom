@@ -3047,6 +3047,14 @@
                 "laws": [
                   "ec"
                 ]
+              },
+              {
+                "type": "proportional_representation",
+                "status": "yes",
+                "explanation": "Seats are shared out among the lists in proportion to their votes.",
+                "laws": [
+                  "ec"
+                ]
               }
             ]
           },
@@ -3568,6 +3576,14 @@
                     ]
                   }
                 ]
+              },
+              {
+                "type": "proportional_representation",
+                "status": "partial",
+                "explanation": "Seats are shared out in proportion to the votes, but only among parties that won at least 4% nationally.",
+                "laws": [
+                  "ec"
+                ]
               }
             ]
           }
@@ -3665,6 +3681,15 @@
                 "laws": [
                   "teu",
                   "ec"
+                ]
+              },
+              {
+                "type": "proportional_representation",
+                "status": "partial",
+                "explanation": "Bulgaria's 17 seats are shared out in proportion to the votes in one national district, but a list needs about 6% to win a seat, and seats per country are allocated degressively.",
+                "laws": [
+                  "ec",
+                  "teu"
                 ]
               }
             ]
