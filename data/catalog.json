@@ -165,7 +165,7 @@
     "general_assembly": {
       "branch": "direct",
       "name": "General assembly",
-      "longName": "General assemblies of the community",
+      "longName": "General assembly",
       "description": "A meeting of all residents or owners that takes decisions."
     },
     "personal_autonomy": {
