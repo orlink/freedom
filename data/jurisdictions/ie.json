@@ -3046,25 +3046,6 @@
                     ]
                   },
                   {
-                    "type": "reasonable_signatures",
-                    "status": "yes",
-                    "explanation": "No petition is needed: all constitutional amendments go to a vote automatically.",
-                    "laws": [
-                      "bunreacht"
-                    ],
-                    "provisions": [
-                      {
-                        "law": "bunreacht",
-                        "items": [
-                          {
-                            "ref": "Article 46.2",
-                            "text": "Every proposal for an amendment of this Constitution shall be initiated in Dáil Éireann as a Bill, and shall upon having been passed or deemed to have been passed by both Houses of the Oireachtas, be submitted by Referendum to the decision of the people in accordance with the law for the time being in force relating to the Referendum."
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
                     "type": "no_topic_restrictions",
                     "status": "partial",
                     "explanation": "Only amendments of the Constitution go to the people automatically. Ordinary laws, the budget, taxes and treaties that need no amendment are never put to a vote unless the Oireachtas chooses to.",

@@ -756,14 +756,6 @@
                     "laws": [
                       "bv"
                     ]
-                  },
-                  {
-                    "type": "reasonable_signatures",
-                    "status": "yes",
-                    "explanation": "No petition is needed: constitutional amendments go to a vote automatically.",
-                    "laws": [
-                      "bv"
-                    ]
                   }
                 ]
               }
@@ -959,14 +951,6 @@
                       {
                         "type": "concrete_proposals",
                         "status": "yes",
-                        "laws": [
-                          "kv"
-                        ]
-                      },
-                      {
-                        "type": "reasonable_signatures",
-                        "status": "yes",
-                        "explanation": "No petition is needed: constitutional amendments go to a vote automatically.",
                         "laws": [
                           "kv"
                         ]
@@ -1308,14 +1292,6 @@
                       {
                         "type": "concrete_proposals",
                         "status": "yes",
-                        "laws": [
-                          "go"
-                        ]
-                      },
-                      {
-                        "type": "reasonable_signatures",
-                        "status": "yes",
-                        "explanation": "No petition is needed: such decisions go to a vote automatically.",
                         "laws": [
                           "go"
                         ]

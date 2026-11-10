@@ -58,7 +58,9 @@ function withoutKeys(obj, keys) {
 export function scoreMechanism(mech, catalog) {
   // A mechanism with kinds (e.g. referendum: citizen initiative, veto, mandatory) is as good as its best kind.
   if (mech.kinds) {
-    const scores = mech.kinds.map(k => scoreMechanism({ type: mech.type, properties: k.properties }, catalog)).filter(x => x != null);
+    // A kind can skip properties that do not apply to it (catalog `skipProperties`: no petition for a mandatory referendum).
+    const applies = k => p => !(catalog.referendumKinds?.[k.type]?.skipProperties || []).includes(p.type);
+    const scores = mech.kinds.map(k => scoreMechanism({ type: mech.type, properties: (k.properties || []).filter(applies(k)) }, catalog)).filter(x => x != null);
     return scores.length ? Math.max(...scores) : null;
   }
   const props = mech.properties || [];
@@ -175,7 +177,8 @@ export function levelPlaces(address, catalog, unions, jurisdiction) {
  * "unknown"; when the kind does not exist in law, every other property is marked `disabled`.
  */
 export function kindProperties(kind, mechType, catalog) {
-  const order = catalog.mechanisms[mechType]?.kindProperties || [];
+  const skip = catalog.referendumKinds?.[kind.type]?.skipProperties || [];
+  const order = (catalog.mechanisms[mechType]?.kindProperties || []).filter(t => !skip.includes(t));
   const byType = Object.fromEntries((kind.properties || []).map(p => [p.type, p]));
   const missing = byType.exists?.status === 'no';
   return order.map(t => {
