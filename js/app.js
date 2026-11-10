@@ -31,7 +31,8 @@ async function loadData() {
 // ---------- geocoding ----------
 async function nominatim(path, params) {
   const url = `${NOMINATIM}/${path}?` + new URLSearchParams({ format: 'jsonv2', addressdetails: 1, ...params });
-  const r = await fetch(url, { headers: { Accept: 'application/json' } });
+  const r = await fetch(url, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(15000) })
+    .catch(e => { throw new Error(e.name === 'TimeoutError' ? 'the geocoding service (OpenStreetMap Nominatim) did not answer within 15 seconds; please try again' : e.message); });
   if (!r.ok) throw new Error(`Geocoding failed (${r.status})`);
   return r.json();
 }
@@ -88,7 +89,7 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
     if (!keepPath) state.path = [];
     writeHash(!keepPath);
     // Some requirements depend on population (e.g. BG general assemblies: up to 10,000 inhabitants). Wait briefly
-    // for it, so the chips appear once with their final colours instead of changing a moment later. If the lookup
+    // for it (0.6 s), so the chips usually appear once with their final colours instead of changing a moment later. If the lookup
     // is slow, show the page anyway and update the colours in place (without the fade-in) when it arrives.
     const loc = state.loc;
     const withPopulation = settlementP.then(settlement => {
@@ -97,7 +98,7 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
       loc.jurisdiction = applyPopulation(loc.jurisdiction, settlement);
       return true;
     }).catch(() => false); // no population: keep the data's own statuses
-    const early = await Promise.race([withPopulation.then(() => true), new Promise(res => setTimeout(() => res(false), 1500))]);
+    const early = await Promise.race([withPopulation.then(() => true), new Promise(res => setTimeout(() => res(false), 600))]);
     timing('address + population', t0);
     if (state.loc !== loc) return;
     render();
@@ -220,6 +221,8 @@ $('#search').addEventListener('submit', async e => {
   const q = $('#q').value.trim();
   if (!q) return;
   busy(true);
+  const btn = e.submitter || $('#search button'); if (btn) btn.disabled = true;
+  $('#place').replaceChildren(el('span', { class: 'loading' }, 'Searching…'));
   const t0 = performance.now();
   try {
     const [r] = await search(q);
@@ -230,6 +233,7 @@ $('#search').addEventListener('submit', async e => {
     $('#place').replaceChildren(err.message);
   } finally {
     busy(false);
+    if (btn) btn.disabled = false;
   }
 });
 // ---------- recent places (the chips under the map) ----------
