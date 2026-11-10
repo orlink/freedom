@@ -3,7 +3,7 @@
 // Kept per browser so the two can be compared by switching back and forth.
 (function () {
   let scale = 'teal';
-  try { scale = localStorage.getItem('freedom-scale-3') || 'teal'; } catch (e) {}
+  try { scale = localStorage.getItem('freedom-scale-4') || 'teal'; } catch (e) {}
   document.documentElement.dataset.scale = scale;
   document.addEventListener('DOMContentLoaded', () => {
     const box = document.getElementById('scale');
@@ -13,7 +13,7 @@
       const b = e.target.closest('button[data-scale]');
       if (!b) return;
       document.documentElement.dataset.scale = b.dataset.scale;
-      try { localStorage.setItem('freedom-scale-3', b.dataset.scale); } catch (err) {}
+      try { localStorage.setItem('freedom-scale-4', b.dataset.scale); } catch (err) {}
       paint();
     });
     paint();
