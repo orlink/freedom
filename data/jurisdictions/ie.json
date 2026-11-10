@@ -20,36 +20,38 @@
     },
     "lga2001": {
       "title": "Local Government Act 2001",
-      "url": "https://revisedacts.lawreform.ie/eli/2001/act/37/front/revised/en/html",
+      "url": "https://revisedacts.lawreform.ie/eli/2001/act/37/revised/en/html",
       "short": "Local Government Act 2001"
     },
     "lgra2014": {
       "title": "Local Government Reform Act 2014",
-      "url": "https://revisedacts.lawreform.ie/eli/2014/act/1/section/21/revised/en/html",
+      "url": "https://revisedacts.lawreform.ie/eli/2014/act/1/revised/en/html",
       "short": "Local Government Reform Act 2014"
     },
     "limerick2024": {
       "title": "Local Government (Mayor of Limerick) and Miscellaneous Provisions Act 2024",
-      "url": "https://www.irishstatutebook.ie/eli/2024/act/7/section/46",
+      "url": "https://revisedacts.lawreform.ie/eli/2024/act/7/revised/en/html",
       "short": "Mayor of Limerick Act 2024"
     },
     "mud2011": {
       "title": "Multi-Unit Developments Act 2011",
-      "url": "https://revisedacts.lawreform.ie/eli/2011/act/2/section/19/revised/en/html",
+      "url": "https://revisedacts.lawreform.ie/eli/2011/act/2/revised/en/html",
       "short": "Multi-Unit Developments Act 2011"
     },
     "ca2014": {
       "title": "Companies Act 2014",
-      "short": "Companies Act 2014"
+      "short": "Companies Act 2014",
+      "url": "https://revisedacts.lawreform.ie/eli/2014/act/38/revised/en/html"
     },
     "lpt2012": {
       "title": "Finance (Local Property Tax) Act 2012",
-      "url": "https://www.irishstatutebook.ie/eli/2012/act/52/section/20",
+      "url": "https://revisedacts.lawreform.ie/eli/2012/act/52/revised/en/html",
       "short": "Local Property Tax Act 2012"
     },
     "epea1997": {
       "title": "European Parliament Elections Act 1997",
-      "short": "European Parliament Elections Act 1997"
+      "short": "European Parliament Elections Act 1997",
+      "url": "https://revisedacts.lawreform.ie/eli/1997/act/2/revised/en/html"
     },
     "teu": {
       "title": "Treaty on European Union",
@@ -63,11 +65,13 @@
     },
     "ref1994": {
       "title": "Referendum Act 1994",
-      "short": "Referendum Act 1994"
+      "short": "Referendum Act 1994",
+      "url": "https://revisedacts.lawreform.ie/eli/1994/act/12/revised/en/html"
     },
     "ea1992": {
       "title": "Electoral Act 1992",
-      "short": "Electoral Act 1992"
+      "short": "Electoral Act 1992",
+      "url": "https://www.irishstatutebook.ie/eli/1992/act/23/enacted/en/html"
     },
     "ler1995": {
       "title": "Local Elections Regulations 1995 (S.I. No. 297 of 1995)",
@@ -75,47 +79,305 @@
     },
     "charities2009": {
       "title": "Charities Act 2009",
-      "short": "Charities Act 2009"
+      "short": "Charities Act 2009",
+      "url": "https://revisedacts.lawreform.ie/eli/2009/act/6/revised/en/html"
     },
     "pa1890": {
       "title": "Partnership Act 1890",
-      "short": "Partnership Act 1890"
+      "short": "Partnership Act 1890",
+      "url": "https://www.irishstatutebook.ie/eli/1890/act/39/enacted/en/html"
     },
     "ips": {
       "title": "Industrial and Provident Societies Acts 1893–2021",
-      "short": "Industrial and Provident Societies Acts"
+      "short": "Industrial and Provident Societies Acts",
+      "url": "https://www.irishstatutebook.ie/eli/1893/act/39/enacted/en/html"
     },
     "poa1996": {
       "title": "Powers of Attorney Act 1996",
-      "short": "Powers of Attorney Act 1996"
+      "short": "Powers of Attorney Act 1996",
+      "url": "https://www.irishstatutebook.ie/eli/1996/act/12/enacted/en/html"
     },
     "trustee1893": {
       "title": "Trustee Act 1893",
-      "short": "Trustee Act 1893"
+      "short": "Trustee Act 1893",
+      "url": "https://www.irishstatutebook.ie/eli/1893/act/53/enacted/en/html"
+    },
+    "cca1991": {
+      "title": "Child Care Act 1991",
+      "short": "Child Care Act 1991",
+      "url": "https://revisedacts.lawreform.ie/eli/1991/act/17/revised/en/html"
+    },
+    "gia1964": {
+      "title": "Guardianship of Infants Act 1964",
+      "short": "Guardianship of Infants Act 1964",
+      "url": "https://revisedacts.lawreform.ie/eli/1964/act/7/revised/en/html"
+    },
+    "dva2018": {
+      "title": "Domestic Violence Act 2018",
+      "short": "Domestic Violence Act 2018",
+      "url": "https://revisedacts.lawreform.ie/eli/2018/act/6/revised/en/html"
+    },
+    "ewa2000": {
+      "title": "Education (Welfare) Act 2000",
+      "short": "Education (Welfare) Act 2000",
+      "url": "https://revisedacts.lawreform.ie/eli/2000/act/22/revised/en/html"
+    },
+    "nmwa2000": {
+      "title": "National Minimum Wage Act 2000",
+      "short": "National Minimum Wage Act 2000",
+      "url": "https://www.irishstatutebook.ie/eli/2000/act/5/enacted/en/html"
+    },
+    "rta2004": {
+      "title": "Residential Tenancies Act 2004",
+      "short": "Residential Tenancies Act 2004",
+      "url": "https://revisedacts.lawreform.ie/eli/2004/act/27/revised/en/html"
+    },
+    "lga1991": {
+      "title": "Local Government Act 1991",
+      "short": "LGA 1991",
+      "url": "https://revisedacts.lawreform.ie/eli/1991/act/11/revised/en/html"
     }
   },
   "levels": {
     "home": {
-      "summary": "The dwelling of every citizen is inviolable, and property rights are protected by the Constitution.",
+      "summary": "The dwelling is inviolable, the Family and parents' rights are protected by the Constitution, and the State steps in only in exceptional cases, under a court's quick control.",
       "direct": {
         "mechanisms": [
           {
             "type": "household",
             "properties": [
               {
-                "type": "exists",
+                "type": "home_inviolable",
                 "status": "yes",
-                "explanation": "The dwelling of every citizen is inviolable, and property rights are protected by the Constitution.",
+                "explanation": "The dwelling is inviolable and may be entered by force only in accordance with law, for example by the Garda with a warrant, or without one where a child faces an immediate and serious risk.",
                 "laws": [
-                  "bunreacht"
+                  "bunreacht",
+                  "cca1991"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 40.5",
+                        "text": "The dwelling of every citizen is inviolable and shall not be forcibly entered save in accordance with law."
+                      }
+                    ]
+                  }
                 ]
               },
               {
-                "type": "no_outside_override",
-                "status": "partial",
-                "explanation": "The dwelling can be entered 'in accordance with law'.",
+                "type": "family_privacy",
+                "status": "yes",
+                "explanation": "The Family is protected in its constitution and authority, and the courts recognise a constitutional right to privacy among the personal rights.",
                 "laws": [
                   "bunreacht"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 40.3.1°",
+                        "text": "The State guarantees in its laws to respect, and, as far as practicable, by its laws to defend and vindicate the personal rights of the citizen."
+                      },
+                      {
+                        "ref": "Article 41.1",
+                        "text": [
+                          "1° The State recognises the Family as the natural primary and fundamental unit group of Society, and as a moral institution possessing inalienable and imprescriptible rights, antecedent and superior to all positive law.",
+                          "2° The State, therefore, guarantees to protect the Family in its constitution and authority, as the necessary basis of social order and as indispensable to the welfare of the Nation and the State."
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "home_property",
+                "status": "yes",
+                "explanation": "Private ownership is a natural right that no law may abolish; its exercise may be regulated by law for the common good.",
+                "laws": [
+                  "bunreacht"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 40.3.2°",
+                        "text": "The State shall, in particular, by its laws protect as best it may from unjust attack and, in the case of injustice done, vindicate the life, person, good name, and property rights of every citizen."
+                      },
+                      {
+                        "ref": "Article 43",
+                        "text": [
+                          "1 1° The State acknowledges that man, in virtue of his rational being, has the natural right, antecedent to positive law, to the private ownership of external goods.",
+                          "2° The State accordingly guarantees to pass no law attempting to abolish the right of private ownership or the general right to transfer, bequeath, and inherit property.",
+                          "2 1° The State recognises, however, that the exercise of the rights mentioned in the foregoing provisions of this Article ought, in civil society, to be regulated by the principles of social justice.",
+                          "2° The State, accordingly, may as occasion requires delimit by law the exercise of the said rights with a view to reconciling their exercise with the exigencies of the common good."
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "parental_rights",
+                "status": "yes",
+                "explanation": "Parents are the primary educators and carers, and the State steps in only in exceptional cases, by proportionate means. A child can be taken without a court order only when there is an immediate and serious risk, and then a judge must decide within three days; an emergency care order lasts at most eight days, and longer care needs a court's finding of actual or likely harm.",
+                "laws": [
+                  "bunreacht",
+                  "cca1991"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 42.1",
+                        "text": "The State acknowledges that the primary and natural educator of the child is the Family and guarantees to respect the inalienable right and duty of parents to provide, according to their means, for the religious and moral, intellectual, physical and social education of their children."
+                      },
+                      {
+                        "ref": "Article 42A.2.1°",
+                        "text": "In exceptional cases, where the parents, regardless of their marital status, fail in their duty towards their children to such extent that the safety or welfare of any of their children is likely to be prejudicially affected, the State as guardian of the common good shall, by proportionate means as provided by law, endeavour to supply the place of the parents, but always with due regard for the natural and imprescriptible rights of the child."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "cca1991",
+                    "items": [
+                      {
+                        "ref": "Section 12(1)",
+                        "text": "Where a member of the Garda Síochána has reasonable grounds for believing that— (a) there is an immediate and serious risk to the health or welfare of a child, and (b) it would not be sufficient for the protection of the child from such immediate and serious risk to await the making of an application for an emergency care order by the Child and Family Agency under section 13, or an application for a warrant under section 35, the member, accompanied by such other persons as may be necessary, may, without warrant, enter (if need be by force) any house or other place … and remove the child to safety."
+                      },
+                      {
+                        "ref": "Section 12(4)",
+                        "text": "Where a child is delivered up to the custody of the Child and Family Agency in accordance with subsection (3), the Agency shall, unless it returns the child to the parent having custody of him or a person acting in loco parentis or an order referred to in section 35 has been made in respect of the child, make application for an emergency care order at the next sitting of the District Court held in the same district court district or, in the event that the next such sitting is not due to be held within three days of the date on which the child is delivered up to the custody of the Agency, at a sitting of the District Court, which has been specially arranged under section 13(4), held within the said three days, and it shall be lawful for the Agency to retain custody of the child pending the hearing of that application."
+                      },
+                      {
+                        "ref": "Section 13(2)",
+                        "text": "An emergency care order shall place the child under the care of the Child and Family Agency for a period of eight days or such shorter period as may be specified in the order."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "joint_decisions",
+                "status": "yes",
+                "explanation": "Both parents are joint guardians of their child, and a guardian can ask a court to settle a question only when they disagree.",
+                "laws": [
+                  "gia1964"
+                ],
+                "provisions": [
+                  {
+                    "law": "gia1964",
+                    "items": [
+                      {
+                        "ref": "Section 6(1)",
+                        "text": "The following persons shall be guardians of a child jointly: (a) the father and mother of the child, or (b) where a married couple of the same sex have jointly adopted a child under an adoption order, each of the married couple."
+                      },
+                      {
+                        "ref": "Section 11(1)",
+                        "text": "Any person being a guardian of a child may apply to the court for its direction on any question affecting the welfare of the child and the court may make such order as it thinks proper."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "child_rights",
+                "status": "yes",
+                "explanation": "The Constitution protects children's own rights, and a court may place a child in care only where it finds the child has been, or is likely to be, harmed or neglected and will not otherwise get the care they need.",
+                "laws": [
+                  "bunreacht",
+                  "cca1991"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 42A.1",
+                        "text": "The State recognises and affirms the natural and imprescriptible rights of all children and shall, as far as practicable, by its laws protect and vindicate those rights."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "cca1991",
+                    "items": [
+                      {
+                        "ref": "Section 18(1)",
+                        "text": "Where, on the application of the Child and Family Agency with respect to a child, the court is satisfied that— (a) the child has been or is being assaulted, ill-treated, neglected or sexually abused, or (b) the child's health, development or welfare has been or is being avoidably impaired or neglected, or (c) the child's health, development or welfare is likely to be avoidably impaired or neglected, and that the child requires care or protection which he is unlikely to receive unless the court makes an order under this section, the court may make an order (in this Act referred to as a \"care order\") in respect of the child."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "abuse_protection",
+                "status": "yes",
+                "explanation": "Victims can get a safety order or a barring order that removes the abuser from the home, and an interim barring order at once where there is an immediate risk of significant harm.",
+                "laws": [
+                  "dva2018"
+                ],
+                "provisions": [
+                  {
+                    "law": "dva2018",
+                    "items": [
+                      {
+                        "ref": "Section 7(2)(a)",
+                        "text": "Where the court, on application to it, is of the opinion … that there are reasonable grounds for believing that the safety or welfare of the applicant or a dependent person so requires, it shall, subject to section 12, by order (in this Act referred to as a \"barring order\")— (i) direct the respondent, if residing at a place where the applicant or the dependent person resides, to leave the place, and (ii) whether the respondent is or is not residing at a place where the applicant or the dependent person resides, prohibit the respondent from entering the place until further order of the court or until such other time as the court shall specify."
+                      },
+                      {
+                        "ref": "Section 8(1)",
+                        "text": "Where the court, on application to it for a barring order or between the making of that application and its determination, is of the opinion … that there are reasonable grounds for believing— (a) there is an immediate risk of significant harm to the applicant or a dependent person, and (b) the making of a protection order would not be sufficient to protect the applicant or a dependent person, the court shall … by order (in this Act referred to as an \"interim barring order\")— (i) direct the respondent, if residing at a place where the applicant or the dependent person resides, to leave the place, …"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "education_choice",
+                "status": "partial",
+                "explanation": "Parents have a constitutional right to educate their children at home. But they must apply to the Child and Family Agency to register the child, which assesses whether the child receives a 'certain minimum education' and can refuse registration.",
+                "laws": [
+                  "bunreacht",
+                  "ewa2000"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 42.2",
+                        "text": "Parents shall be free to provide this education in their homes or in private schools or in schools recognised or established by the State."
+                      },
+                      {
+                        "ref": "Article 42.3",
+                        "text": [
+                          "1° The State shall not oblige parents in violation of their conscience and lawful preference to send their children to schools established by the State, or to any particular type of school designated by the State.",
+                          "2° The State shall, however, as guardian of the common good, require in view of actual conditions that the children receive a certain minimum education, moral, intellectual and social."
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "ewa2000",
+                    "items": [
+                      {
+                        "ref": "Section 14(2)",
+                        "text": "… where a parent chooses to educate, or have educated, his or her child in a place other than a recognised school he or she shall, in accordance with this section, apply to the Child and Family Agency to have the child concerned registered in the register.",
+                        "fix": "… where a parent chooses to educate, or have educated, his or her child in a place other than a recognised school he or she shall notify the Child and Family Agency, which shall enter the child in the register.",
+                        "why": "Home education becomes a notification, not an application the Agency can refuse."
+                      },
+                      {
+                        "ref": "Section 14(10)",
+                        "text": "… the Child and Family Agency shall— (a) if satisfied that the child concerned is receiving a certain minimum education, register the child concerned in the register, or (b) if not so satisfied— (i) register the child … subject to the parent … undertaking to comply with such requirements …, or (ii) refuse to register the child concerned …",
+                        "fix": "Where the Child and Family Agency has reasonable grounds to believe that a child registered under this section is not receiving a certain minimum education, it may apply to the District Court, which may, after hearing the parents and the child, require the child to attend a recognised school.",
+                        "why": "Only a court, on evidence, can override the parents' choice, as with other limits on parental rights (Constitution Art. 42A.2)."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -140,14 +402,44 @@
                 "explanation": "The State guarantees to defend and vindicate personal rights, including property; the dwelling is inviolable.",
                 "laws": [
                   "bunreacht"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 40.3.1°",
+                        "text": "The State guarantees in its laws to respect, and, as far as practicable, by its laws to defend and vindicate the personal rights of the citizen."
+                      },
+                      {
+                        "ref": "Article 40.3.2°",
+                        "text": "The State shall, in particular, by its laws protect as best it may from unjust attack and, in the case of injustice done, vindicate the life, person, good name, and property rights of every citizen."
+                      },
+                      {
+                        "ref": "Article 40.5",
+                        "text": "The dwelling of every citizen is inviolable and shall not be forcibly entered save in accordance with law."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
-                "explanation": "Rights may be regulated by law; the dwelling can be entered 'in accordance with law'.",
+                "explanation": "The State may regulate the exercise of personal and property rights by law for the common good, so many choices need a licence or permit or follow rules set by the State.",
                 "laws": [
                   "bunreacht"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 43.2",
+                        "text": "1° The State recognises, however, that the exercise of the rights mentioned in the foregoing provisions of this Article ought, in civil society, to be regulated by the principles of social justice. 2° The State, accordingly, may as occasion requires delimit by law the exercise of the said rights with a view to reconciling their exercise with the exigencies of the common good."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -170,18 +462,43 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "Anyone may start and run a business.",
+                "explanation": "The courts recognise a right to earn a livelihood among the personal rights. Article 45 favours private initiative, but it guides the Oireachtas only and cannot be enforced in court.",
                 "laws": [
                   "bunreacht"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 40.3.1°",
+                        "text": "The State guarantees in its laws to respect, and, as far as practicable, by its laws to defend and vindicate the personal rights of the citizen."
+                      },
+                      {
+                        "ref": "Article 45.3.1°",
+                        "text": "The State shall favour and, where necessary, supplement private initiative in industry and commerce."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
-                "explanation": "Licensing and permit regimes restrict entry into many activities.",
+                "explanation": "Many activities need a licence or permit before they can start, so an authority decides whether one may trade at all. The Constitution lets the State delimit property rights by law for the common good.",
                 "laws": [
-                  "bunreacht",
-                  "ca2014"
+                  "bunreacht"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 43.2",
+                        "text": "1° The State recognises, however, that the exercise of the rights mentioned in the foregoing provisions of this Article ought, in civil society, to be regulated by the principles of social justice. 2° The State, accordingly, may as occasion requires delimit by law the exercise of the said rights with a view to reconciling their exercise with the exigencies of the common good."
+                      }
+                    ]
+                  }
                 ]
               }
             ],
@@ -195,17 +512,49 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "People may freely make contracts, a principle of the common law.",
+                "explanation": "People may freely make contracts and set their terms, a principle of the common law, and contract rights are protected as property rights.",
                 "laws": [
                   "bunreacht"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 40.3.2°",
+                        "text": "The State shall, in particular, by its laws protect as best it may from unjust attack and, in the case of injustice done, vindicate the life, person, good name, and property rights of every citizen."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
-                "explanation": "Statute fixes many terms whatever both parties want: rent limits in pressure zones, the minimum wage, and consumer terms that cannot be waived. Rules against fraud and coercion protect consent and are not counted.",
+                "explanation": "The State fixes some terms whatever both parties want: the minimum wage, set by the Minister, and since March 2026 a nationwide cap on rent increases, tied to inflation, with an exemption for new apartments. Rules against fraud and coercion protect consent and are not counted.",
                 "laws": [
-                  "bunreacht"
+                  "nmwa2000",
+                  "rta2004"
+                ],
+                "provisions": [
+                  {
+                    "law": "nmwa2000",
+                    "items": [
+                      {
+                        "ref": "Section 14",
+                        "text": "Subject to sections 17 and 18— (a) an employee who has attained the age of 18 years shall … be remunerated by his or her employer in respect of the employee's working hours in any pay reference period, at an hourly rate of pay that on average is not less than the national minimum hourly rate of pay, and (b) an employee who has not attained the age of 18 years shall be remunerated … at an hourly rate of pay that on average is not less than 70 per cent of the national minimum hourly rate of pay."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "rta2004",
+                    "items": [
+                      {
+                        "ref": "Section 19(4)(a)",
+                        "text": "The setting … of a rent under the tenancy of a dwelling … shall, subject to paragraph (aa) neither— (i) result in such increase in rent as would cause the new rent under the tenancy to exceed the old rent by more than the relevant percentage, nor (ii) result in such increase in rent as would cause the ratio of the new rent under the tenancy to the old rent to exceed the ratio of the current CPI number to the previous CPI number."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -220,22 +569,67 @@
                 "explanation": "Partners in a partnership decide together, by majority on ordinary matters and unanimously on changing the business.",
                 "laws": [
                   "pa1890"
+                ],
+                "provisions": [
+                  {
+                    "law": "pa1890",
+                    "items": [
+                      {
+                        "ref": "Section 24",
+                        "text": [
+                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
+                          "(5) Every partner may take part in the management of the partnership business.",
+                          "(8) Any difference arising as to ordinary matters connected with the partnership business may be decided by a majority of the partners, but no change may be made in the nature of the partnership business without the consent of all existing partners."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "binding",
                 "status": "yes",
-                "explanation": "Its resolutions bind the company.",
+                "explanation": "Decisions of the partners bind the partnership: ordinary matters by majority, a change in the nature of the business only with every partner's consent.",
                 "laws": [
                   "pa1890"
+                ],
+                "provisions": [
+                  {
+                    "law": "pa1890",
+                    "items": [
+                      {
+                        "ref": "Section 24",
+                        "text": [
+                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
+                          "(8) Any difference arising as to ordinary matters connected with the partnership business may be decided by a majority of the partners, but no change may be made in the nature of the partnership business without the consent of all existing partners."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "broad_scope",
                 "status": "yes",
-                "explanation": "Owners decide the company's statutes, profits and leadership.",
+                "explanation": "The partners decide the management of the business, who may join, and any change in its nature.",
                 "laws": [
                   "pa1890"
+                ],
+                "provisions": [
+                  {
+                    "law": "pa1890",
+                    "items": [
+                      {
+                        "ref": "Section 24",
+                        "text": [
+                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
+                          "(5) Every partner may take part in the management of the partnership business.",
+                          "(7) No person may be introduced as a partner without the consent of all existing partners.",
+                          "(8) Any difference arising as to ordinary matters connected with the partnership business may be decided by a majority of the partners, but no change may be made in the nature of the partnership business without the consent of all existing partners."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -244,6 +638,20 @@
                 "explanation": "The partnership or company controls its own capital and income.",
                 "laws": [
                   "pa1890"
+                ],
+                "provisions": [
+                  {
+                    "law": "pa1890",
+                    "items": [
+                      {
+                        "ref": "Section 24",
+                        "text": [
+                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
+                          "(1) All the partners are entitled to share equally in the capital and profits of the business …"
+                        ]
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -258,6 +666,21 @@
                 "explanation": "Shareholders of a company decide in a general meeting.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 178(3)",
+                        "text": "The directors of a company shall, on the requisition of one or more members holding, or together holding, at the date of the deposit of the requisition, not less than 10 per cent of the paid up share capital … carrying … the right of voting at general meetings …, forthwith proceed duly to convene an extraordinary general meeting …"
+                      },
+                      {
+                        "ref": "Section 186",
+                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …"
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -266,14 +689,36 @@
                 "explanation": "Its resolutions bind the company.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 186",
+                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …"
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "broad_scope",
                 "status": "yes",
-                "explanation": "Owners decide the company's statutes, profits and leadership.",
+                "explanation": "Shareholders review the company's affairs and accounts, declare dividends and, where the constitution provides, elect the directors; they can remove any director.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 186",
+                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …"
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -282,6 +727,17 @@
                 "explanation": "The company controls its own capital and income.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 186",
+                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …"
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -296,14 +752,36 @@
                 "explanation": "Members of a co-operative society decide in its general meeting, usually one member one vote.",
                 "laws": [
                   "ips"
+                ],
+                "provisions": [
+                  {
+                    "law": "ips",
+                    "items": [
+                      {
+                        "ref": "Section 10(1)",
+                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "binding",
                 "status": "yes",
-                "explanation": "Its resolutions bind the company.",
+                "explanation": "Its resolutions bind the society under its registered rules.",
                 "laws": [
                   "ips"
+                ],
+                "provisions": [
+                  {
+                    "law": "ips",
+                    "items": [
+                      {
+                        "ref": "Section 10(1)",
+                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -312,6 +790,17 @@
                 "explanation": "Members decide the statutes, the use of any surplus and the board.",
                 "laws": [
                   "ips"
+                ],
+                "provisions": [
+                  {
+                    "law": "ips",
+                    "items": [
+                      {
+                        "ref": "Section 10(1)",
+                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -320,6 +809,17 @@
                 "explanation": "The cooperative controls its own capital and income.",
                 "laws": [
                   "ips"
+                ],
+                "provisions": [
+                  {
+                    "law": "ips",
+                    "items": [
+                      {
+                        "ref": "Section 10(1)",
+                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -335,9 +835,20 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "Owners elect the managers or board.",
+                "explanation": "Owners elect the directors and can remove them.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 146(1)",
+                        "text": "A company may by ordinary resolution remove a director before the expiration of his or her period of office notwithstanding anything in its constitution or in any agreement between it and him or her."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -345,22 +856,56 @@
                 "status": "yes",
                 "laws": [
                   "ca2014"
-                ]
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 228(1)",
+                        "text": "A director of a company shall— (a) act in good faith in what the director considers to be the interests of the company; (b) act honestly and responsibly in relation to the conduct of the affairs of the company; (c) act in accordance with the company's constitution and exercise his or her powers only for the purposes allowed by law; (d) not use the company's property, information or opportunities for his or her own or anyone else's benefit unless— (i) this is expressly permitted by the company's constitution; or (ii) the use has been approved by a resolution of the company in general meeting; … (f) avoid any conflict between the director's duties to the company and the director's other (including personal) interests …"
+                      }
+                    ]
+                  }
+                ],
+                "explanation": "The directors manage the company, within its constitution and their duties to it."
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
-                "explanation": "Managers and board members are elected individually.",
+                "explanation": "Directors are elected and re-elected individually by the members.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 186",
+                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …"
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "recall",
                 "status": "yes",
-                "explanation": "The owners can dismiss them.",
+                "explanation": "The members can remove any director by ordinary resolution, whatever the constitution or the director's contract says.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 146(1)",
+                        "text": "A company may by ordinary resolution remove a director before the expiration of his or her period of office notwithstanding anything in its constitution or in any agreement between it and him or her."
+                      }
+                    ]
+                  }
                 ]
               }
             ],
@@ -376,6 +921,17 @@
                 "explanation": "Anyone may appoint an agent or give a power of attorney; agency is governed mainly by common law.",
                 "laws": [
                   "poa1996"
+                ],
+                "provisions": [
+                  {
+                    "law": "poa1996",
+                    "items": [
+                      {
+                        "ref": "Section 15(1)",
+                        "text": "Where an instrument creating a power of attorney is signed by direction of the donor it shall be signed in the presence of the donor and of another person who shall attest the instrument as witness."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -430,6 +986,22 @@
                 "explanation": "The settlor chooses the trustees, usually not the beneficiaries.",
                 "laws": [
                   "trustee1893"
+                ],
+                "provisions": [
+                  {
+                    "law": "trustee1893",
+                    "items": [
+                      {
+                        "ref": "Section 10(1)",
+                        "text": "Where a trustee … is dead, or remains out of the United Kingdom for more than twelve months, or desires to be discharged …, or refuses or is unfit to act therein, or is incapable of acting therein, then the person or persons nominated for the purpose of appointing new trustees by the instrument, if any, creating the trust, or if there is no such person …, then the surviving or continuing trustees …, may, by writing, appoint another person or other persons to be a trustee or trustees in the place of the trustee …"
+                      },
+                      {
+                        "ref": "Section 10A (new)",
+                        "fix": "Where no person is nominated by the instrument creating the trust for the purpose of appointing new trustees, and the beneficiaries are of full age and capacity and together absolutely entitled to the trust property, they may by writing direct a trustee to retire and direct the trustees to appoint the person or persons they name as new trustees.",
+                        "why": "Lets adult beneficiaries who together own the trust property choose and replace their trustees, as in England's Trusts of Land and Appointment of Trustees Act 1996, s. 19."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -438,6 +1010,22 @@
                 "explanation": "Beneficiaries generally cannot remove trustees without the court, unless the trust deed allows it or all adult beneficiaries together end the trust.",
                 "laws": [
                   "trustee1893"
+                ],
+                "provisions": [
+                  {
+                    "law": "trustee1893",
+                    "items": [
+                      {
+                        "ref": "Section 10(1)",
+                        "text": "Where a trustee … is dead, or remains out of the United Kingdom for more than twelve months, or desires to be discharged …, or refuses or is unfit to act therein, or is incapable of acting therein, then the person or persons nominated for the purpose of appointing new trustees by the instrument, if any, creating the trust, or if there is no such person …, then the surviving or continuing trustees …, may, by writing, appoint another person or other persons to be a trustee or trustees in the place of the trustee …"
+                      },
+                      {
+                        "ref": "Section 10A (new)",
+                        "fix": "Where no person is nominated by the instrument creating the trust for the purpose of appointing new trustees, and the beneficiaries are of full age and capacity and together absolutely entitled to the trust property, they may by writing direct a trustee to retire and direct the trustees to appoint the person or persons they name as new trustees.",
+                        "why": "Lets adult beneficiaries who together own the trust property remove trustees without going to court, as in England's Trusts of Land and Appointment of Trustees Act 1996, s. 19."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -474,17 +1062,37 @@
                 "status": "yes",
                 "explanation": "People may freely form associations and foundations.",
                 "laws": [
-                  "bunreacht",
-                  "ca2014"
+                  "bunreacht"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 40.6.1°",
+                        "text": "The State guarantees liberty for the exercise of the following rights, subject to public order and morality: – … iii The right of the citizens to form associations and unions. Laws, however, may be enacted for the regulation and control in the public interest of the exercise of the foregoing right."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
-                "explanation": "Registration and, for public-benefit status, supervision by the state.",
+                "explanation": "An association needs no permission to exist, but a charity must apply to the Charities Regulator for registration before it may operate in the State, and is then supervised by it.",
                 "laws": [
-                  "ca2014",
                   "charities2009"
+                ],
+                "provisions": [
+                  {
+                    "law": "charities2009",
+                    "items": [
+                      {
+                        "ref": "Section 39(3)",
+                        "text": "A charitable organisation that intends to operate or carry on activities in the State shall, in accordance with this section, apply to the Authority to be registered in the register, and it shall be the duty of the charity trustees of the charitable organisation concerned to make the application …"
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -499,6 +1107,17 @@
                 "explanation": "Members decide in a general assembly.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 178(3)",
+                        "text": "The directors of a company shall, on the requisition of one or more members holding, or together holding, at the date of the deposit of the requisition, not less than 10 per cent of the paid up share capital … carrying … the right of voting at general meetings …, forthwith proceed duly to convene an extraordinary general meeting …"
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -507,6 +1126,17 @@
                 "explanation": "Its decisions bind the organisation.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 186",
+                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …"
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -515,6 +1145,17 @@
                 "explanation": "Members adopt the statutes and elect the board.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 186",
+                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …"
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -542,6 +1183,17 @@
                 "explanation": "The members elect a board.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 146(1)",
+                        "text": "A company may by ordinary resolution remove a director before the expiration of his or her period of office notwithstanding anything in its constitution or in any agreement between it and him or her."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -549,14 +1201,27 @@
                 "status": "yes",
                 "laws": [
                   "ca2014"
-                ]
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 228(1)",
+                        "text": "A director of a company shall— (a) act in good faith in what the director considers to be the interests of the company; (b) act honestly and responsibly in relation to the conduct of the affairs of the company; (c) act in accordance with the company's constitution and exercise his or her powers only for the purposes allowed by law; (d) not use the company's property, information or opportunities for his or her own or anyone else's benefit unless— (i) this is expressly permitted by the company's constitution; or (ii) the use has been approved by a resolution of the company in general meeting; … (f) avoid any conflict between the director's duties to the company and the director's other (including personal) interests …"
+                      }
+                    ]
+                  }
+                ],
+                "explanation": "The directors run the organisation, within its constitution and their duties to it."
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
                 "laws": [
                   "ca2014"
-                ]
+                ],
+                "explanation": "Directors are elected individually by the members."
               },
               {
                 "type": "recall",
@@ -564,6 +1229,17 @@
                 "explanation": "The members can dismiss the board.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 146(1)",
+                        "text": "A company may by ordinary resolution remove a director before the expiration of his or her period of office notwithstanding anything in its constitution or in any agreement between it and him or her."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -585,6 +1261,21 @@
                 "explanation": "Each multi-unit development has an owners' management company whose members are the unit owners.",
                 "laws": [
                   "mud2011"
+                ],
+                "provisions": [
+                  {
+                    "law": "mud2011",
+                    "items": [
+                      {
+                        "ref": "Section 3(1)",
+                        "text": "A person to whom this section applies shall not … transfer his or her interest in a residential unit in a multi-unit development to which this section applies unless— (a) an owners' management company has been established at the expense of the developer of the multi-unit development concerned, (b) ownership of the relevant parts of the common areas of the multi-unit development and of any reversion in the residential unit being transferred has … been validly transferred by deed (or otherwise) to the owners' management company relating to that unit, …"
+                      },
+                      {
+                        "ref": "Section 17(1)",
+                        "text": "An owners' management company shall— (a) prepare and furnish to each member an annual report which complies with subsection (2), (b) hold a meeting at least once in each year for purposes which include the consideration of the annual report referred to in paragraph (a)."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -593,6 +1284,17 @@
                 "explanation": "Resolutions bind the company and the owners under company law and the house rules.",
                 "laws": [
                   "mud2011"
+                ],
+                "provisions": [
+                  {
+                    "law": "mud2011",
+                    "items": [
+                      {
+                        "ref": "Section 23(1)",
+                        "text": "An owners' management company may … make house rules as respects the development or part of the development relating to the effective operation and maintenance of the development and with the objective of enhancing the quiet and peaceable occupation of units generally in the development, and such house rules shall be binding on— (a) unit owners, (b) tenants of unit owners, and (c) servants, agents and licensees …"
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -609,6 +1311,40 @@
                 "explanation": "Members holding at least 10% of voting rights can requisition a general meeting.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 178(3)",
+                        "text": "The directors of a company shall, on the requisition of one or more members holding, or together holding, at the date of the deposit of the requisition, not less than 10 per cent of the paid up share capital … carrying … the right of voting at general meetings …, forthwith proceed duly to convene an extraordinary general meeting …"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "The members decide the annual service charge and the budget for insurance, maintenance, repairs and cleaning of the common areas, and the company makes house rules binding on owners and tenants.",
+                "laws": [
+                  "mud2011"
+                ],
+                "provisions": [
+                  {
+                    "law": "mud2011",
+                    "items": [
+                      {
+                        "ref": "Section 18(2)",
+                        "text": "The annual service charge in respect of a multi-unit development relating to a particular period shall not be levied unless it has been considered by a general meeting of the members concerned called for purposes which include the consideration of an estimate of the expenditure it is anticipated will be incurred by the company in that period and the meeting shall take place within reasonable proximity to the multi-unit development and at a reasonable time (unless otherwise agreed in writing by 75 per cent of the members)."
+                      },
+                      {
+                        "ref": "Section 23(1)",
+                        "text": "An owners' management company may … make house rules as respects the development or part of the development relating to the effective operation and maintenance of the development and with the objective of enhancing the quiet and peaceable occupation of units generally in the development, and such house rules shall be binding on— (a) unit owners, (b) tenants of unit owners, and (c) servants, agents and licensees …"
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -617,6 +1353,17 @@
                 "explanation": "Each owner pays into a sinking fund; the default is €200 per unit a year, or another amount agreed by a members' meeting.",
                 "laws": [
                   "mud2011"
+                ],
+                "provisions": [
+                  {
+                    "law": "mud2011",
+                    "items": [
+                      {
+                        "ref": "Section 18(2)",
+                        "text": "The annual service charge in respect of a multi-unit development relating to a particular period shall not be levied unless it has been considered by a general meeting of the members concerned called for purposes which include the consideration of an estimate of the expenditure it is anticipated will be incurred by the company in that period and the meeting shall take place within reasonable proximity to the multi-unit development and at a reasonable time (unless otherwise agreed in writing by 75 per cent of the members)."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -634,7 +1381,18 @@
                 "status": "yes",
                 "explanation": "The company is run by directors.",
                 "laws": [
-                  "mud2011"
+                  "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 146(1)",
+                        "text": "A company may by ordinary resolution remove a director before the expiration of his or her period of office notwithstanding anything in its constitution or in any agreement between it and him or her."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -660,6 +1418,17 @@
                 "explanation": "Members can remove a director by ordinary resolution.",
                 "laws": [
                   "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 146(1)",
+                        "text": "A company may by ordinary resolution remove a director before the expiration of his or her period of office notwithstanding anything in its constitution or in any agreement between it and him or her."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -687,6 +1456,28 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66A (new)",
+                            "fix": [
+                              "(1) A local referendum shall be held in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, on the proposal of an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
+                              "(2) The elected council shall decide to hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months.",
+                              "(3) A referendum may be held on any matter within the functions of the local authority, including its budget and the local adjustment factor of the local property tax, and voters may decide on a draft resolution, bye-law or plan, which, if approved, takes effect as worded.",
+                              "(4) The proposal shall be held to be approved if a majority of the votes cast are in its favour, regardless of turnout.",
+                              "(5) A petition shall not lapse because the term of the elected council ends; the newly elected council shall decide on it within one month of its first meeting."
+                            ],
+                            "why": "Lets residents propose a local referendum with 1/100 of electors and oblige the council to hold it with 1/50, on any local matter, decided by the majority of those who vote. The same thresholds as proposed for Bulgaria."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -700,6 +1491,26 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66B (new)",
+                            "fix": [
+                              "(1) Where, within two months after a resolution of the elected council is published, an initiative committee submits a petition signed by not less than one fiftieth of the local government electors in the area of the local authority, the resolution shall not take effect until it has been approved at a local referendum.",
+                              "(2) Where the resolution concerns only one municipal district, local electoral area, town, village or neighbourhood, the petition may be signed by one fiftieth of the electors there and the referendum shall be held there.",
+                              "(3) The resolution shall be held to be rejected if a majority of the votes cast are against it, regardless of turnout."
+                            ],
+                            "why": "Lets residents suspend a council resolution and put it to a vote, also in just the part of the county it concerns."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -713,6 +1524,22 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66C (new)",
+                            "fix": "A resolution of the elected council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term borrowing, or on the disposal of land or property of public importance shall take effect only after its approval at a local referendum. Where such a resolution concerns only one municipal district, town, village or neighbourhood, the referendum shall be held there.",
+                            "why": "Sends large spending, borrowing and sales of public property to the voters automatically."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -734,6 +1561,31 @@
                 "laws": [
                   "bunreacht",
                   "lga2001"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 28A.2",
+                        "text": "There shall be such directly elected local authorities as may be determined by law and their powers and functions shall, subject to the provisions of this Constitution, be so determined and shall be exercised and performed in accordance with law."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Part 3B (new), Section 22K",
+                        "fix": [
+                          "(1) Each town, village and neighbourhood with not less than 500 inhabitants shall have a community council of not less than five members, elected by its local government electors by proportional representation with the single transferable vote at each local election.",
+                          "(2) The community council shall decide, by resolution, on the community's own affairs, including its share of the local authority's budget allocated in proportion to its population, the upkeep of its streets, footpaths, parks and playgrounds, local amenities and community facilities, and shall be consulted on planning decisions affecting it.",
+                          "(3) The community council may make bye-laws for its area and shall have its own budget, adopted by it each year."
+                        ],
+                        "why": "Gives every town, village and neighbourhood its own elected council with its own budget, like the town councils abolished in 2014 and the councils proposed for Bulgaria's mayoralties, districts and quarters."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -747,7 +1599,28 @@
                 "status": "partial",
                 "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
                 "laws": [
-                  "lga2001"
+                  "lga1991"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga1991",
+                    "items": [
+                      {
+                        "ref": "Section 32(2)(a)",
+                        "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
+                      },
+                      {
+                        "ref": "Section 32(2A) (new)",
+                        "fix": [
+                          "(a) Each local electoral area shall return not fewer than three and not more than five members.",
+                          "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
+                          "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
+                          "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
+                        ],
+                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil, instead of leaving it to the Minister's terms of reference."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -757,7 +1630,192 @@
     },
     "village": {
       "sameAs": "neighbourhood",
-      "summary": "Villages have no council of their own; they are represented through the local electoral area."
+      "summary": "Villages have no council of their own; they are represented through the local electoral area.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "referendum",
+            "kinds": [
+              {
+                "type": "citizen_initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66A (new)",
+                            "fix": [
+                              "(1) A local referendum shall be held in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, on the proposal of an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
+                              "(2) The elected council shall decide to hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months.",
+                              "(3) A referendum may be held on any matter within the functions of the local authority, including its budget and the local adjustment factor of the local property tax, and voters may decide on a draft resolution, bye-law or plan, which, if approved, takes effect as worded.",
+                              "(4) The proposal shall be held to be approved if a majority of the votes cast are in its favour, regardless of turnout.",
+                              "(5) A petition shall not lapse because the term of the elected council ends; the newly elected council shall decide on it within one month of its first meeting."
+                            ],
+                            "why": "Lets residents propose a local referendum with 1/100 of electors and oblige the council to hold it with 1/50, on any local matter, decided by the majority of those who vote. The same thresholds as proposed for Bulgaria."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "veto_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66B (new)",
+                            "fix": [
+                              "(1) Where, within two months after a resolution of the elected council is published, an initiative committee submits a petition signed by not less than one fiftieth of the local government electors in the area of the local authority, the resolution shall not take effect until it has been approved at a local referendum.",
+                              "(2) Where the resolution concerns only one municipal district, local electoral area, town, village or neighbourhood, the petition may be signed by one fiftieth of the electors there and the referendum shall be held there.",
+                              "(3) The resolution shall be held to be rejected if a majority of the votes cast are against it, regardless of turnout."
+                            ],
+                            "why": "Lets residents suspend a council resolution and put it to a vote, also in just the part of the county it concerns."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "Local government law provides no local referendum.",
+                    "laws": [
+                      "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66C (new)",
+                            "fix": "A resolution of the elected council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term borrowing, or on the disposal of land or property of public importance shall take effect only after its approval at a local referendum. Where such a resolution concerns only one municipal district, town, village or neighbourhood, the referendum shall be held there.",
+                            "why": "Sends large spending, borrowing and sales of public property to the voters automatically."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "council",
+            "name": "Village council",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "no",
+                "explanation": "Villages have no elected body of their own; the 2014 reform dissolved even the town councils.",
+                "laws": [
+                  "lgra2014",
+                  "lga2001"
+                ],
+                "provisions": [
+                  {
+                    "law": "lgra2014",
+                    "items": [
+                      {
+                        "ref": "Section 24(2)",
+                        "text": "On the transfer date each town council stands dissolved and ceases to exist and— (a) the local authority for a county or a city and county in which a town whose town council is so dissolved is situated shall, for all purposes, become and be the successor to the town council on that date, …"
+                      }
+                    ]
+                  },
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Part 3B (new), Section 22K",
+                        "fix": [
+                          "(1) Each town, village and neighbourhood with not less than 500 inhabitants shall have a community council of not less than five members, elected by its local government electors by proportional representation with the single transferable vote at each local election.",
+                          "(2) The community council shall decide, by resolution, on the community's own affairs, including its share of the local authority's budget allocated in proportion to its population, the upkeep of its streets, footpaths, parks and playgrounds, local amenities and community facilities, and shall be consulted on planning decisions affecting it.",
+                          "(3) The community council may make bye-laws for its area and shall have its own budget, adopted by it each year."
+                        ],
+                        "why": "Gives every town, village and neighbourhood its own elected council with its own budget, like the town councils abolished in 2014 and the councils proposed for Bulgaria's mayoralties, districts and quarters."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "upper_council_seat",
+            "name": "Own members of the city/county council",
+            "properties": [
+              {
+                "type": "local_districts",
+                "status": "partial",
+                "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
+                "laws": [
+                  "lga1991"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga1991",
+                    "items": [
+                      {
+                        "ref": "Section 32(2)(a)",
+                        "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
+                      },
+                      {
+                        "ref": "Section 32(2A) (new)",
+                        "fix": [
+                          "(a) Each local electoral area shall return not fewer than three and not more than five members.",
+                          "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
+                          "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
+                          "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
+                        ],
+                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil, instead of leaving it to the Minister's terms of reference."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "town": {
       "summary": "Town councils were abolished in 2014. Towns are governed by the municipal district and the county council.",
@@ -775,6 +1833,28 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66A (new)",
+                            "fix": [
+                              "(1) A local referendum shall be held in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, on the proposal of an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
+                              "(2) The elected council shall decide to hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months.",
+                              "(3) A referendum may be held on any matter within the functions of the local authority, including its budget and the local adjustment factor of the local property tax, and voters may decide on a draft resolution, bye-law or plan, which, if approved, takes effect as worded.",
+                              "(4) The proposal shall be held to be approved if a majority of the votes cast are in its favour, regardless of turnout.",
+                              "(5) A petition shall not lapse because the term of the elected council ends; the newly elected council shall decide on it within one month of its first meeting."
+                            ],
+                            "why": "Lets residents propose a local referendum with 1/100 of electors and oblige the council to hold it with 1/50, on any local matter, decided by the majority of those who vote. The same thresholds as proposed for Bulgaria."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -788,6 +1868,26 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66B (new)",
+                            "fix": [
+                              "(1) Where, within two months after a resolution of the elected council is published, an initiative committee submits a petition signed by not less than one fiftieth of the local government electors in the area of the local authority, the resolution shall not take effect until it has been approved at a local referendum.",
+                              "(2) Where the resolution concerns only one municipal district, local electoral area, town, village or neighbourhood, the petition may be signed by one fiftieth of the electors there and the referendum shall be held there.",
+                              "(3) The resolution shall be held to be rejected if a majority of the votes cast are against it, regardless of turnout."
+                            ],
+                            "why": "Lets residents suspend a council resolution and put it to a vote, also in just the part of the county it concerns."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -801,6 +1901,22 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66C (new)",
+                            "fix": "A resolution of the elected council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term borrowing, or on the disposal of land or property of public importance shall take effect only after its approval at a local referendum. Where such a resolution concerns only one municipal district, town, village or neighbourhood, the referendum shall be held there.",
+                            "why": "Sends large spending, borrowing and sales of public property to the voters automatically."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -820,7 +1936,38 @@
                 "status": "no",
                 "explanation": "Town and borough councils were dissolved by the 2014 reform.",
                 "laws": [
-                  "lgra2014"
+                  "lgra2014",
+                  "lga2001"
+                ],
+                "provisions": [
+                  {
+                    "law": "lgra2014",
+                    "items": [
+                      {
+                        "ref": "Section 24(2)",
+                        "text": "On the transfer date each town council stands dissolved and ceases to exist and— (a) the local authority for a county or a city and county in which a town whose town council is so dissolved is situated shall, for all purposes, become and be the successor to the town council on that date, …"
+                      },
+                      {
+                        "ref": "Section 24(2)",
+                        "fix": "(repealed)",
+                        "why": "Restores elected town councils."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Part 3B (new), Section 22K",
+                        "fix": [
+                          "(1) Each town, village and neighbourhood with not less than 500 inhabitants shall have a community council of not less than five members, elected by its local government electors by proportional representation with the single transferable vote at each local election.",
+                          "(2) The community council shall decide, by resolution, on the community's own affairs, including its share of the local authority's budget allocated in proportion to its population, the upkeep of its streets, footpaths, parks and playgrounds, local amenities and community facilities, and shall be consulted on planning decisions affecting it.",
+                          "(3) The community council may make bye-laws for its area and shall have its own budget, adopted by it each year."
+                        ],
+                        "why": "Gives every town, village and neighbourhood its own elected council with its own budget, like the town councils abolished in 2014 and the councils proposed for Bulgaria's mayoralties, districts and quarters."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -834,7 +1981,28 @@
                 "status": "partial",
                 "explanation": "Councillors are elected in multi-seat local electoral areas, each covering several neighbourhoods or a district around a town.",
                 "laws": [
-                  "lga2001"
+                  "lga1991"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga1991",
+                    "items": [
+                      {
+                        "ref": "Section 32(2)(a)",
+                        "text": "Before deciding whether to make an order under section 23 of the Local Government Act 2001 in relation to a local electoral boundary the Minister shall request An Coimisiún Toghcháin to prepare a report, in accordance with sections 61 to 63 of the Electoral Reform Act 2022, in relation to the boundary concerned."
+                      },
+                      {
+                        "ref": "Section 32(2A) (new)",
+                        "fix": [
+                          "(a) Each local electoral area shall return not fewer than three and not more than five members.",
+                          "(b) The ratio between the number of members to be elected for each local electoral area and its population, as ascertained at the last preceding census, shall, so far as practicable, be the same throughout the county or city.",
+                          "(c) Local electoral areas shall consist of adjoining areas and shall follow, so far as practicable, the boundaries of towns, villages and communities.",
+                          "(d) An Coimisiún Toghcháin shall review the local electoral areas after each census on these rules, and the Minister shall not depart from its recommendations."
+                        ],
+                        "why": "Fixes the size of local electoral areas by law at 3–5 seats on community boundaries, as Ireland already does for the Dáil, instead of leaving it to the Minister's terms of reference."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -858,6 +2026,28 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66A (new)",
+                            "fix": [
+                              "(1) A local referendum shall be held in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, on the proposal of an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
+                              "(2) The elected council shall decide to hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months.",
+                              "(3) A referendum may be held on any matter within the functions of the local authority, including its budget and the local adjustment factor of the local property tax, and voters may decide on a draft resolution, bye-law or plan, which, if approved, takes effect as worded.",
+                              "(4) The proposal shall be held to be approved if a majority of the votes cast are in its favour, regardless of turnout.",
+                              "(5) A petition shall not lapse because the term of the elected council ends; the newly elected council shall decide on it within one month of its first meeting."
+                            ],
+                            "why": "Lets residents propose a local referendum with 1/100 of electors and oblige the council to hold it with 1/50, on any local matter, decided by the majority of those who vote. The same thresholds as proposed for Bulgaria."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -871,6 +2061,26 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66B (new)",
+                            "fix": [
+                              "(1) Where, within two months after a resolution of the elected council is published, an initiative committee submits a petition signed by not less than one fiftieth of the local government electors in the area of the local authority, the resolution shall not take effect until it has been approved at a local referendum.",
+                              "(2) Where the resolution concerns only one municipal district, local electoral area, town, village or neighbourhood, the petition may be signed by one fiftieth of the electors there and the referendum shall be held there.",
+                              "(3) The resolution shall be held to be rejected if a majority of the votes cast are against it, regardless of turnout."
+                            ],
+                            "why": "Lets residents suspend a council resolution and put it to a vote, also in just the part of the county it concerns."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -884,6 +2094,22 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66C (new)",
+                            "fix": "A resolution of the elected council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term borrowing, or on the disposal of land or property of public importance shall take effect only after its approval at a local referendum. Where such a resolution concerns only one municipal district, town, village or neighbourhood, the referendum shall be held there.",
+                            "why": "Sends large spending, borrowing and sales of public property to the voters automatically."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -903,7 +2129,18 @@
                 "status": "yes",
                 "explanation": "Municipal district members perform reserved functions for their district.",
                 "laws": [
-                  "lgra2014"
+                  "lga2001"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 22A(1)",
+                        "text": "Subject to subsection (4), every county and city and county set out in Part 1 and Part 3, respectively, of Schedule 5 shall have 2 or more districts (each consisting of one or more than one local electoral area) to be known as a municipal district and collectively as municipal districts, as the Minister shall determine by order made under section 23(1)(c)."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -911,7 +2148,23 @@
                 "status": "partial",
                 "explanation": "Only the functions listed in Schedules 14 and 14A, plus any the county council chooses to delegate (and can take back).",
                 "laws": [
-                  "lgra2014"
+                  "lga2001"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 22A(1)",
+                        "text": "Subject to subsection (4), every county and city and county set out in Part 1 and Part 3, respectively, of Schedule 5 shall have 2 or more districts (each consisting of one or more than one local electoral area) to be known as a municipal district and collectively as municipal districts, as the Minister shall determine by order made under section 23(1)(c)."
+                      },
+                      {
+                        "ref": "Section 22A (new subsection)",
+                        "fix": "The members of each municipal district shall adopt, each year, a budget for the district, allocated from the local authority's income in proportion to the district's population, and shall exercise as reserved functions all functions of the local authority that concern only the district.",
+                        "why": "Gives municipal districts their own budget and every function that concerns only them, which the county council can no longer withhold or take back."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -952,6 +2205,28 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66A (new)",
+                            "fix": [
+                              "(1) A local referendum shall be held in the area of a local authority, or of a municipal district, local electoral area, town, village or neighbourhood within it, on the proposal of an initiative committee supported by the signatures of not less than one hundredth of the local government electors registered there.",
+                              "(2) The elected council shall decide to hold the referendum where the proposal is supported by the signatures of not less than one fiftieth of those electors, collected within six months.",
+                              "(3) A referendum may be held on any matter within the functions of the local authority, including its budget and the local adjustment factor of the local property tax, and voters may decide on a draft resolution, bye-law or plan, which, if approved, takes effect as worded.",
+                              "(4) The proposal shall be held to be approved if a majority of the votes cast are in its favour, regardless of turnout.",
+                              "(5) A petition shall not lapse because the term of the elected council ends; the newly elected council shall decide on it within one month of its first meeting."
+                            ],
+                            "why": "Lets residents propose a local referendum with 1/100 of electors and oblige the council to hold it with 1/50, on any local matter, decided by the majority of those who vote. The same thresholds as proposed for Bulgaria."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -965,6 +2240,26 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66B (new)",
+                            "fix": [
+                              "(1) Where, within two months after a resolution of the elected council is published, an initiative committee submits a petition signed by not less than one fiftieth of the local government electors in the area of the local authority, the resolution shall not take effect until it has been approved at a local referendum.",
+                              "(2) Where the resolution concerns only one municipal district, local electoral area, town, village or neighbourhood, the petition may be signed by one fiftieth of the electors there and the referendum shall be held there.",
+                              "(3) The resolution shall be held to be rejected if a majority of the votes cast are against it, regardless of turnout."
+                            ],
+                            "why": "Lets residents suspend a council resolution and put it to a vote, also in just the part of the county it concerns."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -978,6 +2273,22 @@
                     "explanation": "Local government law provides no local referendum.",
                     "laws": [
                       "lga2001"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "lga2001",
+                        "items": [
+                          {
+                            "ref": "Section 63(1)",
+                            "text": "The functions of a local authority are— (a) to provide a forum for the democratic representation of the local community, in accordance with section 64, and to provide civic leadership for that community, (b) to carry out such functions as may at any material time stand conferred on the relevant authority by or under any enactment …, (c) to carry out any ancillary functions under section 65, and (d) to take such action as it considers necessary or desirable to promote the community interest in accordance with section 66."
+                          },
+                          {
+                            "ref": "Section 66C (new)",
+                            "fix": "A resolution of the elected council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term borrowing, or on the disposal of land or property of public importance shall take effect only after its approval at a local referendum. Where such a resolution concerns only one municipal district, town, village or neighbourhood, the referendum shall be held there.",
+                            "why": "Sends large spending, borrowing and sales of public property to the voters automatically."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -998,15 +2309,55 @@
                 "explanation": "The Constitution provides for directly elected local authorities.",
                 "laws": [
                   "bunreacht"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 28A.2",
+                        "text": "There shall be such directly elected local authorities as may be determined by law and their powers and functions shall, subject to the provisions of this Constitution, be so determined and shall be exercised and performed in accordance with law."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "binding_powers",
                 "status": "partial",
-                "explanation": "The council's reserved functions include adopting the budget and development plan. The council can vary the local property tax rate by up to 15% either way; most funding comes from central government.",
+                "explanation": "The elected council decides only its reserved functions, such as the budget, the development plan and bye-laws, and can vary the local property tax rate by a limited percentage. Every other function belongs to the chief executive, an appointed official, and most funding comes from central government.",
                 "laws": [
                   "lga2001",
                   "lpt2012"
+                ],
+                "provisions": [
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 131(1)(a)",
+                        "text": "Subject to section 131A, the elected council of a local authority or the members of a joint body shall directly exercise and perform by resolution at a meeting of the local authority or body every function to which this section applies."
+                      },
+                      {
+                        "ref": "Section 149(4)",
+                        "text": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority."
+                      },
+                      {
+                        "ref": "Section 149(4)",
+                        "fix": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority, to be exercised by the directly elected mayor under the direction of the elected council.",
+                        "why": "Puts the executive under elected people instead of an appointed chief executive."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "lpt2012",
+                    "items": [
+                      {
+                        "ref": "Section 20(2)",
+                        "text": "Where the passing of such a resolution is a reserved function … of a local authority, a local authority may pass a resolution that the basic rate should, for a period specified in the resolution …, stand varied (either upwards or downwards) by a specified percentage in respect of relevant residential properties situated in the local authority's functional area."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1039,6 +2390,22 @@
                 "explanation": "The executive is a chief executive appointed, not elected. (Limerick is the exception: it elects its mayor directly since 2024.)",
                 "laws": [
                   "limerick2024"
+                ],
+                "provisions": [
+                  {
+                    "law": "limerick2024",
+                    "items": [
+                      {
+                        "ref": "Section 9(1), (3)",
+                        "text": "(1) There shall be a mayor in respect of the administrative area of Limerick City and County Council, who— (a) shall be known … as Méara Luimnigh and, in the English language, as the Mayor of Limerick … (3) Subject to section 13, the Mayor shall be elected in accordance with Schedule 2."
+                      },
+                      {
+                        "ref": "Section 9A (new)",
+                        "fix": "Every city council, county council and city and county council shall have a directly elected mayor, elected at each local election by the local government electors of its area, to whom the functions of the chief executive and of the Cathaoirleach are transferred as provided for the Mayor of Limerick in sections 9 and 10.",
+                        "why": "Extends Limerick's directly elected mayor to every county and city."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -1065,8 +2432,28 @@
                     "status": "no",
                     "explanation": "Citizens cannot put their own proposal to a vote.",
                     "laws": [
-                      "bunreacht",
-                      "ref1994"
+                      "bunreacht"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bunreacht",
+                        "items": [
+                          {
+                            "ref": "Article 46.2",
+                            "text": "Every proposal for an amendment of this Constitution shall be initiated in Dáil Éireann as a Bill, and shall upon having been passed or deemed to have been passed by both Houses of the Oireachtas, be submitted by Referendum to the decision of the people in accordance with the law for the time being in force relating to the Referendum."
+                          },
+                          {
+                            "ref": "Article 47A (new)",
+                            "fix": [
+                              "1 A proposal for a law, or for an amendment of this Constitution, may be initiated by not less than 50,000 citizens who have the right to vote at a Referendum, by a petition addressed to the Ceann Comhairle.",
+                              "2 Where the petition is signed by not less than 100,000 such citizens within six months, the proposal shall, unless enacted by the Oireachtas without change within six months, be submitted by Referendum to the decision of the people; the Oireachtas may submit an alternative proposal at the same Referendum.",
+                              "3 A proposal so submitted shall be held to have been approved by the people if a majority of the votes cast at the Referendum are in its favour, and shall be signed and promulgated as a law, or as an amendment of this Constitution, accordingly.",
+                              "4 A petition shall not lapse on a dissolution of Dáil Éireann."
+                            ],
+                            "why": "Lets 50,000 citizens propose a law or constitutional amendment and 100,000 put it to a binding vote, decided by a simple majority. The same thresholds as proposed for Bulgaria."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1077,9 +2464,34 @@
                   {
                     "type": "exists",
                     "status": "no",
-                    "explanation": "Only the President, on a petition of a Senate majority and a third of the Dáil, can refer a bill to the people (Art. 27); citizens cannot.",
+                    "explanation": "Citizens cannot call a vote on a law. Only a majority of the Senate together with a third of the Dáil can petition the President to refer a bill to the people (Art. 27), which has never happened, and such a bill is vetoed only if the No votes also reach a third of the register.",
                     "laws": [
                       "bunreacht"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bunreacht",
+                        "items": [
+                          {
+                            "ref": "Article 27.1",
+                            "text": "A majority of the members of Seanad Éireann and not less than one-third of the members of Dáil Éireann may by a joint petition addressed to the President by them under this Article request the President to decline to sign and promulgate as a law any Bill to which this Article applies on the ground that the Bill contains a proposal of such national importance that the will of the people thereon ought to be ascertained."
+                          },
+                          {
+                            "ref": "Article 27A (new)",
+                            "fix": [
+                              "1 Where, within 100 days after a Bill has been signed by the President, a petition signed by not less than 50,000 citizens who have the right to vote at a Referendum is presented to the President, the law shall be submitted by Referendum to the decision of the people.",
+                              "2 The law shall not come into operation before the Referendum, and shall stand repealed if it is vetoed by the people."
+                            ],
+                            "why": "Lets 50,000 citizens call a vote on any new law before it takes effect. Today only a Senate majority and a third of the Dáil can ask for one, and it has never been used."
+                          },
+                          {
+                            "ref": "Article 47.2.1°",
+                            "text": "Every proposal, other than a proposal to amend the Constitution, which is submitted by Referendum to the decision of the people shall be held to have been vetoed by the people if a majority of the votes cast at such Referendum shall have been cast against its enactment into law and if the votes so cast against its enactment into law shall have amounted to not less than thirty-three and one-third per cent. of the voters on the register.",
+                            "fix": "Every proposal, other than a proposal to amend the Constitution, which is submitted by Referendum to the decision of the people shall be held to have been vetoed by the people if a majority of the votes cast at such Referendum shall have been cast against its enactment into law.",
+                            "why": "Removes the rule that a veto also needs a third of all registered voters: the majority of those who vote decides."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1094,6 +2506,17 @@
                     "explanation": "Every constitutional amendment is submitted to the people.",
                     "laws": [
                       "bunreacht"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bunreacht",
+                        "items": [
+                          {
+                            "ref": "Article 46.2",
+                            "text": "Every proposal for an amendment of this Constitution shall be initiated in Dáil Éireann as a Bill, and shall upon having been passed or deemed to have been passed by both Houses of the Oireachtas, be submitted by Referendum to the decision of the people in accordance with the law for the time being in force relating to the Referendum."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -1102,14 +2525,36 @@
                     "explanation": "An approved amendment is signed into law; a vetoed ordinary proposal cannot be enacted.",
                     "laws": [
                       "bunreacht"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bunreacht",
+                        "items": [
+                          {
+                            "ref": "Article 46.2",
+                            "text": "Every proposal for an amendment of this Constitution shall be initiated in Dáil Éireann as a Bill, and shall upon having been passed or deemed to have been passed by both Houses of the Oireachtas, be submitted by Referendum to the decision of the people in accordance with the law for the time being in force relating to the Referendum."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
                     "type": "no_quorum",
                     "status": "yes",
-                    "explanation": "Constitutional amendments pass with a majority of votes cast. Ordinary-bill referendums are vetoed only if a majority votes no and that majority is at least a third of the register.",
+                    "explanation": "A constitutional amendment passes with a majority of the votes cast, whatever the turnout.",
                     "laws": [
                       "bunreacht"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bunreacht",
+                        "items": [
+                          {
+                            "ref": "Article 47.1",
+                            "text": "Every proposal for an amendment of this Constitution which is submitted by Referendum to the decision of the people shall, for the purpose of Article 46 of this Constitution, be held to have been approved by the people, if, upon having been so submitted, a majority of the votes cast at such Referendum shall have been cast in favour of its enactment into law."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -1117,8 +2562,18 @@
                     "status": "yes",
                     "explanation": "Voters decide on the worded amendment bill.",
                     "laws": [
-                      "bunreacht",
-                      "ref1994"
+                      "bunreacht"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bunreacht",
+                        "items": [
+                          {
+                            "ref": "Article 46.2",
+                            "text": "Every proposal for an amendment of this Constitution shall be initiated in Dáil Éireann as a Bill, and shall upon having been passed or deemed to have been passed by both Houses of the Oireachtas, be submitted by Referendum to the decision of the people in accordance with the law for the time being in force relating to the Referendum."
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -1127,6 +2582,17 @@
                     "explanation": "No petition is needed: all constitutional amendments go to a vote automatically.",
                     "laws": [
                       "bunreacht"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bunreacht",
+                        "items": [
+                          {
+                            "ref": "Article 46.2",
+                            "text": "Every proposal for an amendment of this Constitution shall be initiated in Dáil Éireann as a Bill, and shall upon having been passed or deemed to have been passed by both Houses of the Oireachtas, be submitted by Referendum to the decision of the people in accordance with the law for the time being in force relating to the Referendum."
+                          }
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1147,7 +2613,19 @@
                 "laws": [
                   "bunreacht",
                   "ea1992"
-                ]
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 16.1.2°",
+                        "text": "i All citizens, and ii such other persons in the State as may be determined by law, without distinction of sex who have reached the age of eighteen years who are not disqualified by law and comply with the provisions of the law relating to the election of members of Dáil Éireann, shall have the right to vote at an election for members of Dáil Éireann."
+                      }
+                    ]
+                  }
+                ],
+                "explanation": "The Dáil is elected by all citizens aged 18 and over."
               },
               {
                 "type": "binding_powers",
@@ -1155,31 +2633,104 @@
                 "laws": [
                   "bunreacht",
                   "ea1992"
-                ]
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 15.2.1°",
+                        "text": "The sole and exclusive power of making laws for the State is hereby vested in the Oireachtas: no other legislative authority has power to make laws for the State."
+                      }
+                    ]
+                  }
+                ],
+                "explanation": "The Oireachtas, of which the Dáil is the elected house, holds the sole power to make laws."
               },
               {
                 "type": "individual_vote",
                 "status": "yes",
                 "explanation": "Members are elected by proportional representation with the single transferable vote.",
                 "laws": [
-                  "bunreacht"
+                  "bunreacht",
+                  "ea1992"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 16.2.5°",
+                        "text": "The members shall be elected on the system of proportional representation by means of the single transferable vote."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "ea1992",
+                    "items": [
+                      {
+                        "ref": "Section 37",
+                        "text": "(1) A Dáil election shall be conducted in accordance with this Act and, in case a Dáil election is contested, the poll shall be taken according to the principle of proportional representation, each elector having one transferable vote. (2) In this section \"transferable vote\" means a vote which is— (a) capable of being given so as to indicate the voter's preference for the candidates in order, and (b) capable of being transferred to the next choice when the vote is not required to give a prior choice the necessary quota of votes, or when, owing to the deficiency in the number of the votes given for a prior choice, that choice is excluded from the list of candidates."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "local_districts",
-                "status": "partial",
-                "explanation": "Multi-seat constituencies; no law may provide fewer than three seats per constituency.",
+                "status": "yes",
+                "explanation": "Every constituency elects three to five members, with the same population per member as far as practicable, and an independent Electoral Commission redraws them after every census, avoiding county boundaries where it can.",
                 "laws": [
                   "bunreacht"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 16.2",
+                        "text": [
+                          "1° Dáil Éireann shall be composed of members who represent constituencies determined by law.",
+                          "3° The ratio between the number of members to be elected at any time for each constituency and the population of each constituency, as ascertained at the last preceding census, shall, so far as it is practicable, be the same throughout the country.",
+                          "4° The Oireachtas shall revise the constituencies at least once in every twelve years, with due regard to changes in distribution of the population, but any alterations in the constituencies shall not take effect during the life of Dáil Éireann sitting when such revision is made.",
+                          "6° No law shall be enacted whereby the number of members to be returned for any constituency shall be less than three."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "proportional_representation",
                 "status": "yes",
-                "explanation": "The Constitution requires proportional representation by the single transferable vote, in constituencies of three to five seats.",
+                "explanation": "Seats are shared by the single transferable vote with no legal threshold: a candidate needs a quota of 1/(seats+1) of the votes in the constituency, and transfers carry votes on to the voter's next choice, so few votes are wasted.",
                 "laws": [
                   "bunreacht",
                   "ea1992"
+                ],
+                "provisions": [
+                  {
+                    "law": "bunreacht",
+                    "items": [
+                      {
+                        "ref": "Article 16.2.5°",
+                        "text": "The members shall be elected on the system of proportional representation by means of the single transferable vote."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "ea1992",
+                    "items": [
+                      {
+                        "ref": "Section 37",
+                        "text": "(1) A Dáil election shall be conducted in accordance with this Act and, in case a Dáil election is contested, the poll shall be taken according to the principle of proportional representation, each elector having one transferable vote. (2) In this section \"transferable vote\" means a vote which is— (a) capable of being given so as to indicate the voter's preference for the candidates in order, and (b) capable of being transferred to the next choice when the vote is not required to give a prior choice the necessary quota of votes, or when, owing to the deficiency in the number of the votes given for a prior choice, that choice is excluded from the list of candidates."
+                      },
+                      {
+                        "ref": "Section 120(1)",
+                        "text": "The returning officer shall then divide the number of all valid papers by a number exceeding by one the number of vacancies to be filled; the result increased by one, any fractional remainder being disregarded, shall be the number of votes sufficient to secure the election of a candidate and this number is referred to in this Act as \"the quota\"."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -1250,7 +2801,18 @@
                 "type": "exists",
                 "status": "yes",
                 "laws": [
-                  "teu"
+                  "epea1997"
+                ],
+                "provisions": [
+                  {
+                    "law": "epea1997",
+                    "items": [
+                      {
+                        "ref": "Section 15(1)",
+                        "text": "The constituencies for which candidates shall be elected under this Act to be representatives in the Parliament shall be those specified in the Third Schedule and the number of representatives to be so elected for such a constituency shall be the number specified in respect thereof in the third column of that Schedule."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1267,8 +2829,18 @@
                 "status": "yes",
                 "explanation": "Irish MEPs are elected by proportional representation with the single transferable vote: voters rank individual candidates.",
                 "laws": [
-                  "teu",
                   "epea1997"
+                ],
+                "provisions": [
+                  {
+                    "law": "epea1997",
+                    "items": [
+                      {
+                        "ref": "Section 15(1)",
+                        "text": "The constituencies for which candidates shall be elected under this Act to be representatives in the Parliament shall be those specified in the Third Schedule and the number of representatives to be so elected for such a constituency shall be the number specified in respect thereof in the third column of that Schedule."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1277,6 +2849,17 @@
                 "explanation": "Ireland elects its MEPs in a few multi-seat constituencies.",
                 "laws": [
                   "epea1997"
+                ],
+                "provisions": [
+                  {
+                    "law": "epea1997",
+                    "items": [
+                      {
+                        "ref": "Section 15(1)",
+                        "text": "The constituencies for which candidates shall be elected under this Act to be representatives in the Parliament shall be those specified in the Third Schedule and the number of representatives to be so elected for such a constituency shall be the number specified in respect thereof in the third column of that Schedule."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1284,8 +2867,18 @@
                 "status": "yes",
                 "explanation": "Ireland's MEPs are elected by proportional representation with the single transferable vote, in three constituencies; seats per country are allocated degressively.",
                 "laws": [
-                  "epea1997",
-                  "teu"
+                  "epea1997"
+                ],
+                "provisions": [
+                  {
+                    "law": "epea1997",
+                    "items": [
+                      {
+                        "ref": "Section 15(1)",
+                        "text": "The constituencies for which candidates shall be elected under this Act to be representatives in the Parliament shall be those specified in the Third Schedule and the number of representatives to be so elected for such a constituency shall be the number specified in respect thereof in the third column of that Schedule."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
