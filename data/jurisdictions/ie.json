@@ -3101,7 +3101,7 @@
                   {
                     "type": "binding_powers",
                     "status": "partial",
-                    "explanation": "The elected council decides only its reserved functions, such as the budget, the development plan and bye-laws, and can vary the local property tax rate by a limited percentage. Every other function belongs to the chief executive, an appointed official, and most funding comes from central government.",
+                    "explanation": "The elected council decides only its reserved functions, such as the budget, the development plan and bye-laws, and can vary the local property tax rate by a limited percentage. Since 2024 the other functions are exercised by the directly elected Mayor rather than the appointed chief executive, but most funding still comes from central government.",
                     "laws": [
                       "lga2001",
                       "lpt2012"
@@ -3117,11 +3117,6 @@
                           {
                             "ref": "Section 149(4)",
                             "text": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority."
-                          },
-                          {
-                            "ref": "Section 149(4)",
-                            "fix": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority, to be exercised by the directly elected mayor provided for in section 9A of the Local Government (Mayor of Limerick) and Miscellaneous Provisions Act 2024.",
-                            "why": "Puts the executive under an elected mayor instead of an appointed chief executive. Goes together with the new section 9A of the Mayor of Limerick Act."
                           }
                         ]
                       },
