@@ -427,7 +427,7 @@ function render() {
   } else if (!branch && branchId !== 'direct' && branchId !== 'representative') {
     // Screen 2: the level's shared interests, then the two ways of deciding.
     setLegend('levels');
-    screen.push(el('h2', { class: 'group-title' }, 'Shared interest types'));
+    screen.push(el('h2', { class: 'group-title' }, 'Common interest categories'));
     screen.push(rowOf(interestChips(levelId), 'interests'));
     screen.push(el('h2', { class: 'group-title' }, 'Decision making institutions'));
     // Some levels (e.g. Home) decide informally, without formal institutions (catalog `informal`): one plain chip.
