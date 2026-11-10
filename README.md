@@ -34,9 +34,9 @@ python3 server.py --host 0.0.0.0 --port 8000   # let others on your network use 
 Each requirement page has a chat button (top right) where readers comment, suggest edits or ask Claude about the requirement. It needs the `anthropic` package and an API key on the server; the key never reaches the browser:
 
 ```sh
-pip install anthropic
-export ANTHROPIC_API_KEY=...   # or sign in once with `ant auth login`
-python3 server.py
+python3 -m venv .venv && .venv/bin/pip install anthropic   # a venv avoids Homebrew's "externally managed" error
+export ANTHROPIC_API_KEY=...   # from console.anthropic.com, or sign in once with `ant auth login`
+.venv/bin/python server.py
 ```
 
 Every conversation is saved in `data/state/comments.json` for the editors, also when the chat is not set up. The rest of the site runs without the package.
