@@ -223,7 +223,18 @@ async function showArea(levelId) {
   } catch { if (areaKey === key) areaKey = null; /* no outline (a retry is allowed): the page works without it */ }
 }
 
-map.on('click', e => locate(e.latlng.lat, e.latlng.lng));
+map.on('click', e => { showAlternatives([]); locate(e.latlng.lat, e.latlng.lng); });
+// Other matches of a search, as small links under the address: the first hit can be a same-named street elsewhere.
+function showAlternatives(rs, chosen) {
+  let box = document.getElementById('alts');
+  if (!box) { box = el('div', { id: 'alts', class: 'alts' }); $('#place').after(box); }
+  const short = r => r.display_name.split(', ').slice(0, 3).join(', ');
+  const seen = new Set(chosen ? [short(chosen)] : []);
+  const items = rs.map(r => ({ r, label: short(r) }))
+    .filter(x => !seen.has(x.label) && seen.add(x.label)).slice(0, 4);
+  box.replaceChildren(...(items.length ? ['Other matches: ', ...items.flatMap((x, i) => [i ? ' · ' : '',
+    el('button', { type: 'button', onclick: () => { showAlternatives([]); locate(x.r.lat, x.r.lon, { zoom: 16 }); } }, x.label)])] : []));
+}
 $('#search').addEventListener('submit', async e => {
   e.preventDefault();
   const q = $('#q').value.trim();
@@ -233,12 +244,14 @@ $('#search').addEventListener('submit', async e => {
   $('#place').replaceChildren(el('span', { class: 'loading' }, 'Searching…'));
   const t0 = performance.now();
   try {
-    const [r] = await search(q);
+    const rs = await search(q), [r] = rs;
+    showAlternatives([]);
     timing('search', t0);
     if (!r) { $('#place').replaceChildren(`Nothing found for “${q}”.`); return; }
     // A search hit without its settlement in the address ("Main Street, Bray"): look the point up again for the full address.
     const a = r.address || {};
     await locate(r.lat, r.lon, { zoom: 16, result: (a.city || a.town || a.village || a.hamlet) ? r : undefined });
+    showAlternatives(rs.slice(1), r);
   } catch (err) {
     $('#place').replaceChildren(err.message);
   } finally {

@@ -252,3 +252,8 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .map-busy.on { display: flex; }
 .map-busy .spin { width: 44px; height: 44px; border-radius: 50%; border: 5px solid rgba(0,0,0,.12); border-top-color: var(--coral); animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* Other matches of a search */
+.alts { text-align: center; font-size: 13px; color: var(--muted); margin: -4px 0 10px; }
+.alts:empty { display: none; }
+.alts button { background: none; border: 0; padding: 0 2px; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; font-size: 13px; }
