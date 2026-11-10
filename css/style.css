@@ -101,7 +101,6 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .trail .sep { color: var(--muted); }
 /* The current page is the title, on its own row below the path that leads to it. */
 .trail .here { flex-basis: 100%; text-align: center; margin-top: 6px; font-size: 28px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; color: var(--text); padding: 0 4px; }
-.trail .sep:has(+ .here) { display: none; }
 @media (max-width: 600px) { .trail .here { font-size: 22px; } }
 
 /* Shared-interest chips: neutral, with a small x to mark "not applicable here" */
