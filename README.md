@@ -31,6 +31,16 @@ python3 server.py            # open http://localhost:8000
 python3 server.py --host 0.0.0.0 --port 8000   # let others on your network use it
 ```
 
+Each requirement page has a chat button (top right) where readers comment, suggest edits or ask Claude about the requirement. It needs the `anthropic` package and an API key on the server; the key never reaches the browser:
+
+```sh
+pip install anthropic
+export ANTHROPIC_API_KEY=...   # or sign in once with `ant auth login`
+python3 server.py
+```
+
+Every conversation is saved in `data/state/comments.json` for the editors, also when the chat is not set up. The rest of the site runs without the package.
+
 Interest chips that anyone adds, or marks ✕ as not applicable, are shared with everyone using the same server. On a plain static host (for example GitHub Pages) the page still works, but added chips are kept only in that browser.
 
 Maps use [Leaflet](https://leafletjs.com/) (vendored in `vendor/leaflet`) with OpenStreetMap tiles, and addresses are looked up with [Nominatim](https://nominatim.org/). Both are free. Nominatim's [usage policy](https://operations.osmfoundation.org/policies/nominatim/) allows about one request per second, which is fine for a demo. For heavy traffic, switch to a hosted geocoder.

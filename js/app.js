@@ -368,6 +368,81 @@ function provisionsPanel(provisions, laws, explainer, prop) {
   return panel;
 }
 
+// ---------- requirement chat ----------
+// A small chat on each requirement page: readers comment, suggest edits or ask Claude about the requirement.
+// server.py (/api/chat) holds the API key, gives Claude the site's principles and this page's text, and saves
+// every conversation for the editors. Conversations live in memory, one per requirement, for this visit.
+const chats = new Map();
+const newId = () => (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2)).replace(/[^\w-]/g, '');
+function pageContext(trail, prop, laws, catalog) {
+  const pdef = catalog.properties[prop.type] || {};
+  const label = { yes: 'Met', partial: 'Partly met', weak: 'Partly met (weak)', no: 'Not met' }[prop.status] || 'Unknown';
+  const a = state.loc?.address || {};
+  const place = [a.suburb || a.quarter || a.neighbourhood, a.village || a.town || a.city, a.country].filter(Boolean).join(', ');
+  const lines = [trail.join(' › '), `Place: ${place}`, `Requirement: ${prop.name || pdef.name || prop.type} (${pdef.longName || ''})`,
+    pdef.description ? `What it means: ${pdef.description}` : '', `Verdict: ${label}`, prop.explanation ? `Why: ${prop.explanation}` : '',
+    pdef.explainer ? `Background (${pdef.explainer.title}, ${pdef.explainer.source || ''}): ${(pdef.explainer.quote || []).join(' ')}` : ''];
+  for (const p of prop.provisions || []) {
+    const law = laws[p.law] || { title: p.law };
+    lines.push('', `Law: ${law.title}${law.localTitle ? ` (${law.localTitle})` : ''}${law.url ? ` ${law.url}` : ''}`);
+    for (const it of p.items || []) {
+      if (it.text != null) lines.push(`${it.ref || ''}: ${[].concat(it.text).join(' ')}`);
+      if (it.fix != null) lines.push(`Proposed fix for ${it.ref || 'a new article'}: ${[].concat(it.fix).join(' ')}${it.why ? ` (Why: ${it.why})` : ''}`);
+    }
+  }
+  if (!prop.provisions?.length && prop.laws?.length) lines.push('', 'Laws: ' + prop.laws.map(id => laws[id]?.title || id).join('; '));
+  return lines.filter(l => l !== '').join('\n');
+}
+function chatBox(key, context) {
+  const c = chats.get(key) || { id: newId(), messages: [] };
+  chats.set(key, c);
+  const log = el('div', { class: 'chat-log', 'aria-live': 'polite' });
+  const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '4000', placeholder: 'Comment, suggest an edit, or ask a question', 'aria-label': 'Your message' });
+  const send = el('button', { type: 'submit', class: 'chat-send' }, 'Send');
+  const paint = (pending, error) => {
+    log.replaceChildren(...[
+      c.messages.length ? null : el('p', { class: 'chat-intro' }, 'Ask about this requirement, or tell us what you think should change. Your messages are saved for the Freedom Map editors.'),
+      ...c.messages.map(m => el('p', { class: `chat-msg ${m.role}` }, m.content)),
+      pending ? el('p', { class: 'chat-msg assistant pending' }, 'Thinking…') : null,
+      error ? el('p', { class: 'chat-error' }, error) : null].filter(Boolean));
+    log.scrollTop = log.scrollHeight;
+  };
+  const form = el('form', { class: 'chat-form', onsubmit: async e => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text || send.disabled) return;
+    c.messages.push({ role: 'user', content: text });
+    input.value = ''; send.disabled = true; paint(true);
+    let error = null;
+    try {
+      const r = await api('POST', 'api/chat', { key, id: c.id, context, messages: c.messages });
+      if (r.reply) c.messages.push({ role: 'assistant', content: r.reply }); else error = r.error || 'No answer.';
+    } catch { error = 'The chat needs the Freedom Map server (server.py). Your message was not saved.'; }
+    send.disabled = false; paint(false, error); input.focus();
+  } }, input, send);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
+  paint(false);
+  return { log, form, input };
+}
+function chatButton(key, context) {
+  const wrap = el('div', { class: 'chat-wrap' });
+  let pop = null;
+  const close = () => { pop?.remove(); pop = null; btn.setAttribute('aria-expanded', 'false'); };
+  const btn = el('button', { type: 'button', class: 'chat-btn', 'aria-label': 'Comment or ask about this requirement', title: 'Comment or ask about this requirement', 'aria-expanded': 'false',
+    onclick: () => {
+      if (pop) return close();
+      const box = chatBox(key, context);
+      pop = el('div', { class: 'chat-pop', role: 'dialog', 'aria-label': 'Comment or ask about this requirement' },
+        el('div', { class: 'chat-head' }, el('strong', {}, 'Comment or ask'), el('button', { type: 'button', class: 'chat-close', 'aria-label': 'Close', onclick: close }, '×')),
+        box.log, box.form);
+      pop.addEventListener('keydown', e => { if (e.key === 'Escape') { close(); btn.focus(); } });
+      wrap.append(pop); btn.setAttribute('aria-expanded', 'true'); box.input.focus();
+    } });
+  btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>';
+  wrap.prepend(btn);
+  return wrap;
+}
+
 function render() {
   const { catalog } = state.data;
   const loc = state.loc;
@@ -476,6 +551,8 @@ function render() {
     // Screen 5: the relevant laws.
     setLegend(null);
     const explainer = catalog.properties[prop.type]?.explainer;
+    const chatKey = [loc.address.country_code || 'xx', ...state.path].join('|').slice(0, 200);
+    screen.push(el('div', { class: 'req-head' }, chatButton(chatKey, pageContext(steps.map(s => s[0]), prop, j.laws, catalog))));
     if (prop.provisions?.length) screen.push(provisionsPanel(prop.provisions, j.laws, explainer, prop));
     else screen.push(rowOf((prop.laws || []).map(id => {
       const law = j.laws[id] || { title: id };
