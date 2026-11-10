@@ -17,8 +17,8 @@
     },
     {
       "id": "nonprofit",
-      "name": "Non-profit",
-      "longName": "Non-profit interests",
+      "name": "Non-economic",
+      "longName": "Non-economic interests",
       "kind": "sphere",
       "description": "Members governing their own association, foundation or other non-profit organisation."
     },
