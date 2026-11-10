@@ -2517,7 +2517,7 @@
               {
                 "type": "binding_powers",
                 "status": "partial",
-                "explanation": "The elected council decides only its reserved functions, such as the budget, the development plan and bye-laws, and can vary the local property tax rate by a limited percentage. Every other function belongs to the chief executive, an appointed official, and most funding comes from central government.",
+                "explanation": "The council makes the rules it is given: bye-laws, the development plan and zoning, the budget, and a local adjustment of the property tax of up to 15%. But the rules for many local interests are set nationally: schools, policing, public transport, water and most taxes, and most of the council's money comes from central government.",
                 "laws": [
                   "lga2001",
                   "lpt2012"
@@ -2535,9 +2535,12 @@
                         "text": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority."
                       },
                       {
-                        "ref": "Section 149(4)",
-                        "fix": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority, to be exercised by the directly elected mayor provided for in section 9A of the Local Government (Mayor of Limerick) and Miscellaneous Provisions Act 2024.",
-                        "why": "Puts the executive under an elected mayor instead of an appointed chief executive. Goes together with the new section 9A of the Mayor of Limerick Act."
+                        "ref": "Section 63A (new)",
+                        "fix": [
+                          "(1) A local authority shall have the power to regulate and manage, by resolution and by bye-law, every matter of local interest in its area which is not by law expressly assigned to another authority.",
+                          "(2) An enactment which assigns a matter of local interest to a Minister or a national body shall state why it cannot be dealt with adequately at local level."
+                        ],
+                        "why": "Gives councils the rule-making power over local matters that the European Charter of Local Self-Government, ratified by Ireland, expects, instead of only the functions an Act lists."
                       }
                     ]
                   },
@@ -2600,7 +2603,8 @@
                 "status": "no",
                 "explanation": "The executive is a chief executive who is appointed, not elected. (Limerick is the exception: it elects its mayor directly since 2024.)",
                 "laws": [
-                  "limerick2024"
+                  "limerick2024",
+                  "lga2001"
                 ],
                 "provisions": [
                   {
@@ -2614,6 +2618,20 @@
                         "ref": "Section 9A (new)",
                         "fix": "Every city council, county council and city and county council shall have a directly elected mayor, elected at each local election by the local government electors of its area, to whom the functions of the chief executive and of the Cathaoirleach are transferred as provided for the Mayor of Limerick in sections 9 and 10.",
                         "why": "Extends Limerick's directly elected mayor to every county and city."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "lga2001",
+                    "items": [
+                      {
+                        "ref": "Section 149(4)",
+                        "text": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority."
+                      },
+                      {
+                        "ref": "Section 149(4)",
+                        "fix": "Every function of a local authority which is not a reserved function is, for the purposes of this Act, an executive function of such local authority, to be exercised by the directly elected mayor provided for in section 9A of the Local Government (Mayor of Limerick) and Miscellaneous Provisions Act 2024.",
+                        "why": "Puts the executive under an elected mayor instead of an appointed chief executive. Goes together with the new section 9A of the Mayor of Limerick Act."
                       }
                     ]
                   }
