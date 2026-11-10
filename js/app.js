@@ -224,13 +224,13 @@ const levelName = (mdef, levelId, key) => mdef.levelNames?.[levelId]?.[key];
 function mechLabel(m, all, catalog, levelId) {
   const mdef = catalog.mechanisms[m.type] || {};
   const twins = all.filter(x => x.type === m.type).length > 1;
-  return shortName(twins && m.name ? m.name : (levelName(mdef, levelId, 'name') || mdef.name || m.name || m.type));
+  return shortName(m.label || (twins && m.name ? m.name : (levelName(mdef, levelId, 'name') || mdef.name || m.name || m.type)));
 }
 
 function mechLongName(m, all, catalog, levelId) {
   const mdef = catalog.mechanisms[m.type] || {};
   const twins = all.filter(x => x.type === m.type).length > 1;
-  return twins && m.name ? m.name : (levelName(mdef, levelId, 'longName') || mdef.longName || mdef.name || m.name || m.type);
+  return m.label || (twins && m.name ? m.name : (levelName(mdef, levelId, 'longName') || mdef.longName || mdef.name || m.name || m.type));
 }
 
 // Word-level diff (longest common subsequence), for showing a proposed amendment against the current text.

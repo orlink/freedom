@@ -1338,6 +1338,7 @@
           },
           {
             "type": "executive",
+            "label": "Mayor",
             "name": "Mayor of the кметство",
             "properties": [
               {
@@ -2127,6 +2128,7 @@
           },
           {
             "type": "executive",
+            "label": "Mayor",
             "name": "Mayor",
             "properties": [
               {

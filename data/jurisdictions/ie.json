@@ -823,6 +823,7 @@
           },
           {
             "type": "executive",
+            "label": "Mayor",
             "name": "Directly elected mayor",
             "properties": [
               {
