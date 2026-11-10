@@ -839,10 +839,6 @@
         ]
       }
     },
-    "city": {
-      "sameAs": "county",
-      "summary": "Cities are governed by their city (or city and county) council."
-    },
     "state": {
       "applicable": false,
       "summary": "Ireland is a unitary state; there is no state level."

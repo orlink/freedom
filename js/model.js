@@ -115,7 +115,7 @@ export function statusBand(status) {
     || { key: 'nodata', label: 'Unknown' };
 }
 
-const TERRITORY_ONLY_IF_PRESENT = ['village', 'town', 'city'];
+const TERRITORY_ONLY_IF_PRESENT = ['village', 'town'];
 
 /**
  * Name each level for a geocoded address (e.g. neighbourhood -> "Lozenets").
@@ -137,7 +137,11 @@ export function levelPlaces(address, catalog, unions, jurisdiction) {
       name = u ? u.name : null;
     }
     const absent = TERRITORY_ONLY_IF_PRESENT.includes(lvl.id) && !keys.some(k => address[k]);
-    out[lvl.id] = { name, absent: absent || (lvl.id === 'union' && !name) };
+    // In a village, the village takes the place of the neighbourhood. A jurisdiction can also hide levels its
+    // law does not know (`hiddenLevels`, e.g. Bulgaria has no town level: towns are municipalities with quarters).
+    const inVillage = lvl.id === 'neighbourhood' && (overrides.village || catalog.levels.find(l => l.id === 'village')?.addressKeys || []).some(k => address[k]);
+    const hidden = (jurisdiction?.hiddenLevels || []).includes(lvl.id);
+    out[lvl.id] = { name, absent: absent || inVillage || hidden || (lvl.id === 'union' && !name) };
   }
   return out;
 }

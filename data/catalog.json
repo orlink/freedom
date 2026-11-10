@@ -84,16 +84,6 @@
       "description": "A town community."
     },
     {
-      "id": "city",
-      "name": "City",
-      "longName": "City interests",
-      "kind": "territorial",
-      "addressKeys": [
-        "city"
-      ],
-      "description": "A city as a whole."
-    },
-    {
       "id": "municipality",
       "name": "Municipality",
       "longName": "Municipality interests",

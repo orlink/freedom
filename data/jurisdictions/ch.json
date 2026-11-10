@@ -1228,9 +1228,6 @@
             ]
           }
         },
-        "city": {
-          "sameAs": "municipality"
-        },
         "neighbourhood": {
           "summary": "Quarters have no general decision-making body; quarter associations are private. Residents do elect a school board for their school district (covering several quarters), and council members per electoral district.",
           "direct": {
