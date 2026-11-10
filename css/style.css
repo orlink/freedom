@@ -32,8 +32,9 @@ button { font: inherit; cursor: pointer; }
 .examples button { border: 1px solid var(--line); background: var(--surface); color: var(--muted); border-radius: 999px; padding: 3px 12px; font-size: 13px; }
 .examples button:hover { border-color: var(--coral); color: var(--coral-ink); }
 
-.place { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; overflow-wrap: anywhere; margin: 22px 0 12px; font-size: 22px; font-weight: 800; letter-spacing: -0.01em; text-align: center; min-height: 1.4em; }
-.place .sep { color: var(--coral); margin: 0 12px; font-weight: 400; }
+/* The address: secondary information (the map already shows it), so smaller and muted. */
+.place { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; overflow-wrap: anywhere; margin: 16px 0 8px; font-size: 15px; font-weight: 600; color: var(--muted); text-align: center; min-height: 1.4em; }
+.place .sep { color: var(--coral); margin: 0 8px; font-weight: 400; }
 .place .loading { color: var(--muted); font-weight: 400; font-size: 15px; }
 .hint, .nodata { text-align: center; color: var(--muted); }
 
@@ -93,12 +94,15 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .legend i.t-disabled { border: 2px solid var(--line); background: transparent; }
 
 /* Where-you-are trail */
-.trail { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px; margin: 0 0 14px; font-size: 14px; }
+.trail { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px; margin: 0 0 16px; font-size: 16px; }
 .trail:empty { display: none; }
 .trail button { background: none; border: 0; padding: 2px 4px; color: var(--accent); text-decoration: underline; text-decoration-color: rgba(168, 50, 26, .35); text-underline-offset: 3px; }
 .trail button:hover { text-decoration-color: currentColor; }
 .trail .sep { color: var(--muted); }
-.trail .here { font-weight: 600; padding: 2px 4px; }
+/* The current page is the title, on its own row below the path that leads to it. */
+.trail .here { flex-basis: 100%; text-align: center; margin-top: 6px; font-size: 28px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; color: var(--text); padding: 0 4px; }
+.trail .sep:has(+ .here) { display: none; }
+@media (max-width: 600px) { .trail .here { font-size: 22px; } }
 
 /* Shared-interest chips: neutral, with a small x to mark "not applicable here" */
 .tb { position: relative; }
