@@ -3531,7 +3531,7 @@
               {
                 "type": "proportional_representation",
                 "status": "partial",
-                "explanation": "Proportional representation means that communities of shared interest that are not geographic are represented in proportion to their size, just as local representation does for geographic communities. The party lists do win seats in proportion to their votes, so the council is proportional. But councillors owe their seats to their place on a list and do not answer individually to the voters who elected them, so those voters are counted in proportion but not represented.",
+                "explanation": "Proportional representation means that communities of shared interest that are not geographic are represented in proportion to their size, just as local representation does for geographic communities. The party lists do win seats in proportion to their votes, so the council's party make-up is proportional. But councillors owe their seats to their place on a list and do not answer individually to the voters who elected them, so those voters are counted in proportion but not represented.",
                 "laws": [
                   "ec"
                 ],
