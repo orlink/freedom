@@ -58,5 +58,6 @@ Maps use [Leaflet](https://leafletjs.com/) (vendored in `vendor/leaflet`) with O
 | `data/index.json` | List of jurisdiction files and supranational unions |
 | `data/jurisdictions/*.json` | One file per country, with optional overrides for regions and cities |
 | `docs/DATA.md` | The data schema, scoring rules and how to add a country |
+To add a country, follow [docs/COUNTRY-PLAYBOOK.md](docs/COUNTRY-PLAYBOOK.md).
 | `docs/HOSTING.md`, `tools/deploy.sh` | The public copy at free.kredor.com and the one-command upload |
 | `tools/validate.mjs` | Checks all data files and prints a score table: `node tools/validate.mjs` |
