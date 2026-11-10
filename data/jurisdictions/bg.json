@@ -2354,9 +2354,54 @@
               {
                 "type": "recall",
                 "status": "no",
-                "explanation": "The law lists the grounds for early termination of a mandate (resignation, incapacity, absences, etc.); recall by voters is not among them.",
+                "explanation": "Voters cannot remove a mayor before the end of the term. A mayor's powers end early only on legal or personal grounds, such as resignation, illness, a criminal conviction or a conflict of interest.",
                 "laws": [
                   "lsga"
+                ],
+                "provisions": [
+                  {
+                    "law": "lsga",
+                    "items": [
+                      {
+                        "ref": "Article 42(1)",
+                        "text": [
+                          "(1) The powers of mayors terminate early:",
+                          "1. on resignation, submitted through the chair of the municipal council to the municipal electoral commission;",
+                          "2. on lasting actual inability to perform their duties for more than 6 months owing to illness;",
+                          "3. on being placed under legal disability;",
+                          "4. when, after being elected, they are sentenced by a final judgment to imprisonment for an intentional publicly prosecuted crime or to deprivation of the right to hold state office;",
+                          "…",
+                          "12. on establishment of ineligibility;",
+                          "13. on death."
+                        ],
+                        "fix": [
+                          "(1) The powers of mayors terminate early:",
+                          "1. on resignation, submitted through the chair of the municipal council to the municipal electoral commission;",
+                          "2. on lasting actual inability to perform their duties for more than 6 months owing to illness;",
+                          "3. on being placed under legal disability;",
+                          "4. when, after being elected, they are sentenced by a final judgment to imprisonment for an intentional publicly prosecuted crime or to deprivation of the right to hold state office;",
+                          "…",
+                          "12. on establishment of ineligibility;",
+                          "13. on death.",
+                          "14. on recall by the voters under Article 42a."
+                        ],
+                        "why": "Adds recall by the voters to the grounds for ending a mayor's powers early."
+                      },
+                      {
+                        "ref": "Article 42a (new)",
+                        "fix": [
+                          "(1) The voters of a municipality, district or mayoralty may recall its mayor by a vote.",
+                          "(2) A recall may not be started during the first 90 days of the mayor's term, within six months after a recall vote in the mayor's favour, or in the last six months of the term.",
+                          "(3) An initiative committee of at least 30 voters files a notice of intention with the municipal electoral commission, with a statement of the reasons for the recall of no more than 200 words, and serves it on the mayor, who may file an answer of no more than 200 words within seven days. The statement and the answer are for the voters' information only: no legal grounds are required, and their form or content does not affect the validity of the procedure.",
+                          "(4) The petition must be signed by at least the following share of the voters of the municipality, district or mayoralty, collected within the following period: 1. fewer than 1,000 voters: 30%, within 40 days; 2. 1,000 to 4,999: 25%, within 60 days; 3. 5,000 to 9,999: 25%, within 90 days; 4. 10,000 to 49,999: 20%, within 120 days; 5. 50,000 to 99,999: 15%, within 160 days; 6. 100,000 or more: 10%, within 160 days.",
+                          "(5) Within 14 days after the municipal electoral commission certifies that the petition has enough valid signatures, the municipal council schedules the recall vote for a day between 88 and 125 days later, or up to 180 days later so that it coincides with other elections. If the council fails to do so, the municipal electoral commission schedules the vote within five days.",
+                          "(6) The ballot asks: “Shall [name] be recalled from the office of mayor of [municipality, district or mayoralty]?” The mayor is recalled if more than half of the valid votes are “Yes”, regardless of turnout.",
+                          "(7) If the mayor is recalled, paragraph 6 of Article 42 applies and a by-election is held under Article 463 of the Electoral Code. The recalled mayor may not be elected acting mayor."
+                        ],
+                        "why": "Lets voters remove their mayor by a simple majority, on the model of California's recall of local officers (Elections Code §§ 11007, 11020–11024, 11220–11221, 11240–11242, 11382–11383): no legal grounds are needed, signature thresholds fall from 30% in the smallest places to 10% in the largest, and there is no turnout quorum."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -3160,9 +3205,54 @@
               {
                 "type": "recall",
                 "status": "no",
-                "explanation": "The law lists the grounds for early termination of a mandate (resignation, incapacity, absences, etc.); recall by voters is not among them.",
+                "explanation": "Voters cannot remove a mayor before the end of the term. A mayor's powers end early only on legal or personal grounds, such as resignation, illness, a criminal conviction or a conflict of interest.",
                 "laws": [
                   "lsga"
+                ],
+                "provisions": [
+                  {
+                    "law": "lsga",
+                    "items": [
+                      {
+                        "ref": "Article 42(1)",
+                        "text": [
+                          "(1) The powers of mayors terminate early:",
+                          "1. on resignation, submitted through the chair of the municipal council to the municipal electoral commission;",
+                          "2. on lasting actual inability to perform their duties for more than 6 months owing to illness;",
+                          "3. on being placed under legal disability;",
+                          "4. when, after being elected, they are sentenced by a final judgment to imprisonment for an intentional publicly prosecuted crime or to deprivation of the right to hold state office;",
+                          "…",
+                          "12. on establishment of ineligibility;",
+                          "13. on death."
+                        ],
+                        "fix": [
+                          "(1) The powers of mayors terminate early:",
+                          "1. on resignation, submitted through the chair of the municipal council to the municipal electoral commission;",
+                          "2. on lasting actual inability to perform their duties for more than 6 months owing to illness;",
+                          "3. on being placed under legal disability;",
+                          "4. when, after being elected, they are sentenced by a final judgment to imprisonment for an intentional publicly prosecuted crime or to deprivation of the right to hold state office;",
+                          "…",
+                          "12. on establishment of ineligibility;",
+                          "13. on death.",
+                          "14. on recall by the voters under Article 42a."
+                        ],
+                        "why": "Adds recall by the voters to the grounds for ending a mayor's powers early."
+                      },
+                      {
+                        "ref": "Article 42a (new)",
+                        "fix": [
+                          "(1) The voters of a municipality, district or mayoralty may recall its mayor by a vote.",
+                          "(2) A recall may not be started during the first 90 days of the mayor's term, within six months after a recall vote in the mayor's favour, or in the last six months of the term.",
+                          "(3) An initiative committee of at least 30 voters files a notice of intention with the municipal electoral commission, with a statement of the reasons for the recall of no more than 200 words, and serves it on the mayor, who may file an answer of no more than 200 words within seven days. The statement and the answer are for the voters' information only: no legal grounds are required, and their form or content does not affect the validity of the procedure.",
+                          "(4) The petition must be signed by at least the following share of the voters of the municipality, district or mayoralty, collected within the following period: 1. fewer than 1,000 voters: 30%, within 40 days; 2. 1,000 to 4,999: 25%, within 60 days; 3. 5,000 to 9,999: 25%, within 90 days; 4. 10,000 to 49,999: 20%, within 120 days; 5. 50,000 to 99,999: 15%, within 160 days; 6. 100,000 or more: 10%, within 160 days.",
+                          "(5) Within 14 days after the municipal electoral commission certifies that the petition has enough valid signatures, the municipal council schedules the recall vote for a day between 88 and 125 days later, or up to 180 days later so that it coincides with other elections. If the council fails to do so, the municipal electoral commission schedules the vote within five days.",
+                          "(6) The ballot asks: “Shall [name] be recalled from the office of mayor of [municipality, district or mayoralty]?” The mayor is recalled if more than half of the valid votes are “Yes”, regardless of turnout.",
+                          "(7) If the mayor is recalled, paragraph 6 of Article 42 applies and a by-election is held under Article 463 of the Electoral Code. The recalled mayor may not be elected acting mayor."
+                        ],
+                        "why": "Lets voters remove their mayor by a simple majority, on the model of California's recall of local officers (Elections Code §§ 11007, 11020–11024, 11220–11221, 11240–11242, 11382–11383): no legal grounds are needed, signature thresholds fall from 30% in the smallest places to 10% in the largest, and there is no turnout quorum."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
