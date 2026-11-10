@@ -30,6 +30,8 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
    "as substituted by …" when quoting an amended provision). Use the official English translation if there is one,
    otherwise translate faithfully and keep article numbers. The cloud sandbox often cannot reach national law sites:
    have the owner's Mac fetch them. Never quote from memory; mark anything unverified and check it before it ships.
+   When a rule comes from non-statutory text (e.g. Ireland's boundary committee terms of reference), quote it as
+   such, and quote the actual figures for an example place too (its council size, areas and seats).
    Record article notes in `docs/research/<cc>-articles.md`.
 4. **Status and explanation.** Set `yes` / `partial` / `weak` / `no` per the rules in section 2. The explanation is
    one or two plain sentences saying what the law does and why that meets or misses the requirement, with concrete
@@ -42,12 +44,15 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
    Use the same thresholds across countries unless the owner decides otherwise (section 3).
 6. **Interests.** Add the country's own interest chips under `data/interests.json` `countries.<cc>` only if the
    owner gives them; otherwise the level defaults apply.
-7. **Validate and test.** `node tools/validate.mjs` (schema and scores), then load the site with Playwright
-   (Nominatim mocked in the sandbox; real network on the Mac) and click through levels, mechanisms, requirement
-   pages and the Fix button.
+7. **Validate and test.** `node tools/validate.mjs` (schema and scores), then load the site (Playwright with
+   Nominatim mocked in the sandbox; the in-app browser on the Mac for the real network) and click through levels,
+   mechanisms, requirement pages and the Fix button. Check the map outline for each level at a few points, including
+   the capital and a place where the city and its region share a name; add `mapZoom` or area overrides where it is
+   wrong (Sofia, Zürich and County Dublin needed them).
 8. **Independent review.** Before upload, a separate agent reviews the diff against the fetched law texts, the
    scoring rules and Bulgaria's and Ireland's treatment: wrong or outdated quotes, statuses that don't fit the law,
-   unsound fixes, inconsistencies between countries. Apply its findings, then upload when the owner asks.
+   unsound fixes, inconsistencies between countries. Apply its findings. Upload only when the owner says so in
+   their own words, with `tools/deploy.sh` from the Mac, then check the site (`/api/editor` false, `/.env` 404).
 
 ## 2. Rules for judging (owner's decisions)
 
