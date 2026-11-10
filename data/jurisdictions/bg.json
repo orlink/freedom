@@ -11,7 +11,13 @@
       "state",
       "county"
     ],
-    "state": []
+    "state": [],
+    "municipality": [
+      "state_district",
+      "municipality",
+      "city_district",
+      "city"
+    ]
   },
   "hiddenIn": {
     "village": [

@@ -149,10 +149,13 @@ export function levelPlaces(address, catalog, unions, jurisdiction) {
     for (const id of ids) if (out[id]) out[id].absent = true;
   }
   for (const id of hiddenLevels) if (out[id]) out[id].absent = true;
-  // A settlement that is its municipality's centre (OSM names the municipality after it, e.g. "Община Самоков").
+  // A settlement that is its municipality's centre: the municipality is named after it (in Bulgaria OSM gives the
+  // municipality as `state_district`, e.g. town "Етрополе" in municipality "Етрополе" or "Община Етрополе").
+  const bare = n => String(n || '').toLocaleLowerCase().replace(/^(община|municipality of)\s+/, '').trim();
+  const muni = bare(out.municipality?.name);
   for (const id of TERRITORY_ONLY_IF_PRESENT) {
     const p = out[id];
-    if (p && !p.absent && p.name && address.municipality && address.municipality.includes(p.name)) p.centre = true;
+    if (p && !p.absent && p.name && muni && bare(p.name) === muni) p.centre = true;
   }
   return out;
 }
