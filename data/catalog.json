@@ -357,7 +357,7 @@
       "gate": false,
       "name": "Proportional representation",
       "longName": "Proportional representation",
-      "description": "Each group of voters should win a share of the seats close to its share of the votes, without high thresholds or seats won by a plurality alone."
+      "description": "Communities of shared interest that are not geographic should be represented in proportion to their size, by members who answer to them individually, without thresholds or seats won by a plurality alone."
     },
     "no_roadblocks": {
       "gate": false,

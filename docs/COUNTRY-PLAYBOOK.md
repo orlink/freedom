@@ -91,10 +91,12 @@ a `populationRule` applies a legal ceiling to the actual place.
 * **Local representation**: districts on community boundaries, equal population per seat from the census, drawn by
   an independent commission. 3–7 seat districts under STV are fine (candidates focus on parts of the area). Very
   large list districts (Bulgaria's 19 seats) are not.
-* **Proportional representation**: no legal threshold; seats in proportion to votes. A national threshold such as
-  4%, and the minority rule it produces, is partly met.
-  Without Individual accountability (party lists that decide who takes the seats), it is at most partly met: the
-  seats are proportional between parties, not between the people voters chose (owner 2026-11-10).
+* **Proportional representation** (owner 2026-11-10): non-geographic communities of interest are represented in
+  proportion to their size, as Local representation does for geographic communities. Proportional shares for
+  parties are the normal result; STV reaches them naturally through votes for individual candidates. Party lists
+  without a threshold are proportional too, but without Individual accountability that is party proportionality,
+  not representation: at most partly met. A legal threshold such as 4%, and the minority rule it produces, is also
+  partly met. Explanations must say this, not "voters can't pick the people".
 * Executive chip label (owner 2026-11-10): "Mayor" where a directly elected mayor heads the executive (or the
   fix proposes one where none exists), "Executive" where it is appointed or collegial; set with the mechanism `label`.
 * Executive/Mayor: a directly elected mayor, or an executive appointed by the elected council (Individual
