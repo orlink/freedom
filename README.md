@@ -2,7 +2,7 @@
 
 An interactive map that shows, for any location, how far the people there can govern their own shared interests, at every level from the individual to the supranational union.
 
-> People are free if they have the mechanisms and means to make and carry out decisions about their individual or shared interests without outside interference. They decide either **directly** or through **representatives**.
+> People are free if they have the mechanisms and means to make and carry out decisions about their individual or shared interests without interference from outsiders. They decide either **directly** or through **representatives**.
 
 Pick a place (search an address or click on the map) and you get a row of rectangles, one per level:
 
