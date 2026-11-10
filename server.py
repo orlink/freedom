@@ -15,8 +15,9 @@ The chat on each requirement page (/api/chat) talks to Claude through the offici
 `anthropic` package, which is the one dependency outside the standard library and is
 only needed for the chat:
 
-    pip install anthropic
-    export ANTHROPIC_API_KEY=...      # or sign in once with `ant auth login`
+    python3 -m venv .venv && .venv/bin/pip install anthropic
+    echo "ANTHROPIC_API_KEY=sk-ant-..." > .env && chmod 600 .env   # read at startup; git-ignored, never served
+    .venv/bin/python server.py
 
 Every conversation is saved to data/state/comments.json, so the comments and suggestions
 readers make there can be read later even when the chat is not set up.
@@ -42,6 +43,25 @@ CHAT_MAX_CONTEXT = 60_000
 CHAT_MODEL = "claude-opus-5-5"
 CHAT_RATE = (30, 600)  # at most 30 chat turns per 10 minutes from one address
 _CHAT_HITS = {}
+
+
+def load_env(path=os.path.join(ROOT, ".env")):
+    """Read KEY=value lines from .env into the environment (the API key lives there, so it survives restarts).
+    Variables already set in the environment win."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("export "):
+                    line = line[7:].strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                k, v = line.split("=", 1)
+                k, v = k.strip(), v.strip().strip('"').strip("'")
+                if k and k not in os.environ:
+                    os.environ[k] = v
+    except OSError:
+        pass
 
 
 def load_state(path=STATE_FILE):
@@ -192,7 +212,8 @@ class Handler(SimpleHTTPRequestHandler):
     # Never serve the server's own state or git metadata as static files.
     def translate_path(self, path):
         p = urlparse(path).path
-        if p.startswith("/data/state") or p.startswith("/.git"):
+        # Never serve state, git metadata, the .env file with the API key, the venv, or any other dot-file.
+        if p.startswith("/data/state") or any(part.startswith(".") for part in p.split("/") if part):
             return os.path.join(ROOT, "__forbidden__")
         return super().translate_path(path)
 
@@ -317,6 +338,7 @@ def main():
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8000)
     a = ap.parse_args()
+    load_env()
     srv = ThreadingHTTPServer((a.host, a.port), Handler)
     print(f"Freedom Map on http://{'localhost' if a.host in ('127.0.0.1', '0.0.0.0') else a.host}:{a.port}/  (Ctrl+C to stop)")
     try:

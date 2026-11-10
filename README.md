@@ -35,11 +35,11 @@ Each requirement page has a chat button (top right) where readers comment, sugge
 
 ```sh
 python3 -m venv .venv && .venv/bin/pip install anthropic   # a venv avoids Homebrew's "externally managed" error
-export ANTHROPIC_API_KEY=...   # from console.anthropic.com, or sign in once with `ant auth login`
+echo "ANTHROPIC_API_KEY=sk-ant-..." > .env && chmod 600 .env   # key from console.anthropic.com
 .venv/bin/python server.py
 ```
 
-Every conversation is saved in `data/state/comments.json` for the editors, also when the chat is not set up. The rest of the site runs without the package.
+The server reads the key from `.env` at startup (git-ignored and never served), so it survives restarts. Every conversation is saved in `data/state/comments.json` for the editors, also when the chat is not set up. The rest of the site runs without the package.
 
 Interest chips that anyone adds, or marks ✕ as not applicable, are shared with everyone using the same server. On a plain static host (for example GitHub Pages) the page still works, but added chips are kept only in that browser.
 
