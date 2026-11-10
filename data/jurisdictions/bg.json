@@ -1144,6 +1144,21 @@
                 "explanation": "Decisions of the general assembly bind owners, users and occupants, including new ones.",
                 "laws": [
                   "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 11(4)",
+                        "text": "Adopted decisions of the general assembly also bind new owners, users and occupants of separate units in the condominium."
+                      },
+                      {
+                        "ref": "Article 38(1)",
+                        "text": "Decisions of the general assembly are carried out within the time limits they set. Where no time limit is set, they are carried out within 14 days of their announcement under Art. 16(7)."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1168,6 +1183,31 @@
                 "explanation": "The assembly adopts the house rules, budget, contributions, the repair plan, loans and the use of common areas.",
                 "laws": [
                   "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 11(1)",
+                        "text": [
+                          "The general assembly:",
+                          "1. adopts, amends and supplements the house rules;",
+                          "2. elects and dismisses the members of the management board (the manager), and a treasurer;",
+                          "…",
+                          "4. adopts the annual budget of income and expenditure and approves the annual reports of the management board (manager) …;",
+                          "5. sets the amount of the contributions for the costs of managing and maintaining the building's common parts;",
+                          "…",
+                          "7. sets the amount of the contributions to the \"Repair and Renovation\" fund;",
+                          "8. adopts a plan for repairs, reconstruction, alterations and other works on the common parts …;",
+                          "…",
+                          "10. also decides on: … (c) major repair and/or major renovation of the building; … (m) other matters concerning the management of the common parts;",
+                          "11. may also decide on: (a) entrusting the management of the common parts to a professional manager …; (b) contracting out maintenance of the common parts to companies or individuals;",
+                          "12. may decide, for the management of the common parts, to obtain: (a) loans for necessary or urgent repair; (b) loans for useful spending; (c) grants and subsidies;"
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1217,9 +1257,47 @@
               {
                 "type": "binding_powers",
                 "status": "yes",
-                "explanation": "The council carries out the assembly's decisions and manages the common parts.",
+                "explanation": "The council carries out the assembly's decisions, prepares the budget and repair plan, organises maintenance and represents the owners. It decides alone only on ordinary management and urgent repairs; the rules, budget, contributions and major works are the general assembly's.",
                 "laws": [
                   "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 23(1)",
+                        "text": [
+                          "The management board (manager):",
+                          "1. organises the implementation of the general assembly's decisions;",
+                          "2. monitors compliance with the internal rules of the condominium;",
+                          "…",
+                          "4. prepares the annual budget for the management, maintenance and use of the common parts and the annual plan for repairs, reconstruction, alterations and other works in the building, and reports on their implementation, and organises the implementation of the adopted annual budget;",
+                          "5. represents the condominium in its relations with local authorities and other legal persons;",
+                          "…",
+                          "7a. organises routine maintenance of the building related to the safety of living in it;",
+                          "…",
+                          "13. exercises other powers entrusted to it by the general assembly."
+                        ]
+                      },
+                      {
+                        "ref": "Article 23(2)",
+                        "text": "The management board (manager) reports annually, and at the end of its term, to the general assembly. The report and the minutes of board meetings are announced in the manner of Art. 16(7)."
+                      },
+                      {
+                        "ref": "Article 23(3)",
+                        "text": "The chair of the management board (the manager) represents the owners and users in all acts of ordinary management of the condominium. For creating a right of use or of building, adding storeys or extensions, or changing the use of common parts, he represents the owners only if authorised by the general assembly."
+                      },
+                      {
+                        "ref": "Article 11(1)(14)",
+                        "text": "[The general assembly] may authorise the management board (manager) to decide on urgent repairs or spending that cannot wait;"
+                      },
+                      {
+                        "ref": "Article 49(1)",
+                        "text": "Where the building or the separate entrance under condominium ownership needs urgent repair, money from the fund under Art. 50 is released immediately by decision of the management board (manager)."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1318,6 +1396,21 @@
                 "explanation": "Decisions of the general assembly bind owners, users and occupants, including new ones.",
                 "laws": [
                   "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 11(4)",
+                        "text": "Adopted decisions of the general assembly also bind new owners, users and occupants of separate units in the condominium."
+                      },
+                      {
+                        "ref": "Article 38(1)",
+                        "text": "Decisions of the general assembly are carried out within the time limits they set. Where no time limit is set, they are carried out within 14 days of their announcement under Art. 16(7)."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1342,6 +1435,31 @@
                 "explanation": "The assembly adopts the house rules, budget, contributions, the repair plan, loans and the use of common areas.",
                 "laws": [
                   "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 11(1)",
+                        "text": [
+                          "The general assembly:",
+                          "1. adopts, amends and supplements the house rules;",
+                          "2. elects and dismisses the members of the management board (the manager), and a treasurer;",
+                          "…",
+                          "4. adopts the annual budget of income and expenditure and approves the annual reports of the management board (manager) …;",
+                          "5. sets the amount of the contributions for the costs of managing and maintaining the building's common parts;",
+                          "…",
+                          "7. sets the amount of the contributions to the \"Repair and Renovation\" fund;",
+                          "8. adopts a plan for repairs, reconstruction, alterations and other works on the common parts …;",
+                          "…",
+                          "10. also decides on: … (c) major repair and/or major renovation of the building; … (m) other matters concerning the management of the common parts;",
+                          "11. may also decide on: (a) entrusting the management of the common parts to a professional manager …; (b) contracting out maintenance of the common parts to companies or individuals;",
+                          "12. may decide, for the management of the common parts, to obtain: (a) loans for necessary or urgent repair; (b) loans for useful spending; (c) grants and subsidies;"
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1429,9 +1547,47 @@
               {
                 "type": "binding_powers",
                 "status": "yes",
-                "explanation": "The council carries out the assembly's decisions and manages the common parts.",
+                "explanation": "The council carries out the assembly's decisions, prepares the budget and repair plan, organises maintenance and represents the owners. It decides alone only on ordinary management and urgent repairs; the rules, budget, contributions and major works are the general assembly's.",
                 "laws": [
                   "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 23(1)",
+                        "text": [
+                          "The management board (manager):",
+                          "1. organises the implementation of the general assembly's decisions;",
+                          "2. monitors compliance with the internal rules of the condominium;",
+                          "…",
+                          "4. prepares the annual budget for the management, maintenance and use of the common parts and the annual plan for repairs, reconstruction, alterations and other works in the building, and reports on their implementation, and organises the implementation of the adopted annual budget;",
+                          "5. represents the condominium in its relations with local authorities and other legal persons;",
+                          "…",
+                          "7a. organises routine maintenance of the building related to the safety of living in it;",
+                          "…",
+                          "13. exercises other powers entrusted to it by the general assembly."
+                        ]
+                      },
+                      {
+                        "ref": "Article 23(2)",
+                        "text": "The management board (manager) reports annually, and at the end of its term, to the general assembly. The report and the minutes of board meetings are announced in the manner of Art. 16(7)."
+                      },
+                      {
+                        "ref": "Article 23(3)",
+                        "text": "The chair of the management board (the manager) represents the owners and users in all acts of ordinary management of the condominium. For creating a right of use or of building, adding storeys or extensions, or changing the use of common parts, he represents the owners only if authorised by the general assembly."
+                      },
+                      {
+                        "ref": "Article 11(1)(14)",
+                        "text": "[The general assembly] may authorise the management board (manager) to decide on urgent repairs or spending that cannot wait;"
+                      },
+                      {
+                        "ref": "Article 49(1)",
+                        "text": "Where the building or the separate entrance under condominium ownership needs urgent repair, money from the fund under Art. 50 is released immediately by decision of the management board (manager)."
+                      }
+                    ]
+                  }
                 ]
               },
               {
