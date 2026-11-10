@@ -142,7 +142,8 @@
     "zzd": {
       "title": "Obligations and Contracts Act",
       "localTitle": "Закон за задълженията и договорите",
-      "short": "Закон за задълженията и договорите"
+      "short": "Закон за задълженията и договорите",
+      "url": "https://lex.bg/laws/ldoc/2121934337"
     },
     "zpfi": {
       "title": "Markets in Financial Instruments Act",
@@ -153,6 +154,36 @@
       "title": "Collective Investment Schemes Act",
       "localTitle": "Закон за дейността на колективните инвестиционни схеми и на други предприятия за колективно инвестиране",
       "short": "ЗДКИСДПКИ"
+    },
+    "zoar": {
+      "title": "Act Restricting Administrative Regulation and Administrative Control over Economic Activity",
+      "localTitle": "Закон за ограничаване на административното регулиране и административния контрол върху стопанската дейност",
+      "short": "ЗОАРАКСД",
+      "url": "https://www.lex.bg/laws/ldoc/2135468357"
+    },
+    "lc": {
+      "title": "Labour Code",
+      "localTitle": "Кодекс на труда",
+      "short": "Кодекс на труда",
+      "url": "https://lex.bg/bg/laws/ldoc/1594373121"
+    },
+    "ena": {
+      "title": "Energy Act",
+      "localTitle": "Закон за енергетиката",
+      "short": "Закон за енергетиката",
+      "url": "https://lex.bg/laws/ldoc/2135475623"
+    },
+    "wsra": {
+      "title": "Water Supply and Sewerage Services Regulation Act",
+      "localTitle": "Закон за регулиране на водоснабдителните и канализационните услуги",
+      "short": "ЗРВКУ",
+      "url": "https://lex.bg/laws/ldoc/2135499390"
+    },
+    "cpa": {
+      "title": "Consumer Protection Act",
+      "localTitle": "Закон за защита на потребителите",
+      "short": "ЗЗП",
+      "url": "https://lex.bg/laws/ldoc/2135513678"
     }
   },
   "levels": {
@@ -521,18 +552,72 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "Anyone may start and run a business.",
+                "explanation": "The Constitution bases the economy on free economic initiative: anyone may start and run a business.",
                 "laws": [
                   "const"
+                ],
+                "provisions": [
+                  {
+                    "law": "const",
+                    "items": [
+                      {
+                        "ref": "Article 19(1)",
+                        "text": "The economy of the Republic of Bulgaria shall be based on free economic initiative."
+                      },
+                      {
+                        "ref": "Article 19(2)",
+                        "text": "The state shall establish and guarantee equal legal conditions for economic activity to all citizens and corporate entities by preventing any abuse of a monopoly status and unfair competition, and by protecting the consumer."
+                      },
+                      {
+                        "ref": "Article 19(3)",
+                        "text": "All investments and economic activity by Bulgarian and foreign persons and corporate entities shall enjoy the protection of the law."
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
-                "explanation": "Licensing and permit regimes restrict entry into many activities.",
+                "explanation": "An authority's licence or permit is a condition for starting many activities, so an outsider decides whether one may trade at all. The law allows licences only for activities that concern state property or create an increased risk to security, public order, people's rights or the environment, and only when set by an act of parliament.",
                 "laws": [
-                  "const",
-                  "ta"
+                  "zoar"
+                ],
+                "provisions": [
+                  {
+                    "law": "zoar",
+                    "items": [
+                      {
+                        "ref": "Article 2(1)",
+                        "text": [
+                          "State and local authorities regulate and control economic activity administratively in order to protect:",
+                          "1. national security and public order in the Republic of Bulgaria, and the exclusive and sovereign rights of the state under Article 18(1)–(4) of the Constitution;",
+                          "2. the personal and property rights of citizens and legal persons;",
+                          "3. the environment."
+                        ]
+                      },
+                      {
+                        "ref": "Article 3(3)",
+                        "text": "In regulating and controlling economic activity, administrative and local authorities may not impose restrictions and burdens that are not necessary to achieve the aims of the law."
+                      },
+                      {
+                        "ref": "Article 4(1)",
+                        "text": "Licensing and registration regimes for carrying out economic activity, and any requirement to obtain a permit or certificate or to give notice of a single transaction or act, are established only by law."
+                      },
+                      {
+                        "ref": "Article 9(1)",
+                        "text": [
+                          "A licensing regime may be established only for economic activities that:",
+                          "1. concern objects that are exclusive state property under Article 18(1) of the Constitution, or objects over which the state exercises sovereign rights; or",
+                          "2. create an increased risk to national security or public order in the Republic of Bulgaria, to the personal or property rights of citizens or the rights of legal persons, or to the environment, and are listed in the annex to this Act."
+                        ]
+                      },
+                      {
+                        "ref": "Article 10(3)",
+                        "text": "Holding a licence is a condition for starting and lawfully carrying out the economic activity concerned."
+                      }
+                    ]
+                  }
                 ]
               }
             ],
@@ -546,18 +631,103 @@
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "Parties may freely agree the terms of their contracts, within the law.",
+                "explanation": "The parties may freely set the content of their contract, within the mandatory rules of the law and good morals, and the contract binds them like a law.",
                 "laws": [
-                  "zzd",
-                  "const"
+                  "zzd"
+                ],
+                "provisions": [
+                  {
+                    "law": "zzd",
+                    "items": [
+                      {
+                        "ref": "Article 9",
+                        "text": "The parties may freely determine the content of the contract, insofar as it does not contradict the mandatory rules of the law and good morals."
+                      },
+                      {
+                        "ref": "Article 20a",
+                        "text": [
+                          "(1) Contracts have the force of law for those who concluded them.",
+                          "(2) Contracts may be amended, terminated, rescinded or revoked only by mutual consent of the parties or on grounds provided by law."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
                 "type": "no_outside_override",
                 "status": "partial",
-                "explanation": "Many terms are fixed by law whatever both parties want: the minimum wage and mandatory employment terms, regulated prices, and consumer terms that cannot be waived. Rules against fraud and coercion protect consent and are not counted.",
+                "explanation": "The state fixes some terms whatever both parties want: the Council of Ministers sets the minimum wage, and the energy and water regulator sets the prices of district heating, gas for households, and water and sewerage. Rules against fraud and coercion, and against unfair terms a consumer could not negotiate, protect the parties' own consent, so they are not counted.",
                 "laws": [
-                  "zzd"
+                  "zzd",
+                  "lc",
+                  "ena",
+                  "wsra"
+                ],
+                "provisions": [
+                  {
+                    "law": "zzd",
+                    "items": [
+                      {
+                        "ref": "Article 26(1)",
+                        "text": "Contracts that contradict or circumvent the law, as well as contracts that offend good morals, including contracts on inheritances not yet opened, are void."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "lc",
+                    "items": [
+                      {
+                        "ref": "Article 244(1)",
+                        "text": [
+                          "The Council of Ministers determines:",
+                          "1. the national minimum wage for each calendar year;",
+                          "2. the types and minimum amounts of additional pay and of compensation under the employment relationship, insofar as they are not set by this Code."
+                        ]
+                      },
+                      {
+                        "ref": "Article 244(3)",
+                        "text": "The national minimum wage set under paragraph 2 may not be lower than the one set for the previous year."
+                      },
+                      {
+                        "ref": "Article 244(6)",
+                        "text": "Higher minimum wages may be agreed in collective labour agreements at sector and branch level."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "ena",
+                    "items": [
+                      {
+                        "ref": "Article 30(1)",
+                        "text": [
+                          "The following prices are subject to regulation by the Commission:",
+                          "…",
+                          "3. at which producers sell heat to the heat transmission company and to directly connected customers;",
+                          "4. at which the heat transmission company sells heat to customers;",
+                          "…",
+                          "8. at which end suppliers sell natural gas to customers connected to the gas distribution networks;",
+                          "…"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "wsra",
+                    "items": [
+                      {
+                        "ref": "Article 12(1)",
+                        "text": [
+                          "The following prices at which water and sewerage operators provide services are subject to regulation by the Commission:",
+                          "1. supplying water to consumers;",
+                          "2. removing waste water;",
+                          "3. treating waste water;",
+                          "4. connecting consumers to the water supply systems;",
+                          "5. connecting consumers to the sewerage systems."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               }
             ]
