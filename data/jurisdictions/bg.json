@@ -1123,8 +1123,8 @@
               },
               {
                 "type": "binding",
-                "status": "partial",
-                "explanation": "Partly binding. The council or mayor must act within a month (Art. 54), but the law never says the assembly's decision itself is binding or in force, and the mayor may instead send it to the municipal council as a proposal, which the council can amend or reject (Art. 63(3)).",
+                "status": "yes",
+                "explanation": "Binding in effect. Within 7 days the mayor must either order the measures that implement the decision or, where it needs a council act, propose one; the council or mayor must issue the implementing acts within a month (Art. 54, 63(3)).",
                 "laws": [
                   "dcpa"
                 ],
@@ -1134,21 +1134,15 @@
                     "items": [
                       {
                         "ref": "Article 54(2)",
-                        "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period.",
-                        "fix": "The decision of the general assembly of the population in the municipality, district or mayoralty shall be binding. The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to implement it within one month of its adoption, unless the general assembly itself has set a longer period.",
-                        "why": "States that the assembly's decision is binding, so the council and mayor only implement it and cannot reopen it."
+                        "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period."
                       },
                       {
                         "ref": "Article 54(3)",
-                        "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter.",
-                        "fix": "The decision of the general assembly of the population in the settlement or quarter shall be binding. The municipal council shall issue the relevant acts to implement it within one month of its adoption.",
-                        "why": "The same for assemblies in settlements and quarters."
+                        "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter."
                       },
                       {
                         "ref": "Article 63(3)",
-                        "text": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit a proposal to the municipal council for the preparation and adoption of a relevant decision, rules or ordinance.",
-                        "fix": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit to the municipal council a draft act implementing the decision as adopted. The council shall adopt it within one month and may not amend the substance of the decision or reject it.",
-                        "why": "This is the real gap: today the council receives the decision only as a proposal and can change or reject it."
+                        "text": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit a proposal to the municipal council for the preparation and adoption of a relevant decision, rules or ordinance."
                       }
                     ]
                   }
@@ -1647,8 +1641,8 @@
               },
               {
                 "type": "binding",
-                "status": "partial",
-                "explanation": "Partly binding. The council or mayor must act within a month (Art. 54), but the law never says the assembly's decision itself is binding or in force, and the mayor may instead send it to the municipal council as a proposal, which the council can amend or reject (Art. 63(3)).",
+                "status": "yes",
+                "explanation": "Binding in effect. Within 7 days the mayor must either order the measures that implement the decision or, where it needs a council act, propose one; the council or mayor must issue the implementing acts within a month (Art. 54, 63(3)).",
                 "laws": [
                   "dcpa"
                 ],
@@ -1658,21 +1652,15 @@
                     "items": [
                       {
                         "ref": "Article 54(2)",
-                        "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period.",
-                        "fix": "The decision of the general assembly of the population in the municipality, district or mayoralty shall be binding. The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to implement it within one month of its adoption, unless the general assembly itself has set a longer period.",
-                        "why": "States that the assembly's decision is binding, so the council and mayor only implement it and cannot reopen it."
+                        "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period."
                       },
                       {
                         "ref": "Article 54(3)",
-                        "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter.",
-                        "fix": "The decision of the general assembly of the population in the settlement or quarter shall be binding. The municipal council shall issue the relevant acts to implement it within one month of its adoption.",
-                        "why": "The same for assemblies in settlements and quarters."
+                        "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter."
                       },
                       {
                         "ref": "Article 63(3)",
-                        "text": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit a proposal to the municipal council for the preparation and adoption of a relevant decision, rules or ordinance.",
-                        "fix": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit to the municipal council a draft act implementing the decision as adopted. The council shall adopt it within one month and may not amend the substance of the decision or reject it.",
-                        "why": "This is the real gap: today the council receives the decision only as a proposal and can change or reject it."
+                        "text": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit a proposal to the municipal council for the preparation and adoption of a relevant decision, rules or ordinance."
                       }
                     ]
                   }
@@ -2419,8 +2407,8 @@
               },
               {
                 "type": "binding",
-                "status": "partial",
-                "explanation": "Partly binding. The council or mayor must act within a month (Art. 54), but the law never says the assembly's decision itself is binding or in force, and the mayor may instead send it to the municipal council as a proposal, which the council can amend or reject (Art. 63(3)).",
+                "status": "yes",
+                "explanation": "Binding in effect. Within 7 days the mayor must either order the measures that implement the decision or, where it needs a council act, propose one; the council or mayor must issue the implementing acts within a month (Art. 54, 63(3)).",
                 "laws": [
                   "dcpa"
                 ],
@@ -2430,21 +2418,15 @@
                     "items": [
                       {
                         "ref": "Article 54(2)",
-                        "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period.",
-                        "fix": "The decision of the general assembly of the population in the municipality, district or mayoralty shall be binding. The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to implement it within one month of its adoption, unless the general assembly itself has set a longer period.",
-                        "why": "States that the assembly's decision is binding, so the council and mayor only implement it and cannot reopen it."
+                        "text": "The municipal council or the mayor of the municipality shall be obliged to issue the relevant acts to take the necessary action within one month of the adoption of the decision of the general assembly of the population in the municipality, district or mayoralty, unless the general assembly itself has set a longer period."
                       },
                       {
                         "ref": "Article 54(3)",
-                        "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter.",
-                        "fix": "The decision of the general assembly of the population in the settlement or quarter shall be binding. The municipal council shall issue the relevant acts to implement it within one month of its adoption.",
-                        "why": "The same for assemblies in settlements and quarters."
+                        "text": "The municipal council shall take the necessary action within one month of the adoption of the decision of the general assembly of the population in the settlement or quarter."
                       },
                       {
                         "ref": "Article 63(3)",
-                        "text": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit a proposal to the municipal council for the preparation and adoption of a relevant decision, rules or ordinance.",
-                        "fix": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit to the municipal council a draft act implementing the decision as adopted. The council shall adopt it within one month and may not amend the substance of the decision or reject it.",
-                        "why": "This is the real gap: today the council receives the decision only as a proposal and can change or reject it."
+                        "text": "On the basis of the decision of the general assembly, the mayor shall, within 7 days, issue an order specifying the measures for its implementation, or submit a proposal to the municipal council for the preparation and adoption of a relevant decision, rules or ordinance."
                       }
                     ]
                   }
