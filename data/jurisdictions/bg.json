@@ -3039,7 +3039,7 @@
               {
                 "type": "individual_vote",
                 "status": "no",
-                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate.",
+                "explanation": "Voters must first choose a party list in a single municipality-wide electoral district of up to 61 seats, and the larger the district, the less each councillor answers to particular voters. A preference for a candidate is optional, and only one is allowed, with no ranking as in the single transferable vote. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate.",
                 "laws": [
                   "ec"
                 ],
@@ -3614,7 +3614,7 @@
               {
                 "type": "individual_vote",
                 "status": "no",
-                "explanation": "Not met. Voters must first choose a party list, and a preference is optional. Only one preference is allowed, with no ranking as in the single transferable vote; a ballot with more than one counts for the list only. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate. In practice, only about 3% of members of parliament have been elected thanks to preference votes.",
+                "explanation": "Voters must first choose a party list in large multi-member districts of up to 19 seats. A preference for a candidate is optional. Only one preference is allowed, with no ranking as in the single transferable vote; a ballot with more than one counts for the list only. A vote without a preference counts as a preference for the first candidate on the list, which, together with the 7% threshold, makes it almost impossible to replace that candidate. In practice, only about 3% of members of parliament have been elected thanks to preference votes.",
                 "laws": [
                   "const",
                   "ec"
