@@ -232,3 +232,6 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 :root[data-scale="teal"] .req:has(.verdict.t-white) .chat-btn { color: #fff; }
 :root[data-scale="teal"] .req:has(.verdict.t-lightgrey) .chat-btn { color: #0f3a34; }
 .req-head .chat-btn { background: transparent; border: 0; box-shadow: none; }
+.req > .chat-wrap { top: 6px; right: 6px; }
+.req > .chat-wrap .chat-btn { width: 40px; height: 40px; opacity: 1; }
+.req > .chat-wrap .chat-btn svg { width: 27px; height: 27px; }
