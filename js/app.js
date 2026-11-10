@@ -407,7 +407,7 @@ function render() {
   // Trail uses each chip's long name.
   const steps = [['Common interest levels', []]];
   if (cur) steps.push([cur.l.name, [levelId]]);
-  if (cur && branchId && BRANCH_INFO[branchId]) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
+  if (cur && branchId && BRANCH_INFO[branchId] && !cur.l.informal) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
   if (mech) steps.push([mechLongName(mech, mechs, catalog, levelId), [levelId, branchId, mechIdx]]);
   if (kind) steps.push([kind.name || kindDefs[kind.type]?.longName || kind.type, [levelId, branchId, mechIdx, kindIdx]]);
   if (prop && !single) steps.push([prop.name || catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name, propPath(propIdx)]);
@@ -432,7 +432,9 @@ function render() {
     screen.push(el('h2', { class: 'group-title' }, 'Decision making institutions'));
     // Some levels (e.g. Home) decide informally, without formal institutions (catalog `informal`): one plain chip.
     if (cur.l.informal) {
-      screen.push(rowOf([chip({ label: 'Informal', tone: tone(scoreLevel(cur.lvl, catalog)) || 'white', title: cur.l.informal })]));
+      const hi = (cur.lvl.direct?.mechanisms || []).findIndex(m => m.type === 'household');
+      screen.push(rowOf([chip({ label: 'Informal', tone: tone(scoreLevel(cur.lvl, catalog)) || 'white', title: cur.l.informal,
+        onclick: hi >= 0 ? () => go([levelId, 'direct', hi]) : undefined })]));
     } else {
       screen.push(rowOf(['direct', 'representative'].map(b => chip({
         label: BRANCH_INFO[b].name, tone: tone(scoreBranch(cur.lvl[b], catalog)) || 'black', title: BRANCH_INFO[b].desc,

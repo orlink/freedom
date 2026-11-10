@@ -177,7 +177,7 @@
     "household": {
       "branch": "direct",
       "name": "Household decision",
-      "longName": "Decisions by the household itself",
+      "longName": "Informal",
       "description": "The people living in a home decide about it together, protected from outside interference."
     },
     "council": {
@@ -337,6 +337,54 @@
       "name": "No roadblocks",
       "longName": "No other roadblocks in the procedure",
       "description": "No smaller procedural obstacles that can stop or stall the mechanism, such as a petition lapsing when parliament or the council changes."
+    },
+    "home_inviolable": {
+      "gate": false,
+      "name": "Home is inviolable",
+      "longName": "No one may enter the home without consent",
+      "description": "Outsiders, including the authorities, cannot enter or search the home without the occupants' consent or a court's permission, except in emergencies."
+    },
+    "family_privacy": {
+      "gate": false,
+      "name": "Privacy",
+      "longName": "Private and family life are protected",
+      "description": "No unlawful interference in private and family life or in correspondence."
+    },
+    "home_property": {
+      "gate": false,
+      "name": "Property",
+      "longName": "The home is the owners' property",
+      "description": "Private property, including the home, is inviolable."
+    },
+    "parental_rights": {
+      "gate": false,
+      "name": "Parental rights",
+      "longName": "Parents raise their children",
+      "description": "Raising children is the parents' right and duty; only a court can restrict it, on grounds set by law."
+    },
+    "joint_decisions": {
+      "gate": false,
+      "name": "Decided together",
+      "longName": "Spouses and parents decide together",
+      "description": "The adults of the household decide its matters together and as equals."
+    },
+    "child_rights": {
+      "gate": false,
+      "name": "Child rights",
+      "longName": "Children are protected, also from their own family",
+      "description": "The household is only as free as its members: a child's own rights are protected, with outside help as a last resort."
+    },
+    "abuse_protection": {
+      "gate": false,
+      "name": "Domestic abuse protection",
+      "longName": "Members are protected from domestic abuse",
+      "description": "Victims can get protection, including removing the abuser from the home."
+    },
+    "education_choice": {
+      "gate": false,
+      "name": "Education choice",
+      "longName": "Parents choose how their children are educated",
+      "description": "Parents can choose the form of education, including at home, without needing an authority's approval."
     }
   },
   "referendumKinds": {

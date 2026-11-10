@@ -87,6 +87,36 @@
       "title": "Non-Profit Legal Entities Act",
       "localTitle": "Закон за юридическите лица с нестопанска цел (ЗЮЛНЦ)",
       "short": "ЗЮЛНЦ"
+    },
+    "fc": {
+      "title": "Family Code",
+      "localTitle": "Семеен кодекс",
+      "short": "СК",
+      "url": "https://lex.bg/laws/ldoc/2135637484"
+    },
+    "cpc": {
+      "title": "Criminal Procedure Code",
+      "localTitle": "Наказателно-процесуален кодекс",
+      "short": "НПК",
+      "url": "https://lex.bg/laws/ldoc/2135512224"
+    },
+    "chpa": {
+      "title": "Child Protection Act",
+      "localTitle": "Закон за закрила на детето",
+      "short": "ЗЗДет",
+      "url": "https://lex.bg/laws/ldoc/2134925825"
+    },
+    "pdva": {
+      "title": "Protection from Domestic Violence Act",
+      "localTitle": "Закон за защита от домашното насилие",
+      "short": "ЗЗДН",
+      "url": "https://lex.bg/laws/ldoc/2135501151"
+    },
+    "psea": {
+      "title": "Preschool and School Education Act",
+      "localTitle": "Закон за предучилищното и училищното образование",
+      "short": "ЗПУО",
+      "url": "https://lex.bg/bg/laws/ldoc/2136641509"
     }
   },
   "levels": {
@@ -98,19 +128,293 @@
             "type": "household",
             "properties": [
               {
-                "type": "exists",
+                "type": "home_inviolable",
                 "status": "yes",
-                "explanation": "The home is inviolable and private property is guaranteed by the Constitution.",
+                "explanation": "No one may enter a home without the occupant's consent, except with a court's permission or to stop a crime under way or in an emergency.",
                 "laws": [
-                  "const"
+                  "const",
+                  "cpc"
+                ],
+                "provisions": [
+                  {
+                    "law": "const",
+                    "items": [
+                      {
+                        "ref": "Article 33(1)",
+                        "text": "The home is inviolable. No one may enter or stay in it without its occupant's consent, except in the cases expressly specified by law."
+                      },
+                      {
+                        "ref": "Article 33(2)",
+                        "text": "Entering or staying in a home without its occupant's consent or without the permission of the judiciary is allowed only to prevent a crime that is imminent or under way, to catch its perpetrator, or in cases of extreme necessity."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "cpc",
+                    "items": [
+                      {
+                        "ref": "Article 161",
+                        "text": [
+                          "(1) In pre-trial proceedings, search and seizure are carried out with the permission of a judge of the competent first-instance court, or of the first-instance court in whose area the action is taken, at the prosecutor's request.",
+                          "(2) In urgent cases, when it is the only way to gather and preserve evidence, the pre-trial authorities may search and seize without that permission; the prosecutor must then submit the record to the judge for approval immediately, and no later than 24 hours."
+                        ]
+                      }
+                    ]
+                  }
                 ]
               },
               {
-                "type": "no_outside_override",
-                "status": "partial",
-                "explanation": "Entry into a home is allowed only with consent, by court order, or in the urgent cases the law lists.",
+                "type": "family_privacy",
+                "status": "yes",
+                "explanation": "Private and family life, and correspondence, are protected; exceptions need a court's permission.",
                 "laws": [
                   "const"
+                ],
+                "provisions": [
+                  {
+                    "law": "const",
+                    "items": [
+                      {
+                        "ref": "Article 32(1)",
+                        "text": "The private life of citizens is inviolable. Everyone has the right to protection against unlawful interference in their private and family life and against attacks on their honour, dignity and good name."
+                      },
+                      {
+                        "ref": "Article 34",
+                        "text": [
+                          "(1) The freedom and secrecy of correspondence and other communications are inviolable.",
+                          "(2) Exceptions are allowed only with the permission of the judiciary, when needed to detect or prevent serious crimes."
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "home_property",
+                "status": "yes",
+                "explanation": "Private property, including the home, is inviolable; expropriation only by law and with prior equivalent compensation.",
+                "laws": [
+                  "const"
+                ],
+                "provisions": [
+                  {
+                    "law": "const",
+                    "items": [
+                      {
+                        "ref": "Article 17",
+                        "text": [
+                          "(1) The right of property and of inheritance is guaranteed and protected by law.",
+                          "(2) Property is private and public.",
+                          "(3) Private property is inviolable."
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "parental_rights",
+                "status": "yes",
+                "explanation": "Raising children is the parents' right and duty. Only a court can restrict or remove parental rights, and only on grounds set by law.",
+                "laws": [
+                  "const",
+                  "fc"
+                ],
+                "provisions": [
+                  {
+                    "law": "const",
+                    "items": [
+                      {
+                        "ref": "Article 47(1)",
+                        "text": "Raising and bringing up children until they come of age is the right and the duty of their parents and is supported by the state."
+                      },
+                      {
+                        "ref": "Article 47(5)",
+                        "text": "The conditions and procedure for restricting or removing parental rights are set by law."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "fc",
+                    "items": [
+                      {
+                        "ref": "Article 125",
+                        "text": [
+                          "(1) The parent has the right and duty to care for the child's physical, mental, moral and social development, its education, and its personal and property interests.",
+                          "(2) The parent raises the child, shapes its views and provides for its education according to the parent's means and the child's needs and inclinations, with the aim of its growing into an independent and responsible person. The parent may not use violence or methods of upbringing that degrade the child's dignity."
+                        ]
+                      },
+                      {
+                        "ref": "Article 131(1)",
+                        "text": "When a parent's conduct endangers the child's person, health, upbringing or property, the district court takes appropriate measures in the child's interest, restricting parental rights by removing some of them or setting conditions on their exercise, and may assign them to another person. Where needed, the child's residence may be changed or the child placed outside the family."
+                      },
+                      {
+                        "ref": "Article 132(1)",
+                        "text": [
+                          "A parent may be deprived of parental rights:",
+                          "1. in particularly serious cases under Article 131;",
+                          "2. when, without good reason, the parent persistently fails to care for and support the child."
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "joint_decisions",
+                "status": "yes",
+                "explanation": "Spouses, and both parents, decide family matters together and as equals; a court settles only disputes they bring to it.",
+                "laws": [
+                  "fc"
+                ],
+                "provisions": [
+                  {
+                    "law": "fc",
+                    "items": [
+                      {
+                        "ref": "Article 14",
+                        "text": "Relations between spouses are built on mutual respect, shared care for the family, and understanding."
+                      },
+                      {
+                        "ref": "Article 17",
+                        "text": "Spouses are obliged, by mutual understanding and joint effort and according to their abilities, property and income, to secure the family's well-being and to care for the raising, upbringing, education and support of the children."
+                      },
+                      {
+                        "ref": "Article 122",
+                        "text": [
+                          "(1) Each parent holds parental rights and duties regarding children who are minors.",
+                          "(2) Parents have equal rights and duties whether or not they are married."
+                        ]
+                      },
+                      {
+                        "ref": "Article 123",
+                        "text": [
+                          "(1) Parental rights and duties are exercised in the child's interest by both parents, together and separately. A parent who acted alone must inform the other parent.",
+                          "(2) Parental rights and duties are exercised by mutual agreement of the parents. If they disagree, they may turn to a mediator or bring a claim before the district court at the child's current address, which settles the dispute after hearing the parents and, where necessary, the child."
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "child_rights",
+                "status": "yes",
+                "explanation": "A child has the right to a normal development, and can turn to social services or, from 14, a court. Placement outside the family is a last resort ordered by a court; social services may place a child temporarily only until the court rules, within a month.",
+                "laws": [
+                  "fc",
+                  "chpa"
+                ],
+                "provisions": [
+                  {
+                    "law": "fc",
+                    "items": [
+                      {
+                        "ref": "Article 124(1), (3)",
+                        "text": [
+                          "(1) The child has the right to be raised and brought up in a way that ensures its normal physical, mental, moral and social development.",
+                          "(3) If a parent and child disagree, the child may personally ask the Social Assistance Directorate for help. If the child is 14 or older and the disagreement is on essential matters, it may, through the directorate, take the dispute to the district court."
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "law": "chpa",
+                    "items": [
+                      {
+                        "ref": "Article 25(2)",
+                        "text": "Placement outside the family is imposed as a protection measure only after all possibilities for protection within the family are exhausted, except where the child must be removed urgently."
+                      },
+                      {
+                        "ref": "Article 26(1)",
+                        "text": "Placement of a child with relatives or friends, in a foster family, or in a residential social or integrated health-social service is ordered by the court. Until the court rules, the Social Assistance Directorate at the child's current address makes a temporary placement by administrative order."
+                      },
+                      {
+                        "ref": "Article 27(2)",
+                        "text": "Within one month of the order under paragraph 1, the Social Assistance Directorate applies to the district court."
+                      },
+                      {
+                        "ref": "Article 38",
+                        "text": [
+                          "Police protection is an emergency measure taken when the child is:",
+                          "1. the object of crimes or in immediate danger to its life or health, or at risk of being drawn into crime;",
+                          "2. lost or helpless;",
+                          "3. left without supervision."
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "abuse_protection",
+                "status": "yes",
+                "explanation": "Victims of domestic violence can get a court order, including removing the abuser from the shared home.",
+                "laws": [
+                  "pdva"
+                ],
+                "provisions": [
+                  {
+                    "law": "pdva",
+                    "items": [
+                      {
+                        "ref": "Article 2(1)–(2)",
+                        "text": [
+                          "(1) Domestic violence is any act of physical, sexual, psychological or economic violence, or an attempt at it, and any forced restriction of private life, personal freedom or personal rights, committed against persons who are related, who are or were in a family relationship, de facto marital cohabitation, or an intimate relationship.",
+                          "(2) Any domestic violence committed in a child's presence also counts as psychological violence against the child."
+                        ]
+                      },
+                      {
+                        "ref": "Article 5(1)",
+                        "text": [
+                          "The protection measures are:",
+                          "1. ordering the perpetrator to refrain from domestic violence;",
+                          "2. removing the perpetrator from the shared home for a period set by the court;",
+                          "3. barring the perpetrator from approaching the victim, their home, workplace and places of social contact and recreation;",
+                          "4. barring any contact with the victim;",
+                          "5. temporarily setting the child's residence with the victim parent."
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "education_choice",
+                "status": "partial",
+                "explanation": "School is compulsory to 16. Parents can educate at home only in the self-study form, and only after a regional expert commission approves it, with checks every term in which a social-assistance representative must take part.",
+                "laws": [
+                  "psea"
+                ],
+                "provisions": [
+                  {
+                    "law": "psea",
+                    "items": [
+                      {
+                        "ref": "Article 8(2)",
+                        "text": "School education is compulsory until age 16 and begins in the school year starting in the year the child turns 7."
+                      },
+                      {
+                        "ref": "Article 112(1)",
+                        "text": [
+                          "The self-study form is open to:",
+                          "2. pupils of compulsory school age, at the pupil's or parent's wish, under Article 12(2)."
+                        ]
+                      },
+                      {
+                        "ref": "Article 112(6)",
+                        "text": "For the pupils under paragraph 1, item 2, the self-study form is organised after a decision of an expert commission set up at the Regional Education Office.",
+                        "fix": "For the pupils under paragraph 1, item 2, the self-study form is organised on the parents' written notification to the school.",
+                        "why": "Parents may choose home education by notifying the school, without a commission's approval."
+                      },
+                      {
+                        "ref": "Article 112(7)",
+                        "text": "Control is exercised every school term by the expert commission. A representative of the Social Assistance Agency must take part in the commission.",
+                        "fix": "The pupil's progress is assessed through the annual exams under paragraph 3.",
+                        "why": "Drops the termly checks and the social-assistance representative; the annual exams remain."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
