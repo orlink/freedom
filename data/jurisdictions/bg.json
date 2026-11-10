@@ -188,6 +188,12 @@
       "localTitle": "Закон за защита на потребителите",
       "short": "ЗЗП",
       "url": "https://lex.bg/laws/ldoc/2135513678"
+    },
+    "pa": {
+      "title": "Property Act",
+      "localTitle": "Закон за собствеността (ЗС)",
+      "url": "https://trudipravo.bg/znanie-za-vas/zakon-za-sobstvenostta/",
+      "short": "ЗС"
     }
   },
   "levels": {
@@ -1119,6 +1125,17 @@
                 "explanation": "Where a building has more than one entrance, it can be managed separately for each entrance.",
                 "laws": [
                   "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 8(2)",
+                        "text": "Where the building has more than one entrance, management may be carried out in each separate entrance. That management also covers the common parts of the building adjoining the separate units of the entrance concerned."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1219,9 +1236,51 @@
               {
                 "type": "exists",
                 "status": "weak",
-                "explanation": "The Condominium Management Act lets owners organise either for the whole building or separately for each entrance. In buildings with several entrances they usually choose each entrance, which leaves the whole building, with its shared roof, foundations, facade and installations, without a body of its own. Entrances can associate freely, but none of the Act's tools, such as binding decisions and collecting contributions, apply to such an association.",
+                "explanation": "Owners of a building with several entrances may manage each entrance separately, and they usually do. The roof, foundations, external walls and main installations still belong to all owners of the building and cannot be divided, but for the building as a whole the law offers only an occasional joint assembly of the entrances, with equal representatives per entrance and no standing body or fund, or an owners' association, which needs owners holding 67% of the shares to found it.",
                 "laws": [
-                  "cma"
+                  "cma",
+                  "pa"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 8(2)",
+                        "text": "Where the building has more than one entrance, management may be carried out in each separate entrance. That management also covers the common parts of the building adjoining the separate units of the entrance concerned."
+                      },
+                      {
+                        "ref": "Article 18",
+                        "text": [
+                          "(1) Where a matter concerning common parts of two or more condominiums needs deciding, a joint general assembly may be held, to which the condominiums send an equal number of representatives.",
+                          "(2) The joint general assembly is convened on the initiative of the management board (manager) of one of the condominiums and is held under the general rules for holding a general assembly under this law.",
+                          "(3) Decisions are taken by a two-thirds majority of those present."
+                        ]
+                      },
+                      {
+                        "ref": "Article 25(4)",
+                        "text": "An owners' association may be created for one or more than one entrance of the building, or for several condominium buildings built as connected development. In that case the association is created by owners holding not less than 67 per cent of the owners' shares in the common parts of the entrance (entrances or buildings)."
+                      },
+                      {
+                        "ref": "Article 8a (new)",
+                        "fix": [
+                          "(1) Where a building with more than one entrance is managed in each separate entrance, all owners of the building also form a condominium of the building, which manages the common parts serving the whole building, such as the land, foundations, roof, external walls and main installations.",
+                          "(2) The condominium of the building has its own general assembly of all owners and its own management board (manager), and its general assembly sets monthly contributions to its own 'Repair and Renovation' fund. The provisions of this Act on the general assembly, the management board (manager), contributions and the fund apply to it.",
+                          "(3) Decisions concerning only the common parts adjoining one entrance remain with the condominium of that entrance."
+                        ],
+                        "why": "Gives the whole building a standing assembly, manager and fund with the Act's tools, as for a single-entrance building, while keeping each entrance's own management."
+                      }
+                    ]
+                  },
+                  {
+                    "law": "pa",
+                    "items": [
+                      {
+                        "ref": "Article 38(1)",
+                        "text": "In buildings where floors or parts of floors belong to different owners, the land on which the building stands, the yard, the foundations, the external walls, … the stairs, the landings, the roofs, … the external entrance doors of the building …, the main lines of all installations and their central units, the lifts, … and everything else that by its nature or purpose serves common use are common to all owners. It may be agreed that parts of the building serving only some of the separately owned floors or parts of floors are common only to those whose premises they serve. The common parts may not be divided."
+                      }
+                    ]
+                  }
                 ]
               },
               {
@@ -1258,10 +1317,42 @@
               },
               {
                 "type": "own_means",
-                "status": "yes",
-                "explanation": "The assembly sets the contributions to the repair and renovation fund.",
+                "status": "partial",
+                "explanation": "Contributions and the 'Repair and Renovation' fund belong to the condominium or association that does the managing. Where each entrance manages itself, each has its own fund, and the building as a whole has none.",
                 "laws": [
                   "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 48(8)",
+                        "text": "For the maintenance of the common parts of the condominium, the owners, users and occupants of separate units make monthly contributions in an amount set in the house rules or by decision of the general assembly."
+                      },
+                      {
+                        "ref": "Article 48(4)",
+                        "text": "The decision to repair, renovate, reconstruct or alter common parts shared between separate condominiums is taken by the joint general assembly under Art. 18."
+                      },
+                      {
+                        "ref": "Article 50(1)",
+                        "text": "The general assembly of the owners or of the association creates and maintains a 'Repair and Renovation' fund."
+                      },
+                      {
+                        "ref": "Article 50(3)",
+                        "text": "The fund's money is kept in a special-purpose account opened in the name of the condominium or of the association."
+                      },
+                      {
+                        "ref": "Article 8a (new)",
+                        "fix": [
+                          "(1) Where a building with more than one entrance is managed in each separate entrance, all owners of the building also form a condominium of the building, which manages the common parts serving the whole building, such as the land, foundations, roof, external walls and main installations.",
+                          "(2) The condominium of the building has its own general assembly of all owners and its own management board (manager), and its general assembly sets monthly contributions to its own 'Repair and Renovation' fund. The provisions of this Act on the general assembly, the management board (manager), contributions and the fund apply to it.",
+                          "(3) Decisions concerning only the common parts adjoining one entrance remain with the condominium of that entrance."
+                        ],
+                        "why": "Gives the whole building a standing assembly, manager and fund with the Act's tools, as for a single-entrance building, while keeping each entrance's own management."
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -1277,9 +1368,33 @@
               {
                 "type": "exists",
                 "status": "weak",
-                "explanation": "Where the owners organised per entrance, the building as a whole has no management board or manager; each entrance has its own.",
+                "explanation": "Where the owners manage each entrance separately, each entrance has its own management board or manager and the building as a whole has none. A joint assembly of the entrances is called by the manager of one of them.",
                 "laws": [
                   "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 8(2)",
+                        "text": "Where the building has more than one entrance, management may be carried out in each separate entrance. That management also covers the common parts of the building adjoining the separate units of the entrance concerned."
+                      },
+                      {
+                        "ref": "Article 18(2)",
+                        "text": "(2) The joint general assembly is convened on the initiative of the management board (manager) of one of the condominiums and is held under the general rules for holding a general assembly under this law."
+                      },
+                      {
+                        "ref": "Article 8a (new)",
+                        "fix": [
+                          "(1) Where a building with more than one entrance is managed in each separate entrance, all owners of the building also form a condominium of the building, which manages the common parts serving the whole building, such as the land, foundations, roof, external walls and main installations.",
+                          "(2) The condominium of the building has its own general assembly of all owners and its own management board (manager), and its general assembly sets monthly contributions to its own 'Repair and Renovation' fund. The provisions of this Act on the general assembly, the management board (manager), contributions and the fund apply to it.",
+                          "(3) Decisions concerning only the common parts adjoining one entrance remain with the condominium of that entrance."
+                        ],
+                        "why": "Gives the whole building a standing assembly, manager and fund with the Act's tools, as for a single-entrance building, while keeping each entrance's own management."
+                      }
+                    ]
+                  }
                 ]
               },
               {
