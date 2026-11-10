@@ -162,7 +162,7 @@
               {
                 "type": "no_outside_override",
                 "status": "partial",
-                "explanation": "Mandatory rules limit it: tenancy protections, cantonal minimum wages, and consumer protections.",
+                "explanation": "Mandatory rules fix some terms whatever both parties want: tenancy protections, cantonal minimum wages, and consumer terms that cannot be waived. Rules against fraud and coercion protect consent and are not counted.",
                 "laws": [
                   "or"
                 ]
