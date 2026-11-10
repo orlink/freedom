@@ -552,9 +552,10 @@ function render() {
     setLegend(null);
     const explainer = catalog.properties[prop.type]?.explainer;
     const chatKey = [loc.address.country_code || 'xx', ...state.path].join('|').slice(0, 200);
-    screen.push(el('div', { class: 'req-head' }, chatButton(chatKey, pageContext(steps.map(s => s[0]), prop, j.laws, catalog))));
-    if (prop.provisions?.length) screen.push(provisionsPanel(prop.provisions, j.laws, explainer, prop));
-    else screen.push(rowOf((prop.laws || []).map(id => {
+    const chatBtn = chatButton(chatKey, pageContext(steps.map(s => s[0]), prop, j.laws, catalog));
+    // The chat button sits in the top right corner of the verdict band (outside the panel, so its pop-up is not clipped).
+    if (prop.provisions?.length) screen.push(el('div', { class: 'req has-chat' }, provisionsPanel(prop.provisions, j.laws, explainer, prop), chatBtn));
+    else screen.push(el('div', { class: 'req-head' }, chatBtn), rowOf((prop.laws || []).map(id => {
       const law = j.laws[id] || { title: id };
       return chip({ label: law.short || law.title, tone: 'law', title: [law.title, law.localTitle].filter(Boolean).join('\n'), href: law.url });
     })));
