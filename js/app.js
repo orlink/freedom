@@ -37,7 +37,15 @@ async function nominatim(path, params) {
   return r.json();
 }
 const reverse = (lat, lon) => nominatim('reverse', { lat, lon, zoom: 18 });
-const search = q => nominatim('search', { q, limit: 1 });
+// Nominatim's first hit is often a same-named street elsewhere ("Patrick Street, Cork" in Fermoy): take up to five
+// and prefer one whose town or city appears in the query.
+async function search(q) {
+  const rs = await nominatim('search', { q, limit: 5 });
+  const words = q.toLocaleLowerCase().split(/[\s,]+/).filter(w => w.length > 2);
+  const placeOf = r => Object.entries(r.address || {}).filter(([k]) => /^(city|town|village|municipality|suburb|city_district|county|state_district)$/.test(k)).map(([, v]) => v.toLocaleLowerCase());
+  const best = rs.find(r => placeOf(r).some(p => words.some(w => p.includes(w))));
+  return best ? [best, ...rs.filter(r => r !== best)] : rs;
+}
 // The settlement (city, town or village) around a point, with its population from OpenStreetMap when tagged.
 async function settlementAt(lat, lon) {
   const r = await nominatim('reverse', { lat, lon, zoom: 10, extratags: 1 });
@@ -228,7 +236,9 @@ $('#search').addEventListener('submit', async e => {
     const [r] = await search(q);
     timing('search', t0);
     if (!r) { $('#place').replaceChildren(`Nothing found for “${q}”.`); return; }
-    await locate(r.lat, r.lon, { zoom: 16, result: r });
+    // A search hit without its settlement in the address ("Main Street, Bray"): look the point up again for the full address.
+    const a = r.address || {};
+    await locate(r.lat, r.lon, { zoom: 16, result: (a.city || a.town || a.village || a.hamlet) ? r : undefined });
   } catch (err) {
     $('#place').replaceChildren(err.message);
   } finally {
