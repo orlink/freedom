@@ -535,6 +535,31 @@
                   "ta"
                 ]
               }
+            ],
+            "label": "Free enterprise"
+          },
+          {
+            "type": "personal_autonomy",
+            "name": "Freedom of contract",
+            "label": "Freedom of contract",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Parties may freely agree the terms of their contracts, within the law.",
+                "laws": [
+                  "zzd",
+                  "const"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Many terms are fixed by law: minimum wage and mandatory employment terms, regulated prices, and consumer protections that cannot be waived.",
+                "laws": [
+                  "zzd"
+                ]
+              }
             ]
           },
           {
@@ -690,7 +715,8 @@
                   "ta"
                 ]
               }
-            ]
+            ],
+            "label": "Board / managers"
           },
           {
             "type": "agent",

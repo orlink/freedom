@@ -142,6 +142,31 @@
                   "or"
                 ]
               }
+            ],
+            "label": "Free enterprise"
+          },
+          {
+            "type": "personal_autonomy",
+            "name": "Freedom of contract",
+            "label": "Freedom of contract",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The content of a contract may be freely set within the law.",
+                "laws": [
+                  "or",
+                  "bv"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Mandatory rules limit it: tenancy protections, cantonal minimum wages, and consumer protections.",
+                "laws": [
+                  "or"
+                ]
+              }
             ]
           },
           {
@@ -297,7 +322,8 @@
                   "or"
                 ]
               }
-            ]
+            ],
+            "label": "Board / managers"
           },
           {
             "type": "agent",

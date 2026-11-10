@@ -184,6 +184,30 @@
                   "ca2014"
                 ]
               }
+            ],
+            "label": "Free enterprise"
+          },
+          {
+            "type": "personal_autonomy",
+            "name": "Freedom of contract",
+            "label": "Freedom of contract",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "People may freely make contracts, a principle of the common law.",
+                "laws": [
+                  "bunreacht"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Statute fixes many terms: rent limits in pressure zones, the minimum wage, and consumer protections.",
+                "laws": [
+                  "bunreacht"
+                ]
+              }
             ]
           },
           {
@@ -339,7 +363,8 @@
                   "ca2014"
                 ]
               }
-            ]
+            ],
+            "label": "Board / managers"
           },
           {
             "type": "agent",
