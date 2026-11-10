@@ -43,6 +43,7 @@ button { font: inherit; cursor: pointer; }
 .tree-row + .tree-row { padding-top: 16px; border-top: 1px dashed #dcbfb8; width: 100%; }
 .group-title { width: 100%; margin: 4px 0 8px; text-align: center; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--coral-ink); }
 @keyframes fadein { from { opacity: 0; } }
+body.quiet .tree-row, body.quiet .provisions { animation: none; }
 
 .tb { width: var(--btn-w); height: var(--btn-h); display: flex; align-items: center; justify-content: center; text-align: center;
       padding: 6px 12px; border-radius: 14px; border: 2px solid var(--none); font-weight: 600; font-size: 14px; line-height: 1.2; text-decoration: none;

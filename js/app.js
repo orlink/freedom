@@ -57,6 +57,8 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
   if (marker) marker.setLatLng([lat, lon]); else marker = L.marker([lat, lon]).addTo(map);
   if (zoom) map.setView([lat, lon], zoom);
   $('#place').replaceChildren(el('span', { class: 'loading' }, 'Looking up this location…'));
+  // The settlement's population (a second lookup) is fetched alongside the address, not after it.
+  const settlementP = settlementAt(lat, lon).catch(() => null);
   try {
     const r = result || await reverse(lat, lon);
     if (!r || r.error || !r.address) throw new Error(r?.error || 'No address found here.');
@@ -71,16 +73,24 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
     state.loc.jurisdiction = applySettlementRoles(state.loc.jurisdiction, state.loc.places);
     if (!keepPath) state.path = [];
     writeHash(!keepPath);
-    render();
-    // Some requirements depend on population (e.g. BG general assemblies: up to 10,000 inhabitants). Fetched after
-    // the first render so the page doesn't wait for it; ignored if the pin has moved on meanwhile.
+    // Some requirements depend on population (e.g. BG general assemblies: up to 10,000 inhabitants). Wait briefly
+    // for it, so the chips appear once with their final colours instead of changing a moment later. If the lookup
+    // is slow, show the page anyway and update the colours in place (without the fade-in) when it arrives.
     const loc = state.loc;
-    settlementAt(lat, lon).then(settlement => {
-      if (state.loc !== loc || !settlement) return;
+    const withPopulation = settlementP.then(settlement => {
+      if (state.loc !== loc || !settlement) return false;
       loc.settlement = settlement;
       loc.jurisdiction = applyPopulation(loc.jurisdiction, settlement);
+      return true;
+    }).catch(() => false); // no population: keep the data's own statuses
+    const early = await Promise.race([withPopulation.then(() => true), new Promise(res => setTimeout(() => res(false), 1500))]);
+    if (state.loc !== loc) return;
+    render();
+    if (!early && await withPopulation && state.loc === loc) {
+      document.body.classList.add('quiet');
       render();
-    }).catch(() => { /* no population: keep the data's own statuses */ });
+      requestAnimationFrame(() => document.body.classList.remove('quiet'));
+    }
   } catch (e) {
     $('#place').replaceChildren(`Could not look up this location: ${e.message}`);
   }
