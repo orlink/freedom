@@ -3619,7 +3619,7 @@
               {
                 "type": "proportional_representation",
                 "status": "partial",
-                "explanation": "Not quite proportional. Only parties with at least 4% of the national vote win seats, so the votes for the others are lost, and the parties above the threshold get up to 20% more of the seats than their share of the vote. This often leads to minority rule: a governing party or coalition with a majority of seats but less than half of the votes.",
+                "explanation": "Not quite proportional. Only parties with at least 4% of the national vote win seats, so the votes for the others are lost, and the parties above the threshold get up to 20% more of the seats than their share of the vote. This has led to frequent minority rule: a governing party or coalition with less than half of the votes.",
                 "laws": [
                   "ec"
                 ],
