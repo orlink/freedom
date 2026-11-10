@@ -338,7 +338,8 @@
       "gate": false,
       "name": "Recall possible",
       "longName": "Voters can recall their representative",
-      "description": "Voters should be able to remove the representative before the end of term."
+      "description": "Voters should ideally be able to remove the representative before the end of term. Welcome but not required: frequent, regular elections are the main way to hold representatives to account, so a missing recall does not lower the score.",
+      "optional": true
     },
     "no_topic_restrictions": {
       "gate": false,

@@ -52,6 +52,7 @@ function withoutKeys(obj, keys) {
  * Score a mechanism in [0,1], or null if nothing is known.
  * Average of the known property values; a "gate" property that is "no" zeroes the mechanism, one that is
  * "partial" halves it, and one that is "weak" caps it at 0.25 (dark grey). Gates are set per property in the catalog, or per mechanism via `gates`.
+ * A property marked `optional` in the catalog (recall) counts only when met, so its absence never lowers the score.
  * A mechanism's `weight` (default 1) scales the result, e.g. for fallback mechanisms.
  */
 export function scoreMechanism(mech, catalog) {
@@ -66,6 +67,8 @@ export function scoreMechanism(mech, catalog) {
   for (const p of props) {
     const v = STATUS_VALUE[p.status];
     const def = catalog.properties[p.type] || {};
+    // An "optional" property (e.g. recall) is welcome but not required: it never lowers the score.
+    if (def.optional && v != null && v < 1) continue;
     const gate = def.gate || (catalog.mechanisms[mech.type]?.gates || []).includes(p.type);
     if (gate && v === 0) return 0;
     if (gate && v === 0.5) gateFactor *= 0.5;
