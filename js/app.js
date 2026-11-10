@@ -429,11 +429,14 @@ function render() {
     setLegend('levels');
     screen.push(el('h2', { class: 'group-title' }, 'Shared interest types'));
     screen.push(rowOf(interestChips(levelId), 'interests'));
-    screen.push(el('h2', { class: 'group-title' }, 'Decision making institutions'));
-    screen.push(rowOf(['direct', 'representative'].map(b => chip({
-      label: BRANCH_INFO[b].name, tone: tone(scoreBranch(cur.lvl[b], catalog)) || 'black', title: BRANCH_INFO[b].desc,
-      onclick: () => go([levelId, b]),
-    }))));
+    // Some levels (e.g. Home) have no decision-making institutions to show (catalog `noInstitutions`).
+    if (!cur.l.noInstitutions) {
+      screen.push(el('h2', { class: 'group-title' }, 'Decision making institutions'));
+      screen.push(rowOf(['direct', 'representative'].map(b => chip({
+        label: BRANCH_INFO[b].name, tone: tone(scoreBranch(cur.lvl[b], catalog)) || 'black', title: BRANCH_INFO[b].desc,
+        onclick: () => go([levelId, b]),
+      }))));
+    }
   } else if (!mech) {
     // Screen 3: mechanisms (e.g. referendum, general assembly). None at all: one black chip saying so.
     const shown = mechs.map((m, i) => ({ m, i, tone: mechTone(scoreMechanism(m, catalog)) })).filter(x => x.tone);

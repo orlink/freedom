@@ -27,6 +27,7 @@
       "name": "Home",
       "longName": "Home interests",
       "kind": "territorial",
+      "noInstitutions": true,
       "addressKeys": [],
       "description": "The people living together in one home: a house or a flat."
     },
