@@ -2642,40 +2642,6 @@
                 ]
               }
             ]
-          },
-          {
-            "type": "executive",
-            "name": "Mayor",
-            "properties": [
-              {
-                "type": "exists",
-                "status": "no",
-                "explanation": "A municipal district has no executive of its own: the county's chief executive, an appointed official, carries out all executive functions there.",
-                "laws": [
-                  "lga2001"
-                ],
-                "provisions": [
-                  {
-                    "law": "lga2001",
-                    "items": [
-                      {
-                        "ref": "Section 144(1)",
-                        "text": "For every county, city and city and county there shall be a chief executive to be known as \"the Chief Executive of....…\" (followed by the name of the city council, county council or city and county council, as the case may be) who shall hold employment under the council concerned."
-                      },
-                      {
-                        "ref": "Section 22L (new)",
-                        "fix": [
-                          "(1) Each municipal district, and each town and village that has a community council under section 22K, shall have a mayor, elected directly by its local government electors at each local election.",
-                          "(2) The mayor shall carry out the decisions of the municipal district members or the community council and the functions delegated to them, with the staff and budget assigned by the local authority, and shall report to them."
-                        ],
-                        "why": "Gives districts, towns and villages their own elected executive, like Bulgaria's directly elected village mayors, instead of relying on the county's appointed chief executive."
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "label": "Mayor"
           }
         ]
       }
