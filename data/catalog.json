@@ -258,7 +258,7 @@
     "exists": {
       "gate": true,
       "name": "Exists in law",
-      "longName": "The mechanism exists in law",
+      "longName": "Exists in law",
       "description": "The law should provide this mechanism at this level."
     },
     "binding": {
@@ -270,7 +270,7 @@
     "no_quorum": {
       "gate": false,
       "name": "No participation quorum requirement",
-      "longName": "No minimum turnout is required",
+      "longName": "No participation quorum requirement",
       "description": "The result should count regardless of turnout, so that abstainers cannot defeat it by staying home.",
       "explainer": {
         "title": "Effects of a participation quorum",
@@ -288,7 +288,7 @@
     "concrete_proposals": {
       "gate": false,
       "name": "Concrete proposals available",
-      "longName": "People vote on concrete proposals",
+      "longName": "Concrete proposals available",
       "description": "People should decide on specific, worded proposals, not only on vague questions."
     },
     "citizen_triggered": {
@@ -306,7 +306,7 @@
     "broad_scope": {
       "gate": false,
       "name": "Covers the interests",
-      "longName": "It covers the shared interests of the level",
+      "longName": "Covers the interests of the level",
       "description": "It should cover the level's shared interests, with few excluded topics; budget and local fees should be decidable too."
     },
     "no_outside_override": {
@@ -318,14 +318,14 @@
     "own_means": {
       "gate": false,
       "name": "Means to implement",
-      "longName": "The community has its own means to implement decisions",
+      "longName": "Means to implement decisions",
       "description": "The community should control a budget or resources to carry out its decisions.",
       "$comment": "Used for direct mechanisms (general meetings). For representative bodies it is part of Powers (binding_powers)."
     },
     "binding_powers": {
       "gate": true,
       "name": "Powers",
-      "longName": "The body has the powers to govern the community's interests",
+      "longName": "Powers over the community's interests",
       "description": "It should be able to take binding decisions on the community's shared interests and have the means to carry them out: its own budget, taxes and fees, and control of local services."
     },
     "individual_vote": {
@@ -337,14 +337,14 @@
     "recall": {
       "gate": false,
       "name": "Recall possible",
-      "longName": "Voters can recall their representative",
+      "longName": "Recall possible",
       "description": "Voters should ideally be able to remove the representative before the end of term. Welcome but not required: frequent, regular elections are the main way to hold representatives to account, so a missing recall does not lower the score.",
       "optional": true
     },
     "no_topic_restrictions": {
       "gate": false,
       "name": "No topic restrictions",
-      "longName": "No topics are excluded from the referendum",
+      "longName": "No topic restrictions",
       "description": "Any matter within the competence of the level should be open to a vote, including the budget and taxes."
     },
     "local_districts": {
@@ -362,55 +362,55 @@
     "no_roadblocks": {
       "gate": false,
       "name": "No roadblocks",
-      "longName": "No other roadblocks in the procedure",
+      "longName": "No roadblocks in the procedure",
       "description": "There should be no smaller procedural obstacles that can stop or stall the mechanism, such as a petition lapsing when parliament or the council changes."
     },
     "home_inviolable": {
       "gate": false,
       "name": "Home is inviolable",
-      "longName": "No one may enter the home without consent",
+      "longName": "Home is inviolable",
       "description": "Outsiders, including the authorities, should not enter or search the home without the occupants' consent or a court's permission, except in emergencies."
     },
     "family_privacy": {
       "gate": false,
       "name": "Privacy",
-      "longName": "Private and family life are protected",
+      "longName": "Privacy of family life",
       "description": "There should be no unlawful interference in private and family life or in correspondence."
     },
     "home_property": {
       "gate": false,
       "name": "Property",
-      "longName": "The home is the owners' property",
+      "longName": "Property of the home",
       "description": "Private property, including the home, should be inviolable."
     },
     "parental_rights": {
       "gate": false,
       "name": "Parental rights",
-      "longName": "Parents raise their children",
+      "longName": "Parental rights",
       "description": "Raising children should be the parents' right and duty; only a court should be able to restrict it, on grounds set by law."
     },
     "joint_decisions": {
       "gate": false,
       "name": "Decided together",
-      "longName": "Spouses and parents decide together",
+      "longName": "Decided together",
       "description": "The adults of the household should decide its matters together and as equals."
     },
     "child_rights": {
       "gate": false,
       "name": "Child rights",
-      "longName": "Children are protected, also from their own family",
+      "longName": "Child rights",
       "description": "The household is only as free as its members: a child's own rights should be protected, with outside help as a last resort."
     },
     "abuse_protection": {
       "gate": false,
       "name": "Domestic abuse protection",
-      "longName": "Members are protected from domestic abuse",
+      "longName": "Domestic abuse protection",
       "description": "Victims should be able to get protection, including removing the abuser from the home."
     },
     "education_choice": {
       "gate": false,
       "name": "Education choice",
-      "longName": "Parents choose how their children are educated",
+      "longName": "Education choice",
       "description": "Parents should be able to choose the form of education, including at home, without needing an authority's approval."
     },
     "chosen_by_represented": {
@@ -422,19 +422,19 @@
     "revocable": {
       "gate": false,
       "name": "Revocable",
-      "longName": "The people represented can remove them",
+      "longName": "Revocable by the represented",
       "description": "The people represented should be able to withdraw the authority or replace the agent or trustee."
     },
     "must_account": {
       "gate": false,
       "name": "Must account",
-      "longName": "They must report and show the books",
+      "longName": "Must account to the represented",
       "description": "The agent or trustee should report to the people represented and account for what they did with their affairs and property."
     },
     "duty_of_loyalty": {
       "gate": false,
       "name": "Duty of loyalty",
-      "longName": "They may not act for their own benefit against the represented",
+      "longName": "Duty of loyalty",
       "description": "The agent or trustee should act in the interest of the people represented, avoid conflicts of interest and not profit at their expense."
     }
   },

@@ -677,8 +677,9 @@ function render() {
   if (cur) steps.push([cur.l.name, [levelId]]);
   if (cur && branchId && BRANCH_INFO[branchId] && !cur.l.informal) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
   if (mech) steps.push([mechLongName(mech, mechs, catalog, levelId), [levelId, branchId, mechIdx]]);
-  if (kind) steps.push([kind.name || kindDefs[kind.type]?.longName || kind.type, [levelId, branchId, mechIdx, kindIdx]]);
-  if (prop && !single) steps.push([prop.name || catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name, propPath(propIdx)]);
+  // The trail repeats the chip's own name (catalog longName); a jurisdiction's local term (`kind.name`) is not used here.
+  if (kind) steps.push([kindDefs[kind.type]?.longName || kindDefs[kind.type]?.name || kind.type, [levelId, branchId, mechIdx, kindIdx]]);
+  if (prop && !single) steps.push([catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name || prop.name, propPath(propIdx)]);
   $('#trail').replaceChildren(...(steps.length > 1 ? steps.flatMap(([name, path], i) => [
     i ? el('span', { class: 'sep' }, '›') : null,
     i < steps.length - 1 ? el('button', { type: 'button', onclick: () => go(path) }, name) : el('span', { class: 'here' }, name),
