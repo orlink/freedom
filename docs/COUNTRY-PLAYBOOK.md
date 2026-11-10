@@ -89,6 +89,8 @@ a `populationRule` applies a legal ceiling to the actual place.
   large list districts (Bulgaria's 19 seats) are not.
 * **Proportional representation**: no legal threshold; seats in proportion to votes. A national threshold such as
   4%, and the minority rule it produces, is partly met.
+* Executive chip label (owner 2026-11-10): "Mayor" where a directly elected mayor heads the executive (or the
+  fix proposes one where none exists), "Executive" where it is appointed or collegial; set with the mechanism `label`.
 * Executive/Mayor: a directly elected mayor, or an executive appointed by the elected council (Individual
   accountability then runs through the council, as in the American council-manager system). Partly met where the
   council can only accept or refuse a national body's candidate, or cannot dismiss by majority (Ireland). Not met

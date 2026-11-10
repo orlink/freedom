@@ -1909,7 +1909,8 @@
                   }
                 ]
               }
-            ]
+            ],
+            "label": "Mayor"
           },
           {
             "type": "upper_council_seat",
@@ -2210,7 +2211,8 @@
                   }
                 ]
               }
-            ]
+            ],
+            "label": "Mayor"
           },
           {
             "type": "upper_council_seat",
@@ -2672,7 +2674,8 @@
                   }
                 ]
               }
-            ]
+            ],
+            "label": "Mayor"
           }
         ]
       }
@@ -2999,7 +3002,7 @@
           },
           {
             "type": "executive",
-            "label": "Mayor",
+            "label": "Executive",
             "name": "Chief executive",
             "properties": [
               {
@@ -3925,7 +3928,8 @@
                       "limerick2024"
                     ]
                   }
-                ]
+                ],
+                "label": "Mayor"
               }
             ]
           }

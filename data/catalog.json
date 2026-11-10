@@ -205,8 +205,8 @@
     },
     "executive": {
       "branch": "representative",
-      "name": "Executive/Mayor",
-      "longName": "Executive/Mayor",
+      "name": "Executive",
+      "longName": "Executive",
       "description": "The mayor, manager or head of this community.",
       "gates": [
         "exists",
