@@ -1537,16 +1537,6 @@
                     "laws": [
                       "go"
                     ]
-                  },
-                  {
-                    "type": "recall",
-                    "status": "no",
-                    "explanation": "No recall of elected officials at this level.",
-                    "laws": [
-                      "go",
-                      "gg",
-                      "gpr"
-                    ]
                   }
                 ]
               }
