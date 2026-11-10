@@ -57,12 +57,12 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .t-darkgrey { background: var(--weak); color: #fff; border-color: var(--weak); }
 .t-black { background: var(--none); color: #fff; }
 
-/* Teal–red chip scale (default): teal = free, pale teal = mostly free, rose = mostly not free, dark red = not free. */
-:root[data-scale="teal"] { --full: #1f7a6d; --good: #a8dcd1; --weak: #f2b3a8; --none: #9e2433; }
+/* Teal–red chip scale (default): teal = free, pale teal = mostly free, red = mostly not free, dark red = not free. */
+:root[data-scale="teal"] { --full: #1f7a6d; --good: #a8dcd1; --weak: #9e2433; --none: #4f0b15; }
 :root[data-scale="teal"] .t-white { color: #fff; border-color: #1f7a6d; }
 :root[data-scale="teal"] .t-lightgrey { color: #0f3a34; }
-:root[data-scale="teal"] .t-darkgrey { color: #4a1712; }
-:root[data-scale="teal"] .t-black { color: #fff; border-color: #9e2433; }
+:root[data-scale="teal"] .t-darkgrey { color: #fff; }
+:root[data-scale="teal"] .t-black { color: #fff; border-color: #4f0b15; }
 
 /* Alternative chip scale: white = free, darker red = less free. */
 :root[data-scale="red"] { --full: #ffffff; --good: #ef9c9c; --weak: #9e2433; --none: #4f0b15; }
