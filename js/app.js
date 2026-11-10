@@ -1,4 +1,4 @@
-import { resolveJurisdiction, applyPopulation, getLevel, scoreLevel, scoreBranch, scoreMechanism, kindProperties, levelPlaces } from './model.js';
+import { resolveJurisdiction, applyPopulation, applySettlementRoles, getLevel, scoreLevel, scoreBranch, scoreMechanism, kindProperties, levelPlaces } from './model.js';
 
 const NOMINATIM = 'https://nominatim.openstreetmap.org';
 const BRANCH_INFO = {
@@ -68,6 +68,7 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
     };
     state.loc.jurisdiction = resolveJurisdiction(state.data.jurisdictions, address);
     state.loc.places = levelPlaces(address, state.data.catalog, state.data.unions, state.loc.jurisdiction);
+    state.loc.jurisdiction = applySettlementRoles(state.loc.jurisdiction, state.loc.places);
     if (!keepPath) state.path = [];
     writeHash(!keepPath);
     render();

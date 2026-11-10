@@ -13,9 +13,19 @@
     ],
     "state": []
   },
-  "hiddenLevels": [
-    "town"
-  ],
+  "hiddenIn": {
+    "village": [
+      "neighbourhood",
+      "entrance",
+      "building"
+    ],
+    "town": [
+      "neighbourhood"
+    ]
+  },
+  "municipalCentre": {
+    "sameAs": "municipality"
+  },
   "laws": {
     "const": {
       "title": "Constitution of the Republic of Bulgaria",
@@ -1954,8 +1964,8 @@
       }
     },
     "town": {
-      "sameAs": "municipality",
-      "summary": "Towns are governed at municipality level."
+      "sameAs": "village",
+      "summary": "A town that is not a municipal centre is governed like a village: if it has over 100 permanent residents it is a кметство and elects its own mayor. Small towns have no quarters."
     },
     "municipality": {
       "summary": "Municipalities have an elected council and mayor and can hold binding referendums, but 40% turnout is required and the budget and local taxes are excluded. Councillors come from party lists with a weak preference vote.",

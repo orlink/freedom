@@ -137,11 +137,22 @@ export function levelPlaces(address, catalog, unions, jurisdiction) {
       name = u ? u.name : null;
     }
     const absent = TERRITORY_ONLY_IF_PRESENT.includes(lvl.id) && !keys.some(k => address[k]);
-    // In a village, the village takes the place of the neighbourhood. A jurisdiction can also hide levels its
-    // law does not know (`hiddenLevels`, e.g. Bulgaria has no town level: towns are municipalities with quarters).
-    const inVillage = lvl.id === 'neighbourhood' && (overrides.village || catalog.levels.find(l => l.id === 'village')?.addressKeys || []).some(k => address[k]);
-    const hidden = (jurisdiction?.hiddenLevels || []).includes(lvl.id);
-    out[lvl.id] = { name, absent: absent || inVillage || hidden || (lvl.id === 'union' && !name) };
+    out[lvl.id] = { name, absent: absent || (lvl.id === 'union' && !name) };
+  }
+  // A jurisdiction can hide levels its law does not know (`hiddenLevels`). In a small settlement some levels do not
+  // exist either (`hiddenIn`, by settlement level): by default a village takes the place of the neighbourhood; in
+  // Bulgaria villages also have no apartment buildings and towns have no quarters.
+  const hiddenLevels = jurisdiction?.hiddenLevels || [];
+  const hiddenIn = jurisdiction?.hiddenIn || { village: ['neighbourhood'] };
+  for (const [settlement, ids] of Object.entries(hiddenIn)) {
+    if (!out[settlement] || out[settlement].absent || hiddenLevels.includes(settlement)) continue;
+    for (const id of ids) if (out[id]) out[id].absent = true;
+  }
+  for (const id of hiddenLevels) if (out[id]) out[id].absent = true;
+  // A settlement that is its municipality's centre (OSM names the municipality after it, e.g. "Община Самоков").
+  for (const id of TERRITORY_ONLY_IF_PRESENT) {
+    const p = out[id];
+    if (p && !p.absent && p.name && address.municipality && address.municipality.includes(p.name)) p.centre = true;
   }
   return out;
 }
@@ -158,6 +169,22 @@ export function kindProperties(kind, mechType, catalog) {
     const p = byType[t] || { type: t, status: 'unknown', laws: [] };
     return t !== 'exists' && missing ? { ...p, disabled: true } : p;
   });
+}
+
+/**
+ * A village or town that is its municipality's centre has no mayor or local referendum of its own: the municipality
+ * governs it directly. With `municipalCentre` set (e.g. { "sameAs": "municipality" }), such a settlement's level
+ * follows that level instead. Returns a new jurisdiction; the input is not changed.
+ */
+export function applySettlementRoles(jurisdiction, places) {
+  const rule = jurisdiction?.municipalCentre;
+  if (!rule) return jurisdiction;
+  const levels = { ...jurisdiction.levels };
+  for (const id of TERRITORY_ONLY_IF_PRESENT) {
+    const p = places?.[id];
+    if (p?.centre && levels[id]) levels[id] = { sameAs: rule.sameAs, summary: `${p.name} is the municipal centre. It has no mayor or local referendum of its own and is governed directly by the municipality.` };
+  }
+  return { ...jurisdiction, levels };
 }
 
 /**
