@@ -3531,7 +3531,7 @@
               {
                 "type": "proportional_representation",
                 "status": "partial",
-                "explanation": "Proportional representation gives non-territorial communities of interest a share of the seats that matches their share of the electorate, as districting does for territorial communities. Council seats are allocated to party lists by the Hare–Niemeyer method, among the lists that reach the Hare quota (the valid votes divided by the number of seats: about 2% in a 51-seat council, 9% in an 11-seat one), so the outcome is proportional between parties. But the mandate is held through the list: the party sets the order of candidates, and a preference vote counts only if it reaches 7% of the list's vote, so councillors are accountable to the party leadership and not to an identifiable body of voters. The system delivers party proportionality without the representative link, which the single transferable vote secures by electing individual candidates.",
+                "explanation": "Proportional representation is meant to give non-territorial communities of interest a share of the seats that matches their share of the electorate. Council seats are allocated to party lists in proportion to their votes using a List-PR electoral system, so the outcome is proportional between parties. But the party sets the order of candidates and the preference vote rarely changes it, so a councillor is primarily accountable to the party leadership and not to constituents and consequently he or she is not really their representative. The system delivers party proportionality but not proportional representation.",
                 "laws": [
                   "ec"
                 ],
@@ -4178,7 +4178,7 @@
               {
                 "type": "proportional_representation",
                 "status": "partial",
-                "explanation": "Not quite proportional. Only parties with at least 4% of the national vote win seats, so the votes for the others are lost, and the parties above the threshold get up to 20% more of the seats than their share of the vote. This has led to frequent minority rule: a governing party or coalition with less than half of the votes. Members also hold their mandates through party lists and are not individually accountable to voters, so the proportional allocation among the parties above the threshold still lacks the representative link.",
+                "explanation": "Not quite proportional. Only parties with at least 4% of the national vote win seats, so the votes for the others are lost, and the parties above the threshold get up to 20% more of the seats than their share of the vote. This has led to frequent minority rule: a governing party or coalition with less than half of the votes. The party also sets the order of candidates and the preference vote rarely changes it, so a member is primarily accountable to the party leadership and not to constituents. The system delivers party proportionality, above the threshold, but not proportional representation.",
                 "laws": [
                   "ec"
                 ],
