@@ -52,7 +52,19 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 let marker = null;
 
+// A spinner over the map while a place is being looked up.
+const spinner = el('div', { class: 'map-busy', role: 'status', 'aria-label': 'Looking up…' }, el('span', { class: 'spin' }));
+document.getElementById('map').appendChild(spinner);
+let busyCount = 0;
+function busy(on) { busyCount = Math.max(0, busyCount + (on ? 1 : -1)); spinner.classList.toggle('on', busyCount > 0); }
+// Lookup timings in the console (?timing in the URL), to see which request is slow.
+const timing = (what, t0) => { if (/[?&]timing\b/.test(location.search)) console.log(`[timing] ${what}: ${Math.round(performance.now() - t0)} ms`); };
+
 async function locate(lat, lon, { zoom, result, keepPath } = {}) {
+  busy(true);
+  let stopped = false;
+  const stop = () => { if (!stopped) { stopped = true; busy(false); } };
+  const t0 = performance.now();
   lat = +(+lat).toFixed(5); lon = +(+lon).toFixed(5);
   if (marker) marker.setLatLng([lat, lon]); else marker = L.marker([lat, lon]).addTo(map);
   if (areaLayer) { areaLayer.remove(); areaLayer = null; }
@@ -86,8 +98,10 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
       return true;
     }).catch(() => false); // no population: keep the data's own statuses
     const early = await Promise.race([withPopulation.then(() => true), new Promise(res => setTimeout(() => res(false), 1500))]);
+    timing('address + population', t0);
     if (state.loc !== loc) return;
     render();
+    stop();
     recordVisit(loc);
     if (!early && await withPopulation && state.loc === loc) {
       document.body.classList.add('quiet');
@@ -96,6 +110,8 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
     }
   } catch (e) {
     $('#place').replaceChildren(`Could not look up this location: ${e.message}`);
+  } finally {
+    stop();
   }
 }
 
@@ -203,12 +219,17 @@ $('#search').addEventListener('submit', async e => {
   e.preventDefault();
   const q = $('#q').value.trim();
   if (!q) return;
+  busy(true);
+  const t0 = performance.now();
   try {
     const [r] = await search(q);
+    timing('search', t0);
     if (!r) { $('#place').replaceChildren(`Nothing found for “${q}”.`); return; }
-    locate(r.lat, r.lon, { zoom: 16, result: r });
+    await locate(r.lat, r.lon, { zoom: 16, result: r });
   } catch (err) {
     $('#place').replaceChildren(err.message);
+  } finally {
+    busy(false);
   }
 });
 // ---------- recent places (the chips under the map) ----------

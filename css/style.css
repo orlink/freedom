@@ -245,3 +245,10 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .t-interest.editable.dragging { opacity: .4; }
 .t-interest.editable.drop { box-shadow: -5px 0 0 var(--coral-deep); }
 .t-interest.editable:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+
+/* Spinner over the map while a place is looked up */
+#map { position: relative; }
+.map-busy { position: absolute; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; background: rgba(255,255,255,.35); pointer-events: none; }
+.map-busy.on { display: flex; }
+.map-busy .spin { width: 44px; height: 44px; border-radius: 50%; border: 5px solid rgba(0,0,0,.12); border-top-color: var(--coral); animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
