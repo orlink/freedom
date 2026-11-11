@@ -105,14 +105,19 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 /* A step that can switch sideways is a pill: its name goes back to that page, its arrow opens the row of its siblings. */
 .trail .pill { display: inline-flex; align-items: stretch; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); overflow: hidden; }
 .trail .pill .crumb { padding: 4px 8px 4px 14px; }
-.trail .arrow { border: 0; background: none; color: var(--coral-ink); font-size: 13px; line-height: 1; cursor: pointer; }
-.trail .pill .arrow { padding: 4px 12px 4px 9px; border-left: 1px solid var(--line); min-width: 36px; }
+.trail .arrow { display: inline-flex; align-items: center; justify-content: center; border: 0; background: none; color: var(--coral-ink); cursor: pointer; }
+/* The arrow is a drawn chevron, large enough to read as an arrow at a glance; it turns over while its row is open. */
+.trail .arrow::before { content: ''; width: 9px; height: 9px; border-right: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.trail .arrow[aria-expanded="true"]::before { transform: translateY(3px) rotate(-135deg); }
+.trail .pill .arrow { padding: 4px 13px 4px 11px; border-left: 1px solid var(--line); min-width: 40px; }
 .trail .pill.open { border-color: var(--coral); }
 .trail .pill.open .arrow { background: var(--coral-soft); border-left-color: var(--coral); }
 .trail .here .pill { max-width: 100%; border-radius: 30px; vertical-align: top; }
 .trail .here .here-name { display: block; }
 .trail .here .pill .here-name { padding: 6px 14px 7px 24px; }
-.trail .here .pill .arrow { padding: 0 18px 0 14px; min-width: 52px; font-size: 15px; font-weight: 400; }
+.trail .here .pill .arrow { padding: 0 20px 0 16px; min-width: 58px; }
+.trail .here .pill .arrow::before { width: 13px; height: 13px; border-width: 3px; transform: translateY(-3px) rotate(45deg); }
+.trail .here .pill .arrow[aria-expanded="true"]::before { transform: translateY(4px) rotate(-135deg); }
 .trail .arrow:hover { background: var(--coral-soft); }
 .trail .crumb:focus-visible, .trail .arrow:focus-visible { outline: 3px solid var(--coral); outline-offset: -3px; }
 .switch .mini:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
@@ -135,7 +140,7 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .switch .mini:disabled { cursor: not-allowed; }
 @media (max-width: 600px) {
   .trail .pill .crumb { padding: 9px 8px 9px 14px; } .trail .pill .arrow { min-width: 44px; }
-  .trail .here .pill .here-name { padding: 6px 10px 7px 18px; } .trail .here .pill .arrow { padding: 0 14px 0 11px; min-width: 46px; }
+  .trail .here .pill .here-name { padding: 6px 10px 7px 18px; } .trail .here .pill .arrow { padding: 0 16px 0 13px; min-width: 50px; }
   .switch { padding: 10px 8px 12px; } .switch .mini { min-height: 40px; padding: 6px 10px; }
 }
 

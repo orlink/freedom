@@ -915,7 +915,7 @@ function render() {
     const arrow = s => s.kind && rowFor(s.kind).options.length > 1 ? el('button', {
       type: 'button', class: 'arrow', 'data-kind': s.kind, 'aria-expanded': String(open === s.kind), 'aria-controls': 'trail-switch',
       'aria-label': SWITCH_LABEL[s.kind], title: SWITCH_LABEL[s.kind], onclick: () => (open === s.kind ? drawTrail(null, s.kind) : drawTrail(s.kind, true)),
-    }, open === s.kind ? '▴' : '▾') : null;
+    }) : null;   // the chevron is drawn in CSS and turns over while the row is open
     const last = steps.length - 1;
     const nodes = steps.flatMap((s, i) => {
       const a = arrow(s);
