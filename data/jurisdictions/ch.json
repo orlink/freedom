@@ -707,15 +707,6 @@
                     ]
                   },
                   {
-                    "type": "concrete_proposals",
-                    "status": "yes",
-                    "explanation": "Voters decide on the adopted text of the act.",
-                    "laws": [
-                      "bv",
-                      "bpr"
-                    ]
-                  },
-                  {
                     "type": "reasonable_signatures",
                     "status": "yes",
                     "explanation": "50,000 signatures within 100 days, about 1% of voters.",
@@ -903,14 +894,6 @@
                         "laws": [
                           "kv",
                           "gpr"
-                        ]
-                      },
-                      {
-                        "type": "concrete_proposals",
-                        "status": "yes",
-                        "explanation": "The vote is on the adopted act itself.",
-                        "laws": [
-                          "kv"
                         ]
                       },
                       {
@@ -1246,14 +1229,6 @@
                           "go",
                           "gg",
                           "gpr"
-                        ]
-                      },
-                      {
-                        "type": "concrete_proposals",
-                        "status": "yes",
-                        "explanation": "The vote is on the adopted act itself.",
-                        "laws": [
-                          "go"
                         ]
                       },
                       {

@@ -447,7 +447,10 @@
     "veto_referendum": {
       "name": "Veto referendum",
       "longName": "Veto referendums",
-      "description": "Citizens collect signatures to put a decision already adopted by the council or parliament to a vote, which can overturn it."
+      "description": "Citizens collect signatures to put a decision already adopted by the council or parliament to a vote, which can overturn it.",
+      "skipProperties": [
+        "concrete_proposals"
+      ]
     },
     "mandatory_referendum": {
       "name": "Mandatory referendum",

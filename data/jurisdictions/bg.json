@@ -3158,27 +3158,6 @@
                     ]
                   },
                   {
-                    "type": "concrete_proposals",
-                    "status": "yes",
-                    "explanation": "Voters approve or reject a specific decision the council has adopted.",
-                    "laws": [
-                      "dcpa"
-                    ],
-                    "provisions": [
-                      {
-                        "law": "dcpa",
-                        "items": [
-                          {
-                            "ref": "Article 27(3)",
-                            "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, and suspends the decision until the vote."
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
                     "type": "reasonable_signatures",
                     "status": "weak",
                     "explanation": "1/10 of the municipality's voters within one month of the decision.",

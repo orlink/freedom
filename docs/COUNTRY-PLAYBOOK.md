@@ -73,8 +73,11 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
 * Mandatory referendums have no petition and their topics are set by law: they skip "Reasonable petition
   requirements" and "No topic restrictions" (catalog `skipProperties`).
 * No quorum of any kind (turnout or approval): a majority of votes cast decides.
-* Citizen initiative and veto: reasonable signatures, concrete proposals (a worded text voters approve as is), no
-  topic restrictions, no roadblocks (fixed deadlines, no discretion to delay).
+* Citizen initiative and veto: reasonable signatures, no topic restrictions, no roadblocks (fixed deadlines, no
+  discretion to delay).
+* Concrete proposals (a worded text voters approve as is) apply to the citizen initiative and the mandatory
+  referendum. A veto referendum is always on a concrete act the representative body has already adopted, so the
+  requirement does not apply to it (Orlin; catalog `skipProperties`).
 * Agenda initiatives (petitions that only ask parliament to consider something) are not decision-making institutions:
   keep them off the map.
 
