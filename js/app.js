@@ -869,7 +869,7 @@ function render() {
         const i = twins[Math.min(rank, twins.length - 1)];
         const m = ms[i];
         const t = m ? mechTone(scoreMechanism(m.scored || m, catalog)) : null;
-        if (!t) return { ...o, na: true, path: [x.l.id], title: `${o.label}: no such institution at this level. Opens the level's page.` };
+        if (!t) return null;   // no such institution at this level: left out of the row
         const base = [x.l.id, branchId, i];
         if (depth < 2) return { ...o, tone: t, word: TONE_WORDS.mechanisms[t], path: base };
         const { pi, path } = landIn(m, base);
@@ -878,9 +878,10 @@ function render() {
         return { ...o, tone: pt, word: TONE_WORDS.requirements[pt], path };
       };
       // Compare as deep as some other level can follow: a requirement no other level has falls back to its institution,
-      // an institution no other level has falls back to the levels themselves.
+      // an institution no other level has falls back to the levels themselves. Levels without the institution are left
+      // out (Orlin); a level that has it but where the requirement does not apply stays, dashed.
       for (let depth = deep ? 2 : mech ? 1 : 0; ; depth--) {
-        const options = ordered.map(x => at(x, depth));
+        const options = ordered.map(x => at(x, depth)).filter(Boolean);
         if (!depth || options.some(o => !o.current && !o.na)) {
           return { caption: depth === 2 ? `${mechName} › ${propLabel(prop)} at each level` : depth ? `${mechName} at each level` : 'Common interest levels', options };
         }
@@ -914,14 +915,15 @@ function render() {
     const arrow = s => s.kind && rowFor(s.kind).options.length > 1 ? el('button', {
       type: 'button', class: 'arrow', 'data-kind': s.kind, 'aria-expanded': String(open === s.kind), 'aria-controls': 'trail-switch',
       'aria-label': SWITCH_LABEL[s.kind], title: SWITCH_LABEL[s.kind], onclick: () => (open === s.kind ? drawTrail(null, s.kind) : drawTrail(s.kind, true)),
-    }, open === s.kind ? '▴' : '▾') : null;
+    }) : null;   // the chevron is drawn in CSS and turns over while the row is open
     const last = steps.length - 1;
     const nodes = steps.flatMap((s, i) => {
       const a = arrow(s);
       const name = i < last ? el('button', { type: 'button', class: 'crumb', onclick: () => go(s.path) }, s.name) : null;
       return [
         i ? el('span', { class: 'sep' }, '›') : null,
-        i === last ? el('span', { class: `here${open === s.kind ? ' open' : ''}` }, el('span', { class: 'here-name' }, s.name), a)
+        // The page you are on is the title: the same pill, larger, its name not a link.
+        i === last ? el('span', { class: 'here' }, a ? el('span', { class: `pill${open === s.kind ? ' open' : ''}` }, el('span', { class: 'here-name' }, s.name), a) : el('span', { class: 'here-name' }, s.name))
           : a ? el('span', { class: `pill${open === s.kind ? ' open' : ''}` }, name, a) : name,
       ];
     }).filter(Boolean);
