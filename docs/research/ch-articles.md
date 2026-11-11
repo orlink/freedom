@@ -4,7 +4,7 @@ Article-level notes gathered while drafting. They are **not shown on the page**:
 
 "checked" means the article was read in the source noted; everything else is unverified.
 
-| Area | Level | Branch | Mechanism | Property | Source | Article | Checked |
+| Area | Level | Branch | Institution | Property | Source | Article | Checked |
 |---|---|---|---|---|---|---|---|
 |  | individual | direct | personal_autonomy | exists | bv | Art. 10, 13, 26 |  |
 |  | individual | direct | personal_autonomy | no_outside_override | bv | Art. 36 |  |
