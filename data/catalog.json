@@ -109,13 +109,13 @@
     },
     {
       "id": "state",
-      "name": "Region / canton",
-      "longName": "Region / canton interests",
+      "name": "Region",
+      "longName": "Region interests",
       "kind": "territorial",
       "addressKeys": [
         "state"
       ],
-      "description": "Federal region: canton, Land, the member state of a federation. Not applicable in unitary states."
+      "description": "Federal region (canton, Land, the member state of a federation). Each country names it in its own `levelNames`. Not applicable in unitary states."
     },
     {
       "id": "country",

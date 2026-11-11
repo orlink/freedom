@@ -137,5 +137,11 @@ within days (Ireland: 3 days = met; Bulgaria: a month = partly met); poverty or 
   requirements. The only additions are "interests" after a level and the plural of a referendum kind ("Veto
   referendums"). A country's own term (e.g. "Constitutional referendum") may go in an explanation, not in the
   breadcrumb.
+* Level names follow the place (owner 2026-11-11). The catalog's defaults are "State" for the country level (the
+  sovereign state) and "Region" for a federal level. A country's file sets its own English terms in `levelNames`:
+  Switzerland `{ "state": "Canton", "county": "District" }`, Bulgaria `{ "county": "Province" }`. Where a federation's
+  members are called states in English (United States, Germany's Länder, Australia), the federal level is "State" and
+  the country level takes the country's name, as the union level does ("European Union"):
+  `{ "state": "State", "country": { "name": "United States", "verdict": ["in the United States", "the United States"] } }`.
 * Requirement descriptions (tooltips) are normative: "Voters should …".
 * Plain English, full sentences, concrete numbers, and cite the article in the provisions, not in the sentence.
