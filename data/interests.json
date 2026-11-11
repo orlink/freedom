@@ -1,0 +1,24 @@
+{
+  "$comment": "Default shared interests suggested for each level; \"countries\" holds a country's own list for a level, which replaces the default there. The owner edits these on the local copy (server.py --edit). Visitors' additions and 'not applicable' marks for one place are stored by server.py in data/state, not here.",
+  "individual": ["Health", "Privacy", "Property", "Education", "Work"],
+  "business": ["Earning a living", "Making a profit", "Obtaining goods and services", "Using productive resources", "Building wealth", "Sharing risk"],
+  "nonprofit": ["Statutes", "Activities", "Membership", "Funding", "Property"],
+  "home": ["Rooms", "Furnishing", "Repairs", "Guests", "Pets", "Household budget"],
+  "entrance": ["Elevator", "Stairwell cleaning", "Entrance door", "Lighting", "Mailboxes"],
+  "building": ["Roof", "Facade", "Heating", "Repairs fund", "Common areas", "Elevator"],
+  "neighbourhood": ["Walkways", "Playgrounds", "Kindergartens", "Parking", "Green spaces", "Street lighting"],
+  "village": ["Water supply", "Roads", "Community centre", "Cemetery", "Pastures", "School"],
+  "town": ["Public transport", "Schools", "Waste collection", "Urban planning", "Local taxes"],
+  "city": ["Public transport", "Schools", "Waste collection", "Urban planning", "Local taxes", "Parks"],
+  "municipality": ["Budget", "Local taxes and fees", "Schools", "Waste collection", "Urban planning", "Social services"],
+  "county": ["Regional roads", "Hospitals", "Regional development"],
+  "state": ["Police", "Education", "Healthcare", "State taxes"],
+  "country": ["Defence", "Foreign policy", "Taxes", "Pensions", "Healthcare", "Justice"],
+  "union": ["Single market", "Trade", "Environment", "Currency", "Borders"],
+  "countries": {
+    "bg": {
+      "municipality": ["Municipal roads", "Public transportation", "Air quality", "Schools", "Waste collection", "Parks", "Local taxes and fees", "Urban planning", "Social services"],
+      "country": ["Defence", "Foreign policy", "National road network", "Pensions", "Healthcare", "Justice", "National parks", "Taxes"]
+    }
+  }
+}

@@ -1,188 +1,1587 @@
 {
   "id": "ch",
   "name": "Switzerland",
-  "match": { "country_code": "ch" },
-  "status": "sample",
-  "statusNote": "Unverified. Included as a contrast case with strong direct democracy. Canton- and city-level data exists only for Zürich; elsewhere those levels show as 'no data'. All citations must be checked against current texts on fedlex.admin.ch and zhlex.zh.ch.",
+  "match": {
+    "country_code": "ch"
+  },
+  "status": "draft",
+  "statusNote": "Draft. For each property the page lists the laws that govern it; the specific articles will be worked out next. The yes/partly/no assessments are provisional until the articles are confirmed.",
   "laws": {
-    "bv":  { "title": "Federal Constitution of the Swiss Confederation", "localTitle": "Bundesverfassung (BV)", "url": "https://www.fedlex.admin.ch/eli/cc/1999/404/en" },
-    "zgb": { "title": "Swiss Civil Code", "localTitle": "Zivilgesetzbuch (ZGB)", "url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/en" },
-    "kv":  { "title": "Constitution of the Canton of Zürich", "localTitle": "Verfassung des Kantons Zürich (KV)" },
-    "go":  { "title": "Municipal Code of the City of Zürich", "localTitle": "Gemeindeordnung der Stadt Zürich" }
+    "bv": {
+      "title": "Federal Constitution of the Swiss Confederation",
+      "localTitle": "Bundesverfassung (BV, SR 101)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1999/404/en",
+      "short": "Federal Constitution"
+    },
+    "zgb": {
+      "title": "Swiss Civil Code",
+      "localTitle": "Zivilgesetzbuch (ZGB, SR 210)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/en",
+      "short": "Civil Code (ZGB)"
+    },
+    "kv": {
+      "title": "Constitution of the Canton of Zürich",
+      "localTitle": "Verfassung des Kantons Zürich (KV, LS 101)",
+      "url": "https://res.cloudinary.com/adminch/image/private/s--VBJOORnk--/v1742874348/Bundespublikationen/131-211d.pdf",
+      "short": "Cantonal Constitution (ZH)"
+    },
+    "go": {
+      "title": "Municipal Code of the City of Zürich",
+      "localTitle": "Gemeindeordnung der Stadt Zürich (AS 101.100)",
+      "url": "https://www.zh.ch/bin/zhweb/publish/regierungsratsbeschluss-unterlagen./2021/1168/GO_PG_Zuerich.pdf",
+      "short": "Municipal Code (Zürich)"
+    },
+    "bpr": {
+      "title": "Federal Act on Political Rights",
+      "localTitle": "Bundesgesetz über die politischen Rechte (BPR, SR 161.1)",
+      "short": "BPR"
+    },
+    "gpr": {
+      "title": "Political Rights Act of the Canton of Zürich",
+      "localTitle": "Gesetz über die politischen Rechte (GPR, LS 161)",
+      "short": "GPR (ZH)"
+    },
+    "gg": {
+      "title": "Municipalities Act of the Canton of Zürich",
+      "localTitle": "Gemeindegesetz (GG, LS 131.1)",
+      "short": "GG (ZH)"
+    },
+    "or": {
+      "title": "Swiss Code of Obligations",
+      "localTitle": "Obligationenrecht (OR, SR 220)",
+      "short": "Code of Obligations (OR)"
+    }
   },
   "levels": {
+    "home": {
+      "summary": "Privacy of the home and property are guaranteed by the Federal Constitution.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "household",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Privacy of the home and property are guaranteed by the Federal Constitution.",
+                "laws": [
+                  "bv"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Restrictions need a legal basis, a public interest and proportionality.",
+                "laws": [
+                  "bv"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "representative": {
+        "applicable": false,
+        "note": "The people in a home decide for themselves; representation does not apply."
+      }
+    },
     "individual": {
-      "direct": { "mechanisms": [ { "type": "personal_autonomy", "properties": [
-        { "type": "exists", "status": "yes", "citations": [ { "law": "bv", "article": "Art. 10, 13, 26" } ] },
-        { "type": "no_outside_override", "status": "partial", "explanation": "Restrictions possible with a legal basis and public interest.", "citations": [ { "law": "bv", "article": "Art. 36" } ] }
-      ] } ] },
-      "representative": { "applicable": false }
+      "summary": "Personal liberty, privacy and property are guaranteed by the Federal Constitution.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "personal_autonomy",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Right to personal freedom, privacy and property.",
+                "laws": [
+                  "bv"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Restrictions need a legal basis, a public interest and proportionality.",
+                "laws": [
+                  "bv"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "representative": {
+        "applicable": false,
+        "note": "Individuals decide for themselves."
+      }
     },
-    "market": {
-      "direct": { "mechanisms": [ { "type": "personal_autonomy", "properties": [
-        { "type": "exists", "status": "yes", "explanation": "Economic freedom is guaranteed.", "citations": [ { "law": "bv", "article": "Art. 27" } ] },
-        { "type": "no_outside_override", "status": "partial", "citations": [ { "law": "bv", "article": "Art. 94" } ] }
-      ] } ] },
-      "representative": { "applicable": false }
+    "business": {
+      "summary": "People can start a business and govern it themselves through the owners' meeting and the managers they elect.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "personal_autonomy",
+            "name": "Free enterprise",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Anyone may start and run a business.",
+                "laws": [
+                  "bv"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Licensing and permit regimes restrict entry into many activities.",
+                "laws": [
+                  "bv",
+                  "or"
+                ]
+              }
+            ],
+            "label": "Free enterprise"
+          },
+          {
+            "type": "personal_autonomy",
+            "name": "Freedom of contract",
+            "label": "Freedom of contract",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The content of a contract may be freely set within the law.",
+                "laws": [
+                  "or",
+                  "bv"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Mandatory rules fix some terms whatever both parties want: tenancy protections, cantonal minimum wages, and consumer terms that cannot be waived. Rules against fraud and coercion protect consent and are not counted.",
+                "laws": [
+                  "or"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "general_assembly",
+            "name": "Partners general meeting",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Partners in a general or limited partnership, or members of a GmbH, decide together (partners' resolutions, members' meeting).",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Owners decide the company's statutes, profits and leadership.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The partnership or company controls its own capital and income.",
+                "laws": [
+                  "or"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "general_assembly",
+            "name": "Shareholders general meeting",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Shareholders of an AG decide in the general meeting (Generalversammlung).",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Owners decide the company's statutes, profits and leadership.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The company controls its own capital and income.",
+                "laws": [
+                  "or"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "general_assembly",
+            "name": "Cooperative general meeting",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Members of a cooperative (Genossenschaft) decide in its general meeting, one member one vote.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Members decide the statutes, the use of any surplus and the board.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The cooperative controls its own capital and income.",
+                "laws": [
+                  "or"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "executive",
+            "name": "Board / managers",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Owners elect the managers or board.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "Managers and board members are elected individually.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The owners can dismiss them.",
+                "laws": [
+                  "or"
+                ]
+              }
+            ],
+            "label": "Board / managers"
+          },
+          {
+            "type": "agent",
+            "name": "Agents",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Anyone may authorise another to act for them (agency and mandate); a business may appoint a Prokurist.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "chosen_by_represented",
+                "status": "yes",
+                "explanation": "The principal chooses the agent.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "revocable",
+                "status": "yes",
+                "explanation": "A mandate may be revoked at any time.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "must_account",
+                "status": "yes",
+                "explanation": "The agent must account for their conduct and hand over what they received.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "duty_of_loyalty",
+                "status": "yes",
+                "explanation": "The agent must carry out the mandate faithfully and with care.",
+                "laws": [
+                  "or"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "trustee",
+            "name": "Trustees",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "partial",
+                "explanation": "Swiss law has no trusts of its own; foreign trusts are recognised, and fiduciary management is done under a mandate.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "chosen_by_represented",
+                "status": "yes",
+                "explanation": "Under a fiduciary mandate the client chooses the fiduciary.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "revocable",
+                "status": "yes",
+                "explanation": "A fiduciary mandate may be revoked at any time.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "must_account",
+                "status": "yes",
+                "explanation": "The fiduciary must account to the client.",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "duty_of_loyalty",
+                "status": "yes",
+                "explanation": "The fiduciary must act faithfully in the client's interest.",
+                "laws": [
+                  "or"
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
-    "cultural": {
-      "direct": { "mechanisms": [ { "type": "personal_autonomy", "properties": [
-        { "type": "exists", "status": "yes", "citations": [ { "law": "bv", "article": "Art. 15, 18" } ] },
-        { "type": "own_means", "status": "partial", "explanation": "Recognised churches in many cantons are self-governing public bodies with tax powers." }
-      ] } ] },
-      "representative": { "mechanisms": [ { "type": "council", "name": "Church synods (cantonal)", "properties": [
-        { "type": "exists", "status": "partial", "explanation": "Varies by canton; only for recognised religious communities." }
-      ] } ] }
+    "nonprofit": {
+      "summary": "People can form non-profit associations and foundations and govern them through a members' assembly and an elected board.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "personal_autonomy",
+            "name": "Freedom of association",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "People may freely form associations and foundations.",
+                "laws": [
+                  "bv",
+                  "zgb"
+                ]
+              },
+              {
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Registration and, for public-benefit status, supervision by the state.",
+                "laws": [
+                  "zgb"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "general_assembly",
+            "name": "General assembly of members",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Members decide in a general assembly.",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its decisions bind the organisation.",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Members adopt the statutes and elect the board.",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "own_means",
+                "status": "partial",
+                "explanation": "Funded by members, donors and grants; tax relief depends on public-benefit status.",
+                "laws": [
+                  "zgb"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "executive",
+            "name": "Board",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The members elect a board.",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The members can dismiss the board.",
+                "laws": [
+                  "zgb"
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "building": {
-      "summary": "Condominium owners (Stockwerkeigentum) decide in an owners' assembly and appoint an administrator.",
-      "direct": { "mechanisms": [ { "type": "general_assembly", "name": "Owners' assembly", "properties": [
-        { "type": "exists", "status": "yes", "citations": [ { "law": "zgb", "article": "Art. 712m" } ] },
-        { "type": "binding", "status": "yes", "citations": [ { "law": "zgb", "article": "Art. 712m" } ] },
-        { "type": "no_quorum", "status": "partial", "explanation": "Quorum of half the owners holding half the shares; a lower quorum at a second meeting.", "citations": [ { "law": "zgb", "article": "Art. 712p" } ] },
-        { "type": "citizen_triggered", "status": "yes", "explanation": "Owners representing one fifth can demand a meeting.", "citations": [ { "law": "zgb", "article": "Art. 712n" } ] },
-        { "type": "own_means", "status": "yes", "citations": [ { "law": "zgb", "article": "Art. 712l" } ] }
-      ] } ] },
-      "representative": { "mechanisms": [ { "type": "executive", "name": "Administrator", "properties": [
-        { "type": "exists", "status": "yes", "citations": [ { "law": "zgb", "article": "Art. 712q" } ] },
-        { "type": "binding_powers", "status": "partial" },
-        { "type": "individual_vote", "status": "yes" },
-        { "type": "local_constituency", "status": "yes" },
-        { "type": "recall", "status": "yes", "citations": [ { "law": "zgb", "article": "Art. 712r" } ] }
-      ] } ] }
+      "summary": "Condominium owners decide in an owners' assembly and appoint an administrator. If the first meeting lacks a quorum, a second one needs only a third of owners.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "general_assembly",
+            "name": "Owners' assembly",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The assembly of condominium owners decides on joint administration.",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "no_quorum",
+                "status": "partial",
+                "explanation": "Half of the owners holding half of the shares (and at least two) must attend; a second meeting, at least ten days later, needs one third.",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "citizen_triggered",
+                "status": "yes",
+                "explanation": "Owners representing one fifth can demand a meeting (association law applies by reference).",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "Owners decide on contributions and the renewal fund.",
+                "laws": [
+                  "zgb"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "executive",
+            "name": "Administrator",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The assembly appoints an administrator, who normally convenes and chairs it.",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "binding_powers",
+                "status": "partial",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "laws": [
+                  "zgb"
+                ]
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The assembly can dismiss the administrator.",
+                "laws": [
+                  "zgb"
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
-    "entrance": { "sameAs": "building", "summary": "No separate regime per entrance; the building's owners' assembly decides." },
-    "union": { "applicable": false, "summary": "Switzerland is not a member of the European Union." },
+    "entrance": {
+      "sameAs": "building",
+      "summary": "No separate regime per entrance; the building's owners' assembly decides."
+    },
+    "union": {
+      "applicable": false,
+      "summary": "Switzerland is not a member of the European Union."
+    },
     "country": {
-      "summary": "Binding federal referendums and initiatives with no turnout quorum. National Council elected from open lists per canton.",
-      "direct": { "mechanisms": [
-        { "type": "referendum", "name": "Optional referendum", "properties": [
-          { "type": "exists", "status": "yes", "citations": [ { "law": "bv", "article": "Art. 141" } ] },
-          { "type": "binding", "status": "yes" },
-          { "type": "no_quorum", "status": "yes", "explanation": "Simple majority of those voting; no turnout threshold." },
-          { "type": "citizen_triggered", "status": "yes", "citations": [ { "law": "bv", "article": "Art. 141(1)" } ] },
-          { "type": "reasonable_signatures", "status": "yes", "explanation": "50,000 signatures within 100 days (about 1% of voters)." },
-          { "type": "concrete_proposals", "status": "yes", "explanation": "Voters decide on the adopted text of the act." },
-          { "type": "broad_scope", "status": "partial", "explanation": "No financial referendum at federal level." }
-        ] },
-        { "type": "initiative", "name": "Popular initiative", "properties": [
-          { "type": "exists", "status": "yes", "citations": [ { "law": "bv", "article": "Art. 139" } ] },
-          { "type": "binding", "status": "yes", "explanation": "If accepted by people and cantons, it becomes part of the Constitution." },
-          { "type": "no_quorum", "status": "yes" },
-          { "type": "reasonable_signatures", "status": "yes", "explanation": "100,000 signatures within 18 months." },
-          { "type": "concrete_proposals", "status": "yes", "explanation": "A fully worded proposal can be submitted." }
-        ] }
-      ] },
-      "representative": { "mechanisms": [ { "type": "council", "name": "National Council", "properties": [
-        { "type": "exists", "status": "yes", "citations": [ { "law": "bv", "article": "Art. 149" } ] },
-        { "type": "binding_powers", "status": "yes" },
-        { "type": "individual_vote", "status": "yes", "explanation": "Open lists: voters can strike, add and cumulate individual candidates." },
-        { "type": "local_constituency", "status": "partial", "explanation": "Each canton is a constituency." },
-        { "type": "recall", "status": "no" }
-      ] } ] }
+      "summary": "Binding federal referendums and initiatives with no turnout quorum and modest signature thresholds. The National Council is elected from open lists per canton.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "referendum",
+            "kinds": [
+              {
+                "type": "citizen_initiative",
+                "name": "Popular initiative",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "If accepted by people and cantons, it becomes part of the Constitution.",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "yes",
+                    "explanation": "It may be a general proposal or a fully worded draft.",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "yes",
+                    "explanation": "100,000 signatures within 18 months.",
+                    "laws": [
+                      "bv"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "veto_referendum",
+                "name": "Optional referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "laws": [
+                      "bv",
+                      "bpr"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "yes",
+                    "explanation": "A majority of those voting decides (plus a majority of cantons for constitutional changes).",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "yes",
+                    "explanation": "Voters decide on the adopted text of the act.",
+                    "laws": [
+                      "bv",
+                      "bpr"
+                    ]
+                  },
+                  {
+                    "type": "reasonable_signatures",
+                    "status": "yes",
+                    "explanation": "50,000 signatures within 100 days, about 1% of voters.",
+                    "laws": [
+                      "bv"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "mandatory_referendum",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "explanation": "Amendments to the Federal Constitution and joining supranational communities go to a vote automatically (Art. 140).",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "no_quorum",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  },
+                  {
+                    "type": "concrete_proposals",
+                    "status": "yes",
+                    "laws": [
+                      "bv"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "council",
+            "name": "National Council",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "laws": [
+                  "bv"
+                ]
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "bv",
+                  "bpr"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "Open lists: voters can strike, add and cumulate individual candidates.",
+                "laws": [
+                  "bv",
+                  "bpr"
+                ]
+              },
+              {
+                "type": "local_districts",
+                "status": "partial",
+                "explanation": "Each canton is a constituency.",
+                "laws": [
+                  "bv"
+                ]
+              },
+              {
+                "type": "proportional_representation",
+                "status": "partial",
+                "explanation": "Seats are shared out proportionally within each canton, but cantons with one seat elect by majority, and small cantons need a high share of the vote for a seat.",
+                "laws": [
+                  "bv",
+                  "bpr"
+                ]
+              }
+            ]
+          }
+        ]
+      }
     }
   },
   "areas": [
     {
       "name": "Canton of Zürich",
-      "match": { "state": ["Zürich", "Zurich"] },
+      "match": {
+        "state": [
+          "Zürich",
+          "Zurich"
+        ]
+      },
       "levels": {
         "state": {
-          "summary": "Cantonal initiative and referendum with low signature thresholds and no quorum.",
-          "direct": { "mechanisms": [
-            { "type": "initiative", "properties": [
-              { "type": "exists", "status": "yes", "citations": [ { "law": "kv", "article": "Art. 23–24" } ] },
-              { "type": "binding", "status": "yes" },
-              { "type": "no_quorum", "status": "yes" },
-              { "type": "reasonable_signatures", "status": "yes", "explanation": "6,000 signatures.", "citations": [ { "law": "kv", "article": "Art. 24" } ] },
-              { "type": "concrete_proposals", "status": "yes" }
-            ] },
-            { "type": "referendum", "properties": [
-              { "type": "exists", "status": "yes", "citations": [ { "law": "kv", "article": "Art. 32–33" } ] },
-              { "type": "binding", "status": "yes" },
-              { "type": "no_quorum", "status": "yes" },
-              { "type": "reasonable_signatures", "status": "yes", "explanation": "3,000 signatures.", "citations": [ { "law": "kv", "article": "Art. 33" } ] },
-              { "type": "broad_scope", "status": "yes", "explanation": "Includes financial referendums on large expenditures." }
-            ] }
-          ] },
-          "representative": { "mechanisms": [ { "type": "council", "name": "Kantonsrat", "properties": [
-            { "type": "exists", "status": "yes" },
-            { "type": "binding_powers", "status": "yes" },
-            { "type": "individual_vote", "status": "yes", "explanation": "Open lists." },
-            { "type": "local_constituency", "status": "partial", "explanation": "18 electoral districts." },
-            { "type": "recall", "status": "no" }
-          ] } ] }
+          "summary": "Cantonal initiative and referendum with low signature thresholds and no quorum, including a financial referendum on large spending.",
+          "direct": {
+            "mechanisms": [
+              {
+                "type": "referendum",
+                "kinds": [
+                  {
+                    "type": "citizen_initiative",
+                    "name": "Cantonal popular initiative",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "explanation": "As a general suggestion or a fully worded draft.",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "reasonable_signatures",
+                        "status": "yes",
+                        "explanation": "6,000 signatures.",
+                        "laws": [
+                          "kv"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "veto_referendum",
+                    "name": "Cantonal referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "explanation": "The vote is on the adopted act itself.",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "reasonable_signatures",
+                        "status": "yes",
+                        "explanation": "3,000 signatures within 60 days.",
+                        "laws": [
+                          "kv"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "mandatory_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "explanation": "Amendments to the cantonal constitution, among others, go to a vote automatically.",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "kv"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "laws": [
+                          "kv"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "representative": {
+            "mechanisms": [
+              {
+                "type": "council",
+                "name": "Kantonsrat",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "explanation": "180 members.",
+                    "laws": [
+                      "kv"
+                    ]
+                  },
+                  {
+                    "type": "binding_powers",
+                    "status": "yes",
+                    "explanation": "Including the cantonal tax rate.",
+                    "laws": [
+                      "kv"
+                    ]
+                  },
+                  {
+                    "type": "individual_vote",
+                    "status": "yes",
+                    "explanation": "Proportional representation with open lists.",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
+                  },
+                  {
+                    "type": "local_districts",
+                    "status": "partial",
+                    "explanation": "The districts (Bezirke) are the constituencies.",
+                    "laws": [
+                      "kv"
+                    ]
+                  },
+                  {
+                    "type": "proportional_representation",
+                    "status": "partial",
+                    "explanation": "The double proportional method (\"doppelter Pukelsheim\") shares out seats in proportion to the votes across the canton, but a party needs 5% in at least one district.",
+                    "laws": [
+                      "gpr"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "executive",
+                "name": "Regierungsrat",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "explanation": "Seven members elected by the people by majority vote.",
+                    "laws": [
+                      "kv"
+                    ]
+                  },
+                  {
+                    "type": "binding_powers",
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
+                  },
+                  {
+                    "type": "individual_vote",
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
+                  },
+                  {
+                    "type": "recall",
+                    "status": "no",
+                    "explanation": "No recall of elected officials at this level.",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
+                  }
+                ],
+                "label": "Executive"
+              }
+            ]
+          }
         },
         "county": {
-          "summary": "Districts (Bezirke) mainly supervise; their officials are elected by district voters.",
-          "direct": { "mechanisms": [ { "type": "referendum", "properties": [ { "type": "exists", "status": "no" } ] } ] },
-          "representative": { "mechanisms": [ { "type": "executive", "name": "Statthalter / Bezirksrat", "properties": [
-            { "type": "exists", "status": "yes" },
-            { "type": "binding_powers", "status": "partial", "explanation": "Mostly supervisory and administrative powers." },
-            { "type": "individual_vote", "status": "yes" },
-            { "type": "local_constituency", "status": "yes" },
-            { "type": "recall", "status": "no" }
-          ] } ] }
+          "summary": "Districts (Bezirke) mainly supervise the municipalities; they have no popular votes.",
+          "direct": {
+            "mechanisms": [
+              {
+                "type": "referendum",
+                "kinds": [
+                  {
+                    "type": "citizen_initiative",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A district (Bezirk) has no referendum.",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "veto_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A district (Bezirk) has no referendum.",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "mandatory_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A district (Bezirk) has no referendum.",
+                        "laws": [
+                          "kv",
+                          "gpr"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "representative": {
+            "mechanisms": [
+              {
+                "type": "executive",
+                "name": "Statthalter / Bezirksrat",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
+                  },
+                  {
+                    "type": "binding_powers",
+                    "status": "partial",
+                    "explanation": "Mostly supervisory and administrative powers.",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
+                  },
+                  {
+                    "type": "individual_vote",
+                    "status": "yes",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
+                  },
+                  {
+                    "type": "recall",
+                    "status": "no",
+                    "explanation": "No recall of elected officials at this level.",
+                    "laws": [
+                      "kv",
+                      "gpr"
+                    ]
+                  }
+                ],
+                "label": "Executive"
+              }
+            ]
+          }
         }
       }
     },
     {
       "name": "City of Zürich",
-      "match": { "city": ["Zürich", "Zurich"] },
+      "match": {
+        "city": [
+          "Zürich",
+          "Zurich"
+        ]
+      },
       "levels": {
         "municipality": {
-          "summary": "Binding municipal initiatives and referendums with low thresholds and no quorum; council elected from open lists in 9 districts.",
-          "direct": { "mechanisms": [
-            { "type": "initiative", "properties": [
-              { "type": "exists", "status": "yes", "citations": [ { "law": "go", "article": "(article to be added)" } ] },
-              { "type": "binding", "status": "yes" },
-              { "type": "no_quorum", "status": "yes" },
-              { "type": "reasonable_signatures", "status": "yes", "explanation": "3,000 signatures." },
-              { "type": "concrete_proposals", "status": "yes" }
-            ] },
-            { "type": "referendum", "properties": [
-              { "type": "exists", "status": "yes" },
-              { "type": "binding", "status": "yes" },
-              { "type": "no_quorum", "status": "yes" },
-              { "type": "citizen_triggered", "status": "yes" },
-              { "type": "reasonable_signatures", "status": "yes", "explanation": "2,000 signatures." },
-              { "type": "broad_scope", "status": "yes", "explanation": "Includes the budget and large expenditures." }
-            ] }
-          ] },
-          "representative": { "mechanisms": [
-            { "type": "council", "name": "Gemeinderat", "properties": [
-              { "type": "exists", "status": "yes" },
-              { "type": "binding_powers", "status": "yes" },
-              { "type": "individual_vote", "status": "yes", "explanation": "Open lists." },
-              { "type": "local_constituency", "status": "yes" },
-              { "type": "recall", "status": "no" },
-              { "type": "own_means", "status": "yes", "explanation": "The city sets its own tax multiplier." }
-            ] },
-            { "type": "executive", "name": "Stadtrat (city executive)", "properties": [
-              { "type": "exists", "status": "yes" },
-              { "type": "binding_powers", "status": "yes" },
-              { "type": "individual_vote", "status": "yes", "explanation": "Members elected individually by majority vote." },
-              { "type": "local_constituency", "status": "yes" },
-              { "type": "recall", "status": "no" }
-            ] }
-          ] }
+          "summary": "Binding city initiatives and referendums with low signature thresholds and no quorum; big spending goes to a mandatory vote. The council is elected from open lists in nine districts. The tax rate is excluded from referendums.",
+          "direct": {
+            "mechanisms": [
+              {
+                "type": "referendum",
+                "kinds": [
+                  {
+                    "type": "citizen_initiative",
+                    "name": "City popular initiative",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "go",
+                          "gg",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "go",
+                          "gg",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "laws": [
+                          "go",
+                          "gg",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "reasonable_signatures",
+                        "status": "yes",
+                        "explanation": "3,000 signatures.",
+                        "laws": [
+                          "go"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "veto_referendum",
+                    "name": "City referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "explanation": "Optional referendum on council decisions; mandatory votes on the charter and on big spending.",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "go",
+                          "gg",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "go",
+                          "gg",
+                          "gpr"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "explanation": "The vote is on the adopted act itself.",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "reasonable_signatures",
+                        "status": "yes",
+                        "explanation": "2,000 signatures within 60 days.",
+                        "laws": [
+                          "go"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "mandatory_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "yes",
+                        "explanation": "Changes to the municipal charter and large expenditures go to a vote automatically.",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "binding",
+                        "status": "yes",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "no_quorum",
+                        "status": "yes",
+                        "laws": [
+                          "go"
+                        ]
+                      },
+                      {
+                        "type": "concrete_proposals",
+                        "status": "yes",
+                        "laws": [
+                          "go"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "general_assembly",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "The City of Zürich has an elected parliament (Gemeinderat) instead of a municipal assembly: the canton's municipal law lets a municipality replace the assembly of its voters with a parliament.",
+                    "laws": [
+                      "kv",
+                      "gg"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "representative": {
+            "mechanisms": [
+              {
+                "type": "council",
+                "name": "Gemeinderat",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "explanation": "125 members.",
+                    "laws": [
+                      "go"
+                    ]
+                  },
+                  {
+                    "type": "binding_powers",
+                    "status": "yes",
+                    "explanation": "Including setting the annual tax rate.",
+                    "laws": [
+                      "go"
+                    ]
+                  },
+                  {
+                    "type": "individual_vote",
+                    "status": "yes",
+                    "explanation": "Proportional representation with open lists.",
+                    "laws": [
+                      "go"
+                    ]
+                  },
+                  {
+                    "type": "proportional_representation",
+                    "status": "partial",
+                    "explanation": "The double proportional method shares out seats in proportion to the votes across the city, but a party needs 5% in at least one district.",
+                    "laws": [
+                      "gpr",
+                      "go"
+                    ]
+                  },
+                  {
+                    "type": "own_means",
+                    "status": "yes",
+                    "explanation": "The city sets its own tax rate (Steuerfuss).",
+                    "laws": [
+                      "go"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "executive",
+                "name": "Stadtrat (city executive)",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "explanation": "Nine members including the mayor, elected by the whole city.",
+                    "laws": [
+                      "go"
+                    ]
+                  },
+                  {
+                    "type": "binding_powers",
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
+                  },
+                  {
+                    "type": "individual_vote",
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
+                  },
+                  {
+                    "type": "recall",
+                    "status": "no",
+                    "explanation": "No recall of elected officials at this level.",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
+                  }
+                ],
+                "label": "Executive"
+              }
+            ]
+          }
         },
-        "city": { "sameAs": "municipality" },
         "neighbourhood": {
-          "summary": "Quarters (Quartiere) have no public decision-making body; quarter associations are private. Residents elect Gemeinderat members from their electoral district (Kreis), which spans several quarters.",
-          "direct": { "mechanisms": [
-            { "type": "referendum", "properties": [ { "type": "exists", "status": "no", "explanation": "No quarter-level votes." } ] }
-          ] },
-          "representative": { "mechanisms": [
-            { "type": "council", "name": "Quarter council", "properties": [ { "type": "exists", "status": "no", "explanation": "Quartiervereine are private associations without binding powers." } ] },
-            { "type": "upper_council_seat", "name": "Own members of the Gemeinderat", "properties": [
-              { "type": "exists", "status": "yes" },
-              { "type": "binding_powers", "status": "yes" },
-              { "type": "individual_vote", "status": "yes", "explanation": "Open lists: voters choose individual candidates." },
-              { "type": "local_constituency", "status": "partial", "explanation": "Elected per electoral district (Wahlkreis), larger than one quarter." },
-              { "type": "recall", "status": "no" }
-            ] }
-          ] }
+          "summary": "Quarters have no general decision-making body; quarter associations are private. Residents do elect a school board for their school district (covering several quarters), and council members per electoral district.",
+          "direct": {
+            "mechanisms": [
+              {
+                "type": "referendum",
+                "kinds": [
+                  {
+                    "type": "citizen_initiative",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A city district (Kreis) has no referendum of its own.",
+                        "laws": [
+                          "go"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "veto_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A city district (Kreis) has no referendum of its own.",
+                        "laws": [
+                          "go"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "mandatory_referendum",
+                    "properties": [
+                      {
+                        "type": "exists",
+                        "status": "no",
+                        "explanation": "A city district (Kreis) has no referendum of its own.",
+                        "laws": [
+                          "go"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "general_assembly",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "City districts (Kreise) have no assembly of their residents that takes binding decisions.",
+                    "laws": [
+                      "go"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "representative": {
+            "mechanisms": [
+              {
+                "type": "council",
+                "name": "Quarter council",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "no",
+                    "explanation": "The charter provides no elected quarter or Kreis council.",
+                    "laws": [
+                      "go"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "council",
+                "name": "Kreisschulbehörde (school district board)",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "explanation": "Each of the seven school districts elects a school board (president plus 24 members).",
+                    "laws": [
+                      "go"
+                    ]
+                  },
+                  {
+                    "type": "binding_powers",
+                    "status": "partial",
+                    "explanation": "Only for public schools and kindergartens in the district.",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
+                  },
+                  {
+                    "type": "individual_vote",
+                    "status": "yes",
+                    "explanation": "Members and president are elected by the district's voters.",
+                    "laws": [
+                      "go"
+                    ]
+                  },
+                  {
+                    "type": "local_districts",
+                    "status": "partial",
+                    "explanation": "The school district is the constituency; it spans several quarters.",
+                    "laws": [
+                      "go"
+                    ]
+                  },
+                  {
+                    "type": "proportional_representation",
+                    "status": "no",
+                    "explanation": "Members are elected by majority vote, not proportionally.",
+                    "laws": [
+                      "gpr"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "upper_council_seat",
+                "name": "Own members of the Gemeinderat",
+                "properties": [
+                  {
+                    "type": "exists",
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
+                  },
+                  {
+                    "type": "binding_powers",
+                    "status": "yes",
+                    "laws": [
+                      "go",
+                      "gg",
+                      "gpr"
+                    ]
+                  },
+                  {
+                    "type": "individual_vote",
+                    "status": "yes",
+                    "explanation": "Open lists: voters choose individual candidates.",
+                    "laws": [
+                      "go"
+                    ]
+                  },
+                  {
+                    "type": "local_districts",
+                    "status": "partial",
+                    "explanation": "Elected per electoral district (Wahlkreis), which is larger than one quarter.",
+                    "laws": [
+                      "go"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       }
     }

@@ -2,36 +2,49 @@
 
 An interactive map that shows, for any location, how far the people there can govern their own shared interests, at every level from the individual to the supranational union.
 
-> People are free if they have the mechanisms and means to make and carry out decisions about their individual or shared interests without outside interference. They decide either **directly** or through **representatives**.
+> People are free if they have the mechanisms and means to make and carry out decisions about their individual or shared interests without interference from outsiders. They decide either **directly** or through **representatives**.
 
 Pick a place (search an address or click on the map) and you get a row of rectangles, one per level:
 
-individual · market · cultural · building entrance · apartment building · neighbourhood (квартал) · village · town · city · municipality · county · state · country · union
+home · apartment building section · apartment building · neighbourhood (квартал) · village · town · city · municipality · county · state · country · union, plus individual · business · non-profit
 
-Each rectangle is coloured from black (no ability to govern that level's interests) to green (full). Click to drill down:
+Each button is white (full), light grey (good), dark grey (weak) or black (no ability to govern that level's interests); levels that don't apply to the place are hidden. Click to drill down:
 
 1. **Level** → e.g. *Neighbourhood · Lozenets*
 2. **Direct | Representative**
 3. **Mechanisms** → e.g. referendum, general assembly, own council, own member of the municipal council
 4. **Required properties** → e.g. legally binding, no participation quorum, reasonable signature requirements, vote for individual candidates, elected only by this community
-5. **Law** → the specific articles that enable or prevent it, with links
+5. **Relevant laws** → the laws that enable or prevent it, with links (specific articles come next)
 
 The drill-down path is kept in the URL, so any view can be shared.
 
-## Status: sample data
+## Status: draft data
 
-Only **Bulgaria** and **Switzerland** (with extra canton and city data for Zürich) have assessments, and they are **sample data**, flagged as such in the UI. In the Bulgarian data, articles of the Direct Citizen Participation Act were checked against the Central Election Commission's English translation; every other citation is marked *unverified* in the UI. Other countries show "No data".
+**Bulgaria**, **Ireland** and **Switzerland** (with canton and city data for Zürich) have draft assessments. For each property the page shows the relevant laws; the specific articles are the next step and are being worked out together. Article notes gathered so far are in [`docs/research/`](docs/research/) and are not shown on the page. The yes/partly/no assessments are provisional until the articles are confirmed. Other countries show "No data".
 
 ## Running it
 
-It is a static site with no build step. Serve the folder over HTTP (the data is loaded with `fetch`, so opening `index.html` as a file will not work):
+There is no build step. Run the small Python server (standard library only), which serves the site and stores the shared interest chips in `data/state/interests.json`:
 
 ```sh
-python3 -m http.server 8000
-# open http://localhost:8000
+python3 server.py            # open http://localhost:8000
+python3 server.py --host 0.0.0.0 --port 8000   # let others on your network use it
+python3 server.py --edit     # the owner's copy: edit the site's own interest lists
 ```
 
-To publish, enable GitHub Pages for the repository (Settings → Pages → deploy from branch `main`, folder `/`).
+With `--edit`, opened from the same computer, the interest chips change the site itself: **+ Add**, **×** and dragging a chip (or ← → on a focused chip) rewrite that country's list for the level in `data/interests.json`, which is committed and uploaded like any other file. Without it, and always on the public server, readers' additions and "not applicable" marks apply only to one place and stay in `data/state`.
+
+Each requirement page has a chat button (top right) where readers comment, suggest edits or ask Claude about the requirement. It needs the `anthropic` package and an API key on the server; the key never reaches the browser:
+
+```sh
+python3 -m venv .venv && .venv/bin/pip install anthropic   # a venv avoids Homebrew's "externally managed" error
+echo "ANTHROPIC_API_KEY=sk-ant-..." > .env && chmod 600 .env   # key from console.anthropic.com
+.venv/bin/python server.py
+```
+
+The server reads the key from `.env` at startup (git-ignored and never served), so it survives restarts. Every conversation is saved in `data/state/comments.json` for the editors, also when the chat is not set up. The rest of the site runs without the package.
+
+Interest chips that anyone adds, or marks ✕ as not applicable, are shared with everyone using the same server. On a plain static host (for example GitHub Pages) the page still works, but added chips are kept only in that browser.
 
 Maps use [Leaflet](https://leafletjs.com/) (vendored in `vendor/leaflet`) with OpenStreetMap tiles, and addresses are looked up with [Nominatim](https://nominatim.org/). Both are free. Nominatim's [usage policy](https://operations.osmfoundation.org/policies/nominatim/) allows about one request per second, which is fine for a demo. For heavy traffic, switch to a hosted geocoder.
 
@@ -45,4 +58,6 @@ Maps use [Leaflet](https://leafletjs.com/) (vendored in `vendor/leaflet`) with O
 | `data/index.json` | List of jurisdiction files and supranational unions |
 | `data/jurisdictions/*.json` | One file per country, with optional overrides for regions and cities |
 | `docs/DATA.md` | The data schema, scoring rules and how to add a country |
+To add a country, follow [docs/COUNTRY-PLAYBOOK.md](docs/COUNTRY-PLAYBOOK.md).
+| `docs/HOSTING.md`, `tools/deploy.sh` | The public copy at free.kredor.com and the one-command upload |
 | `tools/validate.mjs` | Checks all data files and prints a score table: `node tools/validate.mjs` |

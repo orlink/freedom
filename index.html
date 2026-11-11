@@ -4,46 +4,55 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Freedom Map</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
   <meta name="description" content="How free are people at each level of community, from the individual to the union, to govern their own shared interests?">
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/scale.js"></script>
+  <script>if (location.hash.length > 1) document.documentElement.classList.add('has-place');</script>
 </head>
 <body>
   <header class="top">
-    <div class="brand">
-      <h1>Freedom Map</h1>
-      <p class="tagline">Can the people here make and carry out decisions about their own shared interests, directly or through accountable representatives?</p>
-    </div>
+    <div class="brand"><h1><a href="./"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="logo-tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2555a"/><stop offset="1" stop-color="#d6334f"/></linearGradient><clipPath id="logo-clip"><rect x="2" y="2" width="60" height="60" rx="15"/></clipPath></defs><rect x="2" y="2" width="60" height="60" rx="15" fill="url(#logo-tile)"/><g clip-path="url(#logo-clip)"><g transform="rotate(-40 32 32)"><g transform="translate(-7.5 0) rotate(-15 11 32)"><defs><clipPath id="logo-c0"><polygon points="-168,-8 36.5,-8 36.5,18.25 33.5,20.75 34,23.25 31.5,25.75 32,38.25 32.5,40.75 29,43.25 29.5,45.75 29.5,72 -168,72"/></clipPath></defs><g clip-path="url(#logo-c0)"><path d="M74 22 H21 A10 10 0 0 0 21 42 H74" fill="none" stroke="#fff" stroke-width="6.5"/></g></g><g transform="translate(7.5 0) rotate(15 53 32)"><defs><clipPath id="logo-c1"><polygon points="232,-8 36.5,-8 36.5,18.25 33.5,20.75 34,23.25 31.5,25.75 32,38.25 32.5,40.75 29,43.25 29.5,45.75 29.5,72 232,72"/></clipPath></defs><g clip-path="url(#logo-c1)"><path d="M-10 22 H43 A10 10 0 0 1 43 42 H-10" fill="none" stroke="#fff" stroke-width="6.5"/></g></g></g></g></svg>Freedom Map</a></h1><nav class="menu"><a href="what-is-freedom.html">What is freedom</a></nav>
+      <div class="scale" id="scale" role="group" aria-label="Chip colours"><button type="button" data-scale="teal" aria-pressed="true">Teal</button><button type="button" data-scale="red" aria-pressed="false">Red</button><button type="button" data-scale="grey" aria-pressed="false">Grey</button></div></div>
     <form id="search" class="search" role="search">
       <input id="q" type="search" placeholder="Search an address or place…" aria-label="Address or place" autocomplete="off">
       <button type="submit">Search</button>
     </form>
   </header>
 
-  <main class="layout">
-    <section class="map-wrap">
-      <div id="map" aria-label="Map. Click anywhere to assess that location."></div>
-      <div class="examples">
-        <span>Try:</span>
+  <main class="page">
+    <!-- Start panel: shown until a place is chosen (html.has-place hides it and shows the header search instead). -->
+    <section id="start" class="start" aria-labelledby="start-title">
+      <h2 id="start-title">How free are you where you live, and why?</h2>
+      <p class="lead">Pick any address. Freedom Map shows how free a person living there is to pursue their individual and group interests at each level, from the home to the country. It explains what in the laws makes it so, and how to fix them where they fall short.</p>
+      <div class="start-actions">
+        <form id="start-search" class="search" role="search">
+          <input type="search" placeholder="Search an address or place…" aria-label="Address or place" autocomplete="off">
+          <button type="submit">Search</button>
+        </form>
+        <button type="button" id="locate-me" class="locate" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>Use my location</button>
+      </div>
+      <p id="locate-note" class="locate-note" role="status"></p>
+      <div class="start-try"><span>Try:</span><span id="try" class="examples">
         <button type="button" data-lat="42.6745" data-lon="23.3263">Lozenets, Sofia</button>
-        <button type="button" data-lat="42.5867" data-lon="23.3605">Bistritsa village</button>
         <button type="button" data-lat="47.3779" data-lon="8.5281">Langstrasse, Zürich</button>
-      </div>
+        <button type="button" data-lat="53.3256" data-lon="-6.2564">Ranelagh, Dublin</button>
+      </span><span>or choose on the map.</span></div>
     </section>
-
-    <section class="panel" aria-live="polite">
-      <div id="intro" class="intro">
-        <p>Search for an address or click on the map. Each rectangle below is one level at which people share interests. Its colour shows how far the law lets them govern those interests themselves. Click a rectangle to see why: first <em>direct</em> versus <em>representative</em> decision-making, then the specific mechanisms, the properties each one needs, and the articles of law behind each answer.</p>
-      </div>
-      <div id="place" class="place" hidden></div>
-      <div id="notice" class="notice" hidden></div>
-      <div id="rows"></div>
-      <div class="legend" id="legend"></div>
-    </section>
+    <div id="map" aria-label="Map. Click anywhere to choose a location."></div>
+    <div id="places" class="examples"></div>
+    <div id="place" class="place" aria-live="polite"></div>
+    <p id="hint" class="hint" hidden></p>
+    <div class="sample" aria-label="What the colours mean"><span class="tb t-white">Free</span><span class="tb t-lightgrey">Mostly free</span><span class="tb t-darkgrey">Mostly not free</span><span class="tb t-black">Not free</span><a href="what-is-freedom.html">What is freedom →</a></div>
+    <nav id="trail" class="trail" aria-label="Where you are"></nav>
+    <nav id="tree" class="tree" aria-label="Freedom tree"></nav>
+    <p class="legend" id="legend" hidden></p>
   </main>
 
   <footer class="foot">
-    <p>Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Geocoding by <a href="https://nominatim.org/">Nominatim</a>. Assessments are <strong>sample data</strong> for demonstration; see <a href="docs/DATA.md">docs/DATA.md</a> to contribute.</p>
+    <p id="status"></p>
+    <p>Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Geocoding by <a href="https://nominatim.org/">Nominatim</a> · <a href="docs/DATA.md">About the data</a></p>
   </footer>
 
   <script src="vendor/leaflet/leaflet.js"></script>

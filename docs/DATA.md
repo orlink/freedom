@@ -5,14 +5,22 @@ All assessments live in `data/`. There is no database. Each country is one JSON 
 ## The model
 
 ```
-Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism ─▶ Property ─▶ Citations (law articles)
+Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism ─▶ Property ─▶ Relevant laws  (─▶ articles, next step)
 ```
 
-* **Level**: a community of shared interest (`data/catalog.json` → `levels`). *Spheres* (individual, market, cultural) apply everywhere. *Territorial* levels are named from the geocoded address.
+* **Level**: a community of shared interest (`data/catalog.json` → `levels`). *Spheres* (individual, business, non-profit) apply everywhere. *Territorial* levels are named from the geocoded address.
+* `mapZoom` (optional): Nominatim reverse zoom per level for the map outline, when the defaults (country 3, state 5, county 8, municipality 10, settlements 12) pick the wrong boundary.
+* A **referendum** lists `kinds` instead of `properties`: `citizen_initiative`, `veto_referendum` and `mandatory_referendum` (catalog `referendumKinds`). Each kind has its own `properties` and appears on the Direct page as its own chip, beside the general assembly; the page always shows the five in `kindProperties` (exists, binding, no quorum, concrete proposals, reasonable petition requirements). A kind that does not exist only needs `exists: no`, and the other four appear disabled. A kind can skip properties that do not apply to it (catalog `referendumKinds.<kind>.skipProperties`): a mandatory referendum has no petition, so it shows no "reasonable petition requirements", and its topics are those the law sets, so it shows no "no topic restrictions". If any of the first three (exists, binding, no quorum) is `no`, the whole kind is black.
+* Every level, mechanism type and property type in the catalog has a short `name` (shown on its chip) and a `longName` (shown in the breadcrumb trail).
 * **Branch**: `direct` (the people decide) or `representative` (elected representatives decide).
-* **Mechanism**: a concrete way of deciding, such as `referendum`, `initiative`, `general_assembly`, `council`, `executive`, or `upper_council_seat` (the community's own member of the council one level up, used as a fallback when it has no body of its own).
-* **Property**: a condition the mechanism needs to give real self-government, such as `binding`, `no_quorum`, `reasonable_signatures`, `individual_vote`, or `local_constituency`. Each has a `status` of `yes`, `partial`, `no` or `unknown`.
-* **Citation**: the article of law behind a status.
+* **Mechanism**: a concrete way of deciding, such as `referendum`, `general_assembly`, `council`, `executive`, or `upper_council_seat` (the community's own member of the council one level up, used as a fallback when it has no body of its own).
+  Agenda initiatives (a petition the council only has to consider) are deliberately left out: they are not a decision-making mechanism, because no representative is accountable for the proposal.
+* **Property**: a condition the mechanism needs to give real self-government, such as `binding`, `no_quorum`, `reasonable_signatures`, `individual_vote`, or `local_districts`. Each has a `status` of `yes` (white), `partial` (light grey), `weak` (dark grey), `no` (black) or `unknown`.
+* **Relevant laws**: the leaves of the tree. Each property lists the laws (`laws`, ids into the file's `laws` map) that govern it. Specific articles are the next step and are being worked out separately, starting from the notes in `docs/research/`.
+* **Provisions** (optional): `provisions: [{ "law": "<law id>", "items": [{ "ref": "Article 9(6)", "text": "…" | ["…", "…"] }] }]` quotes the legal text (in English translation) behind a property. When present, the requirement page shows it in place of the law chips; an item with only `ref` is a heading such as a chapter.
+* **Fix** (optional, per provision item): `fix: "…" | ["…", …]` is a proposed amendment of that item that would meet the requirement ("(repealed)" to delete it). When any item has one, and the requirement is not met or partly met, the requirement page shows a Fix button that displays the amendments as tracked changes. Add `why` (one line) to explain each amendment. An item with `fix` but no `text` is a new article (e.g. `"ref": "Article 10a (new)"`): the page shows the act as lacking it until Fix is pressed. Readers can approve an amendment or suggest their own wording; server.py keeps these in data/state/fixes.json.
+* **Population rule** (optional): `populationRule: { "max": 10000, "use": "self" | "part" | "contains", "ifUnknown": "yes", "unknownNote": "…" }` sets a property's status from the population of the settlement under the pin (OpenStreetMap `population`, fetched from Nominatim at zoom 10). `self`: the level is the settlement (≤ max → yes, else no). `part`: the level lies inside it (settlement ≤ max → yes, else `ifLarger`, default no). `contains`: the level contains it (settlement > max → no). See `applyPopulation` in js/model.js.
+* **Settlement levels** (optional, per jurisdiction): `hiddenLevels: [ids]` hides levels the law does not know. `hiddenIn: { "village": ["neighbourhood", "entrance", "building"], "town": ["neighbourhood"] }` hides levels when the pin is in that kind of settlement (default: a village hides the neighbourhood). `municipalCentre: { "sameAs": "municipality" }` makes a village or town that its municipality is named after (OSM `state_district` in Bulgaria; compared without case or a leading "Община") follow that level instead (see `applySettlementRoles` in js/model.js).
 
 ## Jurisdiction file
 
@@ -25,7 +33,7 @@ Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism �
   "statusNote": "…",
   "addressKeys": { "county": ["state"] },   // optional: which OSM address fields name each level in this country
   "laws": {
-    "dcpa": { "title": "Direct Citizen Participation…Act", "localTitle": "Закон за прякото участие…", "url": "https://…" }
+    "dcpa": { "title": "Direct Citizen Participation…Act", "localTitle": "Закон за прякото участие…", "short": "ЗПУГДВМС", "url": "https://…" }
   },
   "levels": {
     "neighbourhood": {
@@ -38,11 +46,9 @@ Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism �
             "properties": [
               {
                 "type": "no_quorum",                 // key in catalog.properties
-                "status": "no",                      // yes | partial | no | unknown
+                "status": "no",                      // yes | partial | weak | no | unknown
                 "explanation": "One quarter of voters must attend…",
-                "citations": [
-                  { "law": "dcpa", "article": "Art. 60(1), (3)", "checked": true, "url": "optional deep link", "excerpt": "optional quote" }
-                ]
+                "laws": ["const", "dcpa"]                  // the leaves: laws that govern this property
               }
             ]
           }
@@ -59,14 +65,16 @@ Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism �
 }
 ```
 
-A level that is missing shows as **No data**. Set `"checked": true` on a citation only after reading the article in an official or authoritative source; otherwise the UI labels it *unverified*.
+A level that is missing shows as **No data**. Every property must list at least one law (`node tools/validate.mjs` checks this).
+
+Status: `sample` is placeholder data, `draft` lists the relevant laws with provisional assessments, articles not yet confirmed, `reviewed` has been checked by someone qualified.
 
 ## Scoring
 
-Scores are in [0, 1] and are coloured in six bands: None (0), Very weak, Weak, Partial, Substantial and Full (1).
+Scores are in [0, 1]. The page uses four colours: black for 0 (none), dark grey below 0.5 (weak), light grey from 0.5 up to 1 (good), white for 1 (full). A property marked yes is white, partly is light grey, no is black. Levels, branches and mechanisms with no data or that do not apply are hidden.
 
-* **Property**: yes = 1, partial = 0.5, no = 0, unknown is ignored.
-* **Mechanism**: the average of its known properties. *Gate* properties (`exists`, `binding`, `binding_powers`, plus any listed in the mechanism's `gates`) zero the mechanism when `no` and halve it when `partial`. The mechanism's `weight` scales the result: `upper_council_seat` counts at 0.4, because a seat in someone else's council is a weak substitute for the community's own body, and it is void if that seat is not elected by this community alone (for example, a council elected from one municipality-wide list).
+* **Property**: yes = 1, partial = 0.5, weak = 0.25, no = 0, unknown is ignored.
+* **Mechanism**: the average of its known properties. *Gate* properties (`exists`, `binding`, `binding_powers`, plus any listed in the mechanism's `gates`) zero the mechanism when `no` and halve it when `partial`. *Optional* properties (catalog `optional: true`, e.g. `recall`) are welcome but not required: they are left out of the average unless fully met. The mechanism's `weight` scales the result: `upper_council_seat` counts at 0.4, because a seat in someone else's council is a weak substitute for the community's own body, and it is void if that seat is not elected by this community alone (for example, a council elected from one municipality-wide list).
 * **Branch**: the best mechanism counts. One working path is enough.
 * **Level**: the better of direct and representative.
 
@@ -76,5 +84,5 @@ These rules are in `js/model.js` and are deliberately simple so they can be deba
 
 1. Copy `data/jurisdictions/bg.json` to `data/jurisdictions/<country code>.json` and edit it.
 2. Add it to `data/index.json`.
-3. If OSM uses different admin levels in that country, set `addressKeys`. Check what Nominatim returns with `https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&lat=…&lon=…`.
+3. If OSM uses different admin levels in that country, set `addressKeys`. Check what Nominatim returns with `https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&lat=…&lon=…`. An area can override `addressKeys` too (e.g. County Dublin: the council is Fingal, Dún Laoghaire-Rathdown, South Dublin or Dublin City, given by OSM `municipality` or `city`).
 4. Run `node tools/validate.mjs`.

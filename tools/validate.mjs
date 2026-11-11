@@ -21,10 +21,17 @@ function checkLevel(where, lvl, j) {
       const mdef = catalog.mechanisms[m.type];
       if (!mdef) errors.push(`${where}.${b}[${mi}]: unknown mechanism type "${m.type}"`);
       else if (mdef.branch !== b) errors.push(`${where}.${b}[${mi}]: mechanism "${m.type}" belongs to ${mdef.branch}`);
-      for (const p of m.properties || []) {
+      if (m.kinds) {
+        const allowed = mdef?.kinds || [];
+        if (!allowed.length) errors.push(`${where}.${b}.${m.type}: this mechanism has no kinds`);
+        for (const k of m.kinds) if (!allowed.includes(k.type)) errors.push(`${where}.${b}.${m.type}: unknown kind "${k.type}"`);
+      }
+      for (const p of [...(m.properties || []), ...(m.kinds || []).flatMap(k => k.properties || [])]) {
         if (!catalog.properties[p.type]) errors.push(`${where}.${b}.${m.type}: unknown property "${p.type}"`);
         if (!STATUSES.includes(p.status)) errors.push(`${where}.${b}.${m.type}.${p.type}: bad status "${p.status}"`);
-        for (const c of p.citations || []) if (!j.laws?.[c.law]) errors.push(`${where}.${b}.${m.type}.${p.type}: unknown law "${c.law}"`);
+        if (!(p.laws || []).length) errors.push(`${where}.${b}.${m.type}.${p.type}: no relevant laws listed`);
+        for (const id of p.laws || []) if (!j.laws?.[id]) errors.push(`${where}.${b}.${m.type}.${p.type}: unknown law "${id}"`);
+        for (const q of p.provisions || []) if (!j.laws?.[q.law]) errors.push(`${where}.${b}.${m.type}.${p.type}: provisions cite unknown law "${q.law}"`);
       }
     }
   }
@@ -46,6 +53,8 @@ for (const j of jurisdictions) {
 const samples = {
   'Sofia, Lozenets': { country_code: 'bg', city: 'Sofia', suburb: 'Lozenets' },
   'Zürich': { country_code: 'ch', city: 'Zürich', state: 'Zürich' },
+  'Dublin': { country_code: 'ie', city: 'Dublin', county: 'County Dublin', suburb: 'Ranelagh' },
+  'Limerick': { country_code: 'ie', city: 'Limerick', county: 'County Limerick' },
 };
 for (const [name, addr] of Object.entries(samples)) {
   const j = resolveJurisdiction(jurisdictions, addr);

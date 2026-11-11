@@ -4,31 +4,45 @@
     {
       "id": "individual",
       "name": "Individual",
+      "longName": "Individual interests",
       "kind": "sphere",
       "description": "Decisions about one's own life, body, property and time."
     },
     {
-      "id": "market",
-      "name": "Market",
+      "id": "business",
+      "name": "Economic",
+      "longName": "Economic interests",
       "kind": "sphere",
-      "description": "Voluntary economic exchange: starting a business, contracting, pricing."
+      "description": "People earning a living, making a profit, obtaining goods and services, using productive resources, building wealth and sharing risk: by their own decisions and contracts, together as partners, shareholders or cooperative members, or through managers, agents and trustees."
     },
     {
-      "id": "cultural",
-      "name": "Cultural",
+      "id": "nonprofit",
+      "name": "Non-economic",
+      "longName": "Non-economic interests",
       "kind": "sphere",
-      "description": "Language, religion, education and cultural communities governing their own affairs."
+      "description": "Members governing their own association, foundation or other non-profit organisation."
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "longName": "Home interests",
+      "kind": "territorial",
+      "informal": "The people living in the home decide among themselves, informally, without formal institutions.",
+      "addressKeys": [],
+      "description": "The people living together in one home: a house or a flat."
     },
     {
       "id": "entrance",
-      "name": "Building entrance",
+      "name": "Apartment building section",
+      "longName": "Apartment building section interests",
       "kind": "territorial",
       "addressKeys": [],
-      "description": "Residents sharing one entrance (вход) of an apartment building."
+      "description": "Residents sharing one section (entrance, вход) of an apartment building."
     },
     {
       "id": "building",
       "name": "Apartment building",
+      "longName": "Apartment building interests",
       "kind": "territorial",
       "addressKeys": [
         "building",
@@ -39,6 +53,7 @@
     {
       "id": "neighbourhood",
       "name": "Neighbourhood",
+      "longName": "Neighbourhood interests",
       "kind": "territorial",
       "addressKeys": [
         "neighbourhood",
@@ -51,6 +66,7 @@
     {
       "id": "village",
       "name": "Village",
+      "longName": "Village interests",
       "kind": "territorial",
       "addressKeys": [
         "village",
@@ -61,6 +77,7 @@
     {
       "id": "town",
       "name": "Town",
+      "longName": "Town interests",
       "kind": "territorial",
       "addressKeys": [
         "town"
@@ -68,17 +85,9 @@
       "description": "A town community."
     },
     {
-      "id": "city",
-      "name": "City",
-      "kind": "territorial",
-      "addressKeys": [
-        "city"
-      ],
-      "description": "A city as a whole."
-    },
-    {
       "id": "municipality",
       "name": "Municipality",
+      "longName": "Municipality interests",
       "kind": "territorial",
       "addressKeys": [
         "municipality",
@@ -89,7 +98,8 @@
     },
     {
       "id": "county",
-      "name": "County / region",
+      "name": "County",
+      "longName": "County interests",
       "kind": "territorial",
       "addressKeys": [
         "county",
@@ -100,6 +110,7 @@
     {
       "id": "state",
       "name": "State / canton",
+      "longName": "State / canton interests",
       "kind": "territorial",
       "addressKeys": [
         "state"
@@ -109,6 +120,7 @@
     {
       "id": "country",
       "name": "Country",
+      "longName": "Country interests",
       "kind": "territorial",
       "addressKeys": [
         "country"
@@ -118,6 +130,7 @@
     {
       "id": "union",
       "name": "Union",
+      "longName": "Union interests",
       "kind": "territorial",
       "addressKeys": [],
       "description": "Supranational union, e.g. the European Union."
@@ -127,109 +140,323 @@
     "referendum": {
       "branch": "direct",
       "name": "Referendum",
-      "description": "A vote of all residents that decides a question."
-    },
-    "initiative": {
-      "branch": "direct",
-      "name": "Citizens' initiative",
-      "description": "Residents put their own proposal on the agenda or to a vote by collecting signatures."
+      "longName": "Referendums",
+      "description": "A vote of all residents that decides a question.",
+      "kinds": [
+        "citizen_initiative",
+        "veto_referendum",
+        "mandatory_referendum"
+      ],
+      "kindProperties": [
+        "exists",
+        "binding",
+        "no_quorum",
+        "concrete_proposals",
+        "reasonable_signatures",
+        "no_topic_restrictions",
+        "no_roadblocks"
+      ],
+      "gates": [
+        "exists",
+        "binding",
+        "no_quorum"
+      ]
     },
     "general_assembly": {
       "branch": "direct",
       "name": "General assembly",
+      "longName": "General assembly",
       "description": "A meeting of all residents or owners that takes decisions."
     },
     "personal_autonomy": {
       "branch": "direct",
       "name": "Personal autonomy",
+      "longName": "Personal autonomy",
       "description": "The person decides alone, protected from interference."
+    },
+    "household": {
+      "branch": "direct",
+      "name": "Household decision",
+      "longName": "Informal",
+      "description": "The people living in a home decide about it together, protected from outside interference."
     },
     "council": {
       "branch": "representative",
-      "name": "Own elected council",
-      "description": "A council elected by this community that decides its affairs."
+      "name": "Council",
+      "longName": "Council",
+      "levelNames": {
+        "country": {
+          "name": "Parliament",
+          "longName": "Parliament"
+        },
+        "union": {
+          "name": "Parliament",
+          "longName": "Parliament"
+        }
+      },
+      "description": "The council of this community, which decides its affairs.",
+      "gates": [
+        "exists",
+        "binding_powers"
+      ],
+      "caps": [
+        "individual_vote"
+      ]
     },
     "executive": {
       "branch": "representative",
-      "name": "Own elected executive",
-      "description": "A mayor, manager or head elected by this community."
+      "name": "Executive",
+      "longName": "Executive",
+      "description": "The mayor, manager or head of this community.",
+      "gates": [
+        "exists",
+        "binding_powers"
+      ],
+      "caps": [
+        "individual_vote"
+      ]
     },
     "upper_council_seat": {
       "branch": "representative",
-      "name": "Own representative in the higher council",
+      "name": "Representative in the higher council",
+      "longName": "Representative in the higher council",
+      "levelNames": {
+        "neighbourhood": {
+          "name": "Representatives in municipal council",
+          "longName": "Representatives in municipal council"
+        }
+      },
       "description": "No body of its own, but does the community at least elect its own accountable member of the council above?",
       "weight": 0.4,
       "gates": [
-        "local_constituency"
+        "local_districts"
       ],
-      "$comment": "Fallback mechanism: weighted at 40%, and void if the representative is not elected by this community alone (e.g. one municipality-wide list)."
+      "$comment": "Fallback mechanism: weighted at 40%, and void unless the higher council is elected in local districts, so this community has its own representative."
+    },
+    "agent": {
+      "branch": "representative",
+      "name": "Agents",
+      "longName": "Agents",
+      "description": "People authorised to decide or sign on someone else's behalf: holders of a power of attorney, commercial agents, brokers, procurators.",
+      "gates": [
+        "exists",
+        "chosen_by_represented"
+      ]
+    },
+    "trustee": {
+      "branch": "representative",
+      "name": "Trustees",
+      "longName": "Trustees",
+      "description": "People who hold and manage property for others (the beneficiaries): trustees of a trust, portfolio and fund managers.",
+      "gates": [
+        "exists",
+        "chosen_by_represented"
+      ]
     }
   },
   "properties": {
     "exists": {
       "gate": true,
       "name": "Exists in law",
-      "description": "The law provides this mechanism at this level."
+      "longName": "Exists in law",
+      "description": "The law should provide this mechanism at this level."
     },
     "binding": {
       "gate": true,
       "name": "Legally binding",
-      "description": "The outcome binds the authorities; it is not merely advisory."
+      "longName": "Legally binding",
+      "description": "The outcome should bind the authorities, not be merely advisory."
     },
     "no_quorum": {
       "gate": false,
-      "name": "No participation quorum",
-      "description": "The result counts regardless of turnout, so abstainers cannot defeat it by staying home."
+      "name": "No participation quorum requirement",
+      "longName": "No participation quorum requirement",
+      "description": "The result should count regardless of turnout, so that abstainers cannot defeat it by staying home.",
+      "explainer": {
+        "title": "Effects of a participation quorum",
+        "quote": [
+          "Participation quorum - the additional requirement that a certain minimum number of votes must be cast in order for a referendum to be legally valid - means that it is in the interests of a proposal’s opponents to abstain rather than to vote against it, so that the quorum is not met. The opponents need only desert the ballot box in order to impose their viewpoint, even when they are very much in the minority. All others who are not voting for other reasons, including those with no opinion, are effectively also voting against the referendum.",
+          "The participation quorum requirement encourages a host of controversial election practices such as falsifying the turn-out rate, voter suppression and manipulating the date of the referendum to reduce turnout. It has been shown both empirically and mathematically that a participation quorum requirement reduces turnout to below the quorum threshold, which is known as the \"quorum paradox\" (a form of the no-show paradox).",
+          "The \"quorum paradox\" arises from the fact that, unlike in deliberative bodies such as parliaments—where a vote can be postponed to a later meeting if a quorum is not reached—referendums cannot be rescheduled.",
+          "An example of the participation quorum phenomenon is the 2005 Italian fertility laws referendum, in which the opposition to the proposed loosening of laws on research on embryos and on allowing in-vitro fertilization, campaigned for people to abstain from voting to drive down turnout. Although a majority of people voted yes for the changes in the law, the results were invalid because participation was low.",
+          "The European Commission for Democracy through Law (Venice Commission) recommends against any quorum requirements in its Code for Good Practice on Referendums."
+        ],
+        "source": "Wikipedia, “Referendum”, section Participation quorum (CC BY-SA 4.0)",
+        "url": "https://en.wikipedia.org/wiki/Referendum#Participation_quorum"
+      }
     },
     "concrete_proposals": {
       "gate": false,
-      "name": "Votes on concrete proposals",
-      "description": "People decide on specific, worded proposals, not only on vague questions."
+      "name": "Concrete proposals available",
+      "longName": "Concrete proposals available",
+      "description": "People should decide on specific, worded proposals, not only on vague questions."
     },
     "citizen_triggered": {
       "gate": false,
       "name": "Citizens can trigger it",
-      "description": "Residents themselves can start it, without permission from officials."
+      "longName": "Citizens can trigger it",
+      "description": "Residents should be able to start it themselves, without permission from officials."
     },
     "reasonable_signatures": {
       "gate": false,
-      "name": "Reasonable signature requirement",
-      "description": "Signature thresholds and deadlines are achievable for ordinary residents."
+      "name": "Reasonable petition requirements",
+      "longName": "Reasonable petition requirements",
+      "description": "Signature thresholds and deadlines should be achievable for ordinary residents."
     },
     "broad_scope": {
       "gate": false,
-      "name": "Covers the shared interests",
-      "description": "Few excluded topics; budget and local fees can be decided too."
+      "name": "Covers the interests",
+      "longName": "Covers the interests",
+      "description": "It should cover the level's shared interests, with few excluded topics; budget and local fees should be decidable too."
     },
     "no_outside_override": {
       "gate": false,
-      "name": "No outside override",
-      "description": "Bodies outside the community cannot veto or overturn the decision."
+      "name": "No outside interference",
+      "longName": "No outside interference",
+      "description": "People who do not share the interests should not be able to interfere in the decision: to forbid it, require permission for it, veto it or overturn it (as a censor does between author and publisher)."
     },
     "own_means": {
       "gate": false,
       "name": "Means to implement",
-      "description": "The community controls a budget or resources to carry out its decisions."
+      "longName": "Means to implement",
+      "description": "The community should control a budget or resources to carry out its decisions.",
+      "$comment": "Used for direct mechanisms (general meetings). For representative bodies it is part of Powers (binding_powers)."
     },
     "binding_powers": {
       "gate": true,
-      "name": "Can make binding decisions",
-      "description": "The representatives can take decisions that bind on the community's matters."
+      "name": "Powers",
+      "longName": "Powers",
+      "description": "It should be able to take binding decisions on the community's shared interests and have the means to carry them out: its own budget, taxes and fees, and control of local services."
     },
     "individual_vote": {
       "gate": false,
-      "name": "Vote for individual candidates",
-      "description": "Voters choose individual people (single-member districts or fully open lists), not only party lists."
-    },
-    "local_constituency": {
-      "gate": false,
-      "name": "Elected only by this community",
-      "description": "The representative's constituency is this community, so they answer to it rather than to outsiders."
+      "name": "Individual accountability",
+      "longName": "Individual accountability",
+      "description": "Voters should choose between individual candidates (single-member districts or fully open lists), not only party lists, so that each representative is personally accountable to them."
     },
     "recall": {
       "gate": false,
       "name": "Recall possible",
-      "description": "Voters can remove the representative before the end of term."
+      "longName": "Recall possible",
+      "description": "Voters should ideally be able to remove the representative before the end of term. Welcome but not required: frequent, regular elections are the main way to hold representatives to account, so a missing recall does not lower the score.",
+      "optional": true
+    },
+    "no_topic_restrictions": {
+      "gate": false,
+      "name": "No topic restrictions",
+      "longName": "No topic restrictions",
+      "description": "Any matter within the competence of the level should be open to a vote, including the budget and taxes."
+    },
+    "local_districts": {
+      "gate": false,
+      "name": "Local representation",
+      "longName": "Local representation",
+      "description": "Each part of the community should elect its own representative, who answers to it, instead of one list for the whole area."
+    },
+    "proportional_representation": {
+      "gate": false,
+      "name": "Proportional representation",
+      "longName": "Proportional representation",
+      "description": "Non-territorial communities of interest should hold seats in proportion to their share of the electorate, through individually accountable members, with no legal threshold and no seats won by plurality alone."
+    },
+    "no_roadblocks": {
+      "gate": false,
+      "name": "No roadblocks",
+      "longName": "No roadblocks",
+      "description": "There should be no smaller procedural obstacles that can stop or stall the mechanism, such as a petition lapsing when parliament or the council changes."
+    },
+    "home_inviolable": {
+      "gate": false,
+      "name": "Home is inviolable",
+      "longName": "Home is inviolable",
+      "description": "Outsiders, including the authorities, should not enter or search the home without the occupants' consent or a court's permission, except in emergencies."
+    },
+    "family_privacy": {
+      "gate": false,
+      "name": "Privacy",
+      "longName": "Privacy",
+      "description": "There should be no unlawful interference in private and family life or in correspondence."
+    },
+    "home_property": {
+      "gate": false,
+      "name": "Property",
+      "longName": "Property",
+      "description": "Private property, including the home, should be inviolable."
+    },
+    "parental_rights": {
+      "gate": false,
+      "name": "Parental rights",
+      "longName": "Parental rights",
+      "description": "Raising children should be the parents' right and duty; only a court should be able to restrict it, on grounds set by law."
+    },
+    "joint_decisions": {
+      "gate": false,
+      "name": "Decided together",
+      "longName": "Decided together",
+      "description": "The adults of the household should decide its matters together and as equals."
+    },
+    "child_rights": {
+      "gate": false,
+      "name": "Child rights",
+      "longName": "Child rights",
+      "description": "The household is only as free as its members: a child's own rights should be protected, with outside help as a last resort."
+    },
+    "abuse_protection": {
+      "gate": false,
+      "name": "Domestic abuse protection",
+      "longName": "Domestic abuse protection",
+      "description": "Victims should be able to get protection, including removing the abuser from the home."
+    },
+    "education_choice": {
+      "gate": false,
+      "name": "Education choice",
+      "longName": "Education choice",
+      "description": "Parents should be able to choose the form of education, including at home, without needing an authority's approval."
+    },
+    "chosen_by_represented": {
+      "gate": false,
+      "name": "Chosen by the represented",
+      "longName": "Chosen by the represented",
+      "description": "The people whose interests are represented should choose the agent or trustee themselves."
+    },
+    "revocable": {
+      "gate": false,
+      "name": "Revocable",
+      "longName": "Revocable",
+      "description": "The people represented should be able to withdraw the authority or replace the agent or trustee."
+    },
+    "must_account": {
+      "gate": false,
+      "name": "Must account",
+      "longName": "Must account",
+      "description": "The agent or trustee should report to the people represented and account for what they did with their affairs and property."
+    },
+    "duty_of_loyalty": {
+      "gate": false,
+      "name": "Duty of loyalty",
+      "longName": "Duty of loyalty",
+      "description": "The agent or trustee should act in the interest of the people represented, avoid conflicts of interest and not profit at their expense."
+    }
+  },
+  "referendumKinds": {
+    "citizen_initiative": {
+      "name": "Citizen initiative",
+      "longName": "Citizen initiative referendums",
+      "description": "Citizens collect signatures to put their own proposal to a vote of all."
+    },
+    "veto_referendum": {
+      "name": "Veto referendum",
+      "longName": "Veto referendums",
+      "description": "Citizens collect signatures to put a decision already adopted by the council or parliament to a vote, which can overturn it."
+    },
+    "mandatory_referendum": {
+      "name": "Mandatory referendum",
+      "longName": "Mandatory referendums",
+      "description": "Certain decisions, such as constitutional changes, automatically go to a vote of all.",
+      "skipProperties": [
+        "reasonable_signatures",
+        "no_topic_restrictions"
+      ]
     }
   }
 }
