@@ -1803,7 +1803,7 @@
                   {
                     "type": "no_roadblocks",
                     "status": "partial",
-                    "explanation": "If the council's term ends before it decides on a petition, the law does not say the procedure continues before the next council, so the petition can lapse.",
+                    "explanation": "Two obstacles can stop a local referendum. If the council's term ends before it decides on a petition, the law does not say the procedure continues before the next council, so the petition can lapse. And the result can be contested in court for any breach of the law, even one that did not change the outcome, including errors by the authorities who organise the vote, such as the mayor not printing the information sheet on time. The mayor and one fifth of the councillors are themselves among those who may contest, so opponents in office can defeat a proposal by mishandling the procedure.",
                     "laws": [
                       "dcpa"
                     ],
@@ -1815,6 +1815,21 @@
                             "ref": "Article 28a (new)",
                             "fix": "If the term of office of the municipal council ends before it has decided on a petition submitted under Article 27(2), the procedure shall continue before the newly elected council, which shall decide on the petition within one month of its first session.",
                             "why": "A petition no longer lapses when the council's term ends."
+                          },
+                          {
+                            "ref": "Article 42",
+                            "text": [
+                              "(1) The legality of the results of a local referendum may be contested by the persons under Article 27, paragraphs 1, 2 and 3, or by the respective regional governor, within 7 days of the announcement of the results by the municipal electoral commission, before the respective administrative court, which shall rule within 14 days.",
+                              "(2) The decision of the administrative court may be appealed within 7 days before the Supreme Administrative Court, which shall rule within 14 days, and its decision is final."
+                            ],
+                            "fix": [
+                              "(1) The legality of the results of a local referendum may be contested by the persons under Article 27, paragraphs 1, 2 and 3, or by the respective regional governor, within 7 days of the announcement of the results by the municipal electoral commission, before the respective administrative court, which shall rule within 14 days.",
+                              "(2) The decision of the administrative court may be appealed within 7 days before the Supreme Administrative Court, which shall rule within 14 days, and its decision is final.",
+                              "(3) The court shall annul the results only where it finds a breach of the law that changed, or could have changed, the outcome of the vote. It shall reject, without detailed examination, a contest based on irregularities that are not of a nature or extent to have a material influence on the result.",
+                              "(4) An act or omission of the municipal council, the mayor, the municipal administration or a referendum commission in organising the referendum, including a failure to print or distribute the information sheet under Article 34(2) on time, shall not in itself be a ground for annulment.",
+                              "(5) Where the results are annulled, the referendum shall be repeated within two months, at the expense of the municipal budget, without a new proposal or petition. The one-year period under Article 41(4) shall not apply."
+                            ],
+                            "why": "A result can no longer be annulled for errors that did not affect the outcome, and the authorities' own failures cannot defeat the vote: an annulled referendum is held again. Follows Switzerland's Federal Act on Political Rights, Art. 79(2bis), which rejects appeals over irregularities that could not have materially influenced the result."
                           }
                         ]
                       }
@@ -2327,7 +2342,7 @@
                   {
                     "type": "no_roadblocks",
                     "status": "partial",
-                    "explanation": "If the council's term ends before it decides on a petition, the law does not say the procedure continues before the next council, so the petition can lapse.",
+                    "explanation": "Two obstacles can stop a local referendum. If the council's term ends before it decides on a petition, the law does not say the procedure continues before the next council, so the petition can lapse. And the result can be contested in court for any breach of the law, even one that did not change the outcome, including errors by the authorities who organise the vote, such as the mayor not printing the information sheet on time. The mayor and one fifth of the councillors are themselves among those who may contest, so opponents in office can defeat a proposal by mishandling the procedure.",
                     "laws": [
                       "dcpa"
                     ],
@@ -2339,6 +2354,21 @@
                             "ref": "Article 28a (new)",
                             "fix": "If the term of office of the municipal council ends before it has decided on a petition submitted under Article 27(2), the procedure shall continue before the newly elected council, which shall decide on the petition within one month of its first session.",
                             "why": "A petition no longer lapses when the council's term ends."
+                          },
+                          {
+                            "ref": "Article 42",
+                            "text": [
+                              "(1) The legality of the results of a local referendum may be contested by the persons under Article 27, paragraphs 1, 2 and 3, or by the respective regional governor, within 7 days of the announcement of the results by the municipal electoral commission, before the respective administrative court, which shall rule within 14 days.",
+                              "(2) The decision of the administrative court may be appealed within 7 days before the Supreme Administrative Court, which shall rule within 14 days, and its decision is final."
+                            ],
+                            "fix": [
+                              "(1) The legality of the results of a local referendum may be contested by the persons under Article 27, paragraphs 1, 2 and 3, or by the respective regional governor, within 7 days of the announcement of the results by the municipal electoral commission, before the respective administrative court, which shall rule within 14 days.",
+                              "(2) The decision of the administrative court may be appealed within 7 days before the Supreme Administrative Court, which shall rule within 14 days, and its decision is final.",
+                              "(3) The court shall annul the results only where it finds a breach of the law that changed, or could have changed, the outcome of the vote. It shall reject, without detailed examination, a contest based on irregularities that are not of a nature or extent to have a material influence on the result.",
+                              "(4) An act or omission of the municipal council, the mayor, the municipal administration or a referendum commission in organising the referendum, including a failure to print or distribute the information sheet under Article 34(2) on time, shall not in itself be a ground for annulment.",
+                              "(5) Where the results are annulled, the referendum shall be repeated within two months, at the expense of the municipal budget, without a new proposal or petition. The one-year period under Article 41(4) shall not apply."
+                            ],
+                            "why": "A result can no longer be annulled for errors that did not affect the outcome, and the authorities' own failures cannot defeat the vote: an annulled referendum is held again. Follows Switzerland's Federal Act on Political Rights, Art. 79(2bis), which rejects appeals over irregularities that could not have materially influenced the result."
                           }
                         ]
                       }
@@ -3009,7 +3039,7 @@
                   {
                     "type": "no_roadblocks",
                     "status": "partial",
-                    "explanation": "If the council's term ends before it decides on a petition, the law does not say the procedure continues before the next council, so the petition can lapse.",
+                    "explanation": "Two obstacles can stop a local referendum. If the council's term ends before it decides on a petition, the law does not say the procedure continues before the next council, so the petition can lapse. And the result can be contested in court for any breach of the law, even one that did not change the outcome, including errors by the authorities who organise the vote, such as the mayor not printing the information sheet on time. The mayor and one fifth of the councillors are themselves among those who may contest, so opponents in office can defeat a proposal by mishandling the procedure.",
                     "laws": [
                       "dcpa"
                     ],
@@ -3021,6 +3051,21 @@
                             "ref": "Article 28a (new)",
                             "fix": "If the term of office of the municipal council ends before it has decided on a petition submitted under Article 27(2), the procedure shall continue before the newly elected council, which shall decide on the petition within one month of its first session.",
                             "why": "A petition no longer lapses when the council's term ends."
+                          },
+                          {
+                            "ref": "Article 42",
+                            "text": [
+                              "(1) The legality of the results of a local referendum may be contested by the persons under Article 27, paragraphs 1, 2 and 3, or by the respective regional governor, within 7 days of the announcement of the results by the municipal electoral commission, before the respective administrative court, which shall rule within 14 days.",
+                              "(2) The decision of the administrative court may be appealed within 7 days before the Supreme Administrative Court, which shall rule within 14 days, and its decision is final."
+                            ],
+                            "fix": [
+                              "(1) The legality of the results of a local referendum may be contested by the persons under Article 27, paragraphs 1, 2 and 3, or by the respective regional governor, within 7 days of the announcement of the results by the municipal electoral commission, before the respective administrative court, which shall rule within 14 days.",
+                              "(2) The decision of the administrative court may be appealed within 7 days before the Supreme Administrative Court, which shall rule within 14 days, and its decision is final.",
+                              "(3) The court shall annul the results only where it finds a breach of the law that changed, or could have changed, the outcome of the vote. It shall reject, without detailed examination, a contest based on irregularities that are not of a nature or extent to have a material influence on the result.",
+                              "(4) An act or omission of the municipal council, the mayor, the municipal administration or a referendum commission in organising the referendum, including a failure to print or distribute the information sheet under Article 34(2) on time, shall not in itself be a ground for annulment.",
+                              "(5) Where the results are annulled, the referendum shall be repeated within two months, at the expense of the municipal budget, without a new proposal or petition. The one-year period under Article 41(4) shall not apply."
+                            ],
+                            "why": "A result can no longer be annulled for errors that did not affect the outcome, and the authorities' own failures cannot defeat the vote: an annulled referendum is held again. Follows Switzerland's Federal Act on Political Rights, Art. 79(2bis), which rejects appeals over irregularities that could not have materially influenced the result."
                           }
                         ]
                       }
