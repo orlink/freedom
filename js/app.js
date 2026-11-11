@@ -2,8 +2,8 @@ import { resolveJurisdiction, applyPopulation, applySettlementRoles, getLevel, s
 
 const NOMINATIM = 'https://nominatim.openstreetmap.org';
 const BRANCH_INFO = {
-  direct: { name: 'Direct', longName: 'Direct decision making', groupName: 'Direct decision-making mechanisms', desc: 'The people decide themselves: referendums and general assemblies.' },
-  representative: { name: 'Representative', longName: 'Representative bodies', groupName: 'Representative mechanisms', desc: 'Elected, individually accountable representatives decide.' },
+  direct: { name: 'Direct', longName: 'Direct decision making', groupName: 'Direct decision-making institutions', desc: 'The people decide themselves: referendums and general assemblies.' },
+  representative: { name: 'Representative', longName: 'Representative bodies', groupName: 'Representative institutions', desc: 'Elected, individually accountable representatives decide.' },
 };
 
 const state = { data: null, loc: null, path: [] }; // path: [levelId, branch, mechIndex, propIndex]
@@ -868,7 +868,7 @@ function render() {
         const shown = ms.map((m, i) => ({ m, i, tone: mechTone(scoreMechanism(m.scored || m, catalog)) })).filter(x => x.tone);
         const chips = shown.length ? shown.map(({ m, i, tone }) => chip({
           label: mechLabel(m, ms, catalog, levelId), tone, title: m.title || m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, b, i]),
-        })) : [chip({ label: 'None', tone: 'black', title: br?.note || 'No such mechanism at this level.' })];
+        })) : [chip({ label: 'None', tone: 'black', title: br?.note || 'No such institution at this level.' })];
         return el('fieldset', { class: 'mech-group', style: `--n: ${chips.length}` }, el('legend', {}, BRANCH_INFO[b].groupName), ...chips);
       };
       screen.push(el('div', { class: 'mech-groups' }, group('direct'), group('representative')));
@@ -880,7 +880,7 @@ function render() {
       const pdef = catalog.properties[p.type] || {};
       return chip({
         label: p.name || pdef.name || p.type, tone: p.disabled ? 'disabled' : (STATUS_TONE[p.status] || 'unknown'),
-        title: p.disabled ? 'Does not apply: the mechanism does not exist in law.' : [pdef.description, p.explanation].filter(Boolean).join('\n\n'),
+        title: p.disabled ? 'Does not apply: the institution does not exist in law.' : [pdef.description, p.explanation].filter(Boolean).join('\n\n'),
         onclick: p.disabled ? undefined : () => go(propPath(i)), disabled: p.disabled,
       });
     })));

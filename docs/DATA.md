@@ -5,17 +5,17 @@ All assessments live in `data/`. There is no database. Each country is one JSON 
 ## The model
 
 ```
-Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Mechanism ─▶ Property ─▶ Relevant laws  (─▶ articles, next step)
+Location ─▶ Level ─▶ Branch (direct | representative) ─▶ Institution ─▶ Property ─▶ Relevant laws  (─▶ articles, next step)
 ```
 
 * **Level**: a community of shared interest (`data/catalog.json` → `levels`). *Spheres* (individual, business, non-profit) apply everywhere. *Territorial* levels are named from the geocoded address.
 * `mapZoom` (optional): Nominatim reverse zoom per level for the map outline, when the defaults (country 3, state 5, county 8, municipality 10, settlements 12) pick the wrong boundary.
 * A **referendum** lists `kinds` instead of `properties`: `citizen_initiative`, `veto_referendum` and `mandatory_referendum` (catalog `referendumKinds`). Each kind has its own `properties` and appears on the Direct page as its own chip, beside the general assembly; the page always shows the five in `kindProperties` (exists, binding, no quorum, concrete proposals, reasonable petition requirements). A kind that does not exist only needs `exists: no`, and the other four appear disabled. A kind can skip properties that do not apply to it (catalog `referendumKinds.<kind>.skipProperties`): a mandatory referendum has no petition, so it shows no "reasonable petition requirements", and its topics are those the law sets, so it shows no "no topic restrictions". If any of the first three (exists, binding, no quorum) is `no`, the whole kind is black.
-* Every level, mechanism type and property type in the catalog has a short `name` (shown on its chip) and a `longName` (shown in the breadcrumb trail).
+* Every level, institution type and property type in the catalog has a short `name` (shown on its chip) and a `longName` (shown in the breadcrumb trail).
 * **Branch**: `direct` (the people decide) or `representative` (elected representatives decide).
-* **Mechanism**: a concrete way of deciding, such as `referendum`, `general_assembly`, `council`, `executive`, or `upper_council_seat` (the community's own member of the council one level up, used as a fallback when it has no body of its own).
-  Agenda initiatives (a petition the council only has to consider) are deliberately left out: they are not a decision-making mechanism, because no representative is accountable for the proposal.
-* **Property**: a condition the mechanism needs to give real self-government, such as `binding`, `no_quorum`, `reasonable_signatures`, `individual_vote`, or `local_districts`. Each has a `status` of `yes` (white), `partial` (light grey), `weak` (dark grey), `no` (black) or `unknown`.
+* **Institution** (data key `mechanisms`): a concrete way of deciding, such as `referendum`, `general_assembly`, `council`, `executive`, or `upper_council_seat` (the community's own member of the council one level up, used as a fallback when it has no body of its own).
+  Agenda initiatives (a petition the council only has to consider) are deliberately left out: they are not a decision-making institution, because no representative is accountable for the proposal.
+* **Property**: a condition the institution needs to give real self-government, such as `binding`, `no_quorum`, `reasonable_signatures`, `individual_vote`, or `local_districts`. Each has a `status` of `yes` (white), `partial` (light grey), `weak` (dark grey), `no` (black) or `unknown`.
 * **Relevant laws**: the leaves of the tree. Each property lists the laws (`laws`, ids into the file's `laws` map) that govern it. Specific articles are the next step and are being worked out separately, starting from the notes in `docs/research/`.
 * **Provisions** (optional): `provisions: [{ "law": "<law id>", "items": [{ "ref": "Article 9(6)", "text": "…" | ["…", "…"] }] }]` quotes the legal text (in English translation) behind a property. When present, the requirement page shows it in place of the law chips; an item with only `ref` is a heading such as a chapter.
 * **Fix** (optional, per provision item): `fix: "…" | ["…", …]` is a proposed amendment of that item that would meet the requirement ("(repealed)" to delete it). When any item has one, and the requirement is not met or partly met, the requirement page shows a Fix button that displays the amendments as tracked changes. Add `why` (one line) to explain each amendment. An item with `fix` but no `text` is a new article (e.g. `"ref": "Article 10a (new)"`): the page shows the act as lacking it until Fix is pressed. Readers can approve an amendment or suggest their own wording; server.py keeps these in data/state/fixes.json.
@@ -71,11 +71,11 @@ Status: `sample` is placeholder data, `draft` lists the relevant laws with provi
 
 ## Scoring
 
-Scores are in [0, 1]. The page uses four colours: black for 0 (none), dark grey below 0.5 (weak), light grey from 0.5 up to 1 (good), white for 1 (full). A property marked yes is white, partly is light grey, no is black. Levels, branches and mechanisms with no data or that do not apply are hidden.
+Scores are in [0, 1]. The page uses four colours: black for 0 (none), dark grey below 0.5 (weak), light grey from 0.5 up to 1 (good), white for 1 (full). A property marked yes is white, partly is light grey, no is black. Levels, branches and institutions with no data or that do not apply are hidden.
 
 * **Property**: yes = 1, partial = 0.5, weak = 0.25, no = 0, unknown is ignored.
-* **Mechanism**: the average of its known properties. *Gate* properties (`exists`, `binding`, `binding_powers`, plus any listed in the mechanism's `gates`) zero the mechanism when `no` and halve it when `partial`. *Optional* properties (catalog `optional: true`, e.g. `recall`) are welcome but not required: they are left out of the average unless fully met. The mechanism's `weight` scales the result: `upper_council_seat` counts at 0.4, because a seat in someone else's council is a weak substitute for the community's own body, and it is void if that seat is not elected by this community alone (for example, a council elected from one municipality-wide list).
-* **Branch**: the best mechanism counts. One working path is enough.
+* **Institution**: the average of its known properties. *Gate* properties (`exists`, `binding`, `binding_powers`, plus any listed in the institution's `gates`) zero the institution when `no` and halve it when `partial`. *Optional* properties (catalog `optional: true`, e.g. `recall`) are welcome but not required: they are left out of the average unless fully met. The institution's `weight` scales the result: `upper_council_seat` counts at 0.4, because a seat in someone else's council is a weak substitute for the community's own body, and it is void if that seat is not elected by this community alone (for example, a council elected from one municipality-wide list).
+* **Branch**: the best institution counts. One working path is enough.
 * **Level**: the better of direct and representative.
 
 These rules are in `js/model.js` and are deliberately simple so they can be debated and changed.

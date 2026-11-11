@@ -2,7 +2,7 @@
 
 An interactive map that shows, for any location, how far the people there can govern their own shared interests, at every level from the individual to the supranational union.
 
-> People are free if they have the mechanisms and means to make and carry out decisions about their individual or shared interests without interference from outsiders. They decide either **directly** or through **representatives**.
+> People are free if they have the institutions and means to make and carry out decisions about their individual or shared interests without interference from outsiders. They decide either **directly** or through **representatives**.
 
 Pick a place (search an address or click on the map) and you get a row of rectangles, one per level:
 
@@ -12,7 +12,7 @@ Each button is white (full), light grey (good), dark grey (weak) or black (no ab
 
 1. **Level** → e.g. *Neighbourhood · Lozenets*
 2. **Direct | Representative**
-3. **Mechanisms** → e.g. referendum, general assembly, own council, own member of the municipal council
+3. **Institutions** → e.g. referendum, general assembly, own council, own member of the municipal council
 4. **Required properties** → e.g. legally binding, no participation quorum, reasonable signature requirements, vote for individual candidates, elected only by this community
 5. **Relevant laws** → the laws that enable or prevent it, with links (specific articles come next)
 
@@ -56,7 +56,7 @@ Maps use [Leaflet](https://leafletjs.com/) (vendored in `vendor/leaflet`) with O
 | --- | --- |
 | `index.html`, `css/`, `js/app.js` | The page, map and drill-down UI |
 | `js/model.js` | Pure logic: matching an address to a jurisdiction, scoring, naming levels |
-| `data/catalog.json` | Shared vocabulary: levels, mechanism types, property types |
+| `data/catalog.json` | Shared vocabulary: levels, institution types (`mechanisms`), property types |
 | `data/index.json` | List of jurisdiction files and supranational unions |
 | `data/jurisdictions/*.json` | One file per country, with optional overrides for regions and cities |
 | `docs/DATA.md` | The data schema, scoring rules and how to add a country |

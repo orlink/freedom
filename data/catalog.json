@@ -259,7 +259,7 @@
       "gate": true,
       "name": "Exists in law",
       "longName": "Exists in law",
-      "description": "The law should provide this mechanism at this level."
+      "description": "The law should provide this institution at this level."
     },
     "binding": {
       "gate": true,
@@ -363,7 +363,7 @@
       "gate": false,
       "name": "No roadblocks",
       "longName": "No roadblocks",
-      "description": "There should be no smaller procedural obstacles that can stop or stall the mechanism, such as a petition lapsing when parliament or the council changes."
+      "description": "There should be no smaller procedural obstacles that can stop or stall the institution, such as a petition lapsing when parliament or the council changes."
     },
     "home_inviolable": {
       "gate": false,

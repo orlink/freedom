@@ -6,17 +6,17 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
 
 ## 1. Procedure
 
-1. **Skeleton.** Copy the level and mechanism structure from `bg.json` or `ie.json`. Set `match`, `addressKeys`
+1. **Skeleton.** Copy the level and institution structure from `bg.json` or `ie.json`. Set `match`, `addressKeys`
    (which OSM address field names each level: check a few Nominatim reverse results across the country), `mapZoom`
    if the map outline picks the wrong boundary, `hiddenLevels`, `hiddenIn`, and `areas` for regions whose law differs
    (capital city, special cities, a region with an elected mayor, places without a level, e.g. County Dublin has no
    municipal districts and its county level is the actual council: Fingal, DLR, South Dublin, Dublin City).
 2. **Every level, every institution.** Fill all territorial levels (home → union) and all spheres (individual,
-   business, non-economic). Every level gets the same mechanisms as Bulgaria and Ireland:
+   business, non-economic). Every level gets the same institutions as Bulgaria and Ireland:
    * Direct: referendum (three kinds: citizen initiative, veto, mandatory) and general assembly.
    * Representative: council, executive, and where relevant the level's own members of the higher council
      (`upper_council_seat`).
-   * Home: the household mechanism with the eight properties (home inviolable, family privacy, home property,
+   * Home: the household institution with the eight properties (home inviolable, family privacy, home property,
      parental rights, joint decisions, child rights, abuse protection, education choice).
    * Individual: personal autonomy. Business: Free enterprise and Freedom of contract (personal_autonomy with
      `label`), partners / shareholders / cooperative general meetings, Board / managers, Agents, Trustees.
@@ -47,7 +47,7 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
    owner gives them; otherwise the level defaults apply.
 7. **Validate and test.** `node tools/validate.mjs` (schema and scores), then load the site (Playwright with
    Nominatim mocked in the sandbox; the in-app browser on the Mac for the real network) and click through levels,
-   mechanisms, requirement pages and the Fix button. Check the map outline for each level at a few points, including
+   institutions, requirement pages and the Fix button. Check the map outline for each level at a few points, including
    the capital and a place where the city and its region share a name; add `mapZoom` or area overrides where it is
    wrong (Sofia, Zürich and County Dublin needed them).
 8. **Independent review.** Before upload, a separate agent reviews the diff against the fetched law texts, the
@@ -59,11 +59,11 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
 
 **Colours and scoring**
 * Requirement: Met (yes) / Partly met (partial or weak) / Not met (no) / Does not apply.
-* Mechanism: below 1 = Flawed; black if a gate is `no`. Level and branch take their best mechanism.
+* Institution: below 1 = Flawed; black if a gate is `no`. Level and branch take their best institution.
 * The council is the legislature (owner 2026-11-10): if every council of a level fails Individual accountability,
   the whole Representative branch is capped at dark grey (Mostly not free), however good the mayor is (Bulgaria's
   municipalities).
-* Referendum gates: exists, binding, no quorum. A `weak` gate caps the mechanism at dark grey.
+* Referendum gates: exists, binding, no quorum. A `weak` gate caps the institution at dark grey.
 * Council and executive gates: exists, Powers (`binding_powers`); Individual accountability is a cap (no/weak →
   at most dark grey).
 * Recall is optional (`optional: true`): counted only when met. It does not apply to bodies elected in districts of
@@ -75,7 +75,7 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
 * No quorum of any kind (turnout or approval): a majority of votes cast decides.
 * Citizen initiative and veto: reasonable signatures, concrete proposals (a worded text voters approve as is), no
   topic restrictions, no roadblocks (fixed deadlines, no discretion to delay).
-* Agenda initiatives (petitions that only ask parliament to consider something) are not decision-making mechanisms:
+* Agenda initiatives (petitions that only ask parliament to consider something) are not decision-making institutions:
   keep them off the map.
 
 **General assemblies**: binding, no attendance quorum, no population ceiling (Bulgaria's 10,000 limit is a flaw);
@@ -98,7 +98,7 @@ a `populationRule` applies a legal ceiling to the actual place.
   not representation: at most partly met. A legal threshold such as 4%, and the minority rule it produces, is also
   partly met. Explanations must say this, not "voters can't pick the people".
 * Executive chip label (owner 2026-11-10): "Mayor" where a directly elected mayor heads the executive (or the
-  fix proposes one where none exists), "Executive" where it is appointed or collegial; set with the mechanism `label`.
+  fix proposes one where none exists), "Executive" where it is appointed or collegial; set with the institution `label`.
 * Executive/Mayor: a directly elected mayor, or an executive appointed by the elected council (Individual
   accountability then runs through the council, as in the American council-manager system). Partly met where the
   council can only accept or refuse a national body's candidate, or cannot dismiss by majority (Ireland). Not met
@@ -129,8 +129,8 @@ within days (Ireland: 3 days = met; Bulgaria: a month = partly met); poverty or 
 
 ## 4. Wording
 
-* Chip names come from the catalog; a mechanism `label` overrides it when two mechanisms share a type.
-* Breadcrumb names are the chip names (owner 2026-11-10): catalog `longName` equals `name` for mechanisms and
+* Chip names come from the catalog; a institution `label` overrides it when two institutions share a type.
+* Breadcrumb names are the chip names (owner 2026-11-10): catalog `longName` equals `name` for institutions and
   requirements. The only additions are "interests" after a level and the plural of a referendum kind ("Veto
   referendums"). A country's own term (e.g. "Constitutional referendum") may go in an explanation, not in the
   breadcrumb.
