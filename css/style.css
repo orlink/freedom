@@ -111,11 +111,8 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .trail .arrow[aria-expanded="true"]::before { transform: translateY(3px) rotate(-135deg); }
 .trail .pill .arrow { padding: 4px 13px 4px 11px; border-left: 1px solid var(--line); min-width: 40px; }
 .trail .pill.open { border-color: var(--coral); }
-/* Each pill shows the colour of its chip one level up as a small chip before its name, where the menu's rows have theirs. */
-.trail .pill .crumb, .trail .here .pill .here-name { display: inline-flex; align-items: center; gap: 10px; }
-.trail .pill .crumb span { text-decoration: underline; text-decoration-color: rgba(168, 50, 26, .35); text-underline-offset: 3px; }
-.trail .pill .crumb:hover span { text-decoration-color: currentColor; }
-.trail .pill .crumb { text-decoration: none; }
+/* The title shows the colour of its chip one level up as a small chip before its name, where the menu's row has it. */
+.trail .here .pill .here-name { display: inline-flex; align-items: center; gap: 10px; }
 .trail .pill.open .arrow { background: var(--coral-soft); border-left-color: var(--coral); }
 .trail .here .pill { max-width: 100%; border-radius: 30px; vertical-align: top; }
 .trail .here .here-name { display: block; }
