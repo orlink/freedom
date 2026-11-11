@@ -25,9 +25,9 @@ only needed for the chat:
 Every conversation is saved to data/state/comments.json, so the comments and suggestions
 readers make there can be read later even when the chat is not set up.
 """
-import argparse, json, os, re, threading, time, uuid
+import argparse, json, os, posixpath, re, threading, time, uuid
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse, parse_qs, unquote
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 STATE_FILE = os.path.join(ROOT, "data", "state", "interests.json")
@@ -49,6 +49,29 @@ CHAT_MAX_CONTEXT = 60_000
 CHAT_MODEL = "claude-opus-5-5"
 CHAT_RATE = (30, 600)  # at most 30 chat turns per 10 minutes from one address
 _CHAT_HITS = {}
+
+
+# What the web server may hand out as files. Everything else in the folder is private.
+PUBLIC_FILES = {"index.html", "what-is-freedom.html", "what-is-freedom-plain.html", "docs/data.md"}
+PUBLIC_DIRS = {"css", "js", "img", "vendor"}
+PUBLIC_EXT = {".html", ".css", ".js", ".json", ".svg", ".png", ".jpg", ".gif", ".webp", ".ico", ".woff2"}
+
+
+def is_public(rel):
+    """Is this path (relative to the site folder, with forward slashes) a file visitors may download?"""
+    rel = rel.lower()
+    parts = rel.split("/")
+    for part in parts:
+        # No dot-files, no Windows short names (~), streams (:) or names Windows would quietly rewrite.
+        if not part or part.startswith(".") or part[-1] in ". " or any(c in part for c in '~:\\*?"<>|'):
+            return False
+    if rel in PUBLIC_FILES:
+        return True
+    if os.path.splitext(parts[-1])[1] not in PUBLIC_EXT:
+        return False
+    if parts[0] == "data":  # the site's data only: data/*.json and data/jurisdictions/*.json, never data/state
+        return rel.endswith(".json") and (len(parts) == 2 or (len(parts) == 3 and parts[1] == "jurisdictions"))
+    return len(parts) >= 2 and parts[0] in PUBLIC_DIRS
 
 
 def load_env(path=os.path.join(ROOT, ".env")):
@@ -228,13 +251,31 @@ class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=ROOT, **kw)
 
-    # Never serve the server's own state or git metadata as static files.
+    # Static files are served from an allow-list (PUBLIC_*), never by excluding what is private: the key file
+    # (.env), the saved state (data/state), the server's own code and the deploy tools are simply not on it.
+    # The address is checked twice: as asked for (decoded), and as the file it really resolves to on disk, so
+    # that other spellings of a private file cannot slip through (Windows: "ENV~1" is .env, "Data/State" is
+    # data/state, a trailing dot or space is ignored; anywhere: "%2eenv", symbolic links).
     def translate_path(self, path):
-        p = urlparse(path).path
-        # Never serve state, git metadata, the .env file with the API key, the venv, or any other dot-file.
-        if p.startswith("/data/state") or any(part.startswith(".") for part in p.split("/") if part):
-            return os.path.join(ROOT, "__forbidden__")
-        return super().translate_path(path)
+        forbidden = os.path.join(ROOT, "__forbidden__")
+        p = posixpath.normpath(unquote(urlparse(path).path)).strip("/")
+        if p in ("", "."):
+            p = "index.html"
+        if not is_public(p):
+            return forbidden
+        root = os.path.realpath(ROOT)
+        real = os.path.realpath(os.path.join(root, *p.split("/")))
+        try:
+            rel = os.path.relpath(real, root)
+        except ValueError:  # another drive
+            return forbidden
+        if not is_public(rel.replace(os.sep, "/")) or not os.path.isfile(real):
+            return forbidden
+        return real
+
+    def list_directory(self, path):
+        self.send_error(404, "File not found")
+        return None
 
     def send_json(self, code, obj):
         body = json.dumps(obj, ensure_ascii=False).encode("utf-8")

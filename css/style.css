@@ -259,3 +259,34 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .alts { text-align: center; font-size: 13px; color: var(--muted); margin: -4px 0 10px; }
 .alts:empty { display: none; }
 .alts button { background: none; border: 0; padding: 0 2px; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; font-size: 13px; }
+
+/* ---- Start panel: what the site is and how to begin, shown until a place is chosen ---- */
+.start { max-width: 800px; margin: 6px auto 20px; text-align: center; }
+.start h2 { margin: 0 0 10px; font-size: 34px; line-height: 1.15; font-weight: 800; letter-spacing: -0.02em; }
+.start .lead { margin: 0 auto 18px; max-width: 720px; font-size: 17px; line-height: 1.5; color: var(--muted); }
+.start-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.start-actions .search { flex: 1 1 380px; max-width: 520px; }
+.start-actions .search input { padding: 13px 20px; font-size: 16px; box-shadow: var(--shadow); }
+.start-actions .search button { padding: 13px 24px; }
+.start .locate { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 999px; border: 1.5px solid var(--coral); background: var(--surface); color: var(--coral-ink); font-weight: 700; }
+.start .locate[hidden] { display: none; }
+.start .locate:hover { background: var(--coral-soft); }
+.start .locate:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+.start .locate:disabled { opacity: .6; cursor: progress; }
+.locate-note { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+.locate-note:empty { display: none; }
+.start-try { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 8px; margin-top: 14px; color: var(--muted); font-size: 14px; }
+.start-try .examples { margin-top: 0; justify-content: center; }
+.sample { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-top: 16px; }
+.sample .tb { width: 132px; height: 38px; font-size: 13px; border-radius: 10px; box-shadow: none; }
+.sample a { margin-left: 10px; font-weight: 600; font-size: 14px; }
+.place:empty { display: none; }
+/* Before a place is chosen: a shorter map, no header search, no recent places. After: no start panel. */
+html:not(.has-place) #map { height: 30vh; min-height: 220px; }
+html:not(.has-place) .top .search, html:not(.has-place) #places { display: none; }
+html.has-place .start, html.has-place .sample { display: none; }
+@media (max-width: 600px) {
+  .start h2 { font-size: 26px; } .start .lead { font-size: 15px; }
+  .start-actions .search { flex-basis: 100%; }
+  .sample .tb { width: calc(50% - 4px); } .sample a { flex-basis: 100%; margin: 4px 0 0; text-align: center; }
+}
