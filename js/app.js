@@ -933,17 +933,20 @@ function render() {
     }).filter(Boolean);
     let box = null;
     if (open) {
-      // The menu hangs from the pill whose chevron opened it and reads as one box with it: the pill is the current
-      // choice, the step's other siblings follow under it, each with a swatch in the colour of the page it leads to.
+      // The menu lists the step's siblings in their usual order and opens over the pill whose chevron opened it, with
+      // the current choice lying exactly on the pill, so the others appear above and below it (as an iOS or macOS
+      // menu does). Each row has a swatch in the colour of the page it leads to; the current one also has a tick.
       const { caption, options } = rowFor(open);
-      const others = options.filter(o => !o.current);
-      const rowsOf = others.flatMap((o, i) => [
-        i && o.group !== others[i - 1].group ? el('span', { class: 'gap', 'aria-hidden': 'true' }) : null,
+      const close = () => drawTrail(null, open);
+      const rowsOf = options.flatMap((o, i) => [
+        i && o.group !== options[i - 1].group ? el('span', { class: 'gap', 'aria-hidden': 'true' }) : null,
         el('button', {
-          type: 'button', class: `mini${o.na ? ' na' : ''}`, disabled: o.disabled,
+          type: 'button', class: `mini${o.na ? ' na' : ''}${o.current ? ' cur' : ''}`, 'aria-current': o.current ? 'true' : null, disabled: o.disabled,
           title: o.title || (o.disabled ? `${o.label}: does not apply` : [o.label, o.word].filter(Boolean).join(': ')),
-          onclick: o.disabled ? null : () => go(o.path),
-        }, el('span', {}, o.label), el('i', { class: `sw ${o.na ? 'na' : `t-${o.tone}`}`, 'aria-hidden': 'true' })),
+          onclick: o.disabled ? null : o.current ? close : () => go(o.path),
+        }, el('span', { class: 'label' }, o.current ? steps.find(s => s.kind === open).name : o.label),
+          o.current ? el('i', { class: 'tick', 'aria-hidden': 'true' }) : null,
+          el('i', { class: `sw ${o.na ? 'na' : `t-${o.tone}`}`, 'aria-hidden': 'true' })),
       ]).filter(Boolean);
       box = el('div', { class: `switch${steps[last].kind === open ? ' big' : ''}`, id: 'trail-switch', role: 'group', 'aria-label': caption,
         onkeydown: e => {
@@ -961,27 +964,24 @@ function render() {
     trail.replaceChildren(...nodes);
     trail.onkeydown = open ? e => { if (e.key === 'Escape') drawTrail(null, open); } : null;
     if (box) {
-      // Flush with its pill: same left edge, at least as wide, its top border on the pill's bottom border. Kept inside
-      // the window; a corner that sticks out past the pill is rounded.
+      // Over its pill: same left edge, at least as wide, the current row exactly on the pill. Kept inside the window.
       trailPlace = () => {
-        const pill = trail.querySelector('.pill.open');
+        const pill = trail.querySelector('.pill.open'), cur = box.querySelector('.mini.cur');
         if (!pill) return;
         const t = trail.getBoundingClientRect(), p = pill.getBoundingClientRect(), vw = document.documentElement.clientWidth;
         box.style.minWidth = `${Math.min(p.width, vw - 16)}px`;
+        if (cur) cur.style.minHeight = `${p.height - 2}px`;
         const w = box.offsetWidth;
-        const left = Math.max(8, Math.min(vw - w - 8, p.left));
-        box.style.left = `${left - t.left}px`;
-        box.style.top = `${p.bottom - t.top - 1}px`;
-        box.style.borderTopLeftRadius = left < p.left - 1 ? '' : '0';
-        box.style.borderTopRightRadius = left + w > p.right + 1 ? '' : '0';
+        box.style.left = `${Math.max(8, Math.min(vw - w - 8, p.left)) - t.left}px`;
+        box.style.top = `${p.top - t.top - (cur ? cur.offsetTop : -p.height)}px`;
       };
       trailPlace();
       trailClose = () => drawTrail(null);
-      // A menu that would run off the bottom of the window brings itself into view.
+      // A menu that would run past the top or bottom of the window brings itself into view.
       if (focus) box.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     }
-    // Keyboard: opening moves to the first item in the menu, closing returns to the chevron.
-    if (open && focus) box.querySelector('.mini:not(:disabled)')?.focus({ preventScroll: true });
+    // Keyboard: opening moves to the current item in the menu, closing returns to the chevron.
+    if (open && focus) (box.querySelector('.mini.cur') || box.querySelector('.mini:not(:disabled)'))?.focus({ preventScroll: true });
     else if (focus) trail.querySelector(`.arrow[data-kind="${focus}"]`)?.focus({ preventScroll: true });
   };
   drawTrail(null);
