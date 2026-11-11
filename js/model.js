@@ -260,3 +260,58 @@ export function applyPopulation(jurisdiction, settlement) {
   }
   return { ...jurisdiction, levels };
 }
+
+// ---------- the place verdict ----------
+// How each level reads in the one-sentence answer above the level chips: where you are free ("at home") and what
+// others decide for ("your home"). Levels missing here are left out of the sentence.
+const VERDICT_WORDS = {
+  home: ['at home', 'your home'],
+  entrance: ['in your building section', 'your building section'],
+  building: ['in your apartment building', 'your apartment building'],
+  neighbourhood: ['in your neighbourhood', 'your neighbourhood'],
+  village: ['in your village', 'your village'],
+  town: ['in your town', 'your town'],
+  municipality: ['in your municipality', 'your municipality'],
+  county: ['in your county', 'your county'],
+  state: ['in your state', 'your state'],
+  country: ['in your country', 'your country'],
+  individual: ['in your personal life', 'your personal life'],
+  business: ['in your business', 'your business'],
+  nonprofit: ['in your associations', 'your associations'],
+};
+
+/** "a, b and c" */
+export function joinList(items) {
+  return items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
+}
+
+/** Drop a repeated lead-in from a run of phrases: "in your town", "in your county" → "in your town", "county". */
+function contract(phrases) {
+  let lead = null;
+  return phrases.map(p => {
+    const m = p.match(/^((?:in )?your )(.*)$/);
+    if (!m) { lead = null; return p; }
+    if (m[1] === lead) return m[2];
+    lead = m[1];
+    return p;
+  });
+}
+
+/**
+ * One sentence that answers how free a person living here is, level by level:
+ * "In Lozenets you are free at home and in your business, but others decide for your neighbourhood, municipality and county."
+ * `levels` = [{ id, kind ('territorial' | 'sphere'), free (true for Free and Mostly free) }] in catalog order;
+ * `place` = the place name to start with; `names` = optional wording overrides per level id ({ state: ['in your canton', 'your canton'] }).
+ * Territorial levels come first, from the home up, then the individual, economic and non-economic spheres.
+ */
+export function placeVerdict(levels, place, names = {}) {
+  const words = id => names[id] || VERDICT_WORDS[id];
+  const ordered = [...levels.filter(x => x.kind === 'territorial'), ...levels.filter(x => x.kind !== 'territorial')].filter(x => words(x.id));
+  const free = contract(ordered.filter(x => x.free).map(x => words(x.id)[0]));
+  const notFree = contract(ordered.filter(x => !x.free).map(x => words(x.id)[1]));
+  const where = place ? `In ${place} ` : '';
+  if (!free.length && !notFree.length) return '';
+  if (!notFree.length) return `${where}you are free ${joinList(free)}: at every level the map covers.`;
+  if (!free.length) return `${where}others decide for ${joinList(notFree)}.`;
+  return `${where}you are free ${joinList(free)}, but others decide for ${joinList(notFree)}.`;
+}

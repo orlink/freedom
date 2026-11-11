@@ -290,3 +290,13 @@ html.has-place .start, html.has-place .sample { display: none; }
   .start-actions .search { flex-basis: 100%; }
   .sample .tb { width: calc(50% - 4px); } .sample a { flex-basis: 100%; margin: 4px 0 0; text-align: center; }
 }
+
+/* A short message from the server (e.g. a limit reached), shown for a few seconds at the bottom of the screen. */
+.notice { position: fixed; left: 50%; bottom: 20px; z-index: 2000; max-width: min(520px, calc(100vw - 32px)); transform: translate(-50%, 16px);
+  padding: 10px 16px; border-radius: 12px; background: var(--text); color: #fff; box-shadow: var(--shadow); font-size: 14px;
+  opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+.notice.on { opacity: 1; transform: translate(-50%, 0); }
+
+/* The answer first: one sentence above the level chips. */
+.place-verdict { width: 100%; margin: 0 0 6px; padding: 0 8px; text-align: left; font-size: 16px; line-height: 1.5; font-weight: 400; color: var(--text); }
+@media (max-width: 600px) { .place-verdict { font-size: 15px; padding: 0 4px; } }
