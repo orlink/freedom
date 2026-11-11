@@ -728,6 +728,8 @@ function render() {
     const lvl = loc.places[l.id].absent ? undefined : getLevel(j, l.id);
     return { l, lvl, tone: tone(scoreLevel(lvl, catalog)) };
   }).filter(x => x.tone);
+  // A union chip carries the union's own name where the country is a member ("European Union").
+  const levelLabel = l => (l.id === 'union' && loc.places.union?.name) || l.name;
   const cur = levels.find(x => x.l.id === levelId);
   const branch = cur && ['direct', 'representative'].includes(branchId) ? cur.lvl[branchId] : undefined;
   const kindDefs = catalog.referendumKinds || {};
@@ -745,7 +747,7 @@ function render() {
   // Trail: where you are in the tree; each step is clickable.
   // Trail uses each chip's long name.
   const steps = [['Common interest levels', []]];
-  if (cur) steps.push([cur.l.name, [levelId]]);
+  if (cur) steps.push([levelLabel(cur.l), [levelId]]);
   if (cur && branchId && BRANCH_INFO[branchId] && !cur.l.informal) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
   if (mech) steps.push([mechLongName(mech, mechs, catalog, levelId), [levelId, branchId, mechIdx]]);
   if (prop && !single) steps.push([catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name || prop.name, propPath(propIdx)]);
@@ -757,7 +759,7 @@ function render() {
   const screen = [];
   if (!cur) {
     // Screen 1: levels of shared interest. Geographical, from home to union; then non-geographical.
-    const levelChip = ({ l, tone }) => chip({ label: l.name, tone, title: [l.name, loc.places[l.id].name].filter(Boolean).join(': '), onclick: () => go([l.id]) });
+    const levelChip = ({ l, tone }) => chip({ label: levelLabel(l), tone, title: [...new Set([levelLabel(l), loc.places[l.id].name].filter(Boolean))].join(': '), onclick: () => go([l.id]) });
     setLegend('levels');
     screen.push(el('h2', { class: 'group-title' }, 'Common interest levels'));
     screen.push(rowOf(levels.filter(x => x.l.kind === 'territorial').map(levelChip)));
