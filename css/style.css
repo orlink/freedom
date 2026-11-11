@@ -300,3 +300,13 @@ html.has-place .start, html.has-place .sample { display: none; }
 /* The answer first: one sentence above the level chips. */
 .place-verdict { width: 100%; margin: 0 0 6px; padding: 0 8px; text-align: center; font-size: 16px; line-height: 1.5; font-weight: 400; color: var(--text); }
 @media (max-width: 600px) { .place-verdict { font-size: 15px; padding: 0 4px; } }
+
+/* Level screen: direct and representative mechanisms side by side in one row, each group labelled on its border.
+   A group is as wide as its chips (--n) when there is room; otherwise both shrink and their chips wrap inside them. */
+.mech-groups { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 16px; width: 100%; }
+.tree-row.interests + .mech-groups { margin-top: 14px; padding-top: 22px; border-top: 1px dashed #dcbfb8; }
+.mech-group { flex: var(--n) 1 0; min-width: calc(var(--btn-w) + 28px); max-width: calc(var(--n) * (var(--btn-w) + 8px) + 20px);
+  display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-start; gap: 8px;
+  margin: 0; padding: 14px 12px 12px; border: 1.5px solid #d9b8b0; border-radius: 16px; }
+.mech-group legend { margin: 0 auto; padding: 0 8px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--coral-ink); }
+@media (max-width: 600px) { .mech-group { padding: 12px 6px 8px; } .mech-group .tb { width: calc(50% - 4px); } }
