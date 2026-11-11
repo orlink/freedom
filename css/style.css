@@ -111,6 +111,14 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .trail .arrow[aria-expanded="true"]::before { transform: translateY(3px) rotate(-135deg); }
 .trail .pill .arrow { padding: 4px 13px 4px 11px; border-left: 1px solid var(--line); min-width: 40px; }
 .trail .pill.open { border-color: var(--coral); }
+/* Each pill's border is in the colour of its chip one level up (the level's, the institution's, the requirement's). */
+.trail .pill[class*=" c-"] { border-width: 2.5px; }
+.trail .pill.c-white { border-color: var(--full); }
+.trail .pill.c-lightgrey { border-color: var(--good); }
+.trail .pill.c-darkgrey { border-color: var(--weak); }
+.trail .pill.c-black { border-color: var(--none); }
+.trail .pill.c-unknown, .trail .pill.c-disabled { border-style: dashed; border-color: var(--muted); }
+:root:not([data-scale="teal"]) .trail .pill.c-white { border-color: #c9b3ad; }
 .trail .pill.open .arrow { background: var(--coral-soft); border-left-color: var(--coral); }
 .trail .here .pill { max-width: 100%; border-radius: 30px; vertical-align: top; }
 .trail .here .here-name { display: block; }
@@ -121,19 +129,23 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .trail .arrow:hover { background: var(--coral-soft); }
 .trail .crumb:focus-visible, .trail .arrow:focus-visible { outline: 3px solid var(--coral); outline-offset: -3px; }
 /* The menu of siblings opens over its pill, in the siblings' usual order, with the current choice lying exactly on the
-   pill (as an iOS or macOS menu does). Each row is in the colour of the page it leads to. */
+   pill (as an iOS or macOS menu does). Each row has a small chip in the colour of the page it leads to. */
 .trail { position: relative; }
 .switch { position: absolute; z-index: 1050; top: 100%; left: 0; scroll-margin: 90px 0 14px; display: flex; flex-direction: column; gap: 2px; width: max-content; max-width: calc(100vw - 16px);
   max-height: min(80vh, 640px); overflow-y: auto; background: var(--surface); border: 1px solid var(--coral); border-radius: 17px;
   box-shadow: 0 2px 6px rgba(46, 21, 24, .10), 0 16px 40px rgba(46, 21, 24, .26); }
-.switch .mini { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 36px; padding: 6px 13px 6px 14px; border: 0; font-size: 16px; font-weight: 600; line-height: 1.2; text-align: left; cursor: pointer; }
+.switch .mini { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 36px; padding: 6px 13px 6px 14px; border: 0; border-radius: 12px; background: transparent; color: var(--text); font-size: 16px; font-weight: 600; line-height: 1.2; text-align: left; cursor: pointer; }
 .switch .mini .label { flex: 1; }
-.switch .mini:not(:disabled):hover { filter: brightness(1.12); }
-.switch .mini:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--surface), inset 0 0 0 4px var(--text); }
-.switch .mini.na, .switch .mini.t-unknown, .switch .mini.t-disabled { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line); opacity: 1; }
-.switch .mini.t-unknown { color: var(--text); box-shadow: none; outline: 2px dashed var(--muted); outline-offset: -4px; }
-:root[data-scale="grey"] .switch .mini.t-white, :root[data-scale="red"] .switch .mini.t-white { box-shadow: inset 0 0 0 1px var(--line); }
-.switch .mini:disabled { cursor: not-allowed; }
+.switch .mini:not(:disabled):hover { background: var(--coral-soft); }
+.switch .mini.cur { background: var(--bg); }
+.switch .mini:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--text); }
+/* The row's chip: a small swatch in the colour of the page the row leads to. */
+.switch .sw { flex: none; width: 26px; height: 16px; border-radius: 5px; border: 1.5px solid transparent; }
+.switch .big .sw, .switch.big .sw { width: 30px; height: 19px; border-radius: 6px; }
+.switch .sw.na, .switch .sw.t-disabled { background: transparent; border: 1.5px dashed var(--muted); }
+.switch .sw.t-unknown { background: transparent; border: 1.5px dashed var(--text); }
+:root:not([data-scale="teal"]) .switch .sw.t-white { border-color: #c9b3ad; }
+.switch .mini:disabled { cursor: not-allowed; color: var(--muted); }
 .switch .gap { height: 5px; }
 .switch .tick { flex: none; width: 7px; height: 12px; margin: 0 5px 3px 6px; border-right: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; transform: rotate(45deg); }
 /* Under the title, whose name is larger; the current row keeps the title's own size. */

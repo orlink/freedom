@@ -842,9 +842,10 @@ function render() {
   // siblings (the other levels, institutions or requirements) and switches sideways, keeping the rest of the path.
   // Trail uses each chip's long name.
   const steps = [{ name: 'Common interest levels', path: [] }];
-  if (cur) steps.push({ kind: 'level', name: levelLabel(cur.l), path: [levelId] });
-  if (mech) steps.push({ kind: 'mech', name: mechLongName(mech, mechs, catalog, levelId), path: [levelId, branchId, mechIdx] });
-  if (prop && !single) steps.push({ kind: 'prop', name: catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name || prop.name, path: propPath(propIdx) });
+  // Each step carries the colour of its chip one level up (Orlin), shown as the pill's border.
+  if (cur) steps.push({ kind: 'level', tone: cur.tone, name: levelLabel(cur.l), path: [levelId] });
+  if (mech) steps.push({ kind: 'mech', tone: mechTone(scoreMechanism(mech.scored || mech, catalog)), name: mechLongName(mech, mechs, catalog, levelId), path: [levelId, branchId, mechIdx] });
+  if (prop && !single) steps.push({ kind: 'prop', tone: STATUS_TONE[prop.status] || 'unknown', name: catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name || prop.name, path: propPath(propIdx) });
 
   const mechsOf = (lvl, b) => flattenKinds(lvl[b]?.applicable !== false ? (lvl[b]?.mechanisms || []) : [], catalog);
   const sameKind = (a, b) => a.type === b.type && a.kindType === b.kindType;
@@ -920,6 +921,7 @@ function render() {
       type: 'button', class: 'arrow', 'data-kind': s.kind, 'aria-haspopup': 'true', 'aria-expanded': String(open === s.kind), 'aria-controls': 'trail-switch',
       'aria-label': SWITCH_LABEL[s.kind], title: SWITCH_LABEL[s.kind], onclick: () => (open === s.kind ? drawTrail(null, s.kind) : drawTrail(s.kind, true)),
     }) : null;   // the chevron is drawn in CSS and turns over while the menu is open
+    const pillClass = s => `pill${s.tone ? ` c-${s.tone}` : ''}${open === s.kind ? ' open' : ''}`;
     const last = steps.length - 1;
     const nodes = steps.flatMap((s, i) => {
       const a = arrow(s);
@@ -927,24 +929,25 @@ function render() {
       return [
         i ? el('span', { class: 'sep' }, '›') : null,
         // The page you are on is the title: the same pill, larger, its name not a link.
-        i === last ? el('span', { class: 'here' }, a ? el('span', { class: `pill${open === s.kind ? ' open' : ''}` }, el('span', { class: 'here-name' }, s.name), a) : el('span', { class: 'here-name' }, s.name))
-          : a ? el('span', { class: `pill${open === s.kind ? ' open' : ''}` }, name, a) : name,
+        i === last ? el('span', { class: 'here' }, s.tone || a ? el('span', { class: pillClass(s) }, el('span', { class: 'here-name' }, s.name), a) : el('span', { class: 'here-name' }, s.name))
+          : s.tone || a ? el('span', { class: pillClass(s) }, name, a) : name,
       ];
     }).filter(Boolean);
     let box = null;
     if (open) {
       // The menu lists the step's siblings in their usual order and opens over the pill whose chevron opened it, with
       // the current choice lying exactly on the pill, so the others appear above and below it (as an iOS or macOS
-      // menu does). Each row is in the colour of the page it leads to (Orlin); the current one also has a tick.
+      // menu does). Each row has a small chip in the colour of the page it leads to (Orlin); the current one a tick.
       const { caption, options } = rowFor(open);
       const close = () => drawTrail(null, open);
       const rowsOf = options.flatMap((o, i) => [
         i && o.group !== options[i - 1].group ? el('span', { class: 'gap', 'aria-hidden': 'true' }) : null,
         el('button', {
-          type: 'button', class: `mini ${o.na ? 'na' : `t-${o.tone}`}${o.current ? ' cur' : ''}`, 'aria-current': o.current ? 'true' : null, disabled: o.disabled,
+          type: 'button', class: `mini${o.current ? ' cur' : ''}`, 'aria-current': o.current ? 'true' : null, disabled: o.disabled,
           title: o.title || (o.disabled ? `${o.label}: does not apply` : [o.label, o.word].filter(Boolean).join(': ')),
           onclick: o.disabled ? null : o.current ? close : () => go(o.path),
-        }, el('span', { class: 'label' }, o.current ? steps.find(s => s.kind === open).name : o.label),
+        }, el('i', { class: `sw ${o.na ? 'na' : `t-${o.tone}`}`, 'aria-hidden': 'true' }),
+          el('span', { class: 'label' }, o.current ? steps.find(s => s.kind === open).name : o.label),
           o.current ? el('i', { class: 'tick', 'aria-hidden': 'true' }) : null),
       ]).filter(Boolean);
       box = el('div', { class: `switch${steps[last].kind === open ? ' big' : ''}`, id: 'trail-switch', role: 'group', 'aria-label': caption,
