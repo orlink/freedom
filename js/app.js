@@ -922,7 +922,8 @@ function render() {
       const name = i < last ? el('button', { type: 'button', class: 'crumb', onclick: () => go(s.path) }, s.name) : null;
       return [
         i ? el('span', { class: 'sep' }, '›') : null,
-        i === last ? el('span', { class: `here${open === s.kind ? ' open' : ''}` }, el('span', { class: 'here-name' }, s.name), a)
+        // The page you are on is the title: the same pill, larger, its name not a link.
+        i === last ? el('span', { class: 'here' }, a ? el('span', { class: `pill${open === s.kind ? ' open' : ''}` }, el('span', { class: 'here-name' }, s.name), a) : el('span', { class: 'here-name' }, s.name))
           : a ? el('span', { class: `pill${open === s.kind ? ' open' : ''}` }, name, a) : name,
       ];
     }).filter(Boolean);
