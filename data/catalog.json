@@ -109,23 +109,23 @@
     },
     {
       "id": "state",
-      "name": "State / canton",
-      "longName": "State / canton interests",
+      "name": "Region / canton",
+      "longName": "Region / canton interests",
       "kind": "territorial",
       "addressKeys": [
         "state"
       ],
-      "description": "Federated state, canton, Land. Not applicable in unitary countries."
+      "description": "Federal region: canton, Land, the member state of a federation. Not applicable in unitary states."
     },
     {
       "id": "country",
-      "name": "Country",
-      "longName": "Country interests",
+      "name": "State",
+      "longName": "State interests",
       "kind": "territorial",
       "addressKeys": [
         "country"
       ],
-      "description": "The nation state."
+      "description": "The sovereign state (the country)."
     },
     {
       "id": "union",
