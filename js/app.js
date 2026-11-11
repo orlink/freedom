@@ -1,9 +1,9 @@
-import { resolveJurisdiction, applyPopulation, applySettlementRoles, getLevel, scoreLevel, scoreBranch, scoreMechanism, kindProperties, levelPlaces, placeVerdict } from './model.js';
+import { resolveJurisdiction, applyPopulation, applySettlementRoles, getLevel, scoreLevel, scoreMechanism, kindProperties, levelPlaces, placeVerdict } from './model.js';
 
 const NOMINATIM = 'https://nominatim.openstreetmap.org';
 const BRANCH_INFO = {
-  direct: { name: 'Direct', longName: 'Direct decision making', desc: 'The people decide themselves: referendums and general assemblies.' },
-  representative: { name: 'Representative', longName: 'Representative bodies', desc: 'Elected, individually accountable representatives decide.' },
+  direct: { name: 'Direct', longName: 'Direct decision making', groupName: 'Direct decision-making mechanisms', desc: 'The people decide themselves: referendums and general assemblies.' },
+  representative: { name: 'Representative', longName: 'Representative bodies', groupName: 'Representative mechanisms', desc: 'Elected, individually accountable representatives decide.' },
 };
 
 const state = { data: null, loc: null, path: [] }; // path: [levelId, branch, mechIndex, propIndex]
@@ -834,7 +834,6 @@ function render() {
   // Trail uses each chip's long name.
   const steps = [['Common interest levels', []]];
   if (cur) steps.push([levelLabel(cur.l), [levelId]]);
-  if (cur && branchId && BRANCH_INFO[branchId] && !cur.l.informal) steps.push([BRANCH_INFO[branchId].longName, [levelId, branchId]]);
   if (mech) steps.push([mechLongName(mech, mechs, catalog, levelId), [levelId, branchId, mechIdx]]);
   if (prop && !single) steps.push([catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name || prop.name, propPath(propIdx)]);
   $('#trail').replaceChildren(...(steps.length > 1 ? steps.flatMap(([name, path], i) => [
@@ -851,30 +850,29 @@ function render() {
     screen.push(el('h2', { class: 'group-title' }, 'Common interest levels'));
     screen.push(rowOf(levels.filter(x => x.l.kind === 'territorial').map(levelChip)));
     screen.push(rowOf(levels.filter(x => x.l.kind !== 'territorial').map(levelChip)));
-  } else if (!branch && branchId !== 'direct' && branchId !== 'representative') {
-    // Screen 2: the level's shared interests, then the two ways of deciding.
-    setLegend('levels');
+  } else if (!mech) {
+    // Screen 2: the level's shared interests, then its decision-making mechanisms in one row: a group of direct and a
+    // group of representative mechanisms, side by side, each labelled on its border. A branch without any shows "None".
+    setLegend('mechanisms');
     screen.push(el('h2', { class: 'group-title' }, 'Common interest categories'));
     screen.push(rowOf(interestChips(levelId), 'interests'));
-    screen.push(el('h2', { class: 'group-title' }, 'Decision making institutions'));
-    // Some levels (e.g. Home) decide informally, without formal institutions (catalog `informal`): one plain chip.
+    // Some levels (e.g. Home) decide informally, without formal mechanisms (catalog `informal`): one plain chip.
     if (cur.l.informal) {
       const hi = (cur.lvl.direct?.mechanisms || []).findIndex(m => m.type === 'household');
-      screen.push(rowOf([chip({ label: 'Informal', tone: tone(scoreLevel(cur.lvl, catalog)) || 'white', title: cur.l.informal,
-        onclick: hi >= 0 ? () => go([levelId, 'direct', hi]) : undefined })]));
+      screen.push(el('div', { class: 'mech-groups' }, rowOf([chip({ label: 'Informal', tone: tone(scoreLevel(cur.lvl, catalog)) || 'white', title: cur.l.informal,
+        onclick: hi >= 0 ? () => go([levelId, 'direct', hi]) : undefined })])));
     } else {
-      screen.push(rowOf(['direct', 'representative'].map(b => chip({
-        label: BRANCH_INFO[b].name, tone: tone(scoreBranch(cur.lvl[b], catalog)) || 'black', title: BRANCH_INFO[b].desc,
-        onclick: () => go([levelId, b]),
-      }))));
+      const group = b => {
+        const br = cur.lvl[b];
+        const ms = flattenKinds(br?.applicable !== false ? (br?.mechanisms || []) : [], catalog);
+        const shown = ms.map((m, i) => ({ m, i, tone: mechTone(scoreMechanism(m.scored || m, catalog)) })).filter(x => x.tone);
+        const chips = shown.length ? shown.map(({ m, i, tone }) => chip({
+          label: mechLabel(m, ms, catalog, levelId), tone, title: m.title || m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, b, i]),
+        })) : [chip({ label: 'None', tone: 'black', title: br?.note || 'No such mechanism at this level.' })];
+        return el('fieldset', { class: 'mech-group', style: `--n: ${chips.length}` }, el('legend', {}, BRANCH_INFO[b].groupName), ...chips);
+      };
+      screen.push(el('div', { class: 'mech-groups' }, group('direct'), group('representative')));
     }
-  } else if (!mech) {
-    // Screen 3: mechanisms (e.g. referendum, general assembly). None at all: one black chip saying so.
-    const shown = mechs.map((m, i) => ({ m, i, tone: mechTone(scoreMechanism(m.scored || m, catalog)) })).filter(x => x.tone);
-    setLegend('mechanisms');
-    screen.push(rowOf(shown.length ? shown.map(({ m, i, tone }) => chip({
-      label: mechLabel(m, mechs, catalog, levelId), tone, title: m.title || m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, branchId, i]),
-    })) : [chip({ label: 'None', tone: 'black', title: branch?.note || 'No such mechanism at this level.' })]));
   } else if (!prop) {
     // Screen 4: the properties the mechanism needs. If it does not exist in law, the rest are disabled.
     setLegend('requirements');
