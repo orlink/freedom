@@ -525,6 +525,17 @@ function chip({ label, tone, title, onclick, href, disabled }) {
 
 // The answer first: one sentence above the level chips on where a person living here is free and where others
 // decide for them. Free and Mostly free count as free; Mostly not free and Not free as others deciding.
+// Levels take the place's own English names where the country's file gives them (`levelNames`, Orlin): a canton in
+// Switzerland, a province in Bulgaria. A name is a string, or { name, verdict: ['in …', '…'] } for a proper noun
+// such as "United States", whose verdict words cannot be made by lower-casing it.
+function localLevelName(j, id) {
+  const v = j?.levelNames?.[id];
+  if (!v) return null;
+  const o = typeof v === 'string' ? { name: v } : v;
+  const lower = o.name.toLowerCase();
+  return { ...o, verdict: o.verdict || [`in your ${lower}`, `your ${lower}`] };
+}
+
 function verdictLine(levels, loc) {
   const a = loc.address;
   const nb = loc.places.neighbourhood;
@@ -532,7 +543,7 @@ function verdictLine(levels, loc) {
   const place = (nb && !nb.absent && nb.name) || settlement?.name || a.city || a.town || a.village || a.municipality || '';
   const union = loc.places.union?.name;
   const names = {
-    ...(a.country_code === 'ch' ? { state: ['in your canton', 'your canton'] } : {}),
+    ...Object.fromEntries(Object.keys(loc.jurisdiction?.levelNames || {}).map(id => [id, localLevelName(loc.jurisdiction, id).verdict])),
     union: union ? [`in the ${union}`, `the ${union}`] : ['in your union', 'your union'],
   };
   const text = placeVerdict(levels.map(x => ({ id: x.l.id, kind: x.l.kind, free: x.tone === 'white' || x.tone === 'lightgrey' })), place, names);
@@ -823,7 +834,7 @@ function render() {
     return { l, lvl, tone: tone(scoreLevel(lvl, catalog)) };
   }).filter(x => x.tone);
   // A union chip carries the union's own name where the country is a member ("European Union").
-  const levelLabel = l => (l.id === 'union' && loc.places.union?.name) || l.name;
+  const levelLabel = l => (l.id === 'union' && loc.places.union?.name) || localLevelName(j, l.id)?.name || l.name;
   const cur = levels.find(x => x.l.id === levelId);
   const branch = cur && ['direct', 'representative'].includes(branchId) ? cur.lvl[branchId] : undefined;
   const kindDefs = catalog.referendumKinds || {};
