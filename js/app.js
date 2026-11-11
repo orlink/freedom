@@ -1,4 +1,4 @@
-import { resolveJurisdiction, applyPopulation, applySettlementRoles, getLevel, scoreLevel, scoreBranch, scoreMechanism, kindProperties, levelPlaces } from './model.js';
+import { resolveJurisdiction, applyPopulation, applySettlementRoles, getLevel, scoreLevel, scoreBranch, scoreMechanism, kindProperties, levelPlaces, placeVerdict } from './model.js';
 
 const NOMINATIM = 'https://nominatim.openstreetmap.org';
 const BRANCH_INFO = {
@@ -515,6 +515,22 @@ function chip({ label, tone, title, onclick, href, disabled }) {
   return el('button', { ...attrs, type: 'button', onclick }, el('span', {}, label));
 }
 
+// The answer first: one sentence above the level chips on where a person living here is free and where others
+// decide for them. Free and Mostly free count as free; Mostly not free and Not free as others deciding.
+function verdictLine(levels, loc) {
+  const a = loc.address;
+  const nb = loc.places.neighbourhood;
+  const settlement = ['village', 'town'].map(id => loc.places[id]).find(p => p && !p.absent && p.name);
+  const place = (nb && !nb.absent && nb.name) || settlement?.name || a.city || a.town || a.village || a.municipality || '';
+  const union = loc.places.union?.name;
+  const names = {
+    ...(a.country_code === 'ch' ? { state: ['in your canton', 'your canton'] } : {}),
+    union: union ? [`in the ${union}`, `the ${union}`] : ['in your union', 'your union'],
+  };
+  const text = placeVerdict(levels.map(x => ({ id: x.l.id, kind: x.l.kind, free: x.tone === 'white' || x.tone === 'lightgrey' })), place, names);
+  return text ? el('p', { class: 'place-verdict' }, text) : null;
+}
+
 // Each click opens the next screen; the browser's Back button goes back up the tree.
 function go(path) {
   state.path = path;
@@ -831,6 +847,7 @@ function render() {
     // Screen 1: levels of shared interest. Geographical, from home to union; then non-geographical.
     const levelChip = ({ l, tone }) => chip({ label: levelLabel(l), tone, title: [...new Set([levelLabel(l), loc.places[l.id].name].filter(Boolean))].join(': '), onclick: () => go([l.id]) });
     setLegend('levels');
+    screen.push(verdictLine(levels, loc));
     screen.push(el('h2', { class: 'group-title' }, 'Common interest levels'));
     screen.push(rowOf(levels.filter(x => x.l.kind === 'territorial').map(levelChip)));
     screen.push(rowOf(levels.filter(x => x.l.kind !== 'territorial').map(levelChip)));

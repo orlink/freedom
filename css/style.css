@@ -296,3 +296,7 @@ html.has-place .start, html.has-place .sample { display: none; }
   padding: 10px 16px; border-radius: 12px; background: var(--text); color: #fff; box-shadow: var(--shadow); font-size: 14px;
   opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
 .notice.on { opacity: 1; transform: translate(-50%, 0); }
+
+/* The answer first: one sentence above the level chips. */
+.place-verdict { max-width: 760px; margin: 0 auto 6px; text-align: center; font-size: 18px; line-height: 1.45; font-weight: 600; color: var(--text); text-wrap: balance; }
+@media (max-width: 600px) { .place-verdict { font-size: 16px; } }
