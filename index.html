@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/scale.js"></script>
+  <script>if (location.hash.length > 1) document.documentElement.classList.add('has-place');</script>
 </head>
 <body>
   <header class="top">
@@ -21,15 +22,29 @@
   </header>
 
   <main class="page">
+    <!-- Start panel: shown until a place is chosen (html.has-place hides it and shows the header search instead). -->
+    <section id="start" class="start" aria-labelledby="start-title">
+      <h2 id="start-title">How free are you where you live, and why?</h2>
+      <p class="lead">Pick any address. Freedom Map shows how free a person living there is to pursue their individual and group interests at each level, from the home to the country. It explains what in the laws makes it so, and how to fix them where they fall short.</p>
+      <div class="start-actions">
+        <form id="start-search" class="search" role="search">
+          <input type="search" placeholder="Search an address or place…" aria-label="Address or place" autocomplete="off">
+          <button type="submit">Search</button>
+        </form>
+        <button type="button" id="locate-me" class="locate" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>Use my location</button>
+      </div>
+      <p id="locate-note" class="locate-note" role="status"></p>
+      <div class="start-try"><span>Try:</span><span id="try" class="examples">
+        <button type="button" data-lat="42.6745" data-lon="23.3263">Lozenets, Sofia</button>
+        <button type="button" data-lat="47.3779" data-lon="8.5281">Langstrasse, Zürich</button>
+        <button type="button" data-lat="53.3256" data-lon="-6.2564">Ranelagh, Dublin</button>
+      </span><span>or choose on the map.</span></div>
+    </section>
     <div id="map" aria-label="Map. Click anywhere to choose a location."></div>
-    <div class="examples">
-      <button type="button" data-lat="42.6745" data-lon="23.3263">Lozenets, Sofia</button>
-      <button type="button" data-lat="42.5867" data-lon="23.3605">Bistritsa</button>
-      <button type="button" data-lat="47.3779" data-lon="8.5281">Langstrasse, Zürich</button>
-      <button type="button" data-lat="53.3256" data-lon="-6.2564">Ranelagh, Dublin</button>
-    </div>
+    <div id="places" class="examples"></div>
     <div id="place" class="place" aria-live="polite"></div>
-    <p id="hint" class="hint">Search for an address or click on the map.</p>
+    <p id="hint" class="hint" hidden></p>
+    <div class="sample" aria-label="What the colours mean"><span class="tb t-white">Free</span><span class="tb t-lightgrey">Mostly free</span><span class="tb t-darkgrey">Mostly not free</span><span class="tb t-black">Not free</span><a href="what-is-freedom.html">What is freedom →</a></div>
     <nav id="trail" class="trail" aria-label="Where you are"></nav>
     <nav id="tree" class="tree" aria-label="Freedom tree"></nav>
     <p class="legend" id="legend" hidden></p>

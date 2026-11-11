@@ -69,7 +69,30 @@ function busy(on) { busyCount = Math.max(0, busyCount + (on ? 1 : -1)); spinner.
 // Lookup timings in the console (?timing in the URL), to see which request is slow.
 const timing = (what, t0) => { if (/[?&]timing\b/.test(location.search)) console.log(`[timing] ${what}: ${Math.round(performance.now() - t0)} ms`); };
 
+// The start panel (what the site is, search, examples) shows until a place is chosen; `has-place` on <html> swaps it
+// for the header search and the recent places, and gives the map its full height.
+const root = document.documentElement;
+function setStarted(on) {
+  if (root.classList.contains('has-place') === on) return;
+  root.classList.toggle('has-place', on);
+  map.invalidateSize();
+}
+// Back to the start: no place, no tree (the browser's Back button from the first place lands here).
+function showStart() {
+  state.loc = null; state.path = [];
+  if (marker) { marker.remove(); marker = null; }
+  if (areaLayer) { areaLayer.remove(); areaLayer = null; }
+  areaKey = null; viewBeforeArea = null;
+  showAlternatives([]);
+  $('#place').replaceChildren(); $('#trail').replaceChildren(); $('#tree').replaceChildren();
+  $('#status').textContent = '';
+  setLegend(null);
+  setStarted(false);
+  map.setView([46, 15], 4);
+}
+
 async function locate(lat, lon, { zoom, result, keepPath } = {}) {
+  setStarted(true);
   busy(true);
   let stopped = false;
   const stop = () => { if (!stopped) { stopped = true; busy(false); } };
@@ -242,12 +265,15 @@ function showAlternatives(rs, chosen) {
     el('button', { type: 'button', onclick: () => { showAlternatives([]); locate(x.r.lat, x.r.lon, { zoom: 16 }); } }, x.label)]),
     el('span', { class: 'alts-hint' }, ' Not the right place? Try the street\u2019s full name.')] : []));
 }
-$('#search').addEventListener('submit', async e => {
+// The same search runs from the header's form and from the start panel's form.
+const onSearch = async e => {
   e.preventDefault();
-  const q = $('#q').value.trim();
+  const q = e.currentTarget.querySelector('input').value.trim();
   if (!q) return;
+  $('#q').value = q;
+  setStarted(true);
   busy(true);
-  const btn = e.submitter || $('#search button'); if (btn) btn.disabled = true;
+  const btn = e.submitter || e.currentTarget.querySelector('button'); if (btn) btn.disabled = true;
   $('#place').replaceChildren(el('span', { class: 'loading' }, 'Searching…'));
   const t0 = performance.now();
   try {
@@ -265,11 +291,25 @@ $('#search').addEventListener('submit', async e => {
     busy(false);
     if (btn) btn.disabled = false;
   }
-});
+};
+$('#search').addEventListener('submit', onSearch);
+$('#start-search').addEventListener('submit', onSearch);
+// "Use my location" on the start panel (offered only where the browser can tell it).
+if (navigator.geolocation) {
+  const btn = $('#locate-me'), note = $('#locate-note');
+  btn.hidden = false;
+  btn.addEventListener('click', () => {
+    btn.disabled = true; note.textContent = 'Finding your location…';
+    navigator.geolocation.getCurrentPosition(
+      pos => { btn.disabled = false; note.textContent = ''; locate(pos.coords.latitude, pos.coords.longitude, { zoom: 16 }); },
+      () => { btn.disabled = false; note.textContent = 'Your location is not available. Search for an address or choose on the map.'; },
+      { timeout: 10000, maximumAge: 600000 });
+  });
+}
 // ---------- recent places (the chips under the map) ----------
 // Three most recently viewed places, then the most viewed one, kept in this browser. Until there are enough,
 // the built-in examples fill the gaps.
-const DEFAULT_PLACES = [...document.querySelectorAll('.examples button')].map(b => ({ label: b.textContent, lat: +b.dataset.lat, lon: +b.dataset.lon }));
+const DEFAULT_PLACES = [...document.querySelectorAll('#try button')].map(b => ({ label: b.textContent, lat: +b.dataset.lat, lon: +b.dataset.lon }));
 function placeHistory(value) {
   try {
     if (value === undefined) return JSON.parse(localStorage.getItem('freedom-places') || '[]');
@@ -295,12 +335,16 @@ function renderPlaces() {
   const unused = DEFAULT_PLACES.filter(d => d.label !== top?.label && !shown.some(p => p.label === d.label));
   while (shown.length < 3 && unused.length) shown.push(unused.shift());
   const last = top || unused.shift();
-  $('.examples').replaceChildren(...[...shown, last].filter(Boolean).map(p => el('button', {
+  $('#places').replaceChildren(...[...shown, last].filter(Boolean).map(p => el('button', {
     type: 'button', title: p === top ? `Your most viewed place (${p.n} views)` : (p.t ? 'Recently viewed' : 'Example'),
     onclick: () => locate(p.lat, p.lon, { zoom: 16 }),
   }, p.label)));
 }
 renderPlaces();
+$('#try').addEventListener('click', e => {
+  const b = e.target.closest('button[data-lat]');
+  if (b) locate(b.dataset.lat, b.dataset.lon, { zoom: 16 });
+});
 
 // ---------- shared interests (wiki-style) ----------
 // Added chips and "not applicable here" marks are shared through server.py. If the site is served without it
@@ -831,7 +875,7 @@ function readHash() {
 }
 window.addEventListener('popstate', () => {
   const h = readHash();
-  if (!h) return;
+  if (!h) { showStart(); return; }
   if (state.loc && h.lat === state.loc.lat && h.lon === state.loc.lon) { state.path = h.path; render(); }
   else { state.path = h.path; locate(h.lat, h.lon, { zoom: 15, keepPath: true }); }
 });
@@ -841,6 +885,7 @@ window.addEventListener('popstate', () => {
   try {
     [state.data, editor] = await Promise.all([loadData(), api('GET', 'api/editor').then(r => r.editor === true, () => false)]);
   } catch (e) {
+    $('#hint').hidden = false;
     $('#hint').textContent = `Could not load data (${e.message}). Start the site with "python3 server.py".`;
     return;
   }
