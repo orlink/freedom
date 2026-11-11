@@ -507,6 +507,11 @@ function setLegend(kind) {
 }
 // Requirements use three colours (Orlin): met white, partly met dark grey (partial or weak), not met black.
 const STATUS_TONE = { yes: 'white', partial: 'darkgrey', weak: 'darkgrey', no: 'black', unknown: 'unknown' };
+// The trail's switching rows: what each colour says in words (for tooltips), and what each arrow is called.
+const TONE_WORDS = Object.fromEntries(Object.entries(LEGENDS).map(([k, v]) => [k, { ...Object.fromEntries(v), unknown: 'Not assessed' }]));
+const SWITCH_LABEL = { level: 'Switch level', mech: 'Switch institution', prop: 'Switch requirement' };
+let trailTip = null;   // repositions the open row's pointer when the window changes size
+window.addEventListener('resize', () => trailTip?.());
 
 function chip({ label, tone, title, onclick, href, disabled }) {
   const attrs = { class: `tb t-${tone}`, title: title || label };
@@ -830,16 +835,135 @@ function render() {
   const prop = props[propIdx]?.disabled ? undefined : props[propIdx];
   const propPath = i => [levelId, branchId, mechIdx, i];
 
-  // Trail: where you are in the tree; each step is clickable.
+  // Trail: where you are in the tree. A step's name goes back to that page. Its arrow opens a row of the step's
+  // siblings (the other levels, institutions or requirements) and switches sideways, keeping the rest of the path.
   // Trail uses each chip's long name.
-  const steps = [['Common interest levels', []]];
-  if (cur) steps.push([levelLabel(cur.l), [levelId]]);
-  if (mech) steps.push([mechLongName(mech, mechs, catalog, levelId), [levelId, branchId, mechIdx]]);
-  if (prop && !single) steps.push([catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name || prop.name, propPath(propIdx)]);
-  $('#trail').replaceChildren(...(steps.length > 1 ? steps.flatMap(([name, path], i) => [
-    i ? el('span', { class: 'sep' }, '›') : null,
-    i < steps.length - 1 ? el('button', { type: 'button', onclick: () => go(path) }, name) : el('span', { class: 'here' }, name),
-  ]).filter(Boolean) : []));
+  const steps = [{ name: 'Common interest levels', path: [] }];
+  if (cur) steps.push({ kind: 'level', name: levelLabel(cur.l), path: [levelId] });
+  if (mech) steps.push({ kind: 'mech', name: mechLongName(mech, mechs, catalog, levelId), path: [levelId, branchId, mechIdx] });
+  if (prop && !single) steps.push({ kind: 'prop', name: catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name || prop.name, path: propPath(propIdx) });
+
+  const mechsOf = (lvl, b) => flattenKinds(lvl[b]?.applicable !== false ? (lvl[b]?.mechanisms || []) : [], catalog);
+  const sameKind = (a, b) => a.type === b.type && a.kindType === b.kindType;
+  const propLabel = p => p.name || catalog.properties[p.type]?.name || p.type;
+  const deep = prop && !single;   // a requirement's page is open
+  // Where the open requirement sits in another institution: its page there if it has one, else the institution's page.
+  const landIn = (m, base) => {
+    const pi = deep ? m.properties.findIndex(p => p.type === prop.type && !p.disabled) : -1;
+    return { pi, path: pi >= 0 && m.properties.length > 1 ? [...base, pi] : base };
+  };
+  const siblings = {
+    // Every level, coloured by the same spot there: the level itself, the same institution or the same requirement.
+    // In the order of the first screen: from home to union, then the levels that are not places.
+    level: () => {
+      const ordered = [...levels.filter(x => x.l.kind === 'territorial'), ...levels.filter(x => x.l.kind !== 'territorial')];
+      const rank = mech ? mechs.slice(0, mechIdx).filter(m => sameKind(m, mech)).length : 0;
+      const mechName = mech && mechLabel(mech, mechs, catalog, levelId);
+      // depth 0: the level itself; 1: the same institution there; 2: the same requirement of that institution.
+      const at = (x, depth) => {
+        const o = { label: levelLabel(x.l), current: x.l.id === levelId, group: x.l.kind === 'territorial' };
+        if (!depth) return { ...o, tone: x.tone, word: TONE_WORDS.levels[x.tone], path: [x.l.id] };
+        // The same institution there (of several of one type, the one in the same position).
+        const ms = mechsOf(x.lvl, branchId);
+        const twins = ms.map((m, i) => i).filter(i => sameKind(ms[i], mech));
+        const i = twins[Math.min(rank, twins.length - 1)];
+        const m = ms[i];
+        const t = m ? mechTone(scoreMechanism(m.scored || m, catalog)) : null;
+        if (!t) return { ...o, na: true, path: [x.l.id], title: `${o.label}: no such institution at this level. Opens the level's page.` };
+        const base = [x.l.id, branchId, i];
+        if (depth < 2) return { ...o, tone: t, word: TONE_WORDS.mechanisms[t], path: base };
+        const { pi, path } = landIn(m, base);
+        if (pi < 0) return { ...o, na: true, path, title: `${o.label}: this requirement does not apply there. Opens the institution's page.` };
+        const pt = STATUS_TONE[m.properties[pi].status] || 'unknown';
+        return { ...o, tone: pt, word: TONE_WORDS.requirements[pt], path };
+      };
+      // Compare as deep as some other level can follow: a requirement no other level has falls back to its institution,
+      // an institution no other level has falls back to the levels themselves.
+      for (let depth = deep ? 2 : mech ? 1 : 0; ; depth--) {
+        const options = ordered.map(x => at(x, depth));
+        if (!depth || options.some(o => !o.current && !o.na)) {
+          return { caption: depth === 2 ? `${mechName} › ${propLabel(prop)} at each level` : depth ? `${mechName} at each level` : 'Common interest levels', options };
+        }
+      }
+    },
+    // The level's institutions, as on the level's page: direct ones, then representative ones.
+    mech: () => ({
+      caption: `${levelLabel(cur.l)}: institutions`,
+      options: cur.l.informal ? [] : ['direct', 'representative'].flatMap(b => {
+        const ms = mechsOf(cur.lvl, b);
+        return ms.map((m, i) => {
+          const t = mechTone(scoreMechanism(m.scored || m, catalog));
+          return t && { label: mechLabel(m, ms, catalog, levelId), tone: t, word: TONE_WORDS.mechanisms[t], group: b, current: b === branchId && i === mechIdx, path: landIn(m, [levelId, b, i]).path };
+        }).filter(Boolean);
+      }),
+    }),
+    // The institution's requirements, as on the institution's page.
+    prop: () => ({
+      caption: `${mechLabel(mech, mechs, catalog, levelId)}: requirements`,
+      options: props.map((p, i) => {
+        const t = p.disabled ? 'disabled' : (STATUS_TONE[p.status] || 'unknown');
+        return { label: propLabel(p), tone: t, word: TONE_WORDS.requirements[t], disabled: p.disabled, current: i === propIdx, path: propPath(i) };
+      }),
+    }),
+  };
+  const rows = {};
+  const rowFor = kind => rows[kind] || (rows[kind] = siblings[kind]());
+  const drawTrail = (open, focus) => {
+    const trail = $('#trail');
+    if (steps.length < 2) { trail.replaceChildren(); trailTip = null; return; }
+    const arrow = s => s.kind && rowFor(s.kind).options.length > 1 ? el('button', {
+      type: 'button', class: 'arrow', 'data-kind': s.kind, 'aria-expanded': String(open === s.kind), 'aria-controls': 'trail-switch',
+      'aria-label': SWITCH_LABEL[s.kind], title: SWITCH_LABEL[s.kind], onclick: () => (open === s.kind ? drawTrail(null, s.kind) : drawTrail(s.kind, true)),
+    }, open === s.kind ? '▴' : '▾') : null;
+    const last = steps.length - 1;
+    const nodes = steps.flatMap((s, i) => {
+      const a = arrow(s);
+      const name = i < last ? el('button', { type: 'button', class: 'crumb', onclick: () => go(s.path) }, s.name) : null;
+      return [
+        i ? el('span', { class: 'sep' }, '›') : null,
+        i === last ? el('span', { class: `here${open === s.kind ? ' open' : ''}` }, el('span', { class: 'here-name' }, s.name), a)
+          : a ? el('span', { class: `pill${open === s.kind ? ' open' : ''}` }, name, a) : name,
+      ];
+    }).filter(Boolean);
+    let box = null;
+    if (open) {
+      const { caption, options } = rowFor(open);
+      const close = () => drawTrail(null, open);
+      const opts = options.flatMap((o, i) => [
+        i && o.group !== options[i - 1].group ? el('span', { class: 'gap', 'aria-hidden': 'true' }) : null,
+        el('button', {
+          type: 'button', class: `mini ${o.na ? 'na' : `t-${o.tone}`}${o.current ? ' cur' : ''}`, 'aria-current': o.current ? 'true' : null, disabled: o.disabled,
+          title: o.title || (o.disabled ? `${o.label}: does not apply` : [o.label, o.word].filter(Boolean).join(': ')),
+          onclick: o.disabled ? null : o.current ? close : () => go(o.path),
+        }, o.label),
+      ]).filter(Boolean);
+      box = el('div', { class: 'switch', id: 'trail-switch', role: 'group', 'aria-label': caption,
+        onkeydown: e => {
+          if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+          const live = [...box.querySelectorAll('.mini:not(:disabled)')];
+          const at = live.indexOf(document.activeElement);
+          if (at < 0) return;
+          e.preventDefault();
+          live[(at + (e.key === 'ArrowRight' ? 1 : live.length - 1)) % live.length].focus();
+        },
+      }, el('div', { class: 'cap' }, caption), el('div', { class: 'opts' }, opts));
+      // The row sits right under the trail's line: above the big title when a step's arrow opened it, below when the title's did.
+      const here = nodes[nodes.length - 1];
+      nodes.splice(steps[last].kind === open ? nodes.length : nodes.indexOf(here), 0, box);
+    }
+    trail.replaceChildren(...nodes);
+    trail.onkeydown = open ? e => { if (e.key === 'Escape') drawTrail(null, open); } : null;
+    // A small tip on the row points at the arrow that opened it.
+    trailTip = box ? () => {
+      const a = trail.querySelector('.arrow[aria-expanded="true"]')?.getBoundingClientRect(), b = box.getBoundingClientRect();
+      if (a && b.width) box.style.setProperty('--tip', `${Math.max(22, Math.min(b.width - 22, a.left + a.width / 2 - b.left))}px`);
+    } : null;
+    trailTip?.();
+    // Keyboard: opening moves to the current item in the row, closing returns to the arrow.
+    if (open && focus) (box.querySelector('.mini.cur') || box.querySelector('.mini:not(:disabled)'))?.focus({ preventScroll: true });
+    else if (focus) trail.querySelector(`.arrow[data-kind="${focus}"]`)?.focus({ preventScroll: true });
+  };
+  drawTrail(null);
 
   const screen = [];
   if (!cur) {
@@ -889,7 +1013,7 @@ function render() {
     setLegend(null);
     const explainer = catalog.properties[prop.type]?.explainer;
     const chatKey = [loc.address.country_code || 'xx', ...state.path].join('|').slice(0, 200);
-    const chatBtn = chatButton(chatKey, pageContext(steps.map(s => s[0]), prop, j.laws, catalog));
+    const chatBtn = chatButton(chatKey, pageContext(steps.map(s => s.name), prop, j.laws, catalog));
     // The chat button sits in the top right corner of the verdict band (outside the panel, so its pop-up is not clipped).
     if (prop.provisions?.length) screen.push(el('div', { class: 'req has-chat' }, provisionsPanel(prop.provisions, j.laws, explainer, prop), chatBtn));
     else screen.push(el('div', { class: 'req-head' }, chatBtn), rowOf((prop.laws || []).map(id => {

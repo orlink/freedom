@@ -96,12 +96,47 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 /* Where-you-are trail */
 .trail { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px; margin: 0 0 16px; font-size: 16px; }
 .trail:empty { display: none; }
-.trail button { background: none; border: 0; padding: 2px 4px; color: var(--accent); text-decoration: underline; text-decoration-color: rgba(168, 50, 26, .35); text-underline-offset: 3px; }
-.trail button:hover { text-decoration-color: currentColor; }
+.trail .crumb { background: none; border: 0; padding: 2px 4px; color: var(--accent); text-decoration: underline; text-decoration-color: rgba(168, 50, 26, .35); text-underline-offset: 3px; }
+.trail .crumb:hover { text-decoration-color: currentColor; }
 .trail .sep { color: var(--muted); }
 /* The current page is the title, on its own row below the path that leads to it. */
 .trail .here { flex-basis: 100%; text-align: center; margin-top: 6px; font-size: 28px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; color: var(--text); padding: 0 4px; }
 @media (max-width: 600px) { .trail .here { font-size: 22px; } }
+/* A step that can switch sideways is a pill: its name goes back to that page, its arrow opens the row of its siblings. */
+.trail .pill { display: inline-flex; align-items: stretch; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); overflow: hidden; }
+.trail .pill .crumb { padding: 4px 8px 4px 14px; }
+.trail .arrow { border: 0; background: none; color: var(--coral-ink); font-size: 13px; line-height: 1; cursor: pointer; }
+.trail .pill .arrow { padding: 4px 12px 4px 9px; border-left: 1px solid var(--line); min-width: 36px; }
+.trail .pill.open { border-color: var(--coral); }
+.trail .pill.open .arrow { background: var(--coral-soft); border-left-color: var(--coral); }
+.trail .here .arrow { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; margin-left: 10px; width: 36px; height: 36px;
+  border: 1px solid var(--line); border-radius: 50%; background: var(--surface); font-size: 14px; font-weight: 400; transform: translateY(-3px); }
+.trail .here.open .arrow { background: var(--coral-soft); border-color: var(--coral); }
+.trail .arrow:hover { background: var(--coral-soft); }
+.trail .crumb:focus-visible, .trail .arrow:focus-visible { outline: 3px solid var(--coral); outline-offset: -3px; }
+.trail .here .arrow:focus-visible, .switch .mini:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+/* The row of siblings: small chips in the colours of the page they lead to. */
+.switch { flex-basis: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 10px auto 2px; padding: 12px 14px 14px; max-width: 980px;
+  background: var(--surface); border: 1px solid var(--coral); border-radius: 16px; box-shadow: var(--shadow); position: relative; }
+.switch::before { content: ''; position: absolute; top: -7px; left: var(--tip, 50%); width: 12px; height: 12px; background: var(--surface);
+  border-left: 1px solid var(--coral); border-top: 1px solid var(--coral); transform: translateX(-50%) rotate(45deg); }
+.trail .here + .switch { margin-top: 14px; }
+.switch .cap { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--coral-ink); text-align: center; }
+.switch .opts { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 6px; }
+.switch .gap { width: 1px; margin: 2px 6px; background: var(--line); }
+.switch .mini { font-size: 13px; font-weight: 600; line-height: 1.15; min-height: 32px; padding: 6px 12px; border-radius: 10px; border-width: 2px; border-style: solid; box-shadow: 0 1px 2px rgba(46, 21, 24, .12); cursor: pointer; }
+.switch .mini.t-black { border-color: var(--none); }
+:root[data-scale="grey"] .switch .mini.t-white { border-color: var(--line); }
+.switch .mini.cur { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent); }
+.switch .mini.na { background: transparent; color: var(--muted); border: 1px dashed #cfb3ad; box-shadow: none; font-weight: 500; }
+.switch .mini.t-unknown { border: 2px dashed var(--muted); box-shadow: none; }
+.switch .mini.t-disabled { border: 2px solid var(--line); box-shadow: none; }
+.switch .mini:disabled { cursor: not-allowed; }
+@media (max-width: 600px) {
+  .trail .pill .crumb { padding: 9px 8px 9px 14px; } .trail .pill .arrow { min-width: 44px; }
+  .trail .here .arrow { width: 40px; height: 40px; }
+  .switch { padding: 10px 8px 12px; } .switch .mini { min-height: 40px; padding: 6px 10px; }
+}
 
 /* Shared-interest chips: neutral, with a small x to mark "not applicable here" */
 .tb { position: relative; }
