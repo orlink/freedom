@@ -507,11 +507,14 @@ function setLegend(kind) {
 }
 // Requirements use three colours (Orlin): met white, partly met dark grey (partial or weak), not met black.
 const STATUS_TONE = { yes: 'white', partial: 'darkgrey', weak: 'darkgrey', no: 'black', unknown: 'unknown' };
-// The trail's switching rows: what each colour says in words (for tooltips), and what each arrow is called.
+// The trail's drop-down menus: what each colour says in words (for tooltips), and what each chevron is called.
 const TONE_WORDS = Object.fromEntries(Object.entries(LEGENDS).map(([k, v]) => [k, { ...Object.fromEntries(v), unknown: 'Not assessed' }]));
 const SWITCH_LABEL = { level: 'Switch level', mech: 'Switch institution', prop: 'Switch requirement' };
-let trailTip = null;   // repositions the open row's pointer when the window changes size
-window.addEventListener('resize', () => trailTip?.());
+let trailPlace = null;   // repositions the open menu under its pill when the window changes size
+let trailClose = null;   // closes the open menu
+window.addEventListener('resize', () => trailPlace?.());
+// A click anywhere outside the menu and the chevrons closes it.
+document.addEventListener('click', e => { if (trailClose && !e.target.closest?.('.arrow, .switch')) trailClose(); });
 
 function chip({ label, tone, title, onclick, href, disabled }) {
   const attrs = { class: `tb t-${tone}`, title: title || label };
@@ -835,7 +838,7 @@ function render() {
   const prop = props[propIdx]?.disabled ? undefined : props[propIdx];
   const propPath = i => [levelId, branchId, mechIdx, i];
 
-  // Trail: where you are in the tree. A step's name goes back to that page. Its arrow opens a row of the step's
+  // Trail: where you are in the tree. A step's name goes back to that page. Its chevron opens a menu of the step's
   // siblings (the other levels, institutions or requirements) and switches sideways, keeping the rest of the path.
   // Trail uses each chip's long name.
   const steps = [{ name: 'Common interest levels', path: [] }];
@@ -911,11 +914,12 @@ function render() {
   const rowFor = kind => rows[kind] || (rows[kind] = siblings[kind]());
   const drawTrail = (open, focus) => {
     const trail = $('#trail');
-    if (steps.length < 2) { trail.replaceChildren(); trailTip = null; return; }
+    trailPlace = trailClose = null;
+    if (steps.length < 2) { trail.replaceChildren(); return; }
     const arrow = s => s.kind && rowFor(s.kind).options.length > 1 ? el('button', {
-      type: 'button', class: 'arrow', 'data-kind': s.kind, 'aria-expanded': String(open === s.kind), 'aria-controls': 'trail-switch',
+      type: 'button', class: 'arrow', 'data-kind': s.kind, 'aria-haspopup': 'true', 'aria-expanded': String(open === s.kind), 'aria-controls': 'trail-switch',
       'aria-label': SWITCH_LABEL[s.kind], title: SWITCH_LABEL[s.kind], onclick: () => (open === s.kind ? drawTrail(null, s.kind) : drawTrail(s.kind, true)),
-    }) : null;   // the chevron is drawn in CSS and turns over while the row is open
+    }) : null;   // the chevron is drawn in CSS and turns over while the menu is open
     const last = steps.length - 1;
     const nodes = steps.flatMap((s, i) => {
       const a = arrow(s);
@@ -929,6 +933,7 @@ function render() {
     }).filter(Boolean);
     let box = null;
     if (open) {
+      // The menu: the step's siblings one under another, over the page, right under the pill whose chevron opened it.
       const { caption, options } = rowFor(open);
       const close = () => drawTrail(null, open);
       const opts = options.flatMap((o, i) => [
@@ -941,27 +946,36 @@ function render() {
       ]).filter(Boolean);
       box = el('div', { class: 'switch', id: 'trail-switch', role: 'group', 'aria-label': caption,
         onkeydown: e => {
-          if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+          const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+          if (!step) return;
           const live = [...box.querySelectorAll('.mini:not(:disabled)')];
           const at = live.indexOf(document.activeElement);
           if (at < 0) return;
           e.preventDefault();
-          live[(at + (e.key === 'ArrowRight' ? 1 : live.length - 1)) % live.length].focus();
+          live[(at + step + live.length) % live.length].focus();
         },
       }, el('div', { class: 'cap' }, caption), el('div', { class: 'opts' }, opts));
-      // The row sits right under the trail's line: above the big title when a step's arrow opened it, below when the title's did.
-      const here = nodes[nodes.length - 1];
-      nodes.splice(steps[last].kind === open ? nodes.length : nodes.indexOf(here), 0, box);
+      nodes.push(box);
     }
     trail.replaceChildren(...nodes);
     trail.onkeydown = open ? e => { if (e.key === 'Escape') drawTrail(null, open); } : null;
-    // A small tip on the row points at the arrow that opened it.
-    trailTip = box ? () => {
-      const a = trail.querySelector('.arrow[aria-expanded="true"]')?.getBoundingClientRect(), b = box.getBoundingClientRect();
-      if (a && b.width) box.style.setProperty('--tip', `${Math.max(22, Math.min(b.width - 22, a.left + a.width / 2 - b.left))}px`);
-    } : null;
-    trailTip?.();
-    // Keyboard: opening moves to the current item in the row, closing returns to the arrow.
+    if (box) {
+      // Centred under its pill, at least as wide, and kept inside the window.
+      trailPlace = () => {
+        const pill = trail.querySelector('.pill.open');
+        if (!pill) return;
+        const t = trail.getBoundingClientRect(), p = pill.getBoundingClientRect(), vw = document.documentElement.clientWidth;
+        box.style.minWidth = `${Math.min(p.width, vw - 16)}px`;
+        const w = box.offsetWidth;
+        box.style.left = `${Math.max(8, Math.min(vw - w - 8, p.left + p.width / 2 - w / 2)) - t.left}px`;
+        box.style.top = `${p.bottom - t.top + 6}px`;
+      };
+      trailPlace();
+      trailClose = () => drawTrail(null);
+      // A menu that would run off the bottom of the window brings itself into view.
+      if (focus) box.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    }
+    // Keyboard: opening moves to the current item in the menu, closing returns to the chevron.
     if (open && focus) (box.querySelector('.mini.cur') || box.querySelector('.mini:not(:disabled)'))?.focus({ preventScroll: true });
     else if (focus) trail.querySelector(`.arrow[data-kind="${focus}"]`)?.focus({ preventScroll: true });
   };
