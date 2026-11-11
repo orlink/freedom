@@ -365,10 +365,26 @@ function localStore(key, value) {
   } catch { /* storage unavailable */ }
   return value || { added: [], hidden: [] };
 }
+// A server that answers with its own JSON error (a limit was reached, bad input) is `refused`: the change was not made,
+// but the server is there, so the page keeps using it. Anything else (no server.py, network down) is not.
 async function api(method, path, body) {
   const r = await fetch(path, method === 'GET' ? {} : { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-  if (!r.ok || !(r.headers.get('content-type') || '').includes('json')) throw new Error(r.status);
+  const json = (r.headers.get('content-type') || '').includes('json');
+  if (!r.ok) {
+    const msg = json ? (await r.json().catch(() => ({}))).error : null;
+    throw Object.assign(new Error(msg || String(r.status)), { status: r.status, refused: Boolean(msg) });
+  }
+  if (!json) throw new Error(r.status);
   return r.json();
+}
+// A short message at the bottom of the screen, e.g. when the server refuses a change.
+function notice(text) {
+  let box = document.getElementById('notice');
+  if (!box) { box = el('div', { id: 'notice', class: 'notice', role: 'status' }); document.body.append(box); }
+  box.textContent = text;
+  box.classList.add('on');
+  clearTimeout(notice.timer);
+  notice.timer = setTimeout(() => box.classList.remove('on'), 6000);
 }
 async function loadInterests(key) {
   let e;
@@ -382,7 +398,13 @@ async function loadInterests(key) {
 }
 async function changeInterests(key, path, body, apply) {
   let e;
-  if (sharedApi) { try { e = await api('POST', path, { key, ...body }); } catch { sharedApi = false; } }
+  if (sharedApi) {
+    try { e = await api('POST', path, { key, ...body }); }
+    catch (err) {
+      if (err.refused) { notice(err.message); render(); return; }
+      sharedApi = false;
+    }
+  }
   if (!e) { e = structuredClone(interestCache.get(key) || { added: [], hidden: [] }); apply(e); localStore(key, e); }
   interestCache.set(key, e);
   render();
@@ -574,8 +596,12 @@ function localFix(key, value) {
 }
 async function fixFeedback(key, action, body) {
   if (sharedApi) {
-    try { return action ? await api('POST', `api/fixes/${action}`, { key, ...body }) : await api('GET', `api/fixes?key=${encodeURIComponent(key)}`); }
-    catch { sharedApi = false; }
+    const current = () => api('GET', `api/fixes?key=${encodeURIComponent(key)}`);
+    try { return action ? await api('POST', `api/fixes/${action}`, { key, ...body }) : await current(); }
+    catch (err) {
+      if (err.refused) { notice(err.message); return current().catch(() => ({ approvals: 0, suggestions: [] })); }
+      sharedApi = false;
+    }
   }
   const e = localFix(key);
   if (action === 'approve') e.approvals++;
@@ -687,7 +713,7 @@ function chatBox(key, context) {
   const c = chats.get(key) || { id: newId(), messages: [] };
   chats.set(key, c);
   const log = el('div', { class: 'chat-log', 'aria-live': 'polite' });
-  const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '4000', placeholder: 'Comment, suggest an edit, or ask a question', 'aria-label': 'Your message' });
+  const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '2000', placeholder: 'Comment, suggest an edit, or ask a question', 'aria-label': 'Your message' });
   const send = el('button', { type: 'submit', class: 'chat-send' }, 'Send');
   const paint = (pending, error) => {
     log.replaceChildren(...[
@@ -707,7 +733,7 @@ function chatBox(key, context) {
     try {
       const r = await api('POST', 'api/chat', { key, id: c.id, context, messages: c.messages });
       if (r.reply) c.messages.push({ role: 'assistant', content: r.reply }); else error = r.error || 'No answer.';
-    } catch { error = 'The chat needs the Freedom Map server (server.py). Your message was not saved.'; }
+    } catch (err) { error = err.refused ? err.message : 'The chat needs the Freedom Map server (server.py). Your message was not saved.'; }
     send.disabled = false; paint(false, error); input.focus();
   } }, input, send);
   input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });

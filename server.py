@@ -25,7 +25,7 @@ only needed for the chat:
 Every conversation is saved to data/state/comments.json, so the comments and suggestions
 readers make there can be read later even when the chat is not set up.
 """
-import argparse, json, os, posixpath, re, threading, time, uuid
+import argparse, hashlib, json, os, posixpath, re, secrets, threading, time, uuid
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs, unquote
 
@@ -42,13 +42,24 @@ MAX_SUGGESTION = 2000
 MAX_SUGGESTIONS = 50
 MAX_BODY = 16384
 COMMENTS_FILE = os.path.join(ROOT, "data", "state", "comments.json")
-CHAT_MAX_BODY = 200_000
-CHAT_MAX_MESSAGE = 4000
-CHAT_MAX_TURNS = 40
-CHAT_MAX_CONTEXT = 60_000
+AUDIT_FILE = os.path.join(ROOT, "data", "state", "audit.jsonl")  # who changed what (hashed address), to undo by hand
+SALT_FILE = os.path.join(ROOT, "data", "state", "salt.txt")
+CHAT_MAX_BODY = 64_000
+CHAT_MAX_MESSAGE = 2000
+CHAT_MAX_TURNS = 20         # messages kept from one conversation (10 questions and answers)
+CHAT_MAX_CONTEXT = 12_000   # the page text the browser sends; the longest real page is about 6,000 characters
+CHAT_MAX_TOKENS = 1500      # a reply of a few paragraphs at most
 CHAT_MODEL = "claude-opus-5-5"
-CHAT_RATE = (30, 600)  # at most 30 chat turns per 10 minutes from one address
-_CHAT_HITS = {}
+
+# Limits on the public endpoints. Each is (count, seconds): at most that many requests in that time.
+# Counters live in memory, so a restart resets them. FREEDOM_CHAT_DAILY overrides the site-wide chat ceiling.
+CHAT_LIMITS = [(20, 600), (100, 86400)]                                   # per address
+CHAT_DAILY_TOTAL = int(os.environ.get("FREEDOM_CHAT_DAILY") or 500)        # whole site, per day
+WRITE_LIMITS = [(30, 600), (300, 86400)]                                  # per address: interests, hides, approvals, suggestions
+MAX_STATE_BYTES = 5_000_000      # interests.json, fixes.json: no more writes once a file is this large
+MAX_COMMENTS_BYTES = 20_000_000  # comments.json
+MAX_AUDIT_BYTES = 20_000_000
+MAX_CONVERSATIONS = 200          # per requirement page
 
 
 # What the web server may hand out as files. Everything else in the folder is private.
@@ -175,6 +186,7 @@ How to help the reader:
 - Answer questions about this requirement, the law quoted on the page, the verdict and the proposed fix, competently and plainly, as a knowledgeable colleague would. Ground what you say in the page's text and in the law; say so when you are not sure, and do not invent articles, numbers or court cases.
 - Readers may disagree with the verdict, point out an error, or suggest a different wording of a fix. Take that seriously: weigh it against the law and the site's principles, say whether you think they are right and why, and help them sharpen the suggestion. Their messages are saved for the site's editors, who decide what changes; you cannot change the site yourself, so never say that you have.
 - Write in the reader's language (often Bulgarian or English). Keep replies short, a few sentences or a short list, unless the reader asks for more. No headings.
+- Stay on the site's subject: this requirement, the law behind it, the proposed fix, and freedom and self-government as the site understands them. Politely decline anything else (writing unrelated text or code, general questions, tasks for other purposes), in one sentence, and invite a question about the page instead.
 """
 
 
@@ -196,7 +208,7 @@ def chat_reply(context, messages):
             _CLIENT = anthropic.Anthropic()
         r = _CLIENT.beta.messages.create(
             model=CHAT_MODEL,
-            max_tokens=16000,
+            max_tokens=CHAT_MAX_TOKENS,
             output_config={"effort": "medium"},
             betas=["server-side-fallback-2026-07-01"],
             fallbacks="default",
@@ -222,24 +234,84 @@ def chat_reply(context, messages):
     return text or None, (None if text else "The chat returned an empty answer. Please try again.")
 
 
-def chat_allowed(ip):
-    now = time.time()
-    with LOCK:
-        hits = [t for t in _CHAT_HITS.get(ip, []) if now - t < CHAT_RATE[1]]
-        ok = len(hits) < CHAT_RATE[0]
-        if ok:
-            hits.append(now)
-        _CHAT_HITS[ip] = hits
-    return ok
+class RateLimit:
+    """Counts requests per name (an address, or "all") in sliding windows. allow() records the request if it fits."""
+
+    def __init__(self, limits):
+        self.limits, self.hits, self.lock, self.swept = limits, {}, threading.Lock(), 0
+
+    def allow(self, name):
+        now, longest = time.time(), max(s for _, s in self.limits)
+        with self.lock:
+            if now - self.swept > 3600:  # forget addresses not seen for a day, so memory stays small
+                self.hits = {k: v for k, v in self.hits.items() if v and now - v[-1] < longest}
+                self.swept = now
+            hits = [t for t in self.hits.get(name, []) if now - t < longest]
+            ok = all(sum(1 for t in hits if now - t < secs) < n for n, secs in self.limits)
+            if ok:
+                hits.append(now)
+            self.hits[name] = hits
+        return ok
+
+
+CHAT_RATE = RateLimit(CHAT_LIMITS)
+CHAT_TOTAL = RateLimit([(CHAT_DAILY_TOTAL, 86400)])
+WRITE_RATE = RateLimit(WRITE_LIMITS)
+_SALT = None
+
+
+def visitor_id(ip):
+    """A short one-way hash of the visitor's address: enough to count one approval per visitor and to undo a
+    visitor's changes, without storing the address itself. The salt is random and stays on the server."""
+    global _SALT
+    if _SALT is None:
+        try:
+            with open(SALT_FILE, encoding="utf-8") as f:
+                _SALT = f.read().strip()
+        except OSError:
+            _SALT = ""
+        if not _SALT:
+            _SALT = secrets.token_hex(16)
+            os.makedirs(os.path.dirname(SALT_FILE), exist_ok=True)
+            with open(SALT_FILE, "w", encoding="utf-8") as f:
+                f.write(_SALT)
+    return hashlib.sha256((_SALT + ip).encode("utf-8")).hexdigest()[:16]
+
+
+def too_big(path, limit):
+    try:
+        return os.path.getsize(path) >= limit
+    except OSError:
+        return False
+
+
+def audit(ip, action, key, detail=""):
+    """Append one line per public change to data/state/audit.jsonl (called under LOCK)."""
+    if too_big(AUDIT_FILE, MAX_AUDIT_BYTES):
+        return
+    os.makedirs(os.path.dirname(AUDIT_FILE), exist_ok=True)
+    with open(AUDIT_FILE, "a", encoding="utf-8") as f:
+        f.write(json.dumps({"at": int(time.time()), "who": visitor_id(ip), "action": action, "key": key, "detail": detail},
+                           ensure_ascii=False) + "\n")
+
+
+def public_fix(e):
+    """A fix's feedback as readers see it: without the list of who approved."""
+    return {k: v for k, v in e.items() if k != "approvers"}
 
 
 def save_comment(key, cid, messages, context_title):
     with LOCK:
+        if too_big(COMMENTS_FILE, MAX_COMMENTS_BYTES):
+            return False
         state = load_state(COMMENTS_FILE)
         convs = state.setdefault(key, {"title": context_title, "conversations": {}})["conversations"]
+        if cid not in convs and len(convs) >= MAX_CONVERSATIONS:
+            return False
         # "user" stays empty until readers sign in (planned); then it records who wrote the comment.
         convs[cid] = {"at": int(time.time()), "user": None, "messages": messages}
         save_state(state, COMMENTS_FILE)
+    return True
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -286,6 +358,15 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def client_ip(self):
+        """The visitor's address. Behind the local reverse proxy (IIS ARR) it is the last X-Forwarded-For entry."""
+        ip = self.client_address[0]
+        if ip in ("127.0.0.1", "::1") and self.headers.get("X-Forwarded-For"):
+            ip = self.headers["X-Forwarded-For"].split(",")[-1].strip()
+            if ip.count(":") == 1:
+                ip = ip.split(":")[0]  # IIS ARR appends the port to an IPv4 address
+        return ip
+
     def is_editor(self):
         """Editing the site's own interest lists: only with --edit, and only from this computer (not through a proxy)."""
         return EDITOR and self.client_address[0] in ("127.0.0.1", "::1") and not self.headers.get("X-Forwarded-For")
@@ -307,7 +388,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return self.send_json(400, {"error": "bad key"})
             with LOCK:
                 e = load_state(FIXES_FILE).get(key, {"approvals": 0, "suggestions": []})
-            return self.send_json(200, e)
+            return self.send_json(200, public_fix(e))
         return super().do_GET()
 
     def read_body(self, limit=MAX_BODY):
@@ -325,12 +406,19 @@ class Handler(SimpleHTTPRequestHandler):
             return self.chat()
         if u.path == "/api/site-interests":
             return self.site_interests()
+        if u.path not in ("/api/interests", "/api/interests/hide", "/api/fixes/approve", "/api/fixes/suggest"):
+            return self.send_json(404, {"error": "not found"})
         body = self.read_body()
         if not isinstance(body, dict):
             return self.send_json(400, {"error": "bad body"})
         key = str(body.get("key", ""))
         if not KEY_RE.match(key):
             return self.send_json(400, {"error": "bad key"})
+        ip = self.client_ip()
+        if not WRITE_RATE.allow(ip):
+            return self.send_json(429, {"error": "Too many changes in a short time. Please wait a few minutes and try again."})
+        state_file = FIXES_FILE if u.path.startswith("/api/fixes/") else STATE_FILE
+        full = {"error": "The site cannot store more changes right now. Please try again later."}
         if u.path == "/api/interests":
             label = " ".join(str(body.get("label", "")).split())[:MAX_LABEL]
             if not label:
@@ -339,8 +427,13 @@ class Handler(SimpleHTTPRequestHandler):
                 state = load_state()
                 e = entry(state, key)
                 if not any(a["label"].lower() == label.lower() for a in e["added"]):
+                    if len(e["added"]) >= MAX_INTERESTS:
+                        return self.send_json(409, {"error": f"This place already has {MAX_INTERESTS} added interests."})
+                    if too_big(state_file, MAX_STATE_BYTES):
+                        return self.send_json(507, full)
                     e["added"].append({"id": "u:" + uuid.uuid4().hex[:12], "label": label, "at": int(time.time())})
-                save_state(state)
+                    save_state(state)
+                    audit(ip, "add", key, label)
             return self.send_json(200, e)
         if u.path == "/api/interests/hide":
             cid = str(body.get("id", ""))[:80]
@@ -350,28 +443,43 @@ class Handler(SimpleHTTPRequestHandler):
                 state = load_state()
                 e = entry(state, key)
                 if cid not in e["hidden"]:
+                    if len(e["hidden"]) >= 2 * MAX_INTERESTS:
+                        return self.send_json(409, {"error": "Too many interests are marked not applicable here."})
+                    if too_big(state_file, MAX_STATE_BYTES):
+                        return self.send_json(507, full)
                     e["hidden"].append(cid)
-                save_state(state)
+                    save_state(state)
+                    audit(ip, "hide", key, cid)
             return self.send_json(200, e)
         if u.path == "/api/fixes/approve":
+            who = visitor_id(ip)
             with LOCK:
                 state = load_state(FIXES_FILE)
                 e = fix_entry(state, key)
-                e["approvals"] += 1
+                approvers = e.setdefault("approvers", [])
+                if who not in approvers:  # one approval per visitor
+                    if too_big(state_file, MAX_STATE_BYTES):
+                        return self.send_json(507, full)
+                    approvers.append(who)
+                    e["approvals"] += 1
+                    save_state(state, FIXES_FILE)
+                    audit(ip, "approve", key)
+            return self.send_json(200, public_fix(e))
+        text = str(body.get("text", "")).strip()[:MAX_SUGGESTION]  # /api/fixes/suggest
+        if not text:
+            return self.send_json(400, {"error": "empty text"})
+        with LOCK:
+            state = load_state(FIXES_FILE)
+            e = fix_entry(state, key)
+            if not any(x["text"] == text for x in e["suggestions"]):
+                if len(e["suggestions"]) >= MAX_SUGGESTIONS:
+                    return self.send_json(409, {"error": "This amendment has as many suggested wordings as the site can take."})
+                if too_big(state_file, MAX_STATE_BYTES):
+                    return self.send_json(507, full)
+                e["suggestions"].append({"text": text, "at": int(time.time())})
                 save_state(state, FIXES_FILE)
-            return self.send_json(200, e)
-        if u.path == "/api/fixes/suggest":
-            text = str(body.get("text", "")).strip()[:MAX_SUGGESTION]
-            if not text:
-                return self.send_json(400, {"error": "empty text"})
-            with LOCK:
-                state = load_state(FIXES_FILE)
-                e = fix_entry(state, key)
-                if len(e["suggestions"]) < MAX_SUGGESTIONS and not any(x["text"] == text for x in e["suggestions"]):
-                    e["suggestions"].append({"text": text, "at": int(time.time())})
-                save_state(state, FIXES_FILE)
-            return self.send_json(200, e)
-        return self.send_json(404, {"error": "not found"})
+                audit(ip, "suggest", key, text[:200])
+        return self.send_json(200, public_fix(e))
 
     def site_interests(self):
         """Editor mode: replace one country's list of interests for one level in data/interests.json (order kept)."""
@@ -415,14 +523,12 @@ class Handler(SimpleHTTPRequestHandler):
         if not msgs or msgs[-1]["role"] != "user":
             return self.send_json(400, {"error": "the last message must be the reader's"})
         title = context.splitlines()[0][:200] if context else key
+        ip = self.client_ip()
+        if not CHAT_RATE.allow(ip):
+            return self.send_json(429, {"reply": None, "error": "Too many messages in a short time. Please wait a few minutes before asking more."})
+        if not CHAT_TOTAL.allow("all"):
+            return self.send_json(429, {"reply": None, "error": "The chat has answered as many questions as it can today. Please come back tomorrow."})
         save_comment(key, cid, msgs, title)
-        ip = self.client_address[0]
-        if ip in ("127.0.0.1", "::1") and self.headers.get("X-Forwarded-For"):
-            ip = self.headers["X-Forwarded-For"].split(",")[-1].strip()  # behind a local reverse proxy: the visitor's address
-            if ip.count(":") == 1:
-                ip = ip.split(":")[0]  # IIS ARR appends the port to an IPv4 address
-        if not chat_allowed(ip):
-            return self.send_json(200, {"reply": None, "error": "Too many messages in a short time. Your message is saved; please wait a few minutes before asking more."})
         text, err = chat_reply(context, msgs)
         if text:
             save_comment(key, cid, msgs + [{"role": "assistant", "content": text}], title)
