@@ -63,6 +63,7 @@ Article-level notes gathered while drafting. They are **not shown on the page**:
 |  | municipality | direct | Local referendum | binding | dcpa | Art. 43(2)-(3) | yes |
 |  | municipality | direct | Local referendum | no_quorum | dcpa | Art. 41(2)-(3) | yes |
 |  | municipality | direct | Local referendum | citizen_triggered | dcpa | Art. 27(1)(3) | yes |
+|  | municipality | direct | Local referendum | no_roadblocks | dcpa | Art. 42(1)-(2), 34(2) (results contestable for any breach; mayor prints the information sheet) | yes |
 |  | municipality | direct | Local referendum | reasonable_signatures | dcpa | Art. 27(1)(3), 27(2) | yes |
 |  | municipality | direct | Local referendum | broad_scope | dcpa | Art. 26(2) | yes |
 |  | municipality | direct | Local civic initiative | exists | dcpa | Art. 46(1)-(2) | yes |
