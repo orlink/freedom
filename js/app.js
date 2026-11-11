@@ -933,18 +933,19 @@ function render() {
     }).filter(Boolean);
     let box = null;
     if (open) {
-      // The menu: the step's siblings one under another, over the page, right under the pill whose chevron opened it.
+      // The menu hangs from the pill whose chevron opened it and reads as one box with it: the pill is the current
+      // choice, the step's other siblings follow under it, each with a swatch in the colour of the page it leads to.
       const { caption, options } = rowFor(open);
-      const close = () => drawTrail(null, open);
-      const opts = options.flatMap((o, i) => [
-        i && o.group !== options[i - 1].group ? el('span', { class: 'gap', 'aria-hidden': 'true' }) : null,
+      const others = options.filter(o => !o.current);
+      const rowsOf = others.flatMap((o, i) => [
+        i && o.group !== others[i - 1].group ? el('span', { class: 'gap', 'aria-hidden': 'true' }) : null,
         el('button', {
-          type: 'button', class: `mini ${o.na ? 'na' : `t-${o.tone}`}${o.current ? ' cur' : ''}`, 'aria-current': o.current ? 'true' : null, disabled: o.disabled,
+          type: 'button', class: `mini${o.na ? ' na' : ''}`, disabled: o.disabled,
           title: o.title || (o.disabled ? `${o.label}: does not apply` : [o.label, o.word].filter(Boolean).join(': ')),
-          onclick: o.disabled ? null : o.current ? close : () => go(o.path),
-        }, o.label),
+          onclick: o.disabled ? null : () => go(o.path),
+        }, el('span', {}, o.label), el('i', { class: `sw ${o.na ? 'na' : `t-${o.tone}`}`, 'aria-hidden': 'true' })),
       ]).filter(Boolean);
-      box = el('div', { class: 'switch', id: 'trail-switch', role: 'group', 'aria-label': caption,
+      box = el('div', { class: `switch${steps[last].kind === open ? ' big' : ''}`, id: 'trail-switch', role: 'group', 'aria-label': caption,
         onkeydown: e => {
           const step = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
           if (!step) return;
@@ -954,29 +955,33 @@ function render() {
           e.preventDefault();
           live[(at + step + live.length) % live.length].focus();
         },
-      }, el('div', { class: 'cap' }, caption), el('div', { class: 'opts' }, opts));
+      }, rowsOf);
       nodes.push(box);
     }
     trail.replaceChildren(...nodes);
     trail.onkeydown = open ? e => { if (e.key === 'Escape') drawTrail(null, open); } : null;
     if (box) {
-      // Centred under its pill, at least as wide, and kept inside the window.
+      // Flush with its pill: same left edge, at least as wide, its top border on the pill's bottom border. Kept inside
+      // the window; a corner that sticks out past the pill is rounded.
       trailPlace = () => {
         const pill = trail.querySelector('.pill.open');
         if (!pill) return;
         const t = trail.getBoundingClientRect(), p = pill.getBoundingClientRect(), vw = document.documentElement.clientWidth;
         box.style.minWidth = `${Math.min(p.width, vw - 16)}px`;
         const w = box.offsetWidth;
-        box.style.left = `${Math.max(8, Math.min(vw - w - 8, p.left + p.width / 2 - w / 2)) - t.left}px`;
-        box.style.top = `${p.bottom - t.top + 6}px`;
+        const left = Math.max(8, Math.min(vw - w - 8, p.left));
+        box.style.left = `${left - t.left}px`;
+        box.style.top = `${p.bottom - t.top - 1}px`;
+        box.style.borderTopLeftRadius = left < p.left - 1 ? '' : '0';
+        box.style.borderTopRightRadius = left + w > p.right + 1 ? '' : '0';
       };
       trailPlace();
       trailClose = () => drawTrail(null);
       // A menu that would run off the bottom of the window brings itself into view.
       if (focus) box.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     }
-    // Keyboard: opening moves to the current item in the menu, closing returns to the chevron.
-    if (open && focus) (box.querySelector('.mini.cur') || box.querySelector('.mini:not(:disabled)'))?.focus({ preventScroll: true });
+    // Keyboard: opening moves to the first item in the menu, closing returns to the chevron.
+    if (open && focus) box.querySelector('.mini:not(:disabled)')?.focus({ preventScroll: true });
     else if (focus) trail.querySelector(`.arrow[data-kind="${focus}"]`)?.focus({ preventScroll: true });
   };
   drawTrail(null);
