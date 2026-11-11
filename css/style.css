@@ -310,3 +310,14 @@ html.has-place .start, html.has-place .sample { display: none; }
   margin: 0; padding: 14px 12px 12px; border: 1.5px solid #d9b8b0; border-radius: 16px; }
 .mech-group legend { margin: 0 auto; padding: 0 8px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--coral-ink); }
 @media (max-width: 600px) { .mech-group { padding: 12px 6px 8px; } .mech-group .tb { width: calc(50% - 4px); } }
+
+/* Shared-interest chips are a third smaller than institution chips, so the two read as different things:
+   same font, less padding, and only as wide as the label needs (up to an institution chip's width). */
+.tree-row.interests .tb { width: auto; min-width: calc(var(--btn-w) * 2 / 3); max-width: var(--btn-w); height: calc(var(--btn-h) * 2 / 3);
+                          padding: 2px 24px 2px 12px; border-radius: 11px; }
+.tree-row.interests .tb span { -webkit-line-clamp: 2; }
+.tree-row.interests .t-interest .x { top: 50%; transform: translateY(-50%); right: 3px; }
+.tree-row.interests .t-add { padding: 0 6px; }
+.tree-row.interests .t-add .add { padding: 0 12px; }
+.tree-row.interests .t-add input { padding: 4px 6px; }
+@media (max-width: 600px) { .tree-row.interests .tb { min-width: 0; } }
