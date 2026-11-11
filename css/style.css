@@ -111,14 +111,11 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .trail .arrow[aria-expanded="true"]::before { transform: translateY(3px) rotate(-135deg); }
 .trail .pill .arrow { padding: 4px 13px 4px 11px; border-left: 1px solid var(--line); min-width: 40px; }
 .trail .pill.open { border-color: var(--coral); }
-/* Each pill's border is in the colour of its chip one level up (the level's, the institution's, the requirement's). */
-.trail .pill[class*=" c-"] { border-width: 2.5px; }
-.trail .pill.c-white { border-color: var(--full); }
-.trail .pill.c-lightgrey { border-color: var(--good); }
-.trail .pill.c-darkgrey { border-color: var(--weak); }
-.trail .pill.c-black { border-color: var(--none); }
-.trail .pill.c-unknown, .trail .pill.c-disabled { border-style: dashed; border-color: var(--muted); }
-:root:not([data-scale="teal"]) .trail .pill.c-white { border-color: #c9b3ad; }
+/* Each pill shows the colour of its chip one level up as a small chip before its name, where the menu's rows have theirs. */
+.trail .pill .crumb, .trail .here .pill .here-name { display: inline-flex; align-items: center; gap: 10px; }
+.trail .pill .crumb span { text-decoration: underline; text-decoration-color: rgba(168, 50, 26, .35); text-underline-offset: 3px; }
+.trail .pill .crumb:hover span { text-decoration-color: currentColor; }
+.trail .pill .crumb { text-decoration: none; }
 .trail .pill.open .arrow { background: var(--coral-soft); border-left-color: var(--coral); }
 .trail .here .pill { max-width: 100%; border-radius: 30px; vertical-align: top; }
 .trail .here .here-name { display: block; }
@@ -140,11 +137,11 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .switch .mini.cur { background: var(--bg); }
 .switch .mini:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--text); }
 /* The row's chip: a small swatch in the colour of the page the row leads to. */
-.switch .sw { flex: none; width: 26px; height: 16px; border-radius: 5px; border: 1.5px solid transparent; }
-.switch .big .sw, .switch.big .sw { width: 30px; height: 19px; border-radius: 6px; }
-.switch .sw.na, .switch .sw.t-disabled { background: transparent; border: 1.5px dashed var(--muted); }
-.switch .sw.t-unknown { background: transparent; border: 1.5px dashed var(--text); }
-:root:not([data-scale="teal"]) .switch .sw.t-white { border-color: #c9b3ad; }
+.switch .sw, .trail .sw { flex: none; width: 26px; height: 16px; border-radius: 5px; border: 1.5px solid transparent; }
+.switch.big .sw, .trail .here .sw { width: 30px; height: 19px; border-radius: 6px; }
+.switch .sw.na, .sw.t-disabled { background: transparent; border: 1.5px dashed var(--muted); }
+.sw.t-unknown { background: transparent; border: 1.5px dashed var(--text); }
+:root:not([data-scale="teal"]) .sw.t-white { border-color: #c9b3ad; }
 .switch .mini:disabled { cursor: not-allowed; color: var(--muted); }
 .switch .gap { height: 5px; }
 .switch .tick { flex: none; width: 7px; height: 12px; margin: 0 5px 3px 6px; border-right: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; transform: rotate(45deg); }
