@@ -59,7 +59,8 @@
       "short": "Code of Obligations (OR)"
     }
   },
-  "levelNames": { "county": "District", "state": "Canton" },
+  "levelNames": { "state": "Canton" },
+  "hiddenLevels": ["county"],
   "levels": {
     "home": {
       "summary": "Privacy of the home and property are guaranteed by the Federal Constitution.",

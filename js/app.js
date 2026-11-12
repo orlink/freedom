@@ -526,8 +526,8 @@ function chip({ label, tone, title, onclick, href, disabled }) {
 // The answer first: one sentence above the level chips on where a person living here is free and where others
 // decide for them. Free and Mostly free count as free; Mostly not free and Not free as others deciding.
 // Levels take the place's own English names where the country's file gives them (`levelNames`, Orlin): a canton in
-// Switzerland, a province in Bulgaria. A name is a string, or { name, verdict: ['in …', '…'] } for a proper noun
-// such as "United States", whose verdict words cannot be made by lower-casing it.
+// Switzerland. A name is a string, or { name, verdict: ['in …', '…'] } when the verdict words cannot be made by
+// lower-casing it.
 function localLevelName(j, id) {
   const v = j?.levelNames?.[id];
   if (!v) return null;
