@@ -13,7 +13,7 @@ Each button is white (full), light grey (good), dark grey (weak) or black (no ab
 1. **Level** → e.g. *Neighbourhood · Lozenets*
 2. **Direct | Representative**
 3. **Institutions** → e.g. referendum, general assembly, own council, own member of the municipal council
-4. **Required properties** → e.g. legally binding, no participation quorum, reasonable signature requirements, vote for individual candidates, elected only by this community
+4. **Required properties** → e.g. legally binding, no turnout quorum, reasonable signature requirements, vote for individual candidates, elected only by this community
 5. **Relevant laws** → the laws that enable or prevent it, with links (specific articles come next)
 
 The drill-down path is kept in the URL, so any view can be shared.

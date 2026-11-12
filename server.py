@@ -172,7 +172,7 @@ The site's own account of freedom (the page "What is freedom"):
 
 How the map judges institutions:
 - A level is as free as its best way of deciding: direct (referendums, general assemblies) or representative (councils, executives, representatives elected to a higher-level council).
-- Each institution is scored from its requirements: met = 1, partly met = 0.5, not met = 0. Some requirements are gates: if an institution does not exist in law, is not binding, or has a participation quorum, it scores as ineffective whatever else is true.
+- Each institution is scored from its requirements: met = 1, partly met = 0.5, not met = 0. Some requirements are gates: if an institution does not exist in law, is not binding, or has a turnout quorum, it scores as ineffective whatever else is true.
 - Colours run from teal (free) to dark red (not free).
 - Agenda initiatives are deliberately left off the map: no one accountable makes the proposal.
 

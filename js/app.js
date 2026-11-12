@@ -696,7 +696,7 @@ function fixReview(law, it) {
   return box;
 }
 
-// A short excerpt from the explainer (e.g. on the participation quorum) under the verdict, expandable to the full quote.
+// A short excerpt from the explainer (e.g. on the turnout quorum) under the verdict, expandable to the full quote.
 function explainerMini(explainer) {
   const [first, ...rest] = explainer.quote;
   const more = el('div', { class: 'xm-more', hidden: true },

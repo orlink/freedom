@@ -269,11 +269,11 @@
     },
     "no_quorum": {
       "gate": false,
-      "name": "No participation quorum requirement",
-      "longName": "No participation quorum requirement",
+      "name": "No turnout quorum",
+      "longName": "No turnout quorum",
       "description": "The result should count regardless of turnout, so that abstainers cannot defeat it by staying home.",
       "explainer": {
-        "title": "Effects of a participation quorum",
+        "title": "Effects of a turnout quorum",
         "quote": [
           "Participation quorum - the additional requirement that a certain minimum number of votes must be cast in order for a referendum to be legally valid - means that it is in the interests of a proposal’s opponents to abstain rather than to vote against it, so that the quorum is not met. The opponents need only desert the ballot box in order to impose their viewpoint, even when they are very much in the minority. All others who are not voting for other reasons, including those with no opinion, are effectively also voting against the referendum.",
           "The participation quorum requirement encourages a host of controversial election practices such as falsifying the turn-out rate, voter suppression and manipulating the date of the referendum to reduce turnout. It has been shown both empirically and mathematically that a participation quorum requirement reduces turnout to below the quorum threshold, which is known as the \"quorum paradox\" (a form of the no-show paradox).",

@@ -1681,7 +1681,7 @@
                   {
                     "type": "no_quorum",
                     "status": "weak",
-                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a participation quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the municipal council, which sets the date.",
+                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a turnout quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the municipal council, which sets the date.",
                     "laws": [
                       "dcpa"
                     ],
@@ -2220,7 +2220,7 @@
                   {
                     "type": "no_quorum",
                     "status": "weak",
-                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a participation quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the municipal council, which sets the date.",
+                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a turnout quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the municipal council, which sets the date.",
                     "laws": [
                       "dcpa"
                     ],
@@ -2917,7 +2917,7 @@
                   {
                     "type": "no_quorum",
                     "status": "weak",
-                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a participation quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the municipal council, which sets the date.",
+                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a turnout quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the municipal council, which sets the date.",
                     "laws": [
                       "dcpa"
                     ],
@@ -3128,7 +3128,7 @@
                   {
                     "type": "no_quorum",
                     "status": "weak",
-                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a participation quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the mayor, who sets the date within two months of the request.",
+                    "explanation": "Held on its own, a local referendum needs at least 40% turnout (a turnout quorum). Held together with local elections, it needs “yes” votes from more than half of those voting in the council election instead (an approval quorum), which is less fatal. But whether it is held with the elections is up to the mayor, who sets the date within two months of the request.",
                     "laws": [
                       "dcpa"
                     ],
