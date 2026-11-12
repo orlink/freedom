@@ -34,7 +34,7 @@
       b.className = 'review-btn';
       b.title = 'Comment on this text';
       b.setAttribute('aria-label', 'Comment on this text');
-      b.textContent = '💬';
+      b.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
       b.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); open(node); });
       node.appendChild(b);
     });
