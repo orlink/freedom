@@ -72,7 +72,7 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
 **Referendums**
 * Mandatory referendums have no petition and their topics are set by law: they skip "Reasonable petition
   requirements" and "No topic restrictions" (catalog `skipProperties`). They are always on a concrete law or act
-  of government, so they also skip "Concrete proposals available" (Orlin 2026-11-12).
+  of government, so they also skip "Concrete proposals" (Orlin 2026-11-12).
 * No quorum of any kind (turnout or approval): a majority of votes cast decides.
 * Citizen initiative and veto: reasonable signatures, no topic restrictions, no roadblocks (fixed deadlines, no
   discretion to delay).

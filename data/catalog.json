@@ -287,8 +287,8 @@
     },
     "concrete_proposals": {
       "gate": false,
-      "name": "Concrete proposals available",
-      "longName": "Concrete proposals available",
+      "name": "Concrete proposals",
+      "longName": "Concrete proposals",
       "description": "People should decide on specific, worded proposals, not only on vague questions."
     },
     "citizen_triggered": {
