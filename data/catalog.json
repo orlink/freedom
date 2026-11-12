@@ -151,9 +151,9 @@
         "exists",
         "binding",
         "no_quorum",
-        "regular_days",
         "concrete_proposals",
         "reasonable_signatures",
+        "regular_days",
         "no_topic_restrictions",
         "no_roadblocks"
       ],
