@@ -1068,6 +1068,8 @@ function render() {
   } else if (!prop) {
     // Screen 4: the properties the mechanism needs. If it does not exist in law, the rest are disabled.
     setLegend('requirements');
+    // The chips are the design principles the institution must follow in order to work (Orlin 2026-11-12).
+    screen.push(el('h2', { class: 'group-title' }, 'Design principles'));
     screen.push(rowOf(props.map((p, i) => {
       const pdef = catalog.properties[p.type] || {};
       return chip({
