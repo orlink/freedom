@@ -390,3 +390,8 @@ html.has-place .start, html.has-place .sample { display: none; }
 .tree-row.interests .t-add input { width: 150px; padding: 2px 6px; font-size: 13px; }
 .tree-row.interests + .inst-tree { margin-top: 12px; padding-top: 18px; }
 .inst-tree > .group-title { font-size: .86rem; }
+
+/* Other governance institutions: below the core ones, after a divider; empty for now. */
+.other-inst { width: 100%; margin-top: 18px; padding-top: 20px; border-top: 1px dashed #dcbfb8; }
+.other-inst > .group-title { margin-bottom: 10px; }
+.other-inst-box { min-height: 56px; border: 1.5px dashed #d9b8b0; border-radius: 16px; }

@@ -1062,6 +1062,9 @@ function render() {
       screen.push(el('div', { class: 'inst-tree' }, instTitle, el('div', { class: 'mech-groups branched' }, group('direct'), group('representative'))));
       requestAnimationFrame(markStacked);
     }
+    // Other governance institutions (Orlin 2026-11-12): a section of its own below the core ones, empty for now.
+    screen.push(el('div', { class: 'other-inst' }, el('h2', { class: 'group-title' }, 'Other governance institutions'),
+      el('div', { class: 'other-inst-box', 'aria-label': 'None listed yet' })));
   } else if (!prop) {
     // Screen 4: the properties the mechanism needs. If it does not exist in law, the rest are disabled.
     setLegend('requirements');
