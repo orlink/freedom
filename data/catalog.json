@@ -457,6 +457,7 @@
       "longName": "Mandatory referendums",
       "description": "Certain decisions, such as constitutional changes, automatically go to a vote of all.",
       "skipProperties": [
+        "concrete_proposals",
         "reasonable_signatures",
         "no_topic_restrictions"
       ]
