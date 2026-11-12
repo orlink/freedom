@@ -150,6 +150,7 @@ within days (Ireland: 3 days = met; Bulgaria: a month = partly met); poverty or 
 * Level names (owner 2026-11-11, revised 2026-11-12): the catalog's names are the defaults: County, State (the
   member state of a federation, e.g. a US state or a German Land) and Country. Keep them for most countries,
   including Bulgaria (its oblasts are counties). A country's file renames a level only where its own English term
-  differs, in `levelNames`: Switzerland `{ "state": "Canton", "county": "District" }`.
+  differs, in `levelNames`: Switzerland `{ "state": "Canton" }`. Switzerland's districts (Bezirke) are hidden
+  (`hiddenLevels`, owner 2026-11-12): they mostly supervise the municipalities and have no votes of their own.
 * Requirement descriptions (tooltips) are normative: "Voters should …".
 * Plain English, full sentences, concrete numbers, and cite the article in the provisions, not in the sentence.
