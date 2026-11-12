@@ -43,8 +43,9 @@
   let pop = null;
   function close() { if (pop) { pop.remove(); pop = null; } }
 
+  // The box stays until Cancel or a successful send: clicks elsewhere, Escape and other icons leave it alone.
   function open(node) {
-    close();
+    if (pop) return pop.querySelector('textarea').focus();
     const text = textOf(node);
     pop = document.createElement('div');
     pop.className = 'review-pop';
@@ -74,7 +75,6 @@
     pop.querySelector('.review-cancel').addEventListener('click', close);
     box.addEventListener('keydown', e => {
       if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) submit();
-      if (e.key === 'Escape') close();
     });
     document.body.appendChild(pop);
     const r = node.getBoundingClientRect();
@@ -93,7 +93,6 @@
       queued = true;
       requestAnimationFrame(() => { queued = false; mark(document.body); });
     }).observe(document.body, { childList: true, subtree: true });
-    document.addEventListener('mousedown', e => { if (pop && !pop.contains(e.target)) close(); });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
