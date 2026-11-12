@@ -354,7 +354,13 @@ html.has-place .start, html.has-place .sample { display: none; }
 /* Level screen: direct and representative mechanisms side by side in one row, each group labelled on its border.
    A group is as wide as its chips (--n) when there is room; otherwise both shrink and their chips wrap inside them. */
 .mech-groups { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 16px; width: 100%; }
-.tree-row.interests + .mech-groups { margin-top: 14px; padding-top: 22px; border-top: 1px dashed #dcbfb8; }
+.tree-row.interests + .mech-groups, .tree-row.interests + .inst-tree { margin-top: 14px; padding-top: 22px; border-top: 1px dashed #dcbfb8; }
+/* Core decision-making institutions: a title that branches, like a tree, into the Direct and Representative groups. */
+.inst-tree { width: 100%; }
+.inst-tree > .group-title { margin-bottom: 0; }
+.mech-groups.branched { position: relative; padding-top: 34px; }
+.mech-groups.branched.stacked { padding-top: 12px; }
+.mech-groups .branches { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; fill: none; stroke: #c99a91; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .mech-group { flex: var(--n) 1 0; min-width: calc(var(--btn-w) + 28px); max-width: calc(var(--n) * (var(--btn-w) + 8px) + 20px);
   display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-start; gap: 8px;
   margin: 0; padding: 14px 12px 12px; border: 1.5px solid #d9b8b0; border-radius: 16px; }

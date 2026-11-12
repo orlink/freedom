@@ -2,8 +2,8 @@ import { resolveJurisdiction, applyPopulation, applySettlementRoles, getLevel, s
 
 const NOMINATIM = 'https://nominatim.openstreetmap.org';
 const BRANCH_INFO = {
-  direct: { name: 'Direct', longName: 'Direct decision making', groupName: 'Direct decision-making institutions', desc: 'The people decide themselves: referendums and general assemblies.' },
-  representative: { name: 'Representative', longName: 'Representative bodies', groupName: 'Representative institutions', desc: 'Elected, individually accountable representatives decide.' },
+  direct: { name: 'Direct', longName: 'Direct decision making', groupName: 'Direct', desc: 'The people decide themselves: referendums and general assemblies.' },
+  representative: { name: 'Representative', longName: 'Representative bodies', groupName: 'Representative', desc: 'Elected, individually accountable representatives decide.' },
 };
 
 const state = { data: null, loc: null, path: [] }; // path: [levelId, branch, mechIndex, propIndex]
@@ -550,6 +550,31 @@ function verdictLine(levels, loc) {
   return text ? el('p', { class: 'place-verdict' }, text) : null;
 }
 
+// The branch lines from the institutions' title to its two groups only make sense side by side: when the groups wrap
+// onto separate rows (narrow windows, many chips), the lines are hidden.
+function markStacked() {
+  for (const g of document.querySelectorAll('.mech-groups.branched')) {
+    const [a, b] = g.querySelectorAll(':scope > .mech-group');
+    const stacked = Boolean(a && b && b.offsetTop > a.offsetTop + 2);
+    g.classList.toggle('stacked', stacked);
+    g.querySelector(':scope > svg.branches')?.remove();
+    if (stacked || !a || !b) continue;
+    // One stem down from the title, a bar across, and a line down to each group's label.
+    const box = g.getBoundingClientRect();
+    const [la, lb] = [a, b].map(x => x.querySelector('legend').getBoundingClientRect());
+    const xa = la.left + la.width / 2 - box.left, xb = lb.left + lb.width / 2 - box.left, xm = box.width / 2;
+    const ya = la.top - box.top - 4, yb = lb.top - box.top - 4, bar = Math.round(Math.min(ya, yb) / 2) + 1;
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'branches');
+    svg.setAttribute('aria-hidden', 'true');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', `M${xm} 2V${bar}M${xa} ${bar}H${xb}M${xa} ${bar}V${ya}M${xb} ${bar}V${yb}`);
+    svg.append(path);
+    g.prepend(svg);
+  }
+}
+addEventListener('resize', markStacked);
+
 // Each click opens the next screen; the browser's Back button goes back up the tree.
 function go(path) {
   state.path = path;
@@ -1017,11 +1042,13 @@ function render() {
     setLegend('mechanisms');
     screen.push(el('h2', { class: 'group-title' }, 'Common interest categories'));
     screen.push(rowOf(interestChips(levelId), 'interests'));
+    // The institutions under one title, branching like a tree into the Direct and Representative groups (Orlin).
+    const instTitle = el('h2', { class: 'group-title' }, 'Core decision-making institutions');
     // Some levels (e.g. Home) decide informally, without formal mechanisms (catalog `informal`): one plain chip.
     if (cur.l.informal) {
       const hi = (cur.lvl.direct?.mechanisms || []).findIndex(m => m.type === 'household');
-      screen.push(el('div', { class: 'mech-groups' }, rowOf([chip({ label: 'Informal', tone: tone(scoreLevel(cur.lvl, catalog)) || 'white', title: cur.l.informal,
-        onclick: hi >= 0 ? () => go([levelId, 'direct', hi]) : undefined })])));
+      screen.push(el('div', { class: 'inst-tree' }, instTitle, el('div', { class: 'mech-groups' }, rowOf([chip({ label: 'Informal', tone: tone(scoreLevel(cur.lvl, catalog)) || 'white', title: cur.l.informal,
+        onclick: hi >= 0 ? () => go([levelId, 'direct', hi]) : undefined })]))));
     } else {
       const group = b => {
         const br = cur.lvl[b];
@@ -1032,7 +1059,8 @@ function render() {
         })) : [chip({ label: 'None', tone: 'black', title: br?.note || 'No such institution at this level.' })];
         return el('fieldset', { class: 'mech-group', style: `--n: ${chips.length}` }, el('legend', {}, BRANCH_INFO[b].groupName), ...chips);
       };
-      screen.push(el('div', { class: 'mech-groups' }, group('direct'), group('representative')));
+      screen.push(el('div', { class: 'inst-tree' }, instTitle, el('div', { class: 'mech-groups branched' }, group('direct'), group('representative'))));
+      requestAnimationFrame(markStacked);
     }
   } else if (!prop) {
     // Screen 4: the properties the mechanism needs. If it does not exist in law, the rest are disabled.
