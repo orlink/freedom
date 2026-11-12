@@ -34,7 +34,14 @@
     "bpr": {
       "title": "Federal Act on Political Rights",
       "localTitle": "Bundesgesetz über die politischen Rechte (BPR, SR 161.1)",
-      "short": "BPR"
+      "short": "BPR",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1978/688_688_688/en"
+    },
+    "vpr": {
+      "title": "Ordinance on Political Rights",
+      "localTitle": "Verordnung über die politischen Rechte (VPR, SR 161.11)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1978/712_712_712/de",
+      "short": "VPR"
     },
     "gpr": {
       "title": "Political Rights Act of the Canton of Zürich",
@@ -663,6 +670,48 @@
                     ]
                   },
                   {
+                    "type": "regular_days",
+                    "status": "yes",
+                    "explanation": "Federal votes are held on four Sundays a year, reserved by law and announced by June of the year before. In the year of the National Council election there is no vote in September.",
+                    "laws": [
+                      "bpr",
+                      "vpr"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bpr",
+                        "items": [
+                          {
+                            "ref": "Article 10(1)",
+                            "text": "The Federal Council shall determine the rules by which polling days are appointed. In doing so, it shall take account of the requirements of those eligible to vote, parliament, the cantons, the parties and the agencies responsible for effecting service of voting documents, and shall avoid any collisions of dates that may result from differences between the calendar year and the church year."
+                          },
+                          {
+                            "ref": "Article 10(1bis)",
+                            "text": "The Federal Council shall determine, four months prior to the polling day at the latest, which proposals are to be submitted to a popular vote. This period of four months may be reduced in the case of emergency federal acts."
+                          }
+                        ]
+                      },
+                      {
+                        "law": "vpr",
+                        "items": [
+                          {
+                            "ref": "Article 2a",
+                            "text": [
+                              "(1) The following Sundays of the year remain reserved for federal popular votes:",
+                              "a. in years in which Easter Sunday falls on a date after 10 April, the second Sunday in February, in other years the fourth Sunday before Easter;",
+                              "b. in years in which Whit Sunday falls on a date after 28 May, the third Sunday in May, in other years the third Sunday after Whitsun;",
+                              "c. the Sunday after the Federal Day of Thanksgiving, Repentance and Prayer;",
+                              "d. the last Sunday in November.",
+                              "(2) For overriding reasons, the Federal Chancellery, after consulting the cantons, shall propose to the Federal Council that individual voting dates be moved or further ones set.",
+                              "(3) In the year of the general election of the National Council, no popular vote takes place in September.",
+                              "(4) The Federal Chancellery shall announce the reserved voting dates by June of the preceding year at the latest."
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
                     "type": "concrete_proposals",
                     "status": "yes",
                     "explanation": "It may be a general proposal or a fully worded draft.",
@@ -708,6 +757,48 @@
                     ]
                   },
                   {
+                    "type": "regular_days",
+                    "status": "yes",
+                    "explanation": "Federal votes are held on four Sundays a year, reserved by law and announced by June of the year before. In the year of the National Council election there is no vote in September.",
+                    "laws": [
+                      "bpr",
+                      "vpr"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bpr",
+                        "items": [
+                          {
+                            "ref": "Article 10(1)",
+                            "text": "The Federal Council shall determine the rules by which polling days are appointed. In doing so, it shall take account of the requirements of those eligible to vote, parliament, the cantons, the parties and the agencies responsible for effecting service of voting documents, and shall avoid any collisions of dates that may result from differences between the calendar year and the church year."
+                          },
+                          {
+                            "ref": "Article 10(1bis)",
+                            "text": "The Federal Council shall determine, four months prior to the polling day at the latest, which proposals are to be submitted to a popular vote. This period of four months may be reduced in the case of emergency federal acts."
+                          }
+                        ]
+                      },
+                      {
+                        "law": "vpr",
+                        "items": [
+                          {
+                            "ref": "Article 2a",
+                            "text": [
+                              "(1) The following Sundays of the year remain reserved for federal popular votes:",
+                              "a. in years in which Easter Sunday falls on a date after 10 April, the second Sunday in February, in other years the fourth Sunday before Easter;",
+                              "b. in years in which Whit Sunday falls on a date after 28 May, the third Sunday in May, in other years the third Sunday after Whitsun;",
+                              "c. the Sunday after the Federal Day of Thanksgiving, Repentance and Prayer;",
+                              "d. the last Sunday in November.",
+                              "(2) For overriding reasons, the Federal Chancellery, after consulting the cantons, shall propose to the Federal Council that individual voting dates be moved or further ones set.",
+                              "(3) In the year of the general election of the National Council, no popular vote takes place in September.",
+                              "(4) The Federal Chancellery shall announce the reserved voting dates by June of the preceding year at the latest."
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
                     "type": "reasonable_signatures",
                     "status": "yes",
                     "explanation": "50,000 signatures within 100 days, about 1% of voters.",
@@ -740,6 +831,48 @@
                     "status": "yes",
                     "laws": [
                       "bv"
+                    ]
+                  },
+                  {
+                    "type": "regular_days",
+                    "status": "yes",
+                    "explanation": "Federal votes are held on four Sundays a year, reserved by law and announced by June of the year before. In the year of the National Council election there is no vote in September.",
+                    "laws": [
+                      "bpr",
+                      "vpr"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "bpr",
+                        "items": [
+                          {
+                            "ref": "Article 10(1)",
+                            "text": "The Federal Council shall determine the rules by which polling days are appointed. In doing so, it shall take account of the requirements of those eligible to vote, parliament, the cantons, the parties and the agencies responsible for effecting service of voting documents, and shall avoid any collisions of dates that may result from differences between the calendar year and the church year."
+                          },
+                          {
+                            "ref": "Article 10(1bis)",
+                            "text": "The Federal Council shall determine, four months prior to the polling day at the latest, which proposals are to be submitted to a popular vote. This period of four months may be reduced in the case of emergency federal acts."
+                          }
+                        ]
+                      },
+                      {
+                        "law": "vpr",
+                        "items": [
+                          {
+                            "ref": "Article 2a",
+                            "text": [
+                              "(1) The following Sundays of the year remain reserved for federal popular votes:",
+                              "a. in years in which Easter Sunday falls on a date after 10 April, the second Sunday in February, in other years the fourth Sunday before Easter;",
+                              "b. in years in which Whit Sunday falls on a date after 28 May, the third Sunday in May, in other years the third Sunday after Whitsun;",
+                              "c. the Sunday after the Federal Day of Thanksgiving, Repentance and Prayer;",
+                              "d. the last Sunday in November.",
+                              "(2) For overriding reasons, the Federal Chancellery, after consulting the cantons, shall propose to the Federal Council that individual voting dates be moved or further ones set.",
+                              "(3) In the year of the general election of the National Council, no popular vote takes place in September.",
+                              "(4) The Federal Chancellery shall announce the reserved voting dates by June of the preceding year at the latest."
+                            ]
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
@@ -853,6 +986,14 @@
                         ]
                       },
                       {
+                        "type": "regular_days",
+                        "status": "yes",
+                        "explanation": "The reserved federal voting Sundays are also the canton's reserved voting days (cantonal Ordinance on Political Rights, § 28(2)). The Government Council places each vote on one of them, as soon as preparation allows (GPR § 59).",
+                        "laws": [
+                          "gpr"
+                        ]
+                      },
+                      {
                         "type": "concrete_proposals",
                         "status": "yes",
                         "explanation": "As a general suggestion or a fully worded draft.",
@@ -898,6 +1039,14 @@
                         ]
                       },
                       {
+                        "type": "regular_days",
+                        "status": "yes",
+                        "explanation": "The reserved federal voting Sundays are also the canton's reserved voting days (cantonal Ordinance on Political Rights, § 28(2)). The Government Council places each vote on one of them, as soon as preparation allows (GPR § 59).",
+                        "laws": [
+                          "gpr"
+                        ]
+                      },
+                      {
                         "type": "reasonable_signatures",
                         "status": "yes",
                         "explanation": "3,000 signatures within 60 days.",
@@ -930,6 +1079,14 @@
                         "status": "yes",
                         "laws": [
                           "kv"
+                        ]
+                      },
+                      {
+                        "type": "regular_days",
+                        "status": "yes",
+                        "explanation": "The reserved federal voting Sundays are also the canton's reserved voting days (cantonal Ordinance on Political Rights, § 28(2)). The Government Council places each vote on one of them, as soon as preparation allows (GPR § 59).",
+                        "laws": [
+                          "gpr"
                         ]
                       },
                       {
@@ -1184,6 +1341,14 @@
                         ]
                       },
                       {
+                        "type": "regular_days",
+                        "status": "yes",
+                        "explanation": "The city holds its votes on the same reserved Sundays as the Confederation and the canton. This rests on cantonal guidance and settled practice: the law itself only requires a Sunday (GPR § 58).",
+                        "laws": [
+                          "gpr"
+                        ]
+                      },
+                      {
                         "type": "concrete_proposals",
                         "status": "yes",
                         "laws": [
@@ -1233,6 +1398,14 @@
                         ]
                       },
                       {
+                        "type": "regular_days",
+                        "status": "yes",
+                        "explanation": "The city holds its votes on the same reserved Sundays as the Confederation and the canton. This rests on cantonal guidance and settled practice: the law itself only requires a Sunday (GPR § 58).",
+                        "laws": [
+                          "gpr"
+                        ]
+                      },
+                      {
                         "type": "reasonable_signatures",
                         "status": "yes",
                         "explanation": "2,000 signatures within 60 days.",
@@ -1265,6 +1438,14 @@
                         "status": "yes",
                         "laws": [
                           "go"
+                        ]
+                      },
+                      {
+                        "type": "regular_days",
+                        "status": "yes",
+                        "explanation": "The city holds its votes on the same reserved Sundays as the Confederation and the canton. This rests on cantonal guidance and settled practice: the law itself only requires a Sunday (GPR § 58).",
+                        "laws": [
+                          "gpr"
                         ]
                       },
                       {

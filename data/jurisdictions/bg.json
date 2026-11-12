@@ -1703,11 +1703,42 @@
                           },
                           {
                             "ref": "Article 30(4)",
-                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum."
+                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum.",
+                            "fix": "The referendum shall be held on the first voting day that falls no earlier than 45 days after the decision on the referendum. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after the decision and two months after that voting day, the referendum shall be held on the date of the elections.",
+                            "why": "Local votes fall on four fixed Sundays a year, known in advance, or on election day when an election is near. The council no longer picks the date. Follows Switzerland's Ordinance on Political Rights, Art. 2a, which reserves four Sundays a year for federal votes."
                           },
                           {
                             "ref": "Article 30(5)",
-                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum."
+                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum.",
+                            "fix": "The chair of the municipal council shall announce the date of voting within three days of the decision. Proposals due on the same voting day shall be put to the vote together.",
+                            "why": "The date follows from the law, so it is announced, not chosen."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "regular_days",
+                    "status": "no",
+                    "explanation": "The law fixes no voting days. The municipal council sets a separate date for each referendum, 45 to 60 days after its own decision to hold it, so the vote falls on election day only if the council times it so.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 30(4)",
+                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum.",
+                            "fix": "The referendum shall be held on the first voting day that falls no earlier than 45 days after the decision on the referendum. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after the decision and two months after that voting day, the referendum shall be held on the date of the elections.",
+                            "why": "Local votes fall on four fixed Sundays a year, known in advance, or on election day when an election is near. The council no longer picks the date. Follows Switzerland's Ordinance on Political Rights, Art. 2a, which reserves four Sundays a year for federal votes."
+                          },
+                          {
+                            "ref": "Article 30(5)",
+                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum.",
+                            "fix": "The chair of the municipal council shall announce the date of voting within three days of the decision. Proposals due on the same voting day shall be put to the vote together.",
+                            "why": "The date follows from the law, so it is announced, not chosen."
                           }
                         ]
                       }
@@ -2242,11 +2273,42 @@
                           },
                           {
                             "ref": "Article 30(4)",
-                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum."
+                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum.",
+                            "fix": "The referendum shall be held on the first voting day that falls no earlier than 45 days after the decision on the referendum. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after the decision and two months after that voting day, the referendum shall be held on the date of the elections.",
+                            "why": "Local votes fall on four fixed Sundays a year, known in advance, or on election day when an election is near. The council no longer picks the date. Follows Switzerland's Ordinance on Political Rights, Art. 2a, which reserves four Sundays a year for federal votes."
                           },
                           {
                             "ref": "Article 30(5)",
-                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum."
+                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum.",
+                            "fix": "The chair of the municipal council shall announce the date of voting within three days of the decision. Proposals due on the same voting day shall be put to the vote together.",
+                            "why": "The date follows from the law, so it is announced, not chosen."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "regular_days",
+                    "status": "no",
+                    "explanation": "The law fixes no voting days. The municipal council sets a separate date for each referendum, 45 to 60 days after its own decision to hold it, so the vote falls on election day only if the council times it so.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 30(4)",
+                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum.",
+                            "fix": "The referendum shall be held on the first voting day that falls no earlier than 45 days after the decision on the referendum. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after the decision and two months after that voting day, the referendum shall be held on the date of the elections.",
+                            "why": "Local votes fall on four fixed Sundays a year, known in advance, or on election day when an election is near. The council no longer picks the date. Follows Switzerland's Ordinance on Political Rights, Art. 2a, which reserves four Sundays a year for federal votes."
+                          },
+                          {
+                            "ref": "Article 30(5)",
+                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum.",
+                            "fix": "The chair of the municipal council shall announce the date of voting within three days of the decision. Proposals due on the same voting day shall be put to the vote together.",
+                            "why": "The date follows from the law, so it is announced, not chosen."
                           }
                         ]
                       }
@@ -2939,11 +3001,42 @@
                           },
                           {
                             "ref": "Article 30(4)",
-                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum."
+                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum.",
+                            "fix": "The referendum shall be held on the first voting day that falls no earlier than 45 days after the decision on the referendum. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after the decision and two months after that voting day, the referendum shall be held on the date of the elections.",
+                            "why": "Local votes fall on four fixed Sundays a year, known in advance, or on election day when an election is near. The council no longer picks the date. Follows Switzerland's Ordinance on Political Rights, Art. 2a, which reserves four Sundays a year for federal votes."
                           },
                           {
                             "ref": "Article 30(5)",
-                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum."
+                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum.",
+                            "fix": "The chair of the municipal council shall announce the date of voting within three days of the decision. Proposals due on the same voting day shall be put to the vote together.",
+                            "why": "The date follows from the law, so it is announced, not chosen."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "regular_days",
+                    "status": "no",
+                    "explanation": "The law fixes no voting days. The municipal council sets a separate date for each referendum, 45 to 60 days after its own decision to hold it, so the vote falls on election day only if the council times it so.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 30(4)",
+                            "text": "The municipal council shall set the date for holding the referendum no earlier than 45 days and no later than 60 days after the decision on the referendum.",
+                            "fix": "The referendum shall be held on the first voting day that falls no earlier than 45 days after the decision on the referendum. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after the decision and two months after that voting day, the referendum shall be held on the date of the elections.",
+                            "why": "Local votes fall on four fixed Sundays a year, known in advance, or on election day when an election is near. The council no longer picks the date. Follows Switzerland's Ordinance on Political Rights, Art. 2a, which reserves four Sundays a year for federal votes."
+                          },
+                          {
+                            "ref": "Article 30(5)",
+                            "text": "The municipal council shall set the date of voting on a non-working day. When several proposals have been received, the municipal council shall set a common date for holding the local referendum.",
+                            "fix": "The chair of the municipal council shall announce the date of voting within three days of the decision. Proposals due on the same voting day shall be put to the vote together.",
+                            "why": "The date follows from the law, so it is announced, not chosen."
                           }
                         ]
                       }
@@ -3091,8 +3184,8 @@
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, and suspends the decision until the vote."
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
+                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, suspends the decision until the vote, and puts the vote on the next regular voting day, or on election day when an election is near."
                           }
                         ]
                       }
@@ -3151,8 +3244,29 @@
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, and suspends the decision until the vote."
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
+                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, suspends the decision until the vote, and puts the vote on the next regular voting day, or on election day when an election is near."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "regular_days",
+                    "status": "no",
+                    "explanation": "The law fixes no voting days. The mayor sets a separate date for each veto referendum, within two months of the request, so the vote falls on election day only if the mayor times it so.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 27(3)",
+                            "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
+                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, suspends the decision until the vote, and puts the vote on the next regular voting day, or on election day when an election is near."
                           }
                         ]
                       }
@@ -3172,8 +3286,8 @@
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, and suspends the decision until the vote."
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
+                            "why": "Lowers the veto signatures to 1/50, gives two months to collect them, suspends the decision until the vote, and puts the vote on the next regular voting day, or on election day when an election is near."
                           }
                         ]
                       }
@@ -3912,6 +4026,39 @@
                             "text": "The proposal submitted to referendum shall be deemed adopted if the number of voters participating is no lower than the number who participated in the most recent National Assembly elections and if more than half of the voters participating in the referendum have voted “yes”.",
                             "fix": "The proposal submitted to referendum shall be deemed adopted if more than half of the voters participating in the referendum have voted “yes”.",
                             "why": "Removes the turnout quorum: the majority of those who vote decides."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "regular_days",
+                    "status": "partial",
+                    "explanation": "A national referendum is held on election day when elections fall within a year of parliament's decision. Otherwise the President picks a date two to three months after the decision. The law fixes no regular voting days.",
+                    "laws": [
+                      "dcpa"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "dcpa",
+                        "items": [
+                          {
+                            "ref": "Article 14(1)",
+                            "text": "The President of the Republic, within one month of the promulgation of the decision of the National Assembly to hold a referendum, shall set the date of the referendum, which may not be earlier than two months nor later than three months from the date of promulgation of the decision of the National Assembly.",
+                            "fix": "A national referendum shall be held on the first voting day that falls no earlier than two months after the promulgation of the decision of the National Assembly to hold it. The voting days are the second Sunday of March, June, September and December of each year. The President of the Republic shall schedule the referendum for that day within one month of the promulgation.",
+                            "why": "National votes fall on four fixed Sundays a year, known in advance. The President schedules the vote for the day the law gives and no longer picks it. Follows Switzerland's Ordinance on Political Rights, Art. 2a, which reserves four Sundays a year for federal votes."
+                          },
+                          {
+                            "ref": "Article 14(2)",
+                            "text": "The time limits under paragraph 1 shall not apply when elections are held within one year of the date of promulgation of the decision of the National Assembly, with the exception of partial and new elections for municipal councillors and mayors. In that case the national referendum and the elections shall be held on the same date.",
+                            "fix": "When elections, other than partial and new elections for municipal councillors and mayors, are held between the end of the second month after promulgation and two months after the voting day under paragraph 1, the national referendum and the elections shall be held on the same date.",
+                            "why": "The vote still joins an election that is near, which raises turnout for both, but it no longer waits up to a year for one."
+                          },
+                          {
+                            "ref": "Article 14(3)",
+                            "text": "The President shall set the date of the referendum on a non-working day.",
+                            "fix": "Proposals due on the same voting day shall be put to the vote together.",
+                            "why": "Voting days and election days are already non-working days."
                           }
                         ]
                       }
