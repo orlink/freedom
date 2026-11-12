@@ -400,9 +400,9 @@ html.has-place .start, html.has-place .sample { display: none; }
 .other-inst-box { min-height: 56px; border: 1.5px dashed #d9b8b0; border-radius: 16px; }
 
 /* The owner's text review (js/review.js, local copy with server.py --edit only). */
-.review-btn { margin-left: 6px; padding: 0 3px; border: 0; background: none; font-size: 13px; line-height: 1; vertical-align: baseline; opacity: .35; }
+.review-btn { margin-left: 6px; padding: 0 3px; border: 0; background: none; font-size: 16px; line-height: 1; vertical-align: baseline; opacity: .75; }
 .review-btn:hover, .review-btn:focus-visible { opacity: 1; }
-.review-done > .review-btn { opacity: .9; }
+.review-done > .review-btn { opacity: 1; }
 .review-pop { position: fixed; z-index: 3000; width: min(440px, calc(100vw - 16px)); padding: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); }
 .review-quote { margin: 0 0 8px; color: var(--muted); font-size: 13px; max-height: 6.5em; overflow: auto; }
 .review-pop textarea { width: 100%; padding: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--input); color: var(--text); font: inherit; resize: vertical; }
