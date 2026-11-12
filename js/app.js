@@ -1040,7 +1040,7 @@ function render() {
     // Screen 2: the level's shared interests, then its decision-making mechanisms in one row: a group of direct and a
     // group of representative mechanisms, side by side, each labelled on its border. A branch without any shows "None".
     setLegend('mechanisms');
-    screen.push(el('h2', { class: 'group-title' }, 'Common interest categories'));
+    screen.push(el('h2', { class: 'group-title minor' }, 'Common interest categories'));
     screen.push(rowOf(interestChips(levelId), 'interests'));
     // The institutions under one title, branching like a tree into the Direct and Representative groups (Orlin).
     const instTitle = el('h2', { class: 'group-title' }, 'Core decision-making institutions');
