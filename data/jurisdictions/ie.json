@@ -3205,6 +3205,37 @@
                     ]
                   },
                   {
+                    "type": "regular_days",
+                    "status": "no",
+                    "explanation": "The law fixes no voting days. The Minister picks the polling day for each referendum, 30 to 90 days after an order for which the law sets no time limit. Joining the vote with a general election is left to the Minister.",
+                    "laws": [
+                      "ref1994"
+                    ],
+                    "provisions": [
+                      {
+                        "law": "ref1994",
+                        "items": [
+                          {
+                            "ref": "Section 10(1)",
+                            "text": "Whenever a Bill containing a proposal for the amendment of the Constitution shall have been passed or deemed to have been passed by both Houses of the Oireachtas the Minister shall by order appoint the day (in this Act referred to as “the polling day”) upon which and the period during which the poll at the referendum on such proposal shall be taken.",
+                            "fix": "Whenever a Bill containing a proposal for the amendment of the Constitution shall have been passed or deemed to have been passed by both Houses of the Oireachtas the Minister shall, within fourteen days, by order appoint the day (in this Act referred to as “the polling day”) upon which and the period during which the poll at the referendum on such proposal shall be taken.",
+                            "why": "The order can no longer be left unmade."
+                          },
+                          {
+                            "ref": "Section 10(2)",
+                            "text": "Subject to section 11, the polling day shall be not less than thirty days and not more than ninety days after the date of the order.",
+                            "fix": "Subject to section 11, the polling day shall be the first referendum day that falls not less than sixty days after the Bill was passed or deemed to have been passed. The referendum days are the second Friday of March, June, September and December in each year. Where the poll at a presidential election, a Dáil general election, a European election or the local elections is to be taken between the sixtieth day after the Bill was passed and two months after that referendum day, the polling day shall be the polling day at that election.",
+                            "why": "Polling falls on four fixed days a year, known in advance, or on election day when an election is near. The Minister no longer picks the date. Follows Switzerland's Ordinance on Political Rights, Art. 2a, which reserves four Sundays a year for federal votes."
+                          },
+                          {
+                            "ref": "Section 11(1)",
+                            "text": "Whenever a Bill containing a proposal for the amendment of the Constitution shall have been passed, or deemed to have been passed, by both Houses of the Oireachtas, and Dáil Éireann is dissolved before the Minister has made under section 10 an order appointing the polling day at the referendum on such proposal, the Minister may (notwithstanding anything contained in the said section 10) by order under that section appoint the polling day at the general election consequent on such dissolution of Dáil Éireann to be the polling day at the referendum."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
                     "type": "concrete_proposals",
                     "status": "yes",
                     "explanation": "Voters decide on the worded amendment bill.",

@@ -74,6 +74,15 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
   requirements" and "No topic restrictions" (catalog `skipProperties`). They are always on a concrete law or act
   of government, so they also skip "Concrete proposals" (Orlin 2026-11-12).
 * No quorum of any kind (turnout or approval): a majority of votes cast decides.
+* Regular voting days (Orlin 2026-11-12, `regular_days`, all three kinds): referendums are held on fixed days each
+  year, known in advance, together with elections or separately. Voting on election day raises turnout for both,
+  and practice shows the influence of one on the other is minimal. Met: the law fixes the voting days (Switzerland's
+  four reserved Sundays). Partly met: the law joins the vote with elections in some cases and otherwise leaves the
+  date to an official (Bulgaria's national referendum). Not met: an official or body picks a separate date for each
+  vote (Bulgaria's local referendums, Ireland). Fix default (Claude's proposal, not yet reviewed by the owner): four
+  voting days a year, the second Sunday of March, June, September and December (Fridays in Ireland); the vote moves
+  to election day when an election falls between the end of the lead time and two months after the voting day; the
+  official only announces the date.
 * Citizen initiative and veto: reasonable signatures, no topic restrictions, no roadblocks (fixed deadlines, no
   discretion to delay).
 * Concrete proposals (a worded text voters approve as is) apply to the citizen initiative only. A veto referendum
