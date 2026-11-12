@@ -109,23 +109,23 @@
     },
     {
       "id": "state",
-      "name": "Region",
-      "longName": "Region interests",
-      "kind": "territorial",
-      "addressKeys": [
-        "state"
-      ],
-      "description": "Federal region (canton, Land, the member state of a federation). Each country names it in its own `levelNames`. Not applicable in unitary states."
-    },
-    {
-      "id": "country",
       "name": "State",
       "longName": "State interests",
       "kind": "territorial",
       "addressKeys": [
+        "state"
+      ],
+      "description": "Member state of a federation (a US state, a German Land); a country may give it its own name in `levelNames`, e.g. Canton in Switzerland. Not applicable in unitary countries."
+    },
+    {
+      "id": "country",
+      "name": "Country",
+      "longName": "Country interests",
+      "kind": "territorial",
+      "addressKeys": [
         "country"
       ],
-      "description": "The sovereign state (the country)."
+      "description": "The country (the sovereign state)."
     },
     {
       "id": "union",
