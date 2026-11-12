@@ -377,3 +377,16 @@ html.has-place .start, html.has-place .sample { display: none; }
 .tree-row.interests .t-add .add { padding: 0 12px; }
 .tree-row.interests .t-add input { padding: 4px 6px; }
 @media (max-width: 600px) { .tree-row.interests .tb { min-width: 0; } }
+/* Interests are context, the institutions the subject (Orlin 2026-11-12): small one-line tags under a quieter title,
+   and a larger title over the institutions. */
+.group-title.minor { margin: 0 0 6px; font-size: .68rem; color: var(--muted); }
+.tree-row.interests { gap: 6px; }
+.tree-row.interests .tb { min-width: 0; max-width: none; height: 30px; padding: 0 24px 0 11px; border-width: 1.5px; border-radius: 999px;
+                          font-size: 13px; font-weight: 500; box-shadow: none; }
+.tree-row.interests .tb span { white-space: nowrap; -webkit-line-clamp: 1; }
+.tree-row.interests .t-interest .x { width: 18px; height: 18px; right: 4px; font-size: 14px; line-height: 16px; }
+.tree-row.interests .t-add { padding: 0 2px; min-width: 64px; }
+.tree-row.interests .t-add .add { padding: 0 10px; font-weight: 600; }
+.tree-row.interests .t-add input { width: 150px; padding: 2px 6px; font-size: 13px; }
+.tree-row.interests + .inst-tree { margin-top: 12px; padding-top: 18px; }
+.inst-tree > .group-title { font-size: .86rem; }
