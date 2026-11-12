@@ -11,6 +11,9 @@ using the same server. Standard library only.
     python3 server.py --edit       # the owner's local copy: adding, removing and dragging interest chips
                                    # changes the site's own lists in data/interests.json (per country), to commit
 
+    python3 server.py --edit       # also shows a comment icon beside every paragraph; a comment is appended,
+                                   # with the paragraph and where it is, to data/state/review.jsonl for Claude to answer
+
 State is kept in data/state/interests.json and data/state/fixes.json (git-ignored).
 The fixes API collects readers' approvals of, and alternative wordings for, proposed legal amendments.
 
@@ -36,6 +39,8 @@ KEY_RE = re.compile(r"^[\w\- .,'()/|À-ɏЀ-ӿ]{1,200}$")
 FIXES_FILE = os.path.join(ROOT, "data", "state", "fixes.json")
 SITE_INTERESTS = os.path.join(ROOT, "data", "interests.json")
 EDITOR = False  # set by --edit: the site owner's local copy, where interest edits change data/interests.json
+REVIEW_FILE = os.path.join(ROOT, "data", "state", "review.jsonl")  # the owner's comments on the site's text (--edit only)
+MAX_REVIEW_TEXT = 8000
 MAX_INTERESTS = 40
 MAX_LABEL = 60
 MAX_SUGGESTION = 2000
@@ -368,7 +373,7 @@ class Handler(SimpleHTTPRequestHandler):
         return ip
 
     def is_editor(self):
-        """Editing the site's own interest lists: only with --edit, and only from this computer (not through a proxy)."""
+        """The owner's tools (editing interest lists, commenting on text): only with --edit, and only from this computer (not through a proxy)."""
         return EDITOR and self.client_address[0] in ("127.0.0.1", "::1") and not self.headers.get("X-Forwarded-For")
 
     def do_GET(self):
@@ -406,6 +411,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self.chat()
         if u.path == "/api/site-interests":
             return self.site_interests()
+        if u.path == "/api/review":
+            return self.review()
         if u.path not in ("/api/interests", "/api/interests/hide", "/api/fixes/approve", "/api/fixes/suggest"):
             return self.send_json(404, {"error": "not found"})
         body = self.read_body()
@@ -503,6 +510,22 @@ class Handler(SimpleHTTPRequestHandler):
             data.setdefault("countries", {}).setdefault(cc, {})[level] = clean
             write_site_interests(data)
         return self.send_json(200, {"labels": clean})
+
+    def review(self):
+        """Editor mode: append the owner's comment on one paragraph, with the paragraph and where it is, to REVIEW_FILE."""
+        if not self.is_editor():
+            return self.send_json(403, {"error": "comments are only possible on the owner's local copy (server.py --edit)"})
+        body = self.read_body(64_000)
+        if not isinstance(body, dict) or not str(body.get("comment", "")).strip():
+            return self.send_json(400, {"error": "empty comment"})
+        rec = {"id": uuid.uuid4().hex[:8], "at": time.strftime("%Y-%m-%d %H:%M:%S")}
+        for k in ("comment", "text", "url", "page", "where"):
+            rec[k] = str(body.get(k, "")).strip()[:MAX_REVIEW_TEXT]
+        with LOCK:
+            os.makedirs(os.path.dirname(REVIEW_FILE), exist_ok=True)
+            with open(REVIEW_FILE, "a", encoding="utf-8") as f:
+                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+        return self.send_json(200, {"id": rec["id"]})
 
     def chat(self):
         """One turn of the requirement-page chat: save the conversation, ask Claude, save the reply."""

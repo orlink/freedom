@@ -398,3 +398,16 @@ html.has-place .start, html.has-place .sample { display: none; }
 .other-inst { width: 100%; margin-top: 18px; padding-top: 20px; border-top: 1px dashed #dcbfb8; }
 .other-inst > .group-title { margin-bottom: 10px; }
 .other-inst-box { min-height: 56px; border: 1.5px dashed #d9b8b0; border-radius: 16px; }
+
+/* The owner's text review (js/review.js, local copy with server.py --edit only). */
+.review-btn { margin-left: 6px; padding: 0 2px; border: 0; background: none; color: var(--coral-ink); line-height: 0; vertical-align: -2px; opacity: .85; }
+.review-btn:hover, .review-btn:focus-visible { opacity: 1; }
+.review-done > .review-btn { opacity: 1; color: var(--muted); }
+.review-pop { position: fixed; z-index: 3000; width: min(440px, calc(100vw - 16px)); padding: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); }
+.review-quote { margin: 0 0 8px; color: var(--muted); font-size: 13px; max-height: 6.5em; overflow: auto; }
+.review-pop textarea { width: 100%; padding: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--input); color: var(--text); font: inherit; resize: vertical; }
+.review-row { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+.review-status { flex: 1; color: var(--muted); font-size: 13px; }
+.review-row button { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--text); }
+.review-row .review-send { border-color: var(--coral); background: var(--coral); color: #fff; font-weight: 600; }
+.review-row .review-send:disabled { opacity: .6; }
