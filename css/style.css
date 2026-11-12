@@ -43,6 +43,9 @@ button { font: inherit; cursor: pointer; }
 .tree-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; animation: fadein .15s ease-out; }
 .tree-row + .tree-row { padding-top: 16px; border-top: 1px dashed #dcbfb8; width: 100%; }
 .group-title { width: 100%; margin: 4px 0 8px; text-align: center; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--coral-ink); }
+/* A heading set on the top edge of the area, like a label on a border: it takes no room inside (Orlin 2026-11-12). */
+.tree { position: relative; }
+.group-title.on-edge { position: absolute; top: 0; left: 50%; transform: translate(-50%, -40%); width: auto; margin: 0; padding: 3px 14px; border-radius: 999px; background: #efdcd6; white-space: nowrap; }
 @keyframes fadein { from { opacity: 0; } }
 body.quiet .tree-row, body.quiet .provisions { animation: none; }
 
