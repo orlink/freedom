@@ -196,7 +196,6 @@
       "short": "ЗС"
     }
   },
-  "levelNames": { "county": "Province" },
   "levels": {
     "home": {
       "summary": "The home is inviolable and private property is guaranteed by the Constitution.",
