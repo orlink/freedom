@@ -151,6 +151,7 @@
         "exists",
         "binding",
         "no_quorum",
+        "regular_days",
         "concrete_proposals",
         "reasonable_signatures",
         "no_topic_restrictions",
@@ -284,6 +285,12 @@
         "source": "Wikipedia, “Referendum”, section Participation quorum (CC BY-SA 4.0)",
         "url": "https://en.wikipedia.org/wiki/Referendum#Participation_quorum"
       }
+    },
+    "regular_days": {
+      "gate": false,
+      "name": "Regular voting days",
+      "longName": "Regular voting days",
+      "description": "Referendums should be held on fixed days each year, known in advance, together with elections or separately. Voting on election day raises turnout for both; practice shows that their influence on each other is minimal."
     },
     "concrete_proposals": {
       "gate": false,
