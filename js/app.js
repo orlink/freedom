@@ -1,10 +1,11 @@
 import { resolveJurisdiction, applyPopulation, applySettlementRoles, getLevel, scoreLevel, scoreMechanism, kindProperties, levelPlaces, placeVerdict } from './model.js';
+import { lang, t, tx, applyStatic } from './i18n.js';
+
+// The page's fixed text in the reader's language (before anything reads it, e.g. the example places).
+applyStatic();
 
 const NOMINATIM = 'https://nominatim.openstreetmap.org';
-const BRANCH_INFO = {
-  direct: { name: 'Direct', longName: 'Direct decision making', groupName: 'Direct', desc: 'The people decide themselves: referendums and general assemblies.' },
-  representative: { name: 'Representative', longName: 'Representative bodies', groupName: 'Representative', desc: 'Elected, individually accountable representatives decide.' },
-};
+const BRANCH_NAME = { direct: 'branch.direct', representative: 'branch.representative' };
 
 const state = { data: null, loc: null, path: [] }; // path: [levelId, branch, mechIndex, propIndex]
 const $ = sel => document.querySelector(sel);
@@ -23,17 +24,19 @@ const el = (tag, attrs = {}, ...children) => {
 // ---------- data ----------
 async function loadData() {
   const get = p => fetch(`data/${p}`).then(r => { if (!r.ok) throw new Error(`${p}: ${r.status}`); return r.json(); });
-  const [catalog, index, interests] = await Promise.all([get('catalog.json'), get('index.json'), get('interests.json')]);
+  // The interest chips' names in the reader's language (data/interests.<lang>.json); without the file they stay in English.
+  const [catalog, index, interests, interestNames] = await Promise.all([get('catalog.json'), get('index.json'), get('interests.json'),
+    lang === 'en' ? null : get(`interests.${lang}.json`).then(x => x.names || {}, () => ({}))]);
   const jurisdictions = await Promise.all(index.jurisdictions.map(get));
-  return { catalog, unions: index.unions, jurisdictions, interests };
+  return { catalog, unions: index.unions, jurisdictions, interests, interestNames };
 }
 
 // ---------- geocoding ----------
 async function nominatim(path, params) {
   const url = `${NOMINATIM}/${path}?` + new URLSearchParams({ format: 'jsonv2', addressdetails: 1, ...params });
   const r = await fetch(url, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(15000) })
-    .catch(e => { throw new Error(e.name === 'TimeoutError' ? 'the geocoding service (OpenStreetMap Nominatim) did not answer within 15 seconds; please try again' : e.message); });
-  if (!r.ok) throw new Error(`Geocoding failed (${r.status})`);
+    .catch(e => { throw new Error(e.name === 'TimeoutError' ? t('geo.timeout') : e.message); });
+  if (!r.ok) throw new Error(t('geo.failed', { status: r.status }));
   return r.json();
 }
 const reverse = (lat, lon) => nominatim('reverse', { lat, lon, zoom: 18 });
@@ -62,7 +65,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let marker = null;
 
 // A spinner over the map while a place is being looked up.
-const spinner = el('div', { class: 'map-busy', role: 'status', 'aria-label': 'Looking up…' }, el('span', { class: 'spin' }));
+const spinner = el('div', { class: 'map-busy', role: 'status', 'aria-label': t('busy.lookingUp') }, el('span', { class: 'spin' }));
 document.getElementById('map').appendChild(spinner);
 let busyCount = 0;
 function busy(on) { busyCount = Math.max(0, busyCount + (on ? 1 : -1)); spinner.classList.toggle('on', busyCount > 0); }
@@ -102,12 +105,12 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
   if (areaLayer) { areaLayer.remove(); areaLayer = null; }
   areaKey = null; viewBeforeArea = null;
   if (zoom) map.setView([lat, lon], zoom);
-  $('#place').replaceChildren(el('span', { class: 'loading' }, 'Looking up this location…'));
+  $('#place').replaceChildren(el('span', { class: 'loading' }, t('place.lookingUp')));
   // The settlement's population (a second lookup) is fetched alongside the address, not after it.
   const settlementP = settlementAt(lat, lon).catch(() => null);
   try {
     const r = result || await reverse(lat, lon);
-    if (!r || r.error || !r.address) throw new Error(r?.error || 'No address found here.');
+    if (!r || r.error || !r.address) throw new Error(r?.error || t('place.notFound'));
     const address = r.address;
     state.loc = {
       lat, lon, address,
@@ -141,7 +144,7 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
       requestAnimationFrame(() => document.body.classList.remove('quiet'));
     }
   } catch (e) {
-    $('#place').replaceChildren(`Could not look up this location: ${e.message}`);
+    $('#place').replaceChildren(t('place.error', { msg: e.message }));
   } finally {
     stop();
   }
@@ -261,9 +264,9 @@ function showAlternatives(rs, chosen) {
   const seen = new Set(chosen ? [short(chosen)] : []);
   const items = rs.map(r => ({ r, label: short(r) }))
     .filter(x => !seen.has(x.label) && seen.add(x.label)).slice(0, 4);
-  box.replaceChildren(...(items.length ? ['Other matches: ', ...items.flatMap((x, i) => [i ? ' · ' : '',
+  box.replaceChildren(...(items.length ? [t('alts.other'), ...items.flatMap((x, i) => [i ? ' · ' : '',
     el('button', { type: 'button', onclick: () => { showAlternatives([]); locate(x.r.lat, x.r.lon, { zoom: 16 }); } }, x.label)]),
-    el('span', { class: 'alts-hint' }, ' Not the right place? Try the street\u2019s full name.')] : []));
+    el('span', { class: 'alts-hint' }, t('alts.hint'))] : []));
 }
 // The same search runs from the header's form and from the start panel's form.
 const onSearch = async e => {
@@ -274,13 +277,13 @@ const onSearch = async e => {
   setStarted(true);
   busy(true);
   const btn = e.submitter || e.currentTarget.querySelector('button'); if (btn) btn.disabled = true;
-  $('#place').replaceChildren(el('span', { class: 'loading' }, 'Searching…'));
+  $('#place').replaceChildren(el('span', { class: 'loading' }, t('search.searching')));
   const t0 = performance.now();
   try {
     const rs = await search(q), [r] = rs;
     showAlternatives([]);
     timing('search', t0);
-    if (!r) { $('#place').replaceChildren(`Nothing found for “${q}”.`); return; }
+    if (!r) { $('#place').replaceChildren(t('search.nothing', { q })); return; }
     // A search hit without its settlement in the address ("Main Street, Bray"): look the point up again for the full address.
     const a = r.address || {};
     await locate(r.lat, r.lon, { zoom: 16, result: (a.city || a.town || a.village || a.hamlet) ? r : undefined });
@@ -299,10 +302,10 @@ if (navigator.geolocation) {
   const btn = $('#locate-me'), note = $('#locate-note');
   btn.hidden = false;
   btn.addEventListener('click', () => {
-    btn.disabled = true; note.textContent = 'Finding your location…';
+    btn.disabled = true; note.textContent = t('locate.finding');
     navigator.geolocation.getCurrentPosition(
       pos => { btn.disabled = false; note.textContent = ''; locate(pos.coords.latitude, pos.coords.longitude, { zoom: 16 }); },
-      () => { btn.disabled = false; note.textContent = 'Your location is not available. Search for an address or choose on the map.'; },
+      () => { btn.disabled = false; note.textContent = t('locate.unavailable'); },
       { timeout: 10000, maximumAge: 600000 });
   });
 }
@@ -336,7 +339,7 @@ function renderPlaces() {
   while (shown.length < 3 && unused.length) shown.push(unused.shift());
   const last = top || unused.shift();
   $('#places').replaceChildren(...[...shown, last].filter(Boolean).map(p => el('button', {
-    type: 'button', title: p === top ? `Your most viewed place (${p.n} views)` : (p.t ? 'Recently viewed' : 'Example'),
+    type: 'button', title: p === top ? t('places.mostViewed', { n: p.n }) : (p.t ? t('places.recent') : t('places.example')),
     onclick: () => locate(p.lat, p.lon, { zoom: 16 }),
   }, p.label)));
 }
@@ -415,6 +418,8 @@ const addInterest = (key, label) => changeInterests(key, 'api/interests', { labe
 const hideInterest = (key, id) => changeInterests(key, 'api/interests/hide', { id }, e => { if (!e.hidden.includes(id)) e.hidden.push(id); });
 
 // The site's own list for a level: the country's list if it has one (data/interests.json "countries"), else the default.
+// The lists are in English; a chip shows its name in the reader's language where there is one (readers' own chips as written).
+const interestLabel = label => state.data.interestNames?.[label] || label;
 const siteInterests = (cc, levelId) => state.data.interests.countries?.[cc]?.[levelId] ?? state.data.interests[levelId] ?? [];
 // Editor mode (the owner's local copy, server.py --edit): adding, removing and dragging chips changes that list itself.
 let editor = false;
@@ -424,7 +429,7 @@ async function saveSiteInterests(cc, levelId, labels) {
     const r = await api('POST', 'api/site-interests', { country: cc, level: levelId, labels });
     ((state.data.interests.countries ??= {})[cc] ??= {})[levelId] = r.labels;
     $('#status').textContent = '';
-  } catch (err) { $('#status').textContent = `Could not save the list of interests (${err.message}).`; }
+  } catch (err) { $('#status').textContent = t('interests.saveError', { msg: err.message }); }
   render();
   if (refocus) { [...document.querySelectorAll('.t-interest')].find(n => n.dataset.label === refocus)?.focus(); refocus = null; }
 }
@@ -436,7 +441,7 @@ function editorChips(levelId) {
   const move = (from, to) => { if (to < 0 || to >= labels.length || to === from) return; const next = [...labels]; next.splice(to, 0, ...next.splice(from, 1)); save(next); };
   let dragFrom = null;
   const out = labels.map((label, i) => {
-    const c = el('div', { class: 'tb t-interest editable', title: `${label}. Drag, or press ← →, to reorder.`, tabindex: '0', draggable: 'true', 'data-label': label,
+    const c = el('div', { class: 'tb t-interest editable', title: t('interests.reorder', { label: interestLabel(label) }), tabindex: '0', draggable: 'true', 'data-label': label,
       ondragstart: ev => { dragFrom = i; ev.dataTransfer.effectAllowed = 'move'; ev.dataTransfer.setData('text/plain', label); c.classList.add('dragging'); },
       ondragend: () => c.classList.remove('dragging'),
       ondragover: ev => { if (dragFrom !== null) { ev.preventDefault(); c.classList.add('drop'); } },
@@ -447,8 +452,8 @@ function editorChips(levelId) {
         const d = ev.key === 'ArrowLeft' ? -1 : ev.key === 'ArrowRight' ? 1 : 0;
         if (d) { ev.preventDefault(); refocus = label; move(i, i + d); }
       } },
-      el('span', {}, label),
-      el('button', { type: 'button', class: 'x', title: `Remove “${label}” from the list for ${where}`, 'aria-label': `Remove “${label}” from the list for ${where}`,
+      el('span', {}, interestLabel(label)),
+      el('button', { type: 'button', class: 'x', title: t('interests.removeFrom', { label: interestLabel(label), where }), 'aria-label': t('interests.removeFrom', { label: interestLabel(label), where }),
         onclick: () => save(labels.filter((_, j) => j !== i)) }, '×'));
     return c;
   });
@@ -464,22 +469,22 @@ function interestChips(levelId) {
   const defaults = siteInterests(state.loc.address.country_code, levelId).map(label => ({ id: 'd:' + slug(label), label }));
   const seen = new Set();
   const chips = [...defaults, ...e.added].filter(c => !e.hidden.includes(c.id) && !seen.has(c.label.toLowerCase()) && seen.add(c.label.toLowerCase()));
-  const out = chips.map(c => el('div', { class: 'tb t-interest', title: c.label },
-    el('span', {}, c.label),
-    el('button', { type: 'button', class: 'x', title: `Not applicable here: ${c.label}`, 'aria-label': `Mark “${c.label}” as not applicable here`, onclick: () => hideInterest(key, c.id) }, '×')));
+  const out = chips.map(c => { const label = interestLabel(c.label); return el('div', { class: 'tb t-interest', title: label },
+    el('span', {}, label),
+    el('button', { type: 'button', class: 'x', title: t('interests.notApplicable', { label }), 'aria-label': t('interests.markNA', { label }), onclick: () => hideInterest(key, c.id) }, '×')); });
   out.push(addChip(key));
   return out;
 }
 function addChip(key, onAdd = v => addInterest(key, v)) {
   const wrap = el('div', { class: 'tb t-add' });
   const start = () => {
-    const input = el('input', { type: 'text', maxlength: '60', placeholder: 'New interest', 'aria-label': 'New shared interest' });
+    const input = el('input', { type: 'text', maxlength: '60', placeholder: t('interests.newPlaceholder'), 'aria-label': t('interests.newLabel') });
     const done = save => { const v = input.value.trim(); if (save && v) onAdd(v); else render(); };
     input.addEventListener('keydown', ev => { if (ev.key === 'Enter') done(true); if (ev.key === 'Escape') done(false); });
     input.addEventListener('blur', () => done(true));
     wrap.replaceChildren(input); input.focus();
   };
-  wrap.append(el('button', { type: 'button', class: 'add', onclick: start }, '+ Add'));
+  wrap.append(el('button', { type: 'button', class: 'add', onclick: start }, t('interests.add')));
   return wrap;
 }
 
@@ -496,9 +501,9 @@ function tone(score) {
 const mechTone = score => { const t = tone(score); return t === 'lightgrey' ? 'darkgrey' : t; };
 // The legend's labels depend on what the chips on the screen stand for.
 const LEGENDS = {
-  levels: [['white', 'Free'], ['lightgrey', 'Mostly free'], ['darkgrey', 'Mostly not free'], ['black', 'Not free']],
-  mechanisms: [['white', 'Effective'], ['darkgrey', 'Flawed'], ['black', 'Ineffective or absent']],
-  requirements: [['white', 'Met'], ['darkgrey', 'Partly met'], ['black', 'Not met'], ['disabled', 'Does not apply']],
+  levels: [['white', t('legend.free')], ['lightgrey', t('legend.mostlyFree')], ['darkgrey', t('legend.mostlyNotFree')], ['black', t('legend.notFree')]],
+  mechanisms: [['white', t('legend.effective')], ['darkgrey', t('legend.flawed')], ['black', t('legend.ineffective')]],
+  requirements: [['white', t('legend.met')], ['darkgrey', t('legend.partlyMet')], ['black', t('legend.notMet')], ['disabled', t('legend.doesNotApply')]],
 };
 function setLegend(kind) {
   const items = LEGENDS[kind] || [];
@@ -508,8 +513,8 @@ function setLegend(kind) {
 // Requirements use three colours (Orlin): met white, partly met dark grey (partial or weak), not met black.
 const STATUS_TONE = { yes: 'white', partial: 'darkgrey', weak: 'darkgrey', no: 'black', unknown: 'unknown' };
 // The trail's drop-down menus: what each colour says in words (for tooltips), and what each chevron is called.
-const TONE_WORDS = Object.fromEntries(Object.entries(LEGENDS).map(([k, v]) => [k, { ...Object.fromEntries(v), unknown: 'Not assessed' }]));
-const SWITCH_LABEL = { level: 'Switch level', mech: 'Switch institution', prop: 'Switch requirement' };
+const TONE_WORDS = Object.fromEntries(Object.entries(LEGENDS).map(([k, v]) => [k, { ...Object.fromEntries(v), unknown: t('legend.notAssessed') }]));
+const SWITCH_LABEL = { level: t('switch.level'), mech: t('switch.mech'), prop: t('switch.prop') };
 let trailPlace = null;   // repositions the open menu under its pill when the window changes size
 let trailClose = null;   // closes the open menu
 window.addEventListener('resize', () => trailPlace?.());
@@ -527,14 +532,22 @@ function chip({ label, tone, title, onclick, href, disabled }) {
 // decide for them. Free and Mostly free count as free; Mostly not free and Not free as others deciding.
 // Levels take the place's own English names where the country's file gives them (`levelNames`, Orlin): a canton in
 // Switzerland. A name is a string, or { name, verdict: ['in …', '…'] } when the verdict words cannot be made by
-// lower-casing it.
+// lower-casing it. In another language the name and its verdict words come from its translation
+// ({ name: "Canton", bg: { name: "Кантон", verdict: ["в кантона", "кантона"] } }); without one, the catalog's name stays.
 function localLevelName(j, id) {
   const v = j?.levelNames?.[id];
   if (!v) return null;
+  if (lang !== 'en') {
+    const l = typeof v === 'string' ? null : v[lang];
+    return l?.name ? { name: l.name, verdict: l.verdict || null } : null;
+  }
   const o = typeof v === 'string' ? { name: v } : v;
   const lower = o.name.toLowerCase();
   return { ...o, verdict: o.verdict || [`in your ${lower}`, `your ${lower}`] };
 }
+// A union's name in the reader's language (data/index.json `unions`, e.g. { name: "European Union", bg: { name, verdict } }).
+const unionOf = name => Object.values(state.data.unions || {}).find(u => u.name === name);
+const unionName = name => tx(unionOf(name), 'name') || name;
 
 function verdictLine(levels, loc) {
   const a = loc.address;
@@ -543,10 +556,11 @@ function verdictLine(levels, loc) {
   const place = (nb && !nb.absent && nb.name) || settlement?.name || a.city || a.town || a.village || a.municipality || '';
   const union = loc.places.union?.name;
   const names = {
-    ...Object.fromEntries(Object.keys(loc.jurisdiction?.levelNames || {}).map(id => [id, localLevelName(loc.jurisdiction, id).verdict])),
-    union: union ? [`in the ${union}`, `the ${union}`] : ['in your union', 'your union'],
+    ...Object.fromEntries(Object.keys(loc.jurisdiction?.levelNames || {}).map(id => [id, localLevelName(loc.jurisdiction, id)?.verdict]).filter(([, w]) => w)),
+    union: lang === 'en' ? (union ? [`in the ${union}`, `the ${union}`] : ['in your union', 'your union'])
+      : tx(unionOf(union), 'verdict') || (lang === 'bg' ? ['в съюза', 'съюза'] : null),
   };
-  const text = placeVerdict(levels.map(x => ({ id: x.l.id, kind: x.l.kind, free: x.tone === 'white' || x.tone === 'lightgrey' })), place, names);
+  const text = placeVerdict(levels.map(x => ({ id: x.l.id, kind: x.l.kind, free: x.tone === 'white' || x.tone === 'lightgrey' })), place, names, lang);
   return text ? el('p', { class: 'place-verdict' }, text) : null;
 }
 
@@ -593,17 +607,17 @@ function renderPlace() {
 }
 
 // A mechanism may be named differently at some levels (catalog `levelNames`), e.g. the council of a country is its parliament.
-const levelName = (mdef, levelId, key) => mdef.levelNames?.[levelId]?.[key];
+const levelName = (mdef, levelId, key) => tx(mdef.levelNames?.[levelId], key);
 function mechLabel(m, all, catalog, levelId) {
   const mdef = catalog.mechanisms[m.type] || {};
   const twins = all.filter(x => x.type === m.type).length > 1;
-  return shortName(m.label || (twins && m.name ? m.name : (levelName(mdef, levelId, 'name') || mdef.name || m.name || m.type)));
+  return shortName(tx(m, 'label') || (twins && m.name ? tx(m, 'name') : (levelName(mdef, levelId, 'name') || tx(mdef, 'name') || tx(m, 'name') || m.type)));
 }
 
 function mechLongName(m, all, catalog, levelId) {
   const mdef = catalog.mechanisms[m.type] || {};
   const twins = all.filter(x => x.type === m.type).length > 1;
-  return m.label || (twins && m.name ? m.name : (levelName(mdef, levelId, 'longName') || mdef.longName || mdef.name || m.name || m.type));
+  return tx(m, 'label') || (twins && m.name ? tx(m, 'name') : (levelName(mdef, levelId, 'longName') || tx(mdef, 'longName') || tx(mdef, 'name') || tx(m, 'name') || m.type));
 }
 
 // Word-level diff (longest common subsequence), for showing a proposed amendment against the current text.
@@ -623,6 +637,15 @@ function wordDiff(a, b) {
     else push('del', A[i++]);
   }
   return out.flatMap((r, k) => [k ? ' ' : '', r.kind === 'same' ? r.words.join(' ') : el(r.kind, {}, r.words.join(' '))]);
+}
+// A provision in the reader's language. A law records the language of its official text (`lang`); a provision keeps
+// `text` (in English, translated where the law is not English) and `original` (word for word, in the law's language).
+// A reader of the law's own language gets the original, and the fix and its reason drafted against it (`bg.fix`,
+// `bg.why`); a provision whose fix has no such draft yet stays in English, so the tracked changes still line up.
+function inLang(it, law) {
+  const own = lang !== 'en' && law?.lang === lang && it.original != null && (it.fix == null || it[lang]?.fix != null);
+  if (own) return { ...it, text: it.original, fix: it[lang]?.fix ?? it.fix, why: it[lang]?.why ?? it.why };
+  return { ...it, why: tx(it, 'why') };
 }
 // One provision's lines, as in the law or, when fixed, as a diff against the proposed amendment.
 function provisionLines(it, fixed) {
@@ -676,19 +699,19 @@ function fixReview(law, it) {
   const paint = e => {
     const done = approvedHere(key);
     const approve = el('button', { type: 'button', class: 'fr-btn', disabled: done, onclick: async () => { markApproved(key); paint(await fixFeedback(key, 'approve')); } },
-      done ? 'Approved' : 'Approve', e.approvals ? el('span', { class: 'count' }, ` · ${e.approvals}`) : null);
+      done ? t('fix.approved') : t('fix.approve'), e.approvals ? el('span', { class: 'count' }, ` · ${e.approvals}`) : null);
     const write = el('button', { type: 'button', class: 'fr-btn', onclick: () => {
-      const ta = el('textarea', { rows: 4, 'aria-label': `Your wording for ${it.ref}` });
+      const ta = el('textarea', { rows: 4, 'aria-label': t('fix.yourWording', { ref: it.ref }) });
       ta.value = [].concat(it.fix).join('\n');
       const send = el('button', { type: 'button', class: 'fr-btn primary', onclick: async () => {
         const text = ta.value.trim();
         if (text) paint(await fixFeedback(key, 'suggest', { text }));
-      } }, 'Submit');
-      const cancel = el('button', { type: 'button', class: 'fr-btn', onclick: () => paint(e) }, 'Cancel');
+      } }, t('fix.submit'));
+      const cancel = el('button', { type: 'button', class: 'fr-btn', onclick: () => paint(e) }, t('fix.cancel'));
       box.replaceChildren(ta, el('div', { class: 'fr-row' }, send, cancel));
       ta.focus();
-    } }, 'Write my own');
-    const sugg = (e.suggestions || []).map(x => el('div', { class: 'suggestion' }, el('span', { class: 'who' }, 'Suggested by a reader'), ...String(x.text).split('\n').map(t => el('p', {}, t))));
+    } }, t('fix.writeOwn'));
+    const sugg = (e.suggestions || []).map(x => el('div', { class: 'suggestion' }, el('span', { class: 'who' }, t('fix.byReader')), ...String(x.text).split('\n').map(t => el('p', {}, t))));
     box.replaceChildren(el('div', { class: 'fr-row' }, approve, write), ...sugg);
   };
   paint({ approvals: 0, suggestions: [] });
@@ -701,10 +724,10 @@ function explainerMini(explainer) {
   const [first, ...rest] = explainer.quote;
   const more = el('div', { class: 'xm-more', hidden: true },
     ...rest.map(t => el('p', {}, t)),
-    el('p', { class: 'source' }, 'Source: ', el('a', { href: explainer.url, target: '_blank', rel: 'noopener' }, explainer.source)));
+    el('p', { class: 'source' }, t('explainer.source'), el('a', { href: explainer.url, target: '_blank', rel: 'noopener' }, explainer.source)));
   const toggle = el('button', { type: 'button', class: 'xm-toggle', onclick: () => {
-    more.hidden = !more.hidden; toggle.textContent = more.hidden ? 'Read more' : 'Show less';
-  } }, 'Read more');
+    more.hidden = !more.hidden; toggle.textContent = more.hidden ? t('explainer.more') : t('explainer.less');
+  } }, t('explainer.more'));
   return el('div', { class: 'xm' }, el('p', { class: 'xm-title' }, explainer.title), el('p', {}, first), more, toggle);
 }
 
@@ -718,21 +741,21 @@ function provisionsPanel(provisions, laws, explainer, prop) {
   const panel = el('div', {});
   const draw = fixed => {
     // A band on top, in the requirement's own colour, says at a glance whether the law meets it.
-    const t = fixed ? 'white' : STATUS_TONE[prop?.status];
-    const verdictLabel = t && Object.fromEntries(LEGENDS.requirements)[t];
-    const btn = fixable ? el('button', { type: 'button', class: 'fix-btn', 'aria-pressed': String(fixed), onclick: () => draw(!fixed) }, fixed ? 'Show current law' : 'Fix') : null;
-    const note = fixed ? 'With these amendments (proposed by Freedom Map, not law).' : prop?.explanation;
+    const vt = fixed ? 'white' : STATUS_TONE[prop?.status];
+    const verdictLabel = vt && Object.fromEntries(LEGENDS.requirements)[vt];
+    const btn = fixable ? el('button', { type: 'button', class: 'fix-btn', 'aria-pressed': String(fixed), onclick: () => draw(!fixed) }, fixed ? t('law.showCurrent') : t('law.fix')) : null;
+    const note = fixed ? t('law.withFixes') : tx(prop, 'explanation');
     const mini = explainer && unmet && !fixed ? explainerMini(explainer) : null;
-    const verdict = verdictLabel ? el('div', { class: `verdict t-${t}` },
+    const verdict = verdictLabel ? el('div', { class: `verdict t-${vt}` },
       el('div', { class: 'vtext' }, el('strong', {}, verdictLabel), note ? el('span', {}, note) : null), mini, btn) : btn;
-    panel.className = `provisions${t ? ` v-${t}` : ''}${fixed ? ' fixed' : ''}`;
+    panel.className = `provisions${vt ? ` v-${vt}` : ''}${fixed ? ' fixed' : ''}`;
     panel.replaceChildren(...[verdict, ...provisions.map(p => {
       const law = laws[p.law] || { title: p.law };
-      const title = law.url ? el('a', { href: law.url, target: '_blank', rel: 'noopener' }, law.title) : law.title;
-      const items = (p.items || []).filter(it => fixed || it.text != null || it.fix == null);
+      const title = law.url ? el('a', { href: law.url, target: '_blank', rel: 'noopener' }, tx(law, 'title')) : tx(law, 'title');
+      const items = (p.items || []).map(it => inLang(it, law)).filter(it => fixed || it.text != null || it.fix == null);
       return el('section', {},
         el('h3', {}, title),
-        items.length ? null : el('p', { class: 'absent' }, fixable ? 'The act has no provision for this. Press Fix to see the articles that would provide it.' : 'The act has no provision for this.'),
+        items.length ? null : el('p', { class: 'absent' }, fixable ? t('law.absentFixable') : t('law.absent')),
         ...items.map(it => el('div', { class: 'provision' },
           it.ref ? el('p', { class: 'ref' }, it.ref) : null,
           ...provisionLines(it, fixed),
@@ -773,13 +796,13 @@ function chatBox(key, context) {
   const c = chats.get(key) || { id: newId(), messages: [] };
   chats.set(key, c);
   const log = el('div', { class: 'chat-log', 'aria-live': 'polite' });
-  const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '2000', placeholder: 'Comment, suggest an edit, or ask a question', 'aria-label': 'Your message' });
-  const send = el('button', { type: 'submit', class: 'chat-send' }, 'Send');
+  const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '2000', placeholder: t('chat.placeholder'), 'aria-label': t('chat.label') });
+  const send = el('button', { type: 'submit', class: 'chat-send' }, t('chat.send'));
   const paint = (pending, error) => {
     log.replaceChildren(...[
-      c.messages.length ? null : el('p', { class: 'chat-intro' }, 'Ask about this requirement, or tell us what you think should change. Your messages are saved for the Freedom Map editors.'),
+      c.messages.length ? null : el('p', { class: 'chat-intro' }, t('chat.intro')),
       ...c.messages.map(m => el('p', { class: `chat-msg ${m.role}` }, m.content)),
-      pending ? el('p', { class: 'chat-msg assistant pending' }, 'Thinking…') : null,
+      pending ? el('p', { class: 'chat-msg assistant pending' }, t('chat.thinking')) : null,
       error ? el('p', { class: 'chat-error' }, error) : null].filter(Boolean));
     log.scrollTop = log.scrollHeight;
   };
@@ -792,8 +815,8 @@ function chatBox(key, context) {
     let error = null;
     try {
       const r = await api('POST', 'api/chat', { key, id: c.id, context, messages: c.messages });
-      if (r.reply) c.messages.push({ role: 'assistant', content: r.reply }); else error = r.error || 'No answer.';
-    } catch (err) { error = err.refused ? err.message : 'The chat needs the Freedom Map server (server.py). Your message was not saved.'; }
+      if (r.reply) c.messages.push({ role: 'assistant', content: r.reply }); else error = r.error || t('chat.noAnswer');
+    } catch (err) { error = err.refused ? err.message : t('chat.needsServer'); }
     send.disabled = false; paint(false, error); input.focus();
   } }, input, send);
   input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
@@ -804,12 +827,12 @@ function chatButton(key, context) {
   const wrap = el('div', { class: 'chat-wrap' });
   let pop = null;
   const close = () => { pop?.remove(); pop = null; btn.setAttribute('aria-expanded', 'false'); };
-  const btn = el('button', { type: 'button', class: 'chat-btn', 'aria-label': 'Comment or ask about this requirement', title: 'Comment or ask about this requirement', 'aria-expanded': 'false',
+  const btn = el('button', { type: 'button', class: 'chat-btn', 'aria-label': t('chat.button'), title: t('chat.button'), 'aria-expanded': 'false',
     onclick: () => {
       if (pop) return close();
       const box = chatBox(key, context);
-      pop = el('div', { class: 'chat-pop', role: 'dialog', 'aria-label': 'Comment or ask about this requirement' },
-        el('div', { class: 'chat-head' }, el('strong', {}, 'Comment or ask'), el('button', { type: 'button', class: 'chat-close', 'aria-label': 'Close', onclick: close }, '×')),
+      pop = el('div', { class: 'chat-pop', role: 'dialog', 'aria-label': t('chat.button') },
+        el('div', { class: 'chat-head' }, el('strong', {}, t('chat.title')), el('button', { type: 'button', class: 'chat-close', 'aria-label': t('chat.close'), onclick: close }, '×')),
         box.log, box.form);
       pop.addEventListener('keydown', e => { if (e.key === 'Escape') { close(); btn.focus(); } });
       wrap.append(pop); btn.setAttribute('aria-expanded', 'true'); box.input.focus();
@@ -829,7 +852,7 @@ function flattenKinds(mechs, catalog) {
       const k = m.kinds.find(k => k.type === t) || { type: t, properties: [{ type: 'exists', status: 'no', laws: [] }] };
       const skip = defs[t]?.skipProperties || [];
       return {
-        type: m.type, kindType: t, label: defs[t]?.name || t, title: [k.name, defs[t]?.description].filter(Boolean).join('\n\n'),
+        type: m.type, kindType: t, label: tx(defs[t], 'name') || t, title: [tx(k, 'name'), tx(defs[t], 'description')].filter(Boolean).join('\n\n'),
         properties: kindProperties(k, m.type, catalog),
         scored: { type: m.type, properties: (k.properties || []).filter(p => !skip.includes(p.type)) },
       };
@@ -845,10 +868,10 @@ function render() {
   renderPlace();
   showArea(state.path[0]);
   const j = loc.jurisdiction;
-  $('#status').textContent = j ? (j.statusNote || '') : '';
+  $('#status').textContent = j ? (tx(j, 'statusNote') || '') : '';
   if (!j) {
     $('#trail').replaceChildren();
-    $('#tree').replaceChildren(el('p', { class: 'nodata' }, `No data for ${loc.address.country || 'this country'} yet.`));
+    $('#tree').replaceChildren(el('p', { class: 'nodata' }, t('nodata', { country: loc.address.country || t('nodata.thisCountry') })));
     return;
   }
 
@@ -859,7 +882,7 @@ function render() {
     return { l, lvl, tone: tone(scoreLevel(lvl, catalog)) };
   }).filter(x => x.tone);
   // A union chip carries the union's own name where the country is a member ("European Union").
-  const levelLabel = l => (l.id === 'union' && loc.places.union?.name) || localLevelName(j, l.id)?.name || l.name;
+  const levelLabel = l => (l.id === 'union' && loc.places.union?.name && unionName(loc.places.union.name)) || localLevelName(j, l.id)?.name || tx(l, 'name');
   const cur = levels.find(x => x.l.id === levelId);
   const branch = cur && ['direct', 'representative'].includes(branchId) ? cur.lvl[branchId] : undefined;
   const kindDefs = catalog.referendumKinds || {};
@@ -877,15 +900,15 @@ function render() {
   // Trail: where you are in the tree. A step's name goes back to that page. Its chevron opens a menu of the step's
   // siblings (the other levels, institutions or requirements) and switches sideways, keeping the rest of the path.
   // Trail uses each chip's long name.
-  const steps = [{ name: 'Common interest levels', path: [] }];
+  const steps = [{ name: t('heading.levels'), path: [] }];
   // Each step carries the colour of its chip one level up; the title shows it as a small chip before its name.
   if (cur) steps.push({ kind: 'level', tone: cur.tone, name: levelLabel(cur.l), path: [levelId] });
   if (mech) steps.push({ kind: 'mech', tone: mechTone(scoreMechanism(mech.scored || mech, catalog)), name: mechLongName(mech, mechs, catalog, levelId), path: [levelId, branchId, mechIdx] });
-  if (prop && !single) steps.push({ kind: 'prop', tone: STATUS_TONE[prop.status] || 'unknown', name: catalog.properties[prop.type]?.longName || catalog.properties[prop.type]?.name || prop.name, path: propPath(propIdx) });
+  if (prop && !single) steps.push({ kind: 'prop', tone: STATUS_TONE[prop.status] || 'unknown', name: tx(catalog.properties[prop.type], 'longName') || tx(catalog.properties[prop.type], 'name') || tx(prop, 'name'), path: propPath(propIdx) });
 
   const mechsOf = (lvl, b) => flattenKinds(lvl[b]?.applicable !== false ? (lvl[b]?.mechanisms || []) : [], catalog);
   const sameKind = (a, b) => a.type === b.type && a.kindType === b.kindType;
-  const propLabel = p => p.name || catalog.properties[p.type]?.name || p.type;
+  const propLabel = p => tx(p, 'name') || tx(catalog.properties[p.type], 'name') || p.type;
   const deep = prop && !single;   // a requirement's page is open
   // Where the open requirement sits in another institution: its page there if it has one, else the institution's page.
   const landIn = (m, base) => {
@@ -908,12 +931,12 @@ function render() {
         const twins = ms.map((m, i) => i).filter(i => sameKind(ms[i], mech));
         const i = twins[Math.min(rank, twins.length - 1)];
         const m = ms[i];
-        const t = m ? mechTone(scoreMechanism(m.scored || m, catalog)) : null;
-        if (!t) return null;   // no such institution at this level: left out of the row
+        const mt = m ? mechTone(scoreMechanism(m.scored || m, catalog)) : null;
+        if (!mt) return null;   // no such institution at this level: left out of the row
         const base = [x.l.id, branchId, i];
-        if (depth < 2) return { ...o, tone: t, word: TONE_WORDS.mechanisms[t], path: base };
+        if (depth < 2) return { ...o, tone: mt, word: TONE_WORDS.mechanisms[mt], path: base };
         const { pi, path } = landIn(m, base);
-        if (pi < 0) return { ...o, na: true, path, title: `${o.label}: this requirement does not apply there. Opens the institution's page.` };
+        if (pi < 0) return { ...o, na: true, path, title: t('trail.naThere', { label: o.label }) };
         const pt = STATUS_TONE[m.properties[pi].status] || 'unknown';
         return { ...o, tone: pt, word: TONE_WORDS.requirements[pt], path };
       };
@@ -923,13 +946,13 @@ function render() {
       for (let depth = deep ? 2 : mech ? 1 : 0; ; depth--) {
         const options = ordered.map(x => at(x, depth)).filter(Boolean);
         if (!depth || options.some(o => !o.current && !o.na)) {
-          return { caption: depth === 2 ? `${mechName} › ${propLabel(prop)} at each level` : depth ? `${mechName} at each level` : 'Common interest levels', options };
+          return { caption: depth === 2 ? t('trail.reqAtEachLevel', { mech: mechName, prop: propLabel(prop) }) : depth ? t('trail.atEachLevel', { mech: mechName }) : t('heading.levels'), options };
         }
       }
     },
     // The level's institutions, as on the level's page: direct ones, then representative ones.
     mech: () => ({
-      caption: `${levelLabel(cur.l)}: institutions`,
+      caption: t('trail.institutions', { level: levelLabel(cur.l) }),
       options: cur.l.informal ? [] : ['direct', 'representative'].flatMap(b => {
         const ms = mechsOf(cur.lvl, b);
         return ms.map((m, i) => {
@@ -940,7 +963,7 @@ function render() {
     }),
     // The institution's requirements, as on the institution's page.
     prop: () => ({
-      caption: `${mechLabel(mech, mechs, catalog, levelId)}: requirements`,
+      caption: t('trail.requirements', { mech: mechLabel(mech, mechs, catalog, levelId) }),
       options: props.map((p, i) => {
         const t = p.disabled ? 'disabled' : (STATUS_TONE[p.status] || 'unknown');
         return { label: propLabel(p), tone: t, word: TONE_WORDS.requirements[t], disabled: p.disabled, current: i === propIdx, path: propPath(i) };
@@ -983,7 +1006,7 @@ function render() {
         i && o.group !== options[i - 1].group ? el('span', { class: 'gap', 'aria-hidden': 'true' }) : null,
         el('button', {
           type: 'button', class: `mini${o.current ? ' cur' : ''}`, 'aria-current': o.current ? 'true' : null, disabled: o.disabled,
-          title: o.title || (o.disabled ? `${o.label}: does not apply` : [o.label, o.word].filter(Boolean).join(': ')),
+          title: o.title || (o.disabled ? t('trail.doesNotApply', { label: o.label }) : [o.label, o.word].filter(Boolean).join(': ')),
           onclick: o.disabled ? null : o.current ? close : () => go(o.path),
         }, el('i', { class: `sw ${o.na ? 'na' : `t-${o.tone}`}`, 'aria-hidden': 'true' }),
           el('span', { class: 'label' }, o.current ? steps.find(s => s.kind === open).name : o.label),
@@ -1033,21 +1056,21 @@ function render() {
     const levelChip = ({ l, tone }) => chip({ label: levelLabel(l), tone, title: [...new Set([levelLabel(l), loc.places[l.id].name].filter(Boolean))].join(': '), onclick: () => go([l.id]) });
     setLegend('levels');
     screen.push(verdictLine(levels, loc));
-    screen.push(el('h2', { class: 'group-title' }, 'Common interest levels'));
+    screen.push(el('h2', { class: 'group-title' }, t('heading.levels')));
     screen.push(rowOf(levels.filter(x => x.l.kind === 'territorial').map(levelChip)));
     screen.push(rowOf(levels.filter(x => x.l.kind !== 'territorial').map(levelChip)));
   } else if (!mech) {
     // Screen 2: the level's shared interests, then its decision-making mechanisms in one row: a group of direct and a
     // group of representative mechanisms, side by side, each labelled on its border. A branch without any shows "None".
     setLegend('mechanisms');
-    screen.push(el('h2', { class: 'group-title minor' }, 'Common interest categories'));
+    screen.push(el('h2', { class: 'group-title minor' }, t('heading.categories')));
     screen.push(rowOf(interestChips(levelId), 'interests'));
     // The institutions under one title, branching like a tree into the Direct and Representative groups (Orlin).
-    const instTitle = el('h2', { class: 'group-title' }, 'Core decision-making institutions');
+    const instTitle = el('h2', { class: 'group-title' }, t('heading.coreInst'));
     // Some levels (e.g. Home) decide informally, without formal mechanisms (catalog `informal`): one plain chip.
     if (cur.l.informal) {
       const hi = (cur.lvl.direct?.mechanisms || []).findIndex(m => m.type === 'household');
-      screen.push(el('div', { class: 'inst-tree' }, instTitle, el('div', { class: 'mech-groups' }, rowOf([chip({ label: 'Informal', tone: tone(scoreLevel(cur.lvl, catalog)) || 'white', title: cur.l.informal,
+      screen.push(el('div', { class: 'inst-tree' }, instTitle, el('div', { class: 'mech-groups' }, rowOf([chip({ label: t('inst.informal'), tone: tone(scoreLevel(cur.lvl, catalog)) || 'white', title: tx(cur.l, 'informal'),
         onclick: hi >= 0 ? () => go([levelId, 'direct', hi]) : undefined })]))));
     } else {
       const group = b => {
@@ -1055,27 +1078,27 @@ function render() {
         const ms = flattenKinds(br?.applicable !== false ? (br?.mechanisms || []) : [], catalog);
         const shown = ms.map((m, i) => ({ m, i, tone: mechTone(scoreMechanism(m.scored || m, catalog)) })).filter(x => x.tone);
         const chips = shown.length ? shown.map(({ m, i, tone }) => chip({
-          label: mechLabel(m, ms, catalog, levelId), tone, title: m.title || m.name || catalog.mechanisms[m.type]?.description, onclick: () => go([levelId, b, i]),
-        })) : [chip({ label: 'None', tone: 'black', title: br?.note || 'No such institution at this level.' })];
-        return el('fieldset', { class: 'mech-group', style: `--n: ${chips.length}` }, el('legend', {}, BRANCH_INFO[b].groupName), ...chips);
+          label: mechLabel(m, ms, catalog, levelId), tone, title: tx(m, 'title') || tx(m, 'name') || tx(catalog.mechanisms[m.type], 'description'), onclick: () => go([levelId, b, i]),
+        })) : [chip({ label: t('inst.none'), tone: 'black', title: tx(br, 'note') || t('inst.noneTitle') })];
+        return el('fieldset', { class: 'mech-group', style: `--n: ${chips.length}` }, el('legend', {}, t(BRANCH_NAME[b])), ...chips);
       };
       screen.push(el('div', { class: 'inst-tree' }, instTitle, el('div', { class: 'mech-groups branched' }, group('direct'), group('representative'))));
       requestAnimationFrame(markStacked);
     }
     // Other governance institutions (Orlin 2026-11-12): a section of its own below the core ones, empty for now.
-    screen.push(el('div', { class: 'other-inst' }, el('h2', { class: 'group-title' }, 'Other governance institutions'),
-      el('div', { class: 'other-inst-box', 'aria-label': 'None listed yet' })));
+    screen.push(el('div', { class: 'other-inst' }, el('h2', { class: 'group-title' }, t('heading.otherInst')),
+      el('div', { class: 'other-inst-box', 'aria-label': t('inst.otherNone') })));
   } else if (!prop) {
     // Screen 4: the properties the mechanism needs. If it does not exist in law, the rest are disabled.
     setLegend('requirements');
     // The chips are what the institution's design requires in order for it to work (Orlin 2026-11-12). The heading sits
     // on the top edge of the area, so it does not push the chips down.
-    screen.push(el('h2', { class: 'group-title on-edge' }, 'Design requirements'));
+    screen.push(el('h2', { class: 'group-title on-edge' }, t('heading.designReq')));
     screen.push(rowOf(props.map((p, i) => {
       const pdef = catalog.properties[p.type] || {};
       return chip({
-        label: p.name || pdef.name || p.type, tone: p.disabled ? 'disabled' : (STATUS_TONE[p.status] || 'unknown'),
-        title: p.disabled ? 'Does not apply: the institution does not exist in law.' : [pdef.description, p.explanation].filter(Boolean).join('\n\n'),
+        label: tx(p, 'name') || tx(pdef, 'name') || p.type, tone: p.disabled ? 'disabled' : (STATUS_TONE[p.status] || 'unknown'),
+        title: p.disabled ? t('req.disabledTitle') : [tx(pdef, 'description'), tx(p, 'explanation')].filter(Boolean).join('\n\n'),
         onclick: p.disabled ? undefined : () => go(propPath(i)), disabled: p.disabled,
       });
     })));
@@ -1089,7 +1112,7 @@ function render() {
     if (prop.provisions?.length) screen.push(el('div', { class: 'req has-chat' }, provisionsPanel(prop.provisions, j.laws, explainer, prop), chatBtn));
     else screen.push(el('div', { class: 'req-head' }, chatBtn), rowOf((prop.laws || []).map(id => {
       const law = j.laws[id] || { title: id };
-      return chip({ label: law.short || law.title, tone: 'law', title: [law.title, law.localTitle].filter(Boolean).join('\n'), href: law.url });
+      return chip({ label: tx(law, 'short') || tx(law, 'title'), tone: 'law', title: [tx(law, 'title'), law.localTitle].filter(Boolean).join('\n'), href: law.url });
     })));
   }
   $('#tree').replaceChildren(...screen.filter(Boolean));
@@ -1122,7 +1145,7 @@ window.addEventListener('popstate', () => {
     [state.data, editor] = await Promise.all([loadData(), api('GET', 'api/editor').then(r => r.editor === true, () => false)]);
   } catch (e) {
     $('#hint').hidden = false;
-    $('#hint').textContent = `Could not load data (${e.message}). Start the site with "python3 server.py".`;
+    $('#hint').textContent = t('boot.loadError', { msg: e.message });
     return;
   }
   const h = readHash();

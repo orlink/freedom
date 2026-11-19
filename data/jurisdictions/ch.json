@@ -59,7 +59,7 @@
       "short": "Code of Obligations (OR)"
     }
   },
-  "levelNames": { "state": "Canton" },
+  "levelNames": { "state": { "name": "Canton", "bg": { "name": "Кантон", "verdict": ["в кантона", "кантона"] } } },
   "hiddenLevels": ["county"],
   "levels": {
     "home": {

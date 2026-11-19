@@ -81,6 +81,15 @@ Scores are in [0, 1]. The page uses four colours: black for 0 (none), dark grey 
 
 These rules are in `js/model.js` and are deliberately simple so they can be debated and changed.
 
+## Languages
+
+The site is in English and Bulgarian (`js/i18n.js`). The reader's language comes from `?lang=bg` in the link, else their last choice, else the browser's language.
+
+* **Interface text** is in the tables in `js/i18n.js`, keyed by name (`t('legend.free')`).
+* **Data text** keeps its English field and adds the translation beside it in an object named after the language: `{ "name": "Council", "bg": { "name": "Съвет" } }`. The site reads it with `tx(obj, 'name')`. A field without a translation shows in English. This works for catalog levels, institutions, requirements and referendum kinds; for a country's `levelNames` (`{ "name": "Canton", "bg": { "name": "Кантон", "verdict": ["в кантона", "кантона"] } }`); for unions in `data/index.json`; and for a jurisdiction's explanations, notes and law titles.
+* **Interest chips** are listed in English in `data/interests.json`. Their Bulgarian names are in `data/interests.bg.json`, keyed by the English label. They are kept apart because the owner's editor rewrites `interests.json`.
+* **Law quotes**: a law gives the language of its official text (`"lang": "bg"`). Each provision keeps `text` in English (a translation where the law is not English) and adds `original`, word for word in the law's language. A reader of that language sees `original`, and a fix drafted against it (`"bg": { "fix": …, "why": … }`). Until a fix has that draft, the provision is shown in English, so the tracked changes always compare like with like.
+
 ## Adding a country
 
 1. Copy `data/jurisdictions/bg.json` to `data/jurisdictions/<country code>.json` and edit it.

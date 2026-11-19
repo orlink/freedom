@@ -6,21 +6,30 @@
       "name": "Individual",
       "longName": "Individual interests",
       "kind": "sphere",
-      "description": "Decisions about one's own life, body, property and time."
+      "description": "Decisions about one's own life, body, property and time.",
+      "bg": {
+        "name": "Лични"
+      }
     },
     {
       "id": "business",
       "name": "Economic",
       "longName": "Economic interests",
       "kind": "sphere",
-      "description": "People earning a living, making a profit, obtaining goods and services, using productive resources, building wealth and sharing risk: by their own decisions and contracts, together as partners, shareholders or cooperative members, or through managers, agents and trustees."
+      "description": "People earning a living, making a profit, obtaining goods and services, using productive resources, building wealth and sharing risk: by their own decisions and contracts, together as partners, shareholders or cooperative members, or through managers, agents and trustees.",
+      "bg": {
+        "name": "Икономически"
+      }
     },
     {
       "id": "nonprofit",
       "name": "Non-economic",
       "longName": "Non-economic interests",
       "kind": "sphere",
-      "description": "Members governing their own association, foundation or other non-profit organisation."
+      "description": "Members governing their own association, foundation or other non-profit organisation.",
+      "bg": {
+        "name": "Неикономически"
+      }
     },
     {
       "id": "home",
@@ -29,7 +38,11 @@
       "kind": "territorial",
       "informal": "The people living in the home decide among themselves, informally, without formal institutions.",
       "addressKeys": [],
-      "description": "The people living together in one home: a house or a flat."
+      "description": "The people living together in one home: a house or a flat.",
+      "bg": {
+        "name": "Дом",
+        "informal": "Хората, които живеят в дома, решават помежду си, неформално, без формални институции."
+      }
     },
     {
       "id": "entrance",
@@ -37,7 +50,10 @@
       "longName": "Apartment building section interests",
       "kind": "territorial",
       "addressKeys": [],
-      "description": "Residents sharing one section (entrance, вход) of an apartment building."
+      "description": "Residents sharing one section (entrance, вход) of an apartment building.",
+      "bg": {
+        "name": "Вход"
+      }
     },
     {
       "id": "building",
@@ -48,7 +64,10 @@
         "building",
         "house_number"
       ],
-      "description": "Owners and residents of one building: roof, facade, elevator, common areas."
+      "description": "Owners and residents of one building: roof, facade, elevator, common areas.",
+      "bg": {
+        "name": "Жилищна сграда"
+      }
     },
     {
       "id": "neighbourhood",
@@ -61,7 +80,10 @@
         "residential",
         "suburb"
       ],
-      "description": "A city quarter (квартал): walkways, playgrounds, kindergartens, parking."
+      "description": "A city quarter (квартал): walkways, playgrounds, kindergartens, parking.",
+      "bg": {
+        "name": "Квартал"
+      }
     },
     {
       "id": "village",
@@ -72,7 +94,10 @@
         "village",
         "hamlet"
       ],
-      "description": "A village community."
+      "description": "A village community.",
+      "bg": {
+        "name": "Село"
+      }
     },
     {
       "id": "town",
@@ -82,7 +107,10 @@
       "addressKeys": [
         "town"
       ],
-      "description": "A town community."
+      "description": "A town community.",
+      "bg": {
+        "name": "Град"
+      }
     },
     {
       "id": "municipality",
@@ -94,7 +122,10 @@
         "city_district",
         "city"
       ],
-      "description": "The basic unit of local self-government."
+      "description": "The basic unit of local self-government.",
+      "bg": {
+        "name": "Община"
+      }
     },
     {
       "id": "county",
@@ -105,7 +136,10 @@
         "county",
         "state_district"
       ],
-      "description": "Intermediate level: county, district, oblast, province."
+      "description": "Intermediate level: county, district, oblast, province.",
+      "bg": {
+        "name": "Област"
+      }
     },
     {
       "id": "state",
@@ -115,7 +149,10 @@
       "addressKeys": [
         "state"
       ],
-      "description": "Member state of a federation (a US state, a German Land); a country may give it its own name in `levelNames`, e.g. Canton in Switzerland. Not applicable in unitary countries."
+      "description": "Member state of a federation (a US state, a German Land); a country may give it its own name in `levelNames`, e.g. Canton in Switzerland. Not applicable in unitary countries.",
+      "bg": {
+        "name": "Щат"
+      }
     },
     {
       "id": "country",
@@ -125,7 +162,10 @@
       "addressKeys": [
         "country"
       ],
-      "description": "The country (the sovereign state)."
+      "description": "The country (the sovereign state).",
+      "bg": {
+        "name": "Държава"
+      }
     },
     {
       "id": "union",
@@ -133,7 +173,10 @@
       "longName": "Union interests",
       "kind": "territorial",
       "addressKeys": [],
-      "description": "Supranational union, e.g. the European Union."
+      "description": "Supranational union, e.g. the European Union.",
+      "bg": {
+        "name": "Съюз"
+      }
     }
   ],
   "mechanisms": {
@@ -161,25 +204,41 @@
         "exists",
         "binding",
         "no_quorum"
-      ]
+      ],
+      "bg": {
+        "name": "Референдум",
+        "longName": "Референдуми"
+      }
     },
     "general_assembly": {
       "branch": "direct",
       "name": "General assembly",
       "longName": "General assembly",
-      "description": "A meeting of all residents or owners that takes decisions."
+      "description": "A meeting of all residents or owners that takes decisions.",
+      "bg": {
+        "name": "Общо събрание",
+        "longName": "Общо събрание"
+      }
     },
     "personal_autonomy": {
       "branch": "direct",
       "name": "Personal autonomy",
       "longName": "Personal autonomy",
-      "description": "The person decides alone, protected from interference."
+      "description": "The person decides alone, protected from interference.",
+      "bg": {
+        "name": "Лична автономия",
+        "longName": "Лична автономия"
+      }
     },
     "household": {
       "branch": "direct",
       "name": "Household decision",
       "longName": "Informal",
-      "description": "The people living in a home decide about it together, protected from outside interference."
+      "description": "The people living in a home decide about it together, protected from outside interference.",
+      "bg": {
+        "name": "Решение в домакинството",
+        "longName": "Неформално"
+      }
     },
     "council": {
       "branch": "representative",
@@ -188,11 +247,19 @@
       "levelNames": {
         "country": {
           "name": "Parliament",
-          "longName": "Parliament"
+          "longName": "Parliament",
+          "bg": {
+            "name": "Парламент",
+            "longName": "Парламент"
+          }
         },
         "union": {
           "name": "Parliament",
-          "longName": "Parliament"
+          "longName": "Parliament",
+          "bg": {
+            "name": "Парламент",
+            "longName": "Парламент"
+          }
         }
       },
       "description": "The council of this community, which decides its affairs.",
@@ -202,7 +269,11 @@
       ],
       "caps": [
         "individual_vote"
-      ]
+      ],
+      "bg": {
+        "name": "Съвет",
+        "longName": "Съвет"
+      }
     },
     "executive": {
       "branch": "representative",
@@ -215,7 +286,11 @@
       ],
       "caps": [
         "individual_vote"
-      ]
+      ],
+      "bg": {
+        "name": "Изпълнителна власт",
+        "longName": "Изпълнителна власт"
+      }
     },
     "upper_council_seat": {
       "branch": "representative",
@@ -224,7 +299,11 @@
       "levelNames": {
         "neighbourhood": {
           "name": "Representatives in municipal council",
-          "longName": "Representatives in municipal council"
+          "longName": "Representatives in municipal council",
+          "bg": {
+            "name": "Представители в общинския съвет",
+            "longName": "Представители в общинския съвет"
+          }
         }
       },
       "description": "No body of its own, but does the community at least elect its own accountable member of the council above?",
@@ -232,7 +311,11 @@
       "gates": [
         "local_districts"
       ],
-      "$comment": "Fallback mechanism: weighted at 40%, and void unless the higher council is elected in local districts, so this community has its own representative."
+      "$comment": "Fallback mechanism: weighted at 40%, and void unless the higher council is elected in local districts, so this community has its own representative.",
+      "bg": {
+        "name": "Представител в по-горния съвет",
+        "longName": "Представител в по-горния съвет"
+      }
     },
     "agent": {
       "branch": "representative",
@@ -242,7 +325,11 @@
       "gates": [
         "exists",
         "chosen_by_represented"
-      ]
+      ],
+      "bg": {
+        "name": "Пълномощници",
+        "longName": "Пълномощници"
+      }
     },
     "trustee": {
       "branch": "representative",
@@ -252,7 +339,11 @@
       "gates": [
         "exists",
         "chosen_by_represented"
-      ]
+      ],
+      "bg": {
+        "name": "Довереници",
+        "longName": "Довереници"
+      }
     }
   },
   "properties": {
@@ -260,13 +351,21 @@
       "gate": true,
       "name": "Exists in law",
       "longName": "Exists in law",
-      "description": "The law should provide this institution at this level."
+      "description": "The law should provide this institution at this level.",
+      "bg": {
+        "name": "Предвидено в закона",
+        "longName": "Предвидено в закона"
+      }
     },
     "binding": {
       "gate": true,
       "name": "Legally binding",
       "longName": "Legally binding",
-      "description": "The outcome should bind the authorities, not be merely advisory."
+      "description": "The outcome should bind the authorities, not be merely advisory.",
+      "bg": {
+        "name": "Задължително",
+        "longName": "Задължително"
+      }
     },
     "no_quorum": {
       "gate": false,
@@ -284,172 +383,284 @@
         ],
         "source": "Wikipedia, “Referendum”, section Participation quorum (CC BY-SA 4.0)",
         "url": "https://en.wikipedia.org/wiki/Referendum#Participation_quorum"
+      },
+      "bg": {
+        "name": "Без кворум за участие",
+        "longName": "Без кворум за участие"
       }
     },
     "regular_days": {
       "gate": false,
       "name": "Regular voting days",
       "longName": "Regular voting days",
-      "description": "Referendums should be held on fixed days each year, known in advance, together with elections or separately. Voting on election day raises turnout for both; practice shows that their influence on each other is minimal."
+      "description": "Referendums should be held on fixed days each year, known in advance, together with elections or separately. Voting on election day raises turnout for both; practice shows that their influence on each other is minimal.",
+      "bg": {
+        "name": "Редовни дни за гласуване",
+        "longName": "Редовни дни за гласуване"
+      }
     },
     "concrete_proposals": {
       "gate": false,
       "name": "Concrete proposals",
       "longName": "Concrete proposals",
-      "description": "People should decide on specific, worded proposals, not only on vague questions."
+      "description": "People should decide on specific, worded proposals, not only on vague questions.",
+      "bg": {
+        "name": "Конкретни предложения",
+        "longName": "Конкретни предложения"
+      }
     },
     "citizen_triggered": {
       "gate": false,
       "name": "Citizens can trigger it",
       "longName": "Citizens can trigger it",
-      "description": "Residents should be able to start it themselves, without permission from officials."
+      "description": "Residents should be able to start it themselves, without permission from officials.",
+      "bg": {
+        "name": "Гражданите могат да го инициират",
+        "longName": "Гражданите могат да го инициират"
+      }
     },
     "reasonable_signatures": {
       "gate": false,
       "name": "Reasonable petition requirements",
       "longName": "Reasonable petition requirements",
-      "description": "Signature thresholds and deadlines should be achievable for ordinary residents."
+      "description": "Signature thresholds and deadlines should be achievable for ordinary residents.",
+      "bg": {
+        "name": "Разумни изисквания за подписка",
+        "longName": "Разумни изисквания за подписка"
+      }
     },
     "broad_scope": {
       "gate": false,
       "name": "Covers the interests",
       "longName": "Covers the interests",
-      "description": "It should cover the level's shared interests, with few excluded topics; budget and local fees should be decidable too."
+      "description": "It should cover the level's shared interests, with few excluded topics; budget and local fees should be decidable too.",
+      "bg": {
+        "name": "Обхваща интересите",
+        "longName": "Обхваща интересите"
+      }
     },
     "no_outside_override": {
       "gate": false,
       "name": "No outside interference",
       "longName": "No outside interference",
-      "description": "People who do not share the interests should not be able to interfere in the decision: to forbid it, require permission for it, veto it or overturn it (as a censor does between author and publisher)."
+      "description": "People who do not share the interests should not be able to interfere in the decision: to forbid it, require permission for it, veto it or overturn it (as a censor does between author and publisher).",
+      "bg": {
+        "name": "Без външна намеса",
+        "longName": "Без външна намеса"
+      }
     },
     "own_means": {
       "gate": false,
       "name": "Means to implement",
       "longName": "Means to implement",
       "description": "The community should control a budget or resources to carry out its decisions.",
-      "$comment": "Used for direct mechanisms (general meetings). For representative bodies it is part of Powers (binding_powers)."
+      "$comment": "Used for direct mechanisms (general meetings). For representative bodies it is part of Powers (binding_powers).",
+      "bg": {
+        "name": "Средства за изпълнение",
+        "longName": "Средства за изпълнение"
+      }
     },
     "binding_powers": {
       "gate": true,
       "name": "Powers",
       "longName": "Powers",
-      "description": "It should be able to take binding decisions on the community's shared interests and have the means to carry them out: its own budget, taxes and fees, and control of local services."
+      "description": "It should be able to take binding decisions on the community's shared interests and have the means to carry them out: its own budget, taxes and fees, and control of local services.",
+      "bg": {
+        "name": "Правомощия",
+        "longName": "Правомощия"
+      }
     },
     "individual_vote": {
       "gate": false,
       "name": "Individual accountability",
       "longName": "Individual accountability",
-      "description": "Voters should choose between individual candidates (single-member districts or fully open lists), not only party lists, so that each representative is personally accountable to them."
+      "description": "Voters should choose between individual candidates (single-member districts or fully open lists), not only party lists, so that each representative is personally accountable to them.",
+      "bg": {
+        "name": "Лична отговорност",
+        "longName": "Лична отговорност"
+      }
     },
     "recall": {
       "gate": false,
       "name": "Recall possible",
       "longName": "Recall possible",
       "description": "Voters should ideally be able to remove the representative before the end of term. Welcome but not required: frequent, regular elections are the main way to hold representatives to account, so a missing recall does not lower the score.",
-      "optional": true
+      "optional": true,
+      "bg": {
+        "name": "Възможно предсрочно освобождаване",
+        "longName": "Възможно предсрочно освобождаване"
+      }
     },
     "no_topic_restrictions": {
       "gate": false,
       "name": "No topic restrictions",
       "longName": "No topic restrictions",
-      "description": "Any matter within the competence of the level should be open to a vote, including the budget and taxes."
+      "description": "Any matter within the competence of the level should be open to a vote, including the budget and taxes.",
+      "bg": {
+        "name": "Без ограничения на темите",
+        "longName": "Без ограничения на темите"
+      }
     },
     "local_districts": {
       "gate": false,
       "name": "Local representation",
       "longName": "Local representation",
-      "description": "Each part of the community should elect its own representative, who answers to it, instead of one list for the whole area."
+      "description": "Each part of the community should elect its own representative, who answers to it, instead of one list for the whole area.",
+      "bg": {
+        "name": "Местно представителство",
+        "longName": "Местно представителство"
+      }
     },
     "proportional_representation": {
       "gate": false,
       "name": "Proportional representation",
       "longName": "Proportional representation",
-      "description": "Non-territorial communities of interest should hold seats in proportion to their share of the electorate, through individually accountable members, with no legal threshold and no seats won by plurality alone."
+      "description": "Non-territorial communities of interest should hold seats in proportion to their share of the electorate, through individually accountable members, with no legal threshold and no seats won by plurality alone.",
+      "bg": {
+        "name": "Пропорционално представителство",
+        "longName": "Пропорционално представителство"
+      }
     },
     "no_roadblocks": {
       "gate": false,
       "name": "No roadblocks",
       "longName": "No roadblocks",
-      "description": "There should be no smaller procedural obstacles that can stop or stall the institution, such as a petition lapsing when parliament or the council changes."
+      "description": "There should be no smaller procedural obstacles that can stop or stall the institution, such as a petition lapsing when parliament or the council changes.",
+      "bg": {
+        "name": "Без пречки",
+        "longName": "Без пречки"
+      }
     },
     "home_inviolable": {
       "gate": false,
       "name": "Home is inviolable",
       "longName": "Home is inviolable",
-      "description": "Outsiders, including the authorities, should not enter or search the home without the occupants' consent or a court's permission, except in emergencies."
+      "description": "Outsiders, including the authorities, should not enter or search the home without the occupants' consent or a court's permission, except in emergencies.",
+      "bg": {
+        "name": "Неприкосновеност на жилището",
+        "longName": "Неприкосновеност на жилището"
+      }
     },
     "family_privacy": {
       "gate": false,
       "name": "Privacy",
       "longName": "Privacy",
-      "description": "There should be no unlawful interference in private and family life or in correspondence."
+      "description": "There should be no unlawful interference in private and family life or in correspondence.",
+      "bg": {
+        "name": "Личен живот",
+        "longName": "Личен живот"
+      }
     },
     "home_property": {
       "gate": false,
       "name": "Property",
       "longName": "Property",
-      "description": "Private property, including the home, should be inviolable."
+      "description": "Private property, including the home, should be inviolable.",
+      "bg": {
+        "name": "Собственост",
+        "longName": "Собственост"
+      }
     },
     "parental_rights": {
       "gate": false,
       "name": "Parental rights",
       "longName": "Parental rights",
-      "description": "Raising children should be the parents' right and duty; only a court should be able to restrict it, on grounds set by law."
+      "description": "Raising children should be the parents' right and duty; only a court should be able to restrict it, on grounds set by law.",
+      "bg": {
+        "name": "Родителски права",
+        "longName": "Родителски права"
+      }
     },
     "joint_decisions": {
       "gate": false,
       "name": "Decided together",
       "longName": "Decided together",
-      "description": "The adults of the household should decide its matters together and as equals."
+      "description": "The adults of the household should decide its matters together and as equals.",
+      "bg": {
+        "name": "Решава се заедно",
+        "longName": "Решава се заедно"
+      }
     },
     "child_rights": {
       "gate": false,
       "name": "Child rights",
       "longName": "Child rights",
-      "description": "The household is only as free as its members: a child's own rights should be protected, with outside help as a last resort."
+      "description": "The household is only as free as its members: a child's own rights should be protected, with outside help as a last resort.",
+      "bg": {
+        "name": "Права на детето",
+        "longName": "Права на детето"
+      }
     },
     "abuse_protection": {
       "gate": false,
       "name": "Domestic abuse protection",
       "longName": "Domestic abuse protection",
-      "description": "Victims should be able to get protection, including removing the abuser from the home."
+      "description": "Victims should be able to get protection, including removing the abuser from the home.",
+      "bg": {
+        "name": "Защита от домашно насилие",
+        "longName": "Защита от домашно насилие"
+      }
     },
     "education_choice": {
       "gate": false,
       "name": "Education choice",
       "longName": "Education choice",
-      "description": "Parents should be able to choose the form of education, including at home, without needing an authority's approval."
+      "description": "Parents should be able to choose the form of education, including at home, without needing an authority's approval.",
+      "bg": {
+        "name": "Избор на образование",
+        "longName": "Избор на образование"
+      }
     },
     "chosen_by_represented": {
       "gate": false,
       "name": "Chosen by the represented",
       "longName": "Chosen by the represented",
-      "description": "The people whose interests are represented should choose the agent or trustee themselves."
+      "description": "The people whose interests are represented should choose the agent or trustee themselves.",
+      "bg": {
+        "name": "Избрани от представляваните",
+        "longName": "Избрани от представляваните"
+      }
     },
     "revocable": {
       "gate": false,
       "name": "Revocable",
       "longName": "Revocable",
-      "description": "The people represented should be able to withdraw the authority or replace the agent or trustee."
+      "description": "The people represented should be able to withdraw the authority or replace the agent or trustee.",
+      "bg": {
+        "name": "Оттегляеми",
+        "longName": "Оттегляеми"
+      }
     },
     "must_account": {
       "gate": false,
       "name": "Must account",
       "longName": "Must account",
-      "description": "The agent or trustee should report to the people represented and account for what they did with their affairs and property."
+      "description": "The agent or trustee should report to the people represented and account for what they did with their affairs and property.",
+      "bg": {
+        "name": "Дължат отчет",
+        "longName": "Дължат отчет"
+      }
     },
     "duty_of_loyalty": {
       "gate": false,
       "name": "Duty of loyalty",
       "longName": "Duty of loyalty",
-      "description": "The agent or trustee should act in the interest of the people represented, avoid conflicts of interest and not profit at their expense."
+      "description": "The agent or trustee should act in the interest of the people represented, avoid conflicts of interest and not profit at their expense.",
+      "bg": {
+        "name": "Задължение за лоялност",
+        "longName": "Задължение за лоялност"
+      }
     }
   },
   "referendumKinds": {
     "citizen_initiative": {
       "name": "Citizen initiative",
       "longName": "Citizen initiative referendums",
-      "description": "Citizens collect signatures to put their own proposal to a vote of all."
+      "description": "Citizens collect signatures to put their own proposal to a vote of all.",
+      "bg": {
+        "name": "Гражданска инициатива",
+        "longName": "Референдуми по гражданска инициатива"
+      }
     },
     "veto_referendum": {
       "name": "Veto referendum",
@@ -457,7 +668,11 @@
       "description": "Citizens collect signatures to put a decision already adopted by the council or parliament to a vote, which can overturn it.",
       "skipProperties": [
         "concrete_proposals"
-      ]
+      ],
+      "bg": {
+        "name": "Отменителен референдум",
+        "longName": "Отменителни референдуми"
+      }
     },
     "mandatory_referendum": {
       "name": "Mandatory referendum",
@@ -467,7 +682,11 @@
         "concrete_proposals",
         "reasonable_signatures",
         "no_topic_restrictions"
-      ]
+      ],
+      "bg": {
+        "name": "Задължителен референдум",
+        "longName": "Задължителни референдуми"
+      }
     }
   }
 }
