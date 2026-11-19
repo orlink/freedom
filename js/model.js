@@ -263,26 +263,45 @@ export function applyPopulation(jurisdiction, settlement) {
 
 // ---------- the place verdict ----------
 // How each level reads in the one-sentence answer above the level chips: where you are free ("at home") and what
-// others decide for ("your home"). Levels missing here are left out of the sentence.
+// others decide for ("your home"), per language. Levels missing here are left out of the sentence.
 const VERDICT_WORDS = {
-  home: ['at home', 'your home'],
-  entrance: ['in your building section', 'your building section'],
-  building: ['in your apartment building', 'your apartment building'],
-  neighbourhood: ['in your neighbourhood', 'your neighbourhood'],
-  village: ['in your village', 'your village'],
-  town: ['in your town', 'your town'],
-  municipality: ['in your municipality', 'your municipality'],
-  county: ['in your county', 'your county'],
-  state: ['in your state', 'your state'],
-  country: ['in your country', 'your country'],
-  individual: ['in your personal life', 'your personal life'],
-  business: ['in your business', 'your business'],
-  nonprofit: ['in your associations', 'your associations'],
+  en: {
+    home: ['at home', 'your home'],
+    entrance: ['in your building section', 'your building section'],
+    building: ['in your apartment building', 'your apartment building'],
+    neighbourhood: ['in your neighbourhood', 'your neighbourhood'],
+    village: ['in your village', 'your village'],
+    town: ['in your town', 'your town'],
+    municipality: ['in your municipality', 'your municipality'],
+    county: ['in your county', 'your county'],
+    state: ['in your state', 'your state'],
+    country: ['in your country', 'your country'],
+    individual: ['in your personal life', 'your personal life'],
+    business: ['in your business', 'your business'],
+    nonprofit: ['in your associations', 'your associations'],
+  },
+  // Bulgarian uses the definite form ("в квартала", "за общината"), which needs no possessive and no gender.
+  bg: {
+    home: ['у дома', 'дома'],
+    entrance: ['във входа', 'входа'],
+    building: ['в сградата', 'сградата'],
+    neighbourhood: ['в квартала', 'квартала'],
+    village: ['в селото', 'селото'],
+    town: ['в града', 'града'],
+    municipality: ['в общината', 'общината'],
+    county: ['в областта', 'областта'],
+    state: ['в щата', 'щата'],
+    country: ['в държавата', 'държавата'],
+    individual: ['в личния си живот', 'личния ви живот'],
+    business: ['в бизнеса си', 'бизнеса ви'],
+    nonprofit: ['в сдруженията си', 'сдруженията ви'],
+  },
 };
+const AND = { en: 'and', bg: 'и' };
 
 /** "a, b and c" */
-export function joinList(items) {
-  return items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
+export function joinList(items, lang = 'en') {
+  return items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} ${AND[lang] || AND.en} ${items[items.length - 1]}`;
 }
 
 /** Drop a repeated lead-in from a run of phrases: "in your town", "in your county" → "in your town", "county". */
@@ -297,21 +316,42 @@ function contract(phrases) {
   });
 }
 
+// The sentence around the lists, per language: "In Lozenets you are free …, but others decide for …."
+const VERDICT = {
+  en: {
+    where: place => `In ${place} `,
+    all: (w, free) => `${w}you are free ${free}: at every level the map covers.`,
+    none: (w, notFree) => `${w}others decide for ${notFree}.`,
+    both: (w, free, notFree) => `${w}you are free ${free}, but others decide for ${notFree}.`,
+  },
+  // "Във" before a word starting with в or ф ("Във Варна"). Without a place the sentence starts with a capital.
+  bg: {
+    where: place => `${/^[вфВФ]/.test(place) ? 'Във' : 'В'} ${place} `,
+    all: (w, free) => cap(`${w}сте свободни ${free}: на всяко ниво, което картата обхваща.`),
+    none: (w, notFree) => cap(`${w}за ${notFree} решават други.`),
+    both: (w, free, notFree) => cap(`${w}сте свободни ${free}, но за ${notFree} решават други.`),
+  },
+};
+const cap = s => s.charAt(0).toLocaleUpperCase() + s.slice(1);
+
 /**
  * One sentence that answers how free a person living here is, level by level:
  * "In Lozenets you are free at home and in your business, but others decide for your neighbourhood, municipality and county."
  * `levels` = [{ id, kind ('territorial' | 'sphere'), free (true for Free and Mostly free) }] in catalog order;
- * `place` = the place name to start with; `names` = optional wording overrides per level id ({ state: ['in your canton', 'your canton'] }).
+ * `place` = the place name to start with; `names` = optional wording overrides per level id ({ state: ['in your canton', 'your canton'] });
+ * `lang` = 'en' or 'bg'.
  * Territorial levels come first, from the home up, then the individual, economic and non-economic spheres.
  */
-export function placeVerdict(levels, place, names = {}) {
-  const words = id => names[id] || VERDICT_WORDS[id];
+export function placeVerdict(levels, place, names = {}, lang = 'en') {
+  const L = VERDICT[lang] ? lang : 'en';
+  const words = id => names[id] || VERDICT_WORDS[L][id];
   const ordered = [...levels.filter(x => x.kind === 'territorial'), ...levels.filter(x => x.kind !== 'territorial')].filter(x => words(x.id));
-  const free = contract(ordered.filter(x => x.free).map(x => words(x.id)[0]));
-  const notFree = contract(ordered.filter(x => !x.free).map(x => words(x.id)[1]));
-  const where = place ? `In ${place} ` : '';
+  const tidy = L === 'en' ? contract : x => x;
+  const free = tidy(ordered.filter(x => x.free).map(x => words(x.id)[0]));
+  const notFree = tidy(ordered.filter(x => !x.free).map(x => words(x.id)[1]));
+  const where = place ? VERDICT[L].where(place) : '';
   if (!free.length && !notFree.length) return '';
-  if (!notFree.length) return `${where}you are free ${joinList(free)}: at every level the map covers.`;
-  if (!free.length) return `${where}others decide for ${joinList(notFree)}.`;
-  return `${where}you are free ${joinList(free)}, but others decide for ${joinList(notFree)}.`;
+  if (!notFree.length) return VERDICT[L].all(where, joinList(free, L));
+  if (!free.length) return VERDICT[L].none(where, joinList(notFree, L));
+  return VERDICT[L].both(where, joinList(free, L), joinList(notFree, L));
 }
