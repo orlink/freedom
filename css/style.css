@@ -231,7 +231,7 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 /* Only the verdict label's own line makes room for the buttons; the explanation below runs the full width. */
 .provisions .verdict .vtext strong { display: block; min-height: 28px; margin-bottom: 6px; }
 .provisions .verdict:has(.fix-btn) .vtext strong { padding-right: 170px; }
-.req.has-chat .provisions .verdict:has(.fix-btn) .vtext strong { padding-right: 170px; }
+.req.has-chat .provisions .verdict:has(.fix-btn) .vtext strong { padding-right: 208px; }
 .provisions .fix-btn { position: absolute; top: 10px; right: 14px; font: inherit; font-size: 14px; font-weight: 700; padding: 6px 16px; border-radius: 999px; border: 0; cursor: pointer;
   background: linear-gradient(135deg, #f2555a, #d6334f); color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
 .provisions .fix-btn[aria-pressed="true"] { background: var(--surface); color: var(--coral-ink); border: 1px solid var(--line); box-shadow: none; }
@@ -266,8 +266,8 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .req-head { width: 100%; display: flex; justify-content: flex-end; margin: -10px 0 -6px; }
 .req { position: relative; width: 100%; max-width: 720px; }
 .req > .chat-wrap { position: absolute; top: 10px; right: 10px; z-index: 5; }
-.req.has-chat .provisions .verdict .vtext strong { padding-right: 44px; min-height: 34px; }
-.chat-wrap { position: relative; }
+.req.has-chat .provisions .verdict .vtext strong { padding-right: 82px; min-height: 34px; }
+.chat-wrap { position: relative; display: flex; gap: 4px; }
 .chat-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--coral-ink);
   display: inline-flex; align-items: center; justify-content: center; box-shadow: var(--shadow); }
 .chat-btn:hover, .chat-btn[aria-expanded="true"] { background: var(--coral-soft); }
@@ -299,8 +299,8 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .sel-tools button:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
 .chat-quote { margin: 0; padding: 6px 10px; border-left: 3px solid var(--coral); background: var(--coral-soft); border-radius: 0 8px 8px 0; font-size: 13px; line-height: 1.4;
   color: var(--text); display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; flex-shrink: 0; }
-.req.has-chat .provisions .verdict .fix-btn { right: 60px; }
-.req.has-chat .provisions > .fix-btn { margin-right: 44px; }
+.req.has-chat .provisions .verdict .fix-btn { right: 98px; }
+.req.has-chat .provisions > .fix-btn { margin-right: 82px; }
 @media (max-width: 600px) {
   .provisions .verdict .vtext strong, .req.has-chat .provisions .verdict .vtext strong, .req.has-chat .provisions .verdict:has(.fix-btn) .vtext strong { padding-right: 0; min-height: 0; }
   .req.has-chat .provisions .verdict, .provisions .verdict:has(.fix-btn) { padding-top: 54px; }

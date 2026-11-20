@@ -401,10 +401,12 @@ def comment_issue(comment, quote, where, page, url, lang, messages):
     """The issue for one reader's comment: title, then a body with the page, the passage, the comment and any chat."""
     head = " ".join(comment.split())
     title = f"{re.split(r' [›>] ', page)[-1] if page else 'Comment'}: {no_mentions(head)[:70]}{'…' if len(head) > 70 else ''}"
-    parts = [f"**Page:** {no_mentions(page)}" + (f" ({url})" if url else ""), f"**Language:** {lang}",
-             f"**Highlighted** ({no_mentions(where) or 'law text'}):\n\n{quote_md(quote)}", f"**Comment**\n\n{quote_md(comment)}"]
+    parts = [f"**Page:** {no_mentions(page)}", f"**Link:** {url or '(not given)'}", f"**Language:** {lang}"]
+    if quote:
+        parts.append(f"**Highlighted** ({no_mentions(where) or 'law text'}):\n\n{quote_md(quote)}")
+    parts.append(f"**Comment**\n\n{quote_md(comment)}")
     if messages:
-        parts.append("<details><summary>Chat with Claude about this passage</summary>\n\n" + issue_turns(messages) + "\n\n</details>")
+        parts.append("<details><summary>Chat with Claude</summary>\n\n" + issue_turns(messages) + "\n\n</details>")
     return title[:200], "\n\n".join(parts)[:60000]
 
 
@@ -696,7 +698,7 @@ class Handler(SimpleHTTPRequestHandler):
             return self.send_json(400, {"error": "bad body"})
         comment = str(body.get("comment", "")).strip()[:MAX_COMMENT]
         quote = str(body.get("quote", "")).strip()[:MAX_COMMENT]
-        if not comment or not quote:
+        if not comment:
             return self.send_json(400, {"error": "empty comment"})
         url = str(body.get("url", ""))[:500]
         url = url if re.match(r"^https?://[^\s<>]+$", url) else ""
