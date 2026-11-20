@@ -2685,22 +2685,12 @@
                               "A local referendum shall be held on the proposal of:",
                               "3. an initiative committee with the signatures of no fewer than one twentieth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
                             ],
-                            "fix": [
-                              "A local referendum shall be held on the proposal of:",
-                              "3. an initiative committee with the signatures of no fewer than one hundredth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
-                            ],
-                            "why": "Lowers the signatures needed to propose a local referendum from 1/20 to 1/100 of voters.",
                             "original": [
                               "(1) Местен референдум се произвежда по предложение на:",
                               "3. инициативен комитет с подписите на не по-малко от една двадесета от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, район или кметство към момента на вписване на предложението в регистъра."
                             ],
                             "bg": {
-                              "ref": "Чл. 27, ал. 1",
-                              "fix": [
-                                "(1) Местен референдум се произвежда по предложение на:",
-                                "3. инициативен комитет с подписите на не по-малко от една стотна от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, район или кметство към момента на вписване на предложението в регистъра."
-                              ],
-                              "why": "Намалява подписите, нужни за предлагане на местен референдум, от 1/20 на 1/100 от гласоподавателите."
+                              "ref": "Чл. 27, ал. 1"
                             }
                           },
                           {
@@ -3181,25 +3171,25 @@
                       {
                         "ref": "Article 2(2)",
                         "text": "The constituent administrative-territorial units within municipalities are mayoralties (кметства) and districts (райони). They are created under conditions and by a procedure laid down by law.",
-                        "fix": "The constituent administrative-territorial units within municipalities are mayoralties (кметства), districts (райони) and quarters (квартали). They are created under conditions and by a procedure laid down by law.",
-                        "why": "Makes quarters units of local self-government.",
+                        "fix": "The constituent administrative-territorial units within municipalities are mayoralties (кметства) and quarters (квартали). They are created under conditions and by a procedure laid down by law.",
+                        "why": "Makes quarters, instead of districts, the units of local self-government within a municipality, alongside mayoralties.",
                         "original": "(2) Съставни административно-териториални единици в общините са кметствата и районите. Те се създават при условия и по ред, определени в закон.",
                         "bg": {
                           "ref": "Чл. 2, ал. 2",
-                          "fix": "(2) Съставни административно-териториални единици в общините са кметствата, районите и кварталите. Те се създават при условия и по ред, определени в закон.",
-                          "why": "Прави кварталите единици на местното самоуправление."
+                          "fix": "(2) Съставни административно-териториални единици в общините са кметствата и кварталите. Те се създават при условия и по ред, определени в закон.",
+                          "why": "Кварталите, вместо районите, стават единици на местното самоуправление в общината, наред с кметствата."
                         }
                       },
                       {
                         "ref": "Article 2(5)",
                         "text": "Mayors of districts are elected in the districts of Sofia Municipality and of cities divided into districts.",
-                        "fix": "Mayors and councils of districts are elected in the districts of Sofia Municipality and of cities divided into districts. Quarter councils are elected in quarters.",
-                        "why": "Gives districts and quarters elected councils of their own.",
+                        "fix": "Quarter councils are elected in quarters.",
+                        "why": "Quarters get elected councils of their own; districts are no longer a level of their own.",
                         "original": "(5) В районите в Столичната община и в градовете с районно деление се избират кметове на райони.",
                         "bg": {
                           "ref": "Чл. 2, ал. 5",
-                          "fix": "(5) В районите в Столичната община и в градовете с районно деление се избират кметове и съвети на райони. В кварталите се избират квартални съвети.",
-                          "why": "Дава на районите и кварталите собствени избрани съвети."
+                          "fix": "(5) В кварталите се избират квартални съвети.",
+                          "why": "Кварталите получават собствени избрани съвети; районите вече не са отделно ниво."
                         }
                       },
                       {
@@ -3588,22 +3578,12 @@
                               "A local referendum shall be held on the proposal of:",
                               "3. an initiative committee with the signatures of no fewer than one twentieth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
                             ],
-                            "fix": [
-                              "A local referendum shall be held on the proposal of:",
-                              "3. an initiative committee with the signatures of no fewer than one hundredth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
-                            ],
-                            "why": "Lowers the signatures needed to propose a local referendum from 1/20 to 1/100 of voters.",
                             "original": [
                               "(1) Местен референдум се произвежда по предложение на:",
                               "3. инициативен комитет с подписите на не по-малко от една двадесета от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, район или кметство към момента на вписване на предложението в регистъра."
                             ],
                             "bg": {
-                              "ref": "Чл. 27, ал. 1",
-                              "fix": [
-                                "(1) Местен референдум се произвежда по предложение на:",
-                                "3. инициативен комитет с подписите на не по-малко от една стотна от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, район или кметство към момента на вписване на предложението в регистъра."
-                              ],
-                              "why": "Намалява подписите, нужни за предлагане на местен референдум, от 1/20 на 1/100 от гласоподавателите."
+                              "ref": "Чл. 27, ал. 1"
                             }
                           },
                           {
@@ -4746,22 +4726,12 @@
                               "A local referendum shall be held on the proposal of:",
                               "3. an initiative committee with the signatures of no fewer than one twentieth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
                             ],
-                            "fix": [
-                              "A local referendum shall be held on the proposal of:",
-                              "3. an initiative committee with the signatures of no fewer than one hundredth of the citizens with voting rights who have a permanent address in the respective municipality, district or mayoralty at the time the proposal is entered in the register."
-                            ],
-                            "why": "Lowers the signatures needed to propose a local referendum from 1/20 to 1/100 of voters.",
                             "original": [
                               "(1) Местен референдум се произвежда по предложение на:",
                               "3. инициативен комитет с подписите на не по-малко от една двадесета от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, район или кметство към момента на вписване на предложението в регистъра."
                             ],
                             "bg": {
-                              "ref": "Чл. 27, ал. 1",
-                              "fix": [
-                                "(1) Местен референдум се произвежда по предложение на:",
-                                "3. инициативен комитет с подписите на не по-малко от една стотна от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, район или кметство към момента на вписване на предложението в регистъра."
-                              ],
-                              "why": "Намалява подписите, нужни за предлагане на местен референдум, от 1/20 на 1/100 от гласоподавателите."
+                              "ref": "Чл. 27, ал. 1"
                             }
                           },
                           {

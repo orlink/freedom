@@ -686,8 +686,16 @@ function mechLongName(m, all, catalog, levelId) {
 }
 
 // Word-level diff (longest common subsequence), for showing a proposed amendment against the current text.
+// Words for the diff. Punctuation at the end of a word is a token of its own, glued to the word before it (marked
+// with \0), so "кметство," and "кметство." share the word and only the comma or full stop changes (Orlin).
+const GLUE = '\0';
+const diffTokens = s => s.split(/\s+/).filter(Boolean).flatMap(w => {
+  const m = w.match(/^(.*?[^,.;:!?])([,.;:!?]+)$/u);
+  return m ? [m[1], GLUE + m[2]] : [w];
+});
+const joinTokens = ts => ts.map((t, i) => (t.startsWith(GLUE) ? t.slice(1) : (i ? ' ' : '') + t)).join('');
 function wordDiff(a, b) {
-  const A = a.split(/\s+/).filter(Boolean), B = b.split(/\s+/).filter(Boolean);
+  const A = diffTokens(a), B = diffTokens(b);
   // F[i][j]: the longest common run of words in A and B from word i and j on; R[i][j]: in their first i and j words.
   const F = Array.from({ length: A.length + 1 }, () => new Uint16Array(B.length + 1));
   const R = Array.from({ length: A.length + 1 }, () => new Uint16Array(B.length + 1));
@@ -720,7 +728,7 @@ function wordDiff(a, b) {
   const changes = r => r.filter(x => x.kind !== 'same').length;
   const e = runs(early), l = runs(late.reverse());
   const out = changes(l) < changes(e) ? l : e;
-  return out.flatMap((r, k) => [k ? ' ' : '', r.kind === 'same' ? r.words.join(' ') : el(r.kind, {}, r.words.join(' '))]);
+  return out.flatMap((r, k) => [k && !r.words[0].startsWith(GLUE) ? ' ' : '', r.kind === 'same' ? joinTokens(r.words) : el(r.kind, {}, joinTokens(r.words))]);
 }
 // A provision in the reader's language. A law records the language of its official text (`lang`); a provision keeps
 // `text` (in English, translated where the law is not English) and `original` (word for word, in the law's language).
