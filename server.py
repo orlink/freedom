@@ -67,6 +67,41 @@ PUBLIC_FILES = {"index.html", "what-is-freedom.html", "what-is-freedom-plain.htm
 PUBLIC_DIRS = {"css", "js", "img", "vendor"}
 PUBLIC_EXT = {".html", ".css", ".js", ".json", ".svg", ".png", ".jpg", ".gif", ".webp", ".ico", ".woff2"}
 
+# Language versions have their own address: /bg/… is the Bulgarian site (English is at the root). The prefix is taken
+# off before anything else, so every language uses the same files and API; the page itself gets its language's
+# title and link-preview tags here, since previews (WhatsApp, Facebook) do not run the page's scripts.
+PAGE_LANGS = {
+    "bg": {
+        "html_lang": "bg",
+        "title": "Карта на свободата",
+        "description": "Колко свободни са хората на всяко ниво на общността, от отделния човек до съюза, да управляват своите общи интереси?",
+        "url": "https://free.kredor.com/bg/",
+        "locale": "bg_BG",
+        "locale_alt": "en_GB",
+        "image_alt": "Логото на Картата на свободата",
+    },
+}
+
+
+def localized_page(html, code):
+    """index.html for a language version: its lang attribute, title, description, canonical address and preview tags."""
+    m = PAGE_LANGS[code]
+    def attr(pattern, value):
+        nonlocal html
+        html = re.sub(pattern, lambda mo: mo.group(1) + value.replace("&", "&amp;").replace('"', "&quot;") + mo.group(2), html, count=1)
+    attr(r'(<html lang=")[^"]*(")', m["html_lang"])
+    html = re.sub(r"<title>[^<]*</title>", f"<title>{m['title']}</title>", html, count=1)
+    attr(r'(<meta name="description" content=")[^"]*(")', m["description"])
+    attr(r'(<meta property="og:site_name" content=")[^"]*(")', m["title"])
+    attr(r'(<meta property="og:title" content=")[^"]*(")', m["title"])
+    attr(r'(<meta property="og:description" content=")[^"]*(")', m["description"])
+    attr(r'(<meta property="og:url" content=")[^"]*(")', m["url"])
+    attr(r'(<link rel="canonical" href=")[^"]*(")', m["url"])
+    attr(r'(<meta property="og:locale" content=")[^"]*(")', m["locale"])
+    attr(r'(<meta property="og:locale:alternate" content=")[^"]*(")', m["locale_alt"])
+    attr(r'(<meta property="og:image:alt" content=")[^"]*(")', m["image_alt"])
+    return html
+
 
 def is_public(rel):
     """Is this path (relative to the site folder, with forward slashes) a file visitors may download?"""
@@ -371,8 +406,59 @@ class Handler(SimpleHTTPRequestHandler):
         """Editing the site's own interest lists: only with --edit, and only from this computer (not through a proxy)."""
         return EDITOR and self.client_address[0] in ("127.0.0.1", "::1") and not self.headers.get("X-Forwarded-For")
 
-    def do_GET(self):
+    lang = "en"
+
+    def take_lang(self):
+        """Take a language prefix (/bg/…) off the request's path and note the language. Answers with a redirect,
+        and returns False, for /bg without its slash and for old links with ?lang=bg."""
         u = urlparse(self.path)
+        query = f"?{u.query}" if u.query else ""
+        for code in PAGE_LANGS:
+            if u.path == f"/{code}":
+                return self.redirect(f"/{code}/{query}")
+            if u.path.startswith(f"/{code}/"):
+                self.lang = code
+                self.path = u.path[len(code) + 1:] + query
+                return True
+        code = (parse_qs(u.query).get("lang") or [""])[0]
+        if code in PAGE_LANGS and u.path in ("/", "/index.html"):
+            return self.redirect(f"/{code}/")
+        return True
+
+    def redirect(self, location):
+        self.send_response(302)
+        self.send_header("Location", location)
+        self.send_header("Content-Length", "0")
+        self.end_headers()
+        return False
+
+    def send_page(self, code, head_only=False):
+        """The start page in another language (see PAGE_LANGS)."""
+        try:
+            with open(os.path.join(ROOT, "index.html"), encoding="utf-8") as f:
+                body = localized_page(f.read(), code).encode("utf-8")
+        except OSError:
+            return self.send_error(404, "File not found")
+        self.send_response(200)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        if not head_only:
+            self.wfile.write(body)
+
+    def do_HEAD(self):
+        if not self.take_lang():
+            return
+        if self.lang != "en" and urlparse(self.path).path in ("/", "/index.html"):
+            return self.send_page(self.lang, head_only=True)
+        return super().do_HEAD()
+
+    def do_GET(self):
+        if not self.take_lang():
+            return
+        u = urlparse(self.path)
+        if self.lang != "en" and u.path in ("/", "/index.html"):
+            return self.send_page(self.lang)
         if u.path == "/api/editor":
             return self.send_json(200, {"editor": self.is_editor()})
         if u.path == "/api/interests":
@@ -401,6 +487,8 @@ class Handler(SimpleHTTPRequestHandler):
             return None
 
     def do_POST(self):
+        if not self.take_lang():   # the API is the same in every language
+            return
         u = urlparse(self.path)
         if u.path == "/api/chat":
             return self.chat()
