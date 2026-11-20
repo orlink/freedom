@@ -4,7 +4,7 @@
 // false (or does not exist), so nothing here runs.
 (function () {
   const BLOCKS = 'p, li, h1, h2, h3, h4, h5, blockquote, dd, dt, figcaption, td, th';
-  const SKIP = '.review-pop, .review-btn, button, input, textarea, select, .leaflet-container, .top';
+  const SKIP = '.review-pop, .review-btn, .chat-pop, button, input, textarea, select, .leaflet-container, .top';
 
   const textOf = node => {
     const c = node.cloneNode(true);
