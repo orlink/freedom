@@ -2690,19 +2690,29 @@
                               "3. инициативен комитет с подписите на не по-малко от една двадесета от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, район или кметство към момента на вписване на предложението в регистъра."
                             ],
                             "bg": {
-                              "ref": "Чл. 27, ал. 1"
-                            }
+                              "ref": "Чл. 27, ал. 1",
+                              "fix": [
+                                "(1) Местен референдум се произвежда по предложение на:",
+                                "3. инициативен комитет с подписите на не по-малко от една двадесета от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, кметство или квартал към момента на вписване на предложението в регистъра."
+                              ],
+                              "why": "Кварталите заменят районите (чл. 2, ал. 2 ЗМСМА с поправката), така че жителите на квартал могат да предложат референдум в него. Прагът остава една двадесета."
+                            },
+                            "fix": [
+                              "A local referendum shall be held on the proposal of:",
+                              "3. an initiative committee with the signatures of no fewer than one twentieth of the citizens with voting rights who have a permanent address in the respective municipality, mayoralty or quarter at the time the proposal is entered in the register."
+                            ],
+                            "why": "Quarters replace districts (Art. 2(2) LSGA as fixed), so residents of a quarter can propose a referendum there. The threshold stays at one twentieth."
                           },
                           {
                             "ref": "Article 27(2)",
                             "text": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality, district or mayoralty, and it does not contravene the restriction under Article 26(2).",
-                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality, district or mayoralty.",
-                            "why": "Lowers the signatures that oblige the council to call it from 1/10 to 1/50 of voters, and drops the topic restriction.",
+                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one twentieth of the citizens with voting rights in the respective municipality, mayoralty or quarter.",
+                            "why": "Obliges the council to call a referendum when one twentieth of voters sign instead of one tenth, the same share as for proposing one; drops the topic restriction; quarters replace districts.",
                             "original": "(2) Общинският съвет приема решение за произвеждане на местен референдум, когато това е поискано от инициативен комитет с подписка, съдържаща подписите на не по-малко от една десета от гражданите с избирателни права в съответната община, район или кметство, и не противоречи на ограничението по чл. 26, ал. 2.",
                             "bg": {
                               "ref": "Чл. 27, ал. 2",
-                              "fix": "(2) Общинският съвет приема решение за произвеждане на местен референдум, когато това е поискано от инициативен комитет с подписка, съдържаща подписите на не по-малко от една петдесета от гражданите с избирателни права в съответната община, район или кметство.",
-                              "why": "Намалява подписите, които задължават съвета да произведе референдум, от 1/10 на 1/50 от гласоподавателите и премахва ограничението на темите."
+                              "fix": "(2) Общинският съвет приема решение за произвеждане на местен референдум, когато това е поискано от инициативен комитет с подписка, съдържаща подписите на не по-малко от една двадесета от гражданите с избирателни права в съответната община, кметство или квартал.",
+                              "why": "Задължава съвета да произведе референдум, когато го поискат една двадесета от гласоподавателите вместо една десета, колкото са нужни и за предлагането му; премахва ограничението на темите; кварталите заменят районите."
                             }
                           },
                           {
@@ -2844,12 +2854,12 @@
                         "items": [
                           {
                             "ref": "Article 27(3a) (new)",
-                            "fix": "When a decision of the municipal council concerns only one district, mayoralty or quarter, the procedure under paragraph 3 may be initiated with the signatures of one fiftieth of the citizens with voting rights there, and the referendum shall be held in that district, mayoralty or quarter.",
-                            "why": "Lets a district, village or quarter veto a council decision that concerns only it.",
+                            "fix": "When a decision of the municipal council concerns only one mayoralty or quarter, the procedure under paragraph 3 may be initiated with the signatures of one twentieth of the citizens with voting rights there, and the referendum shall be held in that mayoralty or quarter.",
+                            "why": "Lets a village or quarter veto a council decision that concerns only it.",
                             "bg": {
                               "ref": "Чл. 27, ал. 3а (нова)",
-                              "fix": "(3а) Когато решение на общинския съвет засяга само един район, кметство или квартал, процедурата по ал. 3 може да бъде започната с подписите на една петдесета от гражданите с избирателни права в него и референдумът се произвежда в този район, кметство или квартал.",
-                              "why": "Позволява на район, село или квартал да отмени решение на съвета, което засяга само него."
+                              "fix": "(3а) Когато решение на общинския съвет засяга само едно кметство или квартал, процедурата по ал. 3 може да бъде започната с подписите на една двадесета от гражданите с избирателни права в него и референдумът се произвежда в това кметство или квартал.",
+                              "why": "Позволява на село или квартал да отмени решение на съвета, което засяга само него."
                             }
                           }
                         ]
@@ -2877,11 +2887,11 @@
                         "items": [
                           {
                             "ref": "Article 26(5) (new)",
-                            "fix": "Decisions of the municipal council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term municipal debt, and on the disposal of municipal property of public importance shall take effect only after their approval by local referendum. When such a decision concerns only one district, mayoralty or quarter, the referendum shall be held there.",
+                            "fix": "Decisions of the municipal council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term municipal debt, and on the disposal of municipal property of public importance shall take effect only after their approval by local referendum. When such a decision concerns only one mayoralty or quarter, the referendum shall be held there.",
                             "why": "Sends large spending, debt and sales of public property to the voters automatically.",
                             "bg": {
                               "ref": "Чл. 26, ал. 5 (нова)",
-                              "fix": "(5) Решенията на общинския съвет за нови еднократни разходи над 5 на сто от годишния бюджет, за дългосрочен общински дълг и за разпореждане с общинска собственост с обществено значение влизат в сила само след одобряването им чрез местен референдум. Когато такова решение засяга само един район, кметство или квартал, референдумът се произвежда в него.",
+                              "fix": "(5) Решенията на общинския съвет за нови еднократни разходи над 5 на сто от годишния бюджет, за дългосрочен общински дълг и за разпореждане с общинска собственост с обществено значение влизат в сила само след одобряването им чрез местен референдум. Когато такова решение засяга само едно кметство или квартал, референдумът се произвежда в него.",
                               "why": "Изпраща големите разходи, дълга и продажбите на обществена собственост автоматично на гласоподавателите."
                             }
                           }
@@ -2951,12 +2961,12 @@
                       {
                         "ref": "Article 55(1)",
                         "text": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters with a population of up to 10,000 inhabitants.",
-                        "fix": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters.",
+                        "fix": "A general assembly of the population shall be held in municipalities, mayoralties, settlements and quarters.",
                         "why": "Removes the 10,000-inhabitant limit on general assemblies.",
                         "original": "(1) Общо събрание на населението се провежда в общини, райони, кметства, населени места и квартали с население до 10 000 жители.",
                         "bg": {
                           "ref": "Чл. 55, ал. 1",
-                          "fix": "(1) Общо събрание на населението се провежда в общини, райони, кметства, населени места и квартали.",
+                          "fix": "(1) Общо събрание на населението се провежда в общини, кметства, населени места и квартали.",
                           "why": "Отпада ограничението до 10 000 жители за общите събрания."
                         }
                       }
@@ -3203,14 +3213,14 @@
                           "12. performs functions assigned by the mayor of the municipality."
                         ],
                         "fix": [
-                          "The mayor of a district or mayoralty:",
-                          "1. implements the budget of the district or mayoralty adopted by its council;",
+                          "The mayor of a mayoralty:",
+                          "1. implements the budget of the mayoralty adopted by its general assembly;",
                           "2. organises improvement, communal and other activities;",
-                          "3. manages the municipal property located in the district or mayoralty and serving its residents;",
-                          "11. organises the implementation of the acts of the council of the district or mayoralty, and of the acts of the municipal council and of the mayor of the municipality on matters of municipal importance;",
+                          "3. manages the municipal property located in the mayoralty and serving its residents;",
+                          "11. organises the implementation of the acts of the general assembly of the mayoralty, and of the acts of the municipal council and of the mayor of the municipality on matters of municipal importance;",
                           "12. (repealed)"
                         ],
-                        "why": "The district or mayoralty mayor implements its own council's decisions and budget.",
+                        "why": "The mayor of a mayoralty implements the decisions and budget of its own general assembly. Districts are no longer a level of their own.",
                         "original": [
                           "(1) Кметът на район или кметство:",
                           "1. изпълнява бюджета на общината в частта му за района или кметството;",
@@ -3222,14 +3232,14 @@
                         "bg": {
                           "ref": "Чл. 46, ал. 1",
                           "fix": [
-                            "(1) Кметът на район или кметство:",
-                            "1. изпълнява бюджета на района или кметството, приет от неговия съвет;",
+                            "(1) Кметът на кметство:",
+                            "1. изпълнява бюджета на кметството, приет от неговото общо събрание;",
                             "2. организира провеждането на благоустройствени, комунални и други мероприятия;",
-                            "3. стопанисва общинската собственост, която се намира в района или кметството и обслужва неговите жители;",
-                            "11. организира изпълнението на актовете на съвета на района или кметството, както и на актовете на общинския съвет и на кмета на общината по въпроси от общинско значение;",
+                            "3. стопанисва общинската собственост, която се намира в кметството и обслужва неговите жители;",
+                            "11. организира изпълнението на актовете на общото събрание на кметството, както и на актовете на общинския съвет и на кмета на общината по въпроси от общинско значение;",
                             "12. (отм.)"
                           ],
-                          "why": "Кметът на района или кметството изпълнява решенията и бюджета на собствения си съвет."
+                          "why": "Кметът на кметството изпълнява решенията и бюджета на неговото общо събрание. Районите вече не са отделно ниво."
                         }
                       }
                     ]
@@ -3263,12 +3273,12 @@
                       {
                         "ref": "Article 404(1)",
                         "text": "For elections for municipal councillors, the territory of the municipality constitutes one multi-member constituency.",
-                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each. The ratio between the number of seats and the population of each constituency, according to the last census, is, as far as practicable, the same throughout the municipality. Each constituency is made up of adjoining areas and follows, as far as practicable, the boundaries of the municipality's districts, mayoralties, settlements and quarters. The constituencies are set on the basis of the report of the Constituency Commission under Article 249a.",
+                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each. The ratio between the number of seats and the population of each constituency, according to the last census, is, as far as practicable, the same throughout the municipality. Each constituency is made up of adjoining areas and follows, as far as practicable, the boundaries of the municipality's mayoralties, settlements and quarters. The constituencies are set on the basis of the report of the Constituency Commission under Article 249a.",
                         "why": "Splits the municipality into districts of 3 to 5 seats along its own communities, with equal population per seat, as Ireland does for its local electoral areas.",
                         "original": "(1) За произвеждане на избори за общински съветници територията на общината представлява един многомандатен изборен район.",
                         "bg": {
                           "ref": "Чл. 404, ал. 1",
-                          "fix": "(1) За произвеждане на избори за общински съветници територията на общината се разделя на изборни райони с по три до пет мандата. Съотношението между броя на мандатите и населението на всеки изборен район според последното преброяване е, доколкото е възможно, еднакво в цялата община. Всеки изборен район обхваща съседни територии и следва, доколкото е възможно, границите на районите, кметствата, населените места и кварталите в общината. Изборните райони се определят въз основа на доклада на Комисията за изборните райони по чл. 249а.",
+                          "fix": "(1) За произвеждане на избори за общински съветници територията на общината се разделя на изборни райони с по три до пет мандата. Съотношението между броя на мандатите и населението на всеки изборен район според последното преброяване е, доколкото е възможно, еднакво в цялата община. Всеки изборен район обхваща съседни територии и следва, доколкото е възможно, границите на кметствата, населените места и кварталите в общината. Изборните райони се определят въз основа на доклада на Комисията за изборните райони по чл. 249а.",
                           "why": "Разделя общината на райони с по 3 до 5 мандата по границите на нейните общности, с еднакво население на мандат, както Ирландия прави за местните си избирателни райони."
                         }
                       },
@@ -3583,19 +3593,29 @@
                               "3. инициативен комитет с подписите на не по-малко от една двадесета от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, район или кметство към момента на вписване на предложението в регистъра."
                             ],
                             "bg": {
-                              "ref": "Чл. 27, ал. 1"
-                            }
+                              "ref": "Чл. 27, ал. 1",
+                              "fix": [
+                                "(1) Местен референдум се произвежда по предложение на:",
+                                "3. инициативен комитет с подписите на не по-малко от една двадесета от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, кметство или квартал към момента на вписване на предложението в регистъра."
+                              ],
+                              "why": "Кварталите заменят районите (чл. 2, ал. 2 ЗМСМА с поправката), така че жителите на квартал могат да предложат референдум в него. Прагът остава една двадесета."
+                            },
+                            "fix": [
+                              "A local referendum shall be held on the proposal of:",
+                              "3. an initiative committee with the signatures of no fewer than one twentieth of the citizens with voting rights who have a permanent address in the respective municipality, mayoralty or quarter at the time the proposal is entered in the register."
+                            ],
+                            "why": "Quarters replace districts (Art. 2(2) LSGA as fixed), so residents of a quarter can propose a referendum there. The threshold stays at one twentieth."
                           },
                           {
                             "ref": "Article 27(2)",
                             "text": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality, district or mayoralty, and it does not contravene the restriction under Article 26(2).",
-                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality, district or mayoralty.",
-                            "why": "Lowers the signatures that oblige the council to call it from 1/10 to 1/50 of voters, and drops the topic restriction.",
+                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one twentieth of the citizens with voting rights in the respective municipality, mayoralty or quarter.",
+                            "why": "Obliges the council to call a referendum when one twentieth of voters sign instead of one tenth, the same share as for proposing one; drops the topic restriction; quarters replace districts.",
                             "original": "(2) Общинският съвет приема решение за произвеждане на местен референдум, когато това е поискано от инициативен комитет с подписка, съдържаща подписите на не по-малко от една десета от гражданите с избирателни права в съответната община, район или кметство, и не противоречи на ограничението по чл. 26, ал. 2.",
                             "bg": {
                               "ref": "Чл. 27, ал. 2",
-                              "fix": "(2) Общинският съвет приема решение за произвеждане на местен референдум, когато това е поискано от инициативен комитет с подписка, съдържаща подписите на не по-малко от една петдесета от гражданите с избирателни права в съответната община, район или кметство.",
-                              "why": "Намалява подписите, които задължават съвета да произведе референдум, от 1/10 на 1/50 от гласоподавателите и премахва ограничението на темите."
+                              "fix": "(2) Общинският съвет приема решение за произвеждане на местен референдум, когато това е поискано от инициативен комитет с подписка, съдържаща подписите на не по-малко от една двадесета от гражданите с избирателни права в съответната община, кметство или квартал.",
+                              "why": "Задължава съвета да произведе референдум, когато го поискат една двадесета от гласоподавателите вместо една десета, колкото са нужни и за предлагането му; премахва ограничението на темите; кварталите заменят районите."
                             }
                           },
                           {
@@ -3737,12 +3757,12 @@
                         "items": [
                           {
                             "ref": "Article 27(3a) (new)",
-                            "fix": "When a decision of the municipal council concerns only one district, mayoralty or quarter, the procedure under paragraph 3 may be initiated with the signatures of one fiftieth of the citizens with voting rights there, and the referendum shall be held in that district, mayoralty or quarter.",
-                            "why": "Lets a district, village or quarter veto a council decision that concerns only it.",
+                            "fix": "When a decision of the municipal council concerns only one mayoralty or quarter, the procedure under paragraph 3 may be initiated with the signatures of one twentieth of the citizens with voting rights there, and the referendum shall be held in that mayoralty or quarter.",
+                            "why": "Lets a village or quarter veto a council decision that concerns only it.",
                             "bg": {
                               "ref": "Чл. 27, ал. 3а (нова)",
-                              "fix": "(3а) Когато решение на общинския съвет засяга само един район, кметство или квартал, процедурата по ал. 3 може да бъде започната с подписите на една петдесета от гражданите с избирателни права в него и референдумът се произвежда в този район, кметство или квартал.",
-                              "why": "Позволява на район, село или квартал да отмени решение на съвета, което засяга само него."
+                              "fix": "(3а) Когато решение на общинския съвет засяга само едно кметство или квартал, процедурата по ал. 3 може да бъде започната с подписите на една двадесета от гражданите с избирателни права в него и референдумът се произвежда в това кметство или квартал.",
+                              "why": "Позволява на село или квартал да отмени решение на съвета, което засяга само него."
                             }
                           }
                         ]
@@ -3771,11 +3791,11 @@
                         "items": [
                           {
                             "ref": "Article 26(5) (new)",
-                            "fix": "Decisions of the municipal council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term municipal debt, and on the disposal of municipal property of public importance shall take effect only after their approval by local referendum. When such a decision concerns only one district, mayoralty or quarter, the referendum shall be held there.",
+                            "fix": "Decisions of the municipal council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term municipal debt, and on the disposal of municipal property of public importance shall take effect only after their approval by local referendum. When such a decision concerns only one mayoralty or quarter, the referendum shall be held there.",
                             "why": "Sends large spending, debt and sales of public property to the voters automatically.",
                             "bg": {
                               "ref": "Чл. 26, ал. 5 (нова)",
-                              "fix": "(5) Решенията на общинския съвет за нови еднократни разходи над 5 на сто от годишния бюджет, за дългосрочен общински дълг и за разпореждане с общинска собственост с обществено значение влизат в сила само след одобряването им чрез местен референдум. Когато такова решение засяга само един район, кметство или квартал, референдумът се произвежда в него.",
+                              "fix": "(5) Решенията на общинския съвет за нови еднократни разходи над 5 на сто от годишния бюджет, за дългосрочен общински дълг и за разпореждане с общинска собственост с обществено значение влизат в сила само след одобряването им чрез местен референдум. Когато такова решение засяга само едно кметство или квартал, референдумът се произвежда в него.",
                               "why": "Изпраща големите разходи, дълга и продажбите на обществена собственост автоматично на гласоподавателите."
                             }
                           }
@@ -3850,12 +3870,12 @@
                       {
                         "ref": "Article 55(1)",
                         "text": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters with a population of up to 10,000 inhabitants.",
-                        "fix": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters.",
+                        "fix": "A general assembly of the population shall be held in municipalities, mayoralties, settlements and quarters.",
                         "why": "Removes the 10,000-inhabitant limit on general assemblies.",
                         "original": "(1) Общо събрание на населението се провежда в общини, райони, кметства, населени места и квартали с население до 10 000 жители.",
                         "bg": {
                           "ref": "Чл. 55, ал. 1",
-                          "fix": "(1) Общо събрание на населението се провежда в общини, райони, кметства, населени места и квартали.",
+                          "fix": "(1) Общо събрание на населението се провежда в общини, кметства, населени места и квартали.",
                           "why": "Отпада ограничението до 10 000 жители за общите събрания."
                         }
                       }
@@ -4232,14 +4252,14 @@
                           "12. performs functions assigned by the mayor of the municipality."
                         ],
                         "fix": [
-                          "The mayor of a district or mayoralty:",
-                          "1. implements the budget of the district or mayoralty adopted by its council;",
+                          "The mayor of a mayoralty:",
+                          "1. implements the budget of the mayoralty adopted by its general assembly;",
                           "2. organises improvement, communal and other activities;",
-                          "3. manages the municipal property located in the district or mayoralty and serving its residents;",
-                          "11. organises the implementation of the acts of the council of the district or mayoralty, and of the acts of the municipal council and of the mayor of the municipality on matters of municipal importance;",
+                          "3. manages the municipal property located in the mayoralty and serving its residents;",
+                          "11. organises the implementation of the acts of the general assembly of the mayoralty, and of the acts of the municipal council and of the mayor of the municipality on matters of municipal importance;",
                           "12. (repealed)"
                         ],
-                        "why": "The district or mayoralty mayor implements its own council's decisions and budget.",
+                        "why": "The mayor of a mayoralty implements the decisions and budget of its own general assembly. Districts are no longer a level of their own.",
                         "original": [
                           "(1) Кметът на район или кметство:",
                           "1. изпълнява бюджета на общината в частта му за района или кметството;",
@@ -4251,14 +4271,14 @@
                         "bg": {
                           "ref": "Чл. 46, ал. 1",
                           "fix": [
-                            "(1) Кметът на район или кметство:",
-                            "1. изпълнява бюджета на района или кметството, приет от неговия съвет;",
+                            "(1) Кметът на кметство:",
+                            "1. изпълнява бюджета на кметството, приет от неговото общо събрание;",
                             "2. организира провеждането на благоустройствени, комунални и други мероприятия;",
-                            "3. стопанисва общинската собственост, която се намира в района или кметството и обслужва неговите жители;",
-                            "11. организира изпълнението на актовете на съвета на района или кметството, както и на актовете на общинския съвет и на кмета на общината по въпроси от общинско значение;",
+                            "3. стопанисва общинската собственост, която се намира в кметството и обслужва неговите жители;",
+                            "11. организира изпълнението на актовете на общото събрание на кметството, както и на актовете на общинския съвет и на кмета на общината по въпроси от общинско значение;",
                             "12. (отм.)"
                           ],
-                          "why": "Кметът на района или кметството изпълнява решенията и бюджета на собствения си съвет."
+                          "why": "Кметът на кметството изпълнява решенията и бюджета на неговото общо събрание. Районите вече не са отделно ниво."
                         }
                       },
                       {
@@ -4281,13 +4301,13 @@
                         ],
                         "fix": [
                           "The municipal council:",
-                          "6. adopts and amends the annual budget of the municipality, monitors its implementation and adopts the report on it; the districts and mayoralties adopt their own budgets from the revenues assigned to them by law;",
+                          "6. adopts and amends the annual budget of the municipality, monitors its implementation and adopts the report on it; the mayoralties and quarters adopt their own budgets from the revenues assigned to them by law;",
                           "7. sets the amount of local fees;",
-                          "8. adopts decisions on the acquisition, management and disposal of municipal property, except property located in a district or mayoralty and serving its residents, which is managed by that district or mayoralty;",
+                          "8. adopts decisions on the acquisition, management and disposal of municipal property, except property located in a mayoralty or quarter and serving its residents, which is managed by that mayoralty or quarter;",
                           "11. adopts decisions on the creation and approval of spatial development plans and their amendments for the territory of the municipality or parts of it;",
-                          "23. decides other matters of local importance that are not within the competence of districts, mayoralties or other bodies."
+                          "23. decides other matters of local importance that are not within the competence of mayoralties, quarters or other bodies."
                         ],
-                        "why": "Leaves district and mayoralty budgets and property to their own bodies.",
+                        "why": "Leaves mayoralty and quarter budgets and property to their own bodies.",
                         "original": [
                           "(1) Общинският съвет:",
                           "6. приема и изменя годишния бюджет на общината, включително и показателите по чл. 45, ал. 1, т. 2 от Закона за публичните финанси за районите, кметствата и населените места с кметски наместници, с изключение на тези, които са определени като второстепенни разпоредители с бюджет по реда на чл. 11, ал. 10 от Закона за публичните финанси, осъществява контрол и приема отчета за изпълнението му;",
@@ -4300,13 +4320,13 @@
                           "ref": "Чл. 21, ал. 1",
                           "fix": [
                             "(1) Общинският съвет:",
-                            "6. приема и изменя годишния бюджет на общината, осъществява контрол и приема отчета за изпълнението му; районите и кметствата приемат собствени бюджети от приходите, които законът им предоставя;",
+                            "6. приема и изменя годишния бюджет на общината, осъществява контрол и приема отчета за изпълнението му; кметствата и кварталите приемат собствени бюджети от приходите, които законът им предоставя;",
                             "7. определя размера на местните такси;",
-                            "8. приема решения за придобиване, управление и разпореждане с общинско имущество, с изключение на имуществото, което се намира в район или кметство и обслужва неговите жители и което се управлява от района или кметството;",
+                            "8. приема решения за придобиване, управление и разпореждане с общинско имущество, с изключение на имуществото, което се намира в кметство или квартал и обслужва неговите жители и което се управлява от кметството или квартала;",
                             "11. приема решения за създаване и одобряване на устройствени планове и техни изменения за територията на общината или за части от нея при условията и по реда на Закона за устройство на територията;",
-                            "23. решава и други въпроси от местно значение, които не са от компетентността на районите, кметствата или на други органи, включително за обявяване на определен ден за празничен и неприсъствен на територията на общината, района, кметството или населеното място по предложение на кмета на общината след съгласуване с областния управител;"
+                            "23. решава и други въпроси от местно значение, които не са от компетентността на кметствата, кварталите или на други органи, включително за обявяване на определен ден за празничен и неприсъствен на територията на общината, района, кметството или населеното място по предложение на кмета на общината след съгласуване с областния управител;"
                           ],
-                          "why": "Оставя бюджетите и имуществото на районите и кметствата на собствените им органи."
+                          "why": "Оставя бюджетите и имуществото на кметствата и кварталите на собствените им органи."
                         }
                       }
                     ]
@@ -4422,24 +4442,24 @@
                       {
                         "ref": "Article 42a (new)",
                         "fix": [
-                          "(1) The voters of a municipality, district or mayoralty may recall its mayor by a vote.",
+                          "(1) The voters of a municipality or mayoralty may recall its mayor by a vote.",
                           "(2) A recall may not be started during the first 90 days of the mayor's term, within six months after a recall vote in the mayor's favour, or in the last six months of the term.",
                           "(3) An initiative committee of at least 30 voters files a notice of intention with the municipal electoral commission, with a statement of the reasons for the recall of no more than 200 words, and serves it on the mayor, who may file an answer of no more than 200 words within seven days. The statement and the answer are for the voters' information only: no legal grounds are required, and their form or content does not affect the validity of the procedure.",
-                          "(4) The petition must be signed by at least the following share of the voters of the municipality, district or mayoralty, collected within the following period: 1. fewer than 1,000 voters: 30%, within 40 days; 2. 1,000 to 4,999: 25%, within 60 days; 3. 5,000 to 9,999: 25%, within 90 days; 4. 10,000 to 49,999: 20%, within 120 days; 5. 50,000 to 99,999: 15%, within 160 days; 6. 100,000 or more: 10%, within 160 days.",
+                          "(4) The petition must be signed by at least the following share of the voters of the municipality or mayoralty, collected within the following period: 1. fewer than 1,000 voters: 30%, within 40 days; 2. 1,000 to 4,999: 25%, within 60 days; 3. 5,000 to 9,999: 25%, within 90 days; 4. 10,000 to 49,999: 20%, within 120 days; 5. 50,000 to 99,999: 15%, within 160 days; 6. 100,000 or more: 10%, within 160 days.",
                           "(5) Within 14 days after the municipal electoral commission certifies that the petition has enough valid signatures, the municipal council schedules the recall vote for a day between 88 and 125 days later, or up to 180 days later so that it coincides with other elections. If the council fails to do so, the municipal electoral commission schedules the vote within five days.",
-                          "(6) The ballot asks: “Shall [name] be recalled from the office of mayor of [municipality, district or mayoralty]?” The mayor is recalled if more than half of the valid votes are “Yes”, regardless of turnout.",
+                          "(6) The ballot asks: “Shall [name] be recalled from the office of mayor of [municipality or mayoralty]?” The mayor is recalled if more than half of the valid votes are “Yes”, regardless of turnout.",
                           "(7) If the mayor is recalled, paragraph 6 of Article 42 applies and a by-election is held under Article 463 of the Electoral Code. The recalled mayor may not be elected acting mayor."
                         ],
                         "why": "Lets voters remove their mayor by a simple majority, on the model of California's recall of local officers (Elections Code §§ 11007, 11020–11024, 11220–11221, 11240–11242, 11382–11383): no legal grounds are needed, signature thresholds fall from 30% in the smallest places to 10% in the largest, and there is no turnout quorum.",
                         "bg": {
                           "ref": "Чл. 42а (нов)",
                           "fix": [
-                            "(1) Избирателите в община, район или кметство могат да отзоват кмета си чрез гласуване.",
+                            "(1) Избирателите в община или кметство могат да отзоват кмета си чрез гласуване.",
                             "(2) Отзоваване не може да бъде започнато през първите 90 дни от мандата на кмета, в срок до шест месеца след гласуване за отзоваване, приключило в полза на кмета, както и през последните шест месеца от мандата.",
                             "(3) Инициативен комитет от не по-малко от 30 избиратели подава до общинската избирателна комисия уведомление за намерение, придружено с изложение на мотивите за отзоваването с обем до 200 думи, и го връчва на кмета, който може да подаде отговор с обем до 200 думи в 7-дневен срок. Изложението и отговорът служат само за информация на избирателите: не се изискват правни основания, а формата или съдържанието им не засягат действителността на процедурата.",
-                            "(4) Подписката трябва да бъде подписана от не по-малко от следния дял от избирателите в общината, района или кметството, събрани в следния срок: 1. под 1000 избиратели – 30 на сто, в срок 40 дни; 2. от 1000 до 4999 – 25 на сто, в срок 60 дни; 3. от 5000 до 9999 – 25 на сто, в срок 90 дни; 4. от 10 000 до 49 999 – 20 на сто, в срок 120 дни; 5. от 50 000 до 99 999 – 15 на сто, в срок 160 дни; 6. 100 000 или повече – 10 на сто, в срок 160 дни.",
+                            "(4) Подписката трябва да бъде подписана от не по-малко от следния дял от избирателите в общината или кметството, събрани в следния срок: 1. под 1000 избиратели – 30 на сто, в срок 40 дни; 2. от 1000 до 4999 – 25 на сто, в срок 60 дни; 3. от 5000 до 9999 – 25 на сто, в срок 90 дни; 4. от 10 000 до 49 999 – 20 на сто, в срок 120 дни; 5. от 50 000 до 99 999 – 15 на сто, в срок 160 дни; 6. 100 000 или повече – 10 на сто, в срок 160 дни.",
                             "(5) В 14-дневен срок след като общинската избирателна комисия удостовери, че подписката съдържа достатъчно действителни подписи, общинският съвет насрочва гласуването за отзоваване за ден между 88-ия и 125-ия ден след това или до 180-ия ден, така че да съвпадне с други избори. Ако съветът не направи това, общинската избирателна комисия насрочва гласуването в 5-дневен срок.",
-                            "(6) В бюлетината се поставя въпросът: „Да бъде ли отзован [име] от длъжността кмет на [община, район или кметство]?“. Кметът е отзован, ако повече от половината от действителните гласове са „Да“, независимо от избирателната активност.",
+                            "(6) В бюлетината се поставя въпросът: „Да бъде ли отзован [име] от длъжността кмет на [община или кметство]?“. Кметът е отзован, ако повече от половината от действителните гласове са „Да“, независимо от избирателната активност.",
                             "(7) При отзоваване на кмета се прилага чл. 42, ал. 6 и се произвеждат частични избори по чл. 463 от Изборния кодекс. Отзованият кмет не може да бъде избран за временно изпълняващ длъжността кмет."
                           ],
                           "why": "Позволява на избирателите да отстранят кмета си с обикновено мнозинство, по образеца на отзоваването на местни длъжностни лица в Калифорния (Elections Code §§ 11007, 11020–11024, 11220–11221, 11240–11242, 11382–11383): не са нужни правни основания, прагът на подписите пада от 30% в най-малките места до 10% в най-големите и няма кворум за участие."
@@ -4731,19 +4751,29 @@
                               "3. инициативен комитет с подписите на не по-малко от една двадесета от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, район или кметство към момента на вписване на предложението в регистъра."
                             ],
                             "bg": {
-                              "ref": "Чл. 27, ал. 1"
-                            }
+                              "ref": "Чл. 27, ал. 1",
+                              "fix": [
+                                "(1) Местен референдум се произвежда по предложение на:",
+                                "3. инициативен комитет с подписите на не по-малко от една двадесета от гражданите с избирателни права, които имат постоянен адрес на територията на съответната община, кметство или квартал към момента на вписване на предложението в регистъра."
+                              ],
+                              "why": "Кварталите заменят районите (чл. 2, ал. 2 ЗМСМА с поправката), така че жителите на квартал могат да предложат референдум в него. Прагът остава една двадесета."
+                            },
+                            "fix": [
+                              "A local referendum shall be held on the proposal of:",
+                              "3. an initiative committee with the signatures of no fewer than one twentieth of the citizens with voting rights who have a permanent address in the respective municipality, mayoralty or quarter at the time the proposal is entered in the register."
+                            ],
+                            "why": "Quarters replace districts (Art. 2(2) LSGA as fixed), so residents of a quarter can propose a referendum there. The threshold stays at one twentieth."
                           },
                           {
                             "ref": "Article 27(2)",
                             "text": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality, district or mayoralty, and it does not contravene the restriction under Article 26(2).",
-                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality, district or mayoralty.",
-                            "why": "Lowers the signatures that oblige the council to call it from 1/10 to 1/50 of voters, and drops the topic restriction.",
+                            "fix": "The municipal council shall adopt a decision to hold a local referendum when this has been requested by an initiative committee with a petition containing the signatures of no fewer than one twentieth of the citizens with voting rights in the respective municipality, mayoralty or quarter.",
+                            "why": "Obliges the council to call a referendum when one twentieth of voters sign instead of one tenth, the same share as for proposing one; drops the topic restriction; quarters replace districts.",
                             "original": "(2) Общинският съвет приема решение за произвеждане на местен референдум, когато това е поискано от инициативен комитет с подписка, съдържаща подписите на не по-малко от една десета от гражданите с избирателни права в съответната община, район или кметство, и не противоречи на ограничението по чл. 26, ал. 2.",
                             "bg": {
                               "ref": "Чл. 27, ал. 2",
-                              "fix": "(2) Общинският съвет приема решение за произвеждане на местен референдум, когато това е поискано от инициативен комитет с подписка, съдържаща подписите на не по-малко от една петдесета от гражданите с избирателни права в съответната община, район или кметство.",
-                              "why": "Намалява подписите, които задължават съвета да произведе референдум, от 1/10 на 1/50 от гласоподавателите и премахва ограничението на темите."
+                              "fix": "(2) Общинският съвет приема решение за произвеждане на местен референдум, когато това е поискано от инициативен комитет с подписка, съдържаща подписите на не по-малко от една двадесета от гражданите с избирателни права в съответната община, кметство или квартал.",
+                              "why": "Задължава съвета да произведе референдум, когато го поискат една двадесета от гласоподавателите вместо една десета, колкото са нужни и за предлагането му; премахва ограничението на темите; кварталите заменят районите."
                             }
                           },
                           {
@@ -4886,12 +4916,12 @@
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one twentieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
                             "why": "Lowers the veto signatures to 1/50, gives two months to collect them, suspends the decision until the vote, and puts the vote on the next regular voting day, or on election day when an election is near.",
                             "original": "(3) Ако в срок до един месец след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една десета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, кметът на общината определя датата на референдума, който трябва да се произведе в срок до два месеца от постъпване на искането.",
                             "bg": {
                               "ref": "Чл. 27, ал. 3",
-                              "fix": "(3) Ако в срок до два месеца след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една петдесета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, решението не влиза в сила и референдумът се произвежда в първия ден за гласуване, който е не по-рано от 45 дни от постъпване на искането. Дни за гласуване са втората неделя на март, юни, септември и декември всяка година. Когато в периода от 45-ия ден след постъпване на искането до два месеца след този ден за гласуване се произвеждат избори, с изключение на частични и нови избори за общински съветници и кметове, референдумът се произвежда в деня на изборите. Кметът на общината обявява датата в тридневен срок от постъпване на искането.",
+                              "fix": "(3) Ако в срок до два месеца след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една двадесета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, решението не влиза в сила и референдумът се произвежда в първия ден за гласуване, който е не по-рано от 45 дни от постъпване на искането. Дни за гласуване са втората неделя на март, юни, септември и декември всяка година. Когато в периода от 45-ия ден след постъпване на искането до два месеца след този ден за гласуване се произвеждат избори, с изключение на частични и нови избори за общински съветници и кметове, референдумът се произвежда в деня на изборите. Кметът на общината обявява датата в тридневен срок от постъпване на искането.",
                               "why": "Намалява подписите за отменителен референдум на 1/50, дава два месеца за събирането им, спира действието на решението до гласуването и поставя гласуването в следващия редовен ден за гласуване или в изборния ден, когато има близки избори."
                             }
                           }
@@ -4982,12 +5012,12 @@
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one twentieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
                             "why": "Lowers the veto signatures to 1/50, gives two months to collect them, suspends the decision until the vote, and puts the vote on the next regular voting day, or on election day when an election is near.",
                             "original": "(3) Ако в срок до един месец след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една десета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, кметът на общината определя датата на референдума, който трябва да се произведе в срок до два месеца от постъпване на искането.",
                             "bg": {
                               "ref": "Чл. 27, ал. 3",
-                              "fix": "(3) Ако в срок до два месеца след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една петдесета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, решението не влиза в сила и референдумът се произвежда в първия ден за гласуване, който е не по-рано от 45 дни от постъпване на искането. Дни за гласуване са втората неделя на март, юни, септември и декември всяка година. Когато в периода от 45-ия ден след постъпване на искането до два месеца след този ден за гласуване се произвеждат избори, с изключение на частични и нови избори за общински съветници и кметове, референдумът се произвежда в деня на изборите. Кметът на общината обявява датата в тридневен срок от постъпване на искането.",
+                              "fix": "(3) Ако в срок до два месеца след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една двадесета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, решението не влиза в сила и референдумът се произвежда в първия ден за гласуване, който е не по-рано от 45 дни от постъпване на искането. Дни за гласуване са втората неделя на март, юни, септември и декември всяка година. Когато в периода от 45-ия ден след постъпване на искането до два месеца след този ден за гласуване се произвеждат избори, с изключение на частични и нови избори за общински съветници и кметове, референдумът се произвежда в деня на изборите. Кметът на общината обявява датата в тридневен срок от постъпване на искането.",
                               "why": "Намалява подписите за отменителен референдум на 1/50, дава два месеца за събирането им, спира действието на решението до гласуването и поставя гласуването в следващия редовен ден за гласуване или в изборния ден, когато има близки избори."
                             }
                           }
@@ -5012,12 +5042,12 @@
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one twentieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
                             "why": "Lowers the veto signatures to 1/50, gives two months to collect them, suspends the decision until the vote, and puts the vote on the next regular voting day, or on election day when an election is near.",
                             "original": "(3) Ако в срок до един месец след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една десета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, кметът на общината определя датата на референдума, който трябва да се произведе в срок до два месеца от постъпване на искането.",
                             "bg": {
                               "ref": "Чл. 27, ал. 3",
-                              "fix": "(3) Ако в срок до два месеца след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една петдесета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, решението не влиза в сила и референдумът се произвежда в първия ден за гласуване, който е не по-рано от 45 дни от постъпване на искането. Дни за гласуване са втората неделя на март, юни, септември и декември всяка година. Когато в периода от 45-ия ден след постъпване на искането до два месеца след този ден за гласуване се произвеждат избори, с изключение на частични и нови избори за общински съветници и кметове, референдумът се произвежда в деня на изборите. Кметът на общината обявява датата в тридневен срок от постъпване на искането.",
+                              "fix": "(3) Ако в срок до два месеца след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една двадесета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, решението не влиза в сила и референдумът се произвежда в първия ден за гласуване, който е не по-рано от 45 дни от постъпване на искането. Дни за гласуване са втората неделя на март, юни, септември и декември всяка година. Когато в периода от 45-ия ден след постъпване на искането до два месеца след този ден за гласуване се произвеждат избори, с изключение на частични и нови избори за общински съветници и кметове, референдумът се произвежда в деня на изборите. Кметът на общината обявява датата в тридневен срок от постъпване на искането.",
                               "why": "Намалява подписите за отменителен референдум на 1/50, дава два месеца за събирането им, спира действието на решението до гласуването и поставя гласуването в следващия редовен ден за гласуване или в изборния ден, когато има близки избори."
                             }
                           }
@@ -5042,12 +5072,12 @@
                           {
                             "ref": "Article 27(3)",
                             "text": "If, within one month of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one tenth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the mayor of the municipality shall set the date of the referendum, which must be held within two months of receipt of the request.",
-                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one fiftieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
+                            "fix": "If, within two months of the announcement of a decision of the municipal council, an initiative committee with a petition containing the signatures of no fewer than one twentieth of the citizens with voting rights in the respective municipality requests that a referendum be held to approve the decision, the decision shall not take effect and the referendum shall be held on the first voting day that falls no earlier than 45 days after receipt of the request. The voting days are the second Sunday of March, June, September and December of each year. When elections, other than partial and new elections for municipal councillors and mayors, are held between the 45th day after receipt of the request and two months after that voting day, the referendum shall be held on the date of the elections. The mayor of the municipality shall announce the date within three days of receipt of the request.",
                             "why": "Lowers the veto signatures to 1/50, gives two months to collect them, suspends the decision until the vote, and puts the vote on the next regular voting day, or on election day when an election is near.",
                             "original": "(3) Ако в срок до един месец след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една десета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, кметът на общината определя датата на референдума, който трябва да се произведе в срок до два месеца от постъпване на искането.",
                             "bg": {
                               "ref": "Чл. 27, ал. 3",
-                              "fix": "(3) Ако в срок до два месеца след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една петдесета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, решението не влиза в сила и референдумът се произвежда в първия ден за гласуване, който е не по-рано от 45 дни от постъпване на искането. Дни за гласуване са втората неделя на март, юни, септември и декември всяка година. Когато в периода от 45-ия ден след постъпване на искането до два месеца след този ден за гласуване се произвеждат избори, с изключение на частични и нови избори за общински съветници и кметове, референдумът се произвежда в деня на изборите. Кметът на общината обявява датата в тридневен срок от постъпване на искането.",
+                              "fix": "(3) Ако в срок до два месеца след обявяване на решение на общинския съвет инициативен комитет с подписка, съдържаща подписите на не по-малко от една двадесета от гражданите с избирателни права на съответната община, поиска да се произведе референдум за одобряване на решението, решението не влиза в сила и референдумът се произвежда в първия ден за гласуване, който е не по-рано от 45 дни от постъпване на искането. Дни за гласуване са втората неделя на март, юни, септември и декември всяка година. Когато в периода от 45-ия ден след постъпване на искането до два месеца след този ден за гласуване се произвеждат избори, с изключение на частични и нови избори за общински съветници и кметове, референдумът се произвежда в деня на изборите. Кметът на общината обявява датата в тридневен срок от постъпване на искането.",
                               "why": "Намалява подписите за отменителен референдум на 1/50, дава два месеца за събирането им, спира действието на решението до гласуването и поставя гласуването в следващия редовен ден за гласуване или в изборния ден, когато има близки избори."
                             }
                           }
@@ -5121,11 +5151,11 @@
                         "items": [
                           {
                             "ref": "Article 26(5) (new)",
-                            "fix": "Decisions of the municipal council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term municipal debt, and on the disposal of municipal property of public importance shall take effect only after their approval by local referendum. When such a decision concerns only one district, mayoralty or quarter, the referendum shall be held there.",
+                            "fix": "Decisions of the municipal council on new non-recurring expenditure exceeding 5 per cent of the annual budget, on long-term municipal debt, and on the disposal of municipal property of public importance shall take effect only after their approval by local referendum. When such a decision concerns only one mayoralty or quarter, the referendum shall be held there.",
                             "why": "Sends large spending, debt and sales of public property to the voters automatically.",
                             "bg": {
                               "ref": "Чл. 26, ал. 5 (нова)",
-                              "fix": "(5) Решенията на общинския съвет за нови еднократни разходи над 5 на сто от годишния бюджет, за дългосрочен общински дълг и за разпореждане с общинска собственост с обществено значение влизат в сила само след одобряването им чрез местен референдум. Когато такова решение засяга само един район, кметство или квартал, референдумът се произвежда в него.",
+                              "fix": "(5) Решенията на общинския съвет за нови еднократни разходи над 5 на сто от годишния бюджет, за дългосрочен общински дълг и за разпореждане с общинска собственост с обществено значение влизат в сила само след одобряването им чрез местен референдум. Когато такова решение засяга само едно кметство или квартал, референдумът се произвежда в него.",
                               "why": "Изпраща големите разходи, дълга и продажбите на обществена собственост автоматично на гласоподавателите."
                             }
                           }
@@ -5198,12 +5228,12 @@
                       {
                         "ref": "Article 55(1)",
                         "text": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters with a population of up to 10,000 inhabitants.",
-                        "fix": "A general assembly of the population shall be held in municipalities, districts, mayoralties, settlements and quarters.",
+                        "fix": "A general assembly of the population shall be held in municipalities, mayoralties, settlements and quarters.",
                         "why": "Removes the 10,000-inhabitant limit on general assemblies.",
                         "original": "(1) Общо събрание на населението се провежда в общини, райони, кметства, населени места и квартали с население до 10 000 жители.",
                         "bg": {
                           "ref": "Чл. 55, ал. 1",
-                          "fix": "(1) Общо събрание на населението се провежда в общини, райони, кметства, населени места и квартали.",
+                          "fix": "(1) Общо събрание на населението се провежда в общини, кметства, населени места и квартали.",
                           "why": "Отпада ограничението до 10 000 жители за общите събрания."
                         }
                       }
@@ -5465,13 +5495,13 @@
                         ],
                         "fix": [
                           "The municipal council:",
-                          "6. adopts and amends the annual budget of the municipality, monitors its implementation and adopts the report on it; the districts and mayoralties adopt their own budgets from the revenues assigned to them by law;",
+                          "6. adopts and amends the annual budget of the municipality, monitors its implementation and adopts the report on it; the mayoralties and quarters adopt their own budgets from the revenues assigned to them by law;",
                           "7. sets the amount of local fees;",
-                          "8. adopts decisions on the acquisition, management and disposal of municipal property, except property located in a district or mayoralty and serving its residents, which is managed by that district or mayoralty;",
+                          "8. adopts decisions on the acquisition, management and disposal of municipal property, except property located in a mayoralty or quarter and serving its residents, which is managed by that mayoralty or quarter;",
                           "11. adopts decisions on the creation and approval of spatial development plans and their amendments for the territory of the municipality or parts of it;",
-                          "23. decides other matters of local importance that are not within the competence of districts, mayoralties or other bodies."
+                          "23. decides other matters of local importance that are not within the competence of mayoralties, quarters or other bodies."
                         ],
-                        "why": "Leaves district and mayoralty budgets and property to their own bodies.",
+                        "why": "Leaves mayoralty and quarter budgets and property to their own bodies.",
                         "original": [
                           "(1) Общинският съвет:",
                           "6. приема и изменя годишния бюджет на общината, включително и показателите по чл. 45, ал. 1, т. 2 от Закона за публичните финанси за районите, кметствата и населените места с кметски наместници, с изключение на тези, които са определени като второстепенни разпоредители с бюджет по реда на чл. 11, ал. 10 от Закона за публичните финанси, осъществява контрол и приема отчета за изпълнението му;",
@@ -5484,13 +5514,13 @@
                           "ref": "Чл. 21, ал. 1",
                           "fix": [
                             "(1) Общинският съвет:",
-                            "6. приема и изменя годишния бюджет на общината, осъществява контрол и приема отчета за изпълнението му; районите и кметствата приемат собствени бюджети от приходите, които законът им предоставя;",
+                            "6. приема и изменя годишния бюджет на общината, осъществява контрол и приема отчета за изпълнението му; кметствата и кварталите приемат собствени бюджети от приходите, които законът им предоставя;",
                             "7. определя размера на местните такси;",
-                            "8. приема решения за придобиване, управление и разпореждане с общинско имущество, с изключение на имуществото, което се намира в район или кметство и обслужва неговите жители и което се управлява от района или кметството;",
+                            "8. приема решения за придобиване, управление и разпореждане с общинско имущество, с изключение на имуществото, което се намира в кметство или квартал и обслужва неговите жители и което се управлява от кметството или квартала;",
                             "11. приема решения за създаване и одобряване на устройствени планове и техни изменения за територията на общината или за части от нея при условията и по реда на Закона за устройство на територията;",
-                            "23. решава и други въпроси от местно значение, които не са от компетентността на районите, кметствата или на други органи, включително за обявяване на определен ден за празничен и неприсъствен на територията на общината, района, кметството или населеното място по предложение на кмета на общината след съгласуване с областния управител;"
+                            "23. решава и други въпроси от местно значение, които не са от компетентността на кметствата, кварталите или на други органи, включително за обявяване на определен ден за празничен и неприсъствен на територията на общината, района, кметството или населеното място по предложение на кмета на общината след съгласуване с областния управител;"
                           ],
-                          "why": "Оставя бюджетите и имуществото на районите и кметствата на собствените им органи."
+                          "why": "Оставя бюджетите и имуществото на кметствата и кварталите на собствените им органи."
                         }
                       }
                     ]
@@ -5598,12 +5628,12 @@
                       {
                         "ref": "Article 404(1)",
                         "text": "For elections for municipal councillors, the territory of the municipality constitutes one multi-member constituency.",
-                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each. The ratio between the number of seats and the population of each constituency, according to the last census, is, as far as practicable, the same throughout the municipality. Each constituency is made up of adjoining areas and follows, as far as practicable, the boundaries of the municipality's districts, mayoralties, settlements and quarters. The constituencies are set on the basis of the report of the Constituency Commission under Article 249a.",
+                        "fix": "For elections for municipal councillors, the territory of the municipality is divided into constituencies of three to five seats each. The ratio between the number of seats and the population of each constituency, according to the last census, is, as far as practicable, the same throughout the municipality. Each constituency is made up of adjoining areas and follows, as far as practicable, the boundaries of the municipality's mayoralties, settlements and quarters. The constituencies are set on the basis of the report of the Constituency Commission under Article 249a.",
                         "why": "Splits the municipality into districts of 3 to 5 seats along its own communities, with equal population per seat, as Ireland does for its local electoral areas.",
                         "original": "(1) За произвеждане на избори за общински съветници територията на общината представлява един многомандатен изборен район.",
                         "bg": {
                           "ref": "Чл. 404, ал. 1",
-                          "fix": "(1) За произвеждане на избори за общински съветници територията на общината се разделя на изборни райони с по три до пет мандата. Съотношението между броя на мандатите и населението на всеки изборен район според последното преброяване е, доколкото е възможно, еднакво в цялата община. Всеки изборен район обхваща съседни територии и следва, доколкото е възможно, границите на районите, кметствата, населените места и кварталите в общината. Изборните райони се определят въз основа на доклада на Комисията за изборните райони по чл. 249а.",
+                          "fix": "(1) За произвеждане на избори за общински съветници територията на общината се разделя на изборни райони с по три до пет мандата. Съотношението между броя на мандатите и населението на всеки изборен район според последното преброяване е, доколкото е възможно, еднакво в цялата община. Всеки изборен район обхваща съседни територии и следва, доколкото е възможно, границите на кметствата, населените места и кварталите в общината. Изборните райони се определят въз основа на доклада на Комисията за изборните райони по чл. 249а.",
                           "why": "Разделя общината на райони с по 3 до 5 мандата по границите на нейните общности, с еднакво население на мандат, както Ирландия прави за местните си избирателни райони."
                         }
                       },
@@ -5941,24 +5971,24 @@
                       {
                         "ref": "Article 42a (new)",
                         "fix": [
-                          "(1) The voters of a municipality, district or mayoralty may recall its mayor by a vote.",
+                          "(1) The voters of a municipality or mayoralty may recall its mayor by a vote.",
                           "(2) A recall may not be started during the first 90 days of the mayor's term, within six months after a recall vote in the mayor's favour, or in the last six months of the term.",
                           "(3) An initiative committee of at least 30 voters files a notice of intention with the municipal electoral commission, with a statement of the reasons for the recall of no more than 200 words, and serves it on the mayor, who may file an answer of no more than 200 words within seven days. The statement and the answer are for the voters' information only: no legal grounds are required, and their form or content does not affect the validity of the procedure.",
-                          "(4) The petition must be signed by at least the following share of the voters of the municipality, district or mayoralty, collected within the following period: 1. fewer than 1,000 voters: 30%, within 40 days; 2. 1,000 to 4,999: 25%, within 60 days; 3. 5,000 to 9,999: 25%, within 90 days; 4. 10,000 to 49,999: 20%, within 120 days; 5. 50,000 to 99,999: 15%, within 160 days; 6. 100,000 or more: 10%, within 160 days.",
+                          "(4) The petition must be signed by at least the following share of the voters of the municipality or mayoralty, collected within the following period: 1. fewer than 1,000 voters: 30%, within 40 days; 2. 1,000 to 4,999: 25%, within 60 days; 3. 5,000 to 9,999: 25%, within 90 days; 4. 10,000 to 49,999: 20%, within 120 days; 5. 50,000 to 99,999: 15%, within 160 days; 6. 100,000 or more: 10%, within 160 days.",
                           "(5) Within 14 days after the municipal electoral commission certifies that the petition has enough valid signatures, the municipal council schedules the recall vote for a day between 88 and 125 days later, or up to 180 days later so that it coincides with other elections. If the council fails to do so, the municipal electoral commission schedules the vote within five days.",
-                          "(6) The ballot asks: “Shall [name] be recalled from the office of mayor of [municipality, district or mayoralty]?” The mayor is recalled if more than half of the valid votes are “Yes”, regardless of turnout.",
+                          "(6) The ballot asks: “Shall [name] be recalled from the office of mayor of [municipality or mayoralty]?” The mayor is recalled if more than half of the valid votes are “Yes”, regardless of turnout.",
                           "(7) If the mayor is recalled, paragraph 6 of Article 42 applies and a by-election is held under Article 463 of the Electoral Code. The recalled mayor may not be elected acting mayor."
                         ],
                         "why": "Lets voters remove their mayor by a simple majority, on the model of California's recall of local officers (Elections Code §§ 11007, 11020–11024, 11220–11221, 11240–11242, 11382–11383): no legal grounds are needed, signature thresholds fall from 30% in the smallest places to 10% in the largest, and there is no turnout quorum.",
                         "bg": {
                           "ref": "Чл. 42а (нов)",
                           "fix": [
-                            "(1) Избирателите в община, район или кметство могат да отзоват кмета си чрез гласуване.",
+                            "(1) Избирателите в община или кметство могат да отзоват кмета си чрез гласуване.",
                             "(2) Отзоваване не може да бъде започнато през първите 90 дни от мандата на кмета, в срок до шест месеца след гласуване за отзоваване, приключило в полза на кмета, както и през последните шест месеца от мандата.",
                             "(3) Инициативен комитет от не по-малко от 30 избиратели подава до общинската избирателна комисия уведомление за намерение, придружено с изложение на мотивите за отзоваването с обем до 200 думи, и го връчва на кмета, който може да подаде отговор с обем до 200 думи в 7-дневен срок. Изложението и отговорът служат само за информация на избирателите: не се изискват правни основания, а формата или съдържанието им не засягат действителността на процедурата.",
-                            "(4) Подписката трябва да бъде подписана от не по-малко от следния дял от избирателите в общината, района или кметството, събрани в следния срок: 1. под 1000 избиратели – 30 на сто, в срок 40 дни; 2. от 1000 до 4999 – 25 на сто, в срок 60 дни; 3. от 5000 до 9999 – 25 на сто, в срок 90 дни; 4. от 10 000 до 49 999 – 20 на сто, в срок 120 дни; 5. от 50 000 до 99 999 – 15 на сто, в срок 160 дни; 6. 100 000 или повече – 10 на сто, в срок 160 дни.",
+                            "(4) Подписката трябва да бъде подписана от не по-малко от следния дял от избирателите в общината или кметството, събрани в следния срок: 1. под 1000 избиратели – 30 на сто, в срок 40 дни; 2. от 1000 до 4999 – 25 на сто, в срок 60 дни; 3. от 5000 до 9999 – 25 на сто, в срок 90 дни; 4. от 10 000 до 49 999 – 20 на сто, в срок 120 дни; 5. от 50 000 до 99 999 – 15 на сто, в срок 160 дни; 6. 100 000 или повече – 10 на сто, в срок 160 дни.",
                             "(5) В 14-дневен срок след като общинската избирателна комисия удостовери, че подписката съдържа достатъчно действителни подписи, общинският съвет насрочва гласуването за отзоваване за ден между 88-ия и 125-ия ден след това или до 180-ия ден, така че да съвпадне с други избори. Ако съветът не направи това, общинската избирателна комисия насрочва гласуването в 5-дневен срок.",
-                            "(6) В бюлетината се поставя въпросът: „Да бъде ли отзован [име] от длъжността кмет на [община, район или кметство]?“. Кметът е отзован, ако повече от половината от действителните гласове са „Да“, независимо от избирателната активност.",
+                            "(6) В бюлетината се поставя въпросът: „Да бъде ли отзован [име] от длъжността кмет на [община или кметство]?“. Кметът е отзован, ако повече от половината от действителните гласове са „Да“, независимо от избирателната активност.",
                             "(7) При отзоваване на кмета се прилага чл. 42, ал. 6 и се произвеждат частични избори по чл. 463 от Изборния кодекс. Отзованият кмет не може да бъде избран за временно изпълняващ длъжността кмет."
                           ],
                           "why": "Позволява на избирателите да отстранят кмета си с обикновено мнозинство, по образеца на отзоваването на местни длъжностни лица в Калифорния (Elections Code §§ 11007, 11020–11024, 11220–11221, 11240–11242, 11382–11383): не са нужни правни основания, прагът на подписите пада от 30% в най-малките места до 10% в най-големите и няма кворум за участие."
