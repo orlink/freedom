@@ -1,7 +1,7 @@
 // The site's languages: English (the source) and Bulgarian.
 //
-// The reader's language comes from `?lang=` in the link, else their last choice in this browser, else the browser's
-// own language. The interface text is in the tables below, keyed by name. Text in the data (catalog, countries,
+// The reader's language comes from `?lang=` in the link, else their last choice in this browser, else the first of
+// the browser's preferred languages that the site has. The interface text is in the tables below, keyed by name. Text in the data (catalog, countries,
 // interests) sits next to its English source in a `bg` object: { "name": "Council", "bg": { "name": "Съвет" } }.
 // Where a Bulgarian text is missing, the English one is shown.
 
@@ -12,7 +12,9 @@ function readLang() {
   const asked = new URLSearchParams(location.search).get('lang');
   if (LANGS.includes(asked)) { try { localStorage.setItem('freedom-lang', asked); } catch { /* storage unavailable */ } return asked; }
   try { const saved = localStorage.getItem('freedom-lang'); if (LANGS.includes(saved)) return saved; } catch { /* storage unavailable */ }
-  return (navigator.languages || [navigator.language]).some(l => /^bg\b/i.test(l || '')) ? 'bg' : 'en';
+  // The first of the browser's preferred languages that the site has ("de, bg, en" → bg; "en-US, bg" → en).
+  const first = (navigator.languages || [navigator.language]).map(l => String(l || '').toLowerCase().split('-')[0]).find(l => LANGS.includes(l));
+  return first || 'en';
 }
 export const lang = readLang();
 document.documentElement.lang = lang;
