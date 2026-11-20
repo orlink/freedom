@@ -16,6 +16,11 @@ button { font: inherit; cursor: pointer; }
 .top h1 { margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.01em; }
 .top h1 a { color: var(--text); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
 .top h1 .logo { width: 30px; height: 30px; flex: none; }
+/* Header texts hold every language's version stacked in one cell, the others hidden, so they keep one width (js/i18n.js). */
+.l-both { display: inline-grid; justify-items: start; }
+.l-both > span { grid-area: 1 / 1; }
+.l-both > .l-alt { visibility: hidden; }
+.scale button.l-both { justify-items: center; }
 .menu a { color: var(--muted); font-weight: 600; text-decoration: none; padding: 6px 12px; border-radius: 999px; }
 .menu a:hover { color: var(--coral-ink); background: var(--coral-soft); }
 .menu a[aria-current="page"] { color: var(--coral-ink); background: var(--coral-soft); }
