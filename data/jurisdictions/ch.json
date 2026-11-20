@@ -11,56 +11,114 @@
       "title": "Federal Constitution of the Swiss Confederation",
       "localTitle": "Bundesverfassung (BV, SR 101)",
       "url": "https://www.fedlex.admin.ch/eli/cc/1999/404/en",
-      "short": "Federal Constitution"
+      "short": "Federal Constitution",
+      "bg": {
+        "title": "Федерална конституция на Швейцарската конфедерация",
+        "short": "Федерална конституция"
+      },
+      "lang": "de"
     },
     "zgb": {
       "title": "Swiss Civil Code",
       "localTitle": "Zivilgesetzbuch (ZGB, SR 210)",
       "url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/en",
-      "short": "Civil Code (ZGB)"
+      "short": "Civil Code (ZGB)",
+      "bg": {
+        "title": "Швейцарски граждански кодекс",
+        "short": "Граждански кодекс (ZGB)"
+      },
+      "lang": "de"
     },
     "kv": {
       "title": "Constitution of the Canton of Zürich",
       "localTitle": "Verfassung des Kantons Zürich (KV, LS 101)",
       "url": "https://res.cloudinary.com/adminch/image/private/s--VBJOORnk--/v1742874348/Bundespublikationen/131-211d.pdf",
-      "short": "Cantonal Constitution (ZH)"
+      "short": "Cantonal Constitution (ZH)",
+      "bg": {
+        "title": "Конституция на кантон Цюрих",
+        "short": "Конституция на кантона (ZH)"
+      },
+      "lang": "de"
     },
     "go": {
       "title": "Municipal Code of the City of Zürich",
       "localTitle": "Gemeindeordnung der Stadt Zürich (AS 101.100)",
       "url": "https://www.zh.ch/bin/zhweb/publish/regierungsratsbeschluss-unterlagen./2021/1168/GO_PG_Zuerich.pdf",
-      "short": "Municipal Code (Zürich)"
+      "short": "Municipal Code (Zürich)",
+      "bg": {
+        "title": "Общински устав на град Цюрих",
+        "short": "Общински устав (Цюрих)"
+      },
+      "lang": "de"
     },
     "bpr": {
       "title": "Federal Act on Political Rights",
       "localTitle": "Bundesgesetz über die politischen Rechte (BPR, SR 161.1)",
       "short": "BPR",
-      "url": "https://www.fedlex.admin.ch/eli/cc/1978/688_688_688/en"
+      "url": "https://www.fedlex.admin.ch/eli/cc/1978/688_688_688/en",
+      "bg": {
+        "title": "Федерален закон за политическите права",
+        "short": "BPR"
+      },
+      "lang": "de"
     },
     "vpr": {
       "title": "Ordinance on Political Rights",
       "localTitle": "Verordnung über die politischen Rechte (VPR, SR 161.11)",
       "url": "https://www.fedlex.admin.ch/eli/cc/1978/712_712_712/de",
-      "short": "VPR"
+      "short": "VPR",
+      "bg": {
+        "title": "Наредба за политическите права",
+        "short": "VPR"
+      },
+      "lang": "de"
     },
     "gpr": {
       "title": "Political Rights Act of the Canton of Zürich",
       "localTitle": "Gesetz über die politischen Rechte (GPR, LS 161)",
-      "short": "GPR (ZH)"
+      "short": "GPR (ZH)",
+      "bg": {
+        "title": "Закон за политическите права на кантон Цюрих",
+        "short": "GPR (ZH)"
+      },
+      "lang": "de"
     },
     "gg": {
       "title": "Municipalities Act of the Canton of Zürich",
       "localTitle": "Gemeindegesetz (GG, LS 131.1)",
-      "short": "GG (ZH)"
+      "short": "GG (ZH)",
+      "bg": {
+        "title": "Закон за общините на кантон Цюрих",
+        "short": "GG (ZH)"
+      },
+      "lang": "de"
     },
     "or": {
       "title": "Swiss Code of Obligations",
       "localTitle": "Obligationenrecht (OR, SR 220)",
-      "short": "Code of Obligations (OR)"
+      "short": "Code of Obligations (OR)",
+      "bg": {
+        "title": "Швейцарски облигационен кодекс",
+        "short": "Облигационен кодекс (OR)"
+      },
+      "lang": "de"
     }
   },
-  "levelNames": { "state": { "name": "Canton", "bg": { "name": "Кантон", "verdict": ["в кантона", "кантона"] } } },
-  "hiddenLevels": ["county"],
+  "levelNames": {
+    "state": {
+      "name": "Canton",
+      "bg": {
+        "name": "Кантон",
+        "verdict": [
+          "в кантона",
+          "кантона"
+        ]
+      }
+    }
+  },
+  "hiddenLevels": [
+    "county"
+  ],
   "levels": {
     "home": {
       "summary": "Privacy of the home and property are guaranteed by the Federal Constitution.",
@@ -75,7 +133,10 @@
                 "explanation": "Privacy of the home and property are guaranteed by the Federal Constitution.",
                 "laws": [
                   "bv"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Неприкосновеността на жилището и собствеността са гарантирани от Федералната конституция."
+                }
               },
               {
                 "type": "no_outside_override",
@@ -83,7 +144,10 @@
                 "explanation": "Restrictions need a legal basis, a public interest and proportionality.",
                 "laws": [
                   "bv"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Ограниченията изискват законово основание, обществен интерес и съразмерност."
+                }
               }
             ]
           }
@@ -91,7 +155,10 @@
       },
       "representative": {
         "applicable": false,
-        "note": "The people in a home decide for themselves; representation does not apply."
+        "note": "The people in a home decide for themselves; representation does not apply.",
+        "bg": {
+          "note": "Хората в дома решават сами; представителството не е приложимо."
+        }
       }
     },
     "individual": {
@@ -107,7 +174,10 @@
                 "explanation": "Right to personal freedom, privacy and property.",
                 "laws": [
                   "bv"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Право на лична свобода, личен живот и собственост."
+                }
               },
               {
                 "type": "no_outside_override",
@@ -115,7 +185,10 @@
                 "explanation": "Restrictions need a legal basis, a public interest and proportionality.",
                 "laws": [
                   "bv"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Ограниченията изискват законово основание, обществен интерес и съразмерност."
+                }
               }
             ]
           }
@@ -123,7 +196,10 @@
       },
       "representative": {
         "applicable": false,
-        "note": "Individuals decide for themselves."
+        "note": "Individuals decide for themselves.",
+        "bg": {
+          "note": "Хората решават сами за себе си."
+        }
       }
     },
     "business": {
@@ -140,7 +216,10 @@
                 "explanation": "Anyone may start and run a business.",
                 "laws": [
                   "bv"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Всеки може да започне и да развива стопанска дейност."
+                }
               },
               {
                 "type": "no_outside_override",
@@ -149,10 +228,17 @@
                 "laws": [
                   "bv",
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Режимите на лицензи и разрешения ограничават достъпа до много дейности."
+                }
               }
             ],
-            "label": "Free enterprise"
+            "label": "Free enterprise",
+            "bg": {
+              "name": "Свободна стопанска инициатива",
+              "label": "Свободна стопанска инициатива"
+            }
           },
           {
             "type": "personal_autonomy",
@@ -166,7 +252,10 @@
                 "laws": [
                   "or",
                   "bv"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Съдържанието на договора може да се определя свободно в рамките на закона."
+                }
               },
               {
                 "type": "no_outside_override",
@@ -174,9 +263,16 @@
                 "explanation": "Mandatory rules fix some terms whatever both parties want: tenancy protections, cantonal minimum wages, and consumer terms that cannot be waived. Rules against fraud and coercion protect consent and are not counted.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Повелителни норми определят някои условия независимо от волята на двете страни: защитата на наемателите, кантоналните минимални заплати и условията за потребителите, от които не може да се откаже. Правилата срещу измама и принуда защитават съгласието и не се отчитат."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Свобода на договаряне",
+              "label": "Свобода на договаряне"
+            }
           },
           {
             "type": "general_assembly",
@@ -188,7 +284,10 @@
                 "explanation": "Partners in a general or limited partnership, or members of a GmbH, decide together (partners' resolutions, members' meeting).",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Съдружниците в събирателно или командитно дружество или членовете на GmbH (дружество с ограничена отговорност) решават заедно (решения на съдружниците, общо събрание)."
+                }
               },
               {
                 "type": "binding",
@@ -196,7 +295,10 @@
                 "explanation": "Its resolutions bind the company.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за дружеството."
+                }
               },
               {
                 "type": "broad_scope",
@@ -204,7 +306,10 @@
                 "explanation": "Owners decide the company's statutes, profits and leadership.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствениците решават устава, разпределението на печалбата и ръководството на дружеството."
+                }
               },
               {
                 "type": "own_means",
@@ -212,9 +317,15 @@
                 "explanation": "The partnership or company controls its own capital and income.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Дружеството разполага със собствения си капитал и приходи."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на съдружниците"
+            }
           },
           {
             "type": "general_assembly",
@@ -226,7 +337,10 @@
                 "explanation": "Shareholders of an AG decide in the general meeting (Generalversammlung).",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Акционерите в AG (акционерно дружество) решават в общото събрание (Generalversammlung)."
+                }
               },
               {
                 "type": "binding",
@@ -234,7 +348,10 @@
                 "explanation": "Its resolutions bind the company.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за дружеството."
+                }
               },
               {
                 "type": "broad_scope",
@@ -242,7 +359,10 @@
                 "explanation": "Owners decide the company's statutes, profits and leadership.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствениците решават устава, разпределението на печалбата и ръководството на дружеството."
+                }
               },
               {
                 "type": "own_means",
@@ -250,9 +370,15 @@
                 "explanation": "The company controls its own capital and income.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Дружеството разполага със собствения си капитал и приходи."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на акционерите"
+            }
           },
           {
             "type": "general_assembly",
@@ -264,7 +390,10 @@
                 "explanation": "Members of a cooperative (Genossenschaft) decide in its general meeting, one member one vote.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете на кооперацията (Genossenschaft) решават в нейното общо събрание по принципа един член, един глас."
+                }
               },
               {
                 "type": "binding",
@@ -272,7 +401,10 @@
                 "explanation": "Its resolutions bind the company.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за дружеството."
+                }
               },
               {
                 "type": "broad_scope",
@@ -280,7 +412,10 @@
                 "explanation": "Members decide the statutes, the use of any surplus and the board.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете решават устава, използването на печалбата и състава на управителния съвет."
+                }
               },
               {
                 "type": "own_means",
@@ -288,9 +423,15 @@
                 "explanation": "The cooperative controls its own capital and income.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Кооперацията разполага със собствения си капитал и приходи."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на кооперацията"
+            }
           }
         ]
       },
@@ -306,7 +447,10 @@
                 "explanation": "Owners elect the managers or board.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствениците избират управителите или съвета."
+                }
               },
               {
                 "type": "binding_powers",
@@ -321,7 +465,10 @@
                 "explanation": "Managers and board members are elected individually.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Управителите и членовете на съвета се избират поименно."
+                }
               },
               {
                 "type": "recall",
@@ -329,10 +476,17 @@
                 "explanation": "The owners can dismiss them.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствениците могат да ги освободят."
+                }
               }
             ],
-            "label": "Board / managers"
+            "label": "Board / managers",
+            "bg": {
+              "name": "Съвет / управители",
+              "label": "Съвет / управители"
+            }
           },
           {
             "type": "agent",
@@ -344,7 +498,10 @@
                 "explanation": "Anyone may authorise another to act for them (agency and mandate); a business may appoint a Prokurist.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Всеки може да упълномощи друг да действа от негово име (представителство и поръчка); предприятието може да назначи прокурист."
+                }
               },
               {
                 "type": "chosen_by_represented",
@@ -352,7 +509,10 @@
                 "explanation": "The principal chooses the agent.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Упълномощителят избира пълномощника."
+                }
               },
               {
                 "type": "revocable",
@@ -360,7 +520,10 @@
                 "explanation": "A mandate may be revoked at any time.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Поръчката може да бъде оттеглена по всяко време."
+                }
               },
               {
                 "type": "must_account",
@@ -368,7 +531,10 @@
                 "explanation": "The agent must account for their conduct and hand over what they received.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Пълномощникът трябва да се отчете за действията си и да предаде полученото."
+                }
               },
               {
                 "type": "duty_of_loyalty",
@@ -376,9 +542,15 @@
                 "explanation": "The agent must carry out the mandate faithfully and with care.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Пълномощникът трябва да изпълни поръчката добросъвестно и грижливо."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Пълномощници"
+            }
           },
           {
             "type": "trustee",
@@ -390,7 +562,10 @@
                 "explanation": "Swiss law has no trusts of its own; foreign trusts are recognised, and fiduciary management is done under a mandate.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Швейцарското право няма собствен тръст; чуждестранните тръстове се признават, а доверителното управление се извършва по договор за поръчка."
+                }
               },
               {
                 "type": "chosen_by_represented",
@@ -398,7 +573,10 @@
                 "explanation": "Under a fiduciary mandate the client chooses the fiduciary.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "При доверителна поръчка клиентът избира довереника."
+                }
               },
               {
                 "type": "revocable",
@@ -406,7 +584,10 @@
                 "explanation": "A fiduciary mandate may be revoked at any time.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Доверителната поръчка може да бъде оттеглена по всяко време."
+                }
               },
               {
                 "type": "must_account",
@@ -414,7 +595,10 @@
                 "explanation": "The fiduciary must account to the client.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Довереникът трябва да се отчита пред клиента."
+                }
               },
               {
                 "type": "duty_of_loyalty",
@@ -422,9 +606,15 @@
                 "explanation": "The fiduciary must act faithfully in the client's interest.",
                 "laws": [
                   "or"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Довереникът трябва да действа добросъвестно в интерес на клиента."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Довереници"
+            }
           }
         ]
       }
@@ -444,7 +634,10 @@
                 "laws": [
                   "bv",
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Хората могат свободно да учредяват сдружения и фондации."
+                }
               },
               {
                 "type": "no_outside_override",
@@ -452,9 +645,15 @@
                 "explanation": "Registration and, for public-benefit status, supervision by the state.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Вписване в регистър и, при статут на общественополезна дейност, надзор от държавата."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Свобода на сдружаване"
+            }
           },
           {
             "type": "general_assembly",
@@ -466,7 +665,10 @@
                 "explanation": "Members decide in a general assembly.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете решават в общо събрание."
+                }
               },
               {
                 "type": "binding",
@@ -474,7 +676,10 @@
                 "explanation": "Its decisions bind the organisation.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за организацията."
+                }
               },
               {
                 "type": "broad_scope",
@@ -482,7 +687,10 @@
                 "explanation": "Members adopt the statutes and elect the board.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете приемат устава и избират управителния съвет."
+                }
               },
               {
                 "type": "own_means",
@@ -490,9 +698,15 @@
                 "explanation": "Funded by members, donors and grants; tax relief depends on public-benefit status.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Финансира се от членове, дарители и грантове; данъчните облекчения зависят от статута на общественополезна дейност."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на членовете"
+            }
           }
         ]
       },
@@ -508,7 +722,10 @@
                 "explanation": "The members elect a board.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете избират управителен съвет."
+                }
               },
               {
                 "type": "binding_powers",
@@ -530,9 +747,15 @@
                 "explanation": "The members can dismiss the board.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете могат да освободят управителния съвет."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Управителен съвет"
+            }
           }
         ]
       }
@@ -551,7 +774,10 @@
                 "explanation": "The assembly of condominium owners decides on joint administration.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Събранието на етажните собственици решава общото управление."
+                }
               },
               {
                 "type": "binding",
@@ -566,7 +792,10 @@
                 "explanation": "Half of the owners holding half of the shares (and at least two) must attend; a second meeting, at least ten days later, needs one third.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Трябва да присъстват половината от собствениците, притежаващи половината от дяловете (и поне двама); второ събрание, най-рано след десет дни, изисква една трета."
+                }
               },
               {
                 "type": "citizen_triggered",
@@ -574,7 +803,10 @@
                 "explanation": "Owners representing one fifth can demand a meeting (association law applies by reference).",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собственици, представляващи една пета, могат да поискат свикване на събрание (по препращане се прилага правото на сдруженията)."
+                }
               },
               {
                 "type": "own_means",
@@ -582,9 +814,15 @@
                 "explanation": "Owners decide on contributions and the renewal fund.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствениците решават вноските и фонда за обновяване."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Събрание на етажните собственици"
+            }
           }
         ]
       },
@@ -600,7 +838,10 @@
                 "explanation": "The assembly appoints an administrator, who normally convenes and chairs it.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Събранието назначава управител, който обикновено го свиква и председателства."
+                }
               },
               {
                 "type": "binding_powers",
@@ -622,9 +863,15 @@
                 "explanation": "The assembly can dismiss the administrator.",
                 "laws": [
                   "zgb"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Събранието може да освободи управителя."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Управител"
+            }
           }
         ]
       }
@@ -661,7 +908,10 @@
                     "explanation": "If accepted by people and cantons, it becomes part of the Constitution.",
                     "laws": [
                       "bv"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Ако бъде прието от народа и кантоните, става част от Конституцията."
+                    }
                   },
                   {
                     "type": "no_quorum",
@@ -684,11 +934,19 @@
                         "items": [
                           {
                             "ref": "Article 10(1)",
-                            "text": "The Federal Council shall determine the rules by which polling days are appointed. In doing so, it shall take account of the requirements of those eligible to vote, parliament, the cantons, the parties and the agencies responsible for effecting service of voting documents, and shall avoid any collisions of dates that may result from differences between the calendar year and the church year."
+                            "text": "The Federal Council shall determine the rules by which polling days are appointed. In doing so, it shall take account of the requirements of those eligible to vote, parliament, the cantons, the parties and the agencies responsible for effecting service of voting documents, and shall avoid any collisions of dates that may result from differences between the calendar year and the church year.",
+                            "bg": {
+                              "ref": "Чл. 10, ал. 1",
+                              "text": "Федералният съвет определя правилата, по които се насрочват дните за гласуване. При това той отчита потребностите на имащите право на глас, на парламента, на кантоните, на партиите и на службите, които доставят изборните книжа, и избягва съвпадения на дати, които могат да възникнат от разликите между календарната и църковната година."
+                            }
                           },
                           {
                             "ref": "Article 10(1bis)",
-                            "text": "The Federal Council shall determine, four months prior to the polling day at the latest, which proposals are to be submitted to a popular vote. This period of four months may be reduced in the case of emergency federal acts."
+                            "text": "The Federal Council shall determine, four months prior to the polling day at the latest, which proposals are to be submitted to a popular vote. This period of four months may be reduced in the case of emergency federal acts.",
+                            "bg": {
+                              "ref": "Чл. 10, ал. 1bis",
+                              "text": "Федералният съвет определя най-късно четири месеца преди деня на гласуването кои предложения се подлагат на народно гласуване. Този четиримесечен срок може да бъде съкратен при спешни федерални закони."
+                            }
                           }
                         ]
                       },
@@ -706,11 +964,27 @@
                               "(2) For overriding reasons, the Federal Chancellery, after consulting the cantons, shall propose to the Federal Council that individual voting dates be moved or further ones set.",
                               "(3) In the year of the general election of the National Council, no popular vote takes place in September.",
                               "(4) The Federal Chancellery shall announce the reserved voting dates by June of the preceding year at the latest."
-                            ]
+                            ],
+                            "bg": {
+                              "ref": "Чл. 2a",
+                              "text": [
+                                "(1) Следните недели в годината остават запазени за федерални народни гласувания:",
+                                "a. в годините, в които Великден е след 10 април — втората неделя на февруари, а в останалите години — четвъртата неделя преди Великден;",
+                                "b. в годините, в които Петдесетница е след 28 май — третата неделя на май, а в останалите години — третата неделя след Петдесетница;",
+                                "c. неделята след Федералния ден на благодарност, покаяние и молитва;",
+                                "d. последната неделя на ноември.",
+                                "(2) При наличие на важни причини Федералната канцелария, след като се допита до кантоните, предлага на Федералния съвет отделни дати за гласуване да бъдат преместени или да бъдат определени допълнителни.",
+                                "(3) В годината на общите избори за Национален съвет през септември не се провежда народно гласуване.",
+                                "(4) Федералната канцелария обявява запазените дати за гласуване най-късно до юни на предходната година."
+                              ]
+                            }
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Федералните гласувания се провеждат в четири недели годишно, запазени със закон и обявени до юни на предходната година. В годината на изборите за Национален съвет през септември няма гласуване."
+                    }
                   },
                   {
                     "type": "concrete_proposals",
@@ -718,7 +992,10 @@
                     "explanation": "It may be a general proposal or a fully worded draft.",
                     "laws": [
                       "bv"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Може да бъде общо предложение или изцяло формулиран проект."
+                    }
                   },
                   {
                     "type": "reasonable_signatures",
@@ -726,9 +1003,15 @@
                     "explanation": "100,000 signatures within 18 months.",
                     "laws": [
                       "bv"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "100 000 подписа в срок от 18 месеца."
+                    }
                   }
-                ]
+                ],
+                "bg": {
+                  "name": "Народна инициатива"
+                }
               },
               {
                 "type": "veto_referendum",
@@ -755,7 +1038,10 @@
                     "explanation": "A majority of those voting decides (plus a majority of cantons for constitutional changes).",
                     "laws": [
                       "bv"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Решава мнозинството от гласувалите (плюс мнозинство от кантоните при промени в Конституцията)."
+                    }
                   },
                   {
                     "type": "regular_days",
@@ -771,11 +1057,19 @@
                         "items": [
                           {
                             "ref": "Article 10(1)",
-                            "text": "The Federal Council shall determine the rules by which polling days are appointed. In doing so, it shall take account of the requirements of those eligible to vote, parliament, the cantons, the parties and the agencies responsible for effecting service of voting documents, and shall avoid any collisions of dates that may result from differences between the calendar year and the church year."
+                            "text": "The Federal Council shall determine the rules by which polling days are appointed. In doing so, it shall take account of the requirements of those eligible to vote, parliament, the cantons, the parties and the agencies responsible for effecting service of voting documents, and shall avoid any collisions of dates that may result from differences between the calendar year and the church year.",
+                            "bg": {
+                              "ref": "Чл. 10, ал. 1",
+                              "text": "Федералният съвет определя правилата, по които се насрочват дните за гласуване. При това той отчита потребностите на имащите право на глас, на парламента, на кантоните, на партиите и на службите, които доставят изборните книжа, и избягва съвпадения на дати, които могат да възникнат от разликите между календарната и църковната година."
+                            }
                           },
                           {
                             "ref": "Article 10(1bis)",
-                            "text": "The Federal Council shall determine, four months prior to the polling day at the latest, which proposals are to be submitted to a popular vote. This period of four months may be reduced in the case of emergency federal acts."
+                            "text": "The Federal Council shall determine, four months prior to the polling day at the latest, which proposals are to be submitted to a popular vote. This period of four months may be reduced in the case of emergency federal acts.",
+                            "bg": {
+                              "ref": "Чл. 10, ал. 1bis",
+                              "text": "Федералният съвет определя най-късно четири месеца преди деня на гласуването кои предложения се подлагат на народно гласуване. Този четиримесечен срок може да бъде съкратен при спешни федерални закони."
+                            }
                           }
                         ]
                       },
@@ -793,11 +1087,27 @@
                               "(2) For overriding reasons, the Federal Chancellery, after consulting the cantons, shall propose to the Federal Council that individual voting dates be moved or further ones set.",
                               "(3) In the year of the general election of the National Council, no popular vote takes place in September.",
                               "(4) The Federal Chancellery shall announce the reserved voting dates by June of the preceding year at the latest."
-                            ]
+                            ],
+                            "bg": {
+                              "ref": "Чл. 2a",
+                              "text": [
+                                "(1) Следните недели в годината остават запазени за федерални народни гласувания:",
+                                "a. в годините, в които Великден е след 10 април — втората неделя на февруари, а в останалите години — четвъртата неделя преди Великден;",
+                                "b. в годините, в които Петдесетница е след 28 май — третата неделя на май, а в останалите години — третата неделя след Петдесетница;",
+                                "c. неделята след Федералния ден на благодарност, покаяние и молитва;",
+                                "d. последната неделя на ноември.",
+                                "(2) При наличие на важни причини Федералната канцелария, след като се допита до кантоните, предлага на Федералния съвет отделни дати за гласуване да бъдат преместени или да бъдат определени допълнителни.",
+                                "(3) В годината на общите избори за Национален съвет през септември не се провежда народно гласуване.",
+                                "(4) Федералната канцелария обявява запазените дати за гласуване най-късно до юни на предходната година."
+                              ]
+                            }
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Федералните гласувания се провеждат в четири недели годишно, запазени със закон и обявени до юни на предходната година. В годината на изборите за Национален съвет през септември няма гласуване."
+                    }
                   },
                   {
                     "type": "reasonable_signatures",
@@ -805,9 +1115,15 @@
                     "explanation": "50,000 signatures within 100 days, about 1% of voters.",
                     "laws": [
                       "bv"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "50 000 подписа в срок от 100 дни, около 1% от гласоподавателите."
+                    }
                   }
-                ]
+                ],
+                "bg": {
+                  "name": "Факултативен референдум"
+                }
               },
               {
                 "type": "mandatory_referendum",
@@ -818,7 +1134,10 @@
                     "explanation": "Amendments to the Federal Constitution and joining supranational communities go to a vote automatically (Art. 140).",
                     "laws": [
                       "bv"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Измененията на Федералната конституция и присъединяването към наднационални общности се подлагат автоматично на гласуване (чл. 140)."
+                    }
                   },
                   {
                     "type": "binding",
@@ -848,11 +1167,19 @@
                         "items": [
                           {
                             "ref": "Article 10(1)",
-                            "text": "The Federal Council shall determine the rules by which polling days are appointed. In doing so, it shall take account of the requirements of those eligible to vote, parliament, the cantons, the parties and the agencies responsible for effecting service of voting documents, and shall avoid any collisions of dates that may result from differences between the calendar year and the church year."
+                            "text": "The Federal Council shall determine the rules by which polling days are appointed. In doing so, it shall take account of the requirements of those eligible to vote, parliament, the cantons, the parties and the agencies responsible for effecting service of voting documents, and shall avoid any collisions of dates that may result from differences between the calendar year and the church year.",
+                            "bg": {
+                              "ref": "Чл. 10, ал. 1",
+                              "text": "Федералният съвет определя правилата, по които се насрочват дните за гласуване. При това той отчита потребностите на имащите право на глас, на парламента, на кантоните, на партиите и на службите, които доставят изборните книжа, и избягва съвпадения на дати, които могат да възникнат от разликите между календарната и църковната година."
+                            }
                           },
                           {
                             "ref": "Article 10(1bis)",
-                            "text": "The Federal Council shall determine, four months prior to the polling day at the latest, which proposals are to be submitted to a popular vote. This period of four months may be reduced in the case of emergency federal acts."
+                            "text": "The Federal Council shall determine, four months prior to the polling day at the latest, which proposals are to be submitted to a popular vote. This period of four months may be reduced in the case of emergency federal acts.",
+                            "bg": {
+                              "ref": "Чл. 10, ал. 1bis",
+                              "text": "Федералният съвет определя най-късно четири месеца преди деня на гласуването кои предложения се подлагат на народно гласуване. Този четиримесечен срок може да бъде съкратен при спешни федерални закони."
+                            }
                           }
                         ]
                       },
@@ -870,11 +1197,27 @@
                               "(2) For overriding reasons, the Federal Chancellery, after consulting the cantons, shall propose to the Federal Council that individual voting dates be moved or further ones set.",
                               "(3) In the year of the general election of the National Council, no popular vote takes place in September.",
                               "(4) The Federal Chancellery shall announce the reserved voting dates by June of the preceding year at the latest."
-                            ]
+                            ],
+                            "bg": {
+                              "ref": "Чл. 2a",
+                              "text": [
+                                "(1) Следните недели в годината остават запазени за федерални народни гласувания:",
+                                "a. в годините, в които Великден е след 10 април — втората неделя на февруари, а в останалите години — четвъртата неделя преди Великден;",
+                                "b. в годините, в които Петдесетница е след 28 май — третата неделя на май, а в останалите години — третата неделя след Петдесетница;",
+                                "c. неделята след Федералния ден на благодарност, покаяние и молитва;",
+                                "d. последната неделя на ноември.",
+                                "(2) При наличие на важни причини Федералната канцелария, след като се допита до кантоните, предлага на Федералния съвет отделни дати за гласуване да бъдат преместени или да бъдат определени допълнителни.",
+                                "(3) В годината на общите избори за Национален съвет през септември не се провежда народно гласуване.",
+                                "(4) Федералната канцелария обявява запазените дати за гласуване най-късно до юни на предходната година."
+                              ]
+                            }
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Федералните гласувания се провеждат в четири недели годишно, запазени със закон и обявени до юни на предходната година. В годината на изборите за Национален съвет през септември няма гласуване."
+                    }
                   },
                   {
                     "type": "concrete_proposals",
@@ -917,7 +1260,10 @@
                 "laws": [
                   "bv",
                   "bpr"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Отворени листи: гласоподавателите могат да зачертават, добавят и кумулират отделни кандидати."
+                }
               },
               {
                 "type": "local_districts",
@@ -925,7 +1271,10 @@
                 "explanation": "Each canton is a constituency.",
                 "laws": [
                   "bv"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Всеки кантон е избирателен район."
+                }
               },
               {
                 "type": "proportional_representation",
@@ -934,9 +1283,15 @@
                 "laws": [
                   "bv",
                   "bpr"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Местата се разпределят пропорционално в рамките на всеки кантон, но кантоните с едно място избират мажоритарно, а в малките кантони за едно място е нужен висок дял от гласовете."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Национален съвет"
+            }
           }
         ]
       }
@@ -992,7 +1347,10 @@
                         "explanation": "The reserved federal voting Sundays are also the canton's reserved voting days (cantonal Ordinance on Political Rights, § 28(2)). The Government Council places each vote on one of them, as soon as preparation allows (GPR § 59).",
                         "laws": [
                           "gpr"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Запазените федерални недели за гласуване са и запазените дни за гласуване в кантона (кантонална Наредба за политическите права, § 28, ал. 2). Правителственият съвет насрочва всяко гласуване в една от тях, веднага щом подготовката позволи (GPR § 59)."
+                        }
                       },
                       {
                         "type": "concrete_proposals",
@@ -1000,7 +1358,10 @@
                         "explanation": "As a general suggestion or a fully worded draft.",
                         "laws": [
                           "kv"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Като общо предложение или изцяло формулиран проект."
+                        }
                       },
                       {
                         "type": "reasonable_signatures",
@@ -1008,9 +1369,15 @@
                         "explanation": "6,000 signatures.",
                         "laws": [
                           "kv"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "6000 подписа."
+                        }
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "name": "Кантонална народна инициатива"
+                    }
                   },
                   {
                     "type": "veto_referendum",
@@ -1045,7 +1412,10 @@
                         "explanation": "The reserved federal voting Sundays are also the canton's reserved voting days (cantonal Ordinance on Political Rights, § 28(2)). The Government Council places each vote on one of them, as soon as preparation allows (GPR § 59).",
                         "laws": [
                           "gpr"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Запазените федерални недели за гласуване са и запазените дни за гласуване в кантона (кантонална Наредба за политическите права, § 28, ал. 2). Правителственият съвет насрочва всяко гласуване в една от тях, веднага щом подготовката позволи (GPR § 59)."
+                        }
                       },
                       {
                         "type": "reasonable_signatures",
@@ -1053,9 +1423,15 @@
                         "explanation": "3,000 signatures within 60 days.",
                         "laws": [
                           "kv"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "3000 подписа в срок от 60 дни."
+                        }
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "name": "Кантонален референдум"
+                    }
                   },
                   {
                     "type": "mandatory_referendum",
@@ -1066,7 +1442,10 @@
                         "explanation": "Amendments to the cantonal constitution, among others, go to a vote automatically.",
                         "laws": [
                           "kv"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Измененията на кантоналната конституция, наред с други, се подлагат автоматично на гласуване."
+                        }
                       },
                       {
                         "type": "binding",
@@ -1088,7 +1467,10 @@
                         "explanation": "The reserved federal voting Sundays are also the canton's reserved voting days (cantonal Ordinance on Political Rights, § 28(2)). The Government Council places each vote on one of them, as soon as preparation allows (GPR § 59).",
                         "laws": [
                           "gpr"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Запазените федерални недели за гласуване са и запазените дни за гласуване в кантона (кантонална Наредба за политическите права, § 28, ал. 2). Правителственият съвет насрочва всяко гласуване в една от тях, веднага щом подготовката позволи (GPR § 59)."
+                        }
                       },
                       {
                         "type": "concrete_proposals",
@@ -1115,7 +1497,10 @@
                     "explanation": "180 members.",
                     "laws": [
                       "kv"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "180 членове."
+                    }
                   },
                   {
                     "type": "binding_powers",
@@ -1123,7 +1508,10 @@
                     "explanation": "Including the cantonal tax rate.",
                     "laws": [
                       "kv"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Включително кантоналната данъчна ставка."
+                    }
                   },
                   {
                     "type": "individual_vote",
@@ -1132,7 +1520,10 @@
                     "laws": [
                       "kv",
                       "gpr"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Пропорционално представителство с отворени листи."
+                    }
                   },
                   {
                     "type": "local_districts",
@@ -1140,7 +1531,10 @@
                     "explanation": "The districts (Bezirke) are the constituencies.",
                     "laws": [
                       "kv"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Окръзите (Bezirke) са избирателните райони."
+                    }
                   },
                   {
                     "type": "proportional_representation",
@@ -1148,9 +1542,15 @@
                     "explanation": "The double proportional method (\"doppelter Pukelsheim\") shares out seats in proportion to the votes across the canton, but a party needs 5% in at least one district.",
                     "laws": [
                       "gpr"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Двойно пропорционалният метод („doppelter Pukelsheim“) разпределя местата пропорционално на гласовете в целия кантон, но партията се нуждае от 5% в поне един окръг."
+                    }
                   }
-                ]
+                ],
+                "bg": {
+                  "name": "Кантонален съвет (Kantonsrat)"
+                }
               },
               {
                 "type": "executive",
@@ -1162,7 +1562,10 @@
                     "explanation": "Seven members elected by the people by majority vote.",
                     "laws": [
                       "kv"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Седем членове, избирани от народа мажоритарно."
+                    }
                   },
                   {
                     "type": "binding_powers",
@@ -1187,10 +1590,17 @@
                     "laws": [
                       "kv",
                       "gpr"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "На това ниво избраните длъжностни лица не могат да бъдат отзовани."
+                    }
                   }
                 ],
-                "label": "Executive"
+                "label": "Executive",
+                "bg": {
+                  "name": "Правителствен съвет (Regierungsrat)",
+                  "label": "Изпълнителна власт"
+                }
               }
             ]
           }
@@ -1212,7 +1622,10 @@
                         "laws": [
                           "kv",
                           "gpr"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Окръгът (Bezirk) няма референдум."
+                        }
                       }
                     ]
                   },
@@ -1226,7 +1639,10 @@
                         "laws": [
                           "kv",
                           "gpr"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Окръгът (Bezirk) няма референдум."
+                        }
                       }
                     ]
                   },
@@ -1240,7 +1656,10 @@
                         "laws": [
                           "kv",
                           "gpr"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Окръгът (Bezirk) няма референдум."
+                        }
                       }
                     ]
                   }
@@ -1269,7 +1688,10 @@
                     "laws": [
                       "kv",
                       "gpr"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Предимно надзорни и административни правомощия."
+                    }
                   },
                   {
                     "type": "individual_vote",
@@ -1286,14 +1708,24 @@
                     "laws": [
                       "kv",
                       "gpr"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "На това ниво избраните длъжностни лица не могат да бъдат отзовани."
+                    }
                   }
                 ],
-                "label": "Executive"
+                "label": "Executive",
+                "bg": {
+                  "name": "Окръжен управител / окръжен съвет (Statthalter / Bezirksrat)",
+                  "label": "Изпълнителна власт"
+                }
               }
             ]
           }
         }
+      },
+      "bg": {
+        "name": "Кантон Цюрих"
       }
     },
     {
@@ -1347,7 +1779,10 @@
                         "explanation": "The city holds its votes on the same reserved Sundays as the Confederation and the canton. This rests on cantonal guidance and settled practice: the law itself only requires a Sunday (GPR § 58).",
                         "laws": [
                           "gpr"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Градът провежда гласуванията си в същите запазени недели като Конфедерацията и кантона. Това се основава на кантонални указания и утвърдена практика: самият закон изисква само неделя (GPR § 58)."
+                        }
                       },
                       {
                         "type": "concrete_proposals",
@@ -1364,9 +1799,15 @@
                         "explanation": "3,000 signatures.",
                         "laws": [
                           "go"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "3000 подписа."
+                        }
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "name": "Градска народна инициатива"
+                    }
                   },
                   {
                     "type": "veto_referendum",
@@ -1378,7 +1819,10 @@
                         "explanation": "Optional referendum on council decisions; mandatory votes on the charter and on big spending.",
                         "laws": [
                           "go"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Факултативен референдум за решенията на съвета; задължителни гласувания за устава и за големи разходи."
+                        }
                       },
                       {
                         "type": "binding",
@@ -1404,7 +1848,10 @@
                         "explanation": "The city holds its votes on the same reserved Sundays as the Confederation and the canton. This rests on cantonal guidance and settled practice: the law itself only requires a Sunday (GPR § 58).",
                         "laws": [
                           "gpr"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Градът провежда гласуванията си в същите запазени недели като Конфедерацията и кантона. Това се основава на кантонални указания и утвърдена практика: самият закон изисква само неделя (GPR § 58)."
+                        }
                       },
                       {
                         "type": "reasonable_signatures",
@@ -1412,9 +1859,15 @@
                         "explanation": "2,000 signatures within 60 days.",
                         "laws": [
                           "go"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "2000 подписа в срок от 60 дни."
+                        }
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "name": "Градски референдум"
+                    }
                   },
                   {
                     "type": "mandatory_referendum",
@@ -1425,7 +1878,10 @@
                         "explanation": "Changes to the municipal charter and large expenditures go to a vote automatically.",
                         "laws": [
                           "go"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Промените в общинския устав и големите разходи се подлагат автоматично на гласуване."
+                        }
                       },
                       {
                         "type": "binding",
@@ -1447,7 +1903,10 @@
                         "explanation": "The city holds its votes on the same reserved Sundays as the Confederation and the canton. This rests on cantonal guidance and settled practice: the law itself only requires a Sunday (GPR § 58).",
                         "laws": [
                           "gpr"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Градът провежда гласуванията си в същите запазени недели като Конфедерацията и кантона. Това се основава на кантонални указания и утвърдена практика: самият закон изисква само неделя (GPR § 58)."
+                        }
                       },
                       {
                         "type": "concrete_proposals",
@@ -1470,7 +1929,10 @@
                     "laws": [
                       "kv",
                       "gg"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Град Цюрих има избран парламент (Gemeinderat) вместо общинско събрание: общинското право на кантона позволява на общината да замени събранието на гласоподавателите си с парламент."
+                    }
                   }
                 ]
               }
@@ -1488,7 +1950,10 @@
                     "explanation": "125 members.",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "125 членове."
+                    }
                   },
                   {
                     "type": "binding_powers",
@@ -1496,7 +1961,10 @@
                     "explanation": "Including setting the annual tax rate.",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Включително определянето на годишната данъчна ставка."
+                    }
                   },
                   {
                     "type": "individual_vote",
@@ -1504,7 +1972,10 @@
                     "explanation": "Proportional representation with open lists.",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Пропорционално представителство с отворени листи."
+                    }
                   },
                   {
                     "type": "proportional_representation",
@@ -1513,7 +1984,10 @@
                     "laws": [
                       "gpr",
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Двойно пропорционалният метод разпределя местата пропорционално на гласовете в целия град, но партията се нуждае от 5% в поне един район."
+                    }
                   },
                   {
                     "type": "own_means",
@@ -1521,9 +1995,15 @@
                     "explanation": "The city sets its own tax rate (Steuerfuss).",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Градът сам определя данъчната си ставка (Steuerfuss)."
+                    }
                   }
-                ]
+                ],
+                "bg": {
+                  "name": "Общински съвет (Gemeinderat)"
+                }
               },
               {
                 "type": "executive",
@@ -1535,7 +2015,10 @@
                     "explanation": "Nine members including the mayor, elected by the whole city.",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Девет членове, включително кметът, избирани от целия град."
+                    }
                   },
                   {
                     "type": "binding_powers",
@@ -1563,10 +2046,17 @@
                       "go",
                       "gg",
                       "gpr"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "На това ниво избраните длъжностни лица не могат да бъдат отзовани."
+                    }
                   }
                 ],
-                "label": "Executive"
+                "label": "Executive",
+                "bg": {
+                  "name": "Градски съвет (Stadtrat, изпълнителна власт)",
+                  "label": "Изпълнителна власт"
+                }
               }
             ]
           }
@@ -1587,7 +2077,10 @@
                         "explanation": "A city district (Kreis) has no referendum of its own.",
                         "laws": [
                           "go"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Градският район (Kreis) няма собствен референдум."
+                        }
                       }
                     ]
                   },
@@ -1600,7 +2093,10 @@
                         "explanation": "A city district (Kreis) has no referendum of its own.",
                         "laws": [
                           "go"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Градският район (Kreis) няма собствен референдум."
+                        }
                       }
                     ]
                   },
@@ -1613,7 +2109,10 @@
                         "explanation": "A city district (Kreis) has no referendum of its own.",
                         "laws": [
                           "go"
-                        ]
+                        ],
+                        "bg": {
+                          "explanation": "Градският район (Kreis) няма собствен референдум."
+                        }
                       }
                     ]
                   }
@@ -1628,7 +2127,10 @@
                     "explanation": "City districts (Kreise) have no assembly of their residents that takes binding decisions.",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Градските райони (Kreise) нямат събрание на жителите си, което взема задължителни решения."
+                    }
                   }
                 ]
               }
@@ -1646,9 +2148,15 @@
                     "explanation": "The charter provides no elected quarter or Kreis council.",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Уставът не предвижда избран съвет на квартала или на района (Kreis)."
+                    }
                   }
-                ]
+                ],
+                "bg": {
+                  "name": "Квартален съвет"
+                }
               },
               {
                 "type": "council",
@@ -1660,7 +2168,10 @@
                     "explanation": "Each of the seven school districts elects a school board (president plus 24 members).",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Всеки от седемте училищни района избира училищен съвет (председател и 24 членове)."
+                    }
                   },
                   {
                     "type": "binding_powers",
@@ -1670,7 +2181,10 @@
                       "go",
                       "gg",
                       "gpr"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Само за обществените училища и детските градини в района."
+                    }
                   },
                   {
                     "type": "individual_vote",
@@ -1678,7 +2192,10 @@
                     "explanation": "Members and president are elected by the district's voters.",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Членовете и председателят се избират от гласоподавателите в района."
+                    }
                   },
                   {
                     "type": "local_districts",
@@ -1686,7 +2203,10 @@
                     "explanation": "The school district is the constituency; it spans several quarters.",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Училищният район е избирателният район; той обхваща няколко квартала."
+                    }
                   },
                   {
                     "type": "proportional_representation",
@@ -1694,9 +2214,15 @@
                     "explanation": "Members are elected by majority vote, not proportionally.",
                     "laws": [
                       "gpr"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Членовете се избират мажоритарно, а не пропорционално."
+                    }
                   }
-                ]
+                ],
+                "bg": {
+                  "name": "Училищен съвет на района (Kreisschulbehörde)"
+                }
               },
               {
                 "type": "upper_council_seat",
@@ -1726,7 +2252,10 @@
                     "explanation": "Open lists: voters choose individual candidates.",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Отворени листи: гласоподавателите избират отделни кандидати."
+                    }
                   },
                   {
                     "type": "local_districts",
@@ -1734,14 +2263,27 @@
                     "explanation": "Elected per electoral district (Wahlkreis), which is larger than one quarter.",
                     "laws": [
                       "go"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Избира се по избирателни райони (Wahlkreis), които са по-големи от един квартал."
+                    }
                   }
-                ]
+                ],
+                "bg": {
+                  "name": "Собствени членове на Gemeinderat"
+                }
               }
             ]
           }
         }
+      },
+      "bg": {
+        "name": "Град Цюрих"
       }
     }
-  ]
+  ],
+  "bg": {
+    "name": "Швейцария",
+    "statusNote": "Чернова. За всяко изискване страницата посочва законите, които го уреждат; конкретните членове предстои да бъдат уточнени. Оценките „да/частично/не“ са предварителни, докато членовете не бъдат потвърдени."
+  }
 }

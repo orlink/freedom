@@ -642,10 +642,25 @@ function wordDiff(a, b) {
 // `text` (in English, translated where the law is not English) and `original` (word for word, in the law's language).
 // A reader of the law's own language gets the original, and the fix and its reason drafted against it (`bg.fix`,
 // `bg.why`); a provision whose fix has no such draft yet stays in English, so the tracked changes still line up.
+// A law's name for this reader: its own official title when it is in the reader's language, else our translation.
+function lawName(law) {
+  return lang !== 'en' && law.lang === lang && law.localTitle ? law.localTitle : tx(law, 'title');
+}
 function inLang(it, law) {
-  const own = lang !== 'en' && law?.lang === lang && it.original != null && (it.fix == null || it[lang]?.fix != null);
-  if (own) return { ...it, text: it.original, fix: it[lang]?.fix ?? it.fix, why: it[lang]?.why ?? it.why };
-  return { ...it, why: tx(it, 'why') };
+  const tr = lang !== 'en' ? it[lang] || {} : {};
+  const why = tr.why ?? it.why;
+  if (lang === 'en') return it;
+  it = { ...it, refKey: it.ref };
+  // A law in the reader's language: its own words (`original`), with fixes drafted against them. Until both are
+  // there the English is shown, so a fix never marks changes against a text it was not written for.
+  if (law?.lang === lang) {
+    if (it.original != null && (it.fix == null || tr.fix != null)) return { ...it, text: it.original, fix: tr.fix ?? it.fix, why, ref: tr.ref ?? it.ref };
+    return { ...it, why, english: true };
+  }
+  // A law in another language: our translation into the reader's language (text and fix translated together).
+  if ((it.text == null || tr.text != null) && (it.fix == null || tr.fix != null) && (tr.text != null || tr.fix != null))
+    return { ...it, text: tr.text ?? it.text, fix: tr.fix ?? it.fix, why, ref: tr.ref ?? it.ref, translated: true };
+  return { ...it, why, english: true };
 }
 // One provision's lines, as in the law or, when fixed, as a diff against the proposed amendment.
 function provisionLines(it, fixed) {
@@ -694,7 +709,7 @@ async function fixFeedback(key, action, body) {
 const approvedHere = key => { try { return JSON.parse(localStorage.getItem('freedom-fix-approved') || '[]').includes(key); } catch { return false; } };
 const markApproved = key => { try { const a = JSON.parse(localStorage.getItem('freedom-fix-approved') || '[]'); a.push(key); localStorage.setItem('freedom-fix-approved', JSON.stringify(a)); } catch { /* ignore */ } };
 function fixReview(law, it) {
-  const key = fixKey(law, it.ref);
+  const key = fixKey(law, it.refKey ?? it.ref);  // the English ref, so approvals count once across languages
   const box = el('div', { class: 'fix-review' });
   const paint = e => {
     const done = approvedHere(key);
@@ -751,10 +766,14 @@ function provisionsPanel(provisions, laws, explainer, prop) {
     panel.className = `provisions${vt ? ` v-${vt}` : ''}${fixed ? ' fixed' : ''}`;
     panel.replaceChildren(...[verdict, ...provisions.map(p => {
       const law = laws[p.law] || { title: p.law };
-      const title = law.url ? el('a', { href: law.url, target: '_blank', rel: 'noopener' }, tx(law, 'title')) : tx(law, 'title');
+      const name = lawName(law);
+      const title = law.url ? el('a', { href: law.url, target: '_blank', rel: 'noopener' }, name) : name;
       const items = (p.items || []).map(it => inLang(it, law)).filter(it => fixed || it.text != null || it.fix == null);
+      // Under the title, a note when the quotes are not the law's own words in the reader's language.
+      const how = items.some(it => it.english) ? t('law.notInLang') : items.some(it => it.translated) ? t('law.unofficial') : '';
       return el('section', {},
         el('h3', {}, title),
+        how ? el('p', { class: 'lang-note' }, how) : null,
         items.length ? null : el('p', { class: 'absent' }, fixable ? t('law.absentFixable') : t('law.absent')),
         ...items.map(it => el('div', { class: 'provision' },
           it.ref ? el('p', { class: 'ref' }, it.ref) : null,
@@ -1145,7 +1164,7 @@ function render() {
     if (prop.provisions?.length) screen.push(el('div', { class: 'req has-chat' }, provisionsPanel(prop.provisions, j.laws, explainer, prop), chatBtn));
     else screen.push(el('div', { class: 'req-head' }, chatBtn), rowOf((prop.laws || []).map(id => {
       const law = j.laws[id] || { title: id };
-      return chip({ label: tx(law, 'short') || tx(law, 'title'), tone: 'law', title: [tx(law, 'title'), law.localTitle].filter(Boolean).join('\n'), href: law.url });
+      return chip({ label: tx(law, 'short') || tx(law, 'title'), tone: 'law', title: [...new Set([lawName(law), law.localTitle].filter(Boolean))].join('\n'), href: law.url });
     })));
   }
   $('#tree').replaceChildren(...screen.filter(Boolean));
