@@ -542,6 +542,7 @@ const STATUS_TONE = { yes: 'white', partial: 'darkgrey', weak: 'darkgrey', no: '
 // The trail's drop-down menus: what each colour says in words (for tooltips), and what each chevron is called.
 const TONE_WORDS = Object.fromEntries(Object.entries(LEGENDS).map(([k, v]) => [k, { ...Object.fromEntries(v), unknown: t('legend.notAssessed') }]));
 const SWITCH_LABEL = { level: t('switch.level'), mech: t('switch.mech'), prop: t('switch.prop') };
+const KIND_LABEL = { level: t('kind.level'), mech: t('kind.mech'), prop: t('kind.prop') };
 let trailPlace = null;   // repositions the open menu under its pill when the window changes size
 let trailClose = null;   // closes the open menu
 window.addEventListener('resize', () => trailPlace?.());
@@ -1064,14 +1065,18 @@ function render() {
     // stays put when the menu opens.
     const sw = s => s.tone ? el('i', { class: `sw t-${s.tone}`, 'aria-hidden': 'true' }) : null;
     const last = steps.length - 1;
+    // Each step says what it is in a small caption above it: a level, an institution or a design requirement
+    // (Orlin 2026-11-20: the trail did not show what type each step is, nor that a requirement's page belongs to an
+    // institution). The first step, the list of levels, already names itself.
+    const typed = (s, node) => s.kind ? el('span', { class: 'step' }, el('small', { class: 'kind' }, KIND_LABEL[s.kind]), node) : node;
     const nodes = steps.flatMap((s, i) => {
       const a = arrow(s);
       const name = i < last ? el('button', { type: 'button', class: 'crumb', onclick: () => go(s.path) }, s.name) : null;
       return [
         i ? el('span', { class: 'sep' }, '›') : null,
         // The page you are on is the title: the same pill, larger, its name not a link.
-        i === last ? el('span', { class: 'here' }, s.tone || a ? el('span', { class: pillClass(s) }, el('span', { class: 'here-name' }, sw(s), el('span', {}, s.name)), a) : el('span', { class: 'here-name' }, s.name))
-          : a ? el('span', { class: pillClass(s) }, name, a) : name,
+        i === last ? el('span', { class: 'here' }, typed(s, s.tone || a ? el('span', { class: pillClass(s) }, el('span', { class: 'here-name' }, sw(s), el('span', {}, s.name)), a) : el('span', { class: 'here-name' }, s.name)))
+          : typed(s, a ? el('span', { class: pillClass(s) }, name, a) : name),
       ];
     }).filter(Boolean);
     let box = null;

@@ -133,6 +133,13 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 /* The menu of siblings opens over its pill, in the siblings' usual order, with the current choice lying exactly on the
    pill (as an iOS or macOS menu does). Each row has a small chip in the colour of the page it leads to. */
 .trail { position: relative; }
+/* What each step is, in a small caption above it (Orlin 2026-11-20). It hangs above its step, so the row's alignment
+   is unchanged; the trail leaves room for it above every line. */
+.trail { padding-top: 15px; row-gap: 19px; }
+.trail .step { position: relative; display: inline-flex; max-width: 100%; }
+.trail .kind { position: absolute; left: 50%; bottom: calc(100% + 2px); transform: translateX(-50%); white-space: nowrap; font-size: 10px; font-weight: 700; letter-spacing: .09em; line-height: 1.2; text-transform: uppercase; color: var(--muted); pointer-events: none; }
+.trail .here { margin-top: 2px; }
+.trail .here .kind { font-size: 11px; bottom: calc(100% + 3px); letter-spacing: .1em; color: var(--coral-ink); }
 .switch { position: absolute; z-index: 1050; top: 100%; left: 0; scroll-margin: 90px 0 14px; display: flex; flex-direction: column; gap: 2px; width: max-content; max-width: calc(100vw - 16px);
   max-height: min(80vh, 640px); overflow-y: auto; background: var(--surface); border: 1px solid var(--coral); border-radius: 17px;
   box-shadow: 0 2px 6px rgba(46, 21, 24, .10), 0 16px 40px rgba(46, 21, 24, .26); }
