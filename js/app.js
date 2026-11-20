@@ -825,17 +825,23 @@ function chatBox(key, context) {
 }
 // The chat pop-up can be dragged by its title bar (mouse, pen or touch) off the text it covers. It stays inside
 // the window (all of it, so the typing box never hides), and the place it was moved to is kept for this visit, so the next chat opens there too.
+// Until it is moved, it opens at the right edge of the page, next to the scroll bar, at the height of its button,
+// so it covers as little of the law texts as possible (Orlin). On phones it keeps its own place at the bottom.
 let chatSpot = null;
 function draggable(pop, handle) {
-  const place = (x, y) => {
-    const w = Math.min(pop.offsetWidth, innerWidth - 16), h = pop.offsetHeight;
-    x = Math.max(8, Math.min(x, innerWidth - w - 8));
+  const view = () => document.documentElement.clientWidth;  // the window without its scroll bar
+  const place = (x, y, save = true) => {
+    const w = Math.min(pop.offsetWidth, view() - 16), h = pop.offsetHeight;
+    x = Math.max(8, Math.min(x, view() - w - 8));
     y = Math.max(8, Math.min(y, innerHeight - h - 8));
     Object.assign(pop.style, { position: 'fixed', left: `${x}px`, top: `${y}px`, right: 'auto', bottom: 'auto', width: `${w}px` });
-    chatSpot = { x, y };
+    if (save) chatSpot = { x, y };
   };
+  const atRight = () => place(view() - pop.offsetWidth - 8, pop.getBoundingClientRect().top, false);
+  const onPhone = getComputedStyle(pop).position === 'fixed';
   if (chatSpot) place(chatSpot.x, chatSpot.y);
-  const keep = () => { if (!pop.isConnected) return removeEventListener('resize', keep); if (chatSpot) place(chatSpot.x, chatSpot.y); };
+  else if (!onPhone) atRight();
+  const keep = () => { if (!pop.isConnected) return removeEventListener('resize', keep); if (chatSpot) place(chatSpot.x, chatSpot.y); else if (!onPhone) atRight(); };
   addEventListener('resize', keep);
   handle.addEventListener('pointerdown', e => {
     if (e.button !== 0 || e.target.closest('button')) return;
