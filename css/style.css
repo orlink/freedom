@@ -133,8 +133,8 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 /* The menu of siblings opens over its pill, in the siblings' usual order, with the current choice lying exactly on the
    pill (as an iOS or macOS menu does). Each row has a small chip in the colour of the page it leads to. */
 .trail { position: relative; }
-/* What each step is, as a small icon before its name: layers for a level, a building for an institution, a set square
-   for a design requirement (Orlin 2026-11-20: no more words on a text-heavy page). On the title the icon sits inside
+/* What each step is, as a small icon before its name: people for a level, a rulebook for an institution, a scroll for
+   a design requirement (Orlin 2026-11-20: no more words on a text-heavy page). On the title the icon sits inside
    the colour chip, in the chip's own ink. The same icons stand beside the headings of the screens that list them. */
 .kind-ico { flex: none; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .trail .crumb { display: inline-flex; align-items: center; gap: 6px; text-align: left; }

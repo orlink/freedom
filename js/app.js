@@ -543,16 +543,17 @@ const STATUS_TONE = { yes: 'white', partial: 'darkgrey', weak: 'darkgrey', no: '
 const TONE_WORDS = Object.fromEntries(Object.entries(LEGENDS).map(([k, v]) => [k, { ...Object.fromEntries(v), unknown: t('legend.notAssessed') }]));
 const SWITCH_LABEL = { level: t('switch.level'), mech: t('switch.mech'), prop: t('switch.prop') };
 // What a step of the trail is, shown as a small icon rather than in words (Orlin 2026-11-20: the page is text-heavy
-// already). His choice of pictures: a level (neighbourhood, municipality, country…) is a group of people, an
-// institution a scroll of rules; the stack of layers stands only for the list of levels itself. A design requirement
-// is a set square. Colour is not used for this, because colour already says how free something is. The icon also
+// already). His choice of pictures: a level (neighbourhood, municipality, country…) is a group of people; a design
+// requirement is a scroll, one rule; the stack of layers stands only for the list of levels itself. An institution is
+// an open rulebook (Claude's proposal; not a building, because for Orlin an institution is a set of rules in the
+// general sense). Colour is not used for this, because colour already says how free something is. The icon also
 // stands beside the heading of the screen that lists those things. The word is its tooltip and its spoken name.
 const KIND_LABEL = { level: t('kind.level'), mech: t('kind.mech'), prop: t('kind.prop') };
 const KIND_ICON = {
   levels: '<path d="M8 2 14 5 8 8 2 5Z"/><path d="M2 8l6 3 6-3"/><path d="M2 11l6 3 6-3"/>',
   level: '<circle cx="8" cy="5.2" r="2.2"/><path d="M4.2 13.5a3.8 3.8 0 0 1 7.6 0"/><circle cx="2.9" cy="6.6" r="1.4"/><path d="M.9 12.4a2.6 2.6 0 0 1 2-2.5"/><circle cx="13.1" cy="6.6" r="1.4"/><path d="M15.1 12.4a2.6 2.6 0 0 0-2-2.5"/>',
-  mech: '<path d="M12.7 11.3V3.3A1.3 1.3 0 0 0 11.4 2H2.7"/><path d="M5.3 14h8a1.3 1.3 0 0 0 1.3-1.3V12a.7.7 0 0 0-.7-.7H7.3a.7.7 0 0 0-.7.7v.7a1.3 1.3 0 1 1-2.6 0V3.3a1.3 1.3 0 1 0-2.6 0v1.4a.7.7 0 0 0 .7.6H4"/><path d="M10 5.3H6.8M10 8H6.8"/>',
-  prop: '<path d="M2.5 2.5v11h11Z"/><path d="M5.5 8.8v1.7h1.7Z"/>',
+  mech: '<path d="M8 4.7v9.3"/><path d="M2 12a.7.7 0 0 1-.7-.7V2.7A.7.7 0 0 1 2 2h3.3A2.7 2.7 0 0 1 8 4.7 2.7 2.7 0 0 1 10.7 2H14a.7.7 0 0 1 .7.7v8.6a.7.7 0 0 1-.7.7h-4a2 2 0 0 0-2 2 2 2 0 0 0-2-2z"/>',
+  prop: '<path d="M12.7 11.3V3.3A1.3 1.3 0 0 0 11.4 2H2.7"/><path d="M5.3 14h8a1.3 1.3 0 0 0 1.3-1.3V12a.7.7 0 0 0-.7-.7H7.3a.7.7 0 0 0-.7.7v.7a1.3 1.3 0 1 1-2.6 0V3.3a1.3 1.3 0 1 0-2.6 0v1.4a.7.7 0 0 0 .7.6H4"/><path d="M10 5.3H6.8M10 8H6.8"/>',
 };
 const kindIcon = (kind, named = true) => {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
