@@ -642,6 +642,22 @@ function mechLabel(m, all, catalog, levelId) {
   return shortName(tx(m, 'label') || (twins && m.name ? tx(m, 'name') : (levelName(mdef, levelId, 'name') || tx(mdef, 'name') || tx(m, 'name') || m.type)));
 }
 
+// Grammatical gender of the institution's shown name in the reader's language (m, f, n or pl, from the data's
+// `gender`), so that a requirement's name agrees with it: "Предвиден в закона" for a referendum (Orlin 2026-11-20).
+function mechGender(m, all, catalog, levelId) {
+  if (!m || lang === 'en') return undefined;
+  if (m.kindType) return catalog.referendumKinds?.[m.kindType]?.[lang]?.gender;
+  const mdef = catalog.mechanisms[m.type] || {};
+  const twins = all.filter(x => x.type === m.type).length > 1;
+  if (m[lang]?.label || (twins && m[lang]?.name)) return m[lang]?.gender;
+  return mdef.levelNames?.[levelId]?.[lang]?.gender ?? mdef[lang]?.gender;
+}
+
+// A requirement's name, in the form that agrees with its institution's gender when the catalog gives `forms`.
+function propName(p, pdef, gender, field = 'name') {
+  return tx(p, 'name') || (gender && pdef?.[lang]?.forms?.[gender]) || tx(pdef, field) || tx(pdef, 'name') || p.type;
+}
+
 function mechLongName(m, all, catalog, levelId) {
   const mdef = catalog.mechanisms[m.type] || {};
   const twins = all.filter(x => x.type === m.type).length > 1;
@@ -764,14 +780,14 @@ function fixReview(law, it) {
 
 // A short excerpt from the explainer (e.g. on the turnout quorum) under the verdict, expandable to the full quote.
 function explainerMini(explainer) {
-  const [first, ...rest] = explainer.quote;
+  const [first, ...rest] = tx(explainer, 'quote');
   const more = el('div', { class: 'xm-more', hidden: true },
     ...rest.map(t => el('p', {}, t)),
-    el('p', { class: 'source' }, t('explainer.source'), el('a', { href: explainer.url, target: '_blank', rel: 'noopener' }, explainer.source)));
+    el('p', { class: 'source' }, t('explainer.source'), el('a', { href: explainer.url, target: '_blank', rel: 'noopener' }, tx(explainer, 'source'))));
   const toggle = el('button', { type: 'button', class: 'xm-toggle', onclick: () => {
     more.hidden = !more.hidden; toggle.textContent = more.hidden ? t('explainer.more') : t('explainer.less');
   } }, t('explainer.more'));
-  return el('div', { class: 'xm' }, el('p', { class: 'xm-title' }, explainer.title), el('p', {}, first), more, toggle);
+  return el('div', { class: 'xm' }, el('p', { class: 'xm-title' }, tx(explainer, 'title')), el('p', {}, first), more, toggle);
 }
 
 // The legal text behind a requirement: per law, a linked title and the quoted provisions (translated).
@@ -970,6 +986,7 @@ function render() {
   const mechs = flattenKinds(branch?.applicable !== false ? (branch?.mechanisms || []) : [], catalog);
   const mech = mechs[mechIdx];
   const props = mech?.properties || [];
+  const gender = mechGender(mech, mechs, catalog, levelId);
   // A mechanism that hinges on a single requirement (e.g. a neighbourhood's representatives in the municipal council:
   // elected in local districts) skips the requirements screen: its chip opens that requirement's page directly.
   const single = mech && props.length === 1;
@@ -984,11 +1001,11 @@ function render() {
   // Each step carries the colour of its chip one level up; the title shows it as a small chip before its name.
   if (cur) steps.push({ kind: 'level', tone: cur.tone, name: levelLabel(cur.l), path: [levelId] });
   if (mech) steps.push({ kind: 'mech', tone: mechTone(scoreMechanism(mech.scored || mech, catalog)), name: mechLongName(mech, mechs, catalog, levelId), path: [levelId, branchId, mechIdx] });
-  if (prop && !single) steps.push({ kind: 'prop', tone: STATUS_TONE[prop.status] || 'unknown', name: tx(catalog.properties[prop.type], 'longName') || tx(catalog.properties[prop.type], 'name') || tx(prop, 'name'), path: propPath(propIdx) });
+  if (prop && !single) steps.push({ kind: 'prop', tone: STATUS_TONE[prop.status] || 'unknown', name: propName({ type: prop.type }, catalog.properties[prop.type], gender, 'longName'), path: propPath(propIdx) });
 
   const mechsOf = (lvl, b) => flattenKinds(lvl[b]?.applicable !== false ? (lvl[b]?.mechanisms || []) : [], catalog);
   const sameKind = (a, b) => a.type === b.type && a.kindType === b.kindType;
-  const propLabel = p => tx(p, 'name') || tx(catalog.properties[p.type], 'name') || p.type;
+  const propLabel = p => propName(p, catalog.properties[p.type], gender);
   const deep = prop && !single;   // a requirement's page is open
   // Where the open requirement sits in another institution: its page there if it has one, else the institution's page.
   const landIn = (m, base) => {
@@ -1181,7 +1198,7 @@ function render() {
     screen.push(rowOf(props.map((p, i) => {
       const pdef = catalog.properties[p.type] || {};
       return chip({
-        label: tx(p, 'name') || tx(pdef, 'name') || p.type, tone: p.disabled ? 'disabled' : (STATUS_TONE[p.status] || 'unknown'),
+        label: propName(p, pdef, gender), tone: p.disabled ? 'disabled' : (STATUS_TONE[p.status] || 'unknown'),
         title: p.disabled ? t('req.disabledTitle') : [tx(pdef, 'description'), tx(p, 'explanation')].filter(Boolean).join('\n\n'),
         onclick: p.disabled ? undefined : () => go(propPath(i)), disabled: p.disabled,
       });
