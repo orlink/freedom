@@ -654,7 +654,7 @@ function inLang(it, law) {
   // A law in the reader's language: its own words (`original`), with fixes drafted against them. Until both are
   // there the English is shown, so a fix never marks changes against a text it was not written for.
   if (law?.lang === lang) {
-    if (it.original != null && (it.fix == null || tr.fix != null)) return { ...it, text: it.original, fix: tr.fix ?? it.fix, why, ref: tr.ref ?? it.ref };
+    if ((it.original != null || it.text == null) && (it.fix == null || tr.fix != null)) return { ...it, text: it.original, fix: tr.fix ?? it.fix, why, ref: tr.ref ?? it.ref };
     return { ...it, why, english: true };
   }
   // A law in another language: our translation into the reader's language (text and fix translated together).
@@ -767,7 +767,7 @@ function provisionsPanel(provisions, laws, explainer, prop) {
     panel.replaceChildren(...[verdict, ...provisions.map(p => {
       const law = laws[p.law] || { title: p.law };
       const name = lawName(law);
-      const title = law.url ? el('a', { href: law.url, target: '_blank', rel: 'noopener' }, name) : name;
+      const title = tx(law, 'url') ? el('a', { href: tx(law, 'url'), target: '_blank', rel: 'noopener' }, name) : name;
       const items = (p.items || []).map(it => inLang(it, law)).filter(it => fixed || it.text != null || it.fix == null);
       // Under the title, a note when the quotes are not the law's own words in the reader's language.
       const how = items.some(it => it.english) ? t('law.notInLang') : items.some(it => it.translated) ? t('law.unofficial') : '';
@@ -1164,7 +1164,7 @@ function render() {
     if (prop.provisions?.length) screen.push(el('div', { class: 'req has-chat' }, provisionsPanel(prop.provisions, j.laws, explainer, prop), chatBtn));
     else screen.push(el('div', { class: 'req-head' }, chatBtn), rowOf((prop.laws || []).map(id => {
       const law = j.laws[id] || { title: id };
-      return chip({ label: tx(law, 'short') || tx(law, 'title'), tone: 'law', title: [...new Set([lawName(law), law.localTitle].filter(Boolean))].join('\n'), href: law.url });
+      return chip({ label: tx(law, 'short') || tx(law, 'title'), tone: 'law', title: [...new Set([lawName(law), law.localTitle].filter(Boolean))].join('\n'), href: tx(law, 'url') });
     })));
   }
   $('#tree').replaceChildren(...screen.filter(Boolean));
