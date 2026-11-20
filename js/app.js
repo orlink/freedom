@@ -898,29 +898,16 @@ function chatBox(key, context, passage) {
   chats.set(key, c);
   const log = el('div', { class: 'chat-log', 'aria-live': 'polite' });
   const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '2000', placeholder: t(passage ? 'comment.placeholder' : 'chat.placeholder'), 'aria-label': t('chat.label') });
-  const send = el('button', { type: 'submit', class: 'chat-send' }, t(passage ? 'comment.ask' : 'chat.send'));
-  const paint = (pending, error, done) => {
+  const send = el('button', { type: 'submit', class: 'chat-send' }, t('chat.send'));
+  const paint = (pending, error) => {
     log.replaceChildren(...[
       passage ? el('blockquote', { class: 'chat-quote' }, passage.quote) : null,
       c.messages.length ? null : el('p', { class: 'chat-intro' }, t(passage ? 'comment.intro' : 'chat.intro')),
       ...c.messages.map(m => el('p', { class: `chat-msg ${m.role}` }, m.content)),
       pending ? el('p', { class: 'chat-msg assistant pending' }, t('chat.thinking')) : null,
-      error ? el('p', { class: 'chat-error' }, error) : null,
-      done ? el('p', { class: 'chat-done' }, done) : null].filter(Boolean));
+      error ? el('p', { class: 'chat-error' }, error) : null].filter(Boolean));
     log.scrollTop = log.scrollHeight;
   };
-  // With a passage, the typed text can also be posted as a comment on it, with the conversation so far.
-  const post = passage ? el('button', { type: 'button', class: 'chat-post', onclick: async () => {
-    const comment = input.value.trim();
-    if (!comment) { input.focus(); return paint(false, t('comment.empty')); }
-    post.disabled = true;
-    let error = null, done = null;
-    try {
-      await api('POST', 'api/comment', { key, id: c.id, comment, quote: passage.quote, where: passage.where, page: document.title, url: location.href, messages: c.messages });
-      input.value = ''; done = t('comment.posted');
-    } catch (err) { error = err.status === 401 ? t('comment.needsAccount') : err.refused ? err.message : t('chat.needsServer'); }
-    post.disabled = false; paint(false, error, done); input.focus();
-  } }, t('comment.post')) : null;
   const form = el('form', { class: 'chat-form', onsubmit: async e => {
     e.preventDefault();
     const text = input.value.trim();
@@ -929,11 +916,12 @@ function chatBox(key, context, passage) {
     input.value = ''; send.disabled = true; paint(true);
     let error = null;
     try {
-      const r = await api('POST', 'api/chat', { key, id: c.id, context, messages: c.messages });
+      const r = await api('POST', 'api/chat', { key, id: c.id, context, messages: c.messages, url: location.href,
+        passage: passage ? { quote: passage.quote, where: passage.where } : undefined });
       if (r.reply) c.messages.push({ role: 'assistant', content: r.reply }); else error = r.error || t('chat.noAnswer');
     } catch (err) { error = err.refused ? err.message : t('chat.needsServer'); }
     send.disabled = false; paint(false, error); input.focus();
-  } }, input, el('div', { class: 'chat-actions' }, send, post));
+  } }, input, send);
   input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
   paint(false);
   return { log, form, input };
@@ -994,10 +982,8 @@ function chatButton(key, context) {
 
 // ---------- comments on highlighted law text ----------
 // Selecting words in a quoted law on a requirement page shows a small comment icon just off the selection's top right
-// corner (Orlin). It opens a chat about that passage: the reader can ask Claude about it and post a comment on it.
-// A posted comment goes, with the passage, where it is and the conversation, to /api/comment. On the owner's local
-// copy (server.py --edit) the server adds it to data/state/review.jsonl, which Claude answers in the editing thread,
-// like his paragraph comments; elsewhere posting a comment needs an account.
+// corner (Orlin). It opens a chat about that passage. Like every chat, the conversation reaches the editors: server.py
+// files it as a GitHub issue, with the passage and where it is (one button, Send; Orlin).
 const lawSel = { btn: null, pop: null, base: null };  // base: this requirement page's chat key and text, set by render()
 const hashText = s => { let h = 5381; for (const ch of s) h = (h * 33 + ch.codePointAt(0)) >>> 0; return h.toString(36); };
 function selectedPassage() {

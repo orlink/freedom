@@ -26,11 +26,13 @@ only needed for the chat:
     .venv/bin/python server.py
 
 Every conversation is saved to data/state/comments.json, so the comments and suggestions
-readers make there can be read later even when the chat is not set up.
+readers make there can be read later even when the chat is not set up. With FREEDOM_ISSUES_REPO and
+FREEDOM_ISSUES_TOKEN in .env, each conversation is also filed as a GitHub issue for the editors (docs/HOSTING.md).
 """
 import argparse, hashlib, json, os, posixpath, re, secrets, threading, time, uuid
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs, unquote
+import urllib.request, urllib.error
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 STATE_FILE = os.path.join(ROOT, "data", "state", "interests.json")
@@ -66,6 +68,14 @@ MAX_COMMENTS_BYTES = 20_000_000  # comments.json
 MAX_AUDIT_BYTES = 20_000_000
 MAX_CONVERSATIONS = 200          # per requirement page
 
+
+# Readers' chats as GitHub issues, for the editors: one issue per conversation, each later turn a comment on it.
+# Off unless the server's .env sets FREEDOM_ISSUES_TOKEN (a fine-grained token that can only write issues in that one
+# repository) and FREEDOM_ISSUES_REPO ("owner/name"). The token never leaves the server: it is not in the repository,
+# not uploaded by tools/deploy.sh and not served (.env is not on the allow-list).
+ISSUES_FILE = os.path.join(ROOT, "data", "state", "issues.json")   # conversation id -> issue number, messages filed
+ISSUES_DAILY = 50                                                  # new issues per day, whole site
+ISSUES_RATE = None  # made in main(), after .env is read
 
 # What the web server may hand out as files. Everything else in the folder is private.
 PAGES = {"index.html", "what-is-freedom.html", "what-is-freedom-plain.html"}  # served without ".html" (clean_path)
@@ -355,6 +365,69 @@ def save_comment(key, cid, messages, context_title):
     return True
 
 
+def github(method, path, body):
+    """One call to the GitHub API with the issues token. Returns the decoded answer, or None on any failure."""
+    token = os.environ.get("FREEDOM_ISSUES_TOKEN", "")
+    req = urllib.request.Request("https://api.github.com" + path, method=method, data=json.dumps(body).encode("utf-8"), headers={
+        "Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "freedom-map", "Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            return json.load(r)
+    except (urllib.error.URLError, OSError, ValueError) as e:
+        print(f"GitHub {method} {path} failed: {e}")
+        return None
+
+
+def quote_md(text):
+    return "\n".join("> " + line for line in str(text).splitlines() or [""])
+
+
+def issue_turns(messages):
+    """Messages as Markdown: the reader's words quoted, Claude's answers below them."""
+    out = []
+    for m in messages:
+        who = "**Reader**" if m["role"] == "user" else "**Claude**"
+        out.append(f"{who}\n\n{quote_md(m['content']) if m['role'] == 'user' else m['content']}")
+    return "\n\n".join(out)
+
+
+def file_issue(cid, messages, title, page_url, passage, lang):
+    """Open the conversation's issue on its first answer; add the new turns as a comment on later ones.
+    Runs in a background thread so the reader does not wait for GitHub."""
+    repo = os.environ.get("FREEDOM_ISSUES_REPO", "")
+    if not repo or not os.environ.get("FREEDOM_ISSUES_TOKEN") or not re.match(r"^[\w.-]+/[\w.-]+$", repo):
+        return
+    with LOCK:
+        known = load_state(ISSUES_FILE).get(cid)
+    if known is None:
+        if not ISSUES_RATE.allow("all"):
+            return
+        first = next((m["content"] for m in messages if m["role"] == "user"), "")
+        head = " ".join(first.split())
+        name = f"{re.split(r' [›>] ', title)[-1] if title else 'Chat'}: {head[:70]}{'…' if len(head) > 70 else ''}"
+        parts = [f"**Page:** {title}" + (f" ({page_url})" if page_url else ""), f"**Language:** {lang}"]
+        if passage:
+            parts.append(f"**Highlighted** ({passage.get('where') or 'law text'}):\n\n{quote_md(passage.get('quote', ''))}")
+        parts.append(issue_turns(messages))
+        r = github("POST", f"/repos/{repo}/issues", {"title": name[:200], "body": "\n\n".join(parts)[:60000]})
+        if r and r.get("number"):
+            with LOCK:
+                st = load_state(ISSUES_FILE)
+                st[cid] = {"number": r["number"], "filed": len(messages)}
+                save_state(st, ISSUES_FILE)
+        return
+    new = messages[known.get("filed", 0):]
+    if not new:
+        return
+    r = github("POST", f"/repos/{repo}/issues/{known['number']}/comments", {"body": issue_turns(new)[:60000]})
+    if r:
+        with LOCK:
+            st = load_state(ISSUES_FILE)
+            st[cid] = {"number": known["number"], "filed": len(messages)}
+            save_state(st, ISSUES_FILE)
+
+
 class Handler(SimpleHTTPRequestHandler):
     def end_headers(self):
         # Always revalidate, so a reload shows the latest data and scripts after a git pull.
@@ -517,8 +590,6 @@ class Handler(SimpleHTTPRequestHandler):
             return self.site_interests()
         if u.path == "/api/review":
             return self.review()
-        if u.path == "/api/comment":
-            return self.comment()
         if u.path not in ("/api/interests", "/api/interests/hide", "/api/fixes/approve", "/api/fixes/suggest"):
             return self.send_json(404, {"error": "not found"})
         body = self.read_body()
@@ -633,32 +704,6 @@ class Handler(SimpleHTTPRequestHandler):
                 f.write(json.dumps(rec, ensure_ascii=False) + "\n")
         return self.send_json(200, {"id": rec["id"]})
 
-    def comment(self):
-        """A comment on a passage of law the reader highlighted, with the chat about it so far.
-        Posting needs an account. Until accounts exist, only the owner's local copy (--edit) takes comments: they are
-        appended to REVIEW_FILE, like his paragraph comments, for Claude to answer in the editing thread."""
-        if not self.is_editor():
-            return self.send_json(401, {"error": "Posting a comment needs an account.", "signin": True})
-        body = self.read_body(CHAT_MAX_BODY)
-        if not isinstance(body, dict) or not str(body.get("comment", "")).strip() or not str(body.get("quote", "")).strip():
-            return self.send_json(400, {"error": "empty comment"})
-        rec = {"id": uuid.uuid4().hex[:8], "at": time.strftime("%Y-%m-%d %H:%M:%S"), "kind": "passage"}
-        for k in ("comment", "quote", "where", "page", "url", "key"):
-            rec[k] = str(body.get(k, "")).strip()[:MAX_REVIEW_TEXT]
-        rec["text"] = rec.pop("quote")  # the same field as a paragraph comment's text
-        conv = []
-        for m in (body.get("messages") or [])[-CHAT_MAX_TURNS:]:
-            role, text = (m or {}).get("role"), str((m or {}).get("content", "")).strip()[:CHAT_MAX_MESSAGE]
-            if role in ("user", "assistant") and text:
-                conv.append({"role": role, "content": text})
-        if conv:
-            rec["conversation"] = conv
-        with LOCK:
-            os.makedirs(os.path.dirname(REVIEW_FILE), exist_ok=True)
-            with open(REVIEW_FILE, "a", encoding="utf-8") as f:
-                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-        return self.send_json(200, {"id": rec["id"]})
-
     def chat(self):
         """One turn of the requirement-page chat: save the conversation, ask Claude, save the reply."""
         body = self.read_body(CHAT_MAX_BODY)
@@ -687,6 +732,13 @@ class Handler(SimpleHTTPRequestHandler):
         text, err = chat_reply(context, msgs)
         if text:
             save_comment(key, cid, msgs + [{"role": "assistant", "content": text}], title)
+            p = body.get("passage") if isinstance(body.get("passage"), dict) else None
+            passage = {k: str(p.get(k, ""))[:CHAT_MAX_MESSAGE] for k in ("quote", "where")} if p else None
+            page = str(body.get("url", ""))[:500]
+            page = page if re.match(r"^https?://[^\s<>]+$", page) else ""
+            lang = getattr(self, "lang", "en") or "en"
+            threading.Thread(target=file_issue, daemon=True,
+                             args=(cid, msgs + [{"role": "assistant", "content": text}], title, page, passage, lang)).start()
         return self.send_json(200, {"reply": text, "error": err})
 
 
@@ -699,6 +751,8 @@ def main():
     global EDITOR
     EDITOR = a.edit
     load_env()
+    global ISSUES_RATE
+    ISSUES_RATE = RateLimit([(int(os.environ.get("FREEDOM_ISSUES_DAILY") or ISSUES_DAILY), 86400)])
     srv = ThreadingHTTPServer((a.host, a.port), Handler)
     print(f"Freedom Map on http://{'localhost' if a.host in ('127.0.0.1', '0.0.0.0') else a.host}:{a.port}/  (Ctrl+C to stop)")
     try:
