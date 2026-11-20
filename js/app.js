@@ -686,19 +686,38 @@ function mechLongName(m, all, catalog, levelId) {
 // Word-level diff (longest common subsequence), for showing a proposed amendment against the current text.
 function wordDiff(a, b) {
   const A = a.split(/\s+/).filter(Boolean), B = b.split(/\s+/).filter(Boolean);
-  const L = Array.from({ length: A.length + 1 }, () => new Uint16Array(B.length + 1));
+  // F[i][j]: the longest common run of words in A and B from word i and j on; R[i][j]: in their first i and j words.
+  const F = Array.from({ length: A.length + 1 }, () => new Uint16Array(B.length + 1));
+  const R = Array.from({ length: A.length + 1 }, () => new Uint16Array(B.length + 1));
   for (let i = A.length - 1; i >= 0; i--) for (let j = B.length - 1; j >= 0; j--)
-    L[i][j] = A[i] === B[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+    F[i][j] = A[i] === B[j] ? F[i + 1][j + 1] + 1 : Math.max(F[i + 1][j], F[i][j + 1]);
+  for (let i = 1; i <= A.length; i++) for (let j = 1; j <= B.length; j++)
+    R[i][j] = A[i - 1] === B[j - 1] ? R[i - 1][j - 1] + 1 : Math.max(R[i - 1][j], R[i][j - 1]);
   // Mostly rewritten: show the old text struck through, then the new one, instead of a confetti of small changes.
-  if (L[0][0] < 0.5 * Math.max(A.length, B.length)) return [A.length ? el('del', {}, a) : '', A.length && B.length ? ' ' : '', B.length ? el('ins', {}, b) : ''];
-  const out = [];
-  const push = (kind, w) => { const last = out[out.length - 1]; if (last && last.kind === kind) last.words.push(w); else out.push({ kind, words: [w] }); };
-  let i = 0, j = 0;
-  while (i < A.length || j < B.length) {
-    if (i < A.length && j < B.length && A[i] === B[j]) { push('same', A[i]); i++; j++; }
-    else if (j < B.length && (i >= A.length || L[i][j + 1] > L[i + 1][j])) push('ins', B[j++]);
-    else push('del', A[i++]);
+  if (F[0][0] < 0.5 * Math.max(A.length, B.length)) return [A.length ? el('del', {}, a) : '', A.length && B.length ? ' ' : '', B.length ? el('ins', {}, b) : ''];
+  const runs = steps => {
+    const out = [];
+    for (const [kind, w] of steps) { const last = out[out.length - 1]; if (last && last.kind === kind) last.words.push(w); else out.push({ kind, words: [w] }); }
+    return out;
+  };
+  // A word that occurs more than once can be kept at its first or its last place. Both are tried and the one with
+  // fewer separate changes is shown, so a removed phrase stays in one piece: "гражданите с избирателни права … и с „да“"
+  // → "ако с „да“" keeps the "с" before „да“, not the one in "с избирателни права" (Orlin).
+  const early = [];
+  for (let i = 0, j = 0; i < A.length || j < B.length;) {
+    if (i < A.length && j < B.length && A[i] === B[j]) { early.push(['same', A[i]]); i++; j++; }
+    else if (j < B.length && (i >= A.length || F[i][j + 1] > F[i + 1][j])) early.push(['ins', B[j++]]);
+    else early.push(['del', A[i++]]);
   }
+  const late = [];
+  for (let i = A.length, j = B.length; i > 0 || j > 0;) {
+    if (i > 0 && j > 0 && A[i - 1] === B[j - 1]) { late.push(['same', A[--i]]); j--; }
+    else if (j > 0 && (i === 0 || R[i][j - 1] >= R[i - 1][j])) late.push(['ins', B[--j]]);  // walking back: insertions first, so deletions come first
+    else late.push(['del', A[--i]]);
+  }
+  const changes = r => r.filter(x => x.kind !== 'same').length;
+  const e = runs(early), l = runs(late.reverse());
+  const out = changes(l) < changes(e) ? l : e;
   return out.flatMap((r, k) => [k ? ' ' : '', r.kind === 'same' ? r.words.join(' ') : el(r.kind, {}, r.words.join(' '))]);
 }
 // A provision in the reader's language. A law records the language of its official text (`lang`); a provision keeps
@@ -879,7 +898,7 @@ function chatBox(key, context, passage) {
   chats.set(key, c);
   const log = el('div', { class: 'chat-log', 'aria-live': 'polite' });
   const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '2000', placeholder: t(passage ? 'comment.placeholder' : 'chat.placeholder'), 'aria-label': t('chat.label') });
-  const send = el('button', { type: 'submit', class: 'chat-send' }, t('chat.send'));
+  const send = el('button', { type: 'submit', class: 'chat-send' }, t(passage ? 'comment.ask' : 'chat.send'));
   const paint = (pending, error, done) => {
     log.replaceChildren(...[
       passage ? el('blockquote', { class: 'chat-quote' }, passage.quote) : null,
