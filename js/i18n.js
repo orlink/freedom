@@ -148,7 +148,7 @@ export function langHref(to) {
 
 /**
  * Fill the page's fixed text: elements marked data-i18n (text), data-i18n-html (trusted markup from the tables
- * above), data-i18n-placeholder, data-i18n-aria-label, data-i18n-title. Adds the language switch to `.menu`.
+ * above), data-i18n-placeholder, data-i18n-aria-label, data-i18n-title. Adds the language toggle after the colour toggle.
  */
 export function applyStatic(root = document) {
   for (const n of root.querySelectorAll('[data-i18n]')) n.textContent = t(n.dataset.i18n);
@@ -157,21 +157,24 @@ export function applyStatic(root = document) {
     for (const n of root.querySelectorAll(`[data-${attr === 'aria-label' ? 'i18n-aria-label' : `i18n-${attr}`}]`)) n.setAttribute(attr, t(n.dataset[data]));
   }
   if (lang !== 'en') document.title = t('site.name');
-  const menu = root.querySelector('.menu');
-  if (menu && !menu.querySelector('.lang')) {
-    const other = LANGS.find(l => l !== lang);
-    const a = document.createElement('a');
-    a.className = 'lang'; a.lang = other; a.hreflang = other;
-    a.textContent = other === 'bg' ? 'БГ' : 'EN';
-    a.title = NAMES[other];
-    a.setAttribute('aria-label', `${t('menu.lang')}: ${NAMES[other]}`);
-    // Follows the hash at click time, so the place and page stay the same in the other language.
-    a.href = langHref(other);
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      try { localStorage.setItem('freedom-lang', other); } catch { /* storage unavailable */ }
-      location.href = langHref(other);
-    });
-    menu.append(a);
+  // The language toggle, styled like the colour toggle and placed to its right (Orlin): EN | БГ, the current one pressed.
+  const scale = root.querySelector('#scale');
+  if (scale && !root.querySelector('#lang')) {
+    const box = document.createElement('div');
+    box.className = 'scale'; box.id = 'lang'; box.setAttribute('role', 'group'); box.setAttribute('aria-label', t('menu.lang'));
+    for (const l of LANGS) {
+      const b = document.createElement('button');
+      b.type = 'button'; b.lang = l; b.title = NAMES[l];
+      b.textContent = l === 'bg' ? 'БГ' : 'EN';
+      b.setAttribute('aria-pressed', String(l === lang));
+      // Same place and page in the other language (the hash is read at click time).
+      b.addEventListener('click', () => {
+        if (l === lang) return;
+        try { localStorage.setItem('freedom-lang', l); } catch { /* storage unavailable */ }
+        location.href = langHref(l);
+      });
+      box.append(b);
+    }
+    scale.after(box);
   }
 }
