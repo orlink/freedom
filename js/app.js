@@ -823,6 +823,31 @@ function chatBox(key, context) {
   paint(false);
   return { log, form, input };
 }
+// The chat pop-up can be dragged by its title bar (mouse, pen or touch) off the text it covers. It stays inside
+// the window (all of it, so the typing box never hides), and the place it was moved to is kept for this visit, so the next chat opens there too.
+let chatSpot = null;
+function draggable(pop, handle) {
+  const place = (x, y) => {
+    const w = Math.min(pop.offsetWidth, innerWidth - 16), h = pop.offsetHeight;
+    x = Math.max(8, Math.min(x, innerWidth - w - 8));
+    y = Math.max(8, Math.min(y, innerHeight - h - 8));
+    Object.assign(pop.style, { position: 'fixed', left: `${x}px`, top: `${y}px`, right: 'auto', bottom: 'auto', width: `${w}px` });
+    chatSpot = { x, y };
+  };
+  if (chatSpot) place(chatSpot.x, chatSpot.y);
+  const keep = () => { if (!pop.isConnected) return removeEventListener('resize', keep); if (chatSpot) place(chatSpot.x, chatSpot.y); };
+  addEventListener('resize', keep);
+  handle.addEventListener('pointerdown', e => {
+    if (e.button !== 0 || e.target.closest('button')) return;
+    e.preventDefault();
+    const r = pop.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+    handle.setPointerCapture(e.pointerId);
+    pop.classList.add('dragging');
+    const move = ev => place(ev.clientX - dx, ev.clientY - dy);
+    const up = () => { pop.classList.remove('dragging'); handle.removeEventListener('pointermove', move); handle.removeEventListener('pointerup', up); handle.removeEventListener('pointercancel', up); };
+    handle.addEventListener('pointermove', move); handle.addEventListener('pointerup', up); handle.addEventListener('pointercancel', up);
+  });
+}
 function chatButton(key, context) {
   const wrap = el('div', { class: 'chat-wrap' });
   let pop = null;
@@ -832,10 +857,12 @@ function chatButton(key, context) {
       if (pop) return close();
       const box = chatBox(key, context);
       pop = el('div', { class: 'chat-pop', role: 'dialog', 'aria-label': t('chat.button') },
-        el('div', { class: 'chat-head' }, el('strong', {}, t('chat.title')), el('button', { type: 'button', class: 'chat-close', 'aria-label': t('chat.close'), onclick: close }, '×')),
+        el('div', { class: 'chat-head', title: t('chat.drag') }, el('strong', {}, t('chat.title')), el('button', { type: 'button', class: 'chat-close', 'aria-label': t('chat.close'), onclick: close }, '×')),
         box.log, box.form);
       pop.addEventListener('keydown', e => { if (e.key === 'Escape') { close(); btn.focus(); } });
-      wrap.append(pop); btn.setAttribute('aria-expanded', 'true'); box.input.focus();
+      wrap.append(pop); btn.setAttribute('aria-expanded', 'true');
+      draggable(pop, pop.querySelector('.chat-head'));
+      box.input.focus();
     } });
   btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>';
   wrap.prepend(btn);
