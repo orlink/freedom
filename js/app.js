@@ -979,7 +979,7 @@ function chatButton(key, context) {
   // Beside it, a speech bubble: a comment or feedback on the whole requirement, published like a passage comment.
   const note = el('button', { type: 'button', class: 'chat-btn', 'aria-label': t('req.comment'), title: t('req.comment'),
     onclick: () => { close(); openPassage({ quote: '', where: '', top: note.getBoundingClientRect().bottom + 8 }, 'comment'); } });
-  note.innerHTML = ICON_COMMENT.replace(/width="16" height="16"/, 'width="21" height="21"');
+  note.innerHTML = ICON_COMMENT.replace(/width="16" height="16"/, 'width="22" height="22"').replace('stroke-width="2.2"', 'stroke-width="2"');
   wrap.prepend(btn, note);
   return wrap;
 }
@@ -991,7 +991,7 @@ function chatButton(key, context) {
 const lawSel = { btn: null, pop: null, base: null };  // base: this requirement page's chat key and text, set by render()
 const hashText = s => { let h = 5381; for (const ch of s) h = (h * 33 + ch.codePointAt(0)) >>> 0; return h.toString(36); };
 const ICON_ASK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9a3 3 0 1 1 4.2 2.75c-.75.34-1.2 1.07-1.2 1.9V15"/><path d="M12 19h.01"/></svg>';
-const ICON_COMMENT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12.5h5"/></svg>';
+const ICON_COMMENT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>';  // a round speech bubble
 function selectedPassage() {
   const sel = getSelection();
   if (!sel || sel.isCollapsed || !sel.rangeCount || !lawSel.base) return null;
