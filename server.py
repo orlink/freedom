@@ -517,6 +517,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self.site_interests()
         if u.path == "/api/review":
             return self.review()
+        if u.path == "/api/comment":
+            return self.comment()
         if u.path not in ("/api/interests", "/api/interests/hide", "/api/fixes/approve", "/api/fixes/suggest"):
             return self.send_json(404, {"error": "not found"})
         body = self.read_body()
@@ -625,6 +627,32 @@ class Handler(SimpleHTTPRequestHandler):
         rec = {"id": uuid.uuid4().hex[:8], "at": time.strftime("%Y-%m-%d %H:%M:%S")}
         for k in ("comment", "text", "url", "page", "where"):
             rec[k] = str(body.get(k, "")).strip()[:MAX_REVIEW_TEXT]
+        with LOCK:
+            os.makedirs(os.path.dirname(REVIEW_FILE), exist_ok=True)
+            with open(REVIEW_FILE, "a", encoding="utf-8") as f:
+                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+        return self.send_json(200, {"id": rec["id"]})
+
+    def comment(self):
+        """A comment on a passage of law the reader highlighted, with the chat about it so far.
+        Posting needs an account. Until accounts exist, only the owner's local copy (--edit) takes comments: they are
+        appended to REVIEW_FILE, like his paragraph comments, for Claude to answer in the editing thread."""
+        if not self.is_editor():
+            return self.send_json(401, {"error": "Posting a comment needs an account.", "signin": True})
+        body = self.read_body(CHAT_MAX_BODY)
+        if not isinstance(body, dict) or not str(body.get("comment", "")).strip() or not str(body.get("quote", "")).strip():
+            return self.send_json(400, {"error": "empty comment"})
+        rec = {"id": uuid.uuid4().hex[:8], "at": time.strftime("%Y-%m-%d %H:%M:%S"), "kind": "passage"}
+        for k in ("comment", "quote", "where", "page", "url", "key"):
+            rec[k] = str(body.get(k, "")).strip()[:MAX_REVIEW_TEXT]
+        rec["text"] = rec.pop("quote")  # the same field as a paragraph comment's text
+        conv = []
+        for m in (body.get("messages") or [])[-CHAT_MAX_TURNS:]:
+            role, text = (m or {}).get("role"), str((m or {}).get("content", "")).strip()[:CHAT_MAX_MESSAGE]
+            if role in ("user", "assistant") and text:
+                conv.append({"role": role, "content": text})
+        if conv:
+            rec["conversation"] = conv
         with LOCK:
             os.makedirs(os.path.dirname(REVIEW_FILE), exist_ok=True)
             with open(REVIEW_FILE, "a", encoding="utf-8") as f:

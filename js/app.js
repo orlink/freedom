@@ -874,20 +874,34 @@ function pageContext(trail, prop, laws, catalog) {
   if (!prop.provisions?.length && prop.laws?.length) lines.push('', 'Laws: ' + prop.laws.map(id => laws[id]?.title || id).join('; '));
   return lines.filter(l => l !== '').join('\n');
 }
-function chatBox(key, context) {
+function chatBox(key, context, passage) {
   const c = chats.get(key) || { id: newId(), messages: [] };
   chats.set(key, c);
   const log = el('div', { class: 'chat-log', 'aria-live': 'polite' });
-  const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '2000', placeholder: t('chat.placeholder'), 'aria-label': t('chat.label') });
+  const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '2000', placeholder: t(passage ? 'comment.placeholder' : 'chat.placeholder'), 'aria-label': t('chat.label') });
   const send = el('button', { type: 'submit', class: 'chat-send' }, t('chat.send'));
-  const paint = (pending, error) => {
+  const paint = (pending, error, done) => {
     log.replaceChildren(...[
-      c.messages.length ? null : el('p', { class: 'chat-intro' }, t('chat.intro')),
+      passage ? el('blockquote', { class: 'chat-quote' }, passage.quote) : null,
+      c.messages.length ? null : el('p', { class: 'chat-intro' }, t(passage ? 'comment.intro' : 'chat.intro')),
       ...c.messages.map(m => el('p', { class: `chat-msg ${m.role}` }, m.content)),
       pending ? el('p', { class: 'chat-msg assistant pending' }, t('chat.thinking')) : null,
-      error ? el('p', { class: 'chat-error' }, error) : null].filter(Boolean));
+      error ? el('p', { class: 'chat-error' }, error) : null,
+      done ? el('p', { class: 'chat-done' }, done) : null].filter(Boolean));
     log.scrollTop = log.scrollHeight;
   };
+  // With a passage, the typed text can also be posted as a comment on it, with the conversation so far.
+  const post = passage ? el('button', { type: 'button', class: 'chat-post', onclick: async () => {
+    const comment = input.value.trim();
+    if (!comment) { input.focus(); return paint(false, t('comment.empty')); }
+    post.disabled = true;
+    let error = null, done = null;
+    try {
+      await api('POST', 'api/comment', { key, id: c.id, comment, quote: passage.quote, where: passage.where, page: document.title, url: location.href, messages: c.messages });
+      input.value = ''; done = t('comment.posted');
+    } catch (err) { error = err.status === 401 ? t('comment.needsAccount') : err.refused ? err.message : t('chat.needsServer'); }
+    post.disabled = false; paint(false, error, done); input.focus();
+  } }, t('comment.post')) : null;
   const form = el('form', { class: 'chat-form', onsubmit: async e => {
     e.preventDefault();
     const text = input.value.trim();
@@ -900,7 +914,7 @@ function chatBox(key, context) {
       if (r.reply) c.messages.push({ role: 'assistant', content: r.reply }); else error = r.error || t('chat.noAnswer');
     } catch (err) { error = err.refused ? err.message : t('chat.needsServer'); }
     send.disabled = false; paint(false, error); input.focus();
-  } }, input, send);
+  } }, input, el('div', { class: 'chat-actions' }, send, post));
   input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
   paint(false);
   return { log, form, input };
@@ -920,11 +934,13 @@ function draggable(pop, handle) {
     if (save) chatSpot = { x, y };
   };
   const atRight = () => place(view() - pop.offsetWidth - 8, pop.getBoundingClientRect().top, false);
-  const onPhone = getComputedStyle(pop).position === 'fixed';
+  const onPhone = matchMedia('(max-width: 600px)').matches;  // the CSS's phone width, where the pop-up sits at the bottom
   if (chatSpot) place(chatSpot.x, chatSpot.y);
   else if (!onPhone) atRight();
   const keep = () => { if (!pop.isConnected) return removeEventListener('resize', keep); if (chatSpot) place(chatSpot.x, chatSpot.y); else if (!onPhone) atRight(); };
   addEventListener('resize', keep);
+  // As answers come in the pop-up grows; it moves up as needed so that its typing box stays in the window.
+  if (!onPhone) new ResizeObserver(() => { if (pop.isConnected) { const r = pop.getBoundingClientRect(); place(r.left, r.top, false); } }).observe(pop);
   handle.addEventListener('pointerdown', e => {
     if (e.button !== 0 || e.target.closest('button')) return;
     e.preventDefault();
@@ -955,6 +971,79 @@ function chatButton(key, context) {
   btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>';
   wrap.prepend(btn);
   return wrap;
+}
+
+// ---------- comments on highlighted law text ----------
+// Selecting words in a quoted law on a requirement page shows a small comment icon just off the selection's top right
+// corner (Orlin). It opens a chat about that passage: the reader can ask Claude about it and post a comment on it.
+// A posted comment goes, with the passage, where it is and the conversation, to /api/comment. On the owner's local
+// copy (server.py --edit) the server adds it to data/state/review.jsonl, which Claude answers in the editing thread,
+// like his paragraph comments; elsewhere posting a comment needs an account.
+const lawSel = { btn: null, pop: null, base: null };  // base: this requirement page's chat key and text, set by render()
+const hashText = s => { let h = 5381; for (const ch of s) h = (h * 33 + ch.codePointAt(0)) >>> 0; return h.toString(36); };
+function selectedPassage() {
+  const sel = getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount || !lawSel.base) return null;
+  const range = sel.getRangeAt(0);
+  const node = n => (n.nodeType === 1 ? n : n.parentElement);
+  const panel = node(range.commonAncestorContainer)?.closest('.provisions');
+  if (!panel || !panel.isConnected || lawSel.pop?.contains(range.commonAncestorContainer)) return null;
+  const first = [...panel.querySelectorAll('.provision')].find(p => range.intersectsNode(p));
+  if (!first) return null;  // the verdict band or a law's title alone is not law text
+  const quote = sel.toString().replace(/\s+/g, ' ').trim().slice(0, 2000);
+  if (quote.length < 2) return null;
+  const law = first.closest('section')?.querySelector('h3')?.textContent.trim() || '';
+  const ref = first.querySelector('.ref')?.textContent.trim() || '';
+  // The top line of the selection, and its right end: where the icon goes.
+  const rects = [...range.getClientRects()].filter(r => r.width > 0 && r.height > 0);
+  if (!rects.length) return null;
+  const top = Math.min(...rects.map(r => r.top));
+  const right = Math.max(...rects.filter(r => r.top - top < 4).map(r => r.right));
+  return { quote, law, ref, where: [law, ref].filter(Boolean).join(', '), top, right };
+}
+function hideLawIcon() { lawSel.btn?.remove(); lawSel.btn = null; }
+function showLawIcon() {
+  const p = selectedPassage();
+  if (!p) return hideLawIcon();
+  if (!lawSel.btn) {
+    lawSel.btn = el('button', { type: 'button', class: 'sel-chat', 'aria-label': t('comment.button'), title: t('comment.button') });
+    lawSel.btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>';
+    // Pressing the icon must not clear the selection before its click.
+    lawSel.btn.addEventListener('pointerdown', e => e.preventDefault());
+    lawSel.btn.addEventListener('mousedown', e => e.preventDefault());
+    document.body.append(lawSel.btn);
+  }
+  lawSel.btn.onclick = () => { hideLawIcon(); openPassageChat(p); };
+  const size = 30, view = document.documentElement.clientWidth;
+  const x = Math.min(p.right + 2, view - size - 6), y = Math.max(6, p.top - size + 4);
+  Object.assign(lawSel.btn.style, { left: `${x + scrollX}px`, top: `${y + scrollY}px` });
+}
+function openPassageChat(p) {
+  lawSel.pop?.remove();
+  const { key, context } = lawSel.base;
+  const ckey = `${key}|q|${hashText(p.quote)}`.slice(-200);
+  const ctx = `${context}\n\nThe reader highlighted this passage of ${p.where || 'the law quoted above'}:\n"${p.quote}"\nTalk with them about this passage.`.slice(0, 12000);
+  const box = chatBox(ckey, ctx, p);
+  const close = () => { pop.remove(); if (lawSel.pop === pop) lawSel.pop = null; };
+  const pop = el('div', { class: 'chat-pop sel-pop', role: 'dialog', 'aria-label': t('comment.title') },
+    el('div', { class: 'chat-head', title: t('chat.drag') }, el('strong', {}, t('comment.title')), el('button', { type: 'button', class: 'chat-close', 'aria-label': t('chat.close'), onclick: close }, '×')),
+    box.log, box.form);
+  pop.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  pop.dataset.key = key;
+  lawSel.pop = pop;
+  document.body.append(pop);
+  // On a wide screen it opens at the right edge, level with the passage, like the requirement chat.
+  if (!matchMedia('(max-width: 600px)').matches) Object.assign(pop.style, { position: 'fixed', top: `${Math.max(8, p.top)}px` });
+  draggable(pop, pop.querySelector('.chat-head'));
+  box.input.focus();
+}
+{
+  let down = false, timer = 0;
+  const later = () => { clearTimeout(timer); timer = setTimeout(() => { if (!down) showLawIcon(); }, 120); };
+  document.addEventListener('pointerdown', e => { if (!lawSel.btn?.contains(e.target)) down = true; });
+  document.addEventListener('pointerup', () => { down = false; later(); });
+  document.addEventListener('selectionchange', later);
+  addEventListener('resize', () => { if (lawSel.btn) showLawIcon(); });
 }
 
 // A referendum's kinds become separate mechanisms, in the catalog's order; a kind the data lacks does not exist in law.
@@ -1171,6 +1260,7 @@ function render() {
   drawTrail(null);
 
   const screen = [];
+  let keepPassageChat = null;
   if (!cur) {
     // Screen 1: levels of shared interest. Geographical, from home to union; then non-geographical.
     const levelChip = ({ l, tone }) => chip({ label: levelLabel(l), tone, title: [...new Set([levelLabel(l), loc.places[l.id].name].filter(Boolean))].join(': '), onclick: () => go([l.id]) });
@@ -1227,7 +1317,10 @@ function render() {
     setLegend(null);
     const explainer = catalog.properties[prop.type]?.explainer;
     const chatKey = [loc.address.country_code || 'xx', ...state.path].join('|').slice(0, 200);
-    const chatBtn = chatButton(chatKey, pageContext(steps.map(s => s.name), prop, j.laws, catalog));
+    const context = pageContext(steps.map(s => s.name), prop, j.laws, catalog);
+    const chatBtn = chatButton(chatKey, context);
+    lawSel.base = { key: chatKey, context };
+    keepPassageChat = chatKey;
     // The chat button sits in the top right corner of the verdict band (outside the panel, so its pop-up is not clipped).
     if (prop.provisions?.length) screen.push(el('div', { class: 'req has-chat' }, provisionsPanel(prop.provisions, j.laws, explainer, prop), chatBtn));
     else screen.push(el('div', { class: 'req-head' }, chatBtn), rowOf((prop.laws || []).map(id => {
@@ -1235,6 +1328,9 @@ function render() {
       return chip({ label: tx(law, 'short') || tx(law, 'title'), tone: 'law', title: [...new Set([lawName(law), law.localTitle].filter(Boolean))].join('\n'), href: tx(law, 'url') });
     })));
   }
+  // A chat about a highlighted passage stays open while its requirement page is shown, and closes when the reader leaves it.
+  if (keepPassageChat !== lawSel.pop?.dataset.key) { lawSel.pop?.remove(); lawSel.pop = null; }
+  if (!keepPassageChat) lawSel.base = null;
   $('#tree').replaceChildren(...screen.filter(Boolean));
 }
 
