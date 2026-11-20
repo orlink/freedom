@@ -1,28 +1,18 @@
 // The site's languages: English (the source) and Bulgarian.
 //
-// The reader's language comes from `?lang=` in the link, else their last choice in this browser, else the first of
-// the browser's preferred languages that the site has. The interface text is in the tables below, keyed by name. Text in the data (catalog, countries,
+// Each language has its own address (English at the root, Bulgarian at /bg/). A first visit to the root goes to the
+// reader's last choice, else the first of the browser's preferred languages that the site has (index.html's head). The interface text is in the tables below, keyed by name. Text in the data (catalog, countries,
 // interests) sits next to its English source in a `bg` object: { "name": "Council", "bg": { "name": "Съвет" } }.
 // Where a Bulgarian text is missing, the English one is shown.
 
 export const LANGS = ['en', 'bg'];
 const NAMES = { en: 'English', bg: 'Български' };
 
-function readLang() {
-  const asked = new URLSearchParams(location.search).get('lang');
-  if (LANGS.includes(asked)) { try { localStorage.setItem('freedom-lang', asked); } catch { /* storage unavailable */ } return asked; }
-  try { const saved = localStorage.getItem('freedom-lang'); if (LANGS.includes(saved)) return saved; } catch { /* storage unavailable */ }
-  // The first of the browser's preferred languages that the site has ("de, bg, en" → bg; "en-US, bg" → en).
-  const first = (navigator.languages || [navigator.language]).map(l => String(l || '').toLowerCase().split('-')[0]).find(l => LANGS.includes(l));
-  return first || 'en';
-}
-export const lang = readLang();
+// The language is in the address: /bg/… is Bulgarian, the root English. (A small script in index.html's head sends a
+// reader who prefers Bulgarian from the root to /bg/ before the page loads.)
+const PREFIX = /^\/(bg)(\/|$)/;
+export const lang = (location.pathname.match(PREFIX) || [])[1] || 'en';
 document.documentElement.lang = lang;
-// A link opened in a language keeps it when shared: the address bar shows ?lang=bg (English needs no parameter).
-{
-  const u = new URL(location.href);
-  if (lang !== 'en' && u.searchParams.get('lang') !== lang) { u.searchParams.set('lang', lang); history.replaceState(history.state, '', u); }
-}
 
 const STRINGS = {
   en: {
@@ -127,8 +117,11 @@ const STRINGS = {
 };
 
 /** Interface text in the reader's language, with {name} placeholders filled from `vars`. */
-export function t(key, vars) {
-  const s = STRINGS[lang][key] ?? STRINGS.en[key] ?? key;
+export function t(key, vars) { return tIn(lang, key, vars); }
+
+/** Interface text in a given language. */
+export function tIn(l, key, vars) {
+  const s = STRINGS[l]?.[key] ?? STRINGS.en[key] ?? key;
   return vars ? s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : s;
 }
 
@@ -139,42 +132,47 @@ export function tx(obj, field) {
   return v ?? obj[field];
 }
 
-/** The same page in another language: same place and path (the hash), `?lang=` set. */
+/** The same page in another language: same place and path (the hash), under that language's address. */
 export function langHref(to) {
-  const u = new URL(location.href);
-  if (to === 'en') u.searchParams.delete('lang'); else u.searchParams.set('lang', to);
-  return u.pathname + u.search + u.hash;
+  const rest = location.pathname.replace(PREFIX, '/');
+  return (to === 'en' ? '' : `/${to}`) + rest + location.search + location.hash;
 }
 
 /**
  * Fill the page's fixed text: elements marked data-i18n (text), data-i18n-html (trusted markup from the tables
- * above), data-i18n-placeholder, data-i18n-aria-label, data-i18n-title. Adds the language toggle after the colour toggle.
+ * above), data-i18n-placeholder, data-i18n-aria-label, data-i18n-title. Adds the language button after the colour toggle.
  */
 export function applyStatic(root = document) {
-  for (const n of root.querySelectorAll('[data-i18n]')) n.textContent = t(n.dataset.i18n);
+  for (const n of root.querySelectorAll('[data-i18n]')) {
+    // In the header, each text also holds its other-language version, hidden, so it takes the width of the longer one
+    // and the language button stays in the same place in every language (Orlin).
+    if (n.closest('.top')) {
+      const both = (txt, cls, hidden) => { const sp = document.createElement('span'); sp.className = cls; sp.textContent = txt; if (hidden) sp.setAttribute('aria-hidden', 'true'); return sp; };
+      n.replaceChildren(both(t(n.dataset.i18n), 'l-cur'), ...LANGS.filter(l => l !== lang).map(l => both(tIn(l, n.dataset.i18n), 'l-alt', true)));
+      n.classList.add('l-both');
+    } else n.textContent = t(n.dataset.i18n);
+  }
   for (const n of root.querySelectorAll('[data-i18n-html]')) n.innerHTML = t(n.dataset.i18nHtml);
   for (const [attr, data] of [['placeholder', 'i18nPlaceholder'], ['aria-label', 'i18nAriaLabel'], ['title', 'i18nTitle']]) {
     for (const n of root.querySelectorAll(`[data-${attr === 'aria-label' ? 'i18n-aria-label' : `i18n-${attr}`}]`)) n.setAttribute(attr, t(n.dataset[data]));
   }
   if (lang !== 'en') document.title = t('site.name');
-  // The language toggle, styled like the colour toggle and placed to its right (Orlin): EN | БГ, the current one pressed.
+  // The language button, right of the colour toggle (Orlin): one button naming the other language (БГ or EN).
   const scale = root.querySelector('#scale');
   if (scale && !root.querySelector('#lang')) {
+    const other = LANGS.find(l => l !== lang);
     const box = document.createElement('div');
-    box.className = 'scale'; box.id = 'lang'; box.setAttribute('role', 'group'); box.setAttribute('aria-label', t('menu.lang'));
-    for (const l of LANGS) {
-      const b = document.createElement('button');
-      b.type = 'button'; b.lang = l; b.title = NAMES[l];
-      b.textContent = l === 'bg' ? 'БГ' : 'EN';
-      b.setAttribute('aria-pressed', String(l === lang));
-      // Same place and page in the other language (the hash is read at click time).
-      b.addEventListener('click', () => {
-        if (l === lang) return;
-        try { localStorage.setItem('freedom-lang', l); } catch { /* storage unavailable */ }
-        location.href = langHref(l);
-      });
-      box.append(b);
-    }
+    box.className = 'scale'; box.id = 'lang';
+    const b = document.createElement('button');
+    b.type = 'button'; b.lang = other; b.title = NAMES[other];
+    b.setAttribute('aria-label', `${tIn(other, 'menu.lang')}: ${NAMES[other]}`);
+    b.textContent = other === 'bg' ? 'БГ' : 'EN';
+    // Same place and page in the other language (the hash is read at click time).
+    b.addEventListener('click', () => {
+      try { localStorage.setItem('freedom-lang', other); } catch { /* storage unavailable */ }
+      location.href = langHref(other);
+    });
+    box.append(b);
     scale.after(box);
   }
 }

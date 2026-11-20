@@ -83,7 +83,7 @@ These rules are in `js/model.js` and are deliberately simple so they can be deba
 
 ## Languages
 
-The site is in English and Bulgarian (`js/i18n.js`). The reader's language comes from `?lang=bg` in the link, else their last choice, else the first of the browser's preferred languages that the site has.
+The site is in English and Bulgarian (`js/i18n.js`). Each language has its own address: English at the root, Bulgarian at `/bg/` (server.py takes the prefix off, so the same files and API serve both, and gives the Bulgarian start page its own title and link-preview tags). At the root, a script in index.html's head sends a reader to `/bg/` when their last choice was Bulgarian, or when they have made none and the first of their browser's languages that the site has is Bulgarian. Old `?lang=bg` links redirect to `/bg/`.
 
 * **Interface text** is in the tables in `js/i18n.js`, keyed by name (`t('legend.free')`).
 * **Data text** keeps its English field and adds the translation beside it in an object named after the language: `{ "name": "Council", "bg": { "name": "Съвет" } }`. The site reads it with `tx(obj, 'name')`. A field without a translation shows in English. This works for catalog levels, institutions, requirements and referendum kinds; for a country's `levelNames` (`{ "name": "Canton", "bg": { "name": "Кантон", "verdict": ["в кантона", "кантона"] } }`); for unions in `data/index.json`; and for a jurisdiction's explanations, notes and law titles.
