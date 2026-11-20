@@ -147,8 +147,10 @@ export function applyStatic(root = document) {
     // In the header, each text also holds its other-language version, hidden, so it takes the width of the longer one
     // and the language button stays in the same place in every language (Orlin).
     if (n.closest('.top')) {
-      const both = (txt, cls, hidden) => { const sp = document.createElement('span'); sp.className = cls; sp.textContent = txt; if (hidden) sp.setAttribute('aria-hidden', 'true'); return sp; };
-      n.replaceChildren(both(t(n.dataset.i18n), 'l-cur'), ...LANGS.filter(l => l !== lang).map(l => both(tIn(l, n.dataset.i18n), 'l-alt', true)));
+      // Each version carries its own lang, so the browser draws it the same way on every page (with lang="bg" some
+      // fonts switch to Bulgarian letter shapes, which changed the widths by a few pixels between the two pages).
+      const both = (l, cls, hidden) => { const sp = document.createElement('span'); sp.className = cls; sp.lang = l; sp.textContent = tIn(l, n.dataset.i18n); if (hidden) sp.setAttribute('aria-hidden', 'true'); return sp; };
+      n.replaceChildren(both(lang, 'l-cur'), ...LANGS.filter(l => l !== lang).map(l => both(l, 'l-alt', true)));
       n.classList.add('l-both');
     } else n.textContent = t(n.dataset.i18n);
   }
@@ -166,7 +168,10 @@ export function applyStatic(root = document) {
     const b = document.createElement('button');
     b.type = 'button'; b.lang = other; b.title = NAMES[other];
     b.setAttribute('aria-label', `${tIn(other, 'menu.lang')}: ${NAMES[other]}`);
-    b.textContent = other === 'bg' ? 'БГ' : 'EN';
+    // Holds both labels, the current one hidden, so the button is equally wide on every page.
+    const tag = l => l === 'bg' ? 'БГ' : 'EN';
+    b.classList.add('l-both');
+    b.replaceChildren(...[other, lang].map((l, i) => { const sp = document.createElement('span'); sp.className = i ? 'l-alt' : 'l-cur'; sp.lang = l; sp.textContent = tag(l); if (i) sp.setAttribute('aria-hidden', 'true'); return sp; }));
     // Same place and page in the other language (the hash is read at click time).
     b.addEventListener('click', () => {
       try { localStorage.setItem('freedom-lang', other); } catch { /* storage unavailable */ }
