@@ -41,159 +41,198 @@
       "title": "Constitution of the Republic of Bulgaria",
       "localTitle": "Конституция на Република България",
       "url": "https://text.president.bg/en/cat115/Cons0",
-      "short": "Constitution"
+      "short": "Constitution",
+      "lang": "bg",
+      "bg": {
+        "short": "Конституция"
+      }
     },
     "dcpa": {
       "title": "Act on the Direct Participation of Citizens in State Power and Local Self-Government",
       "localTitle": "Закон за прякото участие на гражданите в държавната власт и местното самоуправление (ЗПУГДВМС)",
       "url": "https://www.lex.bg/laws/ldoc/2135636485",
-      "short": "ЗПУГДВМС"
+      "short": "ЗПУГДВМС",
+      "lang": "bg"
     },
     "cma": {
       "title": "Condominium Management Act",
       "localTitle": "Закон за управление на етажната собственост (ЗУЕС)",
       "url": "https://trudipravo.bg/znanie-za-vas/zakon-za-upravlenie-na-etazhnata-sobstvenost/",
-      "short": "ЗУЕС"
+      "short": "ЗУЕС",
+      "lang": "bg"
     },
     "lsga": {
       "title": "Local Self-Government and Local Administration Act",
       "localTitle": "Закон за местното самоуправление и местната администрация (ЗМСМА)",
       "url": "https://lex.bg/laws/ldoc/2132580865",
-      "short": "ЗМСМА"
+      "short": "ЗМСМА",
+      "lang": "bg"
     },
     "ec": {
       "title": "Electoral Code",
       "localTitle": "Изборен кодекс",
       "short": "Изборен кодекс",
-      "url": "https://lex.bg/bg/laws/ldoc/2136112596"
+      "url": "https://lex.bg/bg/laws/ldoc/2136112596",
+      "lang": "bg"
     },
     "ltfa": {
       "title": "Local Taxes and Fees Act",
       "localTitle": "Закон за местните данъци и такси (ЗМДТ)",
-      "short": "ЗМДТ"
+      "short": "ЗМДТ",
+      "lang": "bg"
     },
     "teu": {
       "title": "Treaty on European Union",
       "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12012M/TXT",
-      "short": "TEU"
+      "short": "TEU",
+      "lang": "bg",
+      "bg": {
+        "title": "Договор за Европейския съюз",
+        "short": "ДЕС"
+      }
     },
     "eci": {
       "title": "Regulation (EU) 2019/788 on the European citizens' initiative",
       "url": "https://eur-lex.europa.eu/eli/reg/2019/788/oj",
-      "short": "ECI Regulation"
+      "short": "ECI Regulation",
+      "lang": "bg",
+      "bg": {
+        "title": "Регламент (ЕС) 2019/788 относно европейската гражданска инициатива",
+        "short": "Регламент (ЕС) 2019/788"
+      }
     },
     "admin": {
       "title": "Administration Act",
       "localTitle": "Закон за администрацията",
-      "short": "ЗА"
+      "short": "ЗА",
+      "lang": "bg"
     },
     "pfa": {
       "title": "Public Finance Act",
       "localTitle": "Закон за публичните финанси",
-      "short": "ЗПФ"
+      "short": "ЗПФ",
+      "lang": "bg"
     },
     "atda": {
       "title": "Administrative-Territorial Division of the Republic of Bulgaria Act",
       "localTitle": "Закон за административно-териториалното устройство на Република България",
       "short": "ЗАТУРБ",
-      "url": "https://lex.bg/bg/laws/ldoc/2133622784"
+      "url": "https://lex.bg/bg/laws/ldoc/2133622784",
+      "lang": "bg"
     },
     "ta": {
       "title": "Commerce Act",
       "localTitle": "Търговски закон",
-      "short": "Търговски закон"
+      "short": "Търговски закон",
+      "lang": "bg"
     },
     "npla": {
       "title": "Non-Profit Legal Entities Act",
       "localTitle": "Закон за юридическите лица с нестопанска цел (ЗЮЛНЦ)",
-      "short": "ЗЮЛНЦ"
+      "short": "ЗЮЛНЦ",
+      "lang": "bg"
     },
     "fc": {
       "title": "Family Code",
       "localTitle": "Семеен кодекс",
       "short": "СК",
-      "url": "https://lex.bg/laws/ldoc/2135637484"
+      "url": "https://lex.bg/laws/ldoc/2135637484",
+      "lang": "bg"
     },
     "cpc": {
       "title": "Criminal Procedure Code",
       "localTitle": "Наказателно-процесуален кодекс",
       "short": "НПК",
-      "url": "https://lex.bg/laws/ldoc/2135512224"
+      "url": "https://lex.bg/laws/ldoc/2135512224",
+      "lang": "bg"
     },
     "chpa": {
       "title": "Child Protection Act",
       "localTitle": "Закон за закрила на детето",
       "short": "ЗЗДет",
-      "url": "https://lex.bg/laws/ldoc/2134925825"
+      "url": "https://lex.bg/laws/ldoc/2134925825",
+      "lang": "bg"
     },
     "pdva": {
       "title": "Protection from Domestic Violence Act",
       "localTitle": "Закон за защита от домашното насилие",
       "short": "ЗЗДН",
-      "url": "https://lex.bg/laws/ldoc/2135501151"
+      "url": "https://lex.bg/laws/ldoc/2135501151",
+      "lang": "bg"
     },
     "psea": {
       "title": "Preschool and School Education Act",
       "localTitle": "Закон за предучилищното и училищното образование",
       "short": "ЗПУО",
-      "url": "https://lex.bg/bg/laws/ldoc/2136641509"
+      "url": "https://lex.bg/bg/laws/ldoc/2136641509",
+      "lang": "bg"
     },
     "coop": {
       "title": "Cooperatives Act",
       "localTitle": "Закон за кооперациите",
-      "short": "Закон за кооперациите"
+      "short": "Закон за кооперациите",
+      "lang": "bg"
     },
     "zzd": {
       "title": "Obligations and Contracts Act",
       "localTitle": "Закон за задълженията и договорите",
       "short": "Закон за задълженията и договорите",
-      "url": "https://lex.bg/laws/ldoc/2121934337"
+      "url": "https://lex.bg/laws/ldoc/2121934337",
+      "lang": "bg"
     },
     "zpfi": {
       "title": "Markets in Financial Instruments Act",
       "localTitle": "Закон за пазарите на финансови инструменти",
-      "short": "ЗПФИ"
+      "short": "ЗПФИ",
+      "lang": "bg"
     },
     "zdkis": {
       "title": "Collective Investment Schemes Act",
       "localTitle": "Закон за дейността на колективните инвестиционни схеми и на други предприятия за колективно инвестиране",
-      "short": "ЗДКИСДПКИ"
+      "short": "ЗДКИСДПКИ",
+      "lang": "bg"
     },
     "zoar": {
       "title": "Act Restricting Administrative Regulation and Administrative Control over Economic Activity",
       "localTitle": "Закон за ограничаване на административното регулиране и административния контрол върху стопанската дейност",
       "short": "ЗОАРАКСД",
-      "url": "https://www.lex.bg/laws/ldoc/2135468357"
+      "url": "https://www.lex.bg/laws/ldoc/2135468357",
+      "lang": "bg"
     },
     "lc": {
       "title": "Labour Code",
       "localTitle": "Кодекс на труда",
       "short": "Кодекс на труда",
-      "url": "https://lex.bg/bg/laws/ldoc/1594373121"
+      "url": "https://lex.bg/bg/laws/ldoc/1594373121",
+      "lang": "bg"
     },
     "ena": {
       "title": "Energy Act",
       "localTitle": "Закон за енергетиката",
       "short": "Закон за енергетиката",
-      "url": "https://lex.bg/laws/ldoc/2135475623"
+      "url": "https://lex.bg/laws/ldoc/2135475623",
+      "lang": "bg"
     },
     "wsra": {
       "title": "Water Supply and Sewerage Services Regulation Act",
       "localTitle": "Закон за регулиране на водоснабдителните и канализационните услуги",
       "short": "ЗРВКУ",
-      "url": "https://lex.bg/laws/ldoc/2135499390"
+      "url": "https://lex.bg/laws/ldoc/2135499390",
+      "lang": "bg"
     },
     "cpa": {
       "title": "Consumer Protection Act",
       "localTitle": "Закон за защита на потребителите",
       "short": "ЗЗП",
-      "url": "https://lex.bg/laws/ldoc/2135513678"
+      "url": "https://lex.bg/laws/ldoc/2135513678",
+      "lang": "bg"
     },
     "pa": {
       "title": "Property Act",
       "localTitle": "Закон за собствеността (ЗС)",
       "url": "https://trudipravo.bg/znanie-za-vas/zakon-za-sobstvenostta/",
-      "short": "ЗС"
+      "short": "ЗС",
+      "lang": "bg"
     }
   },
   "levels": {
@@ -238,7 +277,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Никой не може да влиза в жилището без съгласието на обитателя, освен с разрешение на съда или за да се предотврати извършващо се престъпление, или при крайна необходимост."
+                }
               },
               {
                 "type": "family_privacy",
@@ -264,7 +306,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Личният и семейният живот, както и кореспонденцията, са защитени; изключенията изискват разрешение на съда."
+                }
               },
               {
                 "type": "home_property",
@@ -287,7 +332,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Частната собственост, включително жилището, е неприкосновена; отчуждаване е възможно само със закон и срещу предварително и равностойно обезщетение."
+                }
               },
               {
                 "type": "parental_rights",
@@ -351,7 +399,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Отглеждането на децата е право и задължение на родителите и само съдът може да ограничи или отнеме родителските права. Но социалните служби могат да изведат дете от семейството с административна заповед и имат цял месец, преди да се обърнат към съда."
+                }
               },
               {
                 "type": "joint_decisions",
@@ -388,7 +439,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Съпрузите и двамата родители решават семейните въпроси заедно и равноправно; съдът решава само споровете, които те отнесат до него."
+                }
               },
               {
                 "type": "child_rights",
@@ -437,7 +491,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Детето има право на нормално развитие и може да се обърне към социалните служби, а от 14 години и към съда. Настаняването извън семейството е крайна мярка, която се постановява от съда; социалните служби могат да настанят дете временно само докато съдът се произнесе, в срок до един месец."
+                }
               },
               {
                 "type": "abuse_protection",
@@ -470,7 +527,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Пострадалите от домашно насилие могат да получат съдебна заповед, включително за отстраняване на извършителя от общото жилище."
+                }
               },
               {
                 "type": "education_choice",
@@ -508,7 +568,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Училищното обучение е задължително до 16 години. Родителите могат да обучават детето у дома само в самостоятелна форма и само след одобрение от регионална експертна комисия, с проверки всеки срок, в които задължително участва представител на социалното подпомагане."
+                }
               }
             ]
           }
@@ -516,7 +579,10 @@
       },
       "representative": {
         "applicable": false,
-        "note": "The people in a home decide for themselves; representation does not apply."
+        "note": "The people in a home decide for themselves; representation does not apply.",
+        "bg": {
+          "note": "Хората в дома решават сами; представителството не е приложимо."
+        }
       }
     },
     "individual": {
@@ -532,7 +598,10 @@
                 "explanation": "Property is guaranteed and private property is inviolable; privacy and the home are inviolable.",
                 "laws": [
                   "const"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствеността е гарантирана, а частната собственост е неприкосновена; личният живот и жилището са неприкосновени."
+                }
               },
               {
                 "type": "no_outside_override",
@@ -540,7 +609,10 @@
                 "explanation": "These rights can be restricted by statute on the grounds the Constitution allows, e.g. entry into a home with consent or by court order.",
                 "laws": [
                   "const"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Тези права могат да бъдат ограничавани със закон на основанията, които Конституцията допуска, например влизане в жилище със съгласие или по разрешение на съда."
+                }
               }
             ]
           }
@@ -548,7 +620,10 @@
       },
       "representative": {
         "applicable": false,
-        "note": "Individuals decide for themselves; representation does not apply."
+        "note": "Individuals decide for themselves; representation does not apply.",
+        "bg": {
+          "note": "Хората решават сами за себе си; представителството не е приложимо."
+        }
       }
     },
     "business": {
@@ -584,7 +659,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Конституцията основава икономиката на свободната стопанска инициатива: всеки може да започне и да развива стопанска дейност."
+                }
               },
               {
                 "type": "no_outside_override",
@@ -628,10 +706,17 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Лиценз или разрешение от орган е условие за започването на много дейности, така че външен човек решава дали изобщо можеш да търгуваш. Законът допуска лицензи само за дейности, които засягат държавна собственост или създават повишен риск за сигурността, обществения ред, правата на хората или околната среда, и само когато са въведени със закон."
+                }
               }
             ],
-            "label": "Free enterprise"
+            "label": "Free enterprise",
+            "bg": {
+              "name": "Свободна стопанска инициатива",
+              "label": "Свободна стопанска инициатива"
+            }
           },
           {
             "type": "personal_autonomy",
@@ -662,7 +747,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Страните могат свободно да определят съдържанието на договора си в рамките на повелителните норми на закона и добрите нрави, и договорът ги обвързва като закон."
+                }
               },
               {
                 "type": "no_outside_override",
@@ -738,9 +826,16 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Държавата определя някои условия независимо от волята на двете страни: Министерският съвет определя минималната работна заплата, а енергийният и воден регулатор определя цените на топлинната енергия, на газа за битовите потребители и на водоснабдяването и канализацията. Правилата срещу измама и принуда, както и срещу неравноправни клаузи, които потребителят не е могъл да договаря, защитават собственото съгласие на страните, затова не се отчитат."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Свобода на договаряне",
+              "label": "Свобода на договаряне"
+            }
           },
           {
             "type": "general_assembly",
@@ -752,7 +847,10 @@
                 "explanation": "Partners in a general or limited partnership (СД, КД) or a limited liability company (ООД) decide in a general meeting.",
                 "laws": [
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Съдружниците в събирателно или командитно дружество (СД, КД) или в дружество с ограничена отговорност (ООД) решават в общо събрание."
+                }
               },
               {
                 "type": "binding",
@@ -760,7 +858,10 @@
                 "explanation": "Its resolutions bind the company.",
                 "laws": [
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за дружеството."
+                }
               },
               {
                 "type": "broad_scope",
@@ -768,7 +869,10 @@
                 "explanation": "Owners decide the company's statutes, profits and leadership.",
                 "laws": [
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствениците решават устава, разпределението на печалбата и ръководството на дружеството."
+                }
               },
               {
                 "type": "own_means",
@@ -776,9 +880,15 @@
                 "explanation": "The partnership or company controls its own capital and income.",
                 "laws": [
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Дружеството разполага със собствения си капитал и приходи."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на съдружниците"
+            }
           },
           {
             "type": "general_assembly",
@@ -790,7 +900,10 @@
                 "explanation": "Shareholders of a joint-stock company (АД) or partnership limited by shares (КДА) decide in a general meeting.",
                 "laws": [
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Акционерите в акционерно дружество (АД) или командитно дружество с акции (КДА) решават в общо събрание."
+                }
               },
               {
                 "type": "binding",
@@ -798,7 +911,10 @@
                 "explanation": "Its resolutions bind the company.",
                 "laws": [
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за дружеството."
+                }
               },
               {
                 "type": "broad_scope",
@@ -806,7 +922,10 @@
                 "explanation": "Owners decide the company's statutes, profits and leadership.",
                 "laws": [
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствениците решават устава, разпределението на печалбата и ръководството на дружеството."
+                }
               },
               {
                 "type": "own_means",
@@ -814,9 +933,15 @@
                 "explanation": "The company controls its own capital and income.",
                 "laws": [
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Дружеството разполага със собствения си капитал и приходи."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на акционерите"
+            }
           },
           {
             "type": "general_assembly",
@@ -828,7 +953,10 @@
                 "explanation": "Members of a cooperative decide in its general meeting, one member one vote.",
                 "laws": [
                   "coop"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете на кооперацията решават в нейното общо събрание по принципа един член, един глас."
+                }
               },
               {
                 "type": "binding",
@@ -836,7 +964,10 @@
                 "explanation": "Its resolutions bind the company.",
                 "laws": [
                   "coop"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за дружеството."
+                }
               },
               {
                 "type": "broad_scope",
@@ -844,7 +975,10 @@
                 "explanation": "Members decide the statutes, the use of any surplus and the board.",
                 "laws": [
                   "coop"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете решават устава, използването на печалбата и състава на управителния съвет."
+                }
               },
               {
                 "type": "own_means",
@@ -852,9 +986,15 @@
                 "explanation": "The cooperative controls its own capital and income.",
                 "laws": [
                   "coop"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Кооперацията разполага със собствения си капитал и приходи."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на кооперацията"
+            }
           }
         ]
       },
@@ -870,7 +1010,10 @@
                 "explanation": "Owners elect the managers or board.",
                 "laws": [
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствениците избират управителите или съвета."
+                }
               },
               {
                 "type": "binding_powers",
@@ -885,7 +1028,10 @@
                 "explanation": "Managers and board members are elected individually.",
                 "laws": [
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Управителите и членовете на съвета се избират поименно."
+                }
               },
               {
                 "type": "recall",
@@ -893,10 +1039,17 @@
                 "explanation": "The owners can dismiss them.",
                 "laws": [
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствениците могат да ги освободят."
+                }
               }
             ],
-            "label": "Board / managers"
+            "label": "Board / managers",
+            "bg": {
+              "name": "Съвет / управители",
+              "label": "Съвет / управители"
+            }
           },
           {
             "type": "agent",
@@ -909,7 +1062,10 @@
                 "laws": [
                   "zzd",
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Всеки може да упълномощи друг да действа от негово име с пълномощно или договор за поръчка; търговецът може да назначи прокурист или търговски представител."
+                }
               },
               {
                 "type": "chosen_by_represented",
@@ -918,7 +1074,10 @@
                 "laws": [
                   "zzd",
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Упълномощителят избира пълномощника."
+                }
               },
               {
                 "type": "revocable",
@@ -927,7 +1086,10 @@
                 "laws": [
                   "zzd",
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Упълномощителят може по всяко време да оттегли пълномощното или поръчката."
+                }
               },
               {
                 "type": "must_account",
@@ -936,7 +1098,10 @@
                 "laws": [
                   "zzd",
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Пълномощникът трябва да даде отчет и да предаде всичко, получено за упълномощителя."
+                }
               },
               {
                 "type": "duty_of_loyalty",
@@ -945,9 +1110,15 @@
                 "laws": [
                   "zzd",
                   "ta"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Пълномощникът трябва да действа в интерес на упълномощителя; прокуристът не може да конкурира търговеца."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Пълномощници"
+            }
           },
           {
             "type": "trustee",
@@ -960,7 +1131,10 @@
                 "laws": [
                   "zpfi",
                   "zdkis"
-                ]
+                ],
+                "bg": {
+                  "explanation": "В България няма тръст. Само лицензирани инвестиционни посредници и управляващи дружества могат да управляват активи на други лица."
+                }
               },
               {
                 "type": "chosen_by_represented",
@@ -969,7 +1143,10 @@
                 "laws": [
                   "zpfi",
                   "zdkis"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Клиентът избира управителя на портфейла си, но инвеститорите във фонд не избират неговото управляващо дружество."
+                }
               },
               {
                 "type": "revocable",
@@ -978,7 +1155,10 @@
                 "laws": [
                   "zpfi",
                   "zdkis"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Клиентът може да прекрати договора за управление на портфейл; инвеститорите във фонд могат само да излязат, като предявят дяловете си за обратно изкупуване."
+                }
               },
               {
                 "type": "must_account",
@@ -987,7 +1167,10 @@
                 "laws": [
                   "zpfi",
                   "zdkis"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Управителите трябва редовно да се отчитат пред клиентите и инвеститорите."
+                }
               },
               {
                 "type": "duty_of_loyalty",
@@ -996,9 +1179,15 @@
                 "laws": [
                   "zpfi",
                   "zdkis"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Управителите трябва да действат в най-добър интерес на клиентите и да управляват конфликтите на интереси."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Довереници"
+            }
           }
         ]
       }
@@ -1018,7 +1207,10 @@
                 "laws": [
                   "const",
                   "npla"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Хората могат свободно да учредяват сдружения и фондации."
+                }
               },
               {
                 "type": "no_outside_override",
@@ -1026,9 +1218,15 @@
                 "explanation": "Registration and, for public-benefit status, supervision by the state.",
                 "laws": [
                   "npla"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Вписване в регистър и, при статут на общественополезна дейност, надзор от държавата."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Свобода на сдружаване"
+            }
           },
           {
             "type": "general_assembly",
@@ -1040,7 +1238,10 @@
                 "explanation": "Members decide in a general assembly.",
                 "laws": [
                   "npla"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете решават в общо събрание."
+                }
               },
               {
                 "type": "binding",
@@ -1048,7 +1249,10 @@
                 "explanation": "Its decisions bind the organisation.",
                 "laws": [
                   "npla"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за организацията."
+                }
               },
               {
                 "type": "broad_scope",
@@ -1056,7 +1260,10 @@
                 "explanation": "Members adopt the statutes and elect the board.",
                 "laws": [
                   "npla"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете приемат устава и избират управителния съвет."
+                }
               },
               {
                 "type": "own_means",
@@ -1064,9 +1271,15 @@
                 "explanation": "Funded by members, donors and grants; tax relief depends on public-benefit status.",
                 "laws": [
                   "npla"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Финансира се от членове, дарители и грантове; данъчните облекчения зависят от статута на общественополезна дейност."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на членовете"
+            }
           }
         ]
       },
@@ -1082,7 +1295,10 @@
                 "explanation": "The members elect a board.",
                 "laws": [
                   "npla"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете избират управителен съвет."
+                }
               },
               {
                 "type": "binding_powers",
@@ -1104,9 +1320,15 @@
                 "explanation": "The members can dismiss the board.",
                 "laws": [
                   "npla"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете могат да освободят управителния съвет."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Управителен съвет"
+            }
           }
         ]
       }
@@ -1136,7 +1358,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Когато сградата има повече от един вход, тя може да се управлява отделно за всеки вход."
+                }
               },
               {
                 "type": "binding",
@@ -1159,7 +1384,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Решенията на общото събрание са задължителни за собствениците, ползвателите и обитателите, включително за новите."
+                }
               },
               {
                 "type": "no_quorum",
@@ -1167,7 +1395,10 @@
                 "explanation": "51% of ideal shares must be present; after one hour 26% suffice; if still not, the meeting is held the next day with whoever attends.",
                 "laws": [
                   "cma"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Трябва да присъстват 51% от идеалните части; след един час са достатъчни 26%; ако и тогава няма кворум, събранието се провежда на следващия ден с присъстващите."
+                }
               },
               {
                 "type": "citizen_triggered",
@@ -1175,7 +1406,10 @@
                 "explanation": "Owners holding at least 20% of the ideal shares can require the meeting to be convened.",
                 "laws": [
                   "cma"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собственици с поне 20% от идеалните части могат да поискат свикване на събранието."
+                }
               },
               {
                 "type": "broad_scope",
@@ -1208,7 +1442,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Събранието приема правилника, бюджета, вноските, плана за ремонт, заемите и ползването на общите части."
+                }
               },
               {
                 "type": "own_means",
@@ -1216,9 +1453,15 @@
                 "explanation": "The assembly sets the contributions to the repair and renovation fund.",
                 "laws": [
                   "cma"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Събранието определя вноските във фонд „Ремонт и обновяване“."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на собствениците"
+            }
           }
         ]
       },
@@ -1252,7 +1495,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствениците избират управителен съвет от най-малко трима членове, които избират председател, или вместо него един управител. Общото събрание избира и касиер и може да възложи работата на съвета на професионален управител."
+                }
               },
               {
                 "type": "binding_powers",
@@ -1298,7 +1544,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Съветът изпълнява решенията на събранието, изготвя бюджета и плана за ремонт, организира поддръжката и представлява собствениците. Сам решава само текущото управление и неотложните ремонти; правилникът, бюджетът, вноските и големите ремонти са на общото събрание."
+                }
               },
               {
                 "type": "individual_vote",
@@ -1317,7 +1566,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете на съвета се избират и освобождават поименно от общото събрание."
+                }
               },
               {
                 "type": "recall",
@@ -1325,9 +1577,15 @@
                 "explanation": "The term is up to two years, and the general assembly can end it early for failure to perform.",
                 "laws": [
                   "cma"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Мандатът е до две години и общото събрание може да го прекрати предсрочно при неизпълнение на задълженията."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Управителен съвет"
+            }
           }
         ]
       }
@@ -1388,7 +1646,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собствениците на сграда с няколко входа могат да управляват всеки вход отделно и обикновено го правят. Покривът, основите, външните стени и основните инсталации остават обща собственост на всички собственици в сградата и не могат да се разделят, но за сградата като цяло законът предлага само инцидентно общо събрание на входовете, с равен брой представители от всеки вход и без постоянен орган или фонд, или сдружение на собствениците, за чието учредяване са нужни собственици с 67% от идеалните части."
+                }
               },
               {
                 "type": "binding",
@@ -1411,7 +1672,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Решенията на общото събрание са задължителни за собствениците, ползвателите и обитателите, включително за новите."
+                }
               },
               {
                 "type": "no_quorum",
@@ -1419,7 +1683,10 @@
                 "explanation": "51% of ideal shares must be present; after one hour 26% suffice; if still not, the meeting is held the next day with whoever attends.",
                 "laws": [
                   "cma"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Трябва да присъстват 51% от идеалните части; след един час са достатъчни 26%; ако и тогава няма кворум, събранието се провежда на следващия ден с присъстващите."
+                }
               },
               {
                 "type": "citizen_triggered",
@@ -1427,7 +1694,10 @@
                 "explanation": "Owners holding at least 20% of the ideal shares can require the meeting to be convened.",
                 "laws": [
                   "cma"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Собственици с поне 20% от идеалните части могат да поискат свикване на събранието."
+                }
               },
               {
                 "type": "broad_scope",
@@ -1460,7 +1730,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Събранието приема правилника, бюджета, вноските, плана за ремонт, заемите и ползването на общите части."
+                }
               },
               {
                 "type": "own_means",
@@ -1500,9 +1773,15 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Вноските и фонд „Ремонт и обновяване“ принадлежат на етажната собственост или сдружението, което управлява. Когато всеки вход се управлява сам, всеки има свой фонд, а сградата като цяло няма."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на собствениците (цялата сграда)"
+            }
           }
         ]
       },
@@ -1542,7 +1821,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Когато собствениците управляват всеки вход отделно, всеки вход има свой управителен съвет или управител, а сградата като цяло няма. Общо събрание на входовете се свиква от съвета или управителя на един от тях."
+                }
               },
               {
                 "type": "binding_powers",
@@ -1588,7 +1870,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Съветът изпълнява решенията на събранието, изготвя бюджета и плана за ремонт, организира поддръжката и представлява собствениците. Сам решава само текущото управление и неотложните ремонти; правилникът, бюджетът, вноските и големите ремонти са на общото събрание."
+                }
               },
               {
                 "type": "individual_vote",
@@ -1596,7 +1881,10 @@
                 "explanation": "Council members are elected individually by the general assembly.",
                 "laws": [
                   "cma"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Членовете на съвета се избират поименно от общото събрание."
+                }
               },
               {
                 "type": "recall",
@@ -1604,9 +1892,15 @@
                 "explanation": "The term is up to two years, and the general assembly can end it early for failure to perform.",
                 "laws": [
                   "cma"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Мандатът е до две години и общото събрание може да го прекрати предсрочно при неизпълнение на задълженията."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Управителен съвет (цялата сграда)"
+            }
           }
         ]
       }
@@ -1648,7 +1942,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Местен референдум може да се проведе за район на София, Пловдив или Варна, както и за община или кметство."
+                    }
                   },
                   {
                     "type": "binding",
@@ -1675,7 +1972,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Решението не се нуждае от последващо одобрение от общинския съвет; то влиза в сила с обявяването му и кметът организира изпълнението му."
+                    }
                   },
                   {
                     "type": "no_quorum",
@@ -1714,7 +2014,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Когато се провежда самостоятелно, местният референдум изисква избирателна активност от поне 40% (кворум за участие). Когато се провежда заедно с местни избори, вместо това са нужни гласове „да“ от повече от половината от гласувалите за общински съвет (кворум за одобрение), което е по-малко пагубно. Но дали ще се проведе заедно с изборите, решава общинският съвет, който определя датата."
+                    }
                   },
                   {
                     "type": "regular_days",
@@ -1741,7 +2044,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Законът не определя дни за гласуване. Общинският съвет определя отделна дата за всеки референдум, 45 до 60 дни след решението си да го произведе, така че гласуването съвпада с изборния ден само ако съветът го насрочи така."
+                    }
                   },
                   {
                     "type": "concrete_proposals",
@@ -1762,7 +2068,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Гласоподавателите отговарят на въпрос с „да“ или „не“; не гласуват изготвен текст, например наредба или закон."
+                    }
                   },
                   {
                     "type": "reasonable_signatures",
@@ -1801,7 +2110,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "1/20 от гласоподавателите, за да предложат. Съветът е длъжен да го произведе само при искане на 1/10 от гласоподавателите, което в София означава много над 100 000 подписа."
+                    }
                   },
                   {
                     "type": "no_topic_restrictions",
@@ -1829,7 +2141,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Общинският бюджет, размерът на местните данъци и такси и вътрешните правила на съвета не могат да се подлагат на местен референдум."
+                    }
                   },
                   {
                     "type": "no_roadblocks",
@@ -1864,7 +2179,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Две пречки могат да спрат местен референдум. Ако мандатът на съвета изтече, преди той да се произнесе по подписката, законът не казва, че процедурата продължава пред следващия съвет, така че подписката може да отпадне. А резултатът може да се оспори в съда за всяко нарушение на закона, дори такова, което не е променило изхода, включително грешки на органите, които организират гласуването, например ако кметът не отпечата навреме информационния лист. Самите кмет и една пета от общинските съветници са сред тези, които могат да оспорват, така че противници на власт могат да провалят предложение, като нарушат процедурата."
+                    }
                   }
                 ]
               },
@@ -1889,7 +2207,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Отменителен референдум има само за цялата община (чл. 27, ал. 3); село или квартал не може да отмени решение, което засяга само него."
+                    }
                   }
                 ]
               },
@@ -1914,7 +2235,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Законът не предвижда такъв вид референдум."
+                    }
                   }
                 ]
               }
@@ -1962,7 +2286,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Само квартали и райони с до 10 000 жители могат да проведат такова, което изключва повечето градски квартали."
+                }
               },
               {
                 "type": "binding",
@@ -1989,7 +2316,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Задължително по действие. В 7-дневен срок кметът трябва или да разпореди мерките за изпълнение на решението, или, когато е нужен акт на съвета, да предложи такъв; съветът или кметът трябва да издадат актовете по изпълнението в едномесечен срок (чл. 54 и чл. 63, ал. 3)."
+                }
               },
               {
                 "type": "no_quorum",
@@ -2022,7 +2352,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Трябва да присъстват една четвърт от имащите право на глас (една трета в населени места с до 150 жители). Ако няма кворум, след един час събранието може да продължи само при една десета. В квартал с 10 000 души това са 1000 души в една зала."
+                }
               },
               {
                 "type": "citizen_triggered",
@@ -2052,7 +2385,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Кметът трябва да го свика по искане на 1/50 от имащите право на глас, но не по-малко от 20 души."
+                }
               },
               {
                 "type": "reasonable_signatures",
@@ -2074,9 +2410,15 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "1/50 от гласоподавателите, но не по-малко от 20 души."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на населението"
+            }
           }
         ]
       },
@@ -2131,9 +2473,15 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Законът не предвижда изборен орган за квартал. Районите на София, Пловдив и Варна избират само кмет на района, който изпълнява решенията на общината; няма районни съвети."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Квартален съвет"
+            }
           },
           {
             "type": "upper_council_seat",
@@ -2173,9 +2521,15 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Цялата община е един избирателен район, затова нито един общински съветник не се избира от квартала и не отговаря пред него."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Собствен общински съветник"
+            }
           }
         ]
       }
@@ -2218,7 +2572,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Местен референдум може да се проведе за кметство."
+                    }
                   },
                   {
                     "type": "binding",
@@ -2245,7 +2602,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Решението не се нуждае от последващо одобрение от общинския съвет; то влиза в сила с обявяването му и кметът организира изпълнението му."
+                    }
                   },
                   {
                     "type": "no_quorum",
@@ -2284,7 +2644,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Когато се провежда самостоятелно, местният референдум изисква избирателна активност от поне 40% (кворум за участие). Когато се провежда заедно с местни избори, вместо това са нужни гласове „да“ от повече от половината от гласувалите за общински съвет (кворум за одобрение), което е по-малко пагубно. Но дали ще се проведе заедно с изборите, решава общинският съвет, който определя датата."
+                    }
                   },
                   {
                     "type": "regular_days",
@@ -2311,7 +2674,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Законът не определя дни за гласуване. Общинският съвет определя отделна дата за всеки референдум, 45 до 60 дни след решението си да го произведе, така че гласуването съвпада с изборния ден само ако съветът го насрочи така."
+                    }
                   },
                   {
                     "type": "concrete_proposals",
@@ -2332,7 +2698,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Гласоподавателите отговарят на въпрос с „да“ или „не“; не гласуват изготвен текст, например наредба или закон."
+                    }
                   },
                   {
                     "type": "reasonable_signatures",
@@ -2371,7 +2740,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "1/20 от гласоподавателите, за да предложат. Съветът е длъжен да го произведе само при искане на 1/10 от гласоподавателите, което в София означава много над 100 000 подписа."
+                    }
                   },
                   {
                     "type": "no_topic_restrictions",
@@ -2399,7 +2771,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Общинският бюджет, размерът на местните данъци и такси и вътрешните правила на съвета не могат да се подлагат на местен референдум."
+                    }
                   },
                   {
                     "type": "no_roadblocks",
@@ -2434,7 +2809,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Две пречки могат да спрат местен референдум. Ако мандатът на съвета изтече, преди той да се произнесе по подписката, законът не казва, че процедурата продължава пред следващия съвет, така че подписката може да отпадне. А резултатът може да се оспори в съда за всяко нарушение на закона, дори такова, което не е променило изхода, включително грешки на органите, които организират гласуването, например ако кметът не отпечата навреме информационния лист. Самите кмет и една пета от общинските съветници са сред тези, които могат да оспорват, така че противници на власт могат да провалят предложение, като нарушат процедурата."
+                    }
                   }
                 ]
               },
@@ -2459,7 +2837,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Отменителен референдум има само за цялата община (чл. 27, ал. 3); село или квартал не може да отмени решение, което засяга само него."
+                    }
                   }
                 ]
               },
@@ -2485,11 +2866,17 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Законът не изисква нито едно решение да се подлага автоматично на гласуване."
+                    }
                   }
                 ]
               }
-            ]
+            ],
+            "bg": {
+              "name": "Местен референдум"
+            }
           },
           {
             "type": "general_assembly",
@@ -2535,7 +2922,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Може да се проведе за населено място или кметство, включително за квартали с до 10 000 жители."
+                }
               },
               {
                 "type": "binding",
@@ -2562,7 +2952,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Задължително по действие. В 7-дневен срок кметът трябва или да разпореди мерките за изпълнение на решението, или, когато е нужен акт на съвета, да предложи такъв; съветът или кметът трябва да издадат актовете по изпълнението в едномесечен срок (чл. 54 и чл. 63, ал. 3)."
+                }
               },
               {
                 "type": "no_quorum",
@@ -2595,7 +2988,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Трябва да присъстват една четвърт от имащите право на глас (една трета в населени места с до 150 жители). Ако няма кворум, след един час събранието може да продължи само при една десета. В квартал с 10 000 души това са 1000 души в една зала."
+                }
               },
               {
                 "type": "citizen_triggered",
@@ -2625,7 +3021,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Кметът трябва да го свика по искане на 1/50 от имащите право на глас, но не по-малко от 20 души."
+                }
               },
               {
                 "type": "reasonable_signatures",
@@ -2647,9 +3046,15 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "1/50 от гласоподавателите, но не по-малко от 20 души."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на населението"
+            }
           }
         ]
       },
@@ -2682,9 +3087,15 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Кметствата избират само кмет. Няма селски съвет; решава общинският съвет."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Селски съвет"
+            }
           },
           {
             "type": "executive",
@@ -2757,6 +3168,9 @@
                   "ifUnder": "no",
                   "overNote": "It is a mayoralty (кметство) and elects its own mayor.",
                   "underNote": "It is not a mayoralty: the municipal mayor may appoint a mayoral deputy (кметски наместник), who is not elected and can be dismissed without notice."
+                },
+                "bg": {
+                  "explanation": "Село с над 100 постоянни жители е кметство и избира свой кмет. В по-малките села кметът на общината може да назначи кметски наместник, който не е избран и може да бъде освободен без предизвестие."
                 }
               },
               {
@@ -2816,7 +3230,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Кметът на кметството само изпълнява общинския бюджет и актовете на общинския съвет и на кмета на общината за селото, със съвещателен глас в съвета. Общинският съвет определя правомощията на кмета и решава бюджета, таксите, имотите и плановете, така че селото не може да управлява повечето от собствените си интереси. Няма собствен бюджет: общинският съвет определя бюджета на кметството."
+                }
               },
               {
                 "type": "individual_vote",
@@ -2844,7 +3261,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Избира се поименно, мажоритарно, на два тура."
+                }
               },
               {
                 "type": "recall",
@@ -2897,9 +3317,16 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Гласоподавателите не могат да отзоват кмета преди края на мандата. Пълномощията на кмета се прекратяват предсрочно само на правни или лични основания, като оставка, болест, осъждане за престъпление или конфликт на интереси."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Кмет на кметство",
+              "label": "Кмет"
+            }
           }
         ]
       }
@@ -2946,7 +3373,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Местен референдум може да се проведе за община."
+                    }
                   },
                   {
                     "type": "binding",
@@ -2973,7 +3403,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Решението не се нуждае от последващо одобрение от общинския съвет; то влиза в сила с обявяването му и кметът организира изпълнението му."
+                    }
                   },
                   {
                     "type": "no_quorum",
@@ -3012,7 +3445,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Когато се провежда самостоятелно, местният референдум изисква избирателна активност от поне 40% (кворум за участие). Когато се провежда заедно с местни избори, вместо това са нужни гласове „да“ от повече от половината от гласувалите за общински съвет (кворум за одобрение), което е по-малко пагубно. Но дали ще се проведе заедно с изборите, решава общинският съвет, който определя датата."
+                    }
                   },
                   {
                     "type": "regular_days",
@@ -3039,7 +3475,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Законът не определя дни за гласуване. Общинският съвет определя отделна дата за всеки референдум, 45 до 60 дни след решението си да го произведе, така че гласуването съвпада с изборния ден само ако съветът го насрочи така."
+                    }
                   },
                   {
                     "type": "concrete_proposals",
@@ -3060,7 +3499,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Гласоподавателите отговарят на въпрос с „да“ или „не“; не гласуват изготвен текст, например наредба или закон."
+                    }
                   },
                   {
                     "type": "reasonable_signatures",
@@ -3099,7 +3541,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "1/20 от гласоподавателите, за да предложат. Съветът е длъжен да го произведе само при искане на 1/10 от гласоподавателите, което в София означава много над 100 000 подписа."
+                    }
                   },
                   {
                     "type": "no_topic_restrictions",
@@ -3127,7 +3572,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Общинският бюджет, размерът на местните данъци и такси и вътрешните правила на съвета не могат да се подлагат на местен референдум."
+                    }
                   },
                   {
                     "type": "no_roadblocks",
@@ -3162,7 +3610,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Две пречки могат да спрат местен референдум. Ако мандатът на съвета изтече, преди той да се произнесе по подписката, законът не казва, че процедурата продължава пред следващия съвет, така че подписката може да отпадне. А резултатът може да се оспори в съда за всяко нарушение на закона, дори такова, което не е променило изхода, включително грешки на органите, които организират гласуването, например ако кметът не отпечата навреме информационния лист. Самите кмет и една пета от общинските съветници са сред тези, които могат да оспорват, така че противници на власт могат да провалят предложение, като нарушат процедурата."
+                    }
                   }
                 ]
               },
@@ -3188,7 +3639,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "В едномесечен срок от решение на съвета 1/10 от гласоподавателите в общината могат да поискат референдум за неговото одобряване; кметът трябва да го произведе в двумесечен срок. Само на ниво община, не за райони или кметства."
+                    }
                   },
                   {
                     "type": "binding",
@@ -3215,7 +3669,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Решението не се нуждае от последващо одобрение от общинския съвет; то влиза в сила с обявяването му и кметът организира изпълнението му."
+                    }
                   },
                   {
                     "type": "no_quorum",
@@ -3248,7 +3705,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Когато се провежда самостоятелно, местният референдум изисква избирателна активност от поне 40% (кворум за участие). Когато се провежда заедно с местни избори, вместо това са нужни гласове „да“ от повече от половината от гласувалите за общински съвет (кворум за одобрение), което е по-малко пагубно. Но дали ще се проведе заедно с изборите, решава кметът, който определя датата в двумесечен срок от искането."
+                    }
                   },
                   {
                     "type": "regular_days",
@@ -3269,7 +3729,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Законът не определя дни за гласуване. Кметът определя отделна дата за всеки отменителен референдум, в двумесечен срок от искането, така че гласуването съвпада с изборния ден само ако кметът го насрочи така."
+                    }
                   },
                   {
                     "type": "reasonable_signatures",
@@ -3290,7 +3753,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "1/10 от гласоподавателите в общината в едномесечен срок от решението."
+                    }
                   },
                   {
                     "type": "no_topic_restrictions",
@@ -3318,7 +3784,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Общинският бюджет, размерът на местните данъци и такси и вътрешните правила на съвета не могат да се подлагат на местен референдум."
+                    }
                   }
                 ]
               },
@@ -3344,11 +3813,17 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Законът не изисква нито едно решение да се подлага автоматично на гласуване."
+                    }
                   }
                 ]
               }
-            ]
+            ],
+            "bg": {
+              "name": "Местен референдум"
+            }
           },
           {
             "type": "general_assembly",
@@ -3392,7 +3867,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Само общини с до 10 000 жители могат да проведат такова."
+                }
               },
               {
                 "type": "binding",
@@ -3419,7 +3897,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Задължително по действие. В 7-дневен срок кметът трябва или да разпореди мерките за изпълнение на решението, или, когато е нужен акт на съвета, да предложи такъв; съветът или кметът трябва да издадат актовете по изпълнението в едномесечен срок (чл. 54 и чл. 63, ал. 3)."
+                }
               },
               {
                 "type": "no_quorum",
@@ -3452,7 +3933,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Трябва да присъстват една четвърт от имащите право на глас (една трета в населени места с до 150 жители). Ако няма кворум, след един час събранието може да продължи само при една десета. В квартал с 10 000 души това са 1000 души в една зала."
+                }
               },
               {
                 "type": "citizen_triggered",
@@ -3482,7 +3966,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Кметът трябва да го свика по искане на 1/50 от имащите право на глас, но не по-малко от 20 души."
+                }
               },
               {
                 "type": "reasonable_signatures",
@@ -3504,9 +3991,15 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "1/50 от гласоподавателите, но не по-малко от 20 души."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общо събрание на населението"
+            }
           }
         ]
       },
@@ -3538,7 +4031,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Избира се пряко от населението за четири години."
+                }
               },
               {
                 "type": "binding_powers",
@@ -3589,7 +4085,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Ограничени правомощия по много местни интереси. Приема бюджета и определя местните такси, но може да определя размера на местните данъци само в границите, определени от националния закон. Дори за общинските училища регионалното управление на образованието към министерството назначава и освобождава директорите и утвърждава приема в средните училища; общината само се консултира."
+                }
               },
               {
                 "type": "individual_vote",
@@ -3628,7 +4127,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Гласоподавателите първо трябва да изберат партийна листа в един общ избирателен район за цялата община с до 61 мандата, а колкото по-голям е районът, толкова по-малко всеки съветник отговаря пред определени избиратели. Преференцията за кандидат не е задължителна и е разрешена само една, без подреждане като при единния прехвърлим глас. Глас без преференция се брои като преференция за първия кандидат в листата, което заедно с 7-процентния праг прави почти невъзможно този кандидат да бъде изместен."
+                }
               },
               {
                 "type": "local_districts",
@@ -3664,7 +4166,10 @@
                 ],
                 "laws": [
                   "ec"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Цялата община е един избирателен район, затова нито един общински съветник не се избира от определена нейна част и не отговаря пред нея."
+                }
               },
               {
                 "type": "proportional_representation",
@@ -3723,9 +4228,15 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Пропорционалното представителство трябва да даде на нетериториалните общности на интереси дял от местата, който отговаря на дела им в електората. Местата в съвета се разпределят между партийните листи пропорционално на гласовете им по пропорционална система с листи, така че резултатът е пропорционален между партиите. Но партията определя реда на кандидатите и преференциалният вот рядко го променя, затова съветникът отговаря преди всичко пред партийното ръководство, а не пред избирателите си, и следователно всъщност не е техен представител. Системата постига пропорционалност между партиите, но слабо пропорционално представителство."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Общински съвет"
+            }
           },
           {
             "type": "executive",
@@ -3754,7 +4265,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Кметът е изпълнителният орган на общината."
+                }
               },
               {
                 "type": "binding_powers",
@@ -3778,7 +4292,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Кметът ръководи цялата изпълнителна дейност на общината и изпълнява бюджета."
+                }
               },
               {
                 "type": "individual_vote",
@@ -3806,7 +4323,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Избира се поименно, мажоритарно, на два тура: с повече от половината гласове на първия тур или на балотаж между първите двама."
+                }
               },
               {
                 "type": "recall",
@@ -3859,9 +4379,16 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Гласоподавателите не могат да отзоват кмета преди края на мандата. Пълномощията на кмета се прекратяват предсрочно само на правни или лични основания, като оставка, болест, осъждане за престъпление или конфликт на интереси."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Кмет",
+              "label": "Кмет"
+            }
           }
         ]
       }
@@ -3882,7 +4409,10 @@
                     "explanation": "There is no referendum at the level of an oblast.",
                     "laws": [
                       "dcpa"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Няма референдум на ниво област."
+                    }
                   }
                 ]
               },
@@ -3895,7 +4425,10 @@
                     "explanation": "There is no referendum at the level of an oblast.",
                     "laws": [
                       "dcpa"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Няма референдум на ниво област."
+                    }
                   }
                 ]
               },
@@ -3908,7 +4441,10 @@
                     "explanation": "There is no referendum at the level of an oblast.",
                     "laws": [
                       "dcpa"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Няма референдум на ниво област."
+                    }
                   }
                 ]
               }
@@ -3927,7 +4463,10 @@
                 "explanation": "No elected regional council.",
                 "laws": [
                   "const"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Няма изборен областен съвет."
+                }
               }
             ]
           },
@@ -3941,10 +4480,17 @@
                 "explanation": "The regional governor is appointed by the Council of Ministers.",
                 "laws": [
                   "const"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Областният управител се назначава от Министерския съвет."
+                }
               }
             ],
-            "label": "Executive"
+            "label": "Executive",
+            "bg": {
+              "name": "Областен управител",
+              "label": "Изпълнителна власт"
+            }
           }
         ]
       }
@@ -3988,7 +4534,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Народното събрание решава дали да се произведе национален референдум."
+                    }
                   },
                   {
                     "type": "binding",
@@ -4007,7 +4556,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Не е нужно последващо одобрение от парламента; противоречащите актове престават да се прилагат след три месеца."
+                    }
                   },
                   {
                     "type": "no_quorum",
@@ -4028,7 +4580,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Приема се само ако избирателната активност е поне колкото на последните парламентарни избори. При активност над 20% предложението само се изпраща на парламента."
+                    }
                   },
                   {
                     "type": "regular_days",
@@ -4061,7 +4616,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Национален референдум се провежда в изборния ден, когато има избори в рамките на една година от решението на парламента. Иначе президентът определя дата два до три месеца след решението. Законът не определя редовни дни за гласуване."
+                    }
                   },
                   {
                     "type": "concrete_proposals",
@@ -4069,7 +4627,10 @@
                     "explanation": "Voters answer a question with yes or no; they do not vote on a drafted text such as an ordinance or a law.",
                     "laws": [
                       "dcpa"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Гласоподавателите отговарят на въпрос с „да“ или „не“; не гласуват изготвен текст, например наредба или закон."
+                    }
                   },
                   {
                     "type": "reasonable_signatures",
@@ -4109,7 +4670,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "400 000 са около 6–7% от вписаните в избирателните списъци."
+                    }
                   },
                   {
                     "type": "no_topic_restrictions",
@@ -4146,7 +4710,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Държавният бюджет, размерът на данъците, таксите и осигурителните вноски, вътрешните правила на Народното събрание, редица конституционни правомощия и цели кодекси не могат да се подлагат на национален референдум."
+                    }
                   },
                   {
                     "type": "no_roadblocks",
@@ -4166,7 +4733,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Ако парламентът бъде разпуснат или мандатът му изтече, преди да се произнесе по подписката, тя отпада: законът не казва, че процедурата продължава пред следващия парламент."
+                    }
                   }
                 ]
               },
@@ -4195,7 +4765,10 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Гражданите не могат да поискат гласуване, за да отменят решение, след като то е прието."
+                    }
                   }
                 ]
               },
@@ -4221,11 +4794,17 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "Законът не изисква нито едно решение да се подлага автоматично на гласуване."
+                    }
                   }
                 ]
               }
-            ]
+            ],
+            "bg": {
+              "name": "Национален референдум"
+            }
           }
         ]
       },
@@ -4301,7 +4880,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Гласоподавателите първо трябва да изберат партийна листа в големи многомандатни райони с до 19 мандата. Преференцията за кандидат не е задължителна. Разрешена е само една преференция, без подреждане като при единния прехвърлим глас; бюлетина с повече от една преференция се брои само за листата. Глас без преференция се брои като преференция за първия кандидат в листата, което заедно с 7-процентния праг прави почти невъзможно този кандидат да бъде изместен. На практика само около 3% от народните представители са избрани благодарение на преференциите."
+                }
               },
               {
                 "type": "local_districts",
@@ -4344,7 +4926,10 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Много райони са твърде големи и не съответстват на местни общности: до 19 мандата в 23-ти район в София."
+                }
               },
               {
                 "type": "proportional_representation",
@@ -4365,9 +4950,15 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "bg": {
+                  "explanation": "Пропорционалното представителство трябва да даде на нетериториалните общности на интереси дял от местата, който отговаря на дела им в електората. Местата се разпределят между партийните листи по пропорционална система с листи, но само партии с поне 4% от гласовете в страната получават места, така че гласовете за останалите се губят, а партиите над прага получават до 20% повече места от дела си от гласовете. Това често води до управление на малцинството: управляваща партия или коалиция с по-малко от половината гласове. Партията определя и реда на кандидатите, а преференциалният вот рядко го променя, затова народният представител отговаря преди всичко пред партийното ръководство, а не пред избирателите си. Системата не постига дори пропорционалност между партиите, камо ли пропорционално представителство."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Народно събрание"
+            }
           }
         ]
       }
@@ -4389,7 +4980,10 @@
                     "laws": [
                       "teu",
                       "eci"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "ЕС няма референдум."
+                    }
                   }
                 ]
               },
@@ -4403,7 +4997,10 @@
                     "laws": [
                       "teu",
                       "eci"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "ЕС няма референдум."
+                    }
                   }
                 ]
               },
@@ -4417,7 +5014,10 @@
                     "laws": [
                       "teu",
                       "eci"
-                    ]
+                    ],
+                    "bg": {
+                      "explanation": "ЕС няма референдум."
+                    }
                   }
                 ]
               }
@@ -4445,7 +5045,10 @@
                 "laws": [
                   "teu",
                   "ec"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Съзаконодател, но не може да предлага законодателство."
+                }
               },
               {
                 "type": "individual_vote",
@@ -4454,7 +5057,10 @@
                 "laws": [
                   "teu",
                   "ec"
-                ]
+                ],
+                "bg": {
+                  "explanation": "Национални партийни листи с преференциален вот."
+                }
               },
               {
                 "type": "local_districts",
@@ -4463,7 +5069,10 @@
                 "laws": [
                   "teu",
                   "ec"
-                ]
+                ],
+                "bg": {
+                  "explanation": "България е един избирателен район."
+                }
               },
               {
                 "type": "proportional_representation",
@@ -4472,13 +5081,23 @@
                 "laws": [
                   "ec",
                   "teu"
-                ]
+                ],
+                "bg": {
+                  "explanation": "17-те места на България се разпределят пропорционално на гласовете в един национален район, но листата се нуждае от около 6%, за да спечели място, а местата на всяка държава се разпределят по дегресивно пропорционален принцип."
+                }
               }
-            ]
+            ],
+            "bg": {
+              "name": "Европейски парламент"
+            }
           }
         ]
       }
     }
   },
-  "areas": []
+  "areas": [],
+  "bg": {
+    "name": "България",
+    "statusNote": "Чернова. За всяко изискване страницата посочва законите, които го уреждат; конкретните членове предстои да бъдат уточнени. Оценките „да/частично/не“ са предварителни, докато членовете не бъдат потвърдени."
+  }
 }
