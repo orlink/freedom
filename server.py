@@ -68,7 +68,8 @@ MAX_CONVERSATIONS = 200          # per requirement page
 
 
 # What the web server may hand out as files. Everything else in the folder is private.
-PUBLIC_FILES = {"index.html", "what-is-freedom.html", "what-is-freedom-plain.html", "docs/data.md"}
+PAGES = {"index.html", "what-is-freedom.html", "what-is-freedom-plain.html"}  # served without ".html" (clean_path)
+PUBLIC_FILES = PAGES | {"docs/data.md"}
 PUBLIC_DIRS = {"css", "js", "img", "vendor"}
 PUBLIC_EXT = {".html", ".css", ".js", ".json", ".svg", ".png", ".jpg", ".gif", ".webp", ".ico", ".woff2"}
 
@@ -430,8 +431,23 @@ class Handler(SimpleHTTPRequestHandler):
             return self.redirect(f"/{code}/")
         return True
 
-    def redirect(self, location):
-        self.send_response(302)
+    def clean_path(self):
+        """Page addresses without ".html" (Orlin): /what-is-freedom serves what-is-freedom.html, and the old
+        /what-is-freedom.html (or /index.html) answers with a permanent redirect to the short address.
+        Returns False when it answered with a redirect."""
+        u = urlparse(self.path)
+        query = f"?{u.query}" if u.query else ""
+        prefix = "" if self.lang == "en" else f"/{self.lang}"
+        name = u.path.lstrip("/")
+        if name in PAGES:
+            short = "" if name == "index.html" else name[:-len(".html")]
+            return self.redirect(f"{prefix}/{short}{query}", 301)
+        if f"{name}.html" in PAGES and name != "index":
+            self.path = f"/{name}.html{query}"
+        return True
+
+    def redirect(self, location, status=302):
+        self.send_response(status)
         self.send_header("Location", location)
         self.send_header("Content-Length", "0")
         self.end_headers()
@@ -452,17 +468,17 @@ class Handler(SimpleHTTPRequestHandler):
             self.wfile.write(body)
 
     def do_HEAD(self):
-        if not self.take_lang():
+        if not self.take_lang() or not self.clean_path():
             return
-        if self.lang != "en" and urlparse(self.path).path in ("/", "/index.html"):
+        if self.lang != "en" and urlparse(self.path).path == "/":
             return self.send_page(self.lang, head_only=True)
         return super().do_HEAD()
 
     def do_GET(self):
-        if not self.take_lang():
+        if not self.take_lang() or not self.clean_path():
             return
         u = urlparse(self.path)
-        if self.lang != "en" and u.path in ("/", "/index.html"):
+        if self.lang != "en" and u.path == "/":
             return self.send_page(self.lang)
         if u.path == "/api/editor":
             return self.send_json(200, {"editor": self.is_editor()})
