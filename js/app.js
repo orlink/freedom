@@ -976,7 +976,11 @@ function chatButton(key, context) {
     } });
   // A question mark: asking Claude, as on highlighted law text (a speech bubble there means a comment for the editors).
   btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a2.9 2.9 0 1 1 4 2.6c-.7.3-1.2 1-1.2 1.8v.8"/><path d="M12 17.3h.01"/></svg>';
-  wrap.prepend(btn);
+  // Beside it, a speech bubble: a comment or feedback on the whole requirement, published like a passage comment.
+  const note = el('button', { type: 'button', class: 'chat-btn', 'aria-label': t('req.comment'), title: t('req.comment'),
+    onclick: () => { close(); openPassage({ quote: '', where: '', top: note.getBoundingClientRect().bottom + 8 }, 'comment'); } });
+  note.innerHTML = ICON_COMMENT.replace(/width="16" height="16"/, 'width="21" height="21"');
+  wrap.prepend(btn, note);
   return wrap;
 }
 
@@ -1042,7 +1046,7 @@ function commentBox(p) {
     send.disabled = true; status.className = 'chat-intro'; status.textContent = t('passage.sending');
     try {
       const r = await api('POST', 'api/comment', { comment, quote: p.quote, where: p.where, page: lawSel.base.title, url: location.href,
-        messages: chats.get(passageKey(p))?.messages || [] });
+        messages: chats.get(p.quote ? passageKey(p) : lawSel.base.key)?.messages || [] });
       input.value = '';
       status.replaceChildren(t('passage.sent'), ' ', r.url ? el('a', { href: r.url, target: '_blank', rel: 'noopener' }, t('passage.see')) : '');
     } catch (err) {
@@ -1052,7 +1056,7 @@ function commentBox(p) {
     send.disabled = false;
   } }, input, send);
   input.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) form.requestSubmit(); });
-  const log = el('div', { class: 'chat-log' }, el('blockquote', { class: 'chat-quote' }, p.quote), status);
+  const log = el('div', { class: 'chat-log' }, p.quote ? el('blockquote', { class: 'chat-quote' }, p.quote) : null, status);
   return { log, form, input };
 }
 function openPassage(p, mode) {
@@ -1060,7 +1064,7 @@ function openPassage(p, mode) {
   const { key, context } = lawSel.base;
   const ctx = `${context}\n\nThe reader highlighted this passage of ${p.where || 'the law quoted above'}:\n"${p.quote}"\nTalk with them about this passage.`.slice(0, 12000);
   const box = mode === 'ask' ? chatBox(passageKey(p), ctx, p) : commentBox(p);
-  const title = t(mode === 'ask' ? 'passage.askTitle' : 'passage.commentTitle');
+  const title = t(mode === 'ask' ? 'chat.title' : 'passage.commentTitle');
   const close = () => { pop.remove(); if (lawSel.pop === pop) lawSel.pop = null; };
   const pop = el('div', { class: 'chat-pop sel-pop', role: 'dialog', 'aria-label': title },
     el('div', { class: 'chat-head', title: t('chat.drag') }, el('strong', {}, title), el('button', { type: 'button', class: 'chat-close', 'aria-label': t('chat.close'), onclick: close }, '×')),
