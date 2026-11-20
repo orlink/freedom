@@ -542,7 +542,26 @@ const STATUS_TONE = { yes: 'white', partial: 'darkgrey', weak: 'darkgrey', no: '
 // The trail's drop-down menus: what each colour says in words (for tooltips), and what each chevron is called.
 const TONE_WORDS = Object.fromEntries(Object.entries(LEGENDS).map(([k, v]) => [k, { ...Object.fromEntries(v), unknown: t('legend.notAssessed') }]));
 const SWITCH_LABEL = { level: t('switch.level'), mech: t('switch.mech'), prop: t('switch.prop') };
+// What a step of the trail is, shown as a small icon rather than in words (Orlin 2026-11-20: the page is text-heavy
+// already): a level is a stack of layers, an institution a building, a design requirement a set square. Colour is not
+// used for this, because colour already says how free something is. The same icon stands beside the heading of the
+// screen that lists those things, which is where it is learnt. The word is the icon's tooltip and its spoken name.
 const KIND_LABEL = { level: t('kind.level'), mech: t('kind.mech'), prop: t('kind.prop') };
+const KIND_ICON = {
+  level: '<path d="M8 2 14 5 8 8 2 5Z"/><path d="M2 8l6 3 6-3"/><path d="M2 11l6 3 6-3"/>',
+  mech: '<path d="M2 6 8 2.3 14 6Z"/><path d="M4.2 8.2v3.6M8 8.2v3.6M11.8 8.2v3.6"/><path d="M2 14h12"/>',
+  prop: '<path d="M2.5 2.5v11h11Z"/><path d="M5.5 8.8v1.7h1.7Z"/>',
+};
+const kindIcon = (kind, named = true) => {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 16 16');
+  svg.setAttribute('class', 'kind-ico');
+  if (named) { svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', KIND_LABEL[kind]); }
+  else svg.setAttribute('aria-hidden', 'true');
+  svg.innerHTML = KIND_ICON[kind];
+  if (named) svg.prepend(Object.assign(document.createElementNS('http://www.w3.org/2000/svg', 'title'), { textContent: KIND_LABEL[kind] }));
+  return svg;
+};
 let trailPlace = null;   // repositions the open menu under its pill when the window changes size
 let trailClose = null;   // closes the open menu
 window.addEventListener('resize', () => trailPlace?.());
@@ -1062,21 +1081,21 @@ function render() {
     }) : null;   // the chevron is drawn in CSS and turns over while the menu is open
     const pillClass = s => `pill${open === s.kind ? ' open' : ''}`;
     // The title's colour as a small chip before its name (Orlin: the last step only), where the menu shows it, so it
-    // stays put when the menu opens.
-    const sw = s => s.tone ? el('i', { class: `sw t-${s.tone}`, 'aria-hidden': 'true' }) : null;
+    // stays put when the menu opens. The chip carries the icon of what the page is, so one mark says both.
+    const sw = s => s.tone ? el('i', { class: `sw t-${s.tone}` }, kindIcon(s.kind)) : null;
     const last = steps.length - 1;
-    // Each step says what it is in a small caption above it: a level, an institution or a design requirement
-    // (Orlin 2026-11-20: the trail did not show what type each step is, nor that a requirement's page belongs to an
-    // institution). The first step, the list of levels, already names itself.
-    const typed = (s, node) => s.kind ? el('span', { class: 'step' }, el('small', { class: 'kind' }, KIND_LABEL[s.kind]), node) : node;
+    // Each step shows what it is by its icon: a level, an institution or a design requirement (Orlin 2026-11-20: the
+    // trail did not show what type each step is, nor that a requirement's page belongs to an institution). The first
+    // step, the list of levels, has none.
+    const ico = s => s.kind ? kindIcon(s.kind) : null;
     const nodes = steps.flatMap((s, i) => {
       const a = arrow(s);
-      const name = i < last ? el('button', { type: 'button', class: 'crumb', onclick: () => go(s.path) }, s.name) : null;
+      const name = i < last ? el('button', { type: 'button', class: 'crumb', onclick: () => go(s.path) }, ico(s), el('span', {}, s.name)) : null;
       return [
         i ? el('span', { class: 'sep' }, '›') : null,
         // The page you are on is the title: the same pill, larger, its name not a link.
-        i === last ? el('span', { class: 'here' }, typed(s, s.tone || a ? el('span', { class: pillClass(s) }, el('span', { class: 'here-name' }, sw(s), el('span', {}, s.name)), a) : el('span', { class: 'here-name' }, s.name)))
-          : typed(s, a ? el('span', { class: pillClass(s) }, name, a) : name),
+        i === last ? el('span', { class: 'here' }, s.tone || a ? el('span', { class: pillClass(s) }, el('span', { class: 'here-name' }, sw(s) || ico(s), el('span', {}, s.name)), a) : el('span', { class: 'here-name' }, ico(s), s.name))
+          : a ? el('span', { class: pillClass(s) }, name, a) : name,
       ];
     }).filter(Boolean);
     let box = null;
@@ -1092,7 +1111,7 @@ function render() {
           type: 'button', class: `mini${o.current ? ' cur' : ''}`, 'aria-current': o.current ? 'true' : null, disabled: o.disabled,
           title: o.title || (o.disabled ? t('trail.doesNotApply', { label: o.label }) : [o.label, o.word].filter(Boolean).join(': ')),
           onclick: o.disabled ? null : o.current ? close : () => go(o.path),
-        }, el('i', { class: `sw ${o.na ? 'na' : `t-${o.tone}`}`, 'aria-hidden': 'true' }),
+        }, el('i', { class: `sw ${o.na ? 'na' : `t-${o.tone}`}`, 'aria-hidden': 'true' }, o.current && steps[last].kind === open ? kindIcon(open, false) : null),
           el('span', { class: 'label' }, o.current ? steps.find(s => s.kind === open).name : o.label),
           o.current ? el('i', { class: 'tick', 'aria-hidden': 'true' }) : null),
       ]).filter(Boolean);
@@ -1140,7 +1159,7 @@ function render() {
     const levelChip = ({ l, tone }) => chip({ label: levelLabel(l), tone, title: [...new Set([levelLabel(l), loc.places[l.id].name].filter(Boolean))].join(': '), onclick: () => go([l.id]) });
     setLegend('levels');
     screen.push(verdictLine(levels, loc));
-    screen.push(el('h2', { class: 'group-title' }, t('heading.levels')));
+    screen.push(el('h2', { class: 'group-title' }, kindIcon('level', false), t('heading.levels')));
     screen.push(rowOf(levels.filter(x => x.l.kind === 'territorial').map(levelChip)));
     screen.push(rowOf(levels.filter(x => x.l.kind !== 'territorial').map(levelChip)));
   } else if (!mech) {
@@ -1150,7 +1169,7 @@ function render() {
     screen.push(el('h2', { class: 'group-title minor' }, t('heading.categories')));
     screen.push(rowOf(interestChips(levelId), 'interests'));
     // The institutions under one title, branching like a tree into the Direct and Representative groups (Orlin).
-    const instTitle = el('h2', { class: 'group-title' }, t('heading.coreInst'));
+    const instTitle = el('h2', { class: 'group-title' }, kindIcon('mech', false), t('heading.coreInst'));
     // Some levels (e.g. Home) decide informally, without formal mechanisms (catalog `informal`): one plain chip.
     if (cur.l.informal) {
       const hi = (cur.lvl.direct?.mechanisms || []).findIndex(m => m.type === 'household');
@@ -1170,14 +1189,14 @@ function render() {
       requestAnimationFrame(markStacked);
     }
     // Other governance institutions (Orlin 2026-11-12): a section of its own below the core ones, empty for now.
-    screen.push(el('div', { class: 'other-inst' }, el('h2', { class: 'group-title' }, t('heading.otherInst')),
+    screen.push(el('div', { class: 'other-inst' }, el('h2', { class: 'group-title' }, kindIcon('mech', false), t('heading.otherInst')),
       el('div', { class: 'other-inst-box', 'aria-label': t('inst.otherNone') })));
   } else if (!prop) {
     // Screen 4: the properties the mechanism needs. If it does not exist in law, the rest are disabled.
     setLegend('requirements');
     // The chips are what the institution's design requires in order for it to work (Orlin 2026-11-12). The heading sits
     // on the top edge of the area, so it does not push the chips down.
-    screen.push(el('h2', { class: 'group-title on-edge' }, t('heading.designReq')));
+    screen.push(el('h2', { class: 'group-title on-edge' }, kindIcon('prop', false), t('heading.designReq')));
     screen.push(rowOf(props.map((p, i) => {
       const pdef = catalog.properties[p.type] || {};
       return chip({
