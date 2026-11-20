@@ -245,7 +245,7 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .provisions .verdict .xm { margin-top: 12px; padding: 10px 0 0 14px; border-left: 3px solid currentColor; opacity: .92; font-size: 14px; }
 .provisions .verdict .xm p { margin: 0 0 8px; }
 .provisions .verdict .xm .xm-title { font-weight: 700; margin-bottom: 4px; }
-.provisions .verdict .xm .source { font-size: 12px; opacity: .85; }
+.provisions .verdict .xm .source { font-size: 12px; color: inherit; opacity: .85; }
 .provisions .verdict .xm a { color: inherit; }
 .provisions .verdict .xm-toggle { font: inherit; font-size: 13px; font-weight: 700; background: none; border: 0; padding: 0; color: inherit; text-decoration: underline; cursor: pointer; }
 .provisions .absent { color: var(--muted); font-style: italic; }
