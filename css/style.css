@@ -133,13 +133,14 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 /* The menu of siblings opens over its pill, in the siblings' usual order, with the current choice lying exactly on the
    pill (as an iOS or macOS menu does). Each row has a small chip in the colour of the page it leads to. */
 .trail { position: relative; }
-/* What each step is, in a small caption above it (Orlin 2026-11-20). It hangs above its step, so the row's alignment
-   is unchanged; the trail leaves room for it above every line. */
-.trail { padding-top: 15px; row-gap: 19px; }
-.trail .step { position: relative; display: inline-flex; max-width: 100%; }
-.trail .kind { position: absolute; left: 50%; bottom: calc(100% + 2px); transform: translateX(-50%); white-space: nowrap; font-size: 10px; font-weight: 700; letter-spacing: .09em; line-height: 1.2; text-transform: uppercase; color: var(--muted); pointer-events: none; }
-.trail .here { margin-top: 2px; }
-.trail .here .kind { font-size: 11px; bottom: calc(100% + 3px); letter-spacing: .1em; color: var(--coral-ink); }
+/* What each step is, as a small icon before its name: layers for a level, a building for an institution, a set square
+   for a design requirement (Orlin 2026-11-20: no more words on a text-heavy page). On the title the icon sits inside
+   the colour chip, in the chip's own ink. The same icons stand beside the headings of the screens that list them. */
+.kind-ico { flex: none; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.trail .crumb { display: inline-flex; align-items: center; gap: 6px; text-align: left; }
+.trail .crumb .kind-ico { opacity: .85; }
+.trail .here .here-name > .kind-ico { width: 22px; height: 22px; vertical-align: -2px; margin-right: 8px; }
+.group-title .kind-ico { width: 15px; height: 15px; margin-right: 7px; vertical-align: -3px; }
 .switch { position: absolute; z-index: 1050; top: 100%; left: 0; scroll-margin: 90px 0 14px; display: flex; flex-direction: column; gap: 2px; width: max-content; max-width: calc(100vw - 16px);
   max-height: min(80vh, 640px); overflow-y: auto; background: var(--surface); border: 1px solid var(--coral); border-radius: 17px;
   box-shadow: 0 2px 6px rgba(46, 21, 24, .10), 0 16px 40px rgba(46, 21, 24, .26); }
@@ -149,8 +150,8 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .switch .mini.cur { background: var(--bg); }
 .switch .mini:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--text); }
 /* The row's chip: a small swatch in the colour of the page the row leads to. */
-.switch .sw, .trail .sw { flex: none; width: 26px; height: 16px; border-radius: 5px; border: 1.5px solid transparent; }
-.switch.big .sw, .trail .here .sw { width: 30px; height: 19px; border-radius: 6px; }
+.switch .sw, .trail .sw { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 16px; border-radius: 5px; border: 1.5px solid transparent; }
+.switch.big .sw, .trail .here .sw { width: 34px; height: 24px; border-radius: 7px; }
 .switch .sw.na, .sw.t-disabled { background: transparent; border: 1.5px dashed var(--muted); }
 .sw.t-unknown { background: transparent; border: 1.5px dashed var(--text); }
 :root:not([data-scale="teal"]) .sw.t-white { border-color: #c9b3ad; }
