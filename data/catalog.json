@@ -363,8 +363,8 @@
       "longName": "Legally binding",
       "description": "The outcome should bind the authorities, not be merely advisory.",
       "bg": {
-        "name": "Задължително",
-        "longName": "Задължително"
+        "name": "Правно обвързващ",
+        "longName": "Правно обвързващ"
       }
     },
     "no_quorum": {
@@ -658,8 +658,8 @@
       "longName": "Citizen initiative referendums",
       "description": "Citizens collect signatures to put their own proposal to a vote of all.",
       "bg": {
-        "name": "Гражданска инициатива",
-        "longName": "Референдуми по гражданска инициатива"
+        "name": "Референдум иницииран от граждани",
+        "longName": "Референдуми инициирани от граждани"
       }
     },
     "veto_referendum": {
