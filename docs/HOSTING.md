@@ -27,4 +27,6 @@ ARR's proxy is enabled server-wide, but it only acts for sites with a rewrite ru
 
 To set or change the API key: over SSH, edit `C:\freedom\app\.env`, then `Restart-Service freedom`.
 
+Readers' chats become GitHub issues for the editors when `.env` also has `FREEDOM_ISSUES_REPO=owner/name` and `FREEDOM_ISSUES_TOKEN=…`: a fine-grained token limited to that one repository with only "Issues: Read and write". One issue per conversation, later turns as comments; at most 50 new issues a day (`FREEDOM_ISSUES_DAILY`). Without these lines the chat works as before and files nothing. Which issue belongs to which conversation is kept in `data/state/issues.json`.
+
 Files removed from git stay on the server until deleted by hand.
