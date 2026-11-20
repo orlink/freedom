@@ -27,7 +27,7 @@ only needed for the chat:
 
 Every conversation is saved to data/state/comments.json, so the comments and suggestions
 readers make there can be read later even when the chat is not set up. With FREEDOM_ISSUES_REPO and
-FREEDOM_ISSUES_TOKEN in .env, each conversation is also filed as a GitHub issue for the editors (docs/HOSTING.md).
+FREEDOM_ISSUES_TOKEN in .env, readers' comments on highlighted law text (/api/comment) become GitHub issues (docs/HOSTING.md).
 """
 import argparse, hashlib, json, os, posixpath, re, secrets, threading, time, uuid
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
@@ -69,13 +69,13 @@ MAX_AUDIT_BYTES = 20_000_000
 MAX_CONVERSATIONS = 200          # per requirement page
 
 
-# Readers' chats as GitHub issues, for the editors: one issue per conversation, each later turn a comment on it.
+# Readers' comments on highlighted law text become GitHub issues, for the editors.
 # Off unless the server's .env sets FREEDOM_ISSUES_TOKEN (a fine-grained token that can only write issues in that one
 # repository) and FREEDOM_ISSUES_REPO ("owner/name"). The token never leaves the server: it is not in the repository,
 # not uploaded by tools/deploy.sh and not served (.env is not on the allow-list).
-ISSUES_FILE = os.path.join(ROOT, "data", "state", "issues.json")   # conversation id -> issue number, messages filed
-ISSUES_DAILY = 50                                                  # new issues per day, whole site
+ISSUES_DAILY = 50   # new issues per day, whole site (FREEDOM_ISSUES_DAILY overrides)
 ISSUES_RATE = None  # made in main(), after .env is read
+MAX_COMMENT = 2000
 
 # What the web server may hand out as files. Everything else in the folder is private.
 PAGES = {"index.html", "what-is-freedom.html", "what-is-freedom-plain.html"}  # served without ".html" (clean_path)
@@ -379,8 +379,13 @@ def github(method, path, body):
         return None
 
 
+def no_mentions(text):
+    """Readers' text must not notify GitHub users or teams: "@name" becomes "@\u200bname" (looks the same)."""
+    return re.sub(r"@(?=[\w-])", "@\u200b", str(text))
+
+
 def quote_md(text):
-    return "\n".join("> " + line for line in str(text).splitlines() or [""])
+    return "\n".join("> " + line for line in no_mentions(text).splitlines() or [""])
 
 
 def issue_turns(messages):
@@ -388,44 +393,19 @@ def issue_turns(messages):
     out = []
     for m in messages:
         who = "**Reader**" if m["role"] == "user" else "**Claude**"
-        out.append(f"{who}\n\n{quote_md(m['content']) if m['role'] == 'user' else m['content']}")
+        out.append(f"{who}\n\n{quote_md(m['content']) if m['role'] == 'user' else no_mentions(m['content'])}")
     return "\n\n".join(out)
 
 
-def file_issue(cid, messages, title, page_url, passage, lang):
-    """Open the conversation's issue on its first answer; add the new turns as a comment on later ones.
-    Runs in a background thread so the reader does not wait for GitHub."""
-    repo = os.environ.get("FREEDOM_ISSUES_REPO", "")
-    if not repo or not os.environ.get("FREEDOM_ISSUES_TOKEN") or not re.match(r"^[\w.-]+/[\w.-]+$", repo):
-        return
-    with LOCK:
-        known = load_state(ISSUES_FILE).get(cid)
-    if known is None:
-        if not ISSUES_RATE.allow("all"):
-            return
-        first = next((m["content"] for m in messages if m["role"] == "user"), "")
-        head = " ".join(first.split())
-        name = f"{re.split(r' [›>] ', title)[-1] if title else 'Chat'}: {head[:70]}{'…' if len(head) > 70 else ''}"
-        parts = [f"**Page:** {title}" + (f" ({page_url})" if page_url else ""), f"**Language:** {lang}"]
-        if passage:
-            parts.append(f"**Highlighted** ({passage.get('where') or 'law text'}):\n\n{quote_md(passage.get('quote', ''))}")
-        parts.append(issue_turns(messages))
-        r = github("POST", f"/repos/{repo}/issues", {"title": name[:200], "body": "\n\n".join(parts)[:60000]})
-        if r and r.get("number"):
-            with LOCK:
-                st = load_state(ISSUES_FILE)
-                st[cid] = {"number": r["number"], "filed": len(messages)}
-                save_state(st, ISSUES_FILE)
-        return
-    new = messages[known.get("filed", 0):]
-    if not new:
-        return
-    r = github("POST", f"/repos/{repo}/issues/{known['number']}/comments", {"body": issue_turns(new)[:60000]})
-    if r:
-        with LOCK:
-            st = load_state(ISSUES_FILE)
-            st[cid] = {"number": known["number"], "filed": len(messages)}
-            save_state(st, ISSUES_FILE)
+def comment_issue(comment, quote, where, page, url, lang, messages):
+    """The issue for one reader's comment: title, then a body with the page, the passage, the comment and any chat."""
+    head = " ".join(comment.split())
+    title = f"{re.split(r' [›>] ', page)[-1] if page else 'Comment'}: {no_mentions(head)[:70]}{'…' if len(head) > 70 else ''}"
+    parts = [f"**Page:** {no_mentions(page)}" + (f" ({url})" if url else ""), f"**Language:** {lang}",
+             f"**Highlighted** ({no_mentions(where) or 'law text'}):\n\n{quote_md(quote)}", f"**Comment**\n\n{quote_md(comment)}"]
+    if messages:
+        parts.append("<details><summary>Chat with Claude about this passage</summary>\n\n" + issue_turns(messages) + "\n\n</details>")
+    return title[:200], "\n\n".join(parts)[:60000]
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -590,6 +570,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self.site_interests()
         if u.path == "/api/review":
             return self.review()
+        if u.path == "/api/comment":
+            return self.comment()
         if u.path not in ("/api/interests", "/api/interests/hide", "/api/fixes/approve", "/api/fixes/suggest"):
             return self.send_json(404, {"error": "not found"})
         body = self.read_body()
@@ -704,6 +686,39 @@ class Handler(SimpleHTTPRequestHandler):
                 f.write(json.dumps(rec, ensure_ascii=False) + "\n")
         return self.send_json(200, {"id": rec["id"]})
 
+    def comment(self):
+        """A reader's comment on a highlighted passage of law, published as a GitHub issue. Answers with its address."""
+        repo, token = os.environ.get("FREEDOM_ISSUES_REPO", ""), os.environ.get("FREEDOM_ISSUES_TOKEN", "")
+        if not token or not re.match(r"^[\w.-]+/[\w.-]+$", repo):
+            return self.send_json(503, {"error": "Comments are not set up on this server yet."})
+        body = self.read_body(CHAT_MAX_BODY)
+        if not isinstance(body, dict):
+            return self.send_json(400, {"error": "bad body"})
+        comment = str(body.get("comment", "")).strip()[:MAX_COMMENT]
+        quote = str(body.get("quote", "")).strip()[:MAX_COMMENT]
+        if not comment or not quote:
+            return self.send_json(400, {"error": "empty comment"})
+        url = str(body.get("url", ""))[:500]
+        url = url if re.match(r"^https?://[^\s<>]+$", url) else ""
+        msgs = []
+        for m in (body.get("messages") or [])[-CHAT_MAX_TURNS:]:
+            role, text = (m or {}).get("role"), str((m or {}).get("content", "")).strip()[:CHAT_MAX_MESSAGE]
+            if role in ("user", "assistant") and text:
+                msgs.append({"role": role, "content": text})
+        ip = self.client_ip()
+        if not WRITE_RATE.allow(ip):
+            return self.send_json(429, {"error": "Too many comments in a short time. Please wait a few minutes."})
+        if not ISSUES_RATE.allow("all"):
+            return self.send_json(429, {"error": "The site has taken as many comments as it can today. Please come back tomorrow."})
+        title, text = comment_issue(comment, quote, str(body.get("where", ""))[:300], str(body.get("page", ""))[:300], url,
+                                    getattr(self, "lang", "en") or "en", msgs)
+        r = github("POST", f"/repos/{repo}/issues", {"title": title, "body": text})
+        if not r or not r.get("html_url"):
+            return self.send_json(502, {"error": "The comment could not be published. Please try again later."})
+        with LOCK:
+            audit(ip, "comment", str(r.get("number")), title)
+        return self.send_json(200, {"url": r["html_url"], "number": r.get("number")})
+
     def chat(self):
         """One turn of the requirement-page chat: save the conversation, ask Claude, save the reply."""
         body = self.read_body(CHAT_MAX_BODY)
@@ -732,13 +747,6 @@ class Handler(SimpleHTTPRequestHandler):
         text, err = chat_reply(context, msgs)
         if text:
             save_comment(key, cid, msgs + [{"role": "assistant", "content": text}], title)
-            p = body.get("passage") if isinstance(body.get("passage"), dict) else None
-            passage = {k: str(p.get(k, ""))[:CHAT_MAX_MESSAGE] for k in ("quote", "where")} if p else None
-            page = str(body.get("url", ""))[:500]
-            page = page if re.match(r"^https?://[^\s<>]+$", page) else ""
-            lang = getattr(self, "lang", "en") or "en"
-            threading.Thread(target=file_issue, daemon=True,
-                             args=(cid, msgs + [{"role": "assistant", "content": text}], title, page, passage, lang)).start()
         return self.send_json(200, {"reply": text, "error": err})
 
 

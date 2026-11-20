@@ -897,12 +897,12 @@ function chatBox(key, context, passage) {
   const c = chats.get(key) || { id: newId(), messages: [] };
   chats.set(key, c);
   const log = el('div', { class: 'chat-log', 'aria-live': 'polite' });
-  const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '2000', placeholder: t(passage ? 'comment.placeholder' : 'chat.placeholder'), 'aria-label': t('chat.label') });
+  const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '2000', placeholder: t(passage ? 'passage.askPlaceholder' : 'chat.placeholder'), 'aria-label': t('chat.label') });
   const send = el('button', { type: 'submit', class: 'chat-send' }, t('chat.send'));
   const paint = (pending, error) => {
     log.replaceChildren(...[
       passage ? el('blockquote', { class: 'chat-quote' }, passage.quote) : null,
-      c.messages.length ? null : el('p', { class: 'chat-intro' }, t(passage ? 'comment.intro' : 'chat.intro')),
+      c.messages.length ? null : el('p', { class: 'chat-intro' }, t(passage ? 'passage.intro' : 'chat.intro')),
       ...c.messages.map(m => el('p', { class: `chat-msg ${m.role}` }, m.content)),
       pending ? el('p', { class: 'chat-msg assistant pending' }, t('chat.thinking')) : null,
       error ? el('p', { class: 'chat-error' }, error) : null].filter(Boolean));
@@ -916,8 +916,7 @@ function chatBox(key, context, passage) {
     input.value = ''; send.disabled = true; paint(true);
     let error = null;
     try {
-      const r = await api('POST', 'api/chat', { key, id: c.id, context, messages: c.messages, url: location.href,
-        passage: passage ? { quote: passage.quote, where: passage.where } : undefined });
+      const r = await api('POST', 'api/chat', { key, id: c.id, context, messages: c.messages });
       if (r.reply) c.messages.push({ role: 'assistant', content: r.reply }); else error = r.error || t('chat.noAnswer');
     } catch (err) { error = err.refused ? err.message : t('chat.needsServer'); }
     send.disabled = false; paint(false, error); input.focus();
@@ -975,17 +974,20 @@ function chatButton(key, context) {
       draggable(pop, pop.querySelector('.chat-head'));
       box.input.focus();
     } });
-  btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>';
+  // A question mark: asking Claude, as on highlighted law text (a speech bubble there means a comment for the editors).
+  btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a2.9 2.9 0 1 1 4 2.6c-.7.3-1.2 1-1.2 1.8v.8"/><path d="M12 17.3h.01"/></svg>';
   wrap.prepend(btn);
   return wrap;
 }
 
-// ---------- comments on highlighted law text ----------
-// Selecting words in a quoted law on a requirement page shows a small comment icon just off the selection's top right
-// corner (Orlin). It opens a chat about that passage. Like every chat, the conversation reaches the editors: server.py
-// files it as a GitHub issue, with the passage and where it is (one button, Send; Orlin).
+// ---------- questions and comments on highlighted law text ----------
+// Selecting words in a quoted law on a requirement page shows two small icons just off the selection's top right corner
+// (Orlin): a question mark opens a chat with Claude about the passage; a speech bubble opens a box for a comment, which
+// server.py publishes as a GitHub issue (with the passage, where it is, and any chat about it) for the editors.
 const lawSel = { btn: null, pop: null, base: null };  // base: this requirement page's chat key and text, set by render()
 const hashText = s => { let h = 5381; for (const ch of s) h = (h * 33 + ch.codePointAt(0)) >>> 0; return h.toString(36); };
+const ICON_ASK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9a3 3 0 1 1 4.2 2.75c-.75.34-1.2 1.07-1.2 1.9V15"/><path d="M12 19h.01"/></svg>';
+const ICON_COMMENT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12.5h5"/></svg>';
 function selectedPassage() {
   const sel = getSelection();
   if (!sel || sel.isCollapsed || !sel.rangeCount || !lawSel.base) return null;
@@ -999,7 +1001,7 @@ function selectedPassage() {
   if (quote.length < 2) return null;
   const law = first.closest('section')?.querySelector('h3')?.textContent.trim() || '';
   const ref = first.querySelector('.ref')?.textContent.trim() || '';
-  // The top line of the selection, and its right end: where the icon goes.
+  // The top line of the selection, and its right end: where the icons go.
   const rects = [...range.getClientRects()].filter(r => r.width > 0 && r.height > 0);
   if (!rects.length) return null;
   const top = Math.min(...rects.map(r => r.top));
@@ -1011,27 +1013,57 @@ function showLawIcon() {
   const p = selectedPassage();
   if (!p) return hideLawIcon();
   if (!lawSel.btn) {
-    lawSel.btn = el('button', { type: 'button', class: 'sel-chat', 'aria-label': t('comment.button'), title: t('comment.button') });
-    lawSel.btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>';
-    // Pressing the icon must not clear the selection before its click.
+    const ask = el('button', { type: 'button', class: 'sel-ask', 'aria-label': t('passage.ask'), title: t('passage.ask') });
+    const comment = el('button', { type: 'button', class: 'sel-comment', 'aria-label': t('passage.comment'), title: t('passage.comment') });
+    ask.innerHTML = ICON_ASK; comment.innerHTML = ICON_COMMENT;
+    lawSel.btn = el('div', { class: 'sel-tools' }, ask, comment);
+    // Pressing an icon must not clear the selection before its click.
     lawSel.btn.addEventListener('pointerdown', e => e.preventDefault());
     lawSel.btn.addEventListener('mousedown', e => e.preventDefault());
     document.body.append(lawSel.btn);
   }
-  lawSel.btn.onclick = () => { hideLawIcon(); openPassageChat(p); };
-  const size = 30, view = document.documentElement.clientWidth;
-  const x = Math.min(p.right + 2, view - size - 6), y = Math.max(6, p.top - size + 4);
+  const [ask, comment] = lawSel.btn.children;
+  ask.onclick = () => { hideLawIcon(); openPassage(p, 'ask'); };
+  comment.onclick = () => { hideLawIcon(); openPassage(p, 'comment'); };
+  const w = 66, h = 30, view = document.documentElement.clientWidth;
+  const x = Math.min(p.right + 2, view - w - 6), y = Math.max(6, p.top - h + 4);
   Object.assign(lawSel.btn.style, { left: `${x + scrollX}px`, top: `${y + scrollY}px` });
 }
-function openPassageChat(p) {
+const passageKey = p => `${lawSel.base.key}|q|${hashText(p.quote)}`.slice(-200);
+// The box for a comment on a passage: published as a GitHub issue, with any chat the reader had about the passage.
+function commentBox(p) {
+  const input = el('textarea', { rows: '4', maxlength: '2000', placeholder: t('passage.placeholder'), 'aria-label': t('passage.comment') });
+  const status = el('p', { class: 'chat-intro', 'aria-live': 'polite' }, t('passage.public'));
+  const send = el('button', { type: 'submit', class: 'chat-send' }, t('chat.send'));
+  const form = el('form', { class: 'chat-form', onsubmit: async e => {
+    e.preventDefault();
+    const comment = input.value.trim();
+    if (!comment || send.disabled) return input.focus();
+    send.disabled = true; status.className = 'chat-intro'; status.textContent = t('passage.sending');
+    try {
+      const r = await api('POST', 'api/comment', { comment, quote: p.quote, where: p.where, page: lawSel.base.title, url: location.href,
+        messages: chats.get(passageKey(p))?.messages || [] });
+      input.value = '';
+      status.replaceChildren(t('passage.sent'), ' ', r.url ? el('a', { href: r.url, target: '_blank', rel: 'noopener' }, t('passage.see')) : '');
+    } catch (err) {
+      status.className = 'chat-error';
+      status.textContent = { 503: t('passage.notSetUp'), 429: t('passage.tooMany'), 502: t('passage.failed') }[err.status] || (err.refused ? err.message : t('chat.needsServer'));
+    }
+    send.disabled = false;
+  } }, input, send);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) form.requestSubmit(); });
+  const log = el('div', { class: 'chat-log' }, el('blockquote', { class: 'chat-quote' }, p.quote), status);
+  return { log, form, input };
+}
+function openPassage(p, mode) {
   lawSel.pop?.remove();
   const { key, context } = lawSel.base;
-  const ckey = `${key}|q|${hashText(p.quote)}`.slice(-200);
   const ctx = `${context}\n\nThe reader highlighted this passage of ${p.where || 'the law quoted above'}:\n"${p.quote}"\nTalk with them about this passage.`.slice(0, 12000);
-  const box = chatBox(ckey, ctx, p);
+  const box = mode === 'ask' ? chatBox(passageKey(p), ctx, p) : commentBox(p);
+  const title = t(mode === 'ask' ? 'passage.askTitle' : 'passage.commentTitle');
   const close = () => { pop.remove(); if (lawSel.pop === pop) lawSel.pop = null; };
-  const pop = el('div', { class: 'chat-pop sel-pop', role: 'dialog', 'aria-label': t('comment.title') },
-    el('div', { class: 'chat-head', title: t('chat.drag') }, el('strong', {}, t('comment.title')), el('button', { type: 'button', class: 'chat-close', 'aria-label': t('chat.close'), onclick: close }, '×')),
+  const pop = el('div', { class: 'chat-pop sel-pop', role: 'dialog', 'aria-label': title },
+    el('div', { class: 'chat-head', title: t('chat.drag') }, el('strong', {}, title), el('button', { type: 'button', class: 'chat-close', 'aria-label': t('chat.close'), onclick: close }, '×')),
     box.log, box.form);
   pop.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   pop.dataset.key = key;
@@ -1324,7 +1356,7 @@ function render() {
     const chatKey = [loc.address.country_code || 'xx', ...state.path].join('|').slice(0, 200);
     const context = pageContext(steps.map(s => s.name), prop, j.laws, catalog);
     const chatBtn = chatButton(chatKey, context);
-    lawSel.base = { key: chatKey, context };
+    lawSel.base = { key: chatKey, context, title: steps.map(s => s.name).join(' › ') };
     keepPassageChat = chatKey;
     // The chat button sits in the top right corner of the verdict band (outside the panel, so its pop-up is not clipped).
     if (prop.provisions?.length) screen.push(el('div', { class: 'req has-chat' }, provisionsPanel(prop.provisions, j.laws, explainer, prop), chatBtn));
