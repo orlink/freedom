@@ -94,6 +94,31 @@ function showStart() {
   map.setView([46, 15], 4);
 }
 
+// When a place is chosen, bring its result into view (Orlin 2026-11-20): the page scrolls just far enough to show the
+// trail, the chips and the legend, and never so far that the pin leaves the screen ("scroll the map just enough so
+// that the pin is visible"). Where the pin would stop the scroll short, the map first slides the pin down inside
+// itself, as far as it can, to make room. Nothing moves when the result already fits. Clicking chips does not scroll.
+function revealResult() {
+  const last = [$('#legend'), $('#tree')].find(n => n && !n.hidden && n.offsetHeight);
+  if (!last || !state.loc) return;
+  const need = last.getBoundingClientRect().bottom + 16 - innerHeight;
+  if (need <= 0) return;
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const head = document.querySelector('.top')?.getBoundingClientRect().bottom || 0;
+  // Never past the place line under the sticky header.
+  let by = Math.min(need, $('#place').getBoundingClientRect().top - head - 8);
+  const pin = marker?.getElement()?.getBoundingClientRect();
+  if (pin?.height) {
+    const room = pin.top - head - 8;   // how far the page can go before the pin slips under the header
+    if (by > room) {
+      const slide = Math.max(0, Math.min(by - room, $('#map').getBoundingClientRect().bottom - pin.bottom - 12));
+      if (slide > 0) map.panBy([0, -slide], { animate: !calm });
+      by = room + slide;
+    }
+  }
+  if (by > 0) scrollBy({ top: by, behavior: calm ? 'auto' : 'smooth' });
+}
+
 async function locate(lat, lon, { zoom, result, keepPath } = {}) {
   setStarted(true);
   busy(true);
@@ -137,6 +162,8 @@ async function locate(lat, lon, { zoom, result, keepPath } = {}) {
     if (state.loc !== loc) return;
     render();
     stop();
+    // After the layout has settled (the level page measures its groups on the next frame).
+    requestAnimationFrame(() => requestAnimationFrame(revealResult));
     recordVisit(loc);
     if (!early && await withPopulation && state.loc === loc) {
       document.body.classList.add('quiet');
