@@ -556,6 +556,69 @@
               "label": "Съвет на директорите",
               "gender": "m"
             }
+          },
+          {
+            "type": "executive",
+            "name": "CEO",
+            "label": "CEO",
+            "bg": {
+              "name": "Управител",
+              "label": "Управител",
+              "gender": "m"
+            },
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "A company's day-to-day business is run by its managers or chief executive, appointed by the board of an AG or by the members of a GmbH.",
+                "laws": [
+                  "or"
+                ],
+                "bg": {
+                  "explanation": "Текущата дейност на дружеството се ръководи от управителите или главния изпълнителен директор, назначени от съвета на директорите на AG или от съдружниците в GmbH."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Their acts bind the company towards others, as they represent it.",
+                "laws": [
+                  "or"
+                ],
+                "bg": {
+                  "explanation": "Действията им обвързват дружеството, тъй като го представляват."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "or"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "Each manager is appointed by name.",
+                "laws": [
+                  "or"
+                ],
+                "bg": {
+                  "explanation": "Всеки управител се назначава поименно."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The board or the members can remove them at any time.",
+                "laws": [
+                  "or"
+                ],
+                "bg": {
+                  "explanation": "Съветът на директорите или съдружниците могат да ги освободят по всяко време."
+                }
+              }
+            ]
           }
         ]
       }
