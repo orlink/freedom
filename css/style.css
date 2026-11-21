@@ -159,7 +159,7 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .switch.big .sw .kind-ico { width: 16px; height: 16px; }
 .switch .sw.na .kind-ico { color: var(--muted); }
 .switch .mini:disabled { cursor: not-allowed; color: var(--muted); }
-.switch .gap { height: 5px; }
+.switch .gap { flex: none; height: 1px; margin: 4px 14px; background: var(--line); }
 .switch .tick { flex: none; width: 7px; height: 12px; margin: 0 5px 3px 6px; border-right: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; transform: rotate(45deg); }
 /* Under the title, whose name is larger; the current row keeps the title's own size. */
 .switch.big { border-radius: 24px; }
@@ -385,6 +385,7 @@ html.has-place .start, html.has-place .sample { display: none; }
 /* Level screen: direct and representative mechanisms side by side in one row, each group labelled on its border.
    A group is as wide as its chips (--n) when there is room; otherwise both shrink and their chips wrap inside them. */
 .mech-groups { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 16px; width: 100%; }
+.mech-groups.level-groups + .mech-groups.level-groups { margin-top: 18px; }
 .tree-row.interests + .mech-groups, .tree-row.interests + .inst-tree { margin-top: 14px; padding-top: 22px; border-top: 1px dashed #dcbfb8; }
 /* Core decision-making institutions: a title that branches, like a tree, into the Direct and Representative groups. */
 .inst-tree { width: 100%; }
@@ -397,6 +398,7 @@ html.has-place .start, html.has-place .sample { display: none; }
   margin: 0; padding: 14px 12px 12px; border: 1.5px solid #d9b8b0; border-radius: 16px; }
 .mech-group legend { margin: 0 auto; padding: 0 8px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--coral-ink); }
 @media (max-width: 600px) { .mech-group { padding: 12px 6px 8px; } .mech-group .tb { width: calc(50% - 4px); } }
+@media (max-width: 600px) { .level-groups .mech-group { flex-basis: 100%; max-width: none; } }
 
 /* Shared-interest chips are a third smaller than institution chips, so the two read as different things:
    same font, less padding, and only as wide as the label needs (up to an institution chip's width). */
