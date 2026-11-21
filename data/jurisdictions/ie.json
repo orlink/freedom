@@ -1386,6 +1386,69 @@
               "label": "Съвет на директорите",
               "gender": "m"
             }
+          },
+          {
+            "type": "executive",
+            "name": "CEO",
+            "label": "CEO",
+            "bg": {
+              "name": "Управител",
+              "label": "Управител",
+              "gender": "m"
+            },
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The board may appoint a managing director or chief executive to run the company's day-to-day business.",
+                "laws": [
+                  "ca2014"
+                ],
+                "bg": {
+                  "explanation": "Съветът на директорите може да назначи управляващ директор или главен изпълнителен директор, който да ръководи текущата дейност на дружеството."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Their acts bind the company within the powers the board gives them.",
+                "laws": [
+                  "ca2014"
+                ],
+                "bg": {
+                  "explanation": "Действията им обвързват дружеството в рамките на правомощията, дадени им от съвета на директорите."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "ca2014"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "The board appoints the managing director by name.",
+                "laws": [
+                  "ca2014"
+                ],
+                "bg": {
+                  "explanation": "Съветът на директорите назначава управляващия директор поименно."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The board can revoke the appointment.",
+                "laws": [
+                  "ca2014"
+                ],
+                "bg": {
+                  "explanation": "Съветът на директорите може да оттегли назначението."
+                }
+              }
+            ]
           }
         ]
       }

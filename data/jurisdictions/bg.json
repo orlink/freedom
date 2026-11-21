@@ -1408,6 +1408,69 @@
               "label": "Съвет на директорите",
               "gender": "m"
             }
+          },
+          {
+            "type": "executive",
+            "name": "CEO",
+            "label": "CEO",
+            "bg": {
+              "name": "Управител",
+              "label": "Управител",
+              "gender": "m"
+            },
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "A company's day-to-day business is run by its managers: the управител of an ООД, or the executive directors of an АД.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Текущата дейност на дружеството се ръководи от управителя на ООД или от изпълнителните директори на АД."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Their acts bind the company towards others, as they represent it.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Действията им обвързват дружеството, тъй като го представляват."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "ta"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "The general meeting of an ООД appoints the управител by name; in an АД the board of directors appoints the executive directors.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Общото събрание на ООД избира управителя поименно; в АД изпълнителните директори се избират от съвета на директорите."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "Whoever appointed them can dismiss them at any time.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Органът, който ги е избрал, може да ги освободи по всяко време."
+                }
+              }
+            ]
           }
         ]
       }
@@ -2145,6 +2208,182 @@
               "name": "Управителен съвет",
               "gender": "m"
             }
+          },
+          {
+            "type": "executive",
+            "name": "Manager",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Instead of a management council, the general assembly can elect a single manager, who can also be a professional management company.",
+                "laws": [
+                  "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 19",
+                        "text": [
+                          "(1) The executive body of the condominium is the management board (manager).",
+                          "(2) The management board (manager) is elected for a term of up to two years.",
+                          "(3) The management board consists of an odd number of members, set by decision of the general assembly, but not fewer than three.",
+                          "(4) The members of the management board elect a chair from among themselves.",
+                          "…",
+                          "(8) By decision of the general assembly, taken by a majority of more than 50 per cent of the shares in the common parts, the powers of the management board (manager), or part of them, may be entrusted to a professional manager-trader entered in the register under Art. 47a(1)(1)."
+                        ],
+                        "original": [
+                          "(1) Изпълнителният орган на етажната собственост е управителен съвет (управител).",
+                          "(2) Управителен съвет (управител) се избира за срок до две години.",
+                          "(3) Управителният съвет се състои от нечетен брой членове, определен с решение на общото събрание, но не по-малко от трима.",
+                          "(4) Членовете на управителния съвет избират от своя състав председател.",
+                          "(8) По решение на общото събрание, взето с мнозинство повече от 50 на сто идеални части от общите части на етажната собственост, правомощията или част от тях на управителния съвет (управителя) могат да бъдат възлагани на професионален управител-търговец, вписан в регистъра по чл. 47а, ал. 1, т. 1. Договорът за възлагане се одобрява с решение на общото събрание, взето с мнозинство повече от 50 на сто идеални части от общите части на етажната собственост, и се сключва от упълномощено от общото събрание лице за срок до две години. Договор, сключен за по-дълъг срок, се смята за сключен за две години, а клауза, предвиждаща автоматично подновяване на договора или превръщането му в безсрочен, се смята за недействителна. В срока на договора избраният професионален управител-търговец, вписан в регистъра по чл. 47а, ал. 1, т. 1, има правата, задълженията и отговорността на управителния съвет (управителя) по този закон."
+                        ],
+                        "bg": {
+                          "ref": "Чл. 19"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Вместо управителен съвет общото събрание може да избере един управител, който може да бъде и професионален управител."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its decisions bind the owners, within the matters the general assembly leaves to it.",
+                "laws": [
+                  "cma"
+                ],
+                "bg": {
+                  "explanation": "Решенията му обвързват собствениците по въпросите, които общото събрание му оставя."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "explanation": "The manager carries out the assembly's decisions, prepares the budget and repair plan, organises maintenance and represents the owners. It decides alone only on ordinary management and urgent repairs; the rules, budget, contributions and major works are the general assembly's.",
+                "laws": [
+                  "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 23(1)",
+                        "text": [
+                          "The management board (manager):",
+                          "1. organises the implementation of the general assembly's decisions;",
+                          "2. monitors compliance with the internal rules of the condominium;",
+                          "…",
+                          "4. prepares the annual budget for the management, maintenance and use of the common parts and the annual plan for repairs, reconstruction, alterations and other works in the building, and reports on their implementation, and organises the implementation of the adopted annual budget;",
+                          "5. represents the condominium in its relations with local authorities and other legal persons;",
+                          "…",
+                          "7a. organises routine maintenance of the building related to the safety of living in it;",
+                          "…",
+                          "13. exercises other powers entrusted to it by the general assembly."
+                        ],
+                        "original": [
+                          "(1) Управителният съвет (управителят):",
+                          "1. организира изпълнението на решенията на общото събрание;",
+                          "2. следи за спазването на вътрешния ред в етажната собственост;",
+                          "4. изготвя годишния бюджет за управлението, поддържането и ползването на общите части на етажната собственост и годишния план за извършване на ремонти, реконструкции, преустройства и други дейности в сградата, както и отчети за изпълнението им, и организира изпълнението на приетия годишен бюджет на етажната собственост;",
+                          "5. представлява етажната собственост в отношенията и с органите на местната власт и с други правни субекти;",
+                          "7а. организира дейности по текущото поддържане на сградата, свързани със сигурността на обитаване;",
+                          "13. осъществява други правомощия, възложени му от общото събрание."
+                        ],
+                        "bg": {
+                          "ref": "Чл. 23, ал. 1"
+                        }
+                      },
+                      {
+                        "ref": "Article 23(2)",
+                        "text": "The management board (manager) reports annually, and at the end of its term, to the general assembly. The report and the minutes of board meetings are announced in the manner of Art. 16(7).",
+                        "original": "(2) Управителният съвет (управителят) се отчита ежегодно и в края на мандата си с доклад пред общото събрание. Докладът и протоколите от заседанията на управителния съвет се оповестяват по реда на чл. 16, ал. 7.",
+                        "bg": {
+                          "ref": "Чл. 23, ал. 2"
+                        }
+                      },
+                      {
+                        "ref": "Article 23(3)",
+                        "text": "The chair of the management board (the manager) represents the owners and users in all acts of ordinary management of the condominium. For creating a right of use or of building, adding storeys or extensions, or changing the use of common parts, he represents the owners only if authorised by the general assembly.",
+                        "original": "(3) Председателят на управителния съвет (управителят) представлява собствениците и ползвателите при извършване на всички действия, които са във връзка с обикновеното управление на етажната собственост. За действия по учредяване на право на ползване, строеж, надстрояване, пристрояване или промяна на предназначението на общи части той представлява собствениците, ако бъде упълномощен от общото събрание.",
+                        "bg": {
+                          "ref": "Чл. 23, ал. 3"
+                        }
+                      },
+                      {
+                        "ref": "Article 11(1)(14)",
+                        "text": "[The general assembly] may authorise the management board (manager) to decide on urgent repairs or spending that cannot wait;",
+                        "original": "14. може да упълномощи управителния съвет (управителя) да приеме решение за извършване на неотложни ремонти или на разходи, които не търпят отлагане;",
+                        "bg": {
+                          "ref": "Чл. 11, ал. 1, т. 14"
+                        }
+                      },
+                      {
+                        "ref": "Article 49(1)",
+                        "text": "Where the building or the separate entrance under condominium ownership needs urgent repair, money from the fund under Art. 50 is released immediately by decision of the management board (manager).",
+                        "original": "(1) В случаи, когато сградата или отделният вход в режим на етажна собственост се нуждаят от неотложен ремонт, с решение на управителния съвет (управителя) незабавно се отпускат финансови средства от фонда по чл. 50.",
+                        "bg": {
+                          "ref": "Чл. 49, ал. 1"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Управителят изпълнява решенията на събранието, изготвя бюджета и плана за ремонт, организира поддръжката и представлява собствениците. Сам решава само текущото управление и неотложните ремонти; правилникът, бюджетът, вноските и големите ремонти са на общото събрание."
+                }
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "The general assembly elects and dismisses the manager by name.",
+                "laws": [
+                  "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 11(1)(2)",
+                        "text": "[The general assembly] elects and dismisses members of the management board (manager), as well as a treasurer;",
+                        "original": "2. избира и освобождава членове на управителния съвет (управител), както и касиер;",
+                        "bg": {
+                          "ref": "Чл. 11, ал. 1, т. 2"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Общото събрание избира и освобождава управителя поименно."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The term is up to two years, and the general assembly can end it early for failure to perform.",
+                "laws": [
+                  "cma"
+                ],
+                "bg": {
+                  "explanation": "Мандатът е до две години и общото събрание може да го прекрати предсрочно при неизпълнение на задълженията."
+                }
+              }
+            ],
+            "bg": {
+              "name": "Управител",
+              "label": "Управител",
+              "gender": "m"
+            },
+            "label": "Manager"
           }
         ]
       }
@@ -2613,6 +2852,180 @@
               "name": "Управителен съвет (цялата сграда)",
               "gender": "m"
             }
+          },
+          {
+            "type": "executive",
+            "name": "Manager (whole building)",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "weak",
+                "explanation": "Where the owners manage each entrance separately, each entrance has its own management council or manager and the building as a whole has none. A joint assembly of the entrances is called by the council or manager of one of them.",
+                "laws": [
+                  "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 8(2)",
+                        "text": "Where the building has more than one entrance, management may be carried out in each separate entrance. That management also covers the common parts of the building adjoining the separate units of the entrance concerned.",
+                        "original": "(2) Когато сградата е с повече от един вход, управлението може да се осъществява във всеки отделен вход. Това управление обхваща и общите части на сградата, прилежащи към самостоятелните обекти на съответния вход.",
+                        "bg": {
+                          "ref": "Чл. 8, ал. 2"
+                        }
+                      },
+                      {
+                        "ref": "Article 18(2)",
+                        "text": "(2) The joint general assembly is convened on the initiative of the management board (manager) of one of the condominiums and is held under the general rules for holding a general assembly under this law.",
+                        "original": "(2) Съвместното общо събрание се свиква по инициатива на управителния съвет (управителя) на една от етажните собствености и се провежда по общите правила за провеждане на общо събрание по този закон.",
+                        "bg": {
+                          "ref": "Чл. 18, ал. 2"
+                        }
+                      },
+                      {
+                        "ref": "Article 8a (new)",
+                        "fix": [
+                          "(1) Where a building with more than one entrance is managed in each separate entrance, all owners of the building also form a condominium of the building, which manages the common parts serving the whole building, such as the land, foundations, roof, external walls and main installations.",
+                          "(2) The condominium of the building has its own general assembly of all owners and its own management board (manager), and its general assembly sets monthly contributions to its own 'Repair and Renovation' fund. The provisions of this Act on the general assembly, the management board (manager), contributions and the fund apply to it.",
+                          "(3) Decisions concerning only the common parts adjoining one entrance remain with the condominium of that entrance."
+                        ],
+                        "why": "Gives the whole building a standing assembly, manager and fund with the Act's tools, as for a single-entrance building, while keeping each entrance's own management.",
+                        "bg": {
+                          "ref": "Чл. 8а (нов)",
+                          "fix": [
+                            "(1) Когато сграда с повече от един вход се управлява поотделно във всеки вход, всички собственици в сградата образуват и етажна собственост на сградата, която управлява общите части, обслужващи цялата сграда, като терена, основите, покрива, външните стени и главните инсталации.",
+                            "(2) Етажната собственост на сградата има свое общо събрание на всички собственици и свой управителен съвет (управител), а общото ѝ събрание определя месечни вноски в собствен фонд „Ремонт и обновяване“. За нея се прилагат разпоредбите на този закон за общото събрание, управителния съвет (управителя), вноските и фонда.",
+                            "(3) Решенията, които засягат само общите части към един вход, остават на етажната собственост на този вход."
+                          ],
+                          "why": "Дава на цялата сграда постоянно събрание, управител и фонд с инструментите на закона, както при сграда с един вход, като запазва отделното управление на всеки вход."
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Когато собствениците управляват всеки вход отделно, всеки вход има свой управителен съвет или управител, а сградата като цяло няма. Общо събрание на входовете се свиква от съвета или управителя на един от тях."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its decisions bind the owners, within the matters the general assembly leaves to it.",
+                "laws": [
+                  "cma"
+                ],
+                "bg": {
+                  "explanation": "Решенията му обвързват собствениците по въпросите, които общото събрание му оставя."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "explanation": "The manager carries out the assembly's decisions, prepares the budget and repair plan, organises maintenance and represents the owners. It decides alone only on ordinary management and urgent repairs; the rules, budget, contributions and major works are the general assembly's.",
+                "laws": [
+                  "cma"
+                ],
+                "provisions": [
+                  {
+                    "law": "cma",
+                    "items": [
+                      {
+                        "ref": "Article 23(1)",
+                        "text": [
+                          "The management board (manager):",
+                          "1. organises the implementation of the general assembly's decisions;",
+                          "2. monitors compliance with the internal rules of the condominium;",
+                          "…",
+                          "4. prepares the annual budget for the management, maintenance and use of the common parts and the annual plan for repairs, reconstruction, alterations and other works in the building, and reports on their implementation, and organises the implementation of the adopted annual budget;",
+                          "5. represents the condominium in its relations with local authorities and other legal persons;",
+                          "…",
+                          "7a. organises routine maintenance of the building related to the safety of living in it;",
+                          "…",
+                          "13. exercises other powers entrusted to it by the general assembly."
+                        ],
+                        "original": [
+                          "(1) Управителният съвет (управителят):",
+                          "1. организира изпълнението на решенията на общото събрание;",
+                          "2. следи за спазването на вътрешния ред в етажната собственост;",
+                          "4. изготвя годишния бюджет за управлението, поддържането и ползването на общите части на етажната собственост и годишния план за извършване на ремонти, реконструкции, преустройства и други дейности в сградата, както и отчети за изпълнението им, и организира изпълнението на приетия годишен бюджет на етажната собственост;",
+                          "5. представлява етажната собственост в отношенията и с органите на местната власт и с други правни субекти;",
+                          "7а. организира дейности по текущото поддържане на сградата, свързани със сигурността на обитаване;",
+                          "13. осъществява други правомощия, възложени му от общото събрание."
+                        ],
+                        "bg": {
+                          "ref": "Чл. 23, ал. 1"
+                        }
+                      },
+                      {
+                        "ref": "Article 23(2)",
+                        "text": "The management board (manager) reports annually, and at the end of its term, to the general assembly. The report and the minutes of board meetings are announced in the manner of Art. 16(7).",
+                        "original": "(2) Управителният съвет (управителят) се отчита ежегодно и в края на мандата си с доклад пред общото събрание. Докладът и протоколите от заседанията на управителния съвет се оповестяват по реда на чл. 16, ал. 7.",
+                        "bg": {
+                          "ref": "Чл. 23, ал. 2"
+                        }
+                      },
+                      {
+                        "ref": "Article 23(3)",
+                        "text": "The chair of the management board (the manager) represents the owners and users in all acts of ordinary management of the condominium. For creating a right of use or of building, adding storeys or extensions, or changing the use of common parts, he represents the owners only if authorised by the general assembly.",
+                        "original": "(3) Председателят на управителния съвет (управителят) представлява собствениците и ползвателите при извършване на всички действия, които са във връзка с обикновеното управление на етажната собственост. За действия по учредяване на право на ползване, строеж, надстрояване, пристрояване или промяна на предназначението на общи части той представлява собствениците, ако бъде упълномощен от общото събрание.",
+                        "bg": {
+                          "ref": "Чл. 23, ал. 3"
+                        }
+                      },
+                      {
+                        "ref": "Article 11(1)(14)",
+                        "text": "[The general assembly] may authorise the management board (manager) to decide on urgent repairs or spending that cannot wait;",
+                        "original": "14. може да упълномощи управителния съвет (управителя) да приеме решение за извършване на неотложни ремонти или на разходи, които не търпят отлагане;",
+                        "bg": {
+                          "ref": "Чл. 11, ал. 1, т. 14"
+                        }
+                      },
+                      {
+                        "ref": "Article 49(1)",
+                        "text": "Where the building or the separate entrance under condominium ownership needs urgent repair, money from the fund under Art. 50 is released immediately by decision of the management board (manager).",
+                        "original": "(1) В случаи, когато сградата или отделният вход в режим на етажна собственост се нуждаят от неотложен ремонт, с решение на управителния съвет (управителя) незабавно се отпускат финансови средства от фонда по чл. 50.",
+                        "bg": {
+                          "ref": "Чл. 49, ал. 1"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Управителят изпълнява решенията на събранието, изготвя бюджета и плана за ремонт, организира поддръжката и представлява собствениците. Сам решава само текущото управление и неотложните ремонти; правилникът, бюджетът, вноските и големите ремонти са на общото събрание."
+                }
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "The general assembly elects and dismisses the manager by name.",
+                "laws": [
+                  "cma"
+                ],
+                "bg": {
+                  "explanation": "Общото събрание избира и освобождава управителя поименно."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The term is up to two years, and the general assembly can end it early for failure to perform.",
+                "laws": [
+                  "cma"
+                ],
+                "bg": {
+                  "explanation": "Мандатът е до две години и общото събрание може да го прекрати предсрочно при неизпълнение на задълженията."
+                }
+              }
+            ],
+            "bg": {
+              "name": "Управител (цялата сграда)",
+              "label": "Управител (цялата сграда)",
+              "gender": "m"
+            },
+            "label": "Manager (whole building)"
           }
         ]
       }
