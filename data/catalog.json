@@ -1,5 +1,36 @@
 {
   "$comment": "Shared vocabulary. Jurisdiction files reference levels, mechanism types and property types by id. See docs/DATA.md.",
+  "levelGroups": [
+    {
+      "id": "residential",
+      "name": "Residential",
+      "description": "Communities you belong to by where you live: your home, building, neighbourhood, municipality, country.",
+      "bg": {
+        "name": "По местоживеене"
+      }
+    },
+    {
+      "id": "individual",
+      "name": "Individual",
+      "bg": {
+        "name": "Лични"
+      }
+    },
+    {
+      "id": "economic",
+      "name": "Economic",
+      "bg": {
+        "name": "Икономически"
+      }
+    },
+    {
+      "id": "noneconomic",
+      "name": "Non-economic",
+      "bg": {
+        "name": "Неикономически"
+      }
+    }
+  ],
   "levels": [
     {
       "id": "individual",
@@ -9,7 +40,8 @@
       "description": "Decisions about one's own life, body, property and time.",
       "bg": {
         "name": "Лични"
-      }
+      },
+      "group": "individual"
     },
     {
       "id": "company",
@@ -19,7 +51,8 @@
       "description": "The shareholders of a company (a corporation or LLC; АД or ООД in Bulgaria, AG or GmbH in Switzerland): its business, capital, profits and risks.",
       "bg": {
         "name": "Дружество"
-      }
+      },
+      "group": "economic"
     },
     {
       "id": "partnership",
@@ -29,7 +62,8 @@
       "description": "Partners who run a business together and answer for it personally (a general or limited partnership).",
       "bg": {
         "name": "Съдружие"
-      }
+      },
+      "group": "economic"
     },
     {
       "id": "cooperative",
@@ -39,7 +73,8 @@
       "description": "Members who own and run an enterprise together to meet their common needs.",
       "bg": {
         "name": "Кооперация"
-      }
+      },
+      "group": "economic"
     },
     {
       "id": "association",
@@ -49,7 +84,8 @@
       "description": "Members governing their own non-profit association or club.",
       "bg": {
         "name": "Сдружение"
-      }
+      },
+      "group": "noneconomic"
     },
     {
       "id": "home",
@@ -62,7 +98,8 @@
       "bg": {
         "name": "Дом",
         "informal": "Хората, които живеят в дома, решават помежду си, неформално, без формални институции."
-      }
+      },
+      "group": "residential"
     },
     {
       "id": "entrance",
@@ -73,7 +110,8 @@
       "description": "Residents sharing one section (entrance, вход) of an apartment building.",
       "bg": {
         "name": "Вход"
-      }
+      },
+      "group": "residential"
     },
     {
       "id": "building",
@@ -87,7 +125,8 @@
       "description": "Owners and residents of one building: roof, facade, elevator, common areas.",
       "bg": {
         "name": "Жилищна сграда"
-      }
+      },
+      "group": "residential"
     },
     {
       "id": "neighbourhood",
@@ -103,7 +142,8 @@
       "description": "A city quarter (квартал): walkways, playgrounds, kindergartens, parking.",
       "bg": {
         "name": "Квартал"
-      }
+      },
+      "group": "residential"
     },
     {
       "id": "village",
@@ -117,7 +157,8 @@
       "description": "A village community.",
       "bg": {
         "name": "Село"
-      }
+      },
+      "group": "residential"
     },
     {
       "id": "town",
@@ -130,7 +171,8 @@
       "description": "A town community.",
       "bg": {
         "name": "Град"
-      }
+      },
+      "group": "residential"
     },
     {
       "id": "municipality",
@@ -145,7 +187,8 @@
       "description": "The basic unit of local self-government.",
       "bg": {
         "name": "Община"
-      }
+      },
+      "group": "residential"
     },
     {
       "id": "county",
@@ -159,7 +202,8 @@
       "description": "Intermediate level: county, district, oblast, province.",
       "bg": {
         "name": "Област"
-      }
+      },
+      "group": "residential"
     },
     {
       "id": "state",
@@ -172,7 +216,8 @@
       "description": "Member state of a federation (a US state, a German Land); a country may give it its own name in `levelNames`, e.g. Canton in Switzerland. Not applicable in unitary countries.",
       "bg": {
         "name": "Щат"
-      }
+      },
+      "group": "residential"
     },
     {
       "id": "country",
@@ -185,7 +230,8 @@
       "description": "The country (the sovereign state).",
       "bg": {
         "name": "Държава"
-      }
+      },
+      "group": "residential"
     },
     {
       "id": "union",
@@ -196,7 +242,8 @@
       "description": "Supranational union, e.g. the European Union.",
       "bg": {
         "name": "Съюз"
-      }
+      },
+      "group": "residential"
     }
   ],
   "mechanisms": {

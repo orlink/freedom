@@ -1182,7 +1182,7 @@ function render() {
       const mechName = mech && mechLabel(mech, mechs, catalog, levelId);
       // depth 0: the level itself; 1: the same institution there; 2: the same requirement of that institution.
       const at = (x, depth) => {
-        const o = { label: levelLabel(x.l), current: x.l.id === levelId, group: x.l.kind === 'territorial' };
+        const o = { label: levelLabel(x.l), current: x.l.id === levelId, group: x.l.group };
         if (!depth) return { ...o, tone: x.tone, word: TONE_WORDS.levels[x.tone], path: [x.l.id] };
         // The same institution there (of several of one type, the one in the same position).
         const ms = mechsOf(x.lvl, branchId);
@@ -1316,13 +1316,20 @@ function render() {
   const screen = [];
   let keepPassageChat = null;
   if (!cur) {
-    // Screen 1: levels of shared interest. Geographical, from home to union; then non-geographical.
+    // Screen 1: levels of shared interest. Residential, from home to union; then individual, economic, non-economic.
     const levelChip = ({ l, tone }) => chip({ label: levelLabel(l), tone, title: [...new Set([levelLabel(l), loc.places[l.id].name].filter(Boolean))].join(': '), onclick: () => go([l.id]) });
     setLegend('levels');
     screen.push(verdictLine(levels, loc));
     screen.push(el('h2', { class: 'group-title' }, kindIcon('levels', false), t('heading.levels')));
-    screen.push(rowOf(levels.filter(x => x.l.kind === 'territorial').map(levelChip)));
-    screen.push(rowOf(levels.filter(x => x.l.kind !== 'territorial').map(levelChip)));
+    // The levels in their groups (Orlin 2026-11-21): residential on one row; individual, economic and non-economic on
+    // the next. Each group is bordered and named on its border, like the Direct and Representative institutions.
+    const groupBox = g => {
+      const ls = levels.filter(x => x.l.group === g.id);
+      return ls.length ? el('fieldset', { class: 'mech-group', style: `--n: ${ls.length}` }, el('legend', {}, tx(g, 'name')), ...ls.map(levelChip)) : null;
+    };
+    const groups = catalog.levelGroups || [];
+    screen.push(el('div', { class: 'mech-groups level-groups' }, ...groups.filter(g => g.id === 'residential').map(groupBox).filter(Boolean)));
+    screen.push(el('div', { class: 'mech-groups level-groups' }, ...groups.filter(g => g.id !== 'residential').map(groupBox).filter(Boolean)));
   } else if (!mech) {
     // Screen 2: the level's shared interests, then its decision-making mechanisms in one row: a group of direct and a
     // group of representative mechanisms, side by side, each labelled on its border. A branch without any shows "None".
