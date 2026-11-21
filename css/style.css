@@ -155,6 +155,9 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .switch .sw.na, .sw.t-disabled { background: transparent; border: 1.5px dashed var(--muted); }
 .sw.t-unknown { background: transparent; border: 1.5px dashed var(--text); }
 :root:not([data-scale="teal"]) .sw.t-white { border-color: #c9b3ad; }
+.switch .sw .kind-ico { width: 12px; height: 12px; }
+.switch.big .sw .kind-ico { width: 16px; height: 16px; }
+.switch .sw.na .kind-ico { color: var(--muted); }
 .switch .mini:disabled { cursor: not-allowed; color: var(--muted); }
 .switch .gap { height: 5px; }
 .switch .tick { flex: none; width: 7px; height: 12px; margin: 0 5px 3px 6px; border-right: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; transform: rotate(45deg); }
