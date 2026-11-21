@@ -545,14 +545,15 @@ const SWITCH_LABEL = { level: t('switch.level'), mech: t('switch.mech'), prop: t
 // What a step of the trail is, shown as a small icon rather than in words (Orlin 2026-11-20: the page is text-heavy
 // already). His choice of pictures: a level (neighbourhood, municipality, country…) is a group of people; a design
 // requirement is a scroll, one rule; the stack of layers stands only for the list of levels itself. An institution is
-// a gear: for Orlin it is a decision instrument, a mechanism (not a building, and a rulebook was "not the most
-// appropriate"). Colour is not used for this, because colour already says how free something is. The icon also
+// half a light bulb and half a gear: for Orlin it is a decision instrument, a mechanism, and a decision is made of a
+// proposition (the idea) and its evaluation (not a building or a rulebook). Our own drawing, after a picture he
+// found. Colour is not used for this, because colour already says how free something is. The icon also
 // stands beside the heading of the screen that lists those things. The word is its tooltip and its spoken name.
 const KIND_LABEL = { level: t('kind.level'), mech: t('kind.mech'), prop: t('kind.prop') };
 const KIND_ICON = {
   levels: '<path d="M8 2 14 5 8 8 2 5Z"/><path d="M2 8l6 3 6-3"/><path d="M2 11l6 3 6-3"/>',
   level: '<circle cx="8" cy="5.2" r="2.2"/><path d="M4.2 13.5a3.8 3.8 0 0 1 7.6 0"/><circle cx="2.9" cy="6.6" r="1.4"/><path d="M.9 12.4a2.6 2.6 0 0 1 2-2.5"/><circle cx="13.1" cy="6.6" r="1.4"/><path d="M15.1 12.4a2.6 2.6 0 0 0-2-2.5"/>',
-  mech: '<path d="M6.8 3.3 6.9 1.7 9.1 1.7 9.2 3.3 10.5 3.9 11.7 2.8 13.2 4.3 12.1 5.5 12.7 6.8 14.3 6.9 14.3 9.1 12.7 9.2 12.1 10.5 13.2 11.7 11.7 13.2 10.5 12.1 9.2 12.7 9.1 14.3 6.9 14.3 6.8 12.7 5.5 12.1 4.3 13.2 2.8 11.7 3.9 10.5 3.3 9.2 1.7 9.1 1.7 6.9 3.3 6.8 3.9 5.5 2.8 4.3 4.3 2.8 5.5 3.9Z"/><circle cx="8" cy="8" r="1.9"/>',
+  mech: '<path d="M8 1.7A4.6 4.6 0 0 0 4.7 9.5c.6.6.9 1.3.9 2.1v.3H8"/><path d="M8.0 2.1 8.6 2.1 9.3 0.8 11.0 1.5 10.5 2.9 11.4 3.8 12.8 3.3 13.5 5.0 12.2 5.7 12.2 6.9 13.5 7.6 12.8 9.3 11.4 8.8 10.5 9.7 11.0 11.1 9.3 11.8 8.6 10.5 8.0 10.5"/><circle cx="8" cy="6.3" r="1.5"/><path d="M5.8 14.3h4.4"/>',
   prop: '<path d="M12.7 11.3V3.3A1.3 1.3 0 0 0 11.4 2H2.7"/><path d="M5.3 14h8a1.3 1.3 0 0 0 1.3-1.3V12a.7.7 0 0 0-.7-.7H7.3a.7.7 0 0 0-.7.7v.7a1.3 1.3 0 1 1-2.6 0V3.3a1.3 1.3 0 1 0-2.6 0v1.4a.7.7 0 0 0 .7.6H4"/><path d="M10 5.3H6.8M10 8H6.8"/>',
 };
 const kindIcon = (kind, named = true) => {
