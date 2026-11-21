@@ -1157,11 +1157,12 @@ function render() {
   // Trail: where you are in the tree. A step's name goes back to that page. Its chevron opens a menu of the step's
   // siblings (the other levels, institutions or requirements) and switches sideways, keeping the rest of the path.
   // Trail uses each chip's long name.
+  // A single-requirement institution opens straight onto its requirement, which still gets its own step (Orlin 2026-11-21).
   const steps = [{ name: t('heading.levels'), path: [] }];
   // Each step carries the colour of its chip one level up; the title shows it as a small chip before its name.
   if (cur) steps.push({ kind: 'level', tone: cur.tone, name: levelLabel(cur.l), path: [levelId] });
   if (mech) steps.push({ kind: 'mech', tone: mechTone(scoreMechanism(mech.scored || mech, catalog)), name: mechLongName(mech, mechs, catalog, levelId), path: [levelId, branchId, mechIdx] });
-  if (prop && !single) steps.push({ kind: 'prop', tone: STATUS_TONE[prop.status] || 'unknown', name: propName({ type: prop.type }, catalog.properties[prop.type], gender, 'longName'), path: propPath(propIdx) });
+  if (prop) steps.push({ kind: 'prop', tone: STATUS_TONE[prop.status] || 'unknown', name: propName({ type: prop.type }, catalog.properties[prop.type], gender, 'longName'), path: propPath(propIdx) });
 
   const mechsOf = (lvl, b) => flattenKinds(lvl[b]?.applicable !== false ? (lvl[b]?.mechanisms || []) : [], catalog);
   const sameKind = (a, b) => a.type === b.type && a.kindType === b.kindType;
