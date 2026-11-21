@@ -12,16 +12,21 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
    (capital city, special cities, a region with an elected mayor, places without a level, e.g. County Dublin has no
    municipal districts and its county level is the actual council: Fingal, DLR, South Dublin, Dublin City).
 2. **Every level, every institution.** Fill all territorial levels (home → union) and all spheres (individual,
-   business, non-economic). Every level gets the same institutions as Bulgaria and Ireland:
+   and the group spheres: company, partnership, cooperative, association). Every level gets the same institutions as
+   Bulgaria and Ireland:
    * Direct: referendum (three kinds: citizen initiative, veto, mandatory) and general assembly.
-   * Representative: council, executive, and where relevant the level's own members of the higher council
+   * Representative: council, executive (at country level the cabinet or president, whichever governs), and where relevant the level's own members of the higher council
      (`upper_council_seat`).
    * Home: the household institution with the eight properties (home inviolable, family privacy, home property,
      parental rights, joint decisions, child rights, abuse protection, education choice).
-   * Individual: personal autonomy. Business: Free enterprise and Freedom of contract (personal_autonomy with
-     `label`), partners / shareholders / cooperative general meetings, Board / managers, Agents, Trustees.
-     Non-economic: freedom of association, general assembly of members, board.
-   * Building/entrance: the owners' meeting and its management council (a Council chip, not Executive; owner 2026-11-10), at whichever level the country's
+   * Individual: personal autonomy, Free enterprise, Freedom of contract and Freedom of association
+     (personal_autonomy with `label`); representative: Agents, Trustees.
+   * Company, partnership, cooperative, association (Orlin 2026-11-21): the same institutions as a municipality. The
+     members' general meeting (shareholders, partners, cooperative or association members), the council (board of
+     directors, management board) and the executive (управител: the manager or managing director; managing partners
+     in a partnership). The meaning of the three referendum kinds inside these groups is still to be settled.
+   * Building/entrance: the owners' meeting, its management council (a Council chip; owner 2026-11-10) and its
+     управител (Executive; Orlin 2026-11-21), at whichever level the country's
      apartment law works (BG per entrance, IE per development).
    **An institution the law does not provide still appears**, as `exists: no` (black chip) with a Fix. Never leave
    it out. Exception (owner 2026-11-10): a sub-division served by its county's executive, such as an Irish municipal

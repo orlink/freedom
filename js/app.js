@@ -1395,11 +1395,14 @@ function writeHash(push) {
   if (location.hash === h) return;
   if (push) history.pushState(null, '', h); else history.replaceState(null, '', h);
 }
+const OLD_LEVEL = { business: 'company', nonprofit: 'association' };
 function readHash() {
   const m = location.hash.slice(1).split('/');
   const [lat, lon] = (m[0] || '').split(',').map(Number);
   if (!isFinite(lat) || !isFinite(lon) || !m[0]) return null;
   const path = m.slice(1).map((v, i) => (i >= 2 ? Number(v) : v));
+  // Old addresses of the levels that became Company and Association (2026-11-21).
+  if (path[0] in OLD_LEVEL) path[0] = OLD_LEVEL[path[0]];
   return { lat, lon, path };
 }
 window.addEventListener('popstate', () => {

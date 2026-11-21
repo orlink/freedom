@@ -1,8 +1,10 @@
 {
   "$comment": "Default shared interests suggested for each level; \"countries\" holds a country's own list for a level, which replaces the default there. The owner edits these on the local copy (server.py --edit). Visitors' additions and 'not applicable' marks for one place are stored by server.py in data/state, not here.",
   "individual": ["Health", "Privacy", "Property", "Education", "Work"],
-  "business": ["Earning a living", "Making a profit", "Obtaining goods and services", "Using productive resources", "Building wealth", "Sharing risk"],
-  "nonprofit": ["Statutes", "Activities", "Membership", "Funding", "Property"],
+  "company": ["Earning a living", "Making a profit", "Obtaining goods and services", "Using productive resources", "Building wealth", "Sharing risk"],
+  "partnership": ["Earning a living", "Making a profit", "Obtaining goods and services", "Using productive resources", "Building wealth", "Sharing risk"],
+  "cooperative": ["Earning a living", "Making a profit", "Obtaining goods and services", "Using productive resources", "Building wealth", "Sharing risk"],
+  "association": ["Statutes", "Activities", "Membership", "Funding", "Property"],
   "home": ["Rooms", "Furnishing", "Repairs", "Guests", "Pets", "Household budget"],
   "entrance": ["Elevator", "Stairwell cleaning", "Entrance door", "Lighting", "Mailboxes"],
   "building": ["Roof", "Facade", "Heating", "Repairs fund", "Common areas", "Elevator"],
