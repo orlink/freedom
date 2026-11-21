@@ -12,23 +12,43 @@
       }
     },
     {
-      "id": "business",
-      "name": "Economic",
-      "longName": "Economic interests",
+      "id": "company",
+      "name": "Company",
+      "longName": "Company interests",
       "kind": "sphere",
-      "description": "People earning a living, making a profit, obtaining goods and services, using productive resources, building wealth and sharing risk: by their own decisions and contracts, together as partners, shareholders or cooperative members, or through managers, agents and trustees.",
+      "description": "The shareholders of a company (a corporation or LLC; АД or ООД in Bulgaria, AG or GmbH in Switzerland): its business, capital, profits and risks.",
       "bg": {
-        "name": "Икономически"
+        "name": "Дружество"
       }
     },
     {
-      "id": "nonprofit",
-      "name": "Non-economic",
-      "longName": "Non-economic interests",
+      "id": "partnership",
+      "name": "Partnership",
+      "longName": "Partnership interests",
       "kind": "sphere",
-      "description": "Members governing their own association, foundation or other non-profit organisation.",
+      "description": "Partners who run a business together and answer for it personally (a general or limited partnership).",
       "bg": {
-        "name": "Неикономически"
+        "name": "Съдружие"
+      }
+    },
+    {
+      "id": "cooperative",
+      "name": "Cooperative",
+      "longName": "Cooperative interests",
+      "kind": "sphere",
+      "description": "Members who own and run an enterprise together to meet their common needs.",
+      "bg": {
+        "name": "Кооперация"
+      }
+    },
+    {
+      "id": "association",
+      "name": "Association",
+      "longName": "Association interests",
+      "kind": "sphere",
+      "description": "Members governing their own non-profit association or club.",
+      "bg": {
+        "name": "Сдружение"
       }
     },
     {

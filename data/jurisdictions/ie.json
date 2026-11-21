@@ -743,21 +743,7 @@
                 }
               }
             ]
-          }
-        ]
-      },
-      "representative": {
-        "applicable": false,
-        "note": "Individuals decide for themselves.",
-        "bg": {
-          "note": "Хората решават сами за себе си."
-        }
-      }
-    },
-    "business": {
-      "summary": "People can start a business and govern it themselves through the owners' meeting and the managers they elect.",
-      "direct": {
-        "mechanisms": [
+          },
           {
             "type": "personal_autonomy",
             "name": "Free enterprise",
@@ -909,488 +895,71 @@
             }
           },
           {
-            "type": "general_assembly",
-            "name": "Partners general meeting",
+            "type": "personal_autonomy",
+            "name": "Freedom of association",
             "properties": [
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "Partners in a partnership decide together, by majority on ordinary matters and unanimously on changing the business.",
+                "explanation": "People may freely form associations and foundations.",
                 "laws": [
-                  "pa1890"
+                  "bunreacht"
                 ],
                 "provisions": [
                   {
-                    "law": "pa1890",
+                    "law": "bunreacht",
                     "items": [
                       {
-                        "ref": "Section 24",
-                        "text": [
-                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
-                          "(5) Every partner may take part in the management of the partnership business.",
-                          "(8) Any difference arising as to ordinary matters connected with the partnership business may be decided by a majority of the partners, but no change may be made in the nature of the partnership business without the consent of all existing partners."
-                        ],
+                        "ref": "Article 40.6.1°",
+                        "text": "The State guarantees liberty for the exercise of the following rights, subject to public order and morality: – … iii The right of the citizens to form associations and unions. Laws, however, may be enacted for the regulation and control in the public interest of the exercise of the foregoing right.",
                         "bg": {
-                          "ref": "Раздел 24",
-                          "text": [
-                            "Дяловете на съдружниците в имуществото на съдружието и техните права и задължения във връзка със съдружието се определят, при спазване на всяко изрично или мълчаливо споразумение между съдружниците, по следните правила:—",
-                            "(5) Всеки съдружник може да участва в управлението на дейността на съдружието.",
-                            "(8) Всяко разногласие по обикновени въпроси, свързани с дейността на съдружието, може да се решава с мнозинство от съдружниците, но не може да се променя естеството на дейността на съдружието без съгласието на всички съществуващи съдружници."
-                          ]
+                          "ref": "Чл. 40.6.1°",
+                          "text": "Държавата гарантира свободата на упражняване на следните права, при спазване на обществения ред и морала: – … iii Правото на гражданите да образуват сдружения и съюзи. Могат обаче да се приемат закони за уреждане и контрол на упражняването на това право в обществен интерес."
                         }
                       }
                     ]
                   }
                 ],
                 "bg": {
-                  "explanation": "Съдружниците в съдружие решават заедно, с мнозинство по обикновените въпроси и единодушно за промяна на дейността."
+                  "explanation": "Хората могат свободно да учредяват сдружения и фондации."
                 }
               },
               {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "Decisions of the partners bind the partnership: ordinary matters by majority, a change in the nature of the business only with every partner's consent.",
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "An association needs no permission to exist, but a charity must apply to the Charities Regulator for registration before it may operate in the State, and is then supervised by it.",
                 "laws": [
-                  "pa1890"
+                  "charities2009"
                 ],
                 "provisions": [
                   {
-                    "law": "pa1890",
+                    "law": "charities2009",
                     "items": [
                       {
-                        "ref": "Section 24",
-                        "text": [
-                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
-                          "(8) Any difference arising as to ordinary matters connected with the partnership business may be decided by a majority of the partners, but no change may be made in the nature of the partnership business without the consent of all existing partners."
-                        ],
+                        "ref": "Section 39(3)",
+                        "text": "A charitable organisation that intends to operate or carry on activities in the State shall, in accordance with this section, apply to the Authority to be registered in the register, and it shall be the duty of the charity trustees of the charitable organisation concerned to make the application …",
                         "bg": {
-                          "ref": "Раздел 24",
-                          "text": [
-                            "Дяловете на съдружниците в имуществото на съдружието и техните права и задължения във връзка със съдружието се определят, при спазване на всяко изрично или мълчаливо споразумение между съдружниците, по следните правила:—",
-                            "(8) Всяко разногласие по обикновени въпроси, свързани с дейността на съдружието, може да се решава с мнозинство от съдружниците, но не може да се променя естеството на дейността на съдружието без съгласието на всички съществуващи съдружници."
-                          ]
+                          "ref": "Раздел 39, ал. 3",
+                          "text": "Благотворителна организация, която възнамерява да действа или да осъществява дейност в държавата, подава в съответствие с този раздел молба до Органа за вписване в регистъра, като задължението да подадат молбата е на доверениците на съответната благотворителна организация …"
                         }
                       }
                     ]
                   }
                 ],
                 "bg": {
-                  "explanation": "Решенията на съдружниците са задължителни за съдружието: обикновените въпроси — с мнозинство, а промяна в естеството на дейността — само със съгласието на всеки съдружник."
-                }
-              },
-              {
-                "type": "broad_scope",
-                "status": "yes",
-                "explanation": "The partners decide the management of the business, who may join, and any change in its nature.",
-                "laws": [
-                  "pa1890"
-                ],
-                "provisions": [
-                  {
-                    "law": "pa1890",
-                    "items": [
-                      {
-                        "ref": "Section 24",
-                        "text": [
-                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
-                          "(5) Every partner may take part in the management of the partnership business.",
-                          "(7) No person may be introduced as a partner without the consent of all existing partners.",
-                          "(8) Any difference arising as to ordinary matters connected with the partnership business may be decided by a majority of the partners, but no change may be made in the nature of the partnership business without the consent of all existing partners."
-                        ],
-                        "bg": {
-                          "ref": "Раздел 24",
-                          "text": [
-                            "Дяловете на съдружниците в имуществото на съдружието и техните права и задължения във връзка със съдружието се определят, при спазване на всяко изрично или мълчаливо споразумение между съдружниците, по следните правила:—",
-                            "(5) Всеки съдружник може да участва в управлението на дейността на съдружието.",
-                            "(7) Никое лице не може да бъде прието за съдружник без съгласието на всички съществуващи съдружници.",
-                            "(8) Всяко разногласие по обикновени въпроси, свързани с дейността на съдружието, може да се решава с мнозинство от съдружниците, но не може да се променя естеството на дейността на съдружието без съгласието на всички съществуващи съдружници."
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "bg": {
-                  "explanation": "Съдружниците решават управлението на дейността, кой може да се присъедини и всяка промяна в естеството ѝ."
-                }
-              },
-              {
-                "type": "own_means",
-                "status": "yes",
-                "explanation": "The partnership or company controls its own capital and income.",
-                "laws": [
-                  "pa1890"
-                ],
-                "provisions": [
-                  {
-                    "law": "pa1890",
-                    "items": [
-                      {
-                        "ref": "Section 24",
-                        "text": [
-                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
-                          "(1) All the partners are entitled to share equally in the capital and profits of the business …"
-                        ],
-                        "bg": {
-                          "ref": "Раздел 24",
-                          "text": [
-                            "Дяловете на съдружниците в имуществото на съдружието и техните права и задължения във връзка със съдружието се определят, при спазване на всяко изрично или мълчаливо споразумение между съдружниците, по следните правила:—",
-                            "(1) Всички съдружници имат право на равни дялове от капитала и печалбата на дейността …"
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "bg": {
-                  "explanation": "Съдружието или дружеството разполага със собствения си капитал и приходи."
+                  "explanation": "Сдружението не се нуждае от разрешение, за да съществува, но благотворителната организация трябва да поиска вписване от Регулатора на благотворителните организации, преди да може да действа в държавата, и след това е под негов надзор."
                 }
               }
             ],
             "bg": {
-              "name": "Общо събрание на съдружниците",
-              "gender": "n"
-            }
-          },
-          {
-            "type": "general_assembly",
-            "name": "Shareholders general meeting",
-            "properties": [
-              {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "Shareholders of a company decide in a general meeting.",
-                "laws": [
-                  "ca2014"
-                ],
-                "provisions": [
-                  {
-                    "law": "ca2014",
-                    "items": [
-                      {
-                        "ref": "Section 178(3)",
-                        "text": "(3) The directors of a company shall, on the requisition of one or more members holding, or together holding, at the date of the deposit of the requisition, not less than 10 per cent of the paid up share capital of the company, as at the date of the deposit carries the right of voting at general meetings of the company, forthwith proceed duly to convene an extraordinary general meeting of the company.",
-                        "bg": {
-                          "ref": "Раздел 178, ал. 3",
-                          "text": "(3) Директорите на дружеството, по искане на един или повече членове, които към датата на подаване на искането притежават сами или заедно не по-малко от 10 на сто от внесения капитал на дружеството, който към датата на подаване дава право на глас на общите събрания на дружеството, незабавно пристъпват към надлежно свикване на извънредно общо събрание на дружеството."
-                        }
-                      },
-                      {
-                        "ref": "Section 186",
-                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …",
-                        "bg": {
-                          "ref": "Раздел 186",
-                          "text": "Предметът на редовното годишно общо събрание включва — (a) разглеждане на законовите финансови отчети на дружеството и на доклада на директорите и … доклада на задължителните одитори …; (b) преглед от членовете на дейността на дружеството; (c) освен ако учредителният акт на дружеството не предвижда друго — (i) обявяване на дивидент (ако има такъв) в размер, който не надвишава размера, препоръчан от директорите; … (d) когато учредителният акт на дружеството предвижда това, избор и преизбиране на директори; …"
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "bg": {
-                  "explanation": "Акционерите в дружеството решават в общо събрание."
-                }
-              },
-              {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "Its resolutions bind the company.",
-                "laws": [
-                  "ca2014"
-                ],
-                "provisions": [],
-                "bg": {
-                  "explanation": "Решенията му са задължителни за дружеството."
-                }
-              },
-              {
-                "type": "broad_scope",
-                "status": "yes",
-                "explanation": "Shareholders review the company's affairs and accounts, declare dividends and, where the constitution provides, elect the directors; they can remove any director.",
-                "laws": [
-                  "ca2014"
-                ],
-                "provisions": [
-                  {
-                    "law": "ca2014",
-                    "items": [
-                      {
-                        "ref": "Section 186",
-                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …",
-                        "bg": {
-                          "ref": "Раздел 186",
-                          "text": "Предметът на редовното годишно общо събрание включва — (a) разглеждане на законовите финансови отчети на дружеството и на доклада на директорите и … доклада на задължителните одитори …; (b) преглед от членовете на дейността на дружеството; (c) освен ако учредителният акт на дружеството не предвижда друго — (i) обявяване на дивидент (ако има такъв) в размер, който не надвишава размера, препоръчан от директорите; … (d) когато учредителният акт на дружеството предвижда това, избор и преизбиране на директори; …"
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "bg": {
-                  "explanation": "Акционерите преглеждат дейността и отчетите на дружеството, обявяват дивиденти и, когато учредителният акт предвижда това, избират директорите; могат да освободят всеки директор."
-                }
-              },
-              {
-                "type": "own_means",
-                "status": "yes",
-                "explanation": "The company controls its own capital and income.",
-                "laws": [
-                  "ca2014"
-                ],
-                "provisions": [],
-                "bg": {
-                  "explanation": "Дружеството разполага със собствения си капитал и приходи."
-                }
-              }
-            ],
-            "bg": {
-              "name": "Общо събрание на акционерите",
-              "gender": "n"
-            }
-          },
-          {
-            "type": "general_assembly",
-            "name": "Cooperative general meeting",
-            "properties": [
-              {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "Members of a co-operative society decide in its general meeting, usually one member one vote.",
-                "laws": [
-                  "ips"
-                ],
-                "provisions": [
-                  {
-                    "law": "ips",
-                    "items": [
-                      {
-                        "ref": "Section 10(1)",
-                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act.",
-                        "bg": {
-                          "ref": "Раздел 10, ал. 1",
-                          "text": "Уставът на сдружение, регистрирано по този закон, съдържа разпоредби по всеки от въпросите, посочени във Второто приложение към този закон."
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "bg": {
-                  "explanation": "Членовете на кооперативно сдружение решават в неговото общо събрание, обикновено по принципа един член, един глас."
-                }
-              },
-              {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "Its resolutions bind the society under its registered rules.",
-                "laws": [
-                  "ips"
-                ],
-                "provisions": [
-                  {
-                    "law": "ips",
-                    "items": [
-                      {
-                        "ref": "Section 10(1)",
-                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act.",
-                        "bg": {
-                          "ref": "Раздел 10, ал. 1",
-                          "text": "Уставът на сдружение, регистрирано по този закон, съдържа разпоредби по всеки от въпросите, посочени във Второто приложение към този закон."
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "bg": {
-                  "explanation": "Решенията му са задължителни за сдружението съгласно регистрирания му устав."
-                }
-              },
-              {
-                "type": "broad_scope",
-                "status": "yes",
-                "explanation": "Members decide the rules, the use of any surplus and the board.",
-                "laws": [
-                  "ips"
-                ],
-                "provisions": [
-                  {
-                    "law": "ips",
-                    "items": [
-                      {
-                        "ref": "Section 10(1)",
-                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act.",
-                        "bg": {
-                          "ref": "Раздел 10, ал. 1",
-                          "text": "Уставът на сдружение, регистрирано по този закон, съдържа разпоредби по всеки от въпросите, посочени във Второто приложение към този закон."
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "bg": {
-                  "explanation": "Членовете решават устава, използването на печалбата и състава на управителния съвет."
-                }
-              },
-              {
-                "type": "own_means",
-                "status": "yes",
-                "explanation": "The cooperative controls its own capital and income.",
-                "laws": [
-                  "ips"
-                ],
-                "provisions": [
-                  {
-                    "law": "ips",
-                    "items": [
-                      {
-                        "ref": "Section 10(1)",
-                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act.",
-                        "bg": {
-                          "ref": "Раздел 10, ал. 1",
-                          "text": "Уставът на сдружение, регистрирано по този закон, съдържа разпоредби по всеки от въпросите, посочени във Второто приложение към този закон."
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "bg": {
-                  "explanation": "Кооперацията разполага със собствения си капитал и приходи."
-                }
-              }
-            ],
-            "bg": {
-              "name": "Общо събрание на кооперацията",
-              "gender": "n"
+              "name": "Свобода на сдружаване",
+              "gender": "f"
             }
           }
         ]
       },
       "representative": {
         "mechanisms": [
-          {
-            "type": "executive",
-            "name": "Board / managers",
-            "properties": [
-              {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "Owners elect the directors and can remove them.",
-                "laws": [
-                  "ca2014"
-                ],
-                "provisions": [
-                  {
-                    "law": "ca2014",
-                    "items": [
-                      {
-                        "ref": "Section 146(1)",
-                        "text": "A company may by ordinary resolution remove a director before the expiration of his or her period of office notwithstanding anything in its constitution or in any agreement between it and him or her.",
-                        "bg": {
-                          "ref": "Раздел 146, ал. 1",
-                          "text": "Дружеството може с обикновено решение да освободи директор преди изтичането на мандата му независимо от разпоредбите на учредителния си акт или на споразумение между дружеството и директора."
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "bg": {
-                  "explanation": "Собствениците избират директорите и могат да ги освободят."
-                }
-              },
-              {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "The board's decisions bind the company.",
-                "laws": [
-                  "ca2014"
-                ],
-                "bg": {
-                  "explanation": "Решенията на управителния орган обвързват дружеството."
-                }
-              },
-              {
-                "type": "binding_powers",
-                "status": "yes",
-                "laws": [
-                  "ca2014"
-                ],
-                "provisions": [
-                  {
-                    "law": "ca2014",
-                    "items": [
-                      {
-                        "ref": "Section 228(1)",
-                        "text": "A director of a company shall— (a) act in good faith in what the director considers to be the interests of the company; (b) act honestly and responsibly in relation to the conduct of the affairs of the company; (c) act in accordance with the company's constitution and exercise his or her powers only for the purposes allowed by law; (d) not use the company's property, information or opportunities for his or her own or anyone else's benefit unless— (i) this is expressly permitted by the company's constitution; or (ii) the use has been approved by a resolution of the company in general meeting; … (f) avoid any conflict between the director's duties to the company and the director's other (including personal) interests …",
-                        "bg": {
-                          "ref": "Раздел 228, ал. 1",
-                          "text": "Директорът на дружество — (a) действа добросъвестно в това, което счита за интерес на дружеството; (b) действа честно и отговорно при водене на работите на дружеството; (c) действа в съответствие с учредителния акт на дружеството и упражнява правомощията си само за целите, разрешени от закона; (d) не използва имуществото, информацията или възможностите на дружеството в своя полза или в полза на друг, освен ако — (i) това е изрично разрешено от учредителния акт на дружеството; или (ii) използването е одобрено с решение на общото събрание на дружеството; … (f) избягва всеки конфликт между задълженията си към дружеството и другите си (включително лични) интереси …"
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "explanation": "The directors manage the company, within its constitution and their duties to it.",
-                "bg": {
-                  "explanation": "Директорите управляват дружеството в рамките на учредителния му акт и задълженията си към него."
-                }
-              },
-              {
-                "type": "individual_vote",
-                "status": "yes",
-                "explanation": "Directors are elected and re-elected individually by the members.",
-                "laws": [
-                  "ca2014"
-                ],
-                "provisions": [
-                  {
-                    "law": "ca2014",
-                    "items": [
-                      {
-                        "ref": "Section 186",
-                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …",
-                        "bg": {
-                          "ref": "Раздел 186",
-                          "text": "Предметът на редовното годишно общо събрание включва — (a) разглеждане на законовите финансови отчети на дружеството и на доклада на директорите и … доклада на задължителните одитори …; (b) преглед от членовете на дейността на дружеството; (c) освен ако учредителният акт на дружеството не предвижда друго — (i) обявяване на дивидент (ако има такъв) в размер, който не надвишава размера, препоръчан от директорите; … (d) когато учредителният акт на дружеството предвижда това, избор и преизбиране на директори; …"
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "bg": {
-                  "explanation": "Директорите се избират и преизбират поименно от членовете."
-                }
-              },
-              {
-                "type": "recall",
-                "status": "yes",
-                "explanation": "The members can remove any director by ordinary resolution, whatever the constitution or the director's contract says.",
-                "laws": [
-                  "ca2014"
-                ],
-                "provisions": [
-                  {
-                    "law": "ca2014",
-                    "items": [
-                      {
-                        "ref": "Section 146(1)",
-                        "text": "A company may by ordinary resolution remove a director before the expiration of his or her period of office notwithstanding anything in its constitution or in any agreement between it and him or her.",
-                        "bg": {
-                          "ref": "Раздел 146, ал. 1",
-                          "text": "Дружеството може с обикновено решение да освободи директор преди изтичането на мандата му независимо от разпоредбите на учредителния си акт или на споразумение между дружеството и директора."
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "bg": {
-                  "explanation": "Членовете могат да освободят всеки директор с обикновено решение, независимо какво предвиждат учредителният акт или договорът с директора."
-                }
-              }
-            ],
-            "label": "Board / managers",
-            "bg": {
-              "name": "Съвет / управители",
-              "label": "Съвет / управители",
-              "gender": "m"
-            }
-          },
           {
             "type": "agent",
             "name": "Agents",
@@ -1589,72 +1158,648 @@
         ]
       }
     },
-    "nonprofit": {
-      "summary": "People can form non-profit associations and foundations and govern them through a members' assembly and an elected board.",
+    "company": {
+      "summary": "Shareholders govern their company through the general meeting and the board they elect.",
       "direct": {
         "mechanisms": [
           {
-            "type": "personal_autonomy",
-            "name": "Freedom of association",
+            "type": "general_assembly",
+            "name": "Shareholders general meeting",
             "properties": [
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "People may freely form associations and foundations.",
+                "explanation": "Shareholders of a company decide in a general meeting.",
                 "laws": [
-                  "bunreacht"
+                  "ca2014"
                 ],
                 "provisions": [
                   {
-                    "law": "bunreacht",
+                    "law": "ca2014",
                     "items": [
                       {
-                        "ref": "Article 40.6.1°",
-                        "text": "The State guarantees liberty for the exercise of the following rights, subject to public order and morality: – … iii The right of the citizens to form associations and unions. Laws, however, may be enacted for the regulation and control in the public interest of the exercise of the foregoing right.",
+                        "ref": "Section 178(3)",
+                        "text": "(3) The directors of a company shall, on the requisition of one or more members holding, or together holding, at the date of the deposit of the requisition, not less than 10 per cent of the paid up share capital of the company, as at the date of the deposit carries the right of voting at general meetings of the company, forthwith proceed duly to convene an extraordinary general meeting of the company.",
                         "bg": {
-                          "ref": "Чл. 40.6.1°",
-                          "text": "Държавата гарантира свободата на упражняване на следните права, при спазване на обществения ред и морала: – … iii Правото на гражданите да образуват сдружения и съюзи. Могат обаче да се приемат закони за уреждане и контрол на упражняването на това право в обществен интерес."
+                          "ref": "Раздел 178, ал. 3",
+                          "text": "(3) Директорите на дружеството, по искане на един или повече членове, които към датата на подаване на искането притежават сами или заедно не по-малко от 10 на сто от внесения капитал на дружеството, който към датата на подаване дава право на глас на общите събрания на дружеството, незабавно пристъпват към надлежно свикване на извънредно общо събрание на дружеството."
+                        }
+                      },
+                      {
+                        "ref": "Section 186",
+                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …",
+                        "bg": {
+                          "ref": "Раздел 186",
+                          "text": "Предметът на редовното годишно общо събрание включва — (a) разглеждане на законовите финансови отчети на дружеството и на доклада на директорите и … доклада на задължителните одитори …; (b) преглед от членовете на дейността на дружеството; (c) освен ако учредителният акт на дружеството не предвижда друго — (i) обявяване на дивидент (ако има такъв) в размер, който не надвишава размера, препоръчан от директорите; … (d) когато учредителният акт на дружеството предвижда това, избор и преизбиране на директори; …"
                         }
                       }
                     ]
                   }
                 ],
                 "bg": {
-                  "explanation": "Хората могат свободно да учредяват сдружения и фондации."
+                  "explanation": "Акционерите в дружеството решават в общо събрание."
                 }
               },
               {
-                "type": "no_outside_override",
-                "status": "partial",
-                "explanation": "An association needs no permission to exist, but a charity must apply to the Charities Regulator for registration before it may operate in the State, and is then supervised by it.",
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
                 "laws": [
-                  "charities2009"
+                  "ca2014"
+                ],
+                "provisions": [],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за дружеството."
+                }
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Shareholders review the company's affairs and accounts, declare dividends and, where the constitution provides, elect the directors; they can remove any director.",
+                "laws": [
+                  "ca2014"
                 ],
                 "provisions": [
                   {
-                    "law": "charities2009",
+                    "law": "ca2014",
                     "items": [
                       {
-                        "ref": "Section 39(3)",
-                        "text": "A charitable organisation that intends to operate or carry on activities in the State shall, in accordance with this section, apply to the Authority to be registered in the register, and it shall be the duty of the charity trustees of the charitable organisation concerned to make the application …",
+                        "ref": "Section 186",
+                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …",
                         "bg": {
-                          "ref": "Раздел 39, ал. 3",
-                          "text": "Благотворителна организация, която възнамерява да действа или да осъществява дейност в държавата, подава в съответствие с този раздел молба до Органа за вписване в регистъра, като задължението да подадат молбата е на доверениците на съответната благотворителна организация …"
+                          "ref": "Раздел 186",
+                          "text": "Предметът на редовното годишно общо събрание включва — (a) разглеждане на законовите финансови отчети на дружеството и на доклада на директорите и … доклада на задължителните одитори …; (b) преглед от членовете на дейността на дружеството; (c) освен ако учредителният акт на дружеството не предвижда друго — (i) обявяване на дивидент (ако има такъв) в размер, който не надвишава размера, препоръчан от директорите; … (d) когато учредителният акт на дружеството предвижда това, избор и преизбиране на директори; …"
                         }
                       }
                     ]
                   }
                 ],
                 "bg": {
-                  "explanation": "Сдружението не се нуждае от разрешение, за да съществува, но благотворителната организация трябва да поиска вписване от Регулатора на благотворителните организации, преди да може да действа в държавата, и след това е под негов надзор."
+                  "explanation": "Акционерите преглеждат дейността и отчетите на дружеството, обявяват дивиденти и, когато учредителният акт предвижда това, избират директорите; могат да освободят всеки директор."
+                }
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The company controls its own capital and income.",
+                "laws": [
+                  "ca2014"
+                ],
+                "provisions": [],
+                "bg": {
+                  "explanation": "Дружеството разполага със собствения си капитал и приходи."
                 }
               }
             ],
             "bg": {
-              "name": "Свобода на сдружаване",
-              "gender": "f"
+              "name": "Общо събрание на акционерите",
+              "gender": "n"
             }
-          },
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "council",
+            "name": "Board of directors",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Owners elect the directors and can remove them.",
+                "laws": [
+                  "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 146(1)",
+                        "text": "A company may by ordinary resolution remove a director before the expiration of his or her period of office notwithstanding anything in its constitution or in any agreement between it and him or her.",
+                        "bg": {
+                          "ref": "Раздел 146, ал. 1",
+                          "text": "Дружеството може с обикновено решение да освободи директор преди изтичането на мандата му независимо от разпоредбите на учредителния си акт или на споразумение между дружеството и директора."
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Собствениците избират директорите и могат да ги освободят."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The board's decisions bind the company.",
+                "laws": [
+                  "ca2014"
+                ],
+                "bg": {
+                  "explanation": "Решенията на управителния орган обвързват дружеството."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 228(1)",
+                        "text": "A director of a company shall— (a) act in good faith in what the director considers to be the interests of the company; (b) act honestly and responsibly in relation to the conduct of the affairs of the company; (c) act in accordance with the company's constitution and exercise his or her powers only for the purposes allowed by law; (d) not use the company's property, information or opportunities for his or her own or anyone else's benefit unless— (i) this is expressly permitted by the company's constitution; or (ii) the use has been approved by a resolution of the company in general meeting; … (f) avoid any conflict between the director's duties to the company and the director's other (including personal) interests …",
+                        "bg": {
+                          "ref": "Раздел 228, ал. 1",
+                          "text": "Директорът на дружество — (a) действа добросъвестно в това, което счита за интерес на дружеството; (b) действа честно и отговорно при водене на работите на дружеството; (c) действа в съответствие с учредителния акт на дружеството и упражнява правомощията си само за целите, разрешени от закона; (d) не използва имуществото, информацията или възможностите на дружеството в своя полза или в полза на друг, освен ако — (i) това е изрично разрешено от учредителния акт на дружеството; или (ii) използването е одобрено с решение на общото събрание на дружеството; … (f) избягва всеки конфликт между задълженията си към дружеството и другите си (включително лични) интереси …"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "explanation": "The directors manage the company, within its constitution and their duties to it.",
+                "bg": {
+                  "explanation": "Директорите управляват дружеството в рамките на учредителния му акт и задълженията си към него."
+                }
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "Directors are elected and re-elected individually by the members.",
+                "laws": [
+                  "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 186",
+                        "text": "The business of the annual general meeting shall include— (a) the consideration of the company's statutory financial statements and the report of the directors and … the report of the statutory auditors …; (b) the review by the members of the company's affairs; (c) save where the company's constitution provides otherwise— (i) the declaration of a dividend (if any) of an amount not exceeding the amount recommended by the directors; … (d) where the company's constitution so provides, the election and re-election of directors; …",
+                        "bg": {
+                          "ref": "Раздел 186",
+                          "text": "Предметът на редовното годишно общо събрание включва — (a) разглеждане на законовите финансови отчети на дружеството и на доклада на директорите и … доклада на задължителните одитори …; (b) преглед от членовете на дейността на дружеството; (c) освен ако учредителният акт на дружеството не предвижда друго — (i) обявяване на дивидент (ако има такъв) в размер, който не надвишава размера, препоръчан от директорите; … (d) когато учредителният акт на дружеството предвижда това, избор и преизбиране на директори; …"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Директорите се избират и преизбират поименно от членовете."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The members can remove any director by ordinary resolution, whatever the constitution or the director's contract says.",
+                "laws": [
+                  "ca2014"
+                ],
+                "provisions": [
+                  {
+                    "law": "ca2014",
+                    "items": [
+                      {
+                        "ref": "Section 146(1)",
+                        "text": "A company may by ordinary resolution remove a director before the expiration of his or her period of office notwithstanding anything in its constitution or in any agreement between it and him or her.",
+                        "bg": {
+                          "ref": "Раздел 146, ал. 1",
+                          "text": "Дружеството може с обикновено решение да освободи директор преди изтичането на мандата му независимо от разпоредбите на учредителния си акт или на споразумение между дружеството и директора."
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Членовете могат да освободят всеки директор с обикновено решение, независимо какво предвиждат учредителният акт или договорът с директора."
+                }
+              }
+            ],
+            "label": "Board of directors",
+            "bg": {
+              "name": "Съвет на директорите",
+              "label": "Съвет на директорите",
+              "gender": "m"
+            }
+          }
+        ]
+      }
+    },
+    "partnership": {
+      "summary": "Partners govern their partnership together, deciding in their meeting or through managing partners.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "general_assembly",
+            "name": "Partners general meeting",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Partners in a partnership decide together, by majority on ordinary matters and unanimously on changing the business.",
+                "laws": [
+                  "pa1890"
+                ],
+                "provisions": [
+                  {
+                    "law": "pa1890",
+                    "items": [
+                      {
+                        "ref": "Section 24",
+                        "text": [
+                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
+                          "(5) Every partner may take part in the management of the partnership business.",
+                          "(8) Any difference arising as to ordinary matters connected with the partnership business may be decided by a majority of the partners, but no change may be made in the nature of the partnership business without the consent of all existing partners."
+                        ],
+                        "bg": {
+                          "ref": "Раздел 24",
+                          "text": [
+                            "Дяловете на съдружниците в имуществото на съдружието и техните права и задължения във връзка със съдружието се определят, при спазване на всяко изрично или мълчаливо споразумение между съдружниците, по следните правила:—",
+                            "(5) Всеки съдружник може да участва в управлението на дейността на съдружието.",
+                            "(8) Всяко разногласие по обикновени въпроси, свързани с дейността на съдружието, може да се решава с мнозинство от съдружниците, но не може да се променя естеството на дейността на съдружието без съгласието на всички съществуващи съдружници."
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Съдружниците в съдружие решават заедно, с мнозинство по обикновените въпроси и единодушно за промяна на дейността."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Decisions of the partners bind the partnership: ordinary matters by majority, a change in the nature of the business only with every partner's consent.",
+                "laws": [
+                  "pa1890"
+                ],
+                "provisions": [
+                  {
+                    "law": "pa1890",
+                    "items": [
+                      {
+                        "ref": "Section 24",
+                        "text": [
+                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
+                          "(8) Any difference arising as to ordinary matters connected with the partnership business may be decided by a majority of the partners, but no change may be made in the nature of the partnership business without the consent of all existing partners."
+                        ],
+                        "bg": {
+                          "ref": "Раздел 24",
+                          "text": [
+                            "Дяловете на съдружниците в имуществото на съдружието и техните права и задължения във връзка със съдружието се определят, при спазване на всяко изрично или мълчаливо споразумение между съдружниците, по следните правила:—",
+                            "(8) Всяко разногласие по обикновени въпроси, свързани с дейността на съдружието, може да се решава с мнозинство от съдружниците, но не може да се променя естеството на дейността на съдружието без съгласието на всички съществуващи съдружници."
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Решенията на съдружниците са задължителни за съдружието: обикновените въпроси — с мнозинство, а промяна в естеството на дейността — само със съгласието на всеки съдружник."
+                }
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "The partners decide the management of the business, who may join, and any change in its nature.",
+                "laws": [
+                  "pa1890"
+                ],
+                "provisions": [
+                  {
+                    "law": "pa1890",
+                    "items": [
+                      {
+                        "ref": "Section 24",
+                        "text": [
+                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
+                          "(5) Every partner may take part in the management of the partnership business.",
+                          "(7) No person may be introduced as a partner without the consent of all existing partners.",
+                          "(8) Any difference arising as to ordinary matters connected with the partnership business may be decided by a majority of the partners, but no change may be made in the nature of the partnership business without the consent of all existing partners."
+                        ],
+                        "bg": {
+                          "ref": "Раздел 24",
+                          "text": [
+                            "Дяловете на съдружниците в имуществото на съдружието и техните права и задължения във връзка със съдружието се определят, при спазване на всяко изрично или мълчаливо споразумение между съдружниците, по следните правила:—",
+                            "(5) Всеки съдружник може да участва в управлението на дейността на съдружието.",
+                            "(7) Никое лице не може да бъде прието за съдружник без съгласието на всички съществуващи съдружници.",
+                            "(8) Всяко разногласие по обикновени въпроси, свързани с дейността на съдружието, може да се решава с мнозинство от съдружниците, но не може да се променя естеството на дейността на съдружието без съгласието на всички съществуващи съдружници."
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Съдружниците решават управлението на дейността, кой може да се присъедини и всяка промяна в естеството ѝ."
+                }
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The partnership or company controls its own capital and income.",
+                "laws": [
+                  "pa1890"
+                ],
+                "provisions": [
+                  {
+                    "law": "pa1890",
+                    "items": [
+                      {
+                        "ref": "Section 24",
+                        "text": [
+                          "The interests of partners in the partnership property and their rights and duties in relation to the partnership shall be determined, subject to any agreement express or implied between the partners, by the following rules:—",
+                          "(1) All the partners are entitled to share equally in the capital and profits of the business …"
+                        ],
+                        "bg": {
+                          "ref": "Раздел 24",
+                          "text": [
+                            "Дяловете на съдружниците в имуществото на съдружието и техните права и задължения във връзка със съдружието се определят, при спазване на всяко изрично или мълчаливо споразумение между съдружниците, по следните правила:—",
+                            "(1) Всички съдружници имат право на равни дялове от капитала и печалбата на дейността …"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Съдружието или дружеството разполага със собствения си капитал и приходи."
+                }
+              }
+            ],
+            "bg": {
+              "name": "Общо събрание на съдружниците",
+              "gender": "n"
+            }
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "executive",
+            "name": "Managing partners",
+            "label": "Managing partners",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The partners manage the business themselves or entrust it to some of them.",
+                "laws": [
+                  "pa1890"
+                ],
+                "bg": {
+                  "explanation": "Съдружниците управляват сами или възлагат управлението на някои от тях."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Their acts bind the partnership.",
+                "laws": [
+                  "pa1890"
+                ],
+                "bg": {
+                  "explanation": "Действията им обвързват съдружието."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "pa1890"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "Each managing partner is chosen individually.",
+                "laws": [
+                  "pa1890"
+                ],
+                "bg": {
+                  "explanation": "Всеки управляващ съдружник се избира поотделно."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The partners can take the management away from them.",
+                "laws": [
+                  "pa1890"
+                ],
+                "bg": {
+                  "explanation": "Съдружниците могат да им отнемат управлението."
+                }
+              }
+            ],
+            "bg": {
+              "name": "Управляващи съдружници",
+              "label": "Управляващи съдружници",
+              "gender": "pl"
+            }
+          }
+        ]
+      }
+    },
+    "cooperative": {
+      "summary": "Members own and govern their cooperative through the general meeting and the board they elect.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "general_assembly",
+            "name": "Cooperative general meeting",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Members of a co-operative society decide in its general meeting, usually one member one vote.",
+                "laws": [
+                  "ips"
+                ],
+                "provisions": [
+                  {
+                    "law": "ips",
+                    "items": [
+                      {
+                        "ref": "Section 10(1)",
+                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act.",
+                        "bg": {
+                          "ref": "Раздел 10, ал. 1",
+                          "text": "Уставът на сдружение, регистрирано по този закон, съдържа разпоредби по всеки от въпросите, посочени във Второто приложение към този закон."
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Членовете на кооперативно сдружение решават в неговото общо събрание, обикновено по принципа един член, един глас."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the society under its registered rules.",
+                "laws": [
+                  "ips"
+                ],
+                "provisions": [
+                  {
+                    "law": "ips",
+                    "items": [
+                      {
+                        "ref": "Section 10(1)",
+                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act.",
+                        "bg": {
+                          "ref": "Раздел 10, ал. 1",
+                          "text": "Уставът на сдружение, регистрирано по този закон, съдържа разпоредби по всеки от въпросите, посочени във Второто приложение към този закон."
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за сдружението съгласно регистрирания му устав."
+                }
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Members decide the rules, the use of any surplus and the board.",
+                "laws": [
+                  "ips"
+                ],
+                "provisions": [
+                  {
+                    "law": "ips",
+                    "items": [
+                      {
+                        "ref": "Section 10(1)",
+                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act.",
+                        "bg": {
+                          "ref": "Раздел 10, ал. 1",
+                          "text": "Уставът на сдружение, регистрирано по този закон, съдържа разпоредби по всеки от въпросите, посочени във Второто приложение към този закон."
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Членовете решават устава, използването на печалбата и състава на управителния съвет."
+                }
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The cooperative controls its own capital and income.",
+                "laws": [
+                  "ips"
+                ],
+                "provisions": [
+                  {
+                    "law": "ips",
+                    "items": [
+                      {
+                        "ref": "Section 10(1)",
+                        "text": "The rules of a society registered under this Act shall contain provisions in respect of the several matters mentioned in the Second Schedule to this Act.",
+                        "bg": {
+                          "ref": "Раздел 10, ал. 1",
+                          "text": "Уставът на сдружение, регистрирано по този закон, съдържа разпоредби по всеки от въпросите, посочени във Второто приложение към този закон."
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "bg": {
+                  "explanation": "Кооперацията разполага със собствения си капитал и приходи."
+                }
+              }
+            ],
+            "bg": {
+              "name": "Общо събрание на кооперацията",
+              "gender": "n"
+            }
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "council",
+            "name": "Management board",
+            "label": "Management board",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The members elect the management board.",
+                "laws": [
+                  "ips"
+                ],
+                "bg": {
+                  "explanation": "Членовете избират управителния съвет."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its decisions bind the cooperative.",
+                "laws": [
+                  "ips"
+                ],
+                "bg": {
+                  "explanation": "Решенията му обвързват кооперацията."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "ips"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "Board members are elected individually.",
+                "laws": [
+                  "ips"
+                ],
+                "bg": {
+                  "explanation": "Членовете на съвета се избират поотделно."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The general meeting can dismiss them.",
+                "laws": [
+                  "ips"
+                ],
+                "bg": {
+                  "explanation": "Общото събрание може да ги освободи."
+                }
+              }
+            ],
+            "bg": {
+              "name": "Управителен съвет",
+              "label": "Управителен съвет",
+              "gender": "m"
+            }
+          }
+        ]
+      }
+    },
+    "association": {
+      "summary": "Members govern their association through the general assembly and the board they elect.",
+      "direct": {
+        "mechanisms": [
           {
             "type": "general_assembly",
             "name": "General assembly of members",
@@ -1732,8 +1877,8 @@
       "representative": {
         "mechanisms": [
           {
-            "type": "executive",
-            "name": "Board",
+            "type": "council",
+            "name": "Management board",
             "properties": [
               {
                 "type": "exists",
@@ -1838,8 +1983,10 @@
             ],
             "bg": {
               "name": "Управителен съвет",
-              "gender": "m"
-            }
+              "gender": "m",
+              "label": "Управителен съвет"
+            },
+            "label": "Management board"
           }
         ]
       }
@@ -2035,8 +2182,8 @@
       "representative": {
         "mechanisms": [
           {
-            "type": "executive",
-            "name": "Directors",
+            "type": "council",
+            "name": "Board of directors",
             "properties": [
               {
                 "type": "exists",
@@ -2127,9 +2274,11 @@
               }
             ],
             "bg": {
-              "name": "Директори",
-              "gender": "pl"
-            }
+              "name": "Съвет на директорите",
+              "gender": "m",
+              "label": "Съвет на директорите"
+            },
+            "label": "Board of directors"
           }
         ]
       }
@@ -5160,6 +5309,73 @@
               "name": "Дайл Еран (Камара на представителите)",
               "gender": "m"
             }
+          },
+          {
+            "type": "executive",
+            "name": "Government",
+            "label": "Government",
+            "bg": {
+              "name": "Правителство",
+              "label": "Правителство",
+              "gender": "n"
+            },
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The executive power of the State is exercised by or on the authority of the Government (Constitution, Art. 28.2).",
+                "laws": [
+                  "bunreacht"
+                ],
+                "bg": {
+                  "explanation": "Изпълнителната власт на държавата се упражнява от правителството или с негово разрешение (Конституция, чл. 28.2)."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its decisions and the ministers' orders are binding within the law.",
+                "laws": [
+                  "bunreacht"
+                ],
+                "bg": {
+                  "explanation": "Решенията му и заповедите на министрите са задължителни в рамките на закона."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "explanation": "It governs the country, prepares legislation and the budget, and runs the departments of State (Art. 28).",
+                "laws": [
+                  "bunreacht"
+                ],
+                "bg": {
+                  "explanation": "Управлява страната, подготвя законите и бюджета и ръководи министерствата (чл. 28)."
+                }
+              },
+              {
+                "type": "individual_vote",
+                "status": "partial",
+                "explanation": "The Dáil, elected by single transferable vote, nominates the Taoiseach and approves the other ministers; voters do not choose them directly (Art. 13.1).",
+                "laws": [
+                  "bunreacht"
+                ],
+                "bg": {
+                  "explanation": "Дайл, избран с единен прехвърлим глас, номинира министър-председателя (Taoiseach) и одобрява останалите министри; избирателите не ги избират пряко (чл. 13.1)."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "no",
+                "explanation": "Voters cannot remove it; the Taoiseach must resign on losing the support of a majority in the Dáil (Art. 28.10).",
+                "laws": [
+                  "bunreacht"
+                ],
+                "bg": {
+                  "explanation": "Избирателите не могат да го освободят; министър-председателят трябва да подаде оставка, ако загуби подкрепата на мнозинството в Дайл (чл. 28.10)."
+                }
+              }
+            ]
           }
         ]
       }

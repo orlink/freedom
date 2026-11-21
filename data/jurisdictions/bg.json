@@ -802,21 +802,7 @@
                 }
               }
             ]
-          }
-        ]
-      },
-      "representative": {
-        "applicable": false,
-        "note": "Individuals decide for themselves; representation does not apply.",
-        "bg": {
-          "note": "Хората решават сами за себе си; представителството не е приложимо."
-        }
-      }
-    },
-    "business": {
-      "summary": "People can start a business and govern it themselves through the owners' meeting and the managers they elect.",
-      "direct": {
-        "mechanisms": [
+          },
           {
             "type": "personal_autonomy",
             "name": "Free enterprise",
@@ -1119,234 +1105,42 @@
             }
           },
           {
-            "type": "general_assembly",
-            "name": "Partners general meeting",
+            "type": "personal_autonomy",
+            "name": "Freedom of association",
             "properties": [
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "Partners in a general or limited partnership (СД, КД) or a limited liability company (ООД) decide in a general meeting.",
+                "explanation": "People may freely form associations and foundations.",
                 "laws": [
-                  "ta"
+                  "const",
+                  "npla"
                 ],
                 "bg": {
-                  "explanation": "Съдружниците в събирателно или командитно дружество (СД, КД) или в дружество с ограничена отговорност (ООД) решават в общо събрание."
+                  "explanation": "Хората могат свободно да учредяват сдружения и фондации."
                 }
               },
               {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "Its resolutions bind the company.",
+                "type": "no_outside_override",
+                "status": "partial",
+                "explanation": "Registration and, for public-benefit status, supervision by the state.",
                 "laws": [
-                  "ta"
+                  "npla"
                 ],
                 "bg": {
-                  "explanation": "Решенията му са задължителни за дружеството."
-                }
-              },
-              {
-                "type": "broad_scope",
-                "status": "yes",
-                "explanation": "Owners decide the company's statutes, profits and leadership.",
-                "laws": [
-                  "ta"
-                ],
-                "bg": {
-                  "explanation": "Собствениците решават устава, разпределението на печалбата и ръководството на дружеството."
-                }
-              },
-              {
-                "type": "own_means",
-                "status": "yes",
-                "explanation": "The partnership or company controls its own capital and income.",
-                "laws": [
-                  "ta"
-                ],
-                "bg": {
-                  "explanation": "Дружеството разполага със собствения си капитал и приходи."
+                  "explanation": "Вписване в регистър и, при статут на общественополезна дейност, надзор от държавата."
                 }
               }
             ],
             "bg": {
-              "name": "Общо събрание на съдружниците",
-              "gender": "n"
-            }
-          },
-          {
-            "type": "general_assembly",
-            "name": "Shareholders general meeting",
-            "properties": [
-              {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "Shareholders of a joint-stock company (АД) or partnership limited by shares (КДА) decide in a general meeting.",
-                "laws": [
-                  "ta"
-                ],
-                "bg": {
-                  "explanation": "Акционерите в акционерно дружество (АД) или командитно дружество с акции (КДА) решават в общо събрание."
-                }
-              },
-              {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "Its resolutions bind the company.",
-                "laws": [
-                  "ta"
-                ],
-                "bg": {
-                  "explanation": "Решенията му са задължителни за дружеството."
-                }
-              },
-              {
-                "type": "broad_scope",
-                "status": "yes",
-                "explanation": "Owners decide the company's statutes, profits and leadership.",
-                "laws": [
-                  "ta"
-                ],
-                "bg": {
-                  "explanation": "Собствениците решават устава, разпределението на печалбата и ръководството на дружеството."
-                }
-              },
-              {
-                "type": "own_means",
-                "status": "yes",
-                "explanation": "The company controls its own capital and income.",
-                "laws": [
-                  "ta"
-                ],
-                "bg": {
-                  "explanation": "Дружеството разполага със собствения си капитал и приходи."
-                }
-              }
-            ],
-            "bg": {
-              "name": "Общо събрание на акционерите",
-              "gender": "n"
-            }
-          },
-          {
-            "type": "general_assembly",
-            "name": "Cooperative general meeting",
-            "properties": [
-              {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "Members of a cooperative decide in its general meeting, one member one vote.",
-                "laws": [
-                  "coop"
-                ],
-                "bg": {
-                  "explanation": "Членовете на кооперацията решават в нейното общо събрание по принципа един член, един глас."
-                }
-              },
-              {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "Its resolutions bind the company.",
-                "laws": [
-                  "coop"
-                ],
-                "bg": {
-                  "explanation": "Решенията му са задължителни за дружеството."
-                }
-              },
-              {
-                "type": "broad_scope",
-                "status": "yes",
-                "explanation": "Members decide the statutes, the use of any surplus and the board.",
-                "laws": [
-                  "coop"
-                ],
-                "bg": {
-                  "explanation": "Членовете решават устава, използването на печалбата и състава на управителния съвет."
-                }
-              },
-              {
-                "type": "own_means",
-                "status": "yes",
-                "explanation": "The cooperative controls its own capital and income.",
-                "laws": [
-                  "coop"
-                ],
-                "bg": {
-                  "explanation": "Кооперацията разполага със собствения си капитал и приходи."
-                }
-              }
-            ],
-            "bg": {
-              "name": "Общо събрание на кооперацията",
-              "gender": "n"
+              "name": "Свобода на сдружаване",
+              "gender": "f"
             }
           }
         ]
       },
       "representative": {
         "mechanisms": [
-          {
-            "type": "executive",
-            "name": "Board / managers",
-            "properties": [
-              {
-                "type": "exists",
-                "status": "yes",
-                "explanation": "Owners elect the managers or board.",
-                "laws": [
-                  "ta"
-                ],
-                "bg": {
-                  "explanation": "Собствениците избират управителите или съвета."
-                }
-              },
-              {
-                "type": "binding",
-                "status": "yes",
-                "explanation": "The board's decisions bind the company.",
-                "laws": [
-                  "ta"
-                ],
-                "bg": {
-                  "explanation": "Решенията на управителния орган обвързват дружеството."
-                }
-              },
-              {
-                "type": "binding_powers",
-                "status": "yes",
-                "laws": [
-                  "ta"
-                ]
-              },
-              {
-                "type": "individual_vote",
-                "status": "yes",
-                "explanation": "Managers and board members are elected individually.",
-                "laws": [
-                  "ta"
-                ],
-                "bg": {
-                  "explanation": "Управителите и членовете на съвета се избират поименно."
-                }
-              },
-              {
-                "type": "recall",
-                "status": "yes",
-                "explanation": "The owners can dismiss them.",
-                "laws": [
-                  "ta"
-                ],
-                "bg": {
-                  "explanation": "Собствениците могат да ги освободят."
-                }
-              }
-            ],
-            "label": "Board / managers",
-            "bg": {
-              "name": "Съвет / управители",
-              "label": "Съвет / управители",
-              "gender": "m"
-            }
-          },
           {
             "type": "agent",
             "name": "Agents",
@@ -1490,43 +1284,394 @@
         ]
       }
     },
-    "nonprofit": {
-      "summary": "People can form non-profit associations and foundations and govern them through a members' assembly and an elected board.",
+    "company": {
+      "summary": "Shareholders govern their company through the general meeting and the board they elect.",
       "direct": {
         "mechanisms": [
           {
-            "type": "personal_autonomy",
-            "name": "Freedom of association",
+            "type": "general_assembly",
+            "name": "Shareholders general meeting",
             "properties": [
               {
                 "type": "exists",
                 "status": "yes",
-                "explanation": "People may freely form associations and foundations.",
+                "explanation": "Shareholders of a joint-stock company (АД) or partnership limited by shares (КДА) decide in a general meeting.",
                 "laws": [
-                  "const",
-                  "npla"
+                  "ta"
                 ],
                 "bg": {
-                  "explanation": "Хората могат свободно да учредяват сдружения и фондации."
+                  "explanation": "Акционерите в акционерно дружество (АД) или командитно дружество с акции (КДА) решават в общо събрание."
                 }
               },
               {
-                "type": "no_outside_override",
-                "status": "partial",
-                "explanation": "Registration and, for public-benefit status, supervision by the state.",
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
                 "laws": [
-                  "npla"
+                  "ta"
                 ],
                 "bg": {
-                  "explanation": "Вписване в регистър и, при статут на общественополезна дейност, надзор от държавата."
+                  "explanation": "Решенията му са задължителни за дружеството."
+                }
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Owners decide the company's statutes, profits and leadership.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Собствениците решават устава, разпределението на печалбата и ръководството на дружеството."
+                }
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The company controls its own capital and income.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Дружеството разполага със собствения си капитал и приходи."
                 }
               }
             ],
             "bg": {
-              "name": "Свобода на сдружаване",
-              "gender": "f"
+              "name": "Общо събрание на акционерите",
+              "gender": "n"
             }
-          },
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "council",
+            "name": "Board of directors",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Owners elect the managers or board.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Собствениците избират управителите или съвета."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The board's decisions bind the company.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Решенията на управителния орган обвързват дружеството."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "ta"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "Managers and board members are elected individually.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Управителите и членовете на съвета се избират поименно."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The owners can dismiss them.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Собствениците могат да ги освободят."
+                }
+              }
+            ],
+            "label": "Board of directors",
+            "bg": {
+              "name": "Съвет на директорите",
+              "label": "Съвет на директорите",
+              "gender": "m"
+            }
+          }
+        ]
+      }
+    },
+    "partnership": {
+      "summary": "Partners govern their partnership together, deciding in their meeting or through managing partners.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "general_assembly",
+            "name": "Partners general meeting",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Partners in a general or limited partnership (СД, КД) or a limited liability company (ООД) decide in a general meeting.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Съдружниците в събирателно или командитно дружество (СД, КД) или в дружество с ограничена отговорност (ООД) решават в общо събрание."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за дружеството."
+                }
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Owners decide the company's statutes, profits and leadership.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Собствениците решават устава, разпределението на печалбата и ръководството на дружеството."
+                }
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The partnership or company controls its own capital and income.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Дружеството разполага със собствения си капитал и приходи."
+                }
+              }
+            ],
+            "bg": {
+              "name": "Общо събрание на съдружниците",
+              "gender": "n"
+            }
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "executive",
+            "name": "Managing partners",
+            "label": "Managing partners",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The partners manage the business themselves or entrust it to some of them.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Съдружниците управляват сами или възлагат управлението на някои от тях."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Their acts bind the partnership.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Действията им обвързват съдружието."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "ta"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "Each managing partner is chosen individually.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Всеки управляващ съдружник се избира поотделно."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The partners can take the management away from them.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Съдружниците могат да им отнемат управлението."
+                }
+              }
+            ],
+            "bg": {
+              "name": "Управляващи съдружници",
+              "label": "Управляващи съдружници",
+              "gender": "pl"
+            }
+          }
+        ]
+      }
+    },
+    "cooperative": {
+      "summary": "Members own and govern their cooperative through the general meeting and the board they elect.",
+      "direct": {
+        "mechanisms": [
+          {
+            "type": "general_assembly",
+            "name": "Cooperative general meeting",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "Members of a cooperative decide in its general meeting, one member one vote.",
+                "laws": [
+                  "coop"
+                ],
+                "bg": {
+                  "explanation": "Членовете на кооперацията решават в нейното общо събрание по принципа един член, един глас."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its resolutions bind the company.",
+                "laws": [
+                  "coop"
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за дружеството."
+                }
+              },
+              {
+                "type": "broad_scope",
+                "status": "yes",
+                "explanation": "Members decide the statutes, the use of any surplus and the board.",
+                "laws": [
+                  "coop"
+                ],
+                "bg": {
+                  "explanation": "Членовете решават устава, използването на печалбата и състава на управителния съвет."
+                }
+              },
+              {
+                "type": "own_means",
+                "status": "yes",
+                "explanation": "The cooperative controls its own capital and income.",
+                "laws": [
+                  "coop"
+                ],
+                "bg": {
+                  "explanation": "Кооперацията разполага със собствения си капитал и приходи."
+                }
+              }
+            ],
+            "bg": {
+              "name": "Общо събрание на кооперацията",
+              "gender": "n"
+            }
+          }
+        ]
+      },
+      "representative": {
+        "mechanisms": [
+          {
+            "type": "council",
+            "name": "Management board",
+            "label": "Management board",
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The members elect the management board.",
+                "laws": [
+                  "coop"
+                ],
+                "bg": {
+                  "explanation": "Членовете избират управителния съвет."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its decisions bind the cooperative.",
+                "laws": [
+                  "coop"
+                ],
+                "bg": {
+                  "explanation": "Решенията му обвързват кооперацията."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "laws": [
+                  "coop"
+                ]
+              },
+              {
+                "type": "individual_vote",
+                "status": "yes",
+                "explanation": "Board members are elected individually.",
+                "laws": [
+                  "coop"
+                ],
+                "bg": {
+                  "explanation": "Членовете на съвета се избират поотделно."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "yes",
+                "explanation": "The general meeting can dismiss them.",
+                "laws": [
+                  "coop"
+                ],
+                "bg": {
+                  "explanation": "Общото събрание може да ги освободи."
+                }
+              }
+            ],
+            "bg": {
+              "name": "Управителен съвет",
+              "label": "Управителен съвет",
+              "gender": "m"
+            }
+          }
+        ]
+      }
+    },
+    "association": {
+      "summary": "Members govern their association through the general assembly and the board they elect.",
+      "direct": {
+        "mechanisms": [
           {
             "type": "general_assembly",
             "name": "General assembly of members",
@@ -1586,8 +1731,8 @@
       "representative": {
         "mechanisms": [
           {
-            "type": "executive",
-            "name": "Board",
+            "type": "council",
+            "name": "Management board",
             "properties": [
               {
                 "type": "exists",
@@ -1639,8 +1784,10 @@
             ],
             "bg": {
               "name": "Управителен съвет",
-              "gender": "m"
-            }
+              "gender": "m",
+              "label": "Управителен съвет"
+            },
+            "label": "Management board"
           }
         ]
       }
@@ -6841,6 +6988,73 @@
               "name": "Народно събрание",
               "gender": "n"
             }
+          },
+          {
+            "type": "executive",
+            "name": "Council of Ministers",
+            "label": "Council of Ministers",
+            "bg": {
+              "name": "Министерски съвет",
+              "label": "Министерски съвет",
+              "gender": "m"
+            },
+            "properties": [
+              {
+                "type": "exists",
+                "status": "yes",
+                "explanation": "The Council of Ministers directs the country's domestic and foreign policy (Constitution, Art. 105).",
+                "laws": [
+                  "const"
+                ],
+                "bg": {
+                  "explanation": "Министерският съвет ръководи и осъществява вътрешната и външната политика на страната (Конституция, чл. 105)."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "It adopts binding decrees, orders and decisions (Art. 114).",
+                "laws": [
+                  "const"
+                ],
+                "bg": {
+                  "explanation": "Приема задължителни постановления, разпореждания и решения (чл. 114)."
+                }
+              },
+              {
+                "type": "binding_powers",
+                "status": "yes",
+                "explanation": "It runs the state administration and carries out the budget (Art. 105–106).",
+                "laws": [
+                  "const"
+                ],
+                "bg": {
+                  "explanation": "Ръководи държавната администрация и изпълнява бюджета (чл. 105–106)."
+                }
+              },
+              {
+                "type": "individual_vote",
+                "status": "no",
+                "explanation": "Voters do not choose its members. The National Assembly, elected from party lists, elects the Prime Minister and, on the Prime Minister's proposal, the ministers (Art. 84, item 6).",
+                "laws": [
+                  "const"
+                ],
+                "bg": {
+                  "explanation": "Избирателите не избират членовете му. Народното събрание, избрано по партийни листи, избира министър-председателя и по негово предложение министрите (чл. 84, т. 6)."
+                }
+              },
+              {
+                "type": "recall",
+                "status": "no",
+                "explanation": "Voters cannot remove it; only the National Assembly can, by a vote of no confidence (Art. 89).",
+                "laws": [
+                  "const"
+                ],
+                "bg": {
+                  "explanation": "Избирателите не могат да го освободят; това може само Народното събрание с вот на недоверие (чл. 89)."
+                }
+              }
+            ]
           }
         ]
       }

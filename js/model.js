@@ -277,8 +277,10 @@ const VERDICT_WORDS = {
     state: ['in your state', 'your state'],
     country: ['in your country', 'your country'],
     individual: ['in your personal life', 'your personal life'],
-    business: ['in your business', 'your business'],
-    nonprofit: ['in your associations', 'your associations'],
+    company: ['in your companies', 'your companies'],
+    partnership: ['in your partnerships', 'your partnerships'],
+    cooperative: ['in your cooperatives', 'your cooperatives'],
+    association: ['in your associations', 'your associations'],
   },
   // Bulgarian uses the definite form ("в квартала", "за общината"), which needs no possessive and no gender.
   bg: {
@@ -293,8 +295,10 @@ const VERDICT_WORDS = {
     state: ['в щата', 'щата'],
     country: ['в държавата', 'държавата'],
     individual: ['в личния си живот', 'личния ви живот'],
-    business: ['в бизнеса си', 'бизнеса ви'],
-    nonprofit: ['в сдруженията си', 'сдруженията ви'],
+    company: ['в дружествата си', 'дружествата ви'],
+    partnership: ['в съдружията си', 'съдружията ви'],
+    cooperative: ['в кооперациите си', 'кооперациите ви'],
+    association: ['в сдруженията си', 'сдруженията ви'],
   },
 };
 const AND = { en: 'and', bg: 'и' };
@@ -336,11 +340,11 @@ const cap = s => s.charAt(0).toLocaleUpperCase() + s.slice(1);
 
 /**
  * One sentence that answers how free a person living here is, level by level:
- * "In Lozenets you are free at home and in your business, but others decide for your neighbourhood, municipality and county."
+ * "In Lozenets you are free at home and in your companies, but others decide for your neighbourhood, municipality and county."
  * `levels` = [{ id, kind ('territorial' | 'sphere'), free (true for Free and Mostly free) }] in catalog order;
  * `place` = the place name to start with; `names` = optional wording overrides per level id ({ state: ['in your canton', 'your canton'] });
  * `lang` = 'en' or 'bg'.
- * Territorial levels come first, from the home up, then the individual, economic and non-economic spheres.
+ * Territorial levels come first, from the home up, then the individual and the group spheres (company, partnership, cooperative, association).
  */
 export function placeVerdict(levels, place, names = {}, lang = 'en') {
   const L = VERDICT[lang] ? lang : 'en';
