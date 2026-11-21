@@ -1190,7 +1190,8 @@ function render() {
         const i = twins[Math.min(rank, twins.length - 1)];
         const m = ms[i];
         const mt = m ? mechTone(scoreMechanism(m.scored || m, catalog)) : null;
-        if (!mt) return null;   // no such institution at this level: left out of the row
+        // No such institution at this level: a dashed row that opens the level's own page (Orlin 2026-11-21: show every level).
+        if (!mt) return { ...o, na: true, path: [x.l.id], title: t('trail.noInstThere', { label: o.label }) };
         const base = [x.l.id, branchId, i];
         if (depth < 2) return { ...o, tone: mt, word: TONE_WORDS.mechanisms[mt], path: base };
         const { pi, path } = landIn(m, base);
@@ -1199,8 +1200,8 @@ function render() {
         return { ...o, tone: pt, word: TONE_WORDS.requirements[pt], path };
       };
       // Compare as deep as some other level can follow: a requirement no other level has falls back to its institution,
-      // an institution no other level has falls back to the levels themselves. Levels without the institution are left
-      // out (Orlin); a level that has it but where the requirement does not apply stays, dashed.
+      // an institution no other level has falls back to the levels themselves. Every level stays in the menu: one without
+      // the institution, or where the requirement does not apply, is dashed.
       for (let depth = deep ? 2 : mech ? 1 : 0; ; depth--) {
         const options = ordered.map(x => at(x, depth)).filter(Boolean);
         if (!depth || options.some(o => !o.current && !o.na)) {
