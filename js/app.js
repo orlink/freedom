@@ -1271,7 +1271,7 @@ function render() {
           type: 'button', class: `mini${o.current ? ' cur' : ''}`, 'aria-current': o.current ? 'true' : null, disabled: o.disabled,
           title: o.title || (o.disabled ? t('trail.doesNotApply', { label: o.label }) : [o.label, o.word].filter(Boolean).join(': ')),
           onclick: o.disabled ? null : o.current ? close : () => go(o.path),
-        }, el('i', { class: `sw ${o.na ? 'na' : `t-${o.tone}`}`, 'aria-hidden': 'true' }, o.current && steps[last].kind === open ? kindIcon(open, false) : null),
+        }, el('i', { class: `sw ${o.na ? 'na' : `t-${o.tone}`}`, 'aria-hidden': 'true' }, kindIcon(open, false)),
           el('span', { class: 'label' }, o.current ? steps.find(s => s.kind === open).name : o.label),
           o.current ? el('i', { class: 'tick', 'aria-hidden': 'true' }) : null),
       ]).filter(Boolean);
