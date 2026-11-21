@@ -458,6 +458,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The board's decisions bind the company.",
+                "laws": [
+                  "or"
+                ],
+                "bg": {
+                  "explanation": "Решенията на управителния орган обвързват дружеството."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "yes",
                 "laws": [
@@ -738,6 +749,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The board's decisions bind the organisation.",
+                "laws": [
+                  "zgb"
+                ],
+                "bg": {
+                  "explanation": "Решенията на управителния орган обвързват организацията."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "yes",
                 "laws": [
@@ -853,6 +875,17 @@
                 ],
                 "bg": {
                   "explanation": "Събранието назначава управител, който обикновено го свиква и председателства."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The administrator's decisions bind the owners, within the tasks the owners' assembly gives the post.",
+                "laws": [
+                  "zgb"
+                ],
+                "bg": {
+                  "explanation": "Решенията на управителя обвързват собствениците в рамките на задачите, които събранието на собствениците му възлага."
                 }
               },
               {
@@ -1261,6 +1294,17 @@
                 ]
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "With the Council of States it passes federal laws that bind everyone.",
+                "laws": [
+                  "bv"
+                ],
+                "bg": {
+                  "explanation": "Заедно със Съвета на кантоните приема федерални закони, задължителни за всички."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "yes",
                 "laws": [
@@ -1521,6 +1565,17 @@
                     }
                   },
                   {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "It passes cantonal laws that bind everyone in the canton.",
+                    "laws": [
+                      "kv"
+                    ],
+                    "bg": {
+                      "explanation": "Приема кантонални закони, задължителни за всички в кантона."
+                    }
+                  },
+                  {
                     "type": "binding_powers",
                     "status": "yes",
                     "explanation": "Including the cantonal tax rate.",
@@ -1584,6 +1639,17 @@
                     ],
                     "bg": {
                       "explanation": "Седем членове, избирани от народа мажоритарно."
+                    }
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "Its ordinances and decisions are binding.",
+                    "laws": [
+                      "kv"
+                    ],
+                    "bg": {
+                      "explanation": "Наредбите и решенията ѝ са задължителни."
                     }
                   },
                   {
@@ -1700,6 +1766,17 @@
                       "kv",
                       "gpr"
                     ]
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "Its supervisory decisions are binding on the municipalities of the district.",
+                    "laws": [
+                      "kv"
+                    ],
+                    "bg": {
+                      "explanation": "Надзорните ѝ решения са задължителни за общините в окръга."
+                    }
                   },
                   {
                     "type": "binding_powers",
@@ -1979,6 +2056,17 @@
                     }
                   },
                   {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "Its decisions bind the city, unless voters overturn them in a referendum.",
+                    "laws": [
+                      "go"
+                    ],
+                    "bg": {
+                      "explanation": "Решенията му обвързват града, освен ако избирателите не ги отменят с референдум."
+                    }
+                  },
+                  {
                     "type": "binding_powers",
                     "status": "yes",
                     "explanation": "Including setting the annual tax rate.",
@@ -2042,6 +2130,17 @@
                     ],
                     "bg": {
                       "explanation": "Девет членове, включително кметът, избирани от целия град."
+                    }
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "Its decisions are binding within its powers.",
+                    "laws": [
+                      "go"
+                    ],
+                    "bg": {
+                      "explanation": "Решенията ѝ са задължителни в рамките на правомощията ѝ."
                     }
                   },
                   {
@@ -2197,6 +2296,17 @@
                     ],
                     "bg": {
                       "explanation": "Всеки от седемте училищни района избира училищен съвет (председател и 24 членове)."
+                    }
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "Its decisions on the district's schools and kindergartens are binding.",
+                    "laws": [
+                      "go"
+                    ],
+                    "bg": {
+                      "explanation": "Решенията му за училищата и детските градини в района са задължителни."
                     }
                   },
                   {

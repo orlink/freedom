@@ -1295,6 +1295,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The board's decisions bind the company.",
+                "laws": [
+                  "ca2014"
+                ],
+                "bg": {
+                  "explanation": "Решенията на управителния орган обвързват дружеството."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "yes",
                 "laws": [
@@ -1751,6 +1762,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The board's decisions bind the organisation.",
+                "laws": [
+                  "ca2014"
+                ],
+                "bg": {
+                  "explanation": "Решенията на управителния орган обвързват организацията."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "yes",
                 "laws": [
@@ -2040,6 +2062,17 @@
                 ],
                 "bg": {
                   "explanation": "Дружеството се управлява от директори."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The directors' decisions bind the owners' management company.",
+                "laws": [
+                  "mud2011"
+                ],
+                "bg": {
+                  "explanation": "Решенията на директорите обвързват дружеството на собствениците."
                 }
               },
               {
@@ -3658,6 +3691,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Their decisions on the reserved functions are binding.",
+                "laws": [
+                  "lga2001"
+                ],
+                "bg": {
+                  "explanation": "Решенията им по запазените функции са задължителни."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "partial",
                 "explanation": "District members decide only the reserved functions listed in Schedule 14A, such as parking and other bye-laws, declaring or abandoning public roads, local area plans and placenames, plus any functions the county council delegates and can take back. They amend the district's budgetary plan, which the chief executive drafts and need only take account of, and adopt the yearly schedule of road and maintenance works within the money the county budget allows.",
@@ -4127,6 +4171,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its decisions on its reserved functions are binding, and the executive must carry them out.",
+                "laws": [
+                  "lga2001"
+                ],
+                "bg": {
+                  "explanation": "Решенията му по запазените функции са задължителни и изпълнителната власт трябва да ги изпълни."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "partial",
                 "explanation": "The council makes the rules it is given: bye-laws, the development plan and zoning, the budget, and a local adjustment of the property tax of up to 15%. But the rules for many local interests are set nationally: schools, policing, public transport, water and most taxes, and most of the council's money comes from central government.",
@@ -4455,6 +4510,17 @@
                 ],
                 "bg": {
                   "explanation": "Всеки съвет на графство и градски съвет има главен изпълнителен директор, когото съветът формално назначава."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The executive's orders are binding.",
+                "laws": [
+                  "lga2001"
+                ],
+                "bg": {
+                  "explanation": "Заповедите ѝ са задължителни."
                 }
               },
               {
@@ -4914,6 +4980,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "With the Seanad it passes laws that bind everyone.",
+                "laws": [
+                  "bunreacht"
+                ],
+                "bg": {
+                  "explanation": "Заедно със Сената приема закони, задължителни за всички."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "yes",
                 "laws": [
@@ -5182,6 +5259,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its votes are binding: an EU law cannot be adopted without its consent.",
+                "laws": [
+                  "teu"
+                ],
+                "bg": {
+                  "explanation": "Гласуването му е обвързващо: законодателен акт на ЕС не може да бъде приет без неговото съгласие."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "partial",
                 "explanation": "Co-legislator, but cannot initiate legislation.",
@@ -5447,6 +5535,17 @@
                     ],
                     "bg": {
                       "explanation": "Конституцията предвижда пряко избирани местни органи на власт."
+                    }
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "Its decisions on its reserved functions are binding, and the Mayor must carry them out.",
+                    "laws": [
+                      "lga2001"
+                    ],
+                    "bg": {
+                      "explanation": "Решенията му по запазените функции са задължителни и кметът трябва да ги изпълни."
                     }
                   },
                   {
@@ -5753,6 +5852,17 @@
                     ],
                     "bg": {
                       "explanation": "От 2024 г. кметът на Лимерик се избира пряко от гласоподавателите в града и графството."
+                    }
+                  },
+                  {
+                    "type": "binding",
+                    "status": "yes",
+                    "explanation": "The Mayor's orders are binding, within the functions the Act gives the office.",
+                    "laws": [
+                      "limerick2024"
+                    ],
+                    "bg": {
+                      "explanation": "Заповедите на кмета са задължителни в рамките на функциите, които законът му дава."
                     }
                   },
                   {

@@ -1300,6 +1300,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The board's decisions bind the company.",
+                "laws": [
+                  "ta"
+                ],
+                "bg": {
+                  "explanation": "Решенията на управителния орган обвързват дружеството."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "yes",
                 "laws": [
@@ -1590,6 +1601,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The board's decisions bind the organisation.",
+                "laws": [
+                  "npla"
+                ],
+                "bg": {
+                  "explanation": "Решенията на управителния орган обвързват организацията."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "yes",
                 "laws": [
@@ -1844,6 +1866,17 @@
                 ],
                 "bg": {
                   "explanation": "Собствениците избират управителен съвет от най-малко трима членове, които избират председател, или вместо него един управител. Общото събрание избира и касиер и може да възложи работата на съвета на професионален управител."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its decisions bind the owners, within the matters the general assembly leaves to it.",
+                "laws": [
+                  "cma"
+                ],
+                "bg": {
+                  "explanation": "Решенията му обвързват собствениците по въпросите, които общото събрание му оставя."
                 }
               },
               {
@@ -2316,6 +2349,17 @@
                 ],
                 "bg": {
                   "explanation": "Когато собствениците управляват всеки вход отделно, всеки вход има свой управителен съвет или управител, а сградата като цяло няма. Общо събрание на входовете се свиква от съвета или управителя на един от тях."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its decisions bind the owners, within the matters the general assembly leaves to it.",
+                "laws": [
+                  "cma"
+                ],
+                "bg": {
+                  "explanation": "Решенията му обвързват собствениците по въпросите, които общото събрание му оставя."
                 }
               },
               {
@@ -4231,6 +4275,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The кметство mayor's orders are binding, though only within the narrow powers the municipal council gives the post.",
+                "laws": [
+                  "lsga"
+                ],
+                "bg": {
+                  "explanation": "Заповедите на кмета на кметството са задължителни, макар и само в тесните правомощия, които му дава общинският съвет."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "weak",
                 "explanation": "The кметство mayor only carries out the municipal budget and the council’s and municipal mayor’s acts for the village, with an advisory vote in the council. The municipal council sets the mayor’s powers and decides the budget, fees, property and plans, so the village cannot govern most of its own interests. No own budget: the municipal council sets the кметство's budget figures.",
@@ -5470,6 +5525,17 @@
                 }
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its decisions are binding on the municipality, its administration and its residents.",
+                "laws": [
+                  "lsga"
+                ],
+                "bg": {
+                  "explanation": "Решенията му са задължителни за общината, нейната администрация и жителите ѝ."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "partial",
                 "explanation": "Limited powers over many local interests. It adopts the budget and sets local fees, but it can set local tax rates only within the limits fixed by national law. Even for municipal schools, the Ministry's regional education office hires and dismisses the principals and approves the secondary-school admission places; the municipality is only consulted.",
@@ -5827,6 +5893,17 @@
                 ],
                 "bg": {
                   "explanation": "Кметът е изпълнителният орган на общината."
+                }
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "The mayor's orders bind the municipal administration and, within the law, the residents.",
+                "laws": [
+                  "lsga"
+                ],
+                "bg": {
+                  "explanation": "Заповедите на кмета са задължителни за общинската администрация и, в рамките на закона, за жителите."
                 }
               },
               {
@@ -6547,6 +6624,17 @@
                 ]
               },
               {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "It passes laws that bind everyone.",
+                "laws": [
+                  "const"
+                ],
+                "bg": {
+                  "explanation": "Приема закони, които са задължителни за всички."
+                }
+              },
+              {
                 "type": "binding_powers",
                 "status": "yes",
                 "laws": [
@@ -6831,6 +6919,17 @@
                 "laws": [
                   "teu"
                 ]
+              },
+              {
+                "type": "binding",
+                "status": "yes",
+                "explanation": "Its votes are binding: an EU law cannot be adopted without its consent.",
+                "laws": [
+                  "teu"
+                ],
+                "bg": {
+                  "explanation": "Гласуването му е обвързващо: законодателен акт на ЕС не може да бъде приет без неговото съгласие."
+                }
               },
               {
                 "type": "binding_powers",

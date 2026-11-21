@@ -499,7 +499,7 @@
       "gate": true,
       "name": "Powers",
       "longName": "Powers",
-      "description": "It should be able to take binding decisions on the community's shared interests and have the means to carry them out: its own budget, taxes and fees, and control of local services.",
+      "description": "It should decide on the community's shared interests and have the means to carry them out: its own budget, taxes and fees, and control of local services.",
       "bg": {
         "name": "Правомощия",
         "longName": "Правомощия"

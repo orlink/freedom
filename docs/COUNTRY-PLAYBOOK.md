@@ -64,7 +64,7 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
   the whole Representative branch is capped at dark grey (Mostly not free), however good the mayor is (Bulgaria's
   municipalities).
 * Referendum gates: exists, binding, no quorum. A `weak` gate caps the institution at dark grey.
-* Council and executive gates: exists, Powers (`binding_powers`); Individual accountability is a cap (no/weak →
+* Council and executive gates: exists, Legally binding (`binding`: its decisions bind, not merely advise a higher body), Powers (`binding_powers`: what it decides on and the means to do it); Individual accountability is a cap (no/weak →
   at most dark grey).
 * Recall is optional (`optional: true`): counted only when met. It does not apply to bodies elected in districts of
   more than one seat (removed from councils and parliaments).
