@@ -27,6 +27,6 @@ ARR's proxy is enabled server-wide, but it only acts for sites with a rewrite ru
 
 To set or change the API key: over SSH, edit `C:\freedom\app\.env`, then `Restart-Service freedom`.
 
-Readers' comments on highlighted law text are published as GitHub issues when `.env` also has `FREEDOM_ISSUES_REPO=owner/name` and `FREEDOM_ISSUES_TOKEN=…`: a fine-grained token limited to that one repository with only "Issues: Read and write". At most 50 new issues a day for the whole site (`FREEDOM_ISSUES_DAILY`), and the usual per-address write limits. Without these lines the comment icon answers that comments are not set up.
+Readers' comments for the editors (the speech bubble on a requirement page, and the one beside highlighted law text) are saved on the server in `data/state/review.jsonl`, one JSON object per line: who it is from (`owner` or `reader`), the page and its address, the highlighted text, the comment and any chat the reader had about it. Nothing is published and no token is needed. Limits: the usual per-address write limits, 500 comments a day for the whole site (`FREEDOM_COMMENTS_DAILY`), and no more once the file reaches 20 MB. `tools/deploy.sh` never uploads or overwrites `data/state`.
 
 Files removed from git stay on the server until deleted by hand.
