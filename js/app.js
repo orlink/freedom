@@ -844,7 +844,80 @@ function explainerMini(explainer) {
 // When the data proposes amendments (`fix` on a provision), a Fix button shows them as tracked changes, each
 // with a short "why" and buttons for readers to approve it or suggest their own wording. A provision with a
 // `fix` but no `text` is a new article: hidden until Fix is pressed, so the act is shown as lacking it.
-function provisionsPanel(provisions, laws, explainer, prop) {
+// A provision's heading and numbers in the law's own style, with the words in the reader's language (Orlin
+// 2026-11-22; the rules are in docs/LAW-STYLES.md). The heading names only the article or section ("Чл. 26",
+// "Art. 26", "Section 63"); the paragraph, point or subsection is the number the quoted text starts with ("(4) …"),
+// as in the law itself, so several paragraphs of one article share one heading. The style comes from the
+// jurisdiction (`lawStyle`) or the law (`style`, e.g. EU treaties); the numbers are parsed from the English
+// reference, which is the data's key. Chapters, annexes, lists and ranges keep their whole reference as the heading.
+const SUP = { 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹', b: 'ᵇ', i: 'ⁱ', s: 'ˢ', t: 'ᵗ', e: 'ᵉ', r: 'ʳ', q: 'ᑫ', u: 'ᵘ', a: 'ᵃ' };
+const LAW_STYLES = {
+  // Bulgaria: "Чл. 26. (4) …", points "14.", letters "а)". The site's heading drops the article's full stop.
+  bg: { Article: { en: 'Art.', bg: 'Чл.' }, para: n => `(${n})`, sub: n => /^\d/.test(n) ? `${n}.` : `${n})`, cyr: true },
+  // Switzerland: "Art. 10" with paragraph numbers in superscript ("¹", "¹ᵇⁱˢ"), letters "a."
+  ch: { Article: { en: 'Art.', bg: 'Чл.' }, para: n => [...n].map(c => SUP[c] ?? c).join(''), sub: n => `${n}.`, relabel: true },
+  // Ireland: "Section 63", subsections "(1)", paragraphs "(a)"; the Constitution: "Article 40", then "3. 1°".
+  ie: { Article: { en: 'Article', bg: 'Чл.' }, Section: { en: 'Section', bg: 'Раздел' }, para: n => `(${n})`, sub: n => `(${n})` },
+  // EU treaties and regulations: "Article 11", paragraphs "4.", points "(a)".
+  eu: { Article: { en: 'Article', bg: 'Чл.' }, para: n => `${n}.`, sub: n => `(${n})` },
+};
+function lawRef(it, law, style) {
+  const st = LAW_STYLES[law?.style || style];
+  const ref = it.refKey ?? it.ref;
+  const m = st && /^(Article|Section) (\d+[A-Za-z]*)(.*)$/.exec(ref || '');
+  if (!m || !st[m[1]]) return { head: it.ref };
+  const cyr = s => st.cyr && lang === 'bg' ? s.replace(/a/g, 'а') : s;   // Bulgarian numbering letters are Cyrillic: "12а"
+  let rest = m[3].trim(); const isNew = /\(new\)$/.test(rest); rest = rest.replace(/\s*\(new\)$/, '');
+  const newWord = g => lang === 'bg' ? (g === 'f' ? '(нова)' : '(нов)') : '(new)';
+  let p, marks;
+  if (!rest) marks = [];
+  else if ((p = /^\((\w+)\)$/.exec(rest))) marks = [st.para(cyr(p[1]))];
+  else if ((p = /^\((\w+)\)(?:\((\w+)\)|, item (\w+))$/.exec(rest))) marks = [st.para(cyr(p[1])), st.sub(cyr(p[2] ?? p[3]))];
+  else if ((p = /^\.(\d+)(?:\.(\d+°))?$/.exec(rest))) marks = p[2] ? [`${p[1]}.`, p[2]] : [`${p[1]}.`];   // Bunreacht: 40.3.1°
+  else {
+    // Several paragraphs ("(2), (4)", "(3)–(6)") quoted with their own numbers: the article alone. Anything else
+    // (points by name, amendment notes) keeps the whole reference.
+    const first = [].concat(it.text ?? it.fix ?? '')[0] || '';
+    if (/^\(\w+\)(?:(?:, |–)\(\w+\))+$/.test(rest) && /^\s*\(\w+\)/.test(first)) marks = [];
+    else return { head: it.ref };
+  }
+  const head = `${st[m[1]][lang] ?? st[m[1]].en} ${cyr(m[2])}${isNew && !marks.length ? ` ${newWord('m')}` : ''}`;
+  return { head, marks, st, isNew: isNew && marks.length > 0, newWord: newWord('f') };
+}
+// The quoted lines with the numbers the reference implies: "(4) " in front of a paragraph that lacks it (and
+// "(нова)" after a new one), and for a point, its paragraph's number on a line of its own ("(1) …") above it.
+function withMarks(it, r) {
+  // A style that does not write "(1)" (Swiss superscripts) rewrites a quote's own paragraph numbers.
+  if (r.st?.relabel) {
+    const re = v => v == null ? v : Array.isArray(v) ? v.map(re) : typeof v === 'string' ? v.replace(/^(\s*)\((\d+\w*)\)\s/, (_, sp, n) => `${sp}${r.st.para(n)} `) : v;
+    it = { ...it, text: re(it.text), fix: re(it.fix) };
+  }
+  const marks = r.marks;
+  if (!marks?.length) return { it, lead: null };
+  const last = marks[marks.length - 1];
+  const bare = s => s.replace(/^\((.*)\)$/, '$1').replace(/\.$/, '');
+  // A text that already starts with its own number keeps it (Bulgarian originals do), written in the law's style.
+  const add = v => {
+    if (v == null) return v;
+    const a = [].concat(v); if (!a.length || !a[0]) return v;
+    const t = a[0].trimStart(), own = /^(\(\w+\)|\d+[a-z]?\.|\d+°|[¹²³⁴⁵⁶⁷⁸⁹⁰ᵇⁱˢᵗᵉʳᵃ]+)\s*/.exec(t);
+    a[0] = own && bare(own[1]) === bare(last) ? `${last} ${t.slice(own[0].length)}` : `${last}${r.isNew ? ` ${r.newWord}` : ''} ${t}`;
+    return Array.isArray(v) ? a : a[0];
+  };
+  const lead = marks.length > 1 ? `${marks.slice(0, -1).join(' ')} …` : null;
+  return { it: { ...it, text: add(it.text), fix: add(it.fix) }, lead };
+}
+// One article: its heading, then its quoted paragraphs, in one box, so comments (review.js) are on the article as a
+// whole, with one icon by its heading (Orlin 2026-11-22).
+function articles(parts) {
+  const out = [];
+  for (const x of parts) {
+    if (!x.same || !out.length) out.push(el('div', { class: 'article', 'data-review-unit': '' }, x.head ? el('p', { class: 'ref' }, x.head) : null));
+    out[out.length - 1].append(x.node);
+  }
+  return out;
+}
+function provisionsPanel(provisions, laws, explainer, prop, lawStyle) {
   const unmet = ['no', 'partial', 'weak'].includes(prop?.status);
   const fixable = unmet && provisions.some(p => (p.items || []).some(it => it.fix != null));
   const panel = el('div', {});
@@ -869,11 +942,16 @@ function provisionsPanel(provisions, laws, explainer, prop) {
         el('h3', {}, title),
         how ? el('p', { class: 'lang-note' }, how) : null,
         items.length ? null : el('p', { class: 'absent' }, fixable ? t('law.absentFixable') : t('law.absent')),
-        ...items.map(it => el('div', { class: 'provision' },
-          it.ref ? el('p', { class: 'ref' }, it.ref) : null,
-          ...provisionLines(it, fixed),
-          fixed && it.fix != null && it.why ? el('p', { class: 'why' }, it.why) : null,
-          fixed && it.fix != null ? fixReview(p.law, it) : null)));
+        ...articles(items.map((it0, k) => {
+          const r = lawRef(it0, law, lawStyle), { it, lead } = withMarks(it0, r);
+          const pr = k ? lawRef(items[k - 1], law, lawStyle) : null, prevLead = pr && withMarks(items[k - 1], pr).lead;
+          const same = pr && pr.head === r.head;
+          return { head: r.head, same, node: el('div', { class: `provision${same ? ' same' : ''}`, 'data-ref': it0.ref || '' },
+            lead && !(same && prevLead === lead) ? el('p', { class: 'lead' }, lead) : null,
+            ...provisionLines(it, fixed),
+            fixed && it.fix != null && it.why ? el('p', { class: 'why' }, it.why) : null,
+            fixed && it.fix != null ? fixReview(p.law, it0) : null) };
+        })));
     })].filter(Boolean));
   };
   draw(false);
@@ -986,23 +1064,22 @@ function chatButton(key, context) {
       draggable(pop, pop.querySelector('.chat-head'));
       box.input.focus();
     } });
-  // A question mark: asking Claude, as on highlighted law text (a speech bubble there means a comment for the editors).
+  // A question mark: asking Claude about the requirement. It sits right of the speech bubble (Orlin 2026-11-22).
   btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a2.9 2.9 0 1 1 4 2.6c-.7.3-1.2 1-1.2 1.8v.8"/><path d="M12 17.3h.01"/></svg>';
-  // Beside it, a speech bubble: a comment or feedback on the whole requirement, published like a passage comment.
+  // Left of it, a speech bubble: a comment or feedback on the whole requirement, published like a passage comment.
   const note = el('button', { type: 'button', class: 'chat-btn', 'aria-label': t('req.comment'), title: t('req.comment'),
     onclick: () => { close(); openPassage({ quote: '', where: '', top: note.getBoundingClientRect().bottom + 8 }, 'comment'); } });
   note.innerHTML = ICON_COMMENT.replace(/width="16" height="16"/, 'width="22" height="22"').replace('stroke-width="2.2"', 'stroke-width="2"');
-  wrap.prepend(btn, note);
+  wrap.prepend(note, btn);
   return wrap;
 }
 
 // ---------- questions and comments on highlighted law text ----------
-// Selecting words in a quoted law on a requirement page shows two small icons just off the selection's top right corner
-// (Orlin): a question mark opens a chat with Claude about the passage; a speech bubble opens a box for a comment, which
-// server.py publishes as a GitHub issue (with the passage, where it is, and any chat about it) for the editors.
+// Selecting words in a quoted law on a requirement page shows a small speech bubble just off the selection's top right
+// corner (Orlin): it opens a box for a comment, which server.py publishes as a GitHub issue (with the passage and where
+// it is) for the editors. (Asking Claude about a passage had a question mark there too; Orlin removed it 2026-11-22.)
 const lawSel = { btn: null, pop: null, base: null };  // base: this requirement page's chat key and text, set by render()
 const hashText = s => { let h = 5381; for (const ch of s) h = (h * 33 + ch.codePointAt(0)) >>> 0; return h.toString(36); };
-const ICON_ASK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9a3 3 0 1 1 4.2 2.75c-.75.34-1.2 1.07-1.2 1.9V15"/><path d="M12 19h.01"/></svg>';
 const ICON_COMMENT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>';  // a round speech bubble
 function selectedPassage() {
   const sel = getSelection();
@@ -1016,7 +1093,7 @@ function selectedPassage() {
   const quote = sel.toString().replace(/\s+/g, ' ').trim().slice(0, 2000);
   if (quote.length < 2) return null;
   const law = first.closest('section')?.querySelector('h3')?.textContent.trim() || '';
-  const ref = first.querySelector('.ref')?.textContent.trim() || '';
+  const ref = first.dataset.ref || first.querySelector('.ref')?.textContent.trim() || '';   // the full reference: "Чл. 26, ал. 4"
   // The top line of the selection, and its right end: where the icons go.
   const rects = [...range.getClientRects()].filter(r => r.width > 0 && r.height > 0);
   if (!rects.length) return null;
@@ -1029,19 +1106,18 @@ function showLawIcon() {
   const p = selectedPassage();
   if (!p) return hideLawIcon();
   if (!lawSel.btn) {
-    const ask = el('button', { type: 'button', class: 'sel-ask', 'aria-label': t('passage.ask'), title: t('passage.ask') });
+    // Only the speech bubble (Orlin 2026-11-22): questions to Claude go through the requirement's question mark.
     const comment = el('button', { type: 'button', class: 'sel-comment', 'aria-label': t('passage.comment'), title: t('passage.comment') });
-    ask.innerHTML = ICON_ASK; comment.innerHTML = ICON_COMMENT;
-    lawSel.btn = el('div', { class: 'sel-tools' }, ask, comment);
+    comment.innerHTML = ICON_COMMENT;
+    lawSel.btn = el('div', { class: 'sel-tools' }, comment);
     // Pressing an icon must not clear the selection before its click.
     lawSel.btn.addEventListener('pointerdown', e => e.preventDefault());
     lawSel.btn.addEventListener('mousedown', e => e.preventDefault());
     document.body.append(lawSel.btn);
   }
-  const [ask, comment] = lawSel.btn.children;
-  ask.onclick = () => { hideLawIcon(); openPassage(p, 'ask'); };
+  const [comment] = lawSel.btn.children;
   comment.onclick = () => { hideLawIcon(); openPassage(p, 'comment'); };
-  const w = 66, h = 30, view = document.documentElement.clientWidth;
+  const w = 30, h = 30, view = document.documentElement.clientWidth;
   const x = Math.min(p.right + 2, view - w - 6), y = Math.max(6, p.top - h + 4);
   Object.assign(lawSel.btn.style, { left: `${x + scrollX}px`, top: `${y + scrollY}px` });
 }
@@ -1384,7 +1460,7 @@ function render() {
     lawSel.base = { key: chatKey, context, title: steps.map(s => s.name).join(' › ') };
     keepPassageChat = chatKey;
     // The chat button sits in the top right corner of the verdict band (outside the panel, so its pop-up is not clipped).
-    if (prop.provisions?.length) screen.push(el('div', { class: 'req has-chat' }, provisionsPanel(prop.provisions, j.laws, explainer, prop), chatBtn));
+    if (prop.provisions?.length) screen.push(el('div', { class: 'req has-chat' }, provisionsPanel(prop.provisions, j.laws, explainer, prop, j.lawStyle), chatBtn));
     else screen.push(el('div', { class: 'req-head' }, chatBtn), rowOf((prop.laws || []).map(id => {
       const law = j.laws[id] || { title: id };
       return chip({ label: tx(law, 'short') || tx(law, 'title'), tone: 'law', title: [...new Set([lawName(law), law.localTitle].filter(Boolean))].join('\n'), href: tx(law, 'url') });

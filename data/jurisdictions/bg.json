@@ -4,6 +4,7 @@
   "match": {
     "country_code": "bg"
   },
+  "lawStyle": "bg",
   "status": "draft",
   "statusNote": "Draft. For each property the page lists the laws that govern it; the specific articles will be worked out next. The yes/partly/no assessments are provisional until the articles are confirmed.",
   "mapZoom": {
@@ -95,6 +96,7 @@
       "title": "Treaty on European Union",
       "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12012M/TXT",
       "short": "TEU",
+      "style": "eu",
       "lang": "bg",
       "bg": {
         "title": "Договор за Европейския съюз",
@@ -105,6 +107,7 @@
       "title": "Regulation (EU) 2019/788 on the European citizens' initiative",
       "url": "https://eur-lex.europa.eu/eli/reg/2019/788/oj",
       "short": "ECI Regulation",
+      "style": "eu",
       "lang": "bg",
       "bg": {
         "title": "Регламент (ЕС) 2019/788 относно европейската гражданска инициатива",

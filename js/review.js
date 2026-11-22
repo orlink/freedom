@@ -1,4 +1,5 @@
-// The owner's text review, on the local copy only (server.py --edit): a small comment icon beside every paragraph.
+// The owner's text review, on the local copy only (server.py --edit): a small comment icon beside every paragraph
+// (and one per article of quoted law).
 // A comment is sent to /api/review together with the paragraph's text and where it is on the site, and the server
 // appends it to data/state/review.jsonl, which Claude watches and answers. On any other server /api/editor says
 // false (or does not exist), so nothing here runs.
@@ -25,19 +26,29 @@
   }
 
   // Paragraphs that hold text of their own: a list item that wraps paragraphs gets no icon, its paragraphs do.
+  // A block marked data-review-unit (an article of quoted law, with all its paragraphs) is commented on as a whole:
+  // one icon, by its heading.
   function mark(root) {
-    root.querySelectorAll(BLOCKS).forEach(node => {
-      if (node.dataset.review || node.closest(SKIP) || node.querySelector(BLOCKS) || textOf(node).length < 2) return;
-      node.dataset.review = '1';
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'review-btn';
-      b.title = 'Comment on this text';
-      b.setAttribute('aria-label', 'Comment on this text');
-      b.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
-      b.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); open(node); });
-      node.appendChild(b);
+    root.querySelectorAll('[data-review-unit]').forEach(unit => {
+      if (unit.dataset.review || unit.closest(SKIP)) return;
+      unit.dataset.review = '1';
+      icon(unit.querySelector(':scope > .ref') || unit, unit);
     });
+    root.querySelectorAll(BLOCKS).forEach(node => {
+      if (node.dataset.review || node.closest(SKIP) || node.closest('[data-review-unit]') || node.querySelector(BLOCKS) || textOf(node).length < 2) return;
+      node.dataset.review = '1';
+      icon(node, node);
+    });
+  }
+  function icon(at, node) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'review-btn';
+    b.title = 'Comment on this text';
+    b.setAttribute('aria-label', 'Comment on this text');
+    b.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
+    b.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); open(node); });
+    at.appendChild(b);
   }
 
   let pop = null;
