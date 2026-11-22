@@ -39,8 +39,7 @@
       "kind": "sphere",
       "description": "Decisions about one's own life, body, property and time.",
       "bg": {
-        "name": "Лични",
-        "interests": "Лични интереси"
+        "name": "Лични"
       },
       "group": "individual"
     },
@@ -51,8 +50,7 @@
       "kind": "sphere",
       "description": "The shareholders of a company (a corporation or LLC; АД or ООД in Bulgaria, AG or GmbH in Switzerland): its business, capital, profits and risks.",
       "bg": {
-        "name": "Дружество",
-        "interests": "Интереси на дружеството"
+        "name": "Дружество"
       },
       "group": "economic"
     },
@@ -63,8 +61,7 @@
       "kind": "sphere",
       "description": "Partners who run a business together and answer for it personally (a general or limited partnership).",
       "bg": {
-        "name": "Съдружие",
-        "interests": "Интереси на съдружието"
+        "name": "Съдружие"
       },
       "group": "economic"
     },
@@ -75,8 +72,7 @@
       "kind": "sphere",
       "description": "Members who own and run an enterprise together to meet their common needs.",
       "bg": {
-        "name": "Кооперация",
-        "interests": "Интереси на кооперацията"
+        "name": "Кооперация"
       },
       "group": "economic"
     },
@@ -87,8 +83,7 @@
       "kind": "sphere",
       "description": "Members governing their own non-profit association or club.",
       "bg": {
-        "name": "Сдружение",
-        "interests": "Интереси на сдружението"
+        "name": "Сдружение"
       },
       "group": "noneconomic"
     },
@@ -102,7 +97,6 @@
       "description": "The people living together in one home: a house or a flat.",
       "bg": {
         "name": "Дом",
-        "interests": "Домашни интереси",
         "informal": "Хората, които живеят в дома, решават помежду си, неформално, без формални институции."
       },
       "group": "residential"
@@ -115,8 +109,7 @@
       "addressKeys": [],
       "description": "Residents sharing one section (entrance, вход) of an apartment building.",
       "bg": {
-        "name": "Вход",
-        "interests": "Интереси на входа"
+        "name": "Вход"
       },
       "group": "residential"
     },
@@ -131,8 +124,7 @@
       ],
       "description": "Owners and residents of one building: roof, facade, elevator, common areas.",
       "bg": {
-        "name": "Жилищна сграда",
-        "interests": "Интереси на сградата"
+        "name": "Жилищна сграда"
       },
       "group": "residential"
     },
@@ -149,8 +141,7 @@
       ],
       "description": "A city quarter (квартал): walkways, playgrounds, kindergartens, parking.",
       "bg": {
-        "name": "Квартал",
-        "interests": "Квартални интереси"
+        "name": "Квартал"
       },
       "group": "residential"
     },
@@ -165,8 +156,7 @@
       ],
       "description": "A village community.",
       "bg": {
-        "name": "Село",
-        "interests": "Селски интереси"
+        "name": "Село"
       },
       "group": "residential"
     },
@@ -180,8 +170,7 @@
       ],
       "description": "A town community.",
       "bg": {
-        "name": "Град",
-        "interests": "Градски интереси"
+        "name": "Град"
       },
       "group": "residential"
     },
@@ -197,8 +186,7 @@
       ],
       "description": "The basic unit of local self-government.",
       "bg": {
-        "name": "Община",
-        "interests": "Общински интереси"
+        "name": "Община"
       },
       "group": "residential"
     },
@@ -213,8 +201,7 @@
       ],
       "description": "Intermediate level: county, district, oblast, province.",
       "bg": {
-        "name": "Област",
-        "interests": "Областни интереси"
+        "name": "Област"
       },
       "group": "residential"
     },
@@ -228,8 +215,7 @@
       ],
       "description": "Member state of a federation (a US state, a German Land); a country may give it its own name in `levelNames`, e.g. Canton in Switzerland. Not applicable in unitary countries.",
       "bg": {
-        "name": "Щат",
-        "interests": "Щатски интереси"
+        "name": "Щат"
       },
       "group": "residential"
     },
@@ -243,8 +229,7 @@
       ],
       "description": "The country (the sovereign state).",
       "bg": {
-        "name": "Държава",
-        "interests": "Държавни интереси"
+        "name": "Държава"
       },
       "group": "residential"
     },
@@ -256,8 +241,7 @@
       "addressKeys": [],
       "description": "Supranational union, e.g. the European Union.",
       "bg": {
-        "name": "Съюз",
-        "interests": "Съюзни интереси"
+        "name": "Съюз"
       },
       "group": "residential"
     }
