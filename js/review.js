@@ -26,13 +26,18 @@
   }
 
   // Paragraphs that hold text of their own: a list item that wraps paragraphs gets no icon, its paragraphs do.
-  // A block marked data-review-unit (an article of quoted law, with all its paragraphs) is commented on as a whole:
-  // one icon, by its heading.
+  // An article of quoted law (data-review-unit, with its heading and data-review-part paragraphs): one paragraph gets
+  // one icon at the end of its text, for the whole article; two or more get one by the heading, for the article, and
+  // one at the end of each paragraph, for that paragraph under its heading.
+  const lastLine = part => [...part.querySelectorAll(':scope > p:not(.why):not(.lead)')].pop() || part;
   function mark(root) {
     root.querySelectorAll('[data-review-unit]').forEach(unit => {
       if (unit.dataset.review || unit.closest(SKIP)) return;
       unit.dataset.review = '1';
-      icon(unit.querySelector(':scope > .ref') || unit, unit);
+      const head = unit.querySelector(':scope > [data-review-head]'), parts = unit.querySelectorAll(':scope > [data-review-part]');
+      if (parts.length < 2) return icon(lastLine(parts[0] || unit), unit);
+      if (head) icon(head, unit);
+      parts.forEach(part => icon(lastLine(part), part, head ? textOf(head) : ''));
     });
     root.querySelectorAll(BLOCKS).forEach(node => {
       if (node.dataset.review || node.closest(SKIP) || node.closest('[data-review-unit]') || node.querySelector(BLOCKS) || textOf(node).length < 2) return;
@@ -40,14 +45,14 @@
       icon(node, node);
     });
   }
-  function icon(at, node) {
+  function icon(at, node, heading = '') {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'review-btn';
     b.title = 'Comment on this text';
     b.setAttribute('aria-label', 'Comment on this text');
     b.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
-    b.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); open(node); });
+    b.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); open(node, heading, b); });
     at.appendChild(b);
   }
 
@@ -55,9 +60,9 @@
   function close() { if (pop) { pop.remove(); pop = null; } }
 
   // The box stays until Cancel or a successful send: clicks elsewhere, Escape and other icons leave it alone.
-  function open(node) {
+  function open(node, heading = '', btn = null) {
     if (pop) return pop.querySelector('textarea').focus();
-    const text = textOf(node);
+    const text = [heading, textOf(node)].filter(Boolean).join(' ');
     pop = document.createElement('div');
     pop.className = 'review-pop';
     pop.innerHTML = '<p class="review-quote"></p><textarea rows="5" placeholder="Your comment (⌘/Ctrl+Enter sends)"></textarea>'
@@ -76,6 +81,7 @@
         if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || r.status);
         status.textContent = 'Sent. Claude answers in the project thread.';
         node.classList.add('review-done');
+        btn?.classList.add('done');
         setTimeout(close, 1500);
       } catch (e) {
         status.textContent = 'Not sent: ' + e.message;

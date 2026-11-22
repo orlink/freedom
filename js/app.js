@@ -907,12 +907,13 @@ function withMarks(it, r) {
   const lead = marks.length > 1 ? `${marks.slice(0, -1).join(' ')} …` : null;
   return { it: { ...it, text: add(it.text), fix: add(it.fix) }, lead };
 }
-// One article: its heading, then its quoted paragraphs, in one box, so comments (review.js) are on the article as a
-// whole, with one icon by its heading (Orlin 2026-11-22).
+// One article: its heading, then its quoted paragraphs, in one box. The owner's comment icons (review.js) follow it
+// (Orlin 2026-11-22): one paragraph has one icon at the end of its text; two or more have one by the heading, for the
+// whole article, and one at the end of each paragraph.
 function articles(parts) {
   const out = [];
   for (const x of parts) {
-    if (!x.same || !out.length) out.push(el('div', { class: 'article', 'data-review-unit': '' }, x.head ? el('p', { class: 'ref' }, x.head) : null));
+    if (!x.same || !out.length) out.push(el('div', { class: 'article', 'data-review-unit': '' }, x.head ? el('p', { class: 'ref', 'data-review-head': '' }, x.head) : null));
     out[out.length - 1].append(x.node);
   }
   return out;
@@ -946,7 +947,7 @@ function provisionsPanel(provisions, laws, explainer, prop, lawStyle) {
           const r = lawRef(it0, law, lawStyle), { it, lead } = withMarks(it0, r);
           const pr = k ? lawRef(items[k - 1], law, lawStyle) : null, prevLead = pr && withMarks(items[k - 1], pr).lead;
           const same = pr && pr.head === r.head;
-          return { head: r.head, same, node: el('div', { class: `provision${same ? ' same' : ''}`, 'data-ref': it0.ref || '' },
+          return { head: r.head, same, node: el('div', { class: `provision${same ? ' same' : ''}`, 'data-ref': it0.ref || '', 'data-review-part': '' },
             lead && !(same && prevLead === lead) ? el('p', { class: 'lead' }, lead) : null,
             ...provisionLines(it, fixed),
             fixed && it.fix != null && it.why ? el('p', { class: 'why' }, it.why) : null,
