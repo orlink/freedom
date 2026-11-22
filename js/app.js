@@ -1067,7 +1067,8 @@ function chatButton(key, context) {
     } });
   // A question mark: asking Claude about the requirement. It sits right of the speech bubble (Orlin 2026-11-22).
   btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a2.9 2.9 0 1 1 4 2.6c-.7.3-1.2 1-1.2 1.8v.8"/><path d="M12 17.3h.01"/></svg>';
-  // Left of it, a speech bubble: a comment or feedback on the whole requirement, published like a passage comment.
+  // Left of it, a speech bubble: a comment or feedback on the whole requirement. Like a passage comment and like the
+  // owner's paragraph comments, it goes to the editors' queue on the server (Orlin 2026-11-22), not to GitHub.
   const note = el('button', { type: 'button', class: 'chat-btn', 'aria-label': t('req.comment'), title: t('req.comment'),
     onclick: () => { close(); openPassage({ quote: '', where: '', top: note.getBoundingClientRect().bottom + 8 }, 'comment'); } });
   note.innerHTML = ICON_COMMENT.replace(/width="16" height="16"/, 'width="22" height="22"').replace('stroke-width="2.2"', 'stroke-width="2"');
@@ -1077,8 +1078,8 @@ function chatButton(key, context) {
 
 // ---------- questions and comments on highlighted law text ----------
 // Selecting words in a quoted law on a requirement page shows a small speech bubble just off the selection's top right
-// corner (Orlin): it opens a box for a comment, which server.py publishes as a GitHub issue (with the passage and where
-// it is) for the editors. (Asking Claude about a passage had a question mark there too; Orlin removed it 2026-11-22.)
+// corner (Orlin): it opens a box for a comment, which server.py saves for the editors (with the passage and where
+// it is). (Asking Claude about a passage had a question mark there too; Orlin removed it 2026-11-22.)
 const lawSel = { btn: null, pop: null, base: null };  // base: this requirement page's chat key and text, set by render()
 const hashText = s => { let h = 5381; for (const ch of s) h = (h * 33 + ch.codePointAt(0)) >>> 0; return h.toString(36); };
 const ICON_COMMENT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>';  // a round speech bubble
@@ -1123,10 +1124,11 @@ function showLawIcon() {
   Object.assign(lawSel.btn.style, { left: `${x + scrollX}px`, top: `${y + scrollY}px` });
 }
 const passageKey = p => `${lawSel.base.key}|q|${hashText(p.quote)}`.slice(-200);
-// The box for a comment on a passage: published as a GitHub issue, with any chat the reader had about the passage.
+// The box for a comment on a passage or on the whole requirement: saved on the server for the editors, with any chat
+// the reader had about it. Nothing is published.
 function commentBox(p) {
   const input = el('textarea', { rows: '4', maxlength: '2000', placeholder: t('passage.placeholder'), 'aria-label': t('passage.comment') });
-  const status = el('p', { class: 'chat-intro', 'aria-live': 'polite' }, t('passage.public'));
+  const status = el('p', { class: 'chat-intro', 'aria-live': 'polite' }, t(p.quote ? 'passage.private' : 'req.private'));
   const send = el('button', { type: 'submit', class: 'chat-send' }, t('chat.send'));
   const form = el('form', { class: 'chat-form', onsubmit: async e => {
     e.preventDefault();
@@ -1137,10 +1139,10 @@ function commentBox(p) {
       const r = await api('POST', 'api/comment', { comment, quote: p.quote, where: p.where, page: lawSel.base.title, url: location.href,
         messages: chats.get(p.quote ? passageKey(p) : lawSel.base.key)?.messages || [] });
       input.value = '';
-      status.replaceChildren(t('passage.sent'), ' ', r.url ? el('a', { href: r.url, target: '_blank', rel: 'noopener' }, t('passage.see')) : '');
+      status.textContent = t(r.to === 'claude' ? 'passage.sentOwner' : 'passage.sent');   // 'claude': the owner's local copy
     } catch (err) {
       status.className = 'chat-error';
-      status.textContent = { 503: t('passage.notSetUp'), 429: t('passage.tooMany'), 502: t('passage.failed') }[err.status] || (err.refused ? err.message : t('chat.needsServer'));
+      status.textContent = { 429: t('passage.tooMany'), 507: t('passage.failed') }[err.status] || (err.refused ? err.message : t('chat.needsServer'));
     }
     send.disabled = false;
   } }, input, send);

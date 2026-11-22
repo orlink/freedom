@@ -26,13 +26,12 @@ only needed for the chat:
     .venv/bin/python server.py
 
 Every conversation is saved to data/state/comments.json, so the comments and suggestions
-readers make there can be read later even when the chat is not set up. With FREEDOM_ISSUES_REPO and
-FREEDOM_ISSUES_TOKEN in .env, readers' comments on highlighted law text (/api/comment) become GitHub issues (docs/HOSTING.md).
+readers make there can be read later even when the chat is not set up. Readers' comments for the editors
+(/api/comment), on a whole requirement or on highlighted law text, are saved to data/state/review.jsonl (docs/HOSTING.md).
 """
 import argparse, hashlib, json, os, posixpath, re, secrets, threading, time, uuid
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs, unquote
-import urllib.request, urllib.error
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 STATE_FILE = os.path.join(ROOT, "data", "state", "interests.json")
@@ -41,7 +40,7 @@ KEY_RE = re.compile(r"^[\w\- .,'()/|À-ɏЀ-ӿ]{1,200}$")
 FIXES_FILE = os.path.join(ROOT, "data", "state", "fixes.json")
 SITE_INTERESTS = os.path.join(ROOT, "data", "interests.json")
 EDITOR = False  # set by --edit: the site owner's local copy, where interest edits change data/interests.json
-REVIEW_FILE = os.path.join(ROOT, "data", "state", "review.jsonl")  # the owner's comments on the site's text (--edit only)
+REVIEW_FILE = os.path.join(ROOT, "data", "state", "review.jsonl")  # the editors' queue: the owner's and readers' comments
 MAX_REVIEW_TEXT = 8000
 MAX_INTERESTS = 40
 MAX_LABEL = 60
@@ -69,12 +68,12 @@ MAX_AUDIT_BYTES = 20_000_000
 MAX_CONVERSATIONS = 200          # per requirement page
 
 
-# Readers' comments on highlighted law text become GitHub issues, for the editors.
-# Off unless the server's .env sets FREEDOM_ISSUES_TOKEN (a fine-grained token that can only write issues in that one
-# repository) and FREEDOM_ISSUES_REPO ("owner/name"). The token never leaves the server: it is not in the repository,
-# not uploaded by tools/deploy.sh and not served (.env is not on the allow-list).
-ISSUES_DAILY = 50   # new issues per day, whole site (FREEDOM_ISSUES_DAILY overrides)
-ISSUES_RATE = None  # made in main(), after .env is read
+# Readers' comments for the editors (/api/comment), on a whole requirement or on highlighted law text, are saved on this
+# server in REVIEW_FILE, the queue the owner's own paragraph comments go to as well. Nothing is published and nothing
+# leaves the server (Orlin 2026-11-22; they used to become GitHub issues).
+COMMENTS_DAILY = 500           # readers' comments per day, whole site (FREEDOM_COMMENTS_DAILY overrides)
+COMMENT_RATE = None            # made in main(), after .env is read
+MAX_REVIEW_BYTES = 20_000_000  # no more readers' comments once the queue is this large
 MAX_COMMENT = 2000
 
 # What the web server may hand out as files. Everything else in the folder is private.
@@ -365,51 +364,6 @@ def save_comment(key, cid, messages, context_title):
     return True
 
 
-def github(method, path, body):
-    """One call to the GitHub API with the issues token. Returns the decoded answer, or None on any failure."""
-    token = os.environ.get("FREEDOM_ISSUES_TOKEN", "")
-    req = urllib.request.Request("https://api.github.com" + path, method=method, data=json.dumps(body).encode("utf-8"), headers={
-        "Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "freedom-map", "Content-Type": "application/json"})
-    try:
-        with urllib.request.urlopen(req, timeout=20) as r:
-            return json.load(r)
-    except (urllib.error.URLError, OSError, ValueError) as e:
-        print(f"GitHub {method} {path} failed: {e}")
-        return None
-
-
-def no_mentions(text):
-    """Readers' text must not notify GitHub users or teams: "@name" becomes "@\u200bname" (looks the same)."""
-    return re.sub(r"@(?=[\w-])", "@\u200b", str(text))
-
-
-def quote_md(text):
-    return "\n".join("> " + line for line in no_mentions(text).splitlines() or [""])
-
-
-def issue_turns(messages):
-    """Messages as Markdown: the reader's words quoted, Claude's answers below them."""
-    out = []
-    for m in messages:
-        who = "**Reader**" if m["role"] == "user" else "**Claude**"
-        out.append(f"{who}\n\n{quote_md(m['content']) if m['role'] == 'user' else no_mentions(m['content'])}")
-    return "\n\n".join(out)
-
-
-def comment_issue(comment, quote, where, page, url, lang, messages):
-    """The issue for one reader's comment: title, then a body with the page, the passage, the comment and any chat."""
-    head = " ".join(comment.split())
-    title = f"{re.split(r' [›>] ', page)[-1] if page else 'Comment'}: {no_mentions(head)[:70]}{'…' if len(head) > 70 else ''}"
-    parts = [f"**Page:** {no_mentions(page)}", f"**Link:** {url or '(not given)'}", f"**Language:** {lang}"]
-    if quote:
-        parts.append(f"**Highlighted** ({no_mentions(where) or 'law text'}):\n\n{quote_md(quote)}")
-    parts.append(f"**Comment**\n\n{quote_md(comment)}")
-    if messages:
-        parts.append("<details><summary>Chat with Claude</summary>\n\n" + issue_turns(messages) + "\n\n</details>")
-    return title[:200], "\n\n".join(parts)[:60000]
-
-
 class Handler(SimpleHTTPRequestHandler):
     def end_headers(self):
         # Always revalidate, so a reload shows the latest data and scripts after a git pull.
@@ -679,7 +633,7 @@ class Handler(SimpleHTTPRequestHandler):
         body = self.read_body(64_000)
         if not isinstance(body, dict) or not str(body.get("comment", "")).strip():
             return self.send_json(400, {"error": "empty comment"})
-        rec = {"id": uuid.uuid4().hex[:8], "at": time.strftime("%Y-%m-%d %H:%M:%S")}
+        rec = {"id": uuid.uuid4().hex[:8], "at": time.strftime("%Y-%m-%d %H:%M:%S"), "from": "owner", "kind": "paragraph"}
         for k in ("comment", "text", "url", "page", "where"):
             rec[k] = str(body.get(k, "")).strip()[:MAX_REVIEW_TEXT]
         with LOCK:
@@ -689,10 +643,8 @@ class Handler(SimpleHTTPRequestHandler):
         return self.send_json(200, {"id": rec["id"]})
 
     def comment(self):
-        """A reader's comment on a highlighted passage of law, published as a GitHub issue. Answers with its address."""
-        repo, token = os.environ.get("FREEDOM_ISSUES_REPO", ""), os.environ.get("FREEDOM_ISSUES_TOKEN", "")
-        if not token or not re.match(r"^[\w.-]+/[\w.-]+$", repo):
-            return self.send_json(503, {"error": "Comments are not set up on this server yet."})
+        """A comment for the editors, on a whole requirement or on a highlighted passage of law, from anyone: appended
+        to REVIEW_FILE with the page, the passage and any chat the reader had about it. Nothing is published."""
         body = self.read_body(CHAT_MAX_BODY)
         if not isinstance(body, dict):
             return self.send_json(400, {"error": "bad body"})
@@ -707,19 +659,29 @@ class Handler(SimpleHTTPRequestHandler):
             role, text = (m or {}).get("role"), str((m or {}).get("content", "")).strip()[:CHAT_MAX_MESSAGE]
             if role in ("user", "assistant") and text:
                 msgs.append({"role": role, "content": text})
-        ip = self.client_ip()
-        if not WRITE_RATE.allow(ip):
-            return self.send_json(429, {"error": "Too many comments in a short time. Please wait a few minutes."})
-        if not ISSUES_RATE.allow("all"):
-            return self.send_json(429, {"error": "The site has taken as many comments as it can today. Please come back tomorrow."})
-        title, text = comment_issue(comment, quote, str(body.get("where", ""))[:300], str(body.get("page", ""))[:300], url,
-                                    getattr(self, "lang", "en") or "en", msgs)
-        r = github("POST", f"/repos/{repo}/issues", {"title": title, "body": text})
-        if not r or not r.get("html_url"):
-            return self.send_json(502, {"error": "The comment could not be published. Please try again later."})
+        owner, ip = self.is_editor(), self.client_ip()
+        if not owner:
+            if not WRITE_RATE.allow(ip):
+                return self.send_json(429, {"error": "Too many comments in a short time. Please wait a few minutes."})
+            if not COMMENT_RATE.allow("all"):
+                return self.send_json(429, {"error": "The site has taken as many comments as it can today. Please come back tomorrow."})
+        # "user" stays empty until readers sign in (planned); "who" is the one-way hash of a reader's address.
+        rec = {"id": uuid.uuid4().hex[:8], "at": time.strftime("%Y-%m-%d %H:%M:%S"), "from": "owner" if owner else "reader",
+               "who": None if owner else visitor_id(ip), "user": None, "kind": "passage" if quote else "requirement",
+               "lang": getattr(self, "lang", "en") or "en", "comment": comment, "text": quote,
+               "where": str(body.get("where", "")).strip()[:300], "page": str(body.get("page", "")).strip()[:300], "url": url,
+               "messages": msgs}
         with LOCK:
-            audit(ip, "comment", str(r.get("number")), title)
-        return self.send_json(200, {"url": r["html_url"], "number": r.get("number")})
+            full = not owner and too_big(REVIEW_FILE, MAX_REVIEW_BYTES)
+            if not full:
+                os.makedirs(os.path.dirname(REVIEW_FILE), exist_ok=True)
+                with open(REVIEW_FILE, "a", encoding="utf-8") as f:
+                    f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+                if not owner:
+                    audit(ip, "comment", rec["id"], " ".join(comment.split())[:80])
+        if full:
+            return self.send_json(507, {"error": "The comment could not be saved. Please try again later."})
+        return self.send_json(200, {"id": rec["id"], "to": "claude" if owner else "editors"})
 
     def chat(self):
         """One turn of the requirement-page chat: save the conversation, ask Claude, save the reply."""
@@ -761,8 +723,8 @@ def main():
     global EDITOR
     EDITOR = a.edit
     load_env()
-    global ISSUES_RATE
-    ISSUES_RATE = RateLimit([(int(os.environ.get("FREEDOM_ISSUES_DAILY") or ISSUES_DAILY), 86400)])
+    global COMMENT_RATE
+    COMMENT_RATE = RateLimit([(int(os.environ.get("FREEDOM_COMMENTS_DAILY") or COMMENTS_DAILY), 86400)])
     srv = ThreadingHTTPServer((a.host, a.port), Handler)
     print(f"Freedom Map on http://{'localhost' if a.host in ('127.0.0.1', '0.0.0.0') else a.host}:{a.port}/  (Ctrl+C to stop)")
     try:
