@@ -4,6 +4,7 @@
   "match": {
     "country_code": "ch"
   },
+  "lawStyle": "ch",
   "status": "draft",
   "statusNote": "Draft. For each property the page lists the laws that govern it; the specific articles will be worked out next. The yes/partly/no assessments are provisional until the articles are confirmed.",
   "laws": {

@@ -203,6 +203,8 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .provisions h3 a { color: var(--coral-ink); }
 .provisions .lang-note { margin: -6px 0 10px; color: var(--muted); font-size: 13px; font-style: italic; }
 .provisions .provision + .provision { margin-top: 12px; }
+.provisions .provision + .provision.same { margin-top: 6px; }   /* another paragraph of the same article */
+.provisions .lead { color: var(--muted); }   /* the paragraph a quoted point belongs to: "(1) …" */
 .provisions p { margin: 0 0 6px; }
 .provisions .ref { font-weight: 700; margin-bottom: 2px; }
 @media (max-width: 600px) { .provisions { padding: 16px; } }
