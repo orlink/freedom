@@ -39,6 +39,8 @@ the law. Where a rule here and a later instruction from the owner differ, the ow
    When a rule comes from non-statutory text (e.g. Ireland's boundary committee terms of reference), quote it as
    such, and quote the actual figures for an example place too (its council size, areas and seats).
    Record article notes in `docs/research/<cc>-articles.md`.
+   Write each `ref` in the country's citation style, and if the country's style is new, add it to
+   [LAW-STYLES.md](LAW-STYLES.md) and to `LAW_STYLES` in js/app.js, and set `lawStyle` in the country's file.
 4. **Status and explanation.** Set `yes` / `partial` / `weak` / `no` per the rules in section 2. The explanation is
    one or two plain sentences saying what the law does and why that meets or misses the requirement, with concrete
    numbers (seats, thresholds, days). No "Not met." prefixes.

@@ -907,6 +907,16 @@ function withMarks(it, r) {
   const lead = marks.length > 1 ? `${marks.slice(0, -1).join(' ')} …` : null;
   return { it: { ...it, text: add(it.text), fix: add(it.fix) }, lead };
 }
+// One article: its heading, then its quoted paragraphs, in one box, so comments (review.js) are on the article as a
+// whole, with one icon by its heading (Orlin 2026-11-22).
+function articles(parts) {
+  const out = [];
+  for (const x of parts) {
+    if (!x.same || !out.length) out.push(el('div', { class: 'article', 'data-review-unit': '' }, x.head ? el('p', { class: 'ref' }, x.head) : null));
+    out[out.length - 1].append(x.node);
+  }
+  return out;
+}
 function provisionsPanel(provisions, laws, explainer, prop, lawStyle) {
   const unmet = ['no', 'partial', 'weak'].includes(prop?.status);
   const fixable = unmet && provisions.some(p => (p.items || []).some(it => it.fix != null));
@@ -932,17 +942,16 @@ function provisionsPanel(provisions, laws, explainer, prop, lawStyle) {
         el('h3', {}, title),
         how ? el('p', { class: 'lang-note' }, how) : null,
         items.length ? null : el('p', { class: 'absent' }, fixable ? t('law.absentFixable') : t('law.absent')),
-        ...items.map((it0, k) => {
+        ...articles(items.map((it0, k) => {
           const r = lawRef(it0, law, lawStyle), { it, lead } = withMarks(it0, r);
           const pr = k ? lawRef(items[k - 1], law, lawStyle) : null, prevLead = pr && withMarks(items[k - 1], pr).lead;
           const same = pr && pr.head === r.head;
-          return el('div', { class: `provision${same ? ' same' : ''}`, 'data-ref': it0.ref || '' },
-          r.head && !same ? el('p', { class: 'ref' }, r.head) : null,
-          lead && !(same && prevLead === lead) ? el('p', { class: 'lead' }, lead) : null,
-          ...provisionLines(it, fixed),
-          fixed && it.fix != null && it.why ? el('p', { class: 'why' }, it.why) : null,
-          fixed && it.fix != null ? fixReview(p.law, it0) : null);
-        }));
+          return { head: r.head, same, node: el('div', { class: `provision${same ? ' same' : ''}`, 'data-ref': it0.ref || '' },
+            lead && !(same && prevLead === lead) ? el('p', { class: 'lead' }, lead) : null,
+            ...provisionLines(it, fixed),
+            fixed && it.fix != null && it.why ? el('p', { class: 'why' }, it.why) : null,
+            fixed && it.fix != null ? fixReview(p.law, it0) : null) };
+        })));
     })].filter(Boolean));
   };
   draw(false);
@@ -1055,23 +1064,22 @@ function chatButton(key, context) {
       draggable(pop, pop.querySelector('.chat-head'));
       box.input.focus();
     } });
-  // A question mark: asking Claude, as on highlighted law text (a speech bubble there means a comment for the editors).
+  // A question mark: asking Claude about the requirement. It sits right of the speech bubble (Orlin 2026-11-22).
   btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a2.9 2.9 0 1 1 4 2.6c-.7.3-1.2 1-1.2 1.8v.8"/><path d="M12 17.3h.01"/></svg>';
-  // Beside it, a speech bubble: a comment or feedback on the whole requirement, published like a passage comment.
+  // Left of it, a speech bubble: a comment or feedback on the whole requirement, published like a passage comment.
   const note = el('button', { type: 'button', class: 'chat-btn', 'aria-label': t('req.comment'), title: t('req.comment'),
     onclick: () => { close(); openPassage({ quote: '', where: '', top: note.getBoundingClientRect().bottom + 8 }, 'comment'); } });
   note.innerHTML = ICON_COMMENT.replace(/width="16" height="16"/, 'width="22" height="22"').replace('stroke-width="2.2"', 'stroke-width="2"');
-  wrap.prepend(btn, note);
+  wrap.prepend(note, btn);
   return wrap;
 }
 
 // ---------- questions and comments on highlighted law text ----------
-// Selecting words in a quoted law on a requirement page shows two small icons just off the selection's top right corner
-// (Orlin): a question mark opens a chat with Claude about the passage; a speech bubble opens a box for a comment, which
-// server.py publishes as a GitHub issue (with the passage, where it is, and any chat about it) for the editors.
+// Selecting words in a quoted law on a requirement page shows a small speech bubble just off the selection's top right
+// corner (Orlin): it opens a box for a comment, which server.py publishes as a GitHub issue (with the passage and where
+// it is) for the editors. (Asking Claude about a passage had a question mark there too; Orlin removed it 2026-11-22.)
 const lawSel = { btn: null, pop: null, base: null };  // base: this requirement page's chat key and text, set by render()
 const hashText = s => { let h = 5381; for (const ch of s) h = (h * 33 + ch.codePointAt(0)) >>> 0; return h.toString(36); };
-const ICON_ASK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9a3 3 0 1 1 4.2 2.75c-.75.34-1.2 1.07-1.2 1.9V15"/><path d="M12 19h.01"/></svg>';
 const ICON_COMMENT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>';  // a round speech bubble
 function selectedPassage() {
   const sel = getSelection();
@@ -1098,19 +1106,18 @@ function showLawIcon() {
   const p = selectedPassage();
   if (!p) return hideLawIcon();
   if (!lawSel.btn) {
-    const ask = el('button', { type: 'button', class: 'sel-ask', 'aria-label': t('passage.ask'), title: t('passage.ask') });
+    // Only the speech bubble (Orlin 2026-11-22): questions to Claude go through the requirement's question mark.
     const comment = el('button', { type: 'button', class: 'sel-comment', 'aria-label': t('passage.comment'), title: t('passage.comment') });
-    ask.innerHTML = ICON_ASK; comment.innerHTML = ICON_COMMENT;
-    lawSel.btn = el('div', { class: 'sel-tools' }, ask, comment);
+    comment.innerHTML = ICON_COMMENT;
+    lawSel.btn = el('div', { class: 'sel-tools' }, comment);
     // Pressing an icon must not clear the selection before its click.
     lawSel.btn.addEventListener('pointerdown', e => e.preventDefault());
     lawSel.btn.addEventListener('mousedown', e => e.preventDefault());
     document.body.append(lawSel.btn);
   }
-  const [ask, comment] = lawSel.btn.children;
-  ask.onclick = () => { hideLawIcon(); openPassage(p, 'ask'); };
+  const [comment] = lawSel.btn.children;
   comment.onclick = () => { hideLawIcon(); openPassage(p, 'comment'); };
-  const w = 66, h = 30, view = document.documentElement.clientWidth;
+  const w = 30, h = 30, view = document.documentElement.clientWidth;
   const x = Math.min(p.right + 2, view - w - 6), y = Math.max(6, p.top - h + 4);
   Object.assign(lawSel.btn.style, { left: `${x + scrollX}px`, top: `${y + scrollY}px` });
 }
