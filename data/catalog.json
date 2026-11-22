@@ -102,7 +102,7 @@
       "description": "The people living together in one home: a house or a flat.",
       "bg": {
         "name": "Дом",
-        "interests": "Интереси на дома",
+        "interests": "Домашни интереси",
         "informal": "Хората, които живеят в дома, решават помежду си, неформално, без формални институции."
       },
       "group": "residential"
@@ -150,7 +150,7 @@
       "description": "A city quarter (квартал): walkways, playgrounds, kindergartens, parking.",
       "bg": {
         "name": "Квартал",
-        "interests": "Интереси на квартала"
+        "interests": "Квартални интереси"
       },
       "group": "residential"
     },
@@ -166,7 +166,7 @@
       "description": "A village community.",
       "bg": {
         "name": "Село",
-        "interests": "Интереси на селото"
+        "interests": "Селски интереси"
       },
       "group": "residential"
     },
@@ -181,7 +181,7 @@
       "description": "A town community.",
       "bg": {
         "name": "Град",
-        "interests": "Интереси на града"
+        "interests": "Градски интереси"
       },
       "group": "residential"
     },
@@ -198,7 +198,7 @@
       "description": "The basic unit of local self-government.",
       "bg": {
         "name": "Община",
-        "interests": "Интереси на общината"
+        "interests": "Общински интереси"
       },
       "group": "residential"
     },
@@ -214,7 +214,7 @@
       "description": "Intermediate level: county, district, oblast, province.",
       "bg": {
         "name": "Област",
-        "interests": "Интереси на областта"
+        "interests": "Областни интереси"
       },
       "group": "residential"
     },
@@ -229,7 +229,7 @@
       "description": "Member state of a federation (a US state, a German Land); a country may give it its own name in `levelNames`, e.g. Canton in Switzerland. Not applicable in unitary countries.",
       "bg": {
         "name": "Щат",
-        "interests": "Интереси на щата"
+        "interests": "Щатски интереси"
       },
       "group": "residential"
     },
@@ -244,7 +244,7 @@
       "description": "The country (the sovereign state).",
       "bg": {
         "name": "Държава",
-        "interests": "Интереси на държавата"
+        "interests": "Държавни интереси"
       },
       "group": "residential"
     },
@@ -257,7 +257,7 @@
       "description": "Supranational union, e.g. the European Union.",
       "bg": {
         "name": "Съюз",
-        "interests": "Интереси на съюза"
+        "interests": "Съюзни интереси"
       },
       "group": "residential"
     }
