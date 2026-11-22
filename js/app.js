@@ -1412,16 +1412,9 @@ function render() {
     // Screen 2: the level's shared interests, then its decision-making mechanisms in one row: a group of direct and a
     // group of representative mechanisms, side by side, each labelled on its border. A branch without any shows "None".
     setLegend('mechanisms');
-    // The heading over the interest tags names the level (Orlin 2026-11-22): "Municipality interests". In another
-    // language the level's own form is written out, as an adjective where the language has one (bg.interests:
-    // "Общински интереси", but "Интереси на сдружението"): a local name's own form first ("Кантонални интереси"),
-    // then one made from the definite form a union's name carries for the verdict line ("Интереси на Европейския
-    // съюз"), then the catalog's.
-    const ownWords = lang !== 'en' && ((levelId === 'union' && loc.places.union?.name && tx(unionOf(loc.places.union.name), 'verdict')) || localLevelName(j, levelId)?.verdict);
-    const localForm = lang !== 'en' && j?.levelNames?.[levelId]?.[lang]?.interests;
-    const interestsTitle = lang === 'en' ? t('heading.levelInterests', { level: levelLabel(cur.l) })
-      : localForm || (ownWords ? t('heading.levelInterests', { level: ownWords[1] }) : tx(cur.l, 'interests') || t('heading.categories'));
-    screen.push(el('h2', { class: 'group-title minor' }, interestsTitle));
+    // One heading for every level, "Common interests" (Orlin 2026-11-22). Naming the level here ("Municipality
+    // interests") was tried and dropped: it can be read as the interests of the municipality as an entity.
+    screen.push(el('h2', { class: 'group-title minor' }, t('heading.categories')));
     screen.push(rowOf(interestChips(levelId), 'interests'));
     // The institutions under one title, branching like a tree into the Direct and Representative groups (Orlin).
     const instTitle = el('h2', { class: 'group-title' }, kindIcon('mech', false), t('heading.coreInst'));
