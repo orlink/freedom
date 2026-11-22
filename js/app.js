@@ -1412,7 +1412,13 @@ function render() {
     // Screen 2: the level's shared interests, then its decision-making mechanisms in one row: a group of direct and a
     // group of representative mechanisms, side by side, each labelled on its border. A branch without any shows "None".
     setLegend('mechanisms');
-    screen.push(el('h2', { class: 'group-title minor' }, t('heading.categories')));
+    // The heading over the interest tags names the level (Orlin 2026-11-22): "Municipality interests". In another
+    // language the level's own form comes from the catalog (bg.interests: "Интереси на общината"), or is made from the
+    // definite form a local or union name already carries for the verdict line ("Интереси на кантона").
+    const own = lang !== 'en' && ((levelId === 'union' && loc.places.union?.name && tx(unionOf(loc.places.union.name), 'verdict')) || localLevelName(j, levelId)?.verdict);
+    const interestsTitle = lang === 'en' ? t('heading.levelInterests', { level: levelLabel(cur.l) })
+      : own ? t('heading.levelInterests', { level: own[1] }) : tx(cur.l, 'interests') || t('heading.categories');
+    screen.push(el('h2', { class: 'group-title minor' }, interestsTitle));
     screen.push(rowOf(interestChips(levelId), 'interests'));
     // The institutions under one title, branching like a tree into the Direct and Representative groups (Orlin).
     const instTitle = el('h2', { class: 'group-title' }, kindIcon('mech', false), t('heading.coreInst'));
