@@ -30,10 +30,16 @@ readers make there can be read later even when the chat is not set up. Readers' 
 (/api/comment), on a whole requirement or on highlighted law text, are saved to data/state/review.jsonl (docs/HOSTING.md).
 With FREEDOM_EDITOR_KEY in .env, an editor (or an editor's Claude, through tools/comments.py) can list that queue and
 record a status and a reply for each comment (/api/comments).
+
+Readers sign in with an emailed code, Google or Apple (accounts.py, /api/auth/…, /api/me), each only where .env sets
+it up. On a server that has accounts, a comment needs a signed-in reader.
 """
-import argparse, hashlib, hmac, json, os, posixpath, re, secrets, threading, time, uuid
+import argparse, hashlib, hmac, json, os, posixpath, re, secrets, sys, threading, time, uuid
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
-from urllib.parse import urlparse, parse_qs, unquote
+from urllib.parse import urlparse, parse_qs, unquote, quote
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # the server's embeddable Python does not look beside the script
+import accounts
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 STATE_FILE = os.path.join(ROOT, "data", "state", "interests.json")
@@ -88,6 +94,16 @@ MAX_REPLY = 4000
 MAX_LISTED = 500               # comments in one answer
 KEY_FAIL_LIMITS = [(10, 600)]  # wrong keys from one address before its wrong keys are no longer even looked at
 MAX_COMMENT = 2000
+
+# Accounts (accounts.py). The reader's sign-in is a random token in the cookie SESSION_COOKIE: not readable by the
+# page's scripts, sent only to this site and, except on a local copy, only over https. FLOW_COOKIE lives for the ten
+# minutes of a trip to Google or Apple and back. SIGNIN_NOTE tells the page that such a trip failed.
+SESSION_COOKIE, FLOW_COOKIE, SIGNIN_NOTE = "fm_session", "fm_flow", "fm_signin"
+MAIL_LIMITS = [(5, 600), (20, 86400)]         # sign-in codes asked for from one address
+MAIL_TO_LIMITS = [(3, 600), (8, 86400)]       # sign-in codes sent to one email address
+MAIL_DAILY = 300                              # sign-in codes per day, whole site (FREEDOM_MAIL_DAILY overrides)
+SIGNIN_LIMITS = [(30, 600), (200, 86400)]     # per address: codes tried, trips to Google or Apple started
+MAIL_TOTAL = None                             # made in main(), after .env is read
 
 # What the web server may hand out as files. Everything else in the folder is private.
 PAGES = {"index.html", "what-is-freedom.html", "what-is-freedom-plain.html"}  # served without ".html" (clean_path)
@@ -338,6 +354,7 @@ CHAT_RATE = RateLimit(CHAT_LIMITS)
 CHAT_TOTAL = RateLimit([(CHAT_DAILY_TOTAL, 86400)])
 WRITE_RATE = RateLimit(WRITE_LIMITS)
 KEY_FAILS = RateLimit(KEY_FAIL_LIMITS)
+MAIL_RATE, MAIL_TO_RATE, SIGNIN_RATE = RateLimit(MAIL_LIMITS), RateLimit(MAIL_TO_LIMITS), RateLimit(SIGNIN_LIMITS)
 _SALT = None
 
 
@@ -430,14 +447,57 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_error(404, "File not found")
         return None
 
-    def send_json(self, code, obj):
+    def send_json(self, code, obj, cookies=()):
         body = json.dumps(obj, ensure_ascii=False).encode("utf-8")
         self.send_response(code)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
+        for c in cookies:
+            self.send_header("Set-Cookie", c)
         self.end_headers()
         self.wfile.write(body)
+
+    def go(self, where, cookies=()):
+        """Send the browser on to another address (with GET, whatever this request was)."""
+        self.send_response(303)
+        self.send_header("Location", where)
+        self.send_header("Content-Length", "0")
+        self.send_header("Cache-Control", "no-store")
+        for c in cookies:
+            self.send_header("Set-Cookie", c)
+        self.end_headers()
+
+    def direct_local(self):
+        """Asked for on this computer itself, not through the web server in front (IIS)."""
+        return self.client_address[0] in ("127.0.0.1", "::1") and not self.headers.get("X-Forwarded-For")
+
+    def cookie(self, name):
+        for part in (self.headers.get("Cookie") or "").split(";"):
+            k, _, v = part.strip().partition("=")
+            if k == name:
+                return v
+        return ""
+
+    def make_cookie(self, name, value, seconds, script=False):
+        """A Set-Cookie value. seconds=0 removes the cookie. script: readable by the page's scripts (a note only)."""
+        secure = "" if self.direct_local() else "; Secure"
+        return f"{name}={value}; Path=/; Max-Age={seconds}; SameSite=Lax{'' if script else '; HttpOnly'}{secure}"
+
+    def user(self):
+        """The signed-in reader, or None."""
+        return accounts.session_user(self.cookie(SESSION_COOKIE))
+
+    def own_address(self):
+        """This site's address as Google and Apple must send the reader back to it."""
+        host = self.headers.get("Host") or ""
+        if self.direct_local() and re.match(r"^(localhost|127\.0\.0\.1)(:\d{1,5})?$", host):
+            return f"http://{host}"
+        return accounts.site_url()
+
+    def json_post(self):
+        """Is this a request the site's own page made (JSON)? A form on another site cannot send one."""
+        return (self.headers.get("Content-Type") or "").lower().startswith("application/json")
 
     def client_ip(self):
         """The visitor's address. Behind the local reverse proxy (IIS ARR) it is the last X-Forwarded-For entry."""
@@ -554,6 +614,10 @@ class Handler(SimpleHTTPRequestHandler):
             return self.send_json(200, public_fix(e))
         if u.path == "/api/comments":
             return self.comments_list(parse_qs(u.query))
+        if u.path == "/api/me":
+            return self.send_json(200, {"user": self.user(), "methods": accounts.methods(dev_mail=self.is_editor())})
+        if u.path.startswith("/api/auth/"):
+            return self.auth_get(u.path[len("/api/auth/"):], parse_qs(u.query))
         return super().do_GET()
 
     def read_body(self, limit=MAX_BODY):
@@ -579,6 +643,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self.comment()
         if u.path == "/api/comments/update":
             return self.comments_update()
+        if u.path.startswith("/api/auth/"):
+            return self.auth_post(u.path[len("/api/auth/"):])
         if u.path not in ("/api/interests", "/api/interests/hide", "/api/fixes/approve", "/api/fixes/suggest"):
             return self.send_json(404, {"error": "not found"})
         body = self.read_body()
@@ -694,8 +760,9 @@ class Handler(SimpleHTTPRequestHandler):
         return self.send_json(200, {"id": rec["id"]})
 
     def comment(self):
-        """A comment for the editors, on a whole requirement or on a highlighted passage of law, from anyone: appended
-        to REVIEW_FILE with the page, the passage and any chat the reader had about it. Nothing is published."""
+        """A comment for the editors, on a whole requirement or on a highlighted passage of law: appended to REVIEW_FILE
+        with the page, the passage and any chat the reader had about it. From anyone on a server without accounts,
+        from a signed-in reader on one that has them. Nothing is published."""
         body = self.read_body(CHAT_MAX_BODY)
         if not isinstance(body, dict):
             return self.send_json(400, {"error": "bad body"})
@@ -710,7 +777,11 @@ class Handler(SimpleHTTPRequestHandler):
             role, text = (m or {}).get("role"), str((m or {}).get("content", "")).strip()[:CHAT_MAX_MESSAGE]
             if role in ("user", "assistant") and text:
                 msgs.append({"role": role, "content": text})
-        owner, ip = self.is_editor(), self.client_ip()
+        owner, ip, user = self.is_editor(), self.client_ip(), None
+        if not owner and accounts.on():   # a server with accounts takes comments from signed-in readers only
+            user = self.user() if self.json_post() else None
+            if not user:
+                return self.send_json(401, {"error": "Sign in to send a comment.", "signin": True})
         if not owner:
             if not WRITE_RATE.allow(ip):
                 return self.send_json(429, {"error": "Too many comments in a short time. Please wait a few minutes."})
@@ -718,7 +789,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return self.send_json(429, {"error": "The site has taken as many comments as it can today. Please come back tomorrow."})
         # "user" stays empty until readers sign in (planned); "who" is the one-way hash of a reader's address.
         rec = {"id": uuid.uuid4().hex[:8], "at": time.strftime("%Y-%m-%d %H:%M:%S"), "from": "owner" if owner else "reader",
-               "who": None if owner else visitor_id(ip), "user": None, "kind": "passage" if quote else "requirement",
+               "who": None if owner else visitor_id(ip), "user": user and user["id"], "kind": "passage" if quote else "requirement",
                "lang": getattr(self, "lang", "en") or "en", "comment": comment, "text": quote,
                "where": str(body.get("where", "")).strip()[:300], "page": str(body.get("page", "")).strip()[:300], "url": url,
                "messages": msgs}
@@ -733,6 +804,88 @@ class Handler(SimpleHTTPRequestHandler):
         if full:
             return self.send_json(507, {"error": "The comment could not be saved. Please try again later."})
         return self.send_json(200, {"id": rec["id"], "to": "claude" if owner else "editors"})
+
+    # ---------- signing in (accounts.py) ----------
+
+    def auth_get(self, what, q):
+        """start/<provider>: off to Google or Apple. finish: back from there, in the browser that started."""
+        if what in ("start/google", "start/apple"):
+            if not SIGNIN_RATE.allow(self.client_ip()):
+                return self.go("/", [self.make_cookie(SIGNIN_NOTE, "failed", 30, script=True)])
+            back = accounts.safe_return((q.get("return") or ["/"])[0])
+            try:
+                where, secret = accounts.start(what[6:], back, self.own_address())
+            except accounts.Refused:
+                return self.go(back, [self.make_cookie(SIGNIN_NOTE, "failed", 30, script=True)])
+            return self.go(where, [self.make_cookie(FLOW_COOKIE, secret, accounts.FLOW_SECONDS)])
+        if what == "finish":
+            gone = self.make_cookie(FLOW_COOKIE, "", 0)
+            try:
+                token, back = accounts.finish((q.get("c") or [""])[0], self.cookie(FLOW_COOKIE))
+            except accounts.Refused as e:
+                return self.go(e.back, [gone, self.make_cookie(SIGNIN_NOTE, "failed", 30, script=True)])
+            return self.go(back, [gone, self.make_cookie(SESSION_COOKIE, token, accounts.SESSION_DAYS * 86400)])
+        return self.send_json(404, {"error": "not found"})
+
+    def auth_post(self, what):
+        ip = self.client_ip()
+        if what in ("callback/google", "callback/apple"):
+            # Google or Apple sends the reader's browser here with a form; it comes from their site, so without our
+            # cookies. A good answer earns a one-time ticket, which the browser then brings to /api/auth/finish.
+            n = int(self.headers.get("Content-Length") or 0)
+            form = {}
+            if 0 < n <= 32_000:
+                form = {k: v[0] for k, v in parse_qs(self.rfile.read(n).decode("utf-8", "replace")).items()}
+            try:
+                ticket = accounts.callback(what[9:], form)
+            except accounts.Refused as e:
+                return self.go(e.back, [self.make_cookie(SIGNIN_NOTE, "failed", 30, script=True)])
+            return self.go(f"/api/auth/finish?c={quote(ticket)}")
+        if not self.json_post():
+            return self.send_json(415, {"error": "JSON expected"})
+        body = self.read_body(MAX_BODY)
+        body = body if isinstance(body, dict) else {}
+        if what == "email":
+            email = accounts.clean_email(body.get("email"))
+            if not email:
+                return self.send_json(400, {"error": "Please enter a valid email address.", "field": "email"})
+            show = None
+            if self.is_editor() and not accounts.mail_on():   # the owner's local copy without a mail server
+                show = lambda to, code: print(f"Sign-in code for {to}: {code}", flush=True)
+            elif not accounts.mail_on():
+                return self.send_json(404, {"error": "Signing in by email is not set up on this server."})
+            if not (MAIL_RATE.allow(ip) and MAIL_TO_RATE.allow(email) and MAIL_TOTAL.allow("all")):
+                return self.send_json(429, {"error": "Too many codes for now. Please try again later."})
+            try:
+                accounts.send_code(email, self.lang, show)
+            except accounts.Refused as e:
+                return self.send_json(502, {"error": str(e)})
+            with LOCK:
+                audit(ip, "signin-code", visitor_id(email))
+            return self.send_json(200, {"sent": True, "minutes": accounts.CODE_MINUTES})
+        if what == "email/verify":
+            email = accounts.clean_email(body.get("email"))
+            if not SIGNIN_RATE.allow(ip):
+                return self.send_json(429, {"error": "Too many attempts. Please try again later."})
+            try:
+                if not email:
+                    raise accounts.Refused("That code is not right, or it has expired. Ask for a new one.")
+                user, token = accounts.check_code(email, body.get("code"))
+            except accounts.Refused as e:
+                return self.send_json(400, {"error": str(e)})
+            return self.send_json(200, {"user": user}, [self.make_cookie(SESSION_COOKIE, token, accounts.SESSION_DAYS * 86400)])
+        if what == "signout":
+            accounts.sign_out(self.cookie(SESSION_COOKIE))
+            return self.send_json(200, {"user": None}, [self.make_cookie(SESSION_COOKIE, "", 0)])
+        if what == "delete":
+            user = self.user()
+            if not user:
+                return self.send_json(401, {"error": "Sign in first.", "signin": True})
+            accounts.delete_user(user["id"])
+            with LOCK:
+                audit(ip, "account-deleted", user["id"])
+            return self.send_json(200, {"user": None}, [self.make_cookie(SESSION_COOKIE, "", 0)])
+        return self.send_json(404, {"error": "not found"})
 
     def comments_list(self, q):
         """Editors: the comment queue, oldest first, each comment with its status and reply. ?status=new (the default),
@@ -762,7 +915,12 @@ class Handler(SimpleHTTPRequestHandler):
                     rec[k] = st[k]
             if want in ("all", rec["status"]) and sender in ("all", rec["from"]):
                 out.append(rec)
-        return self.send_json(200, {"comments": out[:MAX_LISTED], "more": len(out) > MAX_LISTED, "total": len(queue)})
+        more, out = len(out) > MAX_LISTED, out[:MAX_LISTED]
+        people = accounts.users_by_id(rec.get("user") for rec in out)
+        for rec in out:
+            if rec.get("user") in people:
+                rec["user_email"], rec["user_name"] = people[rec["user"]]["email"], people[rec["user"]]["name"]
+        return self.send_json(200, {"comments": out, "more": more, "total": len(queue)})
 
     def comments_update(self):
         """Editors: record what was done with one comment: {id, status, reply?, note?}. The reply is for its author (shown
@@ -832,6 +990,8 @@ def main():
     load_env()
     global COMMENT_RATE
     COMMENT_RATE = RateLimit([(int(os.environ.get("FREEDOM_COMMENTS_DAILY") or COMMENTS_DAILY), 86400)])
+    global MAIL_TOTAL
+    MAIL_TOTAL = RateLimit([(int(os.environ.get("FREEDOM_MAIL_DAILY") or MAIL_DAILY), 86400)])
     srv = ThreadingHTTPServer((a.host, a.port), Handler)
     print(f"Freedom Map on http://{'localhost' if a.host in ('127.0.0.1', '0.0.0.0') else a.host}:{a.port}/  (Ctrl+C to stop)")
     try:
