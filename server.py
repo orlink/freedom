@@ -654,8 +654,9 @@ class Handler(SimpleHTTPRequestHandler):
         if u.path == "/api/page-comments":
             return self.page_comments_list((parse_qs(u.query).get("key") or [""])[0])
         if u.path == "/api/me":
-            return self.send_json(200, {"user": self.user(), "methods": accounts.methods(dev_mail=self.is_editor()),
-                                        "comments": COMMENTS_SHOWN})
+            local = not self.own_address().startswith("https://")
+            return self.send_json(200, {"user": self.user(), "comments": COMMENTS_SHOWN,
+                                        "methods": accounts.methods(dev_mail=self.is_editor(), local=local)})
         if u.path.startswith("/api/auth/"):
             return self.auth_get(u.path[len("/api/auth/"):], parse_qs(u.query))
         return super().do_GET()

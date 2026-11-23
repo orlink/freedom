@@ -10,11 +10,12 @@ served, never uploaded by tools/deploy.sh):
     sessions    the hash of each sign-in token (the token itself lives only in the reader's cookie), valid 60 days
     codes       the keyed hash of the last emailed code per address, valid 10 minutes, five tries
 
-Each way of signing in exists only when the server's .env configures it (docs/HOSTING.md):
+Google and Apple need no setting: the site's public identifiers at the two are built in below (PROVIDERS). Emailed
+codes exist only when the server's .env names a mail server (docs/HOSTING.md):
 
     FREEDOM_SMTP_HOST, FREEDOM_SMTP_PORT, FREEDOM_SMTP_USER, FREEDOM_SMTP_PASSWORD, FREEDOM_MAIL_FROM   emailed codes
-    FREEDOM_GOOGLE_CLIENT_ID    the OAuth client "Freedom Map" (Google Cloud console), a public identifier
-    FREEDOM_APPLE_CLIENT_ID     the Services ID (Apple Developer), a public identifier
+    FREEDOM_GOOGLE_CLIENT_ID    another Google OAuth client than the built-in one, or "off" for no Google sign-in
+    FREEDOM_APPLE_CLIENT_ID     another Apple Services ID than the built-in one, or "off" for no Apple sign-in
     FREEDOM_SITE_URL            the site's own address, for the return address given to Google and Apple
                                 (default https://free.kredor.com; a local copy uses its own address)
 
@@ -34,9 +35,12 @@ MAX_FLOWS = 2000         # sign-ins under way at once, whole site
 EMAIL_RE = re.compile(r"^[^@\s<>\"',;]{1,64}@[^@\s<>\"',;]{1,190}\.[^@\s<>\"',;.]{2,24}$")
 PEPPER = secrets.token_bytes(32)   # keys the hashes of emailed codes; a restart forgets the codes still under way
 
+# "id" is the site's identifier at the provider: public (it travels in the address of every sign-in), and useless
+# to anyone else, because the provider sends the reader back only to the return addresses registered for it.
 PROVIDERS = {
     "google": {
         "env": "FREEDOM_GOOGLE_CLIENT_ID",
+        "id": "557851662145-2gp196h8vfe6ck8luchlssqtbjqu54sl.apps.googleusercontent.com",
         "authorize": "https://accounts.google.com/o/oauth2/v2/auth",
         "keys": "https://www.googleapis.com/oauth2/v3/certs",
         "issuers": ("https://accounts.google.com", "accounts.google.com"),
@@ -44,6 +48,8 @@ PROVIDERS = {
     },
     "apple": {
         "env": "FREEDOM_APPLE_CLIENT_ID",
+        "id": "com.kredor.freedom.signin",
+        "https_only": True,   # Apple sends nobody back to a plain http address, so not to a local copy
         "authorize": "https://appleid.apple.com/auth/authorize",
         "keys": "https://appleid.apple.com/auth/keys",
         "issuers": ("https://appleid.apple.com",),
@@ -77,17 +83,23 @@ def env(name):
 
 
 def client_id(provider):
-    return env(PROVIDERS[provider]["env"])
+    """The site's identifier at the provider: the built-in one, unless .env names another; "off" there means none."""
+    value = env(PROVIDERS[provider]["env"]) or PROVIDERS[provider]["id"]
+    return "" if value.lower() == "off" else value
+
+
+def offered(provider, local=False):
+    return bool(client_id(provider)) and not (local and PROVIDERS[provider].get("https_only"))
 
 
 def mail_on():
     return bool(env("FREEDOM_SMTP_HOST"))
 
 
-def methods(dev_mail=False):
+def methods(dev_mail=False, local=False):
     """Which ways of signing in this server offers. dev_mail: the owner's local copy, where a code is printed in the
-    server's terminal when no mail server is configured."""
-    return {"email": mail_on() or dev_mail, "google": bool(client_id("google")), "apple": bool(client_id("apple"))}
+    server's terminal when no mail server is configured. local: asked for over plain http on this computer."""
+    return {"email": mail_on() or dev_mail, "google": offered("google", local), "apple": offered("apple", local)}
 
 
 def on():
@@ -310,7 +322,7 @@ def safe_return(path):
 
 def start(provider, return_to, base):
     """Begin a sign-in: (the provider's address to go to, the secret for the browser's cookie)."""
-    if provider not in PROVIDERS or not client_id(provider):
+    if provider not in PROVIDERS or not offered(provider, local=not base.startswith("https://")):
         raise Refused("This way of signing in is not set up on this server.")
     secret, nonce, now = secrets.token_urlsafe(32), secrets.token_urlsafe(24), time.time()
     state = _hash(secret)[:40]

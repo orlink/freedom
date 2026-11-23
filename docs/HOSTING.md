@@ -31,17 +31,19 @@ Readers' comments for the editors (the speech bubble on a requirement page, and 
 
 ### Accounts: signing in
 
-Readers sign in with a code sent to their email address, with Google or with Apple (`accounts.py`). Each way exists only on a server whose `.env` sets it up; a server with none of them has no accounts, shows no sign-in button and takes comments from anyone, as before. On a server that has accounts, sending a comment needs a signed-in reader (the owner's local `--edit` copy never asks).
+Readers sign in with Google, with Apple, or with a code sent to their email address (`accounts.py`). Google and Apple need no setting on the server: the site's two public identifiers are built into `accounts.py`, so an upload carries them. Emailed codes exist only on a server whose `.env` names a mail server. Sending a comment needs a signed-in reader (the owner's local `--edit` copy never asks).
 
 There are no passwords. All three ways prove that the reader holds an email address, and that address is the account: signing in another way with the same address reaches the same account. Kept in `data/state/accounts.db` (SQLite; never served, never uploaded): the address, the name Google or Apple gave, which Google or Apple account belongs to it, and the hashes of sign-in tokens (60 days) and of emailed codes (10 minutes, five tries). The reader's browser holds the token in a cookie the page's scripts cannot read (`fm_session`; https only, except on a local copy). A reader can delete the account from the account button; their comments stay in the editors' queue without a name.
 
-Setting it up: add the lines to the `.env` (on your computer for the local copy, over SSH in `C:\freedom\app\.env` for the live site), then restart the server.
+What each way rests on. Only the emailed code needs lines in the `.env` (on your computer for the local copy, over SSH in `C:\freedom\app\.env` for the live site, then restart the server).
 
-| Way | What to do | `.env` |
+| Way | What it rests on | `.env` |
 |---|---|---|
 | Emailed code | Any mailbox or mail service that offers SMTP. Port 587 (STARTTLS) or 465 (TLS). | `FREEDOM_SMTP_HOST=`, `FREEDOM_SMTP_PORT=587`, `FREEDOM_SMTP_USER=`, `FREEDOM_SMTP_PASSWORD=`, `FREEDOM_MAIL_FROM=Freedom Map <no-reply@kredor.com>` |
-| Google | [Google Cloud console](https://console.cloud.google.com/apis/credentials) → Create credentials → OAuth client ID → Web application, named "Freedom Map" (the name readers see comes from the consent screen's app name). Authorised redirect URI: `https://free.kredor.com/api/auth/callback/google` (add `http://localhost:8000/api/auth/callback/google` to try it on the local copy). Only the client ID is needed, no client secret. | `FREEDOM_GOOGLE_CLIENT_ID=….apps.googleusercontent.com` |
-| Apple | [Apple Developer](https://developer.apple.com/account/resources/identifiers/list/serviceId) → Identifiers → a Services ID (for example `com.kredor.freedom`) with Sign in with Apple, tied to an App ID; domain `free.kredor.com`, return URL `https://free.kredor.com/api/auth/callback/apple`. Apple does not allow `localhost`, so this way works on the live site only. No key file is needed. | `FREEDOM_APPLE_CLIENT_ID=com.kredor.freedom` |
+| Google | An OAuth client of type Web application in the [Google Cloud console](https://console.cloud.google.com/apis/credentials) (created 2026-11-23). Authorised redirect URIs: `https://free.kredor.com/api/auth/callback/google` and, for the local copy, `http://localhost:8000/api/auth/callback/google`. Only its client ID is used, never the client secret. The app name readers see on Google's page is the consent screen's name of the Google Cloud project the client was created in. | None. `FREEDOM_GOOGLE_CLIENT_ID=` names another client, `FREEDOM_GOOGLE_CLIENT_ID=off` turns Google sign-in off. |
+| Apple | The Services ID `com.kredor.freedom.signin` at [Apple Developer](https://developer.apple.com/account/resources/identifiers/list/serviceId) (created 2026-11-23), with Sign in with Apple, tied to the App ID `com.kredor.freedom`; domain `free.kredor.com`, return URL `https://free.kredor.com/api/auth/callback/apple`. Apple does not allow `localhost`, so this way is offered on the live site only. No key file is needed. | None. `FREEDOM_APPLE_CLIENT_ID=` names another Services ID, `FREEDOM_APPLE_CLIENT_ID=off` turns Apple sign-in off. |
+
+With both set to `off` and no mail server, the server has no accounts: no sign-in button, and comments are taken from anyone.
 
 `FREEDOM_SITE_URL` (default `https://free.kredor.com`) is the address Google and Apple send the reader back to; a local copy uses its own address by itself. Google and Apple answer with a signed statement, which the server checks against their published keys, so it holds no secret of theirs; it must be able to reach `www.googleapis.com` and `appleid.apple.com`.
 
@@ -51,7 +53,7 @@ On the owner's local copy (`--edit`) without a mail server, the email way is sti
 
 Limits: five codes in ten minutes and twenty a day from one address, three in ten minutes and eight a day to one email address, 300 a day for the whole site (`FREEDOM_MAIL_DAILY`); thirty code tries or trips to Google or Apple in ten minutes from one address.
 
-The Google and Apple ways have been tested against a stand-in for the two providers, not yet against the real ones: try each once after setting it up.
+The Google and Apple ways have been tested against a stand-in for the two providers. Against the real ones: Google accepted the site's request from the local copy and showed its account chooser (2026-11-23); a complete sign-in with each is still to be tried, Apple on the live site only.
 
 ### The editors' queue
 
