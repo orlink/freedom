@@ -45,6 +45,8 @@ Setting it up: add the lines to the `.env` (on your computer for the local copy,
 
 `FREEDOM_SITE_URL` (default `https://free.kredor.com`) is the address Google and Apple send the reader back to; a local copy uses its own address by itself. Google and Apple answer with a signed statement, which the server checks against their published keys, so it holds no secret of theirs; it must be able to reach `www.googleapis.com` and `appleid.apple.com`.
 
+The owner's local copy (`--edit`) restarts by itself when `server.py`, `accounts.py` or `.env` changes, so a new line in `.env` or a `git pull` takes effect within a few seconds. The live service does not; restart it as above.
+
 On the owner's local copy (`--edit`) without a mail server, the email way is still offered, for trying it out: the code is printed in the server's terminal instead of being sent.
 
 Limits: five codes in ten minutes and twenty a day from one address, three in ten minutes and eight a day to one email address, 300 a day for the whole site (`FREEDOM_MAIL_DAILY`); thirty code tries or trips to Google or Apple in ten minutes from one address.

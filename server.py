@@ -14,6 +14,9 @@ using the same server. Standard library only.
     python3 server.py --edit       # also shows a comment icon beside every paragraph; a comment is appended,
                                    # with the paragraph and where it is, to data/state/review.jsonl for Claude to answer
 
+    python3 server.py --edit       # also restarts by itself when server.py, accounts.py or .env changes (a git pull,
+                                   # a new setting), so nobody has to stop and start it by hand
+
 State is kept in data/state/interests.json and data/state/fixes.json (git-ignored).
 The fixes API collects readers' approvals of, and alternative wordings for, proposed legal amendments.
 
@@ -95,8 +98,7 @@ COMMENT_STATUSES = ("new", "answered", "applied", "declined", "hidden")
 # signed-in reader under the notice that says so (the record's "public"); earlier comments were sent as private and
 # stay with the editors. Shown are the comment, the passage it is about, its author's name, its status and the
 # editors' reply; never the chat, the address or the editors' note. COMMENTS_SHOWN says which ones others see:
-#   "all"      every such comment at once, except those an editor has set to "hidden" (Claude's choice while Orlin's
-#              answer is pending, 2026-11-23)
+#   "all"      every such comment at once, except those an editor has set to "hidden" (Orlin's choice, 2026-11-23)
 #   "handled"  only once an editor has answered, applied or declined it
 #   "own"      nobody else's
 # The author always sees their own, whatever its status. The page tells the reader which of these holds before they
@@ -1051,6 +1053,40 @@ class Handler(SimpleHTTPRequestHandler):
         return self.send_json(200, {"reply": text, "error": err})
 
 
+def restart_on_change(seconds=2):
+    """The owner's local copy (--edit): start the server afresh, with the same options, when its own code or .env has
+    changed, so a `git pull` or a new setting takes effect without anyone stopping it by hand. New code that does not
+    even compile is left alone (the running server carries on) until it changes again."""
+    files = [os.path.join(ROOT, f) for f in ("server.py", "accounts.py", ".env")]
+
+    def stamp():
+        out = []
+        for f in files:
+            try:
+                st = os.stat(f)
+                out.append((st.st_mtime_ns, st.st_size))
+            except OSError:
+                out.append(None)
+        return out
+
+    seen = stamp()
+    while True:
+        time.sleep(seconds)
+        if stamp() == seen:
+            continue
+        time.sleep(1)   # let a pull finish writing
+        seen = stamp()
+        try:
+            for f in files[:2]:
+                with open(f, encoding="utf-8") as src:
+                    compile(src.read(), f, "exec")
+        except (OSError, SyntaxError, ValueError) as e:
+            print(f"The code changed but does not compile ({e}); still running the old code.", flush=True)
+            continue
+        print("The code or .env changed: restarting.", flush=True)
+        os.execv(sys.executable, [sys.executable] + (getattr(sys, "orig_argv", None) or [sys.executable] + sys.argv)[1:])
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--host", default="127.0.0.1")
@@ -1065,6 +1101,8 @@ def main():
     global MAIL_TOTAL
     MAIL_TOTAL = RateLimit([(int(os.environ.get("FREEDOM_MAIL_DAILY") or MAIL_DAILY), 86400)])
     srv = ThreadingHTTPServer((a.host, a.port), Handler)
+    if EDITOR:
+        threading.Thread(target=restart_on_change, daemon=True).start()
     print(f"Freedom Map on http://{'localhost' if a.host in ('127.0.0.1', '0.0.0.0') else a.host}:{a.port}/  (Ctrl+C to stop)")
     try:
         srv.serve_forever()
