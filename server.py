@@ -28,8 +28,7 @@ only needed for the chat:
     echo "ANTHROPIC_API_KEY=sk-ant-..." > .env && chmod 600 .env   # read at startup; git-ignored, never served
     .venv/bin/python server.py
 
-Every conversation is saved to data/state/comments.json, so the comments and suggestions
-readers make there can be read later even when the chat is not set up. Readers' comments for the editors
+A reader's conversation with Claude is private: the server passes it on and keeps none of it. Readers' comments for the editors
 (/api/comment), on a whole requirement or on highlighted law text, are saved to data/state/review.jsonl (docs/HOSTING.md).
 With FREEDOM_EDITOR_KEY in .env, an editor (or an editor's Claude, through tools/comments.py) can list that queue and
 record a status and a reply for each comment (/api/comments).
@@ -37,7 +36,7 @@ record a status and a reply for each comment (/api/comments).
 Readers sign in with an emailed code, Google or Apple (accounts.py, /api/auth/…, /api/me), each only where .env sets
 it up. On a server that has accounts, a comment needs a signed-in reader.
 """
-import argparse, hashlib, hmac, json, os, posixpath, re, secrets, sys, threading, time, uuid
+import argparse, calendar, hashlib, hmac, json, os, posixpath, re, secrets, sys, threading, time, uuid
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs, unquote, quote
 
@@ -58,7 +57,6 @@ MAX_LABEL = 60
 MAX_SUGGESTION = 2000
 MAX_SUGGESTIONS = 50
 MAX_BODY = 16384
-COMMENTS_FILE = os.path.join(ROOT, "data", "state", "comments.json")
 AUDIT_FILE = os.path.join(ROOT, "data", "state", "audit.jsonl")  # who changed what (hashed address), to undo by hand
 SALT_FILE = os.path.join(ROOT, "data", "state", "salt.txt")
 CHAT_MAX_BODY = 64_000
@@ -74,9 +72,7 @@ CHAT_LIMITS = [(20, 600), (100, 86400)]                                   # per 
 CHAT_DAILY_TOTAL = int(os.environ.get("FREEDOM_CHAT_DAILY") or 500)        # whole site, per day
 WRITE_LIMITS = [(30, 600), (300, 86400)]                                  # per address: interests, hides, approvals, suggestions
 MAX_STATE_BYTES = 5_000_000      # interests.json, fixes.json: no more writes once a file is this large
-MAX_COMMENTS_BYTES = 20_000_000  # comments.json
 MAX_AUDIT_BYTES = 20_000_000
-MAX_CONVERSATIONS = 200          # per requirement page
 
 
 # Readers' comments for the editors (/api/comment), on a whole requirement or on highlighted law text, are saved on this
@@ -108,6 +104,11 @@ MAX_PAGE_COMMENTS = 200
 MAX_NAME = 60
 MAX_REPLY = 4000
 MAX_LISTED = 500               # comments in one answer
+
+# A reader may delete a comment of their own within DELETE_SECONDS of sending it, while no editor has done anything
+# with it (its status is still "new"; Orlin 2026-11-23). Its line in the queue is then replaced by a stub that keeps
+# only its id, time and sender, so the queue's order and "after" still work; the text is gone.
+DELETE_SECONDS = 86400
 KEY_FAIL_LIMITS = [(10, 600)]  # wrong keys from one address before its wrong keys are no longer even looked at
 MAX_COMMENT = 2000
 
@@ -195,6 +196,38 @@ def read_queue():
     except OSError:
         pass
     return out
+
+
+def comment_age(at):
+    """Seconds since a comment's time: universal time ending in Z, or the server's local time in earlier records."""
+    try:
+        if at.endswith("Z"):
+            return time.time() - calendar.timegm(time.strptime(at, "%Y-%m-%dT%H:%M:%SZ"))
+        return time.time() - time.mktime(time.strptime(at.replace("T", " "), "%Y-%m-%d %H:%M:%S"))
+    except (AttributeError, ValueError):
+        return float("inf")
+
+
+def deletable(rec, status):
+    return status == "new" and comment_age(rec.get("at")) < DELETE_SECONDS
+
+
+def delete_from_queue(cid):
+    """Replace the comment's line in REVIEW_FILE by a stub (call it holding LOCK)."""
+    with open(REVIEW_FILE, encoding="utf-8") as f:
+        lines = f.readlines()
+    for i, line in enumerate(lines):
+        try:
+            rec = json.loads(line)
+        except ValueError:
+            continue
+        if isinstance(rec, dict) and rec.get("id") == cid:
+            stub = {k: rec[k] for k in ("id", "at", "from") if k in rec}
+            lines[i] = json.dumps(dict(stub, deleted=stamp()), ensure_ascii=False) + "\n"
+    tmp = REVIEW_FILE + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        f.writelines(lines)
+    os.replace(tmp, REVIEW_FILE)
 
 
 _page_cache = {"sig": None, "pages": {}}
@@ -323,7 +356,7 @@ Requirements in the catalogue:
 
 How to help the reader:
 - Answer questions about this requirement, the law quoted on the page, the verdict and the proposed fix, competently and plainly, as a knowledgeable colleague would. Ground what you say in the page's text and in the law; say so when you are not sure, and do not invent articles, numbers or court cases.
-- Readers may disagree with the verdict, point out an error, or suggest a different wording of a fix. Take that seriously: weigh it against the law and the site's principles, say whether you think they are right and why, and help them sharpen the suggestion. Their messages are saved for the site's editors, who decide what changes; you cannot change the site yourself, so never say that you have.
+- Readers may disagree with the verdict, point out an error, or suggest a different wording of a fix. Take that seriously: weigh it against the law and the site's principles, say whether you think they are right and why, and help them sharpen the suggestion. This conversation is private: the editors never see it. The editors decide what changes, and you cannot change the site yourself, so never say that you have; a reader who wants the editors to consider something can leave a comment on the page (the speech bubble).
 - Write in the reader's language (often Bulgarian or English). Keep replies short, a few sentences or a short list, unless the reader asks for more. No headings.
 - Stay on the site's subject: this requirement, the law behind it, the proposed fix, and freedom and self-government as the site understands them. Politely decline anything else (writing unrelated text or code, general questions, tasks for other purposes), in one sentence, and invite a question about the page instead.
 """
@@ -439,20 +472,6 @@ def audit(ip, action, key, detail=""):
 def public_fix(e):
     """A fix's feedback as readers see it: without the list of who approved."""
     return {k: v for k, v in e.items() if k != "approvers"}
-
-
-def save_comment(key, cid, messages, context_title):
-    with LOCK:
-        if too_big(COMMENTS_FILE, MAX_COMMENTS_BYTES):
-            return False
-        state = load_state(COMMENTS_FILE)
-        convs = state.setdefault(key, {"title": context_title, "conversations": {}})["conversations"]
-        if cid not in convs and len(convs) >= MAX_CONVERSATIONS:
-            return False
-        # "user" stays empty until readers sign in (planned); then it records who wrote the comment.
-        convs[cid] = {"at": int(time.time()), "user": None, "messages": messages}
-        save_state(state, COMMENTS_FILE)
-    return True
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -690,6 +709,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self.comment()
         if u.path == "/api/comments/update":
             return self.comments_update()
+        if u.path == "/api/comment/delete":
+            return self.comment_delete()
         if u.path.startswith("/api/auth/"):
             return self.auth_post(u.path[len("/api/auth/"):])
         if u.path not in ("/api/interests", "/api/interests/hide", "/api/fixes/approve", "/api/fixes/suggest"):
@@ -808,7 +829,7 @@ class Handler(SimpleHTTPRequestHandler):
 
     def comment(self):
         """A comment for the editors, on a whole requirement or on a highlighted passage of law: appended to REVIEW_FILE
-        with the page, the passage and any chat the reader had about it. From anyone on a server without accounts,
+        with the page and the passage (never the reader's chat with Claude, which stays private). From anyone on a server without accounts,
         from a signed-in reader on one that has them. Nothing is published."""
         body = self.read_body(CHAT_MAX_BODY)
         if not isinstance(body, dict):
@@ -821,11 +842,6 @@ class Handler(SimpleHTTPRequestHandler):
         url = url if re.match(r"^https?://[^\s<>]+$", url) else ""
         key = str(body.get("key", ""))
         key = key if KEY_RE.match(key) else ""
-        msgs = []
-        for m in (body.get("messages") or [])[-CHAT_MAX_TURNS:]:
-            role, text = (m or {}).get("role"), str((m or {}).get("content", "")).strip()[:CHAT_MAX_MESSAGE]
-            if role in ("user", "assistant") and text:
-                msgs.append({"role": role, "content": text})
         owner, ip, user = self.is_editor(), self.client_ip(), None
         if not owner and accounts.on():   # a server with accounts takes comments from signed-in readers only
             user = self.user() if self.json_post() else None
@@ -842,7 +858,7 @@ class Handler(SimpleHTTPRequestHandler):
                "who": None if owner else visitor_id(ip), "user": user and user["id"], "kind": "passage" if quote else "requirement",
                "lang": getattr(self, "lang", "en") or "en", "comment": comment, "text": quote,
                "where": str(body.get("where", "")).strip()[:300], "page": str(body.get("page", "")).strip()[:300], "url": url,
-               "key": key, "public": bool(user and key) and COMMENTS_SHOWN != "own", "messages": msgs}
+               "key": key, "public": bool(user and key) and COMMENTS_SHOWN != "own"}
         with LOCK:
             full = not owner and too_big(REVIEW_FILE, MAX_REVIEW_BYTES)
             if not full:
@@ -850,7 +866,7 @@ class Handler(SimpleHTTPRequestHandler):
                 with open(REVIEW_FILE, "a", encoding="utf-8") as f:
                     f.write(json.dumps(rec, ensure_ascii=False) + "\n")
                 if not owner:
-                    audit(ip, "comment", rec["id"], " ".join(comment.split())[:80])
+                    audit(ip, "comment", rec["id"])   # the text only in the queue, so that its author can delete it
         if full:
             return self.send_json(507, {"error": "The comment could not be saved. Please try again later."})
         return self.send_json(200, {"id": rec["id"], "to": "claude" if owner else "editors", "public": rec["public"]})
@@ -962,7 +978,8 @@ class Handler(SimpleHTTPRequestHandler):
             seen = {"all": status != "hidden", "handled": status in ("answered", "applied", "declined"), "own": False}[COMMENTS_SHOWN]
             if rec["user"] in people and (seen or mine):
                 shown = {k: v for k, v in rec.items() if k != "user"}
-                out.append(dict(shown, status=status, reply=st.get("reply", ""), mine=mine, name=people[rec["user"]]["name"]))
+                out.append(dict(shown, status=status, reply=st.get("reply", ""), mine=mine, name=people[rec["user"]]["name"],
+                                deletable=mine and deletable(rec, status)))
         out = out[-MAX_PAGE_COMMENTS:]
         if not user:
             return self.send_json(200, {"count": len(out), "comments": [], "signin": True})
@@ -988,7 +1005,10 @@ class Handler(SimpleHTTPRequestHandler):
             if not seen:
                 seen = rec["id"] == after
                 continue
+            if rec.get("deleted"):   # deleted by its author
+                continue
             rec.setdefault("from", "owner")   # the owner's paragraph comments from before readers could comment
+            rec.pop("messages", None)         # a chat sent with an early comment: private, like every chat since
             st = state.get(rec["id"]) or {}
             rec["status"] = st.get("status", "new")
             for k in ("reply", "note", "updated"):
@@ -1016,7 +1036,7 @@ class Handler(SimpleHTTPRequestHandler):
         if not re.match(r"^[0-9a-f]{8}$", cid) or status not in COMMENT_STATUSES:
             return self.send_json(400, {"error": "id and status (" + ", ".join(COMMENT_STATUSES) + ") are required"})
         with LOCK:
-            known = any(rec["id"] == cid for rec in read_queue())
+            known = any(rec["id"] == cid and not rec.get("deleted") for rec in read_queue())
             if known:
                 state = load_state(REVIEW_STATE_FILE)
                 e = state.setdefault(cid, {})
@@ -1029,13 +1049,36 @@ class Handler(SimpleHTTPRequestHandler):
             return self.send_json(404, {"error": "no such comment"})
         return self.send_json(200, {"id": cid, "status": status})
 
+    def comment_delete(self):
+        """A signed-in reader deletes a comment of their own: {id}. Only within DELETE_SECONDS of sending it, and only
+        while no editor has done anything with it."""
+        if not self.json_post():
+            return self.send_json(415, {"error": "JSON expected"})
+        user, body = self.user(), self.read_body(MAX_BODY)
+        if not user:
+            return self.send_json(401, {"error": "Sign in first.", "signin": True})
+        cid = str((body or {}).get("id", "")) if isinstance(body, dict) else ""
+        if not WRITE_RATE.allow(self.client_ip()):
+            return self.send_json(429, {"error": "Too many changes in a short time. Please wait a few minutes."})
+        with LOCK:
+            rec = next((r for r in read_queue() if r["id"] == cid and not r.get("deleted") and r.get("user") == user["id"]), None)
+            status = ((load_state(REVIEW_STATE_FILE).get(cid) or {}).get("status", "new")) if rec else None
+            ok = bool(rec) and deletable(rec, status)
+            if ok:
+                delete_from_queue(cid)
+                audit(self.client_ip(), "comment-deleted", cid)
+        if not rec:
+            return self.send_json(404, {"error": "no such comment"})
+        if not ok:
+            return self.send_json(409, {"error": "This comment can no longer be deleted: a day has passed, or an editor has already dealt with it."})
+        return self.send_json(200, {"id": cid, "deleted": True})
+
     def chat(self):
-        """One turn of the requirement-page chat: save the conversation, ask Claude, save the reply."""
+        """One turn of the requirement-page chat: ask Claude. Nothing of the conversation is kept (Orlin 2026-11-23)."""
         body = self.read_body(CHAT_MAX_BODY)
         if not isinstance(body, dict):
             return self.send_json(400, {"error": "bad body"})
-        key, cid = str(body.get("key", "")), str(body.get("id", ""))
-        if not KEY_RE.match(key) or not re.match(r"^[\w-]{8,64}$", cid):
+        if not KEY_RE.match(str(body.get("key", ""))):
             return self.send_json(400, {"error": "bad key"})
         context = str(body.get("context", ""))[:CHAT_MAX_CONTEXT]
         msgs = []
@@ -1047,16 +1090,12 @@ class Handler(SimpleHTTPRequestHandler):
             msgs.pop(0)
         if not msgs or msgs[-1]["role"] != "user":
             return self.send_json(400, {"error": "the last message must be the reader's"})
-        title = context.splitlines()[0][:200] if context else key
         ip = self.client_ip()
         if not CHAT_RATE.allow(ip):
             return self.send_json(429, {"reply": None, "error": "Too many messages in a short time. Please wait a few minutes before asking more."})
         if not CHAT_TOTAL.allow("all"):
             return self.send_json(429, {"reply": None, "error": "The chat has answered as many questions as it can today. Please come back tomorrow."})
-        save_comment(key, cid, msgs, title)
         text, err = chat_reply(context, msgs)
-        if text:
-            save_comment(key, cid, msgs + [{"role": "assistant", "content": text}], title)
         return self.send_json(200, {"reply": text, "error": err})
 
 

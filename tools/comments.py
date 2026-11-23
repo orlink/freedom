@@ -6,7 +6,7 @@
   python3 tools/comments.py list --status all        every comment (or: answered, applied, declined)
   python3 tools/comments.py list --from reader       only readers' comments (or: owner)
   python3 tools/comments.py list --after ID          only the comments that came after that one
-  python3 tools/comments.py show ID                  one comment in full, with the chat its author had
+  python3 tools/comments.py show ID                  one comment in full
   python3 tools/comments.py set ID applied --reply "Fixed, thank you."
   python3 tools/comments.py set ID declined --note "for the editors only"
   python3 tools/comments.py set ID hidden            other readers no longer see it (its author still does)
@@ -124,11 +124,6 @@ def show(c, full=False):
     if c.get("text"):
         print(f"  passage: {c['text'] if full else clip(c['text'], 400)}")
     print(f"  comment: {c.get('comment', '') if full else clip(c.get('comment'), 2000)}")
-    msgs = c.get("messages") or []
-    if msgs and not full:
-        print(f"  chat before the comment: {len(msgs)} messages (show {c['id']})")
-    for m in msgs if full else []:
-        print(f"  chat · {m.get('role', '?')}: {m.get('content', '')}")
     for label, k in (("reply", "reply"), ("editors' note", "note"), ("updated", "updated")):
         if c.get(k):
             print(f"  {label}: {c[k]}")
