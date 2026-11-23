@@ -335,6 +335,8 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .cmt-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; color: var(--muted); font-size: 12px; }
 .cmt-head strong { color: var(--text); font-size: 13px; }
 .cmt-status { margin-left: auto; padding: 1px 8px; border-radius: 999px; background: var(--coral-soft); color: var(--coral-ink); font-weight: 600; }
+.cmts .cmt-delete { margin-left: auto; font-size: 12px; }
+.cmt-status + .cmt-delete { margin-left: 0; }
 .cmt p { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
 .cmt .chat-quote { margin-top: 6px; }
 .cmt-reply { margin-top: 8px; padding: 6px 10px; border-radius: 8px; background: #f4ebe8; }

@@ -34,7 +34,7 @@ python3 server.py --edit     # the owner's copy: edit the site's own interest li
 
 With `--edit`, opened from the same computer, the interest chips change the site itself: **+ Add**, **×** and dragging a chip (or ← → on a focused chip) rewrite that country's list for the level in `data/interests.json`, which is committed and uploaded like any other file. Without it, and always on the public server, readers' additions and "not applicable" marks apply only to one place and stay in `data/state`.
 
-Each requirement page has a chat button (top right) where readers comment, suggest edits or ask Claude about the requirement. It needs the `anthropic` package and an API key on the server; the key never reaches the browser:
+Each requirement page has a chat button (top right) where readers ask Claude about the requirement. It needs the `anthropic` package and an API key on the server; the key never reaches the browser:
 
 ```sh
 python3 -m venv .venv && .venv/bin/pip install anthropic   # a venv avoids Homebrew's "externally managed" error
@@ -42,9 +42,9 @@ echo "ANTHROPIC_API_KEY=sk-ant-..." > .env && chmod 600 .env   # key from consol
 .venv/bin/python server.py
 ```
 
-The server reads the key from `.env` at startup (git-ignored and never served), so it survives restarts. Every conversation is saved in `data/state/comments.json` for the editors, also when the chat is not set up. The rest of the site runs without the package.
+The server reads the key from `.env` at startup (git-ignored and never served), so it survives restarts. A conversation is private: the server keeps none of it, and the editors never see it. The rest of the site runs without the package.
 
-The public endpoints have limits, so that scripts cannot run up the API bill or fill the disk. Each address may send 20 chat messages per 10 minutes and 100 per day, and the whole site answers at most 500 a day (`FREEDOM_CHAT_DAILY` in `.env` changes that); replies are capped at about 1,500 tokens and the chat declines questions unrelated to the page. Interest chips, "not applicable" marks, approvals and suggested wordings allow 30 changes per 10 minutes and 300 per day from one address, one approval per visitor, 40 added interests per place, and stop accepting changes once a state file reaches 5 MB (comments: 20 MB). Every public change is logged in `data/state/audit.jsonl` with a hashed address, so a visitor's changes can be found and undone by hand. The limits are set at the top of `server.py`; the counters reset when the server restarts.
+The public endpoints have limits, so that scripts cannot run up the API bill or fill the disk. Each address may send 20 chat messages per 10 minutes and 100 per day, and the whole site answers at most 500 a day (`FREEDOM_CHAT_DAILY` in `.env` changes that); replies are capped at about 1,500 tokens and the chat declines questions unrelated to the page. Interest chips, "not applicable" marks, approvals and suggested wordings allow 30 changes per 10 minutes and 300 per day from one address, one approval per visitor, 40 added interests per place, and stop accepting changes once a state file reaches 5 MB. Every public change is logged in `data/state/audit.jsonl` with a hashed address, so a visitor's changes can be found and undone by hand. The limits are set at the top of `server.py`; the counters reset when the server restarts.
 
 Interest chips that anyone adds, or marks ✕ as not applicable, are shared with everyone using the same server. On a plain static host (for example GitHub Pages) the page still works, but added chips are kept only in that browser.
 

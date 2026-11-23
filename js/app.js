@@ -570,10 +570,18 @@ function commentItems() {
   const day = at => { const d = new Date(String(at).replace(' ', 'T')); return isNaN(d) ? '' : d.toLocaleDateString(lang, { day: 'numeric', month: 'short', year: 'numeric' }); };
   return c.comments.map(m => el('div', { class: `cmt${m.mine ? ' mine' : ''}` },
     el('div', { class: 'cmt-head' }, el('strong', {}, m.name || t('cmt.reader')), el('span', {}, day(m.at)),
-      m.status && m.status !== 'new' ? el('span', { class: 'cmt-status' }, t(`cmt.${m.status}`)) : null),
+      m.status && m.status !== 'new' ? el('span', { class: 'cmt-status' }, t(`cmt.${m.status}`)) : null,
+      m.deletable ? el('button', { type: 'button', class: 'link cmt-delete', title: t('cmt.deleteHint'), onclick: () => deleteComment(m.id) }, t('cmt.delete')) : null),
     m.text ? el('blockquote', { class: 'chat-quote', title: m.where || null }, m.text) : null,
     el('p', {}, m.comment),
     m.reply ? el('div', { class: 'cmt-reply' }, el('strong', {}, t('cmt.editors')), el('p', {}, m.reply)) : null));
+}
+// A reader's own comment, within a day of sending it and before an editor has dealt with it (server.py DELETE_SECONDS).
+async function deleteComment(id) {
+  if (!confirm(t('cmt.deleteConfirm'))) return;
+  try { await api('POST', 'api/comment/delete', { id }); }
+  catch (err) { notice(err.refused ? err.message : t('cmt.deleteFailed')); }
+  loadPageComments(pageCmts.key, true);
 }
 function drawPageComments() {
   const { badge, list, count } = pageCmts;
@@ -1151,10 +1159,10 @@ function provisionsPanel(provisions, laws, explainer, prop, lawStyle) {
 
 // ---------- requirement chat ----------
 // A small chat on each requirement page: readers comment, suggest edits or ask Claude about the requirement.
-// server.py (/api/chat) holds the API key, gives Claude the site's principles and this page's text, and saves
-// every conversation for the editors. Conversations live in memory, one per requirement, for this visit.
+// server.py (/api/chat) holds the API key and gives Claude the site's principles and this page's text. A conversation is
+// private: the server keeps none of it, and it never goes to the editors (Orlin 2026-11-23). It lives in memory, one per
+// requirement, for this visit.
 const chats = new Map();
-const newId = () => (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2)).replace(/[^\w-]/g, '');
 function pageContext(trail, prop, laws, catalog) {
   const pdef = catalog.properties[prop.type] || {};
   const label = { yes: 'Met', partial: 'Partly met', weak: 'Partly met (weak)', no: 'Not met' }[prop.status] || 'Unknown';
@@ -1175,7 +1183,7 @@ function pageContext(trail, prop, laws, catalog) {
   return lines.filter(l => l !== '').join('\n');
 }
 function chatBox(key, context, passage) {
-  const c = chats.get(key) || { id: newId(), messages: [] };
+  const c = chats.get(key) || { messages: [] };
   chats.set(key, c);
   const log = el('div', { class: 'chat-log', 'aria-live': 'polite' });
   const input = el('textarea', { id: 'chat-input', rows: '2', maxlength: '2000', placeholder: t(passage ? 'passage.askPlaceholder' : 'chat.placeholder'), 'aria-label': t('chat.label') });
@@ -1197,7 +1205,7 @@ function chatBox(key, context, passage) {
     input.value = ''; send.disabled = true; paint(true);
     let error = null;
     try {
-      const r = await api('POST', 'api/chat', { key, id: c.id, context, messages: c.messages });
+      const r = await api('POST', 'api/chat', { key, context, messages: c.messages });
       if (r.reply) c.messages.push({ role: 'assistant', content: r.reply }); else error = r.error || t('chat.noAnswer');
     } catch (err) { error = err.refused ? err.message : t('chat.needsServer'); }
     send.disabled = false; paint(false, error); input.focus();
@@ -1318,8 +1326,8 @@ function showLawIcon() {
   Object.assign(lawSel.btn.style, { left: `${x + scrollX}px`, top: `${y + scrollY}px` });
 }
 const passageKey = p => `${lawSel.base.key}|q|${hashText(p.quote)}`.slice(-200);
-// The box for a comment on a passage or on the whole requirement: saved on the server for the editors, with any chat
-// the reader had about it. Nothing is published.
+// The box for a comment on a passage or on the whole requirement: saved on the server for the editors, never with the
+// reader's chat with Claude.
 function commentBox(p, draft = '') {
   const input = el('textarea', { rows: '4', maxlength: '2000', placeholder: t('passage.placeholder'), 'aria-label': t('passage.comment') });
   input.value = draft;
@@ -1350,8 +1358,7 @@ function commentBox(p, draft = '') {
     if (!account.user && canSignIn() && !editor) return askSignIn();
     send.disabled = true; status.className = 'chat-intro'; status.textContent = t('passage.sending');
     try {
-      const r = await api('POST', 'api/comment', { comment, quote: p.quote, where: p.where, page: lawSel.base.title, url: location.href, key: lawSel.base.key,
-        messages: chats.get(p.quote ? passageKey(p) : lawSel.base.key)?.messages || [] });
+      const r = await api('POST', 'api/comment', { comment, quote: p.quote, where: p.where, page: lawSel.base.title, url: location.href, key: lawSel.base.key });
       input.value = '';
       status.textContent = t(r.to === 'claude' ? 'passage.sentOwner' : 'passage.sent');   // 'claude': the owner's local copy
       if (r.public) loadPageComments(lawSel.base.key, true);
