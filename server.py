@@ -99,7 +99,8 @@ COMMENT_STATUSES = ("new", "answered", "applied", "declined", "hidden")
 #              answer is pending, 2026-11-23)
 #   "handled"  only once an editor has answered, applied or declined it
 #   "own"      nobody else's
-# The author always sees their own, whatever its status.
+# The author always sees their own, whatever its status. The page tells the reader which of these holds before they
+# send (/api/me gives the setting), and a comment sent while "own" held stays private if the setting changes later.
 COMMENTS_SHOWN = "all"
 MAX_PAGE_COMMENTS = 200
 MAX_NAME = 60
@@ -651,7 +652,8 @@ class Handler(SimpleHTTPRequestHandler):
         if u.path == "/api/page-comments":
             return self.page_comments_list((parse_qs(u.query).get("key") or [""])[0])
         if u.path == "/api/me":
-            return self.send_json(200, {"user": self.user(), "methods": accounts.methods(dev_mail=self.is_editor())})
+            return self.send_json(200, {"user": self.user(), "methods": accounts.methods(dev_mail=self.is_editor()),
+                                        "comments": COMMENTS_SHOWN})
         if u.path.startswith("/api/auth/"):
             return self.auth_get(u.path[len("/api/auth/"):], parse_qs(u.query))
         return super().do_GET()
@@ -831,7 +833,7 @@ class Handler(SimpleHTTPRequestHandler):
                "who": None if owner else visitor_id(ip), "user": user and user["id"], "kind": "passage" if quote else "requirement",
                "lang": getattr(self, "lang", "en") or "en", "comment": comment, "text": quote,
                "where": str(body.get("where", "")).strip()[:300], "page": str(body.get("page", "")).strip()[:300], "url": url,
-               "key": key, "public": bool(user and key), "messages": msgs}
+               "key": key, "public": bool(user and key) and COMMENTS_SHOWN != "own", "messages": msgs}
         with LOCK:
             full = not owner and too_big(REVIEW_FILE, MAX_REVIEW_BYTES)
             if not full:

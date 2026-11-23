@@ -421,7 +421,7 @@ function notice(text) {
 // A reader signs in with a code sent to their email address, with Google or with Apple (accounts.py), each only where
 // the server offers it. The sign-in itself is a cookie the page's scripts cannot read; `account` is what the page
 // knows: who is signed in and which ways the server offers. On a server with accounts, sending a comment needs it.
-const account = { user: null, methods: {} };
+const account = { user: null, methods: {}, shown: 'own' };   // shown: which comments other readers see (server.py, COMMENTS_SHOWN)
 const canSignIn = () => Object.values(account.methods).some(Boolean);
 const ICON_PERSON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.2" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>';
 const accountUi = { btn: null, pop: null };
@@ -588,7 +588,7 @@ function takeDraft(key) {
     return Date.now() - d.at < 15 * 60000 && d.p ? d : null;
   } catch { return null; }
 }
-api('GET', 'api/me').then(r => { account.user = r.user || null; account.methods = r.methods || {}; }, () => {}).then(() => {
+api('GET', 'api/me').then(r => { account.user = r.user || null; account.methods = r.methods || {}; account.shown = r.comments || 'own'; }, () => {}).then(() => {
   drawAccount();
   if (/(^|;\s*)fm_signin=failed/.test(document.cookie)) {   // a trip to Google or Apple that did not work (server.py)
     document.cookie = 'fm_signin=; Path=/; Max-Age=0';
@@ -1325,8 +1325,9 @@ function commentBox(p, draft = '') {
     log.append(panel);
     panel.querySelector('input, button')?.focus();
   };
-  // On a server with accounts the comment is shown to signed-in readers, and the notice says so.
-  const noticeKey = canSignIn() && !editor ? 'comment.public' : p.quote ? 'passage.private' : 'req.private';
+  // On a server with accounts the comment is shown to signed-in readers (at once, or once an editor has looked at
+  // it, as the server is set), and the notice says so.
+  const noticeKey = (canSignIn() && !editor && { all: 'comment.public', handled: 'comment.publicLater' }[account.shown]) || (p.quote ? 'passage.private' : 'req.private');
   // The comments already sent about this page, above the notice (in the box for the whole requirement only).
   const list = p.quote ? null : el('div', { class: 'cmts', hidden: true });
   if (list) Object.assign(pageCmts, { list, askSignIn: () => askSignIn(false) });
