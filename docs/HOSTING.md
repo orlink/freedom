@@ -35,11 +35,17 @@ Readers sign in with Google, with Apple, or with a code sent to their email addr
 
 There are no passwords. All three ways prove that the reader holds an email address, and that address is the account: signing in another way with the same address reaches the same account. Kept in `data/state/accounts.db` (SQLite; never served, never uploaded): the address, the name Google or Apple gave, which Google or Apple account belongs to it, and the hashes of sign-in tokens (60 days) and of emailed codes (10 minutes, five tries). The reader's browser holds the token in a cookie the page's scripts cannot read (`fm_session`; https only, except on a local copy). A reader can delete the account from the account button; their comments stay in the editors' queue without a name.
 
-What each way rests on. Only the emailed code needs lines in the `.env` (on your computer for the local copy, over SSH in `C:\freedom\app\.env` for the live site, then restart the server).
+What each way rests on. Only the emailed code needs lines in the `.env`, and `tools/settings.py` writes them:
+
+- `python3 tools/settings.py mail` asks for the mail service's server, port, login, key (not shown as you paste it) and sender's address, signs in once to check them, offers to send a test message, and saves them in this computer's `.env`. It then offers to put them on the live server as well.
+- `python3 tools/settings.py push` copies the mail settings and the editor key from this computer's `.env` to the live server's `C:\freedom\app\.env` and restarts the service there. Other lines on the server (the API key) stay as they are; the previous file is kept as `C:\freedom\env.bak`.
+- `python3 tools/settings.py show` lists which settings each of the two holds, by name only.
+
+None of the three ever prints a value.
 
 | Way | What it rests on | `.env` |
 |---|---|---|
-| Emailed code | Any mailbox or mail service that offers SMTP. Port 587 (STARTTLS) or 465 (TLS). | `FREEDOM_SMTP_HOST=`, `FREEDOM_SMTP_PORT=587`, `FREEDOM_SMTP_USER=`, `FREEDOM_SMTP_PASSWORD=`, `FREEDOM_MAIL_FROM=Freedom Map <no-reply@kredor.com>` |
+| Emailed code | Any mailbox or mail service that offers SMTP. Port 587 (STARTTLS) or 465 (TLS). With Brevo (the service Speak uses): server `smtp-relay.brevo.com`, port 587, the login and a new SMTP key from its page "SMTP & API", and a sender address Brevo allows. | `FREEDOM_SMTP_HOST=`, `FREEDOM_SMTP_PORT=587`, `FREEDOM_SMTP_USER=`, `FREEDOM_SMTP_PASSWORD=`, `FREEDOM_MAIL_FROM=Freedom Map <no-reply@kredor.com>` |
 | Google | An OAuth client of type Web application in the [Google Cloud console](https://console.cloud.google.com/apis/credentials) (created 2026-11-23). Authorised redirect URIs: `https://free.kredor.com/api/auth/callback/google` and, for the local copy, `http://localhost:8000/api/auth/callback/google`. Only its client ID is used, never the client secret. The app name readers see on Google's page is the consent screen's name of the Google Cloud project the client was created in. | None. `FREEDOM_GOOGLE_CLIENT_ID=` names another client, `FREEDOM_GOOGLE_CLIENT_ID=off` turns Google sign-in off. |
 | Apple | The Services ID `com.kredor.freedom.signin` at [Apple Developer](https://developer.apple.com/account/resources/identifiers/list/serviceId) (created 2026-11-23), with Sign in with Apple, tied to the App ID `com.kredor.freedom`; domain `free.kredor.com`, return URL `https://free.kredor.com/api/auth/callback/apple`. Apple does not allow `localhost`, so this way is offered on the live site only. No key file is needed. | None. `FREEDOM_APPLE_CLIENT_ID=` names another Services ID, `FREEDOM_APPLE_CLIENT_ID=off` turns Apple sign-in off. |
 
@@ -62,7 +68,7 @@ An editor reads that queue and records what was done with each comment through `
 Setting it up, once:
 
 1. On your own computer, in the project folder: `python3 tools/comments.py key`. It writes a line `FREEDOM_EDITOR_KEY=…` to the local `.env` (a random key; it is not shown).
-2. Over SSH, add the same line to the server's `C:\freedom\app\.env`, then `Restart-Service freedom`. Copy the line yourself from one `.env` to the other; it is never committed and `tools/deploy.sh` never uploads it.
+2. `python3 tools/settings.py push` copies that line to the server's `C:\freedom\app\.env` and restarts the service there (or add it by hand over SSH, then `Restart-Service freedom`). It is never committed and `tools/deploy.sh` never uploads it.
 
 Using it:
 

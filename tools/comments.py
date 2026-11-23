@@ -60,8 +60,7 @@ def make_key():
     with os.fdopen(fd, "ab") as f:
         f.write(gap + f"FREEDOM_EDITOR_KEY={secrets.token_urlsafe(48)}\n".encode("ascii"))
     print(f"Wrote an editor key to {ENV} (not shown here).\n"
-          "For the live site, put the same FREEDOM_EDITOR_KEY line into the server's own .env and restart the "
-          "service (docs/HOSTING.md). Restart the local server too if you use --local.")
+          "For the live site, give the server the same key: python3 tools/settings.py push")
 
 
 def local_host(site):
