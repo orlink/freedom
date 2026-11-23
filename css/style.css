@@ -299,7 +299,8 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .chat-form[hidden] { display: none; }
 /* Signing in: the round account button in the header (an outline while signed out, filled once signed in), its
    pop-up, and the block of ways to sign in, which also appears inside a comment box. */
-.account-btn { flex: none; width: 34px; height: 34px; border: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--coral-soft); color: var(--coral-ink); }
+.top { padding-right: 74px; }   /* room for the account button, which keeps the top right corner at every width */
+.account-btn { position: absolute; top: 15px; right: 24px; flex: none; width: 34px; height: 34px; border: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--coral-soft); color: var(--coral-ink); }
 .account-btn[hidden] { display: none; }
 .account-btn:hover, .account-btn[aria-expanded="true"] { background: #fbd3ce; }
 .account-btn.in { background: var(--coral); color: #fff; }
@@ -308,14 +309,15 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .account-pop { position: fixed; top: 64px; right: 24px; z-index: 1200; width: min(340px, calc(100vw - 32px)); }
 .account-pop .chat-head { cursor: default; }
 /* On a phone the button sits in the header's top right corner, level with the site's name, and takes no row of its own. */
-@media (max-width: 600px) { .account-pop { top: auto; right: 16px; width: auto; } .account-btn { position: absolute; top: 10px; right: 16px; } }
+@media (max-width: 600px) { .account-pop { top: auto; right: 16px; width: auto; } .account-btn { top: 10px; right: 16px; } .top { padding-right: 24px; } }
 .signin { display: flex; flex-direction: column; gap: 10px; padding: 14px; }
 .chat-log .signin { padding: 0; }
 .signin form { display: flex; gap: 8px; }
 .signin form[hidden] { display: none; }
 .signin input { flex: 1; min-width: 0; font: inherit; font-size: 14px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--input); color: var(--text); }
 .signin input:focus-visible { outline: none; border-color: var(--coral); box-shadow: 0 0 0 3px var(--coral-soft); }
-.signin-btn { padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--text); font-weight: 600; text-align: center; }
+.signin-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--text); font-weight: 600; text-align: center; }
+.signin-logo { display: inline-flex; flex: none; }
 .signin-btn:hover { background: var(--coral-soft); }
 .signin-btn:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
 .signin .link { align-self: flex-start; border: 0; background: none; padding: 0; color: var(--coral-ink); font-size: 13px; text-decoration: underline; }
