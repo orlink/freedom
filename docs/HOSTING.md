@@ -31,7 +31,7 @@ Readers' comments for the editors (the speech bubble on a requirement page, and 
 
 ### Accounts: signing in
 
-Readers sign in with Google, with Apple, or with a code sent to their email address (`accounts.py`). Google and Apple need no setting on the server: the site's two public identifiers are built into `accounts.py`, so an upload carries them. Emailed codes exist only on a server whose `.env` names a mail server. Sending a comment needs a signed-in reader (the owner's local `--edit` copy never asks).
+Readers sign in with Google, with Apple, or with a code sent to their email address (`accounts.py`). Google and Apple need no setting on the server: the site's two public identifiers are built into `accounts.py`, so an upload carries them. Emailed codes exist only on a server whose `.env` names a mail server. Sending a comment and using the chat need a signed-in reader, on the owner's local `--edit` copy too; a signed-out reader who presses either icon gets the sign-in pop-up first. Every comment is shown to all signed-in readers under its author's account name.
 
 There are no passwords. All three ways prove that the reader holds an email address, and that address is the account: signing in another way with the same address reaches the same account. Kept in `data/state/accounts.db` (SQLite; never served, never uploaded): the address, the name Google or Apple gave, which Google or Apple account belongs to it, and the hashes of sign-in tokens (60 days) and of emailed codes (10 minutes, five tries). The reader's browser holds the token in a cookie the page's scripts cannot read (`fm_session`; https only, except on a local copy). A reader can delete the account from the account button; their comments stay in the editors' queue without a name.
 
