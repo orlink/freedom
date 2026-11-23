@@ -421,7 +421,7 @@ function notice(text) {
 // A reader signs in with a code sent to their email address, with Google or with Apple (accounts.py), each only where
 // the server offers it. The sign-in itself is a cookie the page's scripts cannot read; `account` is what the page
 // knows: who is signed in and which ways the server offers. On a server with accounts, sending a comment needs it.
-const account = { user: null, methods: {} };
+const account = { user: null, methods: {}, shown: 'own' };   // shown: which comments other readers see (server.py, COMMENTS_SHOWN)
 const canSignIn = () => Object.values(account.methods).some(Boolean);
 const ICON_PERSON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.2" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>';
 const accountUi = { btn: null, pop: null };
@@ -438,6 +438,7 @@ function drawAccount() {
   accountUi.btn.hidden = !account.user && !canSignIn();
   accountUi.btn.classList.toggle('in', Boolean(account.user));
   accountUi.btn.title = label; accountUi.btn.setAttribute('aria-label', label);
+  if (pageCmts.key) loadPageComments(pageCmts.key, true);   // who is signed in decides which comments are shown
 }
 function openAccount() {
   closeAccount();
@@ -456,8 +457,22 @@ function openAccount() {
       if (del.dataset.sure) return leave('api/auth/delete', t('account.deleted'));
       del.dataset.sure = '1'; del.textContent = t('account.deleteYes'); status.textContent = t('account.deleteSure');
     } }, t('account.delete'));
+    // The name other signed-in readers see beside this reader's comments (Google or Apple may have given one).
+    const name = el('input', { type: 'text', name: 'name', autocomplete: 'nickname', maxlength: '60', placeholder: t('account.name'), 'aria-label': t('account.name') });
+    name.value = account.user.name || '';
+    const save = el('button', { type: 'submit', class: 'chat-send' }, t('account.save'));
+    const nameForm = el('form', { onsubmit: async e => {
+      e.preventDefault();
+      save.disabled = true;
+      try {
+        account.user = (await api('POST', 'api/auth/name', { name: name.value })).user; drawAccount();
+        name.value = account.user.name; status.className = 'chat-intro'; status.textContent = t('account.saved');
+      } catch { status.className = 'chat-error'; status.textContent = t('signin.failed'); }
+      save.disabled = false;
+    } }, name, save);
     body = el('div', { class: 'signin' },
       el('p', { class: 'chat-intro' }, t('account.signedIn', { who: account.user.email || account.user.name })),
+      nameForm,
       el('button', { type: 'button', class: 'signin-btn', onclick: () => leave('api/auth/signout') }, t('account.signOut')),
       status, del);
   }
@@ -520,6 +535,46 @@ function signInPanel({ lead, onDone, beforeLeave } = {}) {
     m.email ? emailForm : null, m.email ? codeForm : null, status, m.email ? again : null,
     el('p', { class: 'signin-note' }, t('signin.privacy')));
 }
+// ---------- readers' comments on a page ----------
+// Signed-in readers see the comments other signed-in readers sent about the requirement page they are on, each with
+// its status and the editors' reply (server.py, /api/page-comments). Anyone sees how many there are: a small number
+// on the requirement's speech bubble. The list itself is in the box that opens from that bubble.
+const pageCmts = { key: null, at: 0, count: 0, comments: [], signin: false, badge: null, list: null, askSignIn: null };
+async function loadPageComments(key, fresh = false) {
+  if (pageCmts.key !== key) Object.assign(pageCmts, { key, at: 0, count: 0, comments: [], signin: false });
+  if (fresh || Date.now() - pageCmts.at > 60000) {
+    pageCmts.at = Date.now();
+    try {
+      const r = await api('GET', `api/page-comments?key=${encodeURIComponent(key)}`);
+      if (pageCmts.key === key) Object.assign(pageCmts, { count: r.count || 0, comments: r.comments || [], signin: Boolean(r.signin) });
+    } catch { /* no server, or an older one: no comments to show */ }
+  }
+  drawPageComments();
+}
+function commentItems() {
+  const c = pageCmts;
+  if (!c.comments.length) {
+    return c.count && c.signin && !account.user
+      ? [el('button', { type: 'button', class: 'link', onclick: () => c.askSignIn?.() }, t('cmt.signInToRead', { n: c.count }))] : [];
+  }
+  const day = at => { const d = new Date(String(at).replace(' ', 'T')); return isNaN(d) ? '' : d.toLocaleDateString(lang, { day: 'numeric', month: 'short', year: 'numeric' }); };
+  return c.comments.map(m => el('div', { class: `cmt${m.mine ? ' mine' : ''}` },
+    el('div', { class: 'cmt-head' }, el('strong', {}, m.name || t('cmt.reader')), el('span', {}, day(m.at)),
+      m.status && m.status !== 'new' ? el('span', { class: 'cmt-status' }, t(`cmt.${m.status}`)) : null),
+    m.text ? el('blockquote', { class: 'chat-quote', title: m.where || null }, m.text) : null,
+    el('p', {}, m.comment),
+    m.reply ? el('div', { class: 'cmt-reply' }, el('strong', {}, t('cmt.editors')), el('p', {}, m.reply)) : null));
+}
+function drawPageComments() {
+  const { badge, list, count } = pageCmts;
+  if (badge?.isConnected) {
+    badge.textContent = count || ''; badge.hidden = !count;
+    const label = count ? `${t('req.comment')} (${count})` : t('req.comment');
+    badge.parentElement.title = label; badge.parentElement.setAttribute('aria-label', label);
+  }
+  if (list?.isConnected) { list.replaceChildren(...commentItems()); list.hidden = !list.childElementCount; }
+}
+
 // What a reader was writing when they left for Google or Apple, kept for this tab until they are back (15 minutes).
 const DRAFT = 'freedom-comment-draft';
 function keepDraft(p, text) {
@@ -533,7 +588,7 @@ function takeDraft(key) {
     return Date.now() - d.at < 15 * 60000 && d.p ? d : null;
   } catch { return null; }
 }
-api('GET', 'api/me').then(r => { account.user = r.user || null; account.methods = r.methods || {}; }, () => {}).then(() => {
+api('GET', 'api/me').then(r => { account.user = r.user || null; account.methods = r.methods || {}; account.shown = r.comments || 'own'; }, () => {}).then(() => {
   drawAccount();
   if (/(^|;\s*)fm_signin=failed/.test(document.cookie)) {   // a trip to Google or Apple that did not work (server.py)
     document.cookie = 'fm_signin=; Path=/; Max-Age=0';
@@ -1197,6 +1252,10 @@ function chatButton(key, context) {
   const note = el('button', { type: 'button', class: 'chat-btn', 'aria-label': t('req.comment'), title: t('req.comment'),
     onclick: () => { close(); openPassage({ quote: '', where: '', top: note.getBoundingClientRect().bottom + 8 }, 'comment'); } });
   note.innerHTML = ICON_COMMENT.replace(/width="16" height="16"/, 'width="22" height="22"').replace('stroke-width="2.2"', 'stroke-width="2"');
+  // How many comments readers have sent about this page (shown from one up).
+  pageCmts.badge = el('span', { class: 'cmt-count', hidden: true, 'aria-hidden': 'true' });
+  note.append(pageCmts.badge);
+  loadPageComments(key);
   wrap.prepend(note, btn);
   return wrap;
 }
@@ -1256,16 +1315,23 @@ function commentBox(p, draft = '') {
   input.value = draft;
   // On a server with accounts a comment needs a signed-in reader: the ways to sign in take the place of the typing
   // box (what was typed is kept), and once signed in the comment is sent. The owner's local copy never asks.
+  // sending: false when the reader signs in only to read the comments (nothing is sent afterwards).
   let panel = null;
-  const askSignIn = () => {
+  const askSignIn = (sending = true) => {
     panel?.remove();
-    panel = signInPanel({ lead: t('signin.toSend'), beforeLeave: () => keepDraft(p, input.value),
-      onDone: () => { panel.remove(); panel = null; form.hidden = false; form.requestSubmit(); } });
+    panel = signInPanel({ lead: sending ? t('signin.toSend') : null, beforeLeave: () => keepDraft(p, input.value),
+      onDone: () => { panel.remove(); panel = null; form.hidden = false; status.textContent = t(noticeKey); if (sending) form.requestSubmit(); else input.focus(); } });
     form.hidden = true; status.className = 'chat-intro'; status.textContent = '';
     log.append(panel);
     panel.querySelector('input, button')?.focus();
   };
-  const status = el('p', { class: 'chat-intro', 'aria-live': 'polite' }, t(p.quote ? 'passage.private' : 'req.private'));
+  // On a server with accounts the comment is shown to signed-in readers (at once, or once an editor has looked at
+  // it, as the server is set), and the notice says so.
+  const noticeKey = (canSignIn() && !editor && { all: 'comment.public', handled: 'comment.publicLater' }[account.shown]) || (p.quote ? 'passage.private' : 'req.private');
+  // The comments already sent about this page, above the notice (in the box for the whole requirement only).
+  const list = p.quote ? null : el('div', { class: 'cmts', hidden: true });
+  if (list) Object.assign(pageCmts, { list, askSignIn: () => askSignIn(false) });
+  const status = el('p', { class: 'chat-intro', 'aria-live': 'polite' }, t(noticeKey));
   const send = el('button', { type: 'submit', class: 'chat-send' }, t('chat.send'));
   const form = el('form', { class: 'chat-form', onsubmit: async e => {
     e.preventDefault();
@@ -1274,10 +1340,11 @@ function commentBox(p, draft = '') {
     if (!account.user && canSignIn() && !editor) return askSignIn();
     send.disabled = true; status.className = 'chat-intro'; status.textContent = t('passage.sending');
     try {
-      const r = await api('POST', 'api/comment', { comment, quote: p.quote, where: p.where, page: lawSel.base.title, url: location.href,
+      const r = await api('POST', 'api/comment', { comment, quote: p.quote, where: p.where, page: lawSel.base.title, url: location.href, key: lawSel.base.key,
         messages: chats.get(p.quote ? passageKey(p) : lawSel.base.key)?.messages || [] });
       input.value = '';
       status.textContent = t(r.to === 'claude' ? 'passage.sentOwner' : 'passage.sent');   // 'claude': the owner's local copy
+      if (r.public) loadPageComments(lawSel.base.key, true);
     } catch (err) {
       if (err.status === 401 && canSignIn()) {   // the sign-in ran out, or was ended elsewhere
         account.user = null; drawAccount(); send.disabled = false;
@@ -1289,7 +1356,8 @@ function commentBox(p, draft = '') {
     send.disabled = false;
   } }, input, send);
   input.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) form.requestSubmit(); });
-  const log = el('div', { class: 'chat-log' }, p.quote ? el('blockquote', { class: 'chat-quote' }, p.quote) : null, status);
+  const log = el('div', { class: 'chat-log' }, p.quote ? el('blockquote', { class: 'chat-quote' }, p.quote) : null, list, status);
+  if (list) queueMicrotask(drawPageComments);   // once the box is on the page
   return { log, form, input };
 }
 function openPassage(p, mode, draft = '') {

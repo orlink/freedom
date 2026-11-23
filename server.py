@@ -89,7 +89,21 @@ MAX_REVIEW_BYTES = 20_000_000  # no more readers' comments once the queue is thi
 # address), and to the owner's local copy (--edit). Without a key in .env it is closed. The queue itself is only ever
 # appended to; statuses and replies live beside it in REVIEW_STATE_FILE.
 REVIEW_STATE_FILE = os.path.join(ROOT, "data", "state", "review-state.json")
-COMMENT_STATUSES = ("new", "answered", "applied", "declined")
+COMMENT_STATUSES = ("new", "answered", "applied", "declined", "hidden")
+
+# Readers see comments too (GET /api/page-comments?key=<page>): only signed-in readers, and only comments sent by a
+# signed-in reader under the notice that says so (the record's "public"); earlier comments were sent as private and
+# stay with the editors. Shown are the comment, the passage it is about, its author's name, its status and the
+# editors' reply; never the chat, the address or the editors' note. COMMENTS_SHOWN says which ones others see:
+#   "all"      every such comment at once, except those an editor has set to "hidden" (Claude's choice while Orlin's
+#              answer is pending, 2026-11-23)
+#   "handled"  only once an editor has answered, applied or declined it
+#   "own"      nobody else's
+# The author always sees their own, whatever its status. The page tells the reader which of these holds before they
+# send (/api/me gives the setting), and a comment sent while "own" held stays private if the setting changes later.
+COMMENTS_SHOWN = "all"
+MAX_PAGE_COMMENTS = 200
+MAX_NAME = 60
 MAX_REPLY = 4000
 MAX_LISTED = 500               # comments in one answer
 KEY_FAIL_LIMITS = [(10, 600)]  # wrong keys from one address before its wrong keys are no longer even looked at
@@ -179,6 +193,27 @@ def read_queue():
     except OSError:
         pass
     return out
+
+
+_page_cache = {"sig": None, "pages": {}}
+
+
+def page_comments(key):
+    """The public comments about one page, oldest first (call it holding LOCK). The queue is read again only when
+    the file has changed."""
+    try:
+        st = os.stat(REVIEW_FILE)
+        sig = (st.st_mtime_ns, st.st_size)
+    except OSError:
+        return []
+    if _page_cache["sig"] != sig:
+        pages = {}
+        for rec in read_queue():
+            if rec.get("public") is True and rec.get("user") and isinstance(rec.get("key"), str):
+                pages.setdefault(rec["key"], []).append(
+                    {k: rec.get(k, "") for k in ("id", "at", "kind", "text", "where", "comment", "user")})
+        _page_cache.update(sig=sig, pages=pages)
+    return _page_cache["pages"].get(key, [])
 
 
 def load_env(path=os.path.join(ROOT, ".env")):
@@ -614,8 +649,11 @@ class Handler(SimpleHTTPRequestHandler):
             return self.send_json(200, public_fix(e))
         if u.path == "/api/comments":
             return self.comments_list(parse_qs(u.query))
+        if u.path == "/api/page-comments":
+            return self.page_comments_list((parse_qs(u.query).get("key") or [""])[0])
         if u.path == "/api/me":
-            return self.send_json(200, {"user": self.user(), "methods": accounts.methods(dev_mail=self.is_editor())})
+            return self.send_json(200, {"user": self.user(), "methods": accounts.methods(dev_mail=self.is_editor()),
+                                        "comments": COMMENTS_SHOWN})
         if u.path.startswith("/api/auth/"):
             return self.auth_get(u.path[len("/api/auth/"):], parse_qs(u.query))
         return super().do_GET()
@@ -772,6 +810,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self.send_json(400, {"error": "empty comment"})
         url = str(body.get("url", ""))[:500]
         url = url if re.match(r"^https?://[^\s<>]+$", url) else ""
+        key = str(body.get("key", ""))
+        key = key if KEY_RE.match(key) else ""
         msgs = []
         for m in (body.get("messages") or [])[-CHAT_MAX_TURNS:]:
             role, text = (m or {}).get("role"), str((m or {}).get("content", "")).strip()[:CHAT_MAX_MESSAGE]
@@ -787,12 +827,13 @@ class Handler(SimpleHTTPRequestHandler):
                 return self.send_json(429, {"error": "Too many comments in a short time. Please wait a few minutes."})
             if not COMMENT_RATE.allow("all"):
                 return self.send_json(429, {"error": "The site has taken as many comments as it can today. Please come back tomorrow."})
-        # "user" stays empty until readers sign in (planned); "who" is the one-way hash of a reader's address.
+        # "who" is the one-way hash of a reader's address; "user" the signed-in reader's id; "key" names the page for
+        # /api/page-comments; "public": sent by a signed-in reader, under the notice that other readers see it.
         rec = {"id": uuid.uuid4().hex[:8], "at": time.strftime("%Y-%m-%d %H:%M:%S"), "from": "owner" if owner else "reader",
                "who": None if owner else visitor_id(ip), "user": user and user["id"], "kind": "passage" if quote else "requirement",
                "lang": getattr(self, "lang", "en") or "en", "comment": comment, "text": quote,
                "where": str(body.get("where", "")).strip()[:300], "page": str(body.get("page", "")).strip()[:300], "url": url,
-               "messages": msgs}
+               "key": key, "public": bool(user and key) and COMMENTS_SHOWN != "own", "messages": msgs}
         with LOCK:
             full = not owner and too_big(REVIEW_FILE, MAX_REVIEW_BYTES)
             if not full:
@@ -803,7 +844,7 @@ class Handler(SimpleHTTPRequestHandler):
                     audit(ip, "comment", rec["id"], " ".join(comment.split())[:80])
         if full:
             return self.send_json(507, {"error": "The comment could not be saved. Please try again later."})
-        return self.send_json(200, {"id": rec["id"], "to": "claude" if owner else "editors"})
+        return self.send_json(200, {"id": rec["id"], "to": "claude" if owner else "editors", "public": rec["public"]})
 
     # ---------- signing in (accounts.py) ----------
 
@@ -874,6 +915,14 @@ class Handler(SimpleHTTPRequestHandler):
             except accounts.Refused as e:
                 return self.send_json(400, {"error": str(e)})
             return self.send_json(200, {"user": user}, [self.make_cookie(SESSION_COOKIE, token, accounts.SESSION_DAYS * 86400)])
+        if what == "name":
+            user = self.user()
+            if not user:
+                return self.send_json(401, {"error": "Sign in first.", "signin": True})
+            name = " ".join(re.sub(r"[\x00-\x1f\x7f<>]", " ", str(body.get("name", ""))).split())[:MAX_NAME]
+            if not WRITE_RATE.allow(ip):
+                return self.send_json(429, {"error": "Too many changes in a short time. Please wait a few minutes."})
+            return self.send_json(200, {"user": accounts.rename(user["id"], name)})
         if what == "signout":
             accounts.sign_out(self.cookie(SESSION_COOKIE))
             return self.send_json(200, {"user": None}, [self.make_cookie(SESSION_COOKIE, "", 0)])
@@ -886,6 +935,29 @@ class Handler(SimpleHTTPRequestHandler):
                 audit(ip, "account-deleted", user["id"])
             return self.send_json(200, {"user": None}, [self.make_cookie(SESSION_COOKIE, "", 0)])
         return self.send_json(404, {"error": "not found"})
+
+    def page_comments_list(self, key):
+        """Readers: the comments about one page. Anyone gets their number; a signed-in reader gets the comments."""
+        if not KEY_RE.match(key):
+            return self.send_json(400, {"error": "bad key"})
+        if not accounts.on():   # no accounts here: nobody could read them
+            return self.send_json(200, {"count": 0, "comments": [], "signin": False})
+        user = self.user()
+        with LOCK:
+            recs, state = page_comments(key), load_state(REVIEW_STATE_FILE)
+        people = accounts.users_by_id(rec["user"] for rec in recs)   # a deleted account's comments are no longer shown
+        out = []
+        for rec in recs:
+            st = state.get(rec["id"]) or {}
+            status, mine = st.get("status", "new"), bool(user) and rec["user"] == user["id"]
+            seen = {"all": status != "hidden", "handled": status in ("answered", "applied", "declined"), "own": False}[COMMENTS_SHOWN]
+            if rec["user"] in people and (seen or mine):
+                shown = {k: v for k, v in rec.items() if k != "user"}
+                out.append(dict(shown, status=status, reply=st.get("reply", ""), mine=mine, name=people[rec["user"]]["name"]))
+        out = out[-MAX_PAGE_COMMENTS:]
+        if not user:
+            return self.send_json(200, {"count": len(out), "comments": [], "signin": True})
+        return self.send_json(200, {"count": len(out), "comments": out})
 
     def comments_list(self, q):
         """Editors: the comment queue, oldest first, each comment with its status and reply. ?status=new (the default),
