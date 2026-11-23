@@ -830,7 +830,7 @@ class Handler(SimpleHTTPRequestHandler):
     def comment(self):
         """A comment for the editors, on a whole requirement or on a highlighted passage of law: appended to REVIEW_FILE
         with the page and the passage (never the reader's chat with Claude, which stays private). From anyone on a server without accounts,
-        from a signed-in reader on one that has them. Nothing is published."""
+        from a signed-in person on one that has them (the owner's local copy too), and then shown to all signed-in readers."""
         body = self.read_body(CHAT_MAX_BODY)
         if not isinstance(body, dict):
             return self.send_json(400, {"error": "bad body"})
@@ -842,11 +842,12 @@ class Handler(SimpleHTTPRequestHandler):
         url = url if re.match(r"^https?://[^\s<>]+$", url) else ""
         key = str(body.get("key", ""))
         key = key if KEY_RE.match(key) else ""
-        owner, ip, user = self.is_editor(), self.client_ip(), None
-        if not owner and accounts.on():   # a server with accounts takes comments from signed-in readers only
-            user = self.user() if self.json_post() else None
-            if not user:
-                return self.send_json(401, {"error": "Sign in to send a comment.", "signin": True})
+        # A server with accounts takes comments from signed-in people only, the owner's local copy included, so
+        # that every comment has a name and all signed-in readers can see it (Orlin 2026-11-23).
+        owner, ip = self.is_editor(), self.client_ip()
+        user = self.user() if self.json_post() else None
+        if accounts.on() and not user:
+            return self.send_json(401, {"error": "Sign in to send a comment.", "signin": True})
         if not owner:
             if not WRITE_RATE.allow(ip):
                 return self.send_json(429, {"error": "Too many comments in a short time. Please wait a few minutes."})
@@ -869,7 +870,7 @@ class Handler(SimpleHTTPRequestHandler):
                     audit(ip, "comment", rec["id"])   # the text only in the queue, so that its author can delete it
         if full:
             return self.send_json(507, {"error": "The comment could not be saved. Please try again later."})
-        return self.send_json(200, {"id": rec["id"], "to": "claude" if owner else "editors", "public": rec["public"]})
+        return self.send_json(200, {"id": rec["id"], "to": "editors", "public": rec["public"]})
 
     # ---------- signing in (accounts.py) ----------
 
@@ -1080,6 +1081,9 @@ class Handler(SimpleHTTPRequestHandler):
             return self.send_json(400, {"error": "bad body"})
         if not KEY_RE.match(str(body.get("key", ""))):
             return self.send_json(400, {"error": "bad key"})
+        # Like commenting, the chat is for signed-in people on a server with accounts (Orlin 2026-11-23).
+        if accounts.on() and not (self.json_post() and self.user()):
+            return self.send_json(401, {"reply": None, "error": "Sign in to use the chat.", "signin": True})
         context = str(body.get("context", ""))[:CHAT_MAX_CONTEXT]
         msgs = []
         for m in (body.get("messages") or [])[-CHAT_MAX_TURNS:]:

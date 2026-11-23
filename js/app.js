@@ -446,11 +446,11 @@ function drawAccount() {
   accountUi.btn.title = label; accountUi.btn.setAttribute('aria-label', label);
   if (pageCmts.key) loadPageComments(pageCmts.key, true);   // who is signed in decides which comments are shown
 }
-function openAccount() {
+function openAccount({ lead, onDone, beforeLeave } = {}) {
   closeAccount();
   const head = title => el('div', { class: 'chat-head' }, el('strong', {}, title), el('button', { type: 'button', class: 'chat-close', 'aria-label': t('chat.close'), onclick: closeAccount }, '×'));
   let body;
-  if (!account.user) body = signInPanel({ onDone: closeAccount });
+  if (!account.user) body = signInPanel({ lead, beforeLeave, onDone: () => { closeAccount(); onDone?.(); } });
   else {
     const status = el('p', { class: 'chat-error', 'aria-live': 'polite' });
     const leave = async (path, done) => {
@@ -493,6 +493,13 @@ function openAccount() {
     Object.assign(pop.style, { top: `${r.bottom + 8}px`, left: `${Math.max(8, Math.min(r.left, view - w - 8))}px`, right: 'auto' });
   }
   (pop.querySelector('input, .signin-btn') || pop.querySelector('button')).focus();
+}
+// Commenting and the chat are for signed-in readers (on a server with accounts). A signed-out reader who presses one
+// of their icons gets the sign-in pop-up first, with a line saying why; what they pressed opens once they are in
+// (Orlin 2026-11-23). remember: called before a trip to Google or Apple, so that it opens again on the way back.
+function whenSignedIn(why, then, remember) {
+  if (account.user || !canSignIn()) return then();
+  openAccount({ lead: t(why), onDone: then, beforeLeave: remember });
 }
 // The ways to sign in, as one block: Google and Apple (a trip to their site and back to this page), and an email
 // address that gets a six-digit code. lead: a line above them. onDone: called once signed in, without leaving the
@@ -595,8 +602,8 @@ function drawPageComments() {
 
 // What a reader was writing when they left for Google or Apple, kept for this tab until they are back (15 minutes).
 const DRAFT = 'freedom-comment-draft';
-function keepDraft(p, text) {
-  try { sessionStorage.setItem(DRAFT, JSON.stringify({ key: lawSel.base?.key, at: Date.now(), text, p: { quote: p.quote, where: p.where, top: p.top } })); } catch { /* storage unavailable */ }
+function keepDraft(p, text, mode = 'comment') {   // mode 'chat': the requirement's chat was what they were opening
+  try { sessionStorage.setItem(DRAFT, JSON.stringify({ key: lawSel.base?.key, at: Date.now(), text, mode, p: { quote: p.quote, where: p.where, top: p.top } })); } catch { /* storage unavailable */ }
 }
 function takeDraft(key) {
   try {
@@ -1201,6 +1208,7 @@ function chatBox(key, context, passage) {
     e.preventDefault();
     const text = input.value.trim();
     if (!text || send.disabled) return;
+    if (!account.user && canSignIn()) return openAccount({ lead: t('signin.toChat'), onDone: () => form.requestSubmit() });
     c.messages.push({ role: 'user', content: text });
     input.value = ''; send.disabled = true; paint(true);
     let error = null;
@@ -1251,9 +1259,8 @@ function chatButton(key, context) {
   const wrap = el('div', { class: 'chat-wrap' });
   let pop = null;
   const close = () => { pop?.remove(); pop = null; btn.setAttribute('aria-expanded', 'false'); };
-  const btn = el('button', { type: 'button', class: 'chat-btn', 'aria-label': t('chat.button'), title: t('chat.button'), 'aria-expanded': 'false',
-    onclick: () => {
-      if (pop) return close();
+  const open = () => {
+      if (pop) return;
       const box = chatBox(key, context);
       pop = el('div', { class: 'chat-pop', role: 'dialog', 'aria-label': t('chat.button') },
         el('div', { class: 'chat-head', title: t('chat.drag') }, el('strong', {}, t('chat.title')), el('button', { type: 'button', class: 'chat-close', 'aria-label': t('chat.close'), onclick: close }, '×')),
@@ -1262,13 +1269,20 @@ function chatButton(key, context) {
       wrap.append(pop); btn.setAttribute('aria-expanded', 'true');
       draggable(pop, pop.querySelector('.chat-head'));
       box.input.focus();
-    } });
+  };
+  const btn = el('button', { type: 'button', class: 'chat-btn', 'aria-label': t('chat.button'), title: t('chat.button'), 'aria-expanded': 'false',
+    onclick: () => (pop ? close() : whenSignedIn('signin.toChat', open, () => keepDraft({ quote: '', where: '', top: 0 }, '', 'chat'))) });
+  wrap.openChat = open;
   // A question mark: asking Claude about the requirement. It sits right of the speech bubble (Orlin 2026-11-22).
   btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a2.9 2.9 0 1 1 4 2.6c-.7.3-1.2 1-1.2 1.8v.8"/><path d="M12 17.3h.01"/></svg>';
   // Left of it, a speech bubble: a comment or feedback on the whole requirement. Like a passage comment and like the
   // owner's paragraph comments, it goes to the editors' queue on the server (Orlin 2026-11-22), not to GitHub.
   const note = el('button', { type: 'button', class: 'chat-btn', 'aria-label': t('req.comment'), title: t('req.comment'),
-    onclick: () => { close(); openPassage({ quote: '', where: '', top: note.getBoundingClientRect().bottom + 8 }, 'comment'); } });
+    onclick: () => {
+      close();
+      const p = { quote: '', where: '', top: note.getBoundingClientRect().bottom + 8 };
+      whenSignedIn('signin.toComment', () => openPassage(p, 'comment'), () => keepDraft(p, ''));
+    } });
   note.innerHTML = ICON_COMMENT.replace(/width="16" height="16"/, 'width="22" height="22"').replace('stroke-width="2.2"', 'stroke-width="2"');
   // How many comments readers have sent about this page (shown from one up).
   pageCmts.badge = el('span', { class: 'cmt-count', hidden: true, 'aria-hidden': 'true' });
@@ -1320,7 +1334,7 @@ function showLawIcon() {
     document.body.append(lawSel.btn);
   }
   const [comment] = lawSel.btn.children;
-  comment.onclick = () => { hideLawIcon(); openPassage(p, 'comment'); };
+  comment.onclick = () => { hideLawIcon(); whenSignedIn('signin.toComment', () => openPassage(p, 'comment'), () => keepDraft(p, '')); };
   const w = 30, h = 30, view = document.documentElement.clientWidth;
   const x = Math.min(p.right + 2, view - w - 6), y = Math.max(6, p.top - h + 4);
   Object.assign(lawSel.btn.style, { left: `${x + scrollX}px`, top: `${y + scrollY}px` });
@@ -1338,29 +1352,30 @@ function commentBox(p, draft = '') {
   const askSignIn = (sending = true) => {
     panel?.remove();
     panel = signInPanel({ lead: sending ? t('signin.toSend') : null, beforeLeave: () => keepDraft(p, input.value),
-      onDone: () => { panel.remove(); panel = null; form.hidden = false; status.textContent = t(noticeKey); if (sending) form.requestSubmit(); else input.focus(); } });
+      onDone: () => { panel.remove(); panel = null; form.hidden = false; status.textContent = noticeText(); if (sending) form.requestSubmit(); else input.focus(); } });
     form.hidden = true; status.className = 'chat-intro'; status.textContent = '';
     log.append(panel);
     panel.querySelector('input, button')?.focus();
   };
   // On a server with accounts the comment is shown to signed-in readers (at once, or once an editor has looked at
-  // it, as the server is set), and the notice says so.
-  const noticeKey = (canSignIn() && !editor && { all: 'comment.public', handled: 'comment.publicLater' }[account.shown]) || (p.quote ? 'passage.private' : 'req.private');
+  // it, as the server is set), and the notice says so. Otherwise there is no notice.
+  const noticeKey = (canSignIn() && { all: 'comment.public', handled: 'comment.publicLater' }[account.shown]) || null;
+  const noticeText = () => (noticeKey ? t(noticeKey) : '');
   // The comments already sent about this page, above the notice (in the box for the whole requirement only).
   const list = p.quote ? null : el('div', { class: 'cmts', hidden: true });
   if (list) Object.assign(pageCmts, { list, askSignIn: () => askSignIn(false) });
-  const status = el('p', { class: 'chat-intro', 'aria-live': 'polite' }, t(noticeKey));
+  const status = el('p', { class: 'chat-intro', 'aria-live': 'polite' }, noticeText());
   const send = el('button', { type: 'submit', class: 'chat-send' }, t('chat.send'));
   const form = el('form', { class: 'chat-form', onsubmit: async e => {
     e.preventDefault();
     const comment = input.value.trim();
     if (!comment || send.disabled) return input.focus();
-    if (!account.user && canSignIn() && !editor) return askSignIn();
+    if (!account.user && canSignIn()) return askSignIn();
     send.disabled = true; status.className = 'chat-intro'; status.textContent = t('passage.sending');
     try {
       const r = await api('POST', 'api/comment', { comment, quote: p.quote, where: p.where, page: lawSel.base.title, url: location.href, key: lawSel.base.key });
       input.value = '';
-      status.textContent = t(r.to === 'claude' ? 'passage.sentOwner' : 'passage.sent');   // 'claude': the owner's local copy
+      status.textContent = t('passage.sent');
       if (r.public) loadPageComments(lawSel.base.key, true);
     } catch (err) {
       if (err.status === 401 && canSignIn()) {   // the sign-in ran out, or was ended elsewhere
@@ -1689,7 +1704,7 @@ function render() {
     const chatKey = [loc.address.country_code || 'xx', ...state.path].join('|').slice(0, 200);
     const context = pageContext(steps.map(s => s.name), prop, j.laws, catalog);
     const chatBtn = chatButton(chatKey, context);
-    lawSel.base = { key: chatKey, context, title: steps.map(s => s.name).join(' › ') };
+    lawSel.base = { key: chatKey, context, title: steps.map(s => s.name).join(' › '), openChat: chatBtn.openChat };
     keepPassageChat = chatKey;
     // The chat button sits in the top right corner of the verdict band (outside the panel, so its pop-up is not clipped).
     if (prop.provisions?.length) screen.push(el('div', { class: 'req has-chat' }, provisionsPanel(prop.provisions, j.laws, explainer, prop, j.lawStyle), chatBtn));
@@ -1702,9 +1717,11 @@ function render() {
   if (keepPassageChat !== lawSel.pop?.dataset.key) { lawSel.pop?.remove(); lawSel.pop = null; }
   if (!keepPassageChat) lawSel.base = null;
   $('#tree').replaceChildren(...screen.filter(Boolean));
-  // Back from signing in with Google or Apple: the comment the reader was writing here opens again.
+  // Back from signing in with Google or Apple: the comment the reader was writing here, or the chat they were
+  // opening, opens again.
   const draft = lawSel.base && takeDraft(lawSel.base.key);
-  if (draft) openPassage({ quote: String(draft.p.quote || ''), where: String(draft.p.where || ''), top: Number(draft.p.top) || 80 }, 'comment', String(draft.text || ''));
+  if (draft?.mode === 'chat') lawSel.base.openChat();
+  else if (draft) openPassage({ quote: String(draft.p.quote || ''), where: String(draft.p.where || ''), top: Number(draft.p.top) || 80 }, 'comment', String(draft.text || ''));
 }
 
 // ---------- shareable URL: #lat,lon/level/branch/mech/prop ----------
