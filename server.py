@@ -218,6 +218,12 @@ def page_comments(key):
     return _page_cache["pages"].get(key, [])
 
 
+def stamp():
+    """Now, for a saved comment: universal time, marked as such, so it means the same on every server and to every
+    reader (earlier records hold the server's local time without a zone)."""
+    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+
+
 def load_env(path=os.path.join(ROOT, ".env")):
     """Read KEY=value lines from .env into the environment (the API key lives there, so it survives restarts).
     Variables already set in the environment win."""
@@ -791,7 +797,7 @@ class Handler(SimpleHTTPRequestHandler):
         body = self.read_body(64_000)
         if not isinstance(body, dict) or not str(body.get("comment", "")).strip():
             return self.send_json(400, {"error": "empty comment"})
-        rec = {"id": uuid.uuid4().hex[:8], "at": time.strftime("%Y-%m-%d %H:%M:%S"), "from": "owner", "kind": "paragraph"}
+        rec = {"id": uuid.uuid4().hex[:8], "at": stamp(), "from": "owner", "kind": "paragraph"}
         for k in ("comment", "text", "url", "page", "where"):
             rec[k] = str(body.get(k, "")).strip()[:MAX_REVIEW_TEXT]
         with LOCK:
@@ -832,7 +838,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return self.send_json(429, {"error": "The site has taken as many comments as it can today. Please come back tomorrow."})
         # "who" is the one-way hash of a reader's address; "user" the signed-in reader's id; "key" names the page for
         # /api/page-comments; "public": sent by a signed-in reader, under the notice that other readers see it.
-        rec = {"id": uuid.uuid4().hex[:8], "at": time.strftime("%Y-%m-%d %H:%M:%S"), "from": "owner" if owner else "reader",
+        rec = {"id": uuid.uuid4().hex[:8], "at": stamp(), "from": "owner" if owner else "reader",
                "who": None if owner else visitor_id(ip), "user": user and user["id"], "kind": "passage" if quote else "requirement",
                "lang": getattr(self, "lang", "en") or "en", "comment": comment, "text": quote,
                "where": str(body.get("where", "")).strip()[:300], "page": str(body.get("page", "")).strip()[:300], "url": url,
@@ -1014,7 +1020,7 @@ class Handler(SimpleHTTPRequestHandler):
             if known:
                 state = load_state(REVIEW_STATE_FILE)
                 e = state.setdefault(cid, {})
-                e["status"], e["updated"] = status, time.strftime("%Y-%m-%d %H:%M:%S")
+                e["status"], e["updated"] = status, stamp()
                 for k in ("reply", "note"):
                     if k in body:
                         e[k] = str(body[k]).strip()[:MAX_REPLY]
