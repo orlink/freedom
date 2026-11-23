@@ -28,8 +28,10 @@ only needed for the chat:
 Every conversation is saved to data/state/comments.json, so the comments and suggestions
 readers make there can be read later even when the chat is not set up. Readers' comments for the editors
 (/api/comment), on a whole requirement or on highlighted law text, are saved to data/state/review.jsonl (docs/HOSTING.md).
+With FREEDOM_EDITOR_KEY in .env, an editor (or an editor's Claude, through tools/comments.py) can list that queue and
+record a status and a reply for each comment (/api/comments).
 """
-import argparse, hashlib, json, os, posixpath, re, secrets, threading, time, uuid
+import argparse, hashlib, hmac, json, os, posixpath, re, secrets, threading, time, uuid
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs, unquote
 
@@ -74,6 +76,17 @@ MAX_CONVERSATIONS = 200          # per requirement page
 COMMENTS_DAILY = 500           # readers' comments per day, whole site (FREEDOM_COMMENTS_DAILY overrides)
 COMMENT_RATE = None            # made in main(), after .env is read
 MAX_REVIEW_BYTES = 20_000_000  # no more readers' comments once the queue is this large
+
+# The editors' door into that queue: GET /api/comments lists it, POST /api/comments/update records what an editor did
+# with a comment (a status and a reply for its author). Open only to a request that carries the editor key from this
+# server's .env (FREEDOM_EDITOR_KEY, at least 32 characters, in the "Authorization: Bearer" header, never in an
+# address), and to the owner's local copy (--edit). Without a key in .env it is closed. The queue itself is only ever
+# appended to; statuses and replies live beside it in REVIEW_STATE_FILE.
+REVIEW_STATE_FILE = os.path.join(ROOT, "data", "state", "review-state.json")
+COMMENT_STATUSES = ("new", "answered", "applied", "declined")
+MAX_REPLY = 4000
+MAX_LISTED = 500               # comments in one answer
+KEY_FAIL_LIMITS = [(10, 600)]  # wrong keys from one address before its wrong keys are no longer even looked at
 MAX_COMMENT = 2000
 
 # What the web server may hand out as files. Everything else in the folder is private.
@@ -133,6 +146,23 @@ def is_public(rel):
     if parts[0] == "data":  # the site's data only: data/*.json and data/jurisdictions/*.json, never data/state
         return rel.endswith(".json") and (len(parts) == 2 or (len(parts) == 3 and parts[1] == "jurisdictions"))
     return len(parts) >= 2 and parts[0] in PUBLIC_DIRS
+
+
+def read_queue():
+    """The comments in REVIEW_FILE, oldest first (call it holding LOCK). Lines that are not a comment are skipped."""
+    out = []
+    try:
+        with open(REVIEW_FILE, encoding="utf-8") as f:
+            for line in f:
+                try:
+                    rec = json.loads(line)
+                except ValueError:
+                    continue
+                if isinstance(rec, dict) and isinstance(rec.get("id"), str):
+                    out.append(rec)
+    except OSError:
+        pass
+    return out
 
 
 def load_env(path=os.path.join(ROOT, ".env")):
@@ -307,6 +337,7 @@ class RateLimit:
 CHAT_RATE = RateLimit(CHAT_LIMITS)
 CHAT_TOTAL = RateLimit([(CHAT_DAILY_TOTAL, 86400)])
 WRITE_RATE = RateLimit(WRITE_LIMITS)
+KEY_FAILS = RateLimit(KEY_FAIL_LIMITS)
 _SALT = None
 
 
@@ -421,6 +452,22 @@ class Handler(SimpleHTTPRequestHandler):
         """The owner's tools (editing interest lists, commenting on text): only with --edit, and only from this computer (not through a proxy)."""
         return EDITOR and self.client_address[0] in ("127.0.0.1", "::1") and not self.headers.get("X-Forwarded-For")
 
+    def editor_access(self):
+        """May this request read and answer the comment queue? Answers None when it may; otherwise the refusal
+        (status, message). The owner's local copy may; anyone else needs the editor key from this server's .env."""
+        if self.is_editor():
+            return None
+        key = os.environ.get("FREEDOM_EDITOR_KEY", "")
+        if len(key) < 32:
+            return 404, "not found"
+        given = self.headers.get("Authorization", "")
+        given = given[7:].strip() if given[:7].lower() == "bearer " else ""
+        if given and hmac.compare_digest(given.encode("utf-8"), key.encode("utf-8")):
+            return None
+        if not KEY_FAILS.allow(self.client_ip()):   # the right key still gets in: it cannot be guessed, only known
+            return 429, "Too many wrong keys. Try again later."
+        return 401, "editor key required"
+
     lang = "en"
 
     def take_lang(self):
@@ -505,6 +552,8 @@ class Handler(SimpleHTTPRequestHandler):
             with LOCK:
                 e = load_state(FIXES_FILE).get(key, {"approvals": 0, "suggestions": []})
             return self.send_json(200, public_fix(e))
+        if u.path == "/api/comments":
+            return self.comments_list(parse_qs(u.query))
         return super().do_GET()
 
     def read_body(self, limit=MAX_BODY):
@@ -528,6 +577,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self.review()
         if u.path == "/api/comment":
             return self.comment()
+        if u.path == "/api/comments/update":
+            return self.comments_update()
         if u.path not in ("/api/interests", "/api/interests/hide", "/api/fixes/approve", "/api/fixes/suggest"):
             return self.send_json(404, {"error": "not found"})
         body = self.read_body()
@@ -682,6 +733,62 @@ class Handler(SimpleHTTPRequestHandler):
         if full:
             return self.send_json(507, {"error": "The comment could not be saved. Please try again later."})
         return self.send_json(200, {"id": rec["id"], "to": "claude" if owner else "editors"})
+
+    def comments_list(self, q):
+        """Editors: the comment queue, oldest first, each comment with its status and reply. ?status=new (the default),
+        answered, applied, declined or all; ?after=<id> gives only the comments that came after that one."""
+        no = self.editor_access()
+        if no:
+            return self.send_json(no[0], {"error": no[1]})
+        want = (q.get("status") or ["new"])[0]
+        after = (q.get("after") or [""])[0]
+        sender = (q.get("from") or ["all"])[0]
+        if want != "all" and want not in COMMENT_STATUSES:
+            return self.send_json(400, {"error": "status is one of: all, " + ", ".join(COMMENT_STATUSES)})
+        if sender not in ("all", "owner", "reader"):
+            return self.send_json(400, {"error": "from is one of: all, owner, reader"})
+        with LOCK:
+            state, queue = load_state(REVIEW_STATE_FILE), read_queue()
+        out, seen = [], not after
+        for rec in queue:
+            if not seen:
+                seen = rec["id"] == after
+                continue
+            rec.setdefault("from", "owner")   # the owner's paragraph comments from before readers could comment
+            st = state.get(rec["id"]) or {}
+            rec["status"] = st.get("status", "new")
+            for k in ("reply", "note", "updated"):
+                if st.get(k):
+                    rec[k] = st[k]
+            if want in ("all", rec["status"]) and sender in ("all", rec["from"]):
+                out.append(rec)
+        return self.send_json(200, {"comments": out[:MAX_LISTED], "more": len(out) > MAX_LISTED, "total": len(queue)})
+
+    def comments_update(self):
+        """Editors: record what was done with one comment: {id, status, reply?, note?}. The reply is for its author (shown
+        to readers once comments are visible on the site); the note is for the editors only."""
+        no = self.editor_access()
+        if no:
+            return self.send_json(no[0], {"error": no[1]})
+        body = self.read_body(MAX_BODY)
+        if not isinstance(body, dict):
+            return self.send_json(400, {"error": "bad body"})
+        cid, status = str(body.get("id", "")), str(body.get("status", ""))
+        if not re.match(r"^[0-9a-f]{8}$", cid) or status not in COMMENT_STATUSES:
+            return self.send_json(400, {"error": "id and status (" + ", ".join(COMMENT_STATUSES) + ") are required"})
+        with LOCK:
+            known = any(rec["id"] == cid for rec in read_queue())
+            if known:
+                state = load_state(REVIEW_STATE_FILE)
+                e = state.setdefault(cid, {})
+                e["status"], e["updated"] = status, time.strftime("%Y-%m-%d %H:%M:%S")
+                for k in ("reply", "note"):
+                    if k in body:
+                        e[k] = str(body[k]).strip()[:MAX_REPLY]
+                save_state(state, REVIEW_STATE_FILE)
+        if not known:
+            return self.send_json(404, {"error": "no such comment"})
+        return self.send_json(200, {"id": cid, "status": status})
 
     def chat(self):
         """One turn of the requirement-page chat: save the conversation, ask Claude, save the reply."""
