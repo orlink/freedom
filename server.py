@@ -11,9 +11,6 @@ using the same server. Standard library only.
     python3 server.py --edit       # the owner's local copy: adding, removing and dragging interest chips
                                    # changes the site's own lists in data/interests.json (per country), to commit
 
-    python3 server.py --edit       # also shows a comment icon beside every paragraph; a comment is appended,
-                                   # with the paragraph and where it is, to data/state/review.jsonl for Claude to answer
-
     python3 server.py --edit       # also restarts by itself when server.py, accounts.py or .env changes (a git pull,
                                    # a new setting), so nobody has to stop and start it by hand
 
@@ -29,7 +26,7 @@ only needed for the chat:
     .venv/bin/python server.py
 
 A reader's conversation with Claude is private: the server passes it on and keeps none of it. Readers' comments for the editors
-(/api/comment), on a whole requirement or on highlighted law text, are saved to data/state/review.jsonl (docs/HOSTING.md).
+(/api/comment), on a whole requirement, a paragraph or highlighted law text, are saved to data/state/review.jsonl (docs/HOSTING.md).
 With FREEDOM_EDITOR_KEY in .env, an editor (or an editor's Claude, through tools/comments.py) can list that queue and
 record a status and a reply for each comment (/api/comments).
 
@@ -51,7 +48,6 @@ FIXES_FILE = os.path.join(ROOT, "data", "state", "fixes.json")
 SITE_INTERESTS = os.path.join(ROOT, "data", "interests.json")
 EDITOR = False  # set by --edit: the site owner's local copy, where interest edits change data/interests.json
 REVIEW_FILE = os.path.join(ROOT, "data", "state", "review.jsonl")  # the editors' queue: the owner's and readers' comments
-MAX_REVIEW_TEXT = 8000
 MAX_INTERESTS = 40
 MAX_LABEL = 60
 MAX_SUGGESTION = 2000
@@ -703,8 +699,6 @@ class Handler(SimpleHTTPRequestHandler):
             return self.chat()
         if u.path == "/api/site-interests":
             return self.site_interests()
-        if u.path == "/api/review":
-            return self.review()
         if u.path == "/api/comment":
             return self.comment()
         if u.path == "/api/comments/update":
@@ -810,22 +804,6 @@ class Handler(SimpleHTTPRequestHandler):
             data.setdefault("countries", {}).setdefault(cc, {})[level] = clean
             write_site_interests(data)
         return self.send_json(200, {"labels": clean})
-
-    def review(self):
-        """Editor mode: append the owner's comment on one paragraph, with the paragraph and where it is, to REVIEW_FILE."""
-        if not self.is_editor():
-            return self.send_json(403, {"error": "comments are only possible on the owner's local copy (server.py --edit)"})
-        body = self.read_body(64_000)
-        if not isinstance(body, dict) or not str(body.get("comment", "")).strip():
-            return self.send_json(400, {"error": "empty comment"})
-        rec = {"id": uuid.uuid4().hex[:8], "at": stamp(), "from": "owner", "kind": "paragraph"}
-        for k in ("comment", "text", "url", "page", "where"):
-            rec[k] = str(body.get(k, "")).strip()[:MAX_REVIEW_TEXT]
-        with LOCK:
-            os.makedirs(os.path.dirname(REVIEW_FILE), exist_ok=True)
-            with open(REVIEW_FILE, "a", encoding="utf-8") as f:
-                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-        return self.send_json(200, {"id": rec["id"]})
 
     def comment(self):
         """A comment for the editors, on a whole requirement or on a highlighted passage of law: appended to REVIEW_FILE
