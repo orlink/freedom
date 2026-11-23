@@ -4,3 +4,4 @@ data/state/
 .venv/
 .env
 __pycache__/
+.claude/settings.local.json
