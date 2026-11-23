@@ -212,6 +212,13 @@ def delete_user(user_id):
         db.execute("DELETE FROM users WHERE id = ?", (user_id,))
 
 
+def rename(user_id, name):
+    """Set the name shown with the user's comments; answers the user."""
+    with _Store() as db:
+        db.execute("UPDATE users SET name = ? WHERE id = ?", (name, user_id))
+        return _public(db.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone())
+
+
 def users_by_id(ids):
     """For the editors' list: {user id: {"email", "name"}} of those who still have an account."""
     ids = [i for i in set(ids) if i]

@@ -321,6 +321,23 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 .signin .link { align-self: flex-start; border: 0; background: none; padding: 0; color: var(--coral-ink); font-size: 13px; text-decoration: underline; }
 .signin .link[hidden], .signin .chat-error:empty, .signin .chat-intro:empty { display: none; }
 .signin-note { margin: 0; color: var(--muted); font-size: 12px; }
+/* Readers' comments on a page: their number on the requirement's speech bubble (a neutral dot, readable on every
+   verdict colour), and the list in the comment box. A reader's own comments have a coral edge. */
+.chat-btn { position: relative; }
+.cmt-count { position: absolute; top: 0; right: -2px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 999px; background: #fff; color: #2e1518; font-size: 11px; font-weight: 700; line-height: 17px; text-align: center; box-shadow: 0 0 0 1px rgba(46, 21, 24, .25); }
+.cmt-count[hidden], .cmts[hidden] { display: none; }
+.cmts { display: flex; flex-direction: column; gap: 8px; }
+.cmts .link { align-self: flex-start; border: 0; background: none; padding: 0; color: var(--coral-ink); font-size: 14px; text-decoration: underline; text-align: left; }
+.cmt { padding: 8px 10px; border: 1px solid var(--line); border-radius: 12px; background: #fff; font-size: 14px; line-height: 1.45; }
+.cmt.mine { border-left: 3px solid var(--coral); }
+.cmt-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; color: var(--muted); font-size: 12px; }
+.cmt-head strong { color: var(--text); font-size: 13px; }
+.cmt-status { margin-left: auto; padding: 1px 8px; border-radius: 999px; background: var(--coral-soft); color: var(--coral-ink); font-weight: 600; }
+.cmt p { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.cmt .chat-quote { margin-top: 6px; }
+.cmt-reply { margin-top: 8px; padding: 6px 10px; border-radius: 8px; background: #f4ebe8; }
+.cmt-reply strong { font-size: 12px; color: var(--muted); }
+.cmt-reply p { margin-top: 2px; }
 /* Highlighted law text: two icons off the selection's top right corner (ask Claude, comment), and their pop-ups. */
 .sel-tools { position: absolute; z-index: 1001; display: flex; gap: 6px; }
 .sel-tools button { width: 30px; height: 30px; padding: 0; border-radius: 50%; border: 0; background: var(--coral); color: #fff;
@@ -334,7 +351,8 @@ button.tb:not(:disabled):hover, a.tb:hover { transform: translateY(-2px); box-sh
 @media (max-width: 600px) {
   .provisions .verdict .vtext strong, .req.has-chat .provisions .verdict .vtext strong, .req.has-chat .provisions .verdict:has(.fix-btn) .vtext strong { padding-right: 0; min-height: 0; }
   .req.has-chat .provisions .verdict, .provisions .verdict:has(.fix-btn) { padding-top: 54px; }
-  .chat-pop { position: fixed; top: auto; left: 16px; right: 16px; bottom: max(16px, env(safe-area-inset-bottom, 0px)); width: auto; max-height: 75vh; }
+  /* Above the sticky header (1100): a tall box, with a list of comments or a long chat, must not lose its title bar under it. */
+  .chat-pop { position: fixed; top: auto; left: 16px; right: 16px; bottom: max(16px, env(safe-area-inset-bottom, 0px)); width: auto; max-height: 75vh; z-index: 1200; }
 }
 
 /* The chat button is just the bubble icon, in the verdict band's own text colour. */
