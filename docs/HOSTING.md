@@ -29,6 +29,28 @@ To set or change the API key: over SSH, edit `C:\freedom\app\.env`, then `Restar
 
 Readers' comments for the editors (the speech bubble on a requirement page, and the one beside highlighted law text) are saved on the server in `data/state/review.jsonl`, one JSON object per line: who it is from (`owner` or `reader`), the page and its address, the highlighted text, the comment and any chat the reader had about it. Nothing is published and no token is needed. Limits: the usual per-address write limits, 500 comments a day for the whole site (`FREEDOM_COMMENTS_DAILY`), and no more once the file reaches 20 MB. `tools/deploy.sh` never uploads or overwrites `data/state`.
 
+### Accounts: signing in
+
+Readers sign in with a code sent to their email address, with Google or with Apple (`accounts.py`). Each way exists only on a server whose `.env` sets it up; a server with none of them has no accounts, shows no sign-in button and takes comments from anyone, as before. On a server that has accounts, sending a comment needs a signed-in reader (the owner's local `--edit` copy never asks).
+
+There are no passwords. All three ways prove that the reader holds an email address, and that address is the account: signing in another way with the same address reaches the same account. Kept in `data/state/accounts.db` (SQLite; never served, never uploaded): the address, the name Google or Apple gave, which Google or Apple account belongs to it, and the hashes of sign-in tokens (60 days) and of emailed codes (10 minutes, five tries). The reader's browser holds the token in a cookie the page's scripts cannot read (`fm_session`; https only, except on a local copy). A reader can delete the account from the account button; their comments stay in the editors' queue without a name.
+
+Setting it up: add the lines to the `.env` (on your computer for the local copy, over SSH in `C:\freedom\app\.env` for the live site), then restart the server.
+
+| Way | What to do | `.env` |
+|---|---|---|
+| Emailed code | Any mailbox or mail service that offers SMTP. Port 587 (STARTTLS) or 465 (TLS). | `FREEDOM_SMTP_HOST=`, `FREEDOM_SMTP_PORT=587`, `FREEDOM_SMTP_USER=`, `FREEDOM_SMTP_PASSWORD=`, `FREEDOM_MAIL_FROM=Freedom Map <no-reply@kredor.com>` |
+| Google | [Google Cloud console](https://console.cloud.google.com/apis/credentials) → Create credentials → OAuth client ID → Web application, named "Freedom Map" (the name readers see comes from the consent screen's app name). Authorised redirect URI: `https://free.kredor.com/api/auth/callback/google` (add `http://localhost:8000/api/auth/callback/google` to try it on the local copy). Only the client ID is needed, no client secret. | `FREEDOM_GOOGLE_CLIENT_ID=….apps.googleusercontent.com` |
+| Apple | [Apple Developer](https://developer.apple.com/account/resources/identifiers/list/serviceId) → Identifiers → a Services ID (for example `com.kredor.freedom`) with Sign in with Apple, tied to an App ID; domain `free.kredor.com`, return URL `https://free.kredor.com/api/auth/callback/apple`. Apple does not allow `localhost`, so this way works on the live site only. No key file is needed. | `FREEDOM_APPLE_CLIENT_ID=com.kredor.freedom` |
+
+`FREEDOM_SITE_URL` (default `https://free.kredor.com`) is the address Google and Apple send the reader back to; a local copy uses its own address by itself. Google and Apple answer with a signed statement, which the server checks against their published keys, so it holds no secret of theirs; it must be able to reach `www.googleapis.com` and `appleid.apple.com`.
+
+On the owner's local copy (`--edit`) without a mail server, the email way is still offered, for trying it out: the code is printed in the server's terminal instead of being sent.
+
+Limits: five codes in ten minutes and twenty a day from one address, three in ten minutes and eight a day to one email address, 300 a day for the whole site (`FREEDOM_MAIL_DAILY`); thirty code tries or trips to Google or Apple in ten minutes from one address.
+
+The Google and Apple ways have been tested against a stand-in for the two providers, not yet against the real ones: try each once after setting it up.
+
 ### The editors' queue
 
 An editor reads that queue and records what was done with each comment through `tools/comments.py`, from any computer that holds the editor key. An editor's Claude uses the same command; the command never prints the key.

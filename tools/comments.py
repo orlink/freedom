@@ -114,7 +114,8 @@ def clip(s, n):
 
 
 def show(c, full=False):
-    who = c.get("from", "owner") + (f" {c['who']}" if c.get("who") else "") + (f" ({c['user']})" if c.get("user") else "")
+    signed = " ".join(x for x in (c.get("user_name"), c.get("user_email")) if x) or (c.get("user") and "account deleted")
+    who = c.get("from", "owner") + (f" {c['who']}" if c.get("who") else "") + (f" ({signed})" if signed else "")
     print(f"[{c['id']}] {c.get('at', '')} · {who} · {c.get('kind', 'paragraph')} · {c.get('lang', 'en')} · "
           f"{c.get('status', 'new')}")
     for label, k in (("page", "page"), ("where", "where"), ("address", "url")):

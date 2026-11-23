@@ -416,6 +416,131 @@ function notice(text) {
   clearTimeout(notice.timer);
   notice.timer = setTimeout(() => box.classList.remove('on'), 6000);
 }
+
+// ---------- signing in ----------
+// A reader signs in with a code sent to their email address, with Google or with Apple (accounts.py), each only where
+// the server offers it. The sign-in itself is a cookie the page's scripts cannot read; `account` is what the page
+// knows: who is signed in and which ways the server offers. On a server with accounts, sending a comment needs it.
+const account = { user: null, methods: {} };
+const canSignIn = () => Object.values(account.methods).some(Boolean);
+const ICON_PERSON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.2" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>';
+const accountUi = { btn: null, pop: null };
+function closeAccount() { accountUi.pop?.remove(); accountUi.pop = null; accountUi.btn?.setAttribute('aria-expanded', 'false'); }
+// The round button at the end of the header's left group: an outline while signed out, filled once signed in.
+// It is not there at all on a server without accounts.
+function drawAccount() {
+  if (!accountUi.btn) {
+    accountUi.btn = el('button', { type: 'button', class: 'account-btn', 'aria-expanded': 'false', onclick: () => (accountUi.pop ? closeAccount() : openAccount()) });
+    accountUi.btn.innerHTML = ICON_PERSON;
+    $('.top .brand')?.append(accountUi.btn);
+  }
+  const label = account.user ? t('account.signedIn', { who: account.user.email || account.user.name }) : t('account.signIn');
+  accountUi.btn.hidden = !account.user && !canSignIn();
+  accountUi.btn.classList.toggle('in', Boolean(account.user));
+  accountUi.btn.title = label; accountUi.btn.setAttribute('aria-label', label);
+}
+function openAccount() {
+  closeAccount();
+  const head = title => el('div', { class: 'chat-head' }, el('strong', {}, title), el('button', { type: 'button', class: 'chat-close', 'aria-label': t('chat.close'), onclick: closeAccount }, '×'));
+  let body;
+  if (!account.user) body = signInPanel({ onDone: closeAccount });
+  else {
+    const status = el('p', { class: 'chat-error', 'aria-live': 'polite' });
+    const leave = async (path, done) => {
+      try { await api('POST', path, {}); } catch { status.textContent = t('signin.failed'); return; }
+      account.user = null; drawAccount(); closeAccount();
+      if (done) notice(done);
+    };
+    const del = el('button', { type: 'button', class: 'link', onclick: () => {
+      // Asked twice, in place: the first press only shows what deleting means.
+      if (del.dataset.sure) return leave('api/auth/delete', t('account.deleted'));
+      del.dataset.sure = '1'; del.textContent = t('account.deleteYes'); status.textContent = t('account.deleteSure');
+    } }, t('account.delete'));
+    body = el('div', { class: 'signin' },
+      el('p', { class: 'chat-intro' }, t('account.signedIn', { who: account.user.email || account.user.name })),
+      el('button', { type: 'button', class: 'signin-btn', onclick: () => leave('api/auth/signout') }, t('account.signOut')),
+      status, del);
+  }
+  const pop = el('div', { class: 'chat-pop account-pop', role: 'dialog', 'aria-label': t(account.user ? 'account.title' : 'account.signIn') },
+    head(t(account.user ? 'account.title' : 'account.signIn')), body);
+  pop.addEventListener('keydown', e => { if (e.key === 'Escape') { closeAccount(); accountUi.btn.focus(); } });
+  accountUi.pop = pop;
+  document.body.append(pop);
+  accountUi.btn.setAttribute('aria-expanded', 'true');
+  if (!matchMedia('(max-width: 600px)').matches) {   // under the button; on a phone the pop-up sits at the bottom
+    const r = accountUi.btn.getBoundingClientRect(), w = pop.offsetWidth, view = document.documentElement.clientWidth;
+    Object.assign(pop.style, { top: `${r.bottom + 8}px`, left: `${Math.max(8, Math.min(r.left, view - w - 8))}px`, right: 'auto' });
+  }
+  (pop.querySelector('input, .signin-btn') || pop.querySelector('button')).focus();
+}
+// The ways to sign in, as one block: Google and Apple (a trip to their site and back to this page), and an email
+// address that gets a six-digit code. lead: a line above them. onDone: called once signed in, without leaving the
+// page (email). beforeLeave: called before a trip to Google or Apple, to keep what the reader was writing.
+function signInPanel({ lead, onDone, beforeLeave } = {}) {
+  const status = el('p', { class: 'chat-error', 'aria-live': 'polite' });
+  const say = (text, bad = true) => { status.className = bad ? 'chat-error' : 'chat-intro'; status.textContent = text; };
+  const fail = err => say({ 429: t('signin.tooMany'), 502: t('signin.mailFailed') }[err.status] || (err.status === 400 ? null : t('signin.failed')));
+  const trip = provider => el('button', { type: 'button', class: 'signin-btn', onclick: () => {
+    beforeLeave?.();
+    location.href = `api/auth/start/${provider}?return=${encodeURIComponent(location.pathname + location.search + location.hash)}`;
+  } }, t(`signin.${provider}`));
+  const email = el('input', { type: 'email', name: 'email', autocomplete: 'email', placeholder: t('signin.email'), 'aria-label': t('signin.email'), maxlength: '254', required: '' });
+  const code = el('input', { type: 'text', name: 'code', inputmode: 'numeric', autocomplete: 'one-time-code', placeholder: t('signin.code'), 'aria-label': t('signin.code'), maxlength: '7', required: '' });
+  const ask = el('button', { type: 'submit', class: 'chat-send' }, t('signin.sendCode'));
+  const enter = el('button', { type: 'submit', class: 'chat-send' }, t('account.signIn'));
+  const again = el('button', { type: 'button', class: 'link', onclick: () => { codeForm.hidden = again.hidden = true; emailForm.hidden = false; say(''); email.focus(); } }, t('signin.otherEmail'));
+  const emailForm = el('form', { onsubmit: async e => {
+    e.preventDefault();
+    if (ask.disabled) return;
+    ask.disabled = true; say(t('passage.sending'), false);
+    try {
+      await api('POST', 'api/auth/email', { email: email.value });
+      emailForm.hidden = true; codeForm.hidden = again.hidden = false;
+      say(t('signin.codeSent', { email: email.value.trim() }), false);
+      code.value = ''; code.focus();
+    } catch (err) { fail(err); if (err.status === 400) say(t('signin.badEmail')); }
+    ask.disabled = false;
+  } }, email, ask);
+  const codeForm = el('form', { hidden: '', onsubmit: async e => {
+    e.preventDefault();
+    if (enter.disabled) return;
+    enter.disabled = true;
+    try {
+      const r = await api('POST', 'api/auth/email/verify', { email: email.value, code: code.value });
+      account.user = r.user; drawAccount();
+      onDone?.();
+    } catch (err) { fail(err); if (err.status === 400) { say(t('signin.badCode')); code.select(); } }
+    enter.disabled = false;
+  } }, code, enter);
+  again.hidden = true;
+  const m = account.methods;
+  return el('div', { class: 'signin' },
+    lead ? el('p', { class: 'chat-intro' }, lead) : null,
+    m.google ? trip('google') : null, m.apple ? trip('apple') : null,
+    m.email ? emailForm : null, m.email ? codeForm : null, status, m.email ? again : null,
+    el('p', { class: 'signin-note' }, t('signin.privacy')));
+}
+// What a reader was writing when they left for Google or Apple, kept for this tab until they are back (15 minutes).
+const DRAFT = 'freedom-comment-draft';
+function keepDraft(p, text) {
+  try { sessionStorage.setItem(DRAFT, JSON.stringify({ key: lawSel.base?.key, at: Date.now(), text, p: { quote: p.quote, where: p.where, top: p.top } })); } catch { /* storage unavailable */ }
+}
+function takeDraft(key) {
+  try {
+    const d = JSON.parse(sessionStorage.getItem(DRAFT) || 'null');
+    if (!d || d.key !== key) return null;
+    sessionStorage.removeItem(DRAFT);
+    return Date.now() - d.at < 15 * 60000 && d.p ? d : null;
+  } catch { return null; }
+}
+api('GET', 'api/me').then(r => { account.user = r.user || null; account.methods = r.methods || {}; }, () => {}).then(() => {
+  drawAccount();
+  if (/(^|;\s*)fm_signin=failed/.test(document.cookie)) {   // a trip to Google or Apple that did not work (server.py)
+    document.cookie = 'fm_signin=; Path=/; Max-Age=0';
+    notice(t('signin.failed'));
+  }
+});
+
 async function loadInterests(key) {
   let e;
   if (sharedApi) {
@@ -1126,14 +1251,27 @@ function showLawIcon() {
 const passageKey = p => `${lawSel.base.key}|q|${hashText(p.quote)}`.slice(-200);
 // The box for a comment on a passage or on the whole requirement: saved on the server for the editors, with any chat
 // the reader had about it. Nothing is published.
-function commentBox(p) {
+function commentBox(p, draft = '') {
   const input = el('textarea', { rows: '4', maxlength: '2000', placeholder: t('passage.placeholder'), 'aria-label': t('passage.comment') });
+  input.value = draft;
+  // On a server with accounts a comment needs a signed-in reader: the ways to sign in take the place of the typing
+  // box (what was typed is kept), and once signed in the comment is sent. The owner's local copy never asks.
+  let panel = null;
+  const askSignIn = () => {
+    panel?.remove();
+    panel = signInPanel({ lead: t('signin.toSend'), beforeLeave: () => keepDraft(p, input.value),
+      onDone: () => { panel.remove(); panel = null; form.hidden = false; form.requestSubmit(); } });
+    form.hidden = true; status.className = 'chat-intro'; status.textContent = '';
+    log.append(panel);
+    panel.querySelector('input, button')?.focus();
+  };
   const status = el('p', { class: 'chat-intro', 'aria-live': 'polite' }, t(p.quote ? 'passage.private' : 'req.private'));
   const send = el('button', { type: 'submit', class: 'chat-send' }, t('chat.send'));
   const form = el('form', { class: 'chat-form', onsubmit: async e => {
     e.preventDefault();
     const comment = input.value.trim();
     if (!comment || send.disabled) return input.focus();
+    if (!account.user && canSignIn() && !editor) return askSignIn();
     send.disabled = true; status.className = 'chat-intro'; status.textContent = t('passage.sending');
     try {
       const r = await api('POST', 'api/comment', { comment, quote: p.quote, where: p.where, page: lawSel.base.title, url: location.href,
@@ -1141,6 +1279,10 @@ function commentBox(p) {
       input.value = '';
       status.textContent = t(r.to === 'claude' ? 'passage.sentOwner' : 'passage.sent');   // 'claude': the owner's local copy
     } catch (err) {
+      if (err.status === 401 && canSignIn()) {   // the sign-in ran out, or was ended elsewhere
+        account.user = null; drawAccount(); send.disabled = false;
+        return askSignIn();
+      }
       status.className = 'chat-error';
       status.textContent = { 429: t('passage.tooMany'), 507: t('passage.failed') }[err.status] || (err.refused ? err.message : t('chat.needsServer'));
     }
@@ -1150,11 +1292,11 @@ function commentBox(p) {
   const log = el('div', { class: 'chat-log' }, p.quote ? el('blockquote', { class: 'chat-quote' }, p.quote) : null, status);
   return { log, form, input };
 }
-function openPassage(p, mode) {
+function openPassage(p, mode, draft = '') {
   lawSel.pop?.remove();
   const { key, context } = lawSel.base;
   const ctx = `${context}\n\nThe reader highlighted this passage of ${p.where || 'the law quoted above'}:\n"${p.quote}"\nTalk with them about this passage.`.slice(0, 12000);
-  const box = mode === 'ask' ? chatBox(passageKey(p), ctx, p) : commentBox(p);
+  const box = mode === 'ask' ? chatBox(passageKey(p), ctx, p) : commentBox(p, draft);
   const title = t(mode === 'ask' ? 'chat.title' : 'passage.commentTitle');
   const close = () => { pop.remove(); if (lawSel.pop === pop) lawSel.pop = null; };
   const pop = el('div', { class: 'chat-pop sel-pop', role: 'dialog', 'aria-label': title },
@@ -1475,6 +1617,9 @@ function render() {
   if (keepPassageChat !== lawSel.pop?.dataset.key) { lawSel.pop?.remove(); lawSel.pop = null; }
   if (!keepPassageChat) lawSel.base = null;
   $('#tree').replaceChildren(...screen.filter(Boolean));
+  // Back from signing in with Google or Apple: the comment the reader was writing here opens again.
+  const draft = lawSel.base && takeDraft(lawSel.base.key);
+  if (draft) openPassage({ quote: String(draft.p.quote || ''), where: String(draft.p.where || ''), top: Number(draft.p.top) || 80 }, 'comment', String(draft.text || ''));
 }
 
 // ---------- shareable URL: #lat,lon/level/branch/mech/prop ----------
