@@ -67,7 +67,7 @@
     pop.className = 'review-pop';
     pop.innerHTML = '<p class="review-quote"></p><textarea rows="5" placeholder="Your comment (⌘/Ctrl+Enter sends)"></textarea>'
       + '<div class="review-row"><span class="review-status"></span><button type="button" class="review-cancel">Cancel</button>'
-      + '<button type="button" class="review-send">Send to Claude</button></div>';
+      + '<button type="button" class="review-send">Send</button></div>';
     pop.querySelector('.review-quote').textContent = text.length > 240 ? text.slice(0, 240) + '…' : text;
     const box = pop.querySelector('textarea'), status = pop.querySelector('.review-status'), send = pop.querySelector('.review-send');
     async function submit() {
@@ -79,7 +79,7 @@
         const r = await fetch('api/review', { method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ comment, text, where: where(node), page: document.title, url: location.href }) });
         if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || r.status);
-        status.textContent = 'Sent. Claude answers in the project thread.';
+        status.textContent = 'Sent.';
         node.classList.add('review-done');
         btn?.classList.add('done');
         setTimeout(close, 1500);
